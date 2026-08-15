@@ -50,6 +50,15 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
    record the decision. Then hydrate the selected set, add it to `repos.tsv`,
    and index.
 
+   **Decision (2026-08-16, after reading the continuation session — it records
+   no reservoir scope decision):** hydrate every Reservoir package with a git
+   source, i.e. the exhaustive set the audit needs. `reservoir.tsv` holds the
+   739 packages (URL-derived `reservoir-sources/<owner>__<repo>` paths, exact-URL
+   dedup against `repos.tsv`, Mathlib-family repos skipped). This stays a
+   separate manifest so `just sync` does not pull 800 repositories; the
+   `sync-reservoir` recipe and the `index` recipe (now reading `repos.tsv
+   reservoir.tsv`) cover it. Hydration is sharded and parallel.
+
 2. **Run the exhaustive residue audit — the corpus's reason for existing.**
    The corpus was built to replace per-repo partial checks with an exhaustive
    check of every catalogue term against all recorded sources (ord 17652). The
