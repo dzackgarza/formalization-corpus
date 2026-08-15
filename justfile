@@ -17,7 +17,7 @@ register:
 
 # Build the reusable lexical and structural search tools.
 build-tools:
-    cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt-git-index ./cmd/zoekt-git-index
+    cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt-index ./cmd/zoekt-index
     cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt ./cmd/zoekt
     cd tools/Julian__tree-sitter-lean && tree-sitter build --output ../../.ast-grep/lean.so
 
@@ -25,7 +25,7 @@ build-tools:
 index:
     #!/usr/bin/env zsh
     while IFS=$'\t' read -r _ path; do
-      ./bin/zoekt-git-index -index .zoekt "$path"
+      ./bin/zoekt-index -index .zoekt "$path"
     done < repos.tsv
 
 # Search declarations and source text across the corpus.
