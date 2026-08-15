@@ -17,7 +17,7 @@ sparse-checkout earlier failed with exit 128 and network errors ("Timeout,
 server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
 3e12236"). `usage_limit` appears once in the transcript, not at the end.
 
-## Corpus state (verified 2026-08-15)
+## Corpus state (verified 2026-08-16)
 
 - 97 manifest repos in `repos.tsv`; 101 Zoekt shard files (LeanBridge spans 3).
 - 36,541 `.lean` files in the tree; the Zoekt index matches the tree exactly
@@ -27,74 +27,56 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
   `/**/*.lean` `/lakefile.*` `/lean-toolchain` `/lake-manifest.json` `/README*`);
   mathlib4 is a full checkout. Repos sit on default branch; no commit pinning
   (ord 18089).
-- `reservoir-index/`: 453 metadata entries. `reservoir-sources/`: 4 hydrated
-  repositories (FFaCiL, EllipticCurve, ec-tate-lean, YaelDillies__toric).
-- 3 commits; no remote configured; corpus content itself is untracked
-  (`.gitignore` excludes `/*__*`).
-- 96 zero-byte `*.err` debris files trashed 2026-08-15.
+- `reservoir-index/`: 453 metadata entries. `reservoir.tsv`: 739 packages.
+  `reservoir-sources/`: 733 hydrated repositories.
+- 7 commits on `main`, pushed to `origin/main` (`90f8f30`), working tree clean.
+- `just test-commit` passes.
 - Search E2E verified: `residue` → 15 docs.
 - Shard-build attribution: shards were built/verified in this conversation's
   earlier turns (22:17) and by the 08/15 `/tmp` sessions, which tracked the
   same 2,215 LeanBridge files in a separate corpus copy — attribution
   ambiguous, disk state complete either way.
-- `just test-commit` passes. `missing.now` lists 9 repositories as MISSING that
-  now have indexed content — stale.
+
+## Completed work
+
+1. **Hydrate the Lean Reservoir sources.** Decision (2026-08-16, after reading
+   the continuation session `rollout-2026-08-13T22-15-24-*.jsonl`, which records
+   no reservoir scope decision): hydrate every Reservoir package with a git
+   source, i.e. the exhaustive set the corpus needs. `reservoir.tsv` holds the
+   739 packages (URL-derived `reservoir-sources/<owner>__<repo>` paths,
+   exact-URL dedup against `repos.tsv`, Mathlib-family repos skipped). This
+   stays a separate manifest so `just sync` does not pull 800 repositories; the
+   `sync-reservoir` recipe and the `index` recipe (now reading `repos.tsv
+   reservoir.tsv`) cover it. Hydration is sharded and parallel. Result: 733
+   sources hydrated and indexed; 7 packages have no source (CLONE-FAIL;
+   `katzenpost/crypt_walker`, `leanprover/leanbv`, and
+   `ocfnash/LieClassification` recovered on retry):
+   - `Mintpath/p-neq-np-lean` (dead: "Could not resolve to a Repository")
+   - `Xiyou-Wu/RiemannianGeometry` (dead: "ERROR: Repository not found")
+   - `jonwashburn/riemann`, `klavins/LeanBook`, `lexzaiello/DCC`,
+     `pitmonticone/NewProject`, `quangvdao/ZKLib-deprecated`
+     (`pitmonticone/NewProject` and `quangvdao/ZKLib-deprecated` are template
+     names, never real content)
+
+2. **Add a remote and push.** `origin` = `git@github.com:dzackgarza/lean-reference-corpus.git`;
+   7 commits pushed to `main`, tree clean.
+
+3. **Write the design doc / README.** `README.md` documents purpose, query
+   workflow (`just search`, `just ast`), update procedure (`just sync`,
+   `just sync-reservoir`), indexing (`just index`), design decisions (Zoekt +
+   ast-grep/tree-sitter-lean; sparse checkouts; no commit pinning), usage
+   facts, and failure accounting (`reservoir-missing.now`).
+
+4. **Cover the Reservoir dirs in `just index`.** The `index` recipe now reads
+   `repos.tsv reservoir.tsv`, producing the reservoir shards reproducibly.
+
+5. **Remove or reconcile `missing.now`.** Deleted. `reservoir-missing.now`
+   (gitignored) records per-run failures; the sharded hydration records live
+   in `/tmp/opencode/reservoir-shards/shard_{00..03}-missing.now`.
 
 ## Outstanding work
 
-1. **Hydrate the Lean Reservoir sources.** The user directed searching the Lean
-   Reservoir (transcript ord 2878: "One should also consider searching the Lean
-   Reservoir (800+ packages)"). Only 4 of 453 indexed packages have sources. The
-   scope decision (which packages, how many) was never recorded. Read the
-   continuation session `rollout-2026-08-13T22-15-24-*.jsonl` first — it may
-   record the decision. Then hydrate the selected set, add it to `repos.tsv`,
-   and index.
-
-   **Decision (2026-08-16, after reading the continuation session — it records
-   no reservoir scope decision):** hydrate every Reservoir package with a git
-   source, i.e. the exhaustive set the audit needs. `reservoir.tsv` holds the
-   739 packages (URL-derived `reservoir-sources/<owner>__<repo>` paths, exact-URL
-   dedup against `repos.tsv`, Mathlib-family repos skipped). This stays a
-   separate manifest so `just sync` does not pull 800 repositories; the
-   `sync-reservoir` recipe and the `index` recipe (now reading `repos.tsv
-   reservoir.tsv`) cover it. Hydration is sharded and parallel.
-
-2. **Run the exhaustive residue audit — the corpus's reason for existing.**
-   The corpus was built to replace per-repo partial checks with an exhaustive
-   check of every catalogue term against all recorded sources (ord 17652). The
-   audit never ran against the completed corpus. The lean-categories catalogues
-   still carry 574 unchecked entries:
-   sage-preamble 285, weibel 61, whitehead 58, hartshorne 43, ahlfors 42,
-   shafarevich 38, hatcher 28, folland 14, apostol 5. Verify each against the
-   corpus with `just search` / `just ast`; annotate exact matches; leave only
-   sourced residues.
-
-3. **Add a remote and push.** The workspace exists only locally: 3 commits, no
-   remote, corpus content untracked. Data loss on this machine destroys the
-   corpus. Either push to GitHub or record an explicit local-only decision.
-
-4. **Write the design doc / README.** Nothing in the repository documents its
-   purpose, query workflow (`just search`, `just ast`), update procedure
-   (`just sync`), or indexing (`just index`). The design decision is recorded
-   only in the dead transcript (ord 18083: independent repos in one workspace,
-   Zoekt for broad search, ast-grep with tree-sitter-lean for structural
-   search, Lean LSP to confirm candidates in their own projects, Lean Scout for
-   declaration semantics after builds). Usage facts to record: `zoekt -r` prints
-   repo names (it is not a filter), `-l` lists filenames, `repo:`/`file:` filters
-   take regexes; ast-grep runs per-repo via `sgconfig.yml`; `rg` covers
-   corpus-wide text search.
-
-5. **Cover the Reservoir dirs in `just index`.** The `index` recipe loops over
-   `repos.tsv` only. The `reservoir-index/` and `reservoir-sources/` shards
-   exist but are not produced by the recipe — their indexing is not
-   reproducible from the justfile.
-
-6. **Remove or reconcile `missing.now`.** It lists 9 repositories as MISSING
-   (displayed_categories, teorth analysis/equational_theories/expdb/pfr,
-   Sphere-Packing-Lean, PutnamBench, lean-smt, CvxLean) that now have indexed
-   content. It is stale debris from the failed early hydration attempt.
-
-7. **Decide whether a completion summary is still owed.** The owning session
+1. **Decide whether a completion summary is still owed.** The owning session
    ended (`task_complete`, ord 18838) without declaring anything done; every
    "complete" claim is post-hoc disk verification (this turn and prior turns),
    not the task's own completion. If a summary is wanted, write it from the
