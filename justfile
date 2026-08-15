@@ -5,7 +5,11 @@ sync:
     #!/usr/bin/env zsh
     while IFS=$'\t' read -r url path; do
       if [[ -d "$path/.git" ]]; then
-        git -C "$path" pull --ff-only
+        if git -C "$path" symbolic-ref --quiet HEAD >/dev/null; then
+          git -C "$path" pull --ff-only
+        else
+          git -C "$path" fetch --prune origin
+        fi
       else
         git clone --depth 1 --filter=blob:none "$url" "$path"
       fi
