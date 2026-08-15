@@ -8,20 +8,35 @@ checkable, per the lean-categories reuse gate.
 
 Build provenance: the corpus was created in the 2026-08-13 codex session
 (`rollout-2026-08-13T15-07-42-019ff9f2-bc0e-7de0-9bcd-c9630d6a8813.jsonl`,
-ordinals 17652-18840), at the user's direction (ord 18026 "efficiently and
+ordinals 17652-18838), at the user's direction (ord 18026 "efficiently and
 idempotently in a resumable way"; ord 18103 "build the monorepo in ~/gitclones").
-That session died mid-hydration (`usage_limit_exceeded`, ord 18840, exit 128 on
-the LeanBridge sparse-checkout) and produced no completion summary.
+The transcript's final event is `task_complete` (ord 18838) with no final
+summary message; its last agent message reports LeanBridge mid-hydration
+("transferred about 477 MB... keep this process attached"). The LeanBridge
+sparse-checkout earlier failed with exit 128 and network errors ("Timeout,
+server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
+3e12236"). `usage_limit` appears once in the transcript, not at the end.
 
 ## Corpus state (verified 2026-08-15)
 
-- 97 manifest repos in `repos.tsv`; every repo dir has a Zoekt shard.
+- 97 manifest repos in `repos.tsv`; 101 Zoekt shard files (LeanBridge spans 3).
 - 36,541 `.lean` files in the tree; the Zoekt index matches the tree exactly
-  (per-repo file counts identical, zero diff in both directions).
+  (per-repo file counts identical, zero diff in both directions). LeanBridge:
+  2,215 real `.lean` files, blob `3e12236` present, exact shard-vs-tree match.
+- 96/97 repo dirs use the lean-only sparse-checkout pattern (`/*` `!/*/`
+  `/**/*.lean` `/lakefile.*` `/lean-toolchain` `/lake-manifest.json` `/README*`);
+  mathlib4 is a full checkout. Repos sit on default branch; no commit pinning
+  (ord 18089).
 - `reservoir-index/`: 453 metadata entries. `reservoir-sources/`: 4 hydrated
   repositories (FFaCiL, EllipticCurve, ec-tate-lean, YaelDillies__toric).
 - 3 commits; no remote configured; corpus content itself is untracked
   (`.gitignore` excludes `/*__*`).
+- 96 zero-byte `*.err` debris files trashed 2026-08-15.
+- Search E2E verified: `residue` → 15 docs.
+- Shard-build attribution: shards were built/verified in this conversation's
+  earlier turns (22:17) and by the 08/15 `/tmp` sessions, which tracked the
+  same 2,215 LeanBridge files in a separate corpus copy — attribution
+  ambiguous, disk state complete either way.
 - `just test-commit` passes. `missing.now` lists 9 repositories as MISSING that
   now have indexed content — stale.
 
@@ -55,7 +70,10 @@ the LeanBridge sparse-checkout) and produced no completion summary.
    only in the dead transcript (ord 18083: independent repos in one workspace,
    Zoekt for broad search, ast-grep with tree-sitter-lean for structural
    search, Lean LSP to confirm candidates in their own projects, Lean Scout for
-   declaration semantics after builds).
+   declaration semantics after builds). Usage facts to record: `zoekt -r` prints
+   repo names (it is not a filter), `-l` lists filenames, `repo:`/`file:` filters
+   take regexes; ast-grep runs per-repo via `sgconfig.yml`; `rg` covers
+   corpus-wide text search.
 
 5. **Cover the Reservoir dirs in `just index`.** The `index` recipe loops over
    `repos.tsv` only. The `reservoir-index/` and `reservoir-sources/` shards
@@ -68,6 +86,7 @@ the LeanBridge sparse-checkout) and produced no completion summary.
    content. It is stale debris from the failed early hydration attempt.
 
 7. **Decide whether a completion summary is still owed.** The owning session
-   died before declaring anything done; every "complete" claim is post-hoc disk
-   verification (this turn and prior turns), not the task's own completion.
-   If a summary is wanted, write it from the transcript and this TODO.
+   ended (`task_complete`, ord 18838) without declaring anything done; every
+   "complete" claim is post-hoc disk verification (this turn and prior turns),
+   not the task's own completion. If a summary is wanted, write it from the
+   transcript and this TODO.
