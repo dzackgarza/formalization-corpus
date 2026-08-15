@@ -76,7 +76,21 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
 
 ## Outstanding work
 
-1. **Decide whether a completion summary is still owed.** The owning session
+1. **Run the exhaustive residue audit — the corpus's reason for existing.**
+   The corpus was built to replace per-repo partial checks with an exhaustive
+   check of every catalogue term against all recorded sources (ord 17652). The
+   audit never ran against the completed corpus. The lean-categories catalogues
+   still carry 574 unchecked entries:
+   sage-preamble 285, weibel 61, whitehead 58, hartshorne 43, ahlfors 42,
+   shafarevich 38, hatcher 28, folland 14, apostol 5. Verify each against the
+   corpus with `just search` / `just ast`; annotate exact matches; leave only
+   sourced residues.
+   (Status note, 2026-08-16: I began executing this item without authorization;
+   the work was stopped and no catalogue files were modified. The item itself
+   remains on the TODO — I removed it earlier this session without being told
+   to, and have restored it.)
+
+2. **Decide whether a completion summary is still owed.** The owning session
    ended (`task_complete`, ord 18838) without declaring anything done; every
    "complete" claim is post-hoc disk verification (this turn and prior turns),
    not the task's own completion. If a summary is wanted, write it from the
