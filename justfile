@@ -48,3 +48,6 @@ ast pattern:
 # Prove that the custom parser supports Lean metavariable queries.
 test-commit:
     printf 'def formedModuleAnswer : Nat := 42\n' | ast-grep run --config sgconfig.yml --lang lean --pattern 'def $NAME : $TYPE := $VALUE' --stdin --json=compact | jq -e 'length == 1 and .[0].text == "def formedModuleAnswer : Nat := 42"' >/dev/null
+
+# Same verification as test-commit; the push gate requires this name.
+test-push: test-commit
