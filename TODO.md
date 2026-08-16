@@ -96,12 +96,15 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
      folland 148/14, apostol 58/4, hartshorne 89/30 (13 newly checked in
      this audit; prior state 76/43).
    - 12 pre-existing stale mathlib citation paths fixed via sed (old →
-     v4.32.0 renames); audit-scope catalogue files now 100% citation-resolvable
-     except flagged `RiemannRoch/` cites (riemann-roch-function-fields is not
-     in the corpus; reservoir candidates CLONE-FAIL).
-   - Remaining pre-existing unresolved cites (never in audit scope, not fixed):
-     dummit-and-foote ~45, atiyah ~10, folland 5, hartshorne 2 — all since
-     re-checked; hartshorne's 2 were fixed in the audit.)
+     v4.32.0 renames); every citation added by this audit resolves.
+   - Permanent flags: `RiemannRoch/` cites in shafarevich (5) and hartshorne
+     (4) — riemann-roch-function-fields is not in the corpus; reservoir
+     candidates CLONE-FAIL.
+   - Pre-existing stale citations remain, all outside the audit's annotation
+     scope (they sit in already-checked entries): dummit-and-foote 41,
+     atiyah 10, folland 5 (= 56; re-scanned 2026-08-16, each path verified
+     missing from pinned mathlib v4.32.0). Disposition not yet decided:
+     mechanical old→v4.32.0 renames vs report-only.)
 
 2. **Decide whether a completion summary is still owed.** The owning session
    ended (`task_complete`, ord 18838) without declaring anything done; every
