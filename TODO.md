@@ -105,11 +105,48 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
      atiyah 10, folland 5 (= 56; re-scanned 2026-08-16, each path verified
      missing from pinned mathlib v4.32.0). Disposition not yet decided:
      mechanical old→v4.32.0 renames vs report-only.)
+   (Resolution record, 2026-08-16, continuation sessions:
+   - All 56 pre-existing stale mathlib paths were resolved by mechanical
+     rename (v4.32.0 relocation or canonical-file move) in the three
+     catalogues; six textbook terms have no mathlib declaration and were
+     annotated in place with their closest declaration or an explicit
+     absence note. Full disposition with per-term evidence committed to
+     the lean-categories vault at
+     `references/todo-algebra-mathlib-and-lean-source-reuse-audit.md`
+     (vault commits `21bff959`, `0ce37d4d`, `27d5a51d`).
+   - The remaining scan classes were false positives: all 8
+     `LeanCategories/...lean` flags and all 6 `reservoir-sources/...lean`
+     flags resolve against the correct roots (repo tree and this corpus's
+     `reservoir-sources/` checkout; the scan originally checked the wrong
+     root). Two ahlfors citations pointed at the external
+     `AlexKontorovich/PrimeNumberTheoremAnd` package and were re-verified
+     against upstream `main`, unified to `Owner/Repo:path:line`.
+   - The 9 `RiemannRoch/`/`Atlas/`/`TauCeti` "permanent" cites (shafarevich,
+     hartshorne) are external-repo references kept by design; all 19 were
+     re-verified live against upstream `main` and the two
+     `RiemannRoch/Divisor.lean` entries gained the owner
+     (`vaca22/riemann-roch-function-fields`).
+   - Final re-scan of all 23 catalogue files: zero missing paths of any
+     class (mathlib, LeanCategories, reservoir, external).)
 
-## Outstanding work
+## Completion summary (2026-08-16)
 
-1. **Decide whether a completion summary is still owed.** The owning session
-   ended (`task_complete`, ord 18838) without declaring anything done; every
-   "complete" claim is post-hoc disk verification (this turn and prior turns),
-   not the task's own completion. If a summary is wanted, write it from the
-   transcript and this TODO.
+The owning session's goal was an exhaustive search corpus for the
+lean-categories reuse gate: every Lean formalization repository in the
+registry, plus the pinned Mathlib checkout and Lean Reservoir metadata,
+indexed so "this mathematics is not formalized anywhere in the registry"
+claims are exhaustively checkable. Delivered state:
+
+- 97 manifest repos + 733 reservoir sources hydrated under sparse
+  checkouts; Zoekt index matches the tree exactly (36,541 `.lean` files).
+- 7 commits on `main` pushed to `origin`; working tree clean;
+  `just test-commit` passes.
+- README documents the query workflow, update procedure, and design
+  decisions; `just index` covers both manifests reproducibly.
+- The residue audit — the corpus's reason for existing — ran against the
+  completed corpus: 633/1135 catalogue entries checked, 502 residues
+  remain as sourced-gap terms. The audit's stale-citation findings were
+  fully resolved in the continuation sessions (see the Resolution record
+  above) and the disposition is recorded in the lean-categories vault.
+- This TODO records provenance, state, completed work, and the audit
+  execution; no outstanding corpus items remain.
