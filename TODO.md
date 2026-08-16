@@ -131,8 +131,10 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
      class (mathlib, LeanCategories, reservoir, external).)
    (Continuation record, 2026-08-16, second audit dispatch:
    - 9 subagents dispatched to re-audit the residue lists; 6 produced new
-     annotations, all verified present at the cited file:line (18 decls;
-     all 13 reservoir-sources paths + 3 Mathlib paths cited resolve).
+     annotations, all verified present at the cited file:line (18 decls
+     across 16 paths: 8 reservoir-sources, 5 other corpus checkouts
+     [AlexKontorovich, atlas-lean ×3, TauCeti], 3 Mathlib — all resolve;
+     re-verified 2026-08-16).
      apostol (4) and weibel (57) residues re-confirmed with
      no new matches; sage-preamble re-dispatch returned empty three times —
      its residue disposition is the committed audit report
