@@ -90,7 +90,9 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
    remains on the TODO — I removed it earlier this session without being told
    to, and have restored it.)
    (Execution record, 2026-08-16, lean-categories audit session:
-   - 8 subagent reports + manual re-run: 59 new checks, 515 residues.
+   - 8 subagent reports + hartshorne manual re-run: 72 new checks (59 + 13),
+     502 residues (live checkbox count 2026-08-16: 633 checked / 502
+     unchecked across the 9 catalogues).
    - Per file (new checks / residue): sage-preamble 38/247, weibel 89/59,
      whitehead 22/57, ahlfors 70/32, shafarevich 60/33, hatcher 59/26,
      folland 148/14, apostol 58/4, hartshorne 89/30 (13 newly checked in
