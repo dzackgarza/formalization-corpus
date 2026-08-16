@@ -89,9 +89,10 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
    told to, and restored.)
    (Execution record, 2026-08-16, lean-categories audit session:
    - 8 subagent reports + hartshorne manual re-run: 72 new checks (59 + 13),
-     502 residues (live checkbox count 2026-08-16: 633 checked / 502
-     unchecked across the 9 catalogues).
-   - Per file (new checks / residue): sage-preamble 38/247, weibel 89/59,
+     500 residues (live checkbox count 2026-08-16: 633 checked / 500
+     unchecked across the 9 catalogues; the earlier 502 figure double-counted
+     two weibel entries — weibel is 89/57, not 89/59).
+   - Per file (new checks / residue): sage-preamble 38/247, weibel 89/57,
      whitehead 22/57, ahlfors 70/32, shafarevich 60/33, hatcher 59/26,
      folland 148/14, apostol 58/4, hartshorne 89/30 (13 newly checked in
      this audit; prior state 76/43).
@@ -128,6 +129,22 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
      (`vaca22/riemann-roch-function-fields`).
    - Final re-scan of all 23 catalogue files: zero missing paths of any
      class (mathlib, LeanCategories, reservoir, external).)
+   (Continuation record, 2026-08-16, second audit dispatch:
+   - 9 subagents dispatched to re-audit the residue lists; 6 produced new
+     annotations, all verified present at the cited file:line (18 decls;
+     all 13 reservoir-sources paths + 3 Mathlib paths cited resolve).
+     apostol (4) and weibel (57) residues re-confirmed with
+     no new matches; sage-preamble re-dispatch returned empty three times —
+     its residue disposition is the committed audit report
+     (`references/sage-preamble-definition-catalogue-audit-report.md`,
+     vault commit `69010c9b`), which documents all 247 residues with
+     evidence and lists every partial match in §4.
+   - New checks per file: ahlfors +5 (70→75), folland +3 (148→151),
+     hartshorne +1 (89→90), hatcher +1 (59→60), shafarevich +4 (60→64),
+     whitehead +4 (22→26). apostol, weibel, sage-preamble unchanged.
+   - Final live totals (recounted from vault catalogue files): 651 checked /
+     482 unchecked across 1133 entries (633/500 after first audit
+     [weibel-corrected] + 18 new checks = 651/482).)
 
 ## Completion summary (2026-08-16)
 
@@ -144,9 +161,12 @@ claims are exhaustively checkable. Delivered state:
 - README documents the query workflow, update procedure, and design
   decisions; `just index` covers both manifests reproducibly.
 - The residue audit — the corpus's reason for existing — ran against the
-  completed corpus: 633/1135 catalogue entries checked, 502 residues
-  remain as sourced-gap terms. The audit's stale-citation findings were
+  completed corpus: 651/1133 catalogue entries checked, 482 residues
+  remain as sourced-gap terms (633/500 after the first audit, +18 verified
+  checks from the second dispatch). The audit's stale-citation findings were
   fully resolved in the continuation sessions (see the Resolution record
   above) and the disposition is recorded in the lean-categories vault.
 - This TODO records provenance, state, completed work, and the audit
-  execution; no outstanding corpus items remain.
+  execution; the audit is complete (both dispatch passes ran, all
+  annotations verified, residues documented as sourced-gap terms) and no
+  corpus items remain outstanding.
