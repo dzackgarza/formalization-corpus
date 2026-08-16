@@ -147,6 +147,30 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
    - Final live totals (recounted from vault catalogue files): 651 checked /
      482 unchecked across 1133 entries (633/500 after first audit
      [weibel-corrected] + 18 new checks = 651/482).)
+   (Continuation record, 2026-08-16, sage-preamble direct re-audit:
+   - The sage-preamble residue disposition was re-run directly against the
+     pinned mathlib checkout (no subagents) instead of re-dispatch. 13 of
+     the 247 residues were verified present with exact decl + file:line and
+     checked in the catalogue: BaseChangeFunctor (100), BaseChangeAdjunction
+     (103), is_galois/galois_group (193), integral_basis (195), is_central
+     (202), ProfiniteGroups (216), AbsoluteGaloisGroups (217),
+     AbsoluteGaloisGroup (233), RingedSpaces (251),
+     structure_sheaf/underlying_space/stalk (259), GradedModules/GradedAlgebras
+     (290), FractionalIdeal (307), orthogonal_complement (331).
+   - The earlier "not found" claims were false negatives — searches hit the
+     wrong file/directory (`Algebra/Central/Defs.lean`,
+     `FieldTheory/Galois/Basic.lean`, `AlgebraicGeometry/`); the true owners
+     are `Algebra.IsCentral` (Algebra/Central/Defs.lean:67),
+     `absoluteGaloisGroup` (FieldTheory/AbsoluteGaloisGroup.lean:43),
+     `RingedSpace`/`SheafedSpace`/`LocallyRingedSpace`
+     (Geometry/RingedSpace/*.lean), `ModuleCat.extendScalars` +
+     `extendRestrictScalarsAdj` (Algebra/Category/ModuleCat/ChangeOfRings.lean),
+     `Polynomial.Gal` (FieldTheory/PolynomialGaloisGroup.lean:55),
+     `integralBasis` (NumberTheory/NumberField/Basic.lean:394),
+     `ProfiniteGrp` (Topology/Algebra/Category/ProfiniteGrp/Basic.lean:44),
+     `Gmodule`/`GradedAlgebra`, `FractionalIdeal`, `orthogonal`.
+   - sage-preamble now 51/234 (was 38/247). All catalogues total: 664
+     checked / 469 unchecked across 1133 entries (651/482 + 13).)
 
 ## Completion summary (2026-08-16)
 
@@ -163,9 +187,10 @@ claims are exhaustively checkable. Delivered state:
 - README documents the query workflow, update procedure, and design
   decisions; `just index` covers both manifests reproducibly.
 - The residue audit — the corpus's reason for existing — ran against the
-  completed corpus: 651/1133 catalogue entries checked, 482 residues
+  completed corpus: 664/1133 catalogue entries checked, 469 residues
   remain as sourced-gap terms (633/500 after the first audit, +18 verified
-  checks from the second dispatch). The audit's stale-citation findings were
+  checks from the second dispatch, +13 from the sage-preamble direct
+  re-audit). The audit's stale-citation findings were
   fully resolved in the continuation sessions (see the Resolution record
   above) and the disposition is recorded in the lean-categories vault.
 - This TODO records provenance, state, completed work, and the audit
