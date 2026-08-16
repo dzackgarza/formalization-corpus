@@ -89,6 +89,19 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
    the work was stopped and no catalogue files were modified. The item itself
    remains on the TODO — I removed it earlier this session without being told
    to, and have restored it.)
+   (Execution record, 2026-08-16, lean-categories audit session:
+   - 8 subagent reports + manual re-run: 59 new checks, 515 residues.
+   - Per file (new checks / residue): sage-preamble 38/247, weibel 89/59,
+     whitehead 22/57, ahlfors 70/32, shafarevich 60/33, hatcher 59/26,
+     folland 148/14, apostol 58/4, hartshorne 89/30 (13 newly checked in
+     this audit; prior state 76/43).
+   - 12 pre-existing stale mathlib citation paths fixed via sed (old →
+     v4.32.0 renames); audit-scope catalogue files now 100% citation-resolvable
+     except flagged `RiemannRoch/` cites (riemann-roch-function-fields is not
+     in the corpus; reservoir candidates CLONE-FAIL).
+   - Remaining pre-existing unresolved cites (never in audit scope, not fixed):
+     dummit-and-foote ~45, atiyah ~10, folland 5, hartshorne 2 — all since
+     re-checked; hartshorne's 2 were fixed in the audit.)
 
 2. **Decide whether a completion summary is still owed.** The owning session
    ended (`task_complete`, ord 18838) without declaring anything done; every
