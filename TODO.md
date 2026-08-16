@@ -29,7 +29,7 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
   (ord 18089).
 - `reservoir-index/`: 453 metadata entries. `reservoir.tsv`: 739 packages.
   `reservoir-sources/`: 733 hydrated repositories.
-- 7 commits on `main`, pushed to `origin/main` (`90f8f30`), working tree clean.
+- 17 commits on `main`, pushed to `origin/main` (`58e118d`), working tree clean.
 - `just test-commit` passes.
 - Search E2E verified: `residue` → 15 docs.
 - Shard-build attribution: shards were built/verified in this conversation's
@@ -59,7 +59,7 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
      names, never real content)
 
 2. **Add a remote and push.** `origin` = `git@github.com:dzackgarza/lean-reference-corpus.git`;
-   7 commits pushed to `main`, tree clean.
+   17 commits pushed to `main`, tree clean.
 
 3. **Write the design doc / README.** `README.md` documents purpose, query
    workflow (`just search`, `just ast`), update procedure (`just sync`,
@@ -158,7 +158,7 @@ claims are exhaustively checkable. Delivered state:
 
 - 97 manifest repos + 733 reservoir sources hydrated under sparse
   checkouts; Zoekt index matches the tree exactly (36,541 `.lean` files).
-- 7 commits on `main` pushed to `origin`; working tree clean;
+- 17 commits on `main` pushed to `origin`; working tree clean;
   `just test-commit` passes.
 - README documents the query workflow, update procedure, and design
   decisions; `just index` covers both manifests reproducibly.
