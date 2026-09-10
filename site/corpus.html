@@ -3,149 +3,83 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>What is indexed — Lean Reference Corpus</title>
+<title>Every repository — Lean Reference Corpus</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/css/tabulator_simple.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/css/tabulator_midnight.min.css" media="(prefers-color-scheme: dark)">
 <style>
-:root {
-	--bg: #fbfbf9;
-	--fg: #1a1a19;
-	--dim: #6b6b66;
-	--rule: #dedcd5;
-	--accent: #7a3b12;
-	--panel: #ffffff;
-}
-@media (prefers-color-scheme: dark) {
-	:root {
-		--bg: #16161a;
-		--fg: #e6e4de;
-		--dim: #99968d;
-		--rule: #2e2e35;
-		--accent: #e0a56a;
-		--panel: #1d1d22;
-	}
-}
-* { box-sizing: border-box; }
-a { color: var(--accent); }
-body {
-	margin: 0;
-	background: var(--bg);
-	color: var(--fg);
-	font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-}
-header { border-bottom: 1px solid var(--rule); padding: 18px 20px 14px; }
-h1 { font-size: 17px; margin: 0 0 3px; font-weight: 600; letter-spacing: -0.01em; }
-h1 a { color: inherit; text-decoration: none; }
-.sub { color: var(--dim); font-size: 13px; margin: 0; }
-main { padding: 18px 20px 60px; max-width: 980px; }
-details { border-top: 1px solid var(--rule); padding: 14px 0 4px; }
-details:first-of-type { border-top: 0; }
-summary {
-	cursor: pointer;
-	font-size: 14px;
-	font-weight: 600;
-	list-style-position: outside;
-}
-summary::marker { color: var(--dim); }
-.count { color: var(--dim); font-weight: 400; }
-.blurb { color: var(--dim); font-size: 13px; margin: 4px 0 14px; }
-input[type=search] {
-	width: 100%;
-	padding: 9px 11px;
-	margin-bottom: 4px;
-	font: inherit;
-	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-	background: var(--panel);
-	color: var(--fg);
-	border: 1px solid var(--rule);
-	border-radius: 5px;
-}
-input[type=search]:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
-ul { list-style: none; margin: 0; padding: 0; }
-li {
-	padding: 7px 0;
-	border-top: 1px solid var(--rule);
-	display: grid;
-	grid-template-columns: minmax(200px, 20em) 1fr;
-	gap: 4px 18px;
-	align-items: baseline;
-}
-li:first-child { border-top: 0; }
-li a {
-	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-	font-size: 12.5px;
-	text-decoration: none;
-	word-break: break-word;
-}
-li a:hover { text-decoration: underline; }
-.what { font-size: 13px; }
-nav { font-size: 13px; }
-nav a { margin-right: 14px; }
-@media (max-width: 620px) { li { grid-template-columns: 1fr; } }
+	html { font-size: 87.5%; }
+	header.container > hgroup > h1 { font-size: 1.4rem; margin-bottom: 0.2rem; }
+	header.container { padding-block: 1.2rem 0; }
+	header.container nav { margin-bottom: 0; }
+	main { padding-block: 1rem; }
+	.tabulator { font-size: 0.82rem; }
+	.tabulator-row .tabulator-cell a { font-family: var(--pico-font-family-monospace); }
+	.tabulator-header-filter input { margin: 0; font-size: 0.8rem; }
 </style>
 </head>
 <body>
-<header>
-	<h1><a href="./">Lean Reference Corpus</a></h1>
-	<nav><a href="./">Search</a><a href="./corpus.html">Every repository</a><a href="./subjects.html">By subject</a></nav>
+<header class="container">
+	<hgroup>
+		<h1><a href="./">Lean Reference Corpus</a></h1>
+		<p id="totals">Loading…</p>
+	</hgroup>
+	<nav>
+		<ul>
+			<li><a href="./">Search</a></li>
+			<li><a href="./corpus.html" aria-current="page">Every repository</a></li>
+			<li><a href="./subjects.html">By subject</a></li>
+		</ul>
+	</nav>
 </header>
 
-<main>
-	<p class="sub" id="totals"></p>
-
-	<input type="search" id="filter" placeholder="Filter by name or subject — sphere packing, Hasse, category" autocomplete="off" spellcheck="false">
-	<p class="sub" id="shown"></p>
-
-	<section id="groups"></section>
+<main class="container">
+	<div id="table"></div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/js/tabulator.min.js"></script>
 <script>
-const GROUPS = [
-	{key: "lean", title: "Lean 4 formalizations", open: true,
-	 blurb: "Mathlib and the formalization projects built on it — research papers, textbooks, and named theorems."},
-	{key: "port", title: "Rocq and Agda", open: true,
-	 blurb: "A theorem found here is formalized, but not in Lean. These are the libraries to read when Lean has no proof yet."},
-	{key: "reservoir", title: "Lean package registry", open: false,
-	 blurb: "Every package published to the Lean Reservoir that builds on Mathlib."},
-];
-
-const esc = s => s.replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
-let entries = [];
-
-function paint(filter) {
-	const q = filter.trim().toLowerCase();
-	const match = e => !q || e.name.toLowerCase().includes(q) || (e.what || "").toLowerCase().includes(q);
-	let shown = 0;
-
-	document.getElementById("groups").innerHTML = GROUPS.map(g => {
-		const rows = entries.filter(e => e.kind === g.key && match(e));
-		shown += rows.length;
-		if (!rows.length) return "";
-		// Filtering opens every group that has a hit; otherwise the 739
-		// Reservoir packages stay folded away.
-		const open = q || g.open ? " open" : "";
-		return `<details${open}><summary><span class="title">${g.title}</span> `
-			+ `<span class="count">${rows.length}</span></summary>`
-			+ `<p class="blurb">${g.blurb}</p><ul>` + rows.map(e =>
-				`<li><a href="${e.url}">${esc(e.name)}</a>`
-				+ (e.what ? `<span class="what">${esc(e.what)}</span>` : `<span></span>`)
-				+ `</li>`).join("") + `</ul></details>`;
-	}).join("");
-
-	document.getElementById("shown").textContent = q
-		? `${shown} of ${entries.length} repositories match “${filter.trim()}”`
-		: "";
-}
+const KINDS = {
+	lean: "Lean 4 formalizations — Mathlib and the projects built on it",
+	port: "Rocq and Agda — formalized, but not in Lean",
+	reservoir: "Lean package registry",
+};
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
-	entries = Object.entries(data.repos)
-		.map(([name, r]) => ({name, ...r}))
-		.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
+	const rows = Object.entries(data.repos).map(([name, r]) => ({name, ...r}));
 	const c = data.counts;
 	document.getElementById("totals").textContent =
-		`${entries.length} repositories are searched: ${c.lean} Lean 4 formalizations `
-		+ `including Mathlib, ${c.reservoir} packages from the Lean registry, `
-		+ `and ${c.port} libraries in Rocq and Agda.`;
-	paint("");
-	document.getElementById("filter").addEventListener("input", e => paint(e.target.value));
+		`${rows.length} repositories are searched: ${c.lean} Lean 4 formalizations including `
+		+ `Mathlib, ${c.reservoir} packages from the Lean registry, and ${c.port} libraries `
+		+ `in Rocq and Agda.`;
+
+	new Tabulator("#table", {
+		data: rows,
+		layout: "fitColumns",
+		height: "70vh",
+		groupBy: "kind",
+		// Groups otherwise appear in the order their first row happens to fall.
+		groupValues: [["lean", "port", "reservoir"]],
+		groupHeader: (kind, count) => `${KINDS[kind] || kind} <span>(${count})</span>`,
+		groupStartOpen: kind => kind !== "reservoir",
+		initialSort: [{column: "name", dir: "asc"}],
+		columns: [
+			{title: "Repository", field: "name", widthGrow: 2, headerFilter: "input",
+			 headerFilterPlaceholder: "filter by name",
+			 variableHeight: true,
+			 formatter: cell => {
+				 const a = document.createElement("a");
+				 a.href = cell.getRow().getData().url;
+				 a.textContent = cell.getValue();
+				 a.style.whiteSpace = "normal";
+				 a.style.wordBreak = "break-word";
+				 return a;
+			 }},
+			{title: "What it holds", field: "what", widthGrow: 3, headerFilter: "input",
+			 headerFilterPlaceholder: "filter by subject — sphere packing, Hasse, category",
+			 formatter: "textarea"},
+		],
+	});
 });
 </script>
 </body>

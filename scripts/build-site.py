@@ -56,43 +56,33 @@ PAGE = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>By subject — Lean Reference Corpus</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 <style>
-:root {{ --bg:#fbfbf9; --fg:#1a1a19; --dim:#6b6b66; --rule:#dedcd5; --accent:#7a3b12; --panel:#fff; }}
-@media (prefers-color-scheme: dark) {{
-	:root {{ --bg:#16161a; --fg:#e6e4de; --dim:#99968d; --rule:#2e2e35; --accent:#e0a56a; --panel:#1d1d22; }}
-}}
-* {{ box-sizing: border-box; }}
-a {{ color: var(--accent); }}
-body {{ margin:0; background:var(--bg); color:var(--fg);
-	font:15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }}
-header {{ border-bottom:1px solid var(--rule); padding:18px 20px 14px; }}
-header h1 {{ font-size:17px; margin:0 0 3px; font-weight:600; letter-spacing:-0.01em; }}
-header h1 a {{ color:inherit; text-decoration:none; }}
-nav {{ font-size:13px; }}
-nav a {{ margin-right:14px; }}
-.sub {{ color:var(--dim); font-size:13px; margin:0; }}
-main {{ padding:18px 20px 60px; max-width:1000px; }}
-main > h1 {{ display:none; }}
-h2 {{ font-size:15px; margin:34px 0 10px; padding-top:16px; border-top:1px solid var(--rule); }}
-p {{ margin: 10px 0; }}
-table {{ border-collapse:collapse; width:100%; margin:10px 0 22px; font-size:13.5px; }}
-th {{ text-align:left; font-size:12px; text-transform:uppercase; letter-spacing:0.04em;
-	color:var(--dim); font-weight:600; border-bottom:1px solid var(--rule); padding:6px 10px 6px 0; }}
-td {{ vertical-align:top; border-bottom:1px solid var(--rule); padding:8px 10px 8px 0; }}
-td:first-child {{ width:22em; }}
-td:first-child code {{ font-size:12.5px; }}
-code {{ font-family:ui-monospace, SFMono-Regular, Menlo, monospace; background:var(--panel);
-	border:1px solid var(--rule); border-radius:3px; padding:0 4px; }}
-a code {{ color:var(--accent); }}
-@media (max-width:640px) {{ td:first-child {{ width:auto; }} table, td, th {{ display:block; width:auto; }} }}
+	html {{ font-size: 87.5%; }}
+	header.container > hgroup > h1 {{ font-size: 1.4rem; margin-bottom: 0.2rem; }}
+	header.container {{ padding-block: 1.2rem 0; }}
+	header.container nav {{ margin-bottom: 0; }}
+	main {{ padding-block: 1rem; }}
+	main table {{ font-size: 0.85rem; }}
+	main td:first-child {{ width: 22em; }}
+	main h2 {{ font-size: 1.15rem; margin-top: 2.2rem; }}
 </style>
 </head>
 <body>
-<header>
-	<h1><a href="./">Lean Reference Corpus</a></h1>
-	<nav><a href="./">Search</a><a href="./corpus.html">Every repository</a><a href="./subjects.html">By subject</a></nav>
+<header class="container">
+	<hgroup>
+		<h1><a href="./">Lean Reference Corpus</a></h1>
+		<p>What has been formalized, by subject.</p>
+	</hgroup>
+	<nav>
+		<ul>
+			<li><a href="./">Search</a></li>
+			<li><a href="./corpus.html">Every repository</a></li>
+			<li><a href="./subjects.html" aria-current="page">By subject</a></li>
+		</ul>
+	</nav>
 </header>
-<main>
+<main class="container">
 {body}
 </main>
 </body>
