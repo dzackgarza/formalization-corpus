@@ -55,19 +55,34 @@ just publish            # ship the index to the search host and restart it
 
 ## The hosted search
 
-[lean-corpus.dzackgarza.com](https://lean-corpus.dzackgarza.com) serves this
-same index through `zoekt-webserver`, so the corpus is searchable without a
-local checkout. It is the index, not a derived summary: the same queries, the
-same results.
+[dzackgarza.github.io/lean-reference-corpus](https://dzackgarza.github.io/lean-reference-corpus/)
+searches the corpus from a browser. It is the real index behind it, not a
+derived summary: the same queries and the same results as `just search`.
 
-The host holds only the index — no repository checkouts and no Go toolchain.
-`just index` builds locally, `just publish` rsyncs `.zoekt/` and restarts the
-service, so the site is exactly as current as the last local `just sync`.
+The work is split by what each side can host:
+
+| Where | What it serves | Why there |
+| --- | --- | --- |
+| GitHub Pages (`site/`) | The page, the query UI, the repository table | Static, versioned with the manifests, free to serve |
+| `lean-corpus.dzackgarza.com` | `POST /api/search` only | 4.6 GB of shards cannot live in a Pages site |
+
+The page holds no index. It posts a zoekt query to the search host and renders
+what comes back, so nothing but the answer crosses the wire. `site/corpus.json`
+is generated from the manifests by `scripts/build-site.py`, which is how a hit
+in `leanprover__hex-lll` links back to its file on GitHub.
+
+The search host carries the index alone — no checkouts, no Go toolchain, no
+indexing work. `just index` builds locally and `just publish` rsyncs `.zoekt/`;
+the server watches its shard directory, so replaced shards load without a
+restart. The site is therefore exactly as current as the last local `just sync`.
 The binary is cross-compiled from `tools/sourcegraph__zoekt`:
 
 ```sh
 GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o zoekt-webserver ./cmd/zoekt-webserver
 ```
+
+It runs with `-html=false`, so the host answers queries and serves no pages,
+and with `-cors_origin` naming the Pages site.
 
 Add a repository by describing it in `SOURCES.md` under the domain it belongs
 to, appending `url<TAB>path` to the matching manifest — `repos.tsv` for Lean 4,
