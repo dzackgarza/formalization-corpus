@@ -202,29 +202,76 @@ function sourceLink(repoName, path, line) {
 	return `${repo.url}/blob/HEAD/${path}` + (line ? `#L${line}` : "");
 }
 
-function renderChunk(chunk) {
-	const text = b64(chunk.Content);
-	const startLine = chunk.ContentStart ? chunk.ContentStart.LineNumber : 1;
-	const startByte = chunk.ContentStart ? chunk.ContentStart.ByteOffset : 0;
+// Shiki tokenises with the same TextMate grammars Lean's own editors use.
+// Agda is not in the bundle, so .agda files stay plain rather than being
+// coloured by a grammar that does not describe them.
+const LANGS = {lean: "lean", v: "coq"};
+const THEME = matchMedia("(prefers-color-scheme: dark)").matches
+	? "github-dark" : "github-light";
+let shiki = null;
 
-	// Ranges are byte offsets into the file; mark them inside this chunk.
-	const encoder = new TextEncoder();
-	const raw = encoder.encode(text);
-	const cuts = [];
+async function loadShiki() {
+	const {createHighlighter} = await import("https://cdn.jsdelivr.net/npm/shiki@4/+esm");
+	shiki = await createHighlighter({themes: [THEME], langs: Object.values(LANGS)});
+}
+
+const langOf = name => LANGS[(name.split(".").pop() || "").toLowerCase()] || null;
+
+// Character offsets of the matched ranges within this chunk. Zoekt counts
+// bytes from the start of the file; the DOM counts characters from the start
+// of the chunk, and this corpus is full of multi-byte notation.
+function markRanges(chunk, text) {
+	const startByte = chunk.ContentStart ? chunk.ContentStart.ByteOffset : 0;
+	const raw = new TextEncoder().encode(text);
+	const out = [];
 	for (const r of (chunk.Ranges || [])) {
 		const a = r.Start.ByteOffset - startByte;
 		const b = r.End.ByteOffset - startByte;
-		if (a >= 0 && b <= raw.length && b > a) cuts.push([a, b]);
+		if (a < 0 || b > raw.length || b <= a) continue;
+		out.push([
+			decoder.decode(raw.slice(0, a)).length,
+			decoder.decode(raw.slice(0, b)).length,
+		]);
 	}
-	let out = "", at = 0;
-	for (const [a, b] of cuts) {
-		out += esc(decoder.decode(raw.slice(at, a)));
-		out += "<mark>" + esc(decoder.decode(raw.slice(a, b))) + "</mark>";
-		at = b;
-	}
-	out += esc(decoder.decode(raw.slice(at)));
+	return out;
+}
 
-	return out.replace(/\n$/, "").split("\n").map((line, i) =>
+// One styled run per character span, then the marks split those runs. Doing it
+// in this order keeps a match highlighted even when it starts mid-token.
+function runsFor(text, lang) {
+	if (!shiki || !lang) return [{text, color: null}];
+	const {tokens} = shiki.codeToTokens(text, {lang, theme: THEME});
+	const runs = [];
+	tokens.forEach((line, i) => {
+		for (const t of line) runs.push({text: t.content, color: t.color || null});
+		if (i < tokens.length - 1) runs.push({text: "\n", color: null});
+	});
+	return runs;
+}
+
+function renderChunk(chunk, lang) {
+	const text = b64(chunk.Content).replace(/\n$/, "");
+	const startLine = chunk.ContentStart ? chunk.ContentStart.LineNumber : 1;
+	const marks = markRanges(chunk, text);
+
+	let html = "", at = 0;
+	for (const run of runsFor(text, lang)) {
+		const end = at + run.text.length;
+		let cursor = at;
+		while (cursor < end) {
+			const mark = marks.find(([a, b]) => cursor >= a && cursor < b);
+			const stop = mark
+				? Math.min(end, mark[1])
+				: Math.min(end, ...marks.filter(([a]) => a > cursor).map(([a]) => a));
+			const piece = esc(run.text.slice(cursor - at, stop - at));
+			const styled = run.color ? `<span style="color:${run.color}">${piece}</span>` : piece;
+			html += mark ? `<mark>${styled}</mark>` : styled;
+			cursor = stop;
+		}
+		at = end;
+	}
+
+	return html.split("\n").map((line, i) =>
 		`<span class="ln">${String(startLine + i).padStart(5)}</span>  ${line}`
 	).join("\n");
 }
@@ -244,13 +291,14 @@ function render(result) {
 			? `<a href="${repo.url}">${esc(name)}</a>`
 			: esc(name);
 		const body = matches.map(f => {
+			const lang = langOf(f.FileName);
 			const chunks = (f.ChunkMatches || []).filter(c => !c.FileName);
 			const line = chunks.length ? chunks[0].ContentStart.LineNumber : 0;
 			const href = sourceLink(name, f.FileName, line);
 			const path = href
 				? `<a href="${href}">${esc(f.FileName)}</a>`
 				: esc(f.FileName);
-			const shown = chunks.slice(0, 3).map(renderChunk).join("\n\n");
+			const shown = chunks.slice(0, 3).map(c => renderChunk(c, lang)).join("\n\n");
 			// A file can match on its name alone, which has no lines to show.
 			const body = shown
 				? `<pre>${shown}</pre>`
@@ -320,6 +368,10 @@ el("f").addEventListener("submit", e => {
 	search(q);
 });
 window.addEventListener("hashchange", fromHash);
+
+// Highlighting is not part of answering a query: if the grammar bundle fails
+// to load the search still works, and the console says why the code is plain.
+loadShiki().catch(err => console.error("syntax highlighting unavailable:", err));
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
 	corpus = data;
