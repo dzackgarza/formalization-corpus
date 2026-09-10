@@ -71,6 +71,12 @@ button {
 	padding: 0 4px;
 }
 #status { color: var(--dim); font-size: 13px; margin-bottom: 14px; }
+#status.broken {
+	color: #b3261e;
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 12.5px;
+}
+@media (prefers-color-scheme: dark) { #status.broken { color: #f2857b; } }
 .repo {
 	margin-bottom: 22px;
 	border: 1px solid var(--rule);
@@ -255,7 +261,14 @@ function render(result) {
 	}).join("");
 }
 
+function fail(err) {
+	console.error(err);
+	el("status").className = "broken";
+	el("status").textContent = `search failed — ${err.message || err}`;
+}
+
 async function search(q) {
+	el("status").className = "";
 	el("status").textContent = "searching…";
 	el("results").innerHTML = "";
 	const started = performance.now();
@@ -266,15 +279,10 @@ async function search(q) {
 			headers: {"Content-Type": "application/json"},
 			body: JSON.stringify({Q: q, Opts: {MaxDocDisplayCount: MAX, ChunkMatches: true}}),
 		});
-		if (!res.ok) {
-			el("status").textContent = `search host returned ${res.status}: ${(await res.text()).slice(0, 200)}`;
-			return;
-		}
+		if (!res.ok) throw new Error(`${res.status} ${res.statusText}: ${(await res.text()).slice(0, 300)}`);
 		reply = await res.json();
 	} catch (err) {
-		el("status").textContent =
-			"cannot reach the search host. The index is served from a separate machine; "
-			+ "this page is static and holds no index of its own.";
+		fail(err);
 		return;
 	}
 
