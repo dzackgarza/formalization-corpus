@@ -26,6 +26,7 @@
 	}
 }
 * { box-sizing: border-box; }
+a { color: var(--accent); }
 body {
 	margin: 0;
 	background: var(--bg);
@@ -116,6 +117,7 @@ pre {
 	line-height: 1.5;
 }
 pre .ln { color: var(--dim); user-select: none; }
+pre.namehit { color: var(--dim); font-style: italic; }
 mark { background: var(--hit); color: inherit; border-radius: 2px; }
 #corpus { margin-top: 40px; border-top: 1px solid var(--rule); padding-top: 18px; }
 #corpus h2 { font-size: 14px; margin: 0 0 4px; }
@@ -143,8 +145,8 @@ details summary { cursor: pointer; color: var(--dim); font-size: 13px; }
 	</form>
 	<p class="hint">
 		Regular expressions, and zoekt's filters:
-		<code>repo:mathlib4</code>, <code>file:\.lean$</code>, <code>sym:Jordan</code>,
-		<code>case:yes</code>. Terms combine with a space; <code>-</code> negates.
+		<code>repo:mathlib4</code>, <code>file:\.lean$</code>, <code>case:yes</code>.
+		Terms combine with a space; <code>-</code> negates.
 	</p>
 
 	<div id="status"></div>
@@ -167,7 +169,10 @@ details summary { cursor: pointer; color: var(--dim); font-size: 13px; }
 </main>
 
 <script>
-const API = "https://lean-corpus.dzackgarza.com/api/search";
+// ?api=http://localhost:6070/api/search points the page at a tunnelled or
+// local zoekt, which is how this file is tested before it is published.
+const API = new URLSearchParams(location.search).get("api")
+	|| "https://lean-corpus.dzackgarza.com/api/search";
 const MAX = 60;
 
 let corpus = {repos: {}, counts: {}};
@@ -240,8 +245,11 @@ function render(result) {
 				? `<a href="${href}">${esc(f.FileName)}</a>`
 				: esc(f.FileName);
 			const shown = chunks.slice(0, 3).map(renderChunk).join("\n\n");
-			return `<div class="file"><div class="path">${path}</div>`
-				+ (shown ? `<pre>${shown}</pre>` : "") + `</div>`;
+			// A file can match on its name alone, which has no lines to show.
+			const body = shown
+				? `<pre>${shown}</pre>`
+				: `<pre class="namehit">matched in the file name</pre>`;
+			return `<div class="file"><div class="path">${path}</div>${body}</div>`;
 		}).join("");
 		return `<div class="repo"><h2>${head}<span class="tag">${kind}</span></h2>${body}</div>`;
 	}).join("");
@@ -270,20 +278,24 @@ async function search(q) {
 		return;
 	}
 
+	// Zoekt embeds its Stats struct directly in Result, so the counters sit at
+	// the top level rather than under a Stats key.
 	const result = reply.Result || {};
 	const files = result.Files || [];
-	const stats = result.Stats || {};
-	const ms = Math.round(performance.now() - started);
+	const roundTrip = Math.round(performance.now() - started);
+	const searchMs = Math.round((result.Duration || 0) / 1e6);
 	if (!files.length) {
-		el("status").textContent = `no matches (${stats.FileCount || 0} files considered, ${ms} ms)`;
+		el("status").textContent =
+			`no matches · ${result.FilesConsidered || 0} files considered · ${roundTrip} ms`;
 		return;
 	}
 	const shown = files.length;
-	const total = stats.FileCount || shown;
+	const total = result.FileCount || shown;
 	el("status").textContent =
 		`${shown} file${shown === 1 ? "" : "s"}`
 		+ (total > shown ? ` of ${total} matching` : "")
-		+ ` · ${stats.MatchCount || 0} matches · ${ms} ms`;
+		+ ` · ${result.MatchCount || 0} matches`
+		+ ` · ${searchMs} ms search, ${roundTrip} ms round trip`;
 	render(result);
 }
 
