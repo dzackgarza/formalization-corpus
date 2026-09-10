@@ -9,12 +9,19 @@ authoring any mathematical construct, search this corpus. A term found here is
 a reusable formalization; a term not found here, after corpus-wide search, is
 a candidate for new authorship.
 
+[`SOURCES.md`](./SOURCES.md) is the registry: every repository the corpus knows
+about, grouped by mathematical domain, with what each one holds and how far it
+is to be trusted. It is the single source of truth for what the ecosystem
+offers, and consuming repositories link to it instead of keeping their own
+copies. The `.tsv` manifests beside it say what to check out; `SOURCES.md` says
+what the checkouts are worth.
+
 ## What the corpus contains
 
 - **The pinned Mathlib checkout** (`leanprover-community__mathlib4/`), matching
   the exact version the corpus is indexed against. This is the primary search
   surface.
-- **97 registered formalization repositories** (see `repos.tsv`), each a
+- **119 registered formalization repositories** (see `repos.tsv`), each a
   shallow (`--depth 1 --filter=blob:none`) sparse checkout containing only
   `.lean` files, `lakefile.*`, `lean-toolchain`, `lake-manifest.json`, and
   `README*`.
@@ -26,24 +33,29 @@ a candidate for new authorship.
   present in `repos.tsv` (exact URL match) and Mathlib-family repositories are
   excluded from the reservoir list; the reservoir is a separate manifest so a
   routine `just sync` does not pull 800 repositories.
-
-Current corpus size: 36,541 `.lean` files across the registered
-repositories, indexed into 101 Zoekt shards.
+- **10 Rocq and Agda libraries** (see `port-sources.tsv`), hydrated into
+  `port-sources/` keeping `.v`, `.agda`, and `.lagda*` files. The reuse gate
+  forbids re-proving something that exists "in another proof assistant as a
+  port source", so those sources are indexed with the Lean ones; Zoekt searches
+  text and does not care which assistant wrote it.
 
 ## Workflow
 
 ```sh
-just build-tools   # build zoekt-index, zoekt, and the Lean ast-grep parser
-just sync          # clone or update the 97 registered repositories
-just sync-reservoir# clone or update the 739 Lean Reservoir packages
-just index         # (re)build the Zoekt index over repos.tsv + reservoir.tsv
-just search "Nat.Prime"     # Zoekt text search
+just build-tools        # build zoekt-index, zoekt, and the Lean ast-grep parser
+just sync               # clone or update the registered Lean repositories
+just sync-reservoir     # clone or update the 739 Lean Reservoir packages
+just sync-port-sources  # clone or update the Rocq and Agda port sources
+just index              # (re)build the Zoekt index over all three manifests
+just check-sources      # report repositories in SOURCES.md that no manifest checks out
+just search "Nat.Prime"                  # Zoekt text search
 just ast "def $NAME : $TYPE := $VALUE"   # Lean syntax-tree pattern search
 ```
 
-Add a repository by appending `url<TAB>path` to `repos.tsv` (Reservoir
-packages go in `reservoir.tsv`), then `just sync` (or `just sync-reservoir`)
-and `just index`.
+Add a repository by describing it in `SOURCES.md` under the domain it belongs
+to, appending `url<TAB>path` to the matching manifest — `repos.tsv` for Lean 4,
+`reservoir.tsv` for Reservoir packages, `port-sources.tsv` for another proof
+assistant — then running its `sync` recipe and `just index`.
 
 ## Usage facts
 

@@ -1,14 +1,23 @@
 #!/usr/bin/env zsh
-# Hydrate or update Lean Reservoir packages from a manifest.
-# Usage: sync-reservoir.zsh [manifest.tsv]   (default: reservoir.tsv)
-# Mirrors the sparse-checkout convention of the main corpus:
-#   keep *.lean, lakefile.*, lean-toolchain, lake-manifest.json, README*
+# Hydrate or update the repositories of a manifest.
+# Usage: sync-manifest.zsh [manifest.tsv] [proof-text-glob ...]
+#   default manifest: reservoir.tsv
+#   default globs:    /**/*.lean plus the Lake build files
+# Every checkout keeps only proof text and build metadata, so a manifest of
+# Rocq or Agda sources passes its own globs:
+#   sync-manifest.zsh port-sources.tsv '/**/*.v' '/**/*.agda' '/**/*.lagda*'
 # Logs failures to <manifest-basename>-missing.now for inspection.
 # Multiple workers can run in parallel on sharded manifests.
 set -u
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT" || exit 1
 MANIFEST="${1:-reservoir.tsv}"
+shift 2>/dev/null || true
+if (( $# )); then
+  PROOF_GLOBS=("$@")
+else
+  PROOF_GLOBS=('/**/*.lean' '/lakefile.*' '/lean-toolchain' '/lake-manifest.json')
+fi
 MANIFEST="$(realpath "$MANIFEST")"
 FAIL_LOG="${MANIFEST%.tsv}-missing.now"
 : > "$FAIL_LOG"
@@ -28,7 +37,7 @@ while IFS=$'\t' read -r url dir; do
     continue
   fi
   if timeout 90 git clone --depth 1 --filter=blob:none "$url" "$dir" >/dev/null 2>&1; then
-    git -C "$dir" sparse-checkout set --no-cone '/*' '!/*/' '/**/*.lean' '/lakefile.*' '/lean-toolchain' '/lake-manifest.json' '/README*' >/dev/null 2>&1 \
+    git -C "$dir" sparse-checkout set --no-cone '/*' '!/*/' "${PROOF_GLOBS[@]}" '/README*' >/dev/null 2>&1 \
       || echo "$url	$dir	SPARSE-FAIL" >> "$FAIL_LOG"
   else
     FAILED=$((FAILED + 1))
