@@ -42,6 +42,8 @@ Recall is not a source. The registry is refreshed by sweeping three machine-read
 | [Lean community projects page](https://leanprover-community.github.io/lean_projects.html) | Curated list of active formalization projects. |
 | [Lean Zulip](https://leanprover.zulipchat.com/) | Search it before concluding nonexistence; in-progress formalizations are announced and discussed there. |
 | [`CBirkbeck/LeanBridge`](https://github.com/CBirkbeck/LeanBridge) | Links [LMFDB](https://www.lmfdb.org/) objects to Lean declarations. |
+| [TheoremSearch](https://www.theoremsearch.com/) ([`uw-math-ai/TheoremSearch`](https://github.com/uw-math-ai/TheoremSearch), [arXiv:2602.05216](https://arxiv.org/abs/2602.05216)) | Semantic search over 9.2M *informal* theorem statements: all of arXiv, ProofWiki, the Stacks Project, CRing, the HoTT Book and three more. It holds no Lean, so it answers the question this corpus cannot — where a result is stated in the literature, and under what name. REST at `api.theoremsearch.com/search`, MCP at `api.theoremsearch.com/mcp`. |
+| [TheoremGraph](https://www.theoremsearch.com/) ([arXiv:2606.25363](https://arxiv.org/abs/2606.25363)) | Links those informal statements to 388,105 Lean declarations across 25 projects through a shared embedding space (47,952 matches above a 0.8 cosine floor; Mathlib is 90.5% of the declarations). Its formal side is a subset of this corpus — 24 of its 25 projects are already in the manifests here — but the matching is a capability this corpus lacks: use it to ask whether a paper's theorem has any formalization, then search here for the text. |
 
 ## Mathlib subtrees closest to this programme
 
