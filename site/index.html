@@ -210,10 +210,14 @@ const THEME = matchMedia("(prefers-color-scheme: dark)").matches
 	? "github-dark" : "github-light";
 let shiki = null;
 
-async function loadShiki() {
+// Started at load and awaited before the first render: the grammar takes about
+// a second to arrive, and rendering without it would leave the results plain
+// with nothing to trigger a second pass. Highlighting is not part of answering
+// a query, so a failed load logs and the results render uncoloured.
+const shikiReady = (async () => {
 	const {createHighlighter} = await import("https://cdn.jsdelivr.net/npm/shiki@4/+esm");
 	shiki = await createHighlighter({themes: [THEME], langs: Object.values(LANGS)});
-}
+})().catch(err => console.error("syntax highlighting unavailable:", err));
 
 const langOf = name => LANGS[(name.split(".").pop() || "").toLowerCase()] || null;
 
@@ -345,6 +349,7 @@ async function search(q) {
 			`no matches · ${result.FilesConsidered || 0} files considered · ${roundTrip} ms`;
 		return;
 	}
+	await shikiReady;
 	const shown = files.length;
 	const total = result.FileCount || shown;
 	el("status").textContent =
@@ -368,10 +373,6 @@ el("f").addEventListener("submit", e => {
 	search(q);
 });
 window.addEventListener("hashchange", fromHash);
-
-// Highlighting is not part of answering a query: if the grammar bundle fails
-// to load the search still works, and the console says why the code is plain.
-loadShiki().catch(err => console.error("syntax highlighting unavailable:", err));
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
 	corpus = data;
