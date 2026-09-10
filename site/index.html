@@ -126,22 +126,13 @@ pre .ln { color: var(--dim); user-select: none; }
 pre.namehit { color: var(--dim); font-style: italic; }
 mark { background: var(--hit); color: inherit; border-radius: 2px; }
 #corpus { margin-top: 40px; border-top: 1px solid var(--rule); padding-top: 18px; }
-#corpus h2 { font-size: 14px; margin: 0 0 4px; }
-details summary { cursor: pointer; color: var(--dim); font-size: 13px; }
-.repolist {
-	column-width: 260px;
-	column-gap: 22px;
-	margin-top: 12px;
-	font-size: 12.5px;
-	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-.repolist a { color: var(--accent); text-decoration: none; display: block; break-inside: avoid; }
 </style>
 </head>
 <body>
 <header>
 	<h1><a href="./">Lean Reference Corpus</a></h1>
-	<p class="sub" id="scope">Search every registered Lean 4 formalization, the Lean Reservoir packages, and the Rocq and Agda port sources at once.</p>
+	<p class="sub">Has this been formalized? Search Mathlib, every Lean 4 formalization project, and the large Rocq and Agda libraries in one query.</p>
+	<nav><a href="./">Search</a><a href="./corpus.html">Every repository</a><a href="./subjects.html">By subject</a></nav>
 </header>
 
 <main>
@@ -159,18 +150,7 @@ details summary { cursor: pointer; color: var(--dim); font-size: 13px; }
 	<div id="results"></div>
 
 	<section id="corpus">
-		<h2>What is indexed</h2>
 		<p class="sub" id="counts"></p>
-		<details>
-			<summary>Every repository in the corpus</summary>
-			<div class="repolist" id="repolist"></div>
-		</details>
-		<p class="sub" style="margin-top:14px">
-			<a href="https://github.com/dzackgarza/lean-reference-corpus/blob/main/SOURCES.md">SOURCES.md</a>
-			says what each one holds and how far to trust it.
-			<a href="https://github.com/dzackgarza/lean-reference-corpus">The repository</a>
-			holds the manifests and the build.
-		</p>
 	</section>
 </main>
 
@@ -405,21 +385,32 @@ function fromHash() {
 el("f").addEventListener("submit", e => {
 	e.preventDefault();
 	const q = el("q").value.trim();
-	if (!q) return;
+	if (!q) return clear();
 	location.hash = encodeURIComponent(q);
 	search(q);
 });
+
+function clear() {
+	el("results").innerHTML = "";
+	el("status").className = "";
+	el("status").textContent = "";
+	if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+}
+
+// Emptying the box — including with the search field's own clear button, which
+// fires input rather than submit — leaves no results behind.
+el("q").addEventListener("input", () => { if (!el("q").value.trim()) clear(); });
 window.addEventListener("hashchange", fromHash);
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
 	corpus = data;
 	const c = data.counts;
-	el("counts").textContent =
-		`${c.lean} Lean 4 repositories including Mathlib, `
-		+ `${c.reservoir} Lean Reservoir packages, `
-		+ `${c.port} Rocq and Agda libraries carried as port sources.`;
-	el("repolist").innerHTML = Object.entries(data.repos)
-		.map(([name, r]) => `<a href="${r.url}">${esc(name)}</a>`).join("");
+	el("counts").innerHTML =
+		`Searching ${c.lean + c.reservoir + c.port} repositories: Mathlib, `
+		+ `${c.lean + c.reservoir - 1} Lean 4 projects and packages, `
+		+ `and ${c.port} libraries in Rocq and Agda. `
+		+ `<a href="./corpus.html">See them all</a>, or `
+		+ `<a href="./subjects.html">browse by subject</a>.`;
 	fromHash();
 });
 </script>

@@ -6,6 +6,8 @@ on:
     paths:
       - "site/**"
       - "scripts/build-site.py"
+      - "SOURCES.md"
+      - "descriptions.tsv"
       - "repos.tsv"
       - "reservoir.tsv"
       - "port-sources.tsv"
@@ -30,8 +32,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # The repository table is derived from the manifests, so a repository
-      # added to a manifest reaches the site without a second edit.
+      # The repository table is derived from the manifests and SOURCES.md is
+      # rendered into a page, so a repository added to a manifest or a line
+      # written about one reaches the site without a second edit.
+      - run: pip install --quiet markdown
       - run: python3 scripts/build-site.py
 
       - uses: actions/configure-pages@v5
