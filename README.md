@@ -50,6 +50,23 @@ just index              # (re)build the Zoekt index over all three manifests
 just check-sources      # report repositories in SOURCES.md that no manifest checks out
 just search "Nat.Prime"                  # Zoekt text search
 just ast "def $NAME : $TYPE := $VALUE"   # Lean syntax-tree pattern search
+just publish            # ship the index to the search host and restart it
+```
+
+## The hosted search
+
+[lean-corpus.dzackgarza.com](https://lean-corpus.dzackgarza.com) serves this
+same index through `zoekt-webserver`, so the corpus is searchable without a
+local checkout. It is the index, not a derived summary: the same queries, the
+same results.
+
+The host holds only the index — no repository checkouts and no Go toolchain.
+`just index` builds locally, `just publish` rsyncs `.zoekt/` and restarts the
+service, so the site is exactly as current as the last local `just sync`.
+The binary is cross-compiled from `tools/sourcegraph__zoekt`:
+
+```sh
+GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o zoekt-webserver ./cmd/zoekt-webserver
 ```
 
 Add a repository by describing it in `SOURCES.md` under the domain it belongs
