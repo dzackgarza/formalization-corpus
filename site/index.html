@@ -181,13 +181,28 @@ const API = new URLSearchParams(location.search).get("api")
 	|| "https://lean-corpus.dzackgarza.com/api/search";
 const MAX = 60;
 
+// Shiki tokenises with the same TextMate grammars Lean's own editors use.
+// Agda is not in the bundle, so .agda files stay plain rather than being
+// coloured by a grammar that does not describe them.
+const LANGS = {lean: "lean", v: "coq"};
+const THEME = matchMedia("(prefers-color-scheme: dark)").matches
+	? "github-dark" : "github-light";
+let shiki = null;
+
+const shikiReady = (async () => {
+	const {createHighlighter} = await import("https://cdn.jsdelivr.net/npm/shiki@4/+esm");
+	shiki = await createHighlighter({themes: [THEME], langs: Object.values(LANGS)});
+})().catch(err => console.error("syntax highlighting unavailable:", err));
+
 let corpus = {repos: {}, counts: {}};
 const el = id => document.getElementById(id);
 const esc = s => s.replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
+const rx = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 // Zoekt returns file content as base64 of raw bytes; the corpus is full of
 // non-ASCII mathematical notation, so decode as UTF-8 rather than latin-1.
 const decoder = new TextDecoder();
+const encoder = new TextEncoder();
 function b64(s) {
 	const bin = atob(s);
 	const bytes = new Uint8Array(bin.length);
@@ -202,115 +217,145 @@ function sourceLink(repoName, path, line) {
 	return `${repo.url}/blob/HEAD/${path}` + (line ? `#L${line}` : "");
 }
 
-// Shiki tokenises with the same TextMate grammars Lean's own editors use.
-// Agda is not in the bundle, so .agda files stay plain rather than being
-// coloured by a grammar that does not describe them.
-const LANGS = {lean: "lean", v: "coq"};
-const THEME = matchMedia("(prefers-color-scheme: dark)").matches
-	? "github-dark" : "github-light";
-let shiki = null;
-
-// Started at load and awaited before the first render: the grammar takes about
-// a second to arrive, and rendering without it would leave the results plain
-// with nothing to trigger a second pass. Highlighting is not part of answering
-// a query, so a failed load logs and the results render uncoloured.
-const shikiReady = (async () => {
-	const {createHighlighter} = await import("https://cdn.jsdelivr.net/npm/shiki@4/+esm");
-	shiki = await createHighlighter({themes: [THEME], langs: Object.values(LANGS)});
-})().catch(err => console.error("syntax highlighting unavailable:", err));
-
-const langOf = name => LANGS[(name.split(".").pop() || "").toLowerCase()] || null;
-
-// Character offsets of the matched ranges within this chunk. Zoekt counts
-// bytes from the start of the file; the DOM counts characters from the start
-// of the chunk, and this corpus is full of multi-byte notation.
-function markRanges(chunk, text) {
-	const startByte = chunk.ContentStart ? chunk.ContentStart.ByteOffset : 0;
-	const raw = new TextEncoder().encode(text);
-	const out = [];
-	for (const r of (chunk.Ranges || [])) {
-		const a = r.Start.ByteOffset - startByte;
-		const b = r.End.ByteOffset - startByte;
-		if (a < 0 || b > raw.length || b <= a) continue;
-		out.push([
-			decoder.decode(raw.slice(0, a)).length,
-			decoder.decode(raw.slice(0, b)).length,
-		]);
-	}
-	return out;
-}
-
-// One styled run per character span, then the marks split those runs. Doing it
-// in this order keeps a match highlighted even when it starts mid-token.
-function runsFor(text, lang) {
-	if (!shiki || !lang) return [{text, color: null}];
-	const {tokens} = shiki.codeToTokens(text, {lang, theme: THEME});
-	const runs = [];
-	tokens.forEach((line, i) => {
-		for (const t of line) runs.push({text: t.content, color: t.color || null});
-		if (i < tokens.length - 1) runs.push({text: "\n", color: null});
+async function query(Q, Opts) {
+	const res = await fetch(API, {
+		method: "POST",
+		headers: {"Content-Type": "application/json"},
+		body: JSON.stringify({Q, Opts}),
 	});
-	return runs;
+	if (!res.ok) throw new Error(`${res.status} ${res.statusText}: ${(await res.text()).slice(0, 300)}`);
+	return (await res.json()).Result || {};
 }
 
-function renderChunk(chunk, lang) {
-	const text = b64(chunk.Content).replace(/\n$/, "");
-	const startLine = chunk.ContentStart ? chunk.ContentStart.LineNumber : 1;
-	const marks = markRanges(chunk, text);
+// A search result is an excerpt, and an excerpt cannot be tokenised correctly:
+// a match inside a block comment or a string looks like code once its opening
+// delimiter is out of frame. The search asks for Whole content, so the file is
+// in hand — exactly the bytes that matched, no drift against a branch that has
+// moved on — and only the prefix up to the last displayed line is tokenised,
+// which is what fixes the grammar state.
+//
+// Tokenising costs about 7.6 s per megabyte of Lean, so a prefix past this
+// size is left uncoloured rather than freezing the page for seconds.
+const PREFIX_LIMIT = 150000;
 
+function lineStarts(text) {
+	const starts = [0];
+	for (const line of text.split("\n")) starts.push(starts.at(-1) + encoder.encode(line).length + 1);
+	return starts;
+}
+
+// Marks split the styled runs of a line, so a hit starting mid-token stays
+// highlighted and keeps its colour.
+function renderLine(tokens, lineNo, marks) {
 	let html = "", at = 0;
-	for (const run of runsFor(text, lang)) {
-		const end = at + run.text.length;
+	for (const t of tokens) {
+		const end = at + t.content.length;
 		let cursor = at;
 		while (cursor < end) {
-			const mark = marks.find(([a, b]) => cursor >= a && cursor < b);
-			const stop = mark
-				? Math.min(end, mark[1])
+			const inside = marks.find(([a, b]) => cursor >= a && cursor < b);
+			const stop = inside
+				? Math.min(end, inside[1])
 				: Math.min(end, ...marks.filter(([a]) => a > cursor).map(([a]) => a));
-			const piece = esc(run.text.slice(cursor - at, stop - at));
-			const styled = run.color ? `<span style="color:${run.color}">${piece}</span>` : piece;
-			html += mark ? `<mark>${styled}</mark>` : styled;
+			const piece = esc(t.content.slice(cursor - at, stop - at));
+			const styled = t.color ? `<span style="color:${t.color}">${piece}</span>` : piece;
+			html += inside ? `<mark>${styled}</mark>` : styled;
 			cursor = stop;
 		}
 		at = end;
 	}
+	return `<span class="ln">${String(lineNo).padStart(5)}</span>  ${html}`;
+}
 
-	return html.split("\n").map((line, i) =>
-		`<span class="ln">${String(startLine + i).padStart(5)}</span>  ${line}`
-	).join("\n");
+function chunkLines(chunk, text) {
+	const first = chunk.ContentStart ? chunk.ContentStart.LineNumber : 1;
+	const height = b64(chunk.Content).replace(/\n$/, "").split("\n").length;
+	return {first, last: first + height - 1};
+}
+
+// One file's excerpts, tokenised together so grammar state is right.
+function fileHtml(match, text, tokensByLine) {
+	const starts = lineStarts(text);
+	const lines = text.split("\n");
+	return (match.ChunkMatches || []).filter(c => !c.FileName).slice(0, 3).map(chunk => {
+		const {first, last} = chunkLines(chunk, text);
+		const out = [];
+		for (let n = first; n <= last && n <= lines.length; n++) {
+			const lineText = lines[n - 1];
+			const raw = encoder.encode(lineText);
+			const marks = [];
+			for (const r of (chunk.Ranges || [])) {
+				const a = r.Start.ByteOffset - starts[n - 1];
+				const b = r.End.ByteOffset - starts[n - 1];
+				if (a < 0 || b > raw.length || b <= a) continue;
+				marks.push([decoder.decode(raw.slice(0, a)).length, decoder.decode(raw.slice(0, b)).length]);
+			}
+			const tokens = tokensByLine ? tokensByLine[n - 1] : [{content: lineText, color: null}];
+			out.push(renderLine(tokens || [{content: lineText, color: null}], n, marks));
+		}
+		return out.join("\n");
+	}).join("\n\n");
+}
+
+function langOf(name) {
+	return LANGS[(name.split(".").pop() || "").toLowerCase()] || null;
+}
+
+// Results appear uncoloured, then each file is coloured in turn. Yielding
+// between files keeps the page responsive while the grammar runs.
+async function colourise(blocks) {
+	await shikiReady;
+	if (!shiki) return;
+	for (const {block, match, text} of blocks) {
+		const lang = langOf(match.FileName);
+		if (!lang) continue;
+		const starts = lineStarts(text);
+		const last = Math.max(...(match.ChunkMatches || []).filter(c => !c.FileName)
+			.map(c => chunkLines(c, text).last), 1);
+		const prefixBytes = starts[Math.min(last, starts.length - 1)];
+		if (prefixBytes > PREFIX_LIMIT) continue;
+		const prefix = text.split("\n").slice(0, last).join("\n");
+		const tokensByLine = shiki.codeToTokens(prefix, {lang, theme: THEME}).tokens;
+		block.querySelector("pre").innerHTML = fileHtml(match, text, tokensByLine);
+		await new Promise(r => setTimeout(r, 0));
+	}
 }
 
 function render(result) {
-	const files = result.Files || [];
 	const byRepo = new Map();
-	for (const f of files) {
+	for (const f of (result.Files || [])) {
 		if (!byRepo.has(f.Repository)) byRepo.set(f.Repository, []);
 		byRepo.get(f.Repository).push(f);
 	}
 
+	const pending = [];
 	el("results").innerHTML = [...byRepo].map(([name, matches]) => {
 		const repo = corpus.repos[name];
 		const kind = repo ? {lean: "Lean", reservoir: "Reservoir", port: "port source"}[repo.kind] : "";
-		const head = repo
-			? `<a href="${repo.url}">${esc(name)}</a>`
-			: esc(name);
-		const body = matches.map(f => {
-			const lang = langOf(f.FileName);
+		const head = repo ? `<a href="${repo.url}">${esc(name)}</a>` : esc(name);
+		const body = matches.map((f, i) => {
 			const chunks = (f.ChunkMatches || []).filter(c => !c.FileName);
 			const line = chunks.length ? chunks[0].ContentStart.LineNumber : 0;
 			const href = sourceLink(name, f.FileName, line);
-			const path = href
-				? `<a href="${href}">${esc(f.FileName)}</a>`
-				: esc(f.FileName);
-			const shown = chunks.slice(0, 3).map(c => renderChunk(c, lang)).join("\n\n");
+			const path = href ? `<a href="${href}">${esc(f.FileName)}</a>` : esc(f.FileName);
 			// A file can match on its name alone, which has no lines to show.
-			const body = shown
-				? `<pre>${shown}</pre>`
-				: `<pre class="namehit">matched in the file name</pre>`;
-			return `<div class="file"><div class="path">${path}</div>${body}</div>`;
+			if (!chunks.length) {
+				return `<div class="file"><div class="path">${path}</div>`
+					+ `<pre class="namehit">matched in the file name</pre></div>`;
+			}
+			const text = f.Content ? b64(f.Content) : null;
+			const id = `f${byRepo.size}-${esc(name)}-${i}`.replace(/[^\w-]/g, "_");
+			pending.push({id, match: f, text});
+			return `<div class="file" id="${id}"><div class="path">${path}</div>`
+				+ `<pre>${text ? fileHtml(f, text, null) : ""}</pre></div>`;
 		}).join("");
 		return `<div class="repo"><h2>${head}<span class="tag">${kind}</span></h2>${body}</div>`;
 	}).join("");
+
+	colourise(pending
+		.filter(p => p.text)
+		.map(p => ({block: document.getElementById(p.id), match: p.match, text: p.text}))
+		.filter(p => p.block)
+	).catch(err => console.error("highlighting failed:", err));
 }
 
 function fail(err) {
@@ -324,15 +369,9 @@ async function search(q) {
 	el("status").textContent = "searching…";
 	el("results").innerHTML = "";
 	const started = performance.now();
-	let reply;
+	let result;
 	try {
-		const res = await fetch(API, {
-			method: "POST",
-			headers: {"Content-Type": "application/json"},
-			body: JSON.stringify({Q: q, Opts: {MaxDocDisplayCount: MAX, ChunkMatches: true}}),
-		});
-		if (!res.ok) throw new Error(`${res.status} ${res.statusText}: ${(await res.text()).slice(0, 300)}`);
-		reply = await res.json();
+		result = await query(q, {MaxDocDisplayCount: MAX, ChunkMatches: true, Whole: true});
 	} catch (err) {
 		fail(err);
 		return;
@@ -340,17 +379,15 @@ async function search(q) {
 
 	// Zoekt embeds its Stats struct directly in Result, so the counters sit at
 	// the top level rather than under a Stats key.
-	const result = reply.Result || {};
-	const files = result.Files || [];
+	const found = result.Files || [];
 	const roundTrip = Math.round(performance.now() - started);
 	const searchMs = Math.round((result.Duration || 0) / 1e6);
-	if (!files.length) {
+	if (!found.length) {
 		el("status").textContent =
 			`no matches · ${result.FilesConsidered || 0} files considered · ${roundTrip} ms`;
 		return;
 	}
-	await shikiReady;
-	const shown = files.length;
+	const shown = found.length;
 	const total = result.FileCount || shown;
 	el("status").textContent =
 		`${shown} file${shown === 1 ? "" : "s"}`
