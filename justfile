@@ -42,7 +42,7 @@ index:
       ./bin/zoekt-index -index .zoekt "$dir"
     done < <(cat repos.tsv reservoir.tsv rocq-agda.tsv)
 
-# The origin address, not lean-corpus.dzackgarza.com: that name resolves to
+# The origin address, not formalization-corpus.dzackgarza.com: that name resolves to
 # Cloudflare, which proxies HTTP and would not carry ssh.
 host := "zack@159.223.102.204"
 
@@ -50,7 +50,7 @@ host := "zack@159.223.102.204"
 # directory, so replaced shards are picked up without a restart.
 publish:
     rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
-    @echo "https://lean-corpus.dzackgarza.com"
+    @echo "https://formalization-corpus.dzackgarza.com"
 
 # Report repositories named in SOURCES.md that no manifest checks out.
 check-sources:

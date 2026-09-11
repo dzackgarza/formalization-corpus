@@ -89,7 +89,7 @@
 // ?api=http://localhost:6070/api/search points the page at a tunnelled or
 // local zoekt, which is how this file is tested before it is published.
 const API = new URLSearchParams(location.search).get("api")
-	|| "https://lean-corpus.dzackgarza.com/api/search";
+	|| "https://formalization-corpus.dzackgarza.com/api/search";
 const MAX = 60;
 
 // Shiki tokenises with the same TextMate grammars Lean's own editors use.

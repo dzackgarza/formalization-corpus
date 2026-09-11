@@ -61,7 +61,7 @@ The work is split by what each side can host:
 | Where | What it serves | Why there |
 | --- | --- | --- |
 | GitHub Pages (`site/`) | The page, the query UI, the repository table | Static, versioned with the manifests, free to serve |
-| `lean-corpus.dzackgarza.com` | `POST /api/search` only | 4.6 GB of shards cannot live in a Pages site |
+| `formalization-corpus.dzackgarza.com` | `POST /api/search` only | 4.6 GB of shards cannot live in a Pages site |
 
 The page holds no index. It posts a zoekt query to the search host and renders
 what comes back, so nothing but the answer crosses the wire. `site/corpus.json`
@@ -89,7 +89,7 @@ The JSON API is open — no key, no account. The
 query language, the options and the response shape; the short version:
 
 ```sh
-curl -s https://lean-corpus.dzackgarza.com/api/search \
+curl -s https://formalization-corpus.dzackgarza.com/api/search \
   -H 'Content-Type: application/json' \
   -d '{"Q": "Hasse invariant file:\\.lean$", "Opts": {"MaxDocDisplayCount": 20}}' \
   | jq -r '.Result.Files[] | "\(.Repository)  \(.FileName)"'

@@ -42,12 +42,12 @@
 	machine can answer. The web page on this site is one client of it.
 </p>
 
-<pre><code>POST https://lean-corpus.dzackgarza.com/api/search
+<pre><code>POST https://formalization-corpus.dzackgarza.com/api/search
 Content-Type: application/json</code></pre>
 
 <h2>A first query</h2>
 
-<pre><code>curl -s https://lean-corpus.dzackgarza.com/api/search \
+<pre><code>curl -s https://formalization-corpus.dzackgarza.com/api/search \
   -H 'Content-Type: application/json' \
   -d '{"Q": "IsometryEquiv", "Opts": {"MaxDocDisplayCount": 5}}'</code></pre>
 
@@ -56,7 +56,7 @@ Content-Type: application/json</code></pre>
 	“has anyone formalized this?”:
 </p>
 
-<pre><code>curl -s https://lean-corpus.dzackgarza.com/api/search \
+<pre><code>curl -s https://formalization-corpus.dzackgarza.com/api/search \
   -H 'Content-Type: application/json' \
   -d '{"Q": "Hasse invariant file:\\.lean$", "Opts": {"MaxDocDisplayCount": 20}}' \
   | jq -r '.Result.Files[] | "\(.Repository)  \(.FileName)"'</code></pre>
@@ -157,7 +157,7 @@ Content-Type: application/json</code></pre>
 
 <h2>Listing repositories</h2>
 
-<pre><code>curl -s https://lean-corpus.dzackgarza.com/api/list \
+<pre><code>curl -s https://formalization-corpus.dzackgarza.com/api/list \
   -H 'Content-Type: application/json' \
   -d '{"Q": "repo:hex"}' \
   | jq -r '.List.Repos[].Repository.Name'</code></pre>
