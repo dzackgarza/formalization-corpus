@@ -52,11 +52,6 @@ publish:
     rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
     @echo "https://lean-corpus.dzackgarza.com"
 
-# Recount theorems and definitions per repository. Run after sync: the site
-# reads the committed counts, since the Pages build has no checkouts.
-count:
-    python3 scripts/count-declarations.py
-
 # Report repositories named in SOURCES.md that no manifest checks out.
 check-sources:
     #!/usr/bin/env zsh

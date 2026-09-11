@@ -336,13 +336,11 @@ window.addEventListener("hashchange", fromHash);
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
 	corpus = data;
-	const c = data.counts;
 	el("counts").innerHTML =
-		`${c.theorems.toLocaleString()} theorems and ${c.definitions.toLocaleString()} `
-		+ `definitions: Mathlib, the Fermat's Last Theorem and Carleson's theorem `
-		+ `projects, Viazovska's sphere packing, condensed mathematics, the Lean `
-		+ `package registry — and Feit–Thompson and the univalent libraries in Rocq `
-		+ `and Agda. <a href="./corpus.html">Every repository</a>, or `
+		`Mathlib, the Fermat's Last Theorem and Carleson's theorem projects, `
+		+ `Viazovska's sphere packing, condensed mathematics, the Lean package `
+		+ `registry — and Feit–Thompson and the univalent libraries in Rocq and `
+		+ `Agda. <a href="./corpus.html">Every repository</a>, or `
 		+ `<a href="./subjects.html">by subject</a>.`;
 	fromHash();
 });
