@@ -55,7 +55,7 @@ PAGE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>By subject — Formal Mathematics Search</title>
+<title>By subject — Formalization Corpus</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 <style>
 	html {{ font-size: 87.5%; }}
@@ -71,7 +71,7 @@ PAGE = """<!doctype html>
 <body>
 <header class="container">
 	<hgroup>
-		<h1><a href="./">Formal Mathematics Search</a></h1>
+		<h1><a href="./">Formalization Corpus</a></h1>
 	</hgroup>
 	<nav>
 		<ul>

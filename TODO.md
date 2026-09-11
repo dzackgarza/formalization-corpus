@@ -58,7 +58,7 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
      (`pitmonticone/NewProject` and `quangvdao/ZKLib-deprecated` are template
      names, never real content)
 
-2. **Add a remote and push.** `origin` = `git@github.com:dzackgarza/lean-reference-corpus.git`;
+2. **Add a remote and push.** `origin` = `git@github.com:dzackgarza/formalization-corpus.git`;
    17 commits pushed to `main`, tree clean.
 
 3. **Write the design doc / README.** `README.md` documents purpose, query

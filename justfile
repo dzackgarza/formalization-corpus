@@ -25,7 +25,7 @@ sync-rocq-agda:
 
 # Register every nested repository with gita.
 register:
-    uvx --from gita gita add --recursive --group lean-reference-corpus .
+    uvx --from gita gita add --recursive --group formalization-corpus .
 
 # Build the reusable lexical and structural search tools.
 build-tools:

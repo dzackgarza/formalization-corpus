@@ -1,4 +1,4 @@
-# Formal Mathematics Search
+# formalization-corpus
 
 One search across formalized mathematics, whichever assistant it was written
 in: *has this been proved, and where?* A hit in Rocq answers the question even
@@ -52,7 +52,7 @@ just publish            # ship the index to the search host and restart it
 
 ## The hosted search
 
-[dzackgarza.github.io/lean-reference-corpus](https://dzackgarza.github.io/lean-reference-corpus/)
+[dzackgarza.github.io/formalization-corpus](https://dzackgarza.github.io/formalization-corpus/)
 searches the corpus from a browser. It is the real index behind it, not a
 derived summary: the same queries and the same results as `just search`.
 
@@ -85,7 +85,7 @@ pages, and with `-cors_origin` naming the Pages site. `-rpc` is what registers
 ## Querying it
 
 The JSON API is open — no key, no account. The
-[API page](https://dzackgarza.github.io/lean-reference-corpus/api.html) has the
+[API page](https://dzackgarza.github.io/formalization-corpus/api.html) has the
 query language, the options and the response shape; the short version:
 
 ```sh
