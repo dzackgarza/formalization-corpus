@@ -50,9 +50,10 @@ fetch("./corpus.json").then(r => r.json()).then(data => {
 	const rows = Object.entries(data.repos).map(([name, r]) => ({name, ...r}));
 	const c = data.counts;
 	document.getElementById("totals").textContent =
-		`${rows.length} repositories are searched: ${c.lean} Lean 4 formalizations including `
-		+ `Mathlib, ${c.reservoir} packages from the Lean registry, and ${c.port} libraries `
-		+ `in Rocq and Agda.`;
+		`${c.theorems.toLocaleString()} theorems and ${c.definitions.toLocaleString()} `
+		+ `definitions, across ${c.lean} Lean 4 formalizations including Mathlib, `
+		+ `${c.reservoir} packages from the Lean registry, and ${c.port} libraries in `
+		+ `Rocq and Agda. Sort by either column to see where the mathematics is.`;
 
 	new Tabulator("#table", {
 		data: rows,
@@ -79,6 +80,16 @@ fetch("./corpus.json").then(r => r.json()).then(data => {
 			{title: "What it holds", field: "what", widthGrow: 3, headerFilter: "input",
 			 headerFilterPlaceholder: "filter by subject — sphere packing, Hasse, category",
 			 formatter: "textarea"},
+			// Counted from the sources at build time, not typed in: a
+			// declaration keyword at the start of a line, so a floor rather
+			// than an exact figure. Agda states definitions without a keyword
+			// and is left blank instead of counted wrongly.
+			{title: "Theorems", field: "theorems", width: 105, hozAlign: "right",
+			 sorter: "number", headerTooltip: "theorem and lemma declarations",
+			 formatter: c => c.getValue() == null ? "" : c.getValue().toLocaleString()},
+			{title: "Definitions", field: "definitions", width: 115, hozAlign: "right",
+			 sorter: "number", headerTooltip: "def, structure, class, instance and inductive declarations",
+			 formatter: c => c.getValue() == null ? "" : c.getValue().toLocaleString()},
 		],
 	});
 });

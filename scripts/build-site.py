@@ -108,9 +108,27 @@ def subjects_page() -> None:
     print(f"{SUBJECTS}: {len(html)} bytes")
 
 
+def declarations() -> dict[str, tuple[int, int]]:
+    """Theorems and definitions per repository, from scripts/count-declarations.py.
+
+    Counted where the checkouts are and committed, like the descriptions: the
+    Pages build has the manifests but not the sources.
+    """
+    path = ROOT / "declarations.tsv"
+    if not path.exists():
+        return {}
+    out = {}
+    for line in path.read_text().splitlines():
+        parts = line.split("\t")
+        if len(parts) == 3:
+            out[parts[0]] = (int(parts[1]), int(parts[2]))
+    return out
+
+
 def main() -> None:
     subjects_page()
     what = descriptions()
+    counted = declarations()
     repos = {}
     for kind, manifest in MANIFESTS.items():
         for url, directory in rows(manifest):
@@ -120,12 +138,16 @@ def main() -> None:
             repos[name] = {"url": url, "kind": kind}
             if name in what:
                 repos[name]["what"] = what[name]
+            if name in counted:
+                repos[name]["theorems"], repos[name]["definitions"] = counted[name]
 
     counts = {kind: sum(1 for r in repos.values() if r["kind"] == kind) for kind in MANIFESTS}
+    counts["theorems"] = sum(r.get("theorems", 0) for r in repos.values())
+    counts["definitions"] = sum(r.get("definitions", 0) for r in repos.values())
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps({"repos": repos, "counts": counts}, indent=0, sort_keys=True))
-    described = sum(1 for r in repos.values() if r.get("what"))
-    print(f"{OUT}: {len(repos)} repositories {counts}, {described} described")
+    print(f"{OUT}: {len(repos)} repositories, "
+          f"{counts['theorems']:,} theorems, {counts['definitions']:,} definitions")
 
 
 if __name__ == "__main__":
