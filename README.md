@@ -1,13 +1,11 @@
-# Lean Reference Corpus
+# Formal Mathematics Search
 
-A searchable corpus of Lean 4 formalization repositories, built to make the
-claim "this mathematics is not formalized anywhere in the Lean ecosystem"
-exhaustively checkable.
+One search across formalized mathematics, whichever assistant it was written
+in: *has this been proved, and where?* A hit in Rocq answers the question even
+though it cannot be imported into Lean; a hit in Mathlib answers it and can be.
 
-The corpus is a working premise of the `lean-categories` reuse gate: before
-authoring any mathematical construct, search this corpus. A term found here is
-a reusable formalization; a term not found here, after corpus-wide search, is
-a candidate for new authorship.
+Lean is where most of this material currently lives, which is why most of the
+corpus is Lean. It is not what the corpus is about.
 
 [`SOURCES.md`](./SOURCES.md) is the registry: every repository the corpus knows
 about, grouped by mathematical domain, with what each one holds and how far it
@@ -21,23 +19,22 @@ what the checkouts are worth.
 - **The pinned Mathlib checkout** (`leanprover-community__mathlib4/`), matching
   the exact version the corpus is indexed against. This is the primary search
   surface.
-- **119 registered formalization repositories** (see `repos.tsv`), each a
+- **The registered Lean 4 formalization repositories** (see `repos.tsv`), each a
   shallow (`--depth 1 --filter=blob:none`) sparse checkout containing only
   `.lean` files, `lakefile.*`, `lean-toolchain`, `lake-manifest.json`, and
   `README*`.
 - **The Lean Reservoir index** (`reservoir-index/`), the package metadata
   registry cloned from
   <https://github.com/leanprover/reservoir-index>.
-- **739 Lean Reservoir packages** (see `reservoir.tsv`), hydrated into
+- **The Lean Reservoir packages** (see `reservoir.tsv`), hydrated into
   `reservoir-sources/` with the same sparse convention. Packages already
   present in `repos.tsv` (exact URL match) and Mathlib-family repositories are
   excluded from the reservoir list; the reservoir is a separate manifest so a
   routine `just sync` does not pull 800 repositories.
-- **10 Rocq and Agda libraries** (see `port-sources.tsv`), hydrated into
-  `port-sources/` keeping `.v`, `.agda`, and `.lagda*` files. The reuse gate
-  forbids re-proving something that exists "in another proof assistant as a
-  port source", so those sources are indexed with the Lean ones; Zoekt searches
-  text and does not care which assistant wrote it.
+- **The Rocq and Agda libraries** (see `rocq-agda.tsv`), hydrated into
+  `rocq-agda/` keeping `.v`, `.agda`, and `.lagda*` files. Indexed alongside
+  the Lean sources rather than after them: zoekt searches text and does not
+  care which assistant wrote it, and neither does the question being asked.
 
 ## Workflow
 
@@ -45,7 +42,7 @@ what the checkouts are worth.
 just build-tools        # build zoekt-index, zoekt, and the Lean ast-grep parser
 just sync               # clone or update the registered Lean repositories
 just sync-reservoir     # clone or update the 739 Lean Reservoir packages
-just sync-port-sources  # clone or update the Rocq and Agda port sources
+just sync-rocq-agda     # clone or update the Rocq and Agda libraries
 just index              # (re)build the Zoekt index over all three manifests
 just check-sources      # report repositories in SOURCES.md that no manifest checks out
 just search "Nat.Prime"                  # Zoekt text search
@@ -106,8 +103,7 @@ unaffected.
 
 Add a repository by describing it in `SOURCES.md` under the domain it belongs
 to, appending `url<TAB>path` to the matching manifest — `repos.tsv` for Lean 4,
-`reservoir.tsv` for Reservoir packages, `port-sources.tsv` for another proof
-assistant — then running its `sync` recipe and `just index`.
+`reservoir.tsv` for Reservoir packages, `rocq-agda.tsv` for Rocq or Agda — then running its `sync` recipe and `just index`.
 
 ## Usage facts
 

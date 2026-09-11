@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Every repository — Lean Reference Corpus</title>
+<title>Every repository — Formal Mathematics Search</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/css/tabulator_simple.min.css" media="(prefers-color-scheme: light)">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/css/tabulator_midnight.min.css" media="(prefers-color-scheme: dark)">
@@ -21,8 +21,7 @@
 <body>
 <header class="container">
 	<hgroup>
-		<h1><a href="./">Lean Reference Corpus</a></h1>
-		<p id="totals">Loading…</p>
+		<h1><a href="./">Formal Mathematics Search</a></h1>
 	</hgroup>
 	<nav>
 		<ul>
@@ -35,24 +34,25 @@
 </header>
 
 <main class="container">
+	<table id="totals"></table>
 	<div id="table"></div>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/js/tabulator.min.js"></script>
 <script>
-const KINDS = {
-	lean: "Lean 4 formalizations — Mathlib and the projects built on it",
-	port: "Rocq and Agda — formalized, but not in Lean",
-	reservoir: "Lean package registry",
-};
+const KINDS = {lean: "Lean 4", "rocq-agda": "Rocq and Agda", reservoir: "Lean package registry"};
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
 	const rows = Object.entries(data.repos).map(([name, r]) => ({name, ...r}));
 	const c = data.counts;
-	document.getElementById("totals").textContent =
-		`${c.lean} Lean 4 formalizations including Mathlib, ${c.reservoir} packages `
-		+ `from the Lean registry, and ${c.port} libraries in Rocq and Agda. Filter `
-		+ `by subject to find the ones working on a given piece of mathematics.`;
+	document.getElementById("totals").innerHTML =
+		[["Lean 4 formalizations", c.lean],
+		 ["Lean package registry", c.reservoir],
+		 ["Rocq and Agda", c["rocq-agda"]],
+		 ["Total", c.lean + c.reservoir + c["rocq-agda"]]]
+			.map(([label, n], i, all) =>
+				`<tr${i === all.length - 1 ? ' class="total"' : ""}>`
+				+ `<td>${label}</td><td>${n}</td></tr>`).join("");
 
 	new Tabulator("#table", {
 		data: rows,
@@ -60,7 +60,7 @@ fetch("./corpus.json").then(r => r.json()).then(data => {
 		height: "70vh",
 		groupBy: "kind",
 		// Groups otherwise appear in the order their first row happens to fall.
-		groupValues: [["lean", "port", "reservoir"]],
+		groupValues: [["lean", "rocq-agda", "reservoir"]],
 		groupHeader: (kind, count) => `${KINDS[kind] || kind} <span>(${count})</span>`,
 		groupStartOpen: kind => kind !== "reservoir",
 		initialSort: [{column: "name", dir: "asc"}],

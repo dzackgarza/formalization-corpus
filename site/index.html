@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lean Reference Corpus</title>
+<title>Formal Mathematics Search</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 <style>
 	/* Pico's default scale suits an article; this is a search tool. */
@@ -56,8 +56,7 @@
 <body>
 <header class="container">
 	<hgroup>
-		<h1><a href="./">Lean Reference Corpus</a></h1>
-		<p>Has this been formalized? Search Mathlib, every Lean 4 formalization project, and the large Rocq and Agda libraries in one query.</p>
+		<h1><a href="./">Formal Mathematics Search</a></h1>
 	</hgroup>
 	<nav>
 		<ul>
@@ -242,7 +241,7 @@ function render(result) {
 	const pending = [];
 	el("results").innerHTML = [...byRepo].map(([name, matches]) => {
 		const repo = corpus.repos[name];
-		const kind = repo ? {lean: "Lean", reservoir: "Reservoir", port: "port source"}[repo.kind] : "";
+		const kind = repo ? {lean: "Lean", reservoir: "Reservoir", "rocq-agda": "Rocq/Agda"}[repo.kind] : "";
 		const head = repo ? `<a href="${repo.url}">${esc(name)}</a>` : esc(name);
 		const body = matches.map((f, i) => {
 			const chunks = (f.ChunkMatches || []).filter(c => !c.FileName);

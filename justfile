@@ -19,9 +19,9 @@ sync:
 sync-reservoir:
     ./sync-manifest.zsh reservoir.tsv
 
-# Clone or update the Rocq and Agda libraries the reuse gate treats as port sources.
-sync-port-sources:
-    ./sync-manifest.zsh port-sources.tsv '/**/*.v' '/**/*.agda' '/**/*.lagda*'
+# Clone or update the Rocq and Agda libraries.
+sync-rocq-agda:
+    ./sync-manifest.zsh rocq-agda.tsv '/**/*.v' '/**/*.agda' '/**/*.lagda*'
 
 # Register every nested repository with gita.
 register:
@@ -40,7 +40,7 @@ index:
     while IFS=$'\t' read -r _ dir; do
       [[ -d "$dir" ]] || continue
       ./bin/zoekt-index -index .zoekt "$dir"
-    done < <(cat repos.tsv reservoir.tsv port-sources.tsv)
+    done < <(cat repos.tsv reservoir.tsv rocq-agda.tsv)
 
 # The origin address, not lean-corpus.dzackgarza.com: that name resolves to
 # Cloudflare, which proxies HTTP and would not carry ssh.
@@ -55,7 +55,7 @@ publish:
 # Report repositories named in SOURCES.md that no manifest checks out.
 check-sources:
     #!/usr/bin/env zsh
-    manifests=$(cat repos.tsv reservoir.tsv port-sources.tsv tools.tsv | cut -f1 | sed 's|\.git$||' | tr '[:upper:]' '[:lower:]' | sort -u)
+    manifests=$(cat repos.tsv reservoir.tsv rocq-agda.tsv tools.tsv | cut -f1 | sed 's|\.git$||' | tr '[:upper:]' '[:lower:]' | sort -u)
     # A source table row names its repository in the first cell; later links are prose.
     linked=$(grep -oE '^\| \[[^]]*\]\(https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' SOURCES.md \
       | grep -oE 'https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' | tr '[:upper:]' '[:lower:]' | sort -u)

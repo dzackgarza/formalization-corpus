@@ -331,7 +331,7 @@ The [Lean FRO](https://lean-lang.org/fro/) runs three AI projects ([Year 4 Part 
 | [`PatrickMassot/leanblueprint`](https://github.com/PatrickMassot/leanblueprint) | Formalization blueprint infrastructure. |
 | [`siddhartha-gadgil/LeanAide`](https://github.com/siddhartha-gadgil/LeanAide) | AI aids for autoformalization. |
 
-## Other proof assistants — porting sources only
+## Rocq and Agda
 
 | Repository | Content |
 | --- | --- |

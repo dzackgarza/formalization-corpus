@@ -111,7 +111,7 @@ def previous() -> dict[str, str]:
 
 def manifest_rows() -> list[tuple[str, str]]:
     rows = []
-    for name in ("repos.tsv", "reservoir.tsv", "port-sources.tsv"):
+    for name in ("repos.tsv", "reservoir.tsv", "rocq-agda.tsv"):
         for line in (ROOT / name).read_text().splitlines():
             if line.strip():
                 url, directory = line.split("\t")[:2]

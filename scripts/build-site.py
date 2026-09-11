@@ -18,7 +18,7 @@ SUBJECTS = ROOT / "site" / "subjects.html"
 MANIFESTS = {
     "lean": "repos.tsv",
     "reservoir": "reservoir.tsv",
-    "port": "port-sources.tsv",
+    "rocq-agda": "rocq-agda.tsv",
 }
 
 
@@ -55,7 +55,7 @@ PAGE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>By subject — Lean Reference Corpus</title>
+<title>By subject — Formal Mathematics Search</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 <style>
 	html {{ font-size: 87.5%; }}
@@ -71,8 +71,7 @@ PAGE = """<!doctype html>
 <body>
 <header class="container">
 	<hgroup>
-		<h1><a href="./">Lean Reference Corpus</a></h1>
-		<p>What has been formalized, by subject.</p>
+		<h1><a href="./">Formal Mathematics Search</a></h1>
 	</hgroup>
 	<nav>
 		<ul>
