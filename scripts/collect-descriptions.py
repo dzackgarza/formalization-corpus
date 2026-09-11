@@ -4,16 +4,22 @@
 Run locally and commit the result; the Pages build merges it rather than
 hitting GitHub on every deploy. Sources, in order of preference:
 
-1. SOURCES.md — the curated judgment of what a repository holds. Written here,
-   and the only source that says anything about mathematical content rather
-   than repeating a project's own tagline.
+1. SOURCES.md — the curated judgment of what a repository holds, and the only
+   source that says anything about mathematical content rather than repeating a
+   project's own tagline.
 2. The Reservoir index checkout, which carries each package's description.
 3. The GitHub API, for repositories in neither.
 
 A repository none of them describe gets no line. Inventing a description for a
 repository nobody has read is the one thing this must not do.
+
+SOURCES.md is parsed, not pattern-matched: rendered to HTML with the same
+markdown library the site build uses, then walked as a document. A table cell
+is a cell, a link is a link, and an asterisk inside a description stays inside
+the description.
 """
 
+import html.parser
 import json
 import pathlib
 import re
@@ -21,22 +27,50 @@ import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "descriptions.tsv"
-
-LINK = re.compile(r"\[([^\]]*)\]\([^)]*\)")
-CODE = re.compile(r"`([^`]*)`")
 REPO_URL = re.compile(r"https://github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)")
 
 
-def plain(md: str) -> str:
-    """Markdown cell to one sentence of prose."""
-    text = LINK.sub(r"\1", md)
-    text = CODE.sub(r"\1", text)
-    # Emphasis marks book and paper titles in the curated rows; the page is
-    # plain text, so they go rather than surfacing as stray asterisks.
-    text = text.replace("*", "").strip()
-    # Keep semicolon clauses: they carry the second half of the subject
-    # ("Mathematical Components; the Odd Order Theorem"). Cut at a sentence
-    # end, where the curated rows turn to provenance, licensing and status.
+class Registry(html.parser.HTMLParser):
+    """Rows of the domain tables: the repository a row is about, and its line.
+
+    A row's subject is the first repository link in its first cell; everything
+    after that cell is what the row says about it.
+    """
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.rows: dict[str, str] = {}
+        self.cells: list[str] = []
+        self.subject: str | None = None
+        self.in_cell = False
+        self.text: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "td":
+            self.in_cell, self.text = True, []
+        elif tag == "a" and self.in_cell and not self.cells and not self.subject:
+            href = dict(attrs).get("href", "")
+            found = REPO_URL.match(href)
+            if found:
+                self.subject = f"{found.group(1)}/{found.group(2)}".lower()
+
+    def handle_endtag(self, tag):
+        if tag == "td":
+            self.cells.append("".join(self.text).strip())
+            self.in_cell = False
+        elif tag == "tr":
+            if self.subject and len(self.cells) > 1:
+                self.rows[self.subject] = sentence(self.cells[1])
+            self.cells, self.subject = [], None
+
+    def handle_data(self, data):
+        if self.in_cell:
+            self.text.append(data)
+
+
+def sentence(text: str) -> str:
+    """The first sentence: the subject, before provenance, licensing and status."""
+    text = " ".join(text.split())
     parts = re.split(r"(?<=\.)\s+(?=[A-Z(])", text)
     out = (parts[0] if parts else text).strip()
     if len(out) > 220:
@@ -45,19 +79,11 @@ def plain(md: str) -> str:
 
 
 def from_sources() -> dict[str, str]:
-    """Map owner/repo to the curated line in SOURCES.md."""
-    found = {}
-    for line in (ROOT / "SOURCES.md").read_text().splitlines():
-        if not line.startswith("| ["):
-            continue
-        cells = [c.strip() for c in line.strip("|").split(" | ")]
-        if len(cells) < 2:
-            continue
-        m = REPO_URL.search(cells[0])
-        if not m:
-            continue
-        found[f"{m.group(1)}/{m.group(2)}".lower()] = plain(cells[1])
-    return found
+    import markdown
+
+    parser = Registry()
+    parser.feed(markdown.markdown((ROOT / "SOURCES.md").read_text(), extensions=["tables"]))
+    return parser.rows
 
 
 def from_reservoir() -> dict[str, str]:
@@ -73,16 +99,6 @@ def from_reservoir() -> dict[str, str]:
     return found
 
 
-def manifest_rows() -> list[tuple[str, str]]:
-    rows = []
-    for name in ("repos.tsv", "reservoir.tsv", "port-sources.tsv"):
-        for line in (ROOT / name).read_text().splitlines():
-            if line.strip():
-                url, directory = line.split("\t")[:2]
-                rows.append((url.rstrip("/"), pathlib.PurePosixPath(directory).name))
-    return rows
-
-
 def previous() -> dict[str, str]:
     """What the last run found, so re-running costs nothing for repositories
     whose line came from the GitHub API and has not changed."""
@@ -93,14 +109,24 @@ def previous() -> dict[str, str]:
     )
 
 
+def manifest_rows() -> list[tuple[str, str]]:
+    rows = []
+    for name in ("repos.tsv", "reservoir.tsv", "port-sources.tsv"):
+        for line in (ROOT / name).read_text().splitlines():
+            if line.strip():
+                url, directory = line.split("\t")[:2]
+                rows.append((url.rstrip("/"), pathlib.PurePosixPath(directory).name))
+    return rows
+
+
 def main() -> None:
     curated, reservoir, cached = from_sources(), from_reservoir(), previous()
     print(f"{len(curated)} curated, {len(reservoir)} from the Reservoir index, {len(cached)} cached")
 
     out, missing = {}, []
     for url, directory in manifest_rows():
-        m = REPO_URL.match(url)
-        key = f"{m.group(1)}/{m.group(2)}".lower() if m else ""
+        found = REPO_URL.match(url)
+        key = f"{found.group(1)}/{found.group(2)}".lower() if found else ""
         if key in curated:
             out[directory] = curated[key]
         elif key in reservoir:
@@ -112,16 +138,16 @@ def main() -> None:
 
     print(f"{len(missing)} need the GitHub API")
     for directory, url in missing:
-        m = REPO_URL.match(url)
-        if not m:
+        found = REPO_URL.match(url)
+        if not found:
             continue
         got = subprocess.run(
-            ["gh", "api", f"repos/{m.group(1)}/{m.group(2)}", "--jq", ".description // \"\""],
+            ["gh", "api", f"repos/{found.group(1)}/{found.group(2)}",
+             "--jq", ".description // \"\""],
             capture_output=True, text=True,
         )
-        desc = got.stdout.strip()
-        if desc:
-            out[directory] = desc
+        if got.stdout.strip():
+            out[directory] = got.stdout.strip()
 
     with OUT.open("w") as fh:
         for directory in sorted(out, key=str.lower):
