@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>API — Lean Reference Corpus</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+<style>
+	html { font-size: 87.5%; }
+	header.container > hgroup > h1 { font-size: 1.4rem; margin-bottom: 0.2rem; }
+	header.container { padding-block: 1.2rem 0; }
+	header.container nav { margin-bottom: 0; }
+	main { padding-block: 1rem; }
+	main h2 { font-size: 1.15rem; margin-top: 2.2rem; }
+	main h3 { font-size: 1rem; margin-top: 1.6rem; }
+	pre { font-size: 0.78rem; }
+	table { font-size: 0.85rem; }
+	td:first-child { white-space: nowrap; }
+</style>
+</head>
+<body>
+<header class="container">
+	<hgroup>
+		<h1><a href="./">Lean Reference Corpus</a></h1>
+		<p>Querying the index directly.</p>
+	</hgroup>
+	<nav>
+		<ul>
+			<li><a href="./">Search</a></li>
+			<li><a href="./corpus.html">Every repository</a></li>
+			<li><a href="./subjects.html">By subject</a></li>
+			<li><a href="./api.html" aria-current="page">API</a></li>
+		</ul>
+	</nav>
+</header>
+
+<main class="container">
+
+<p>
+	The search is <a href="https://github.com/sourcegraph/zoekt">zoekt</a>, and its
+	JSON API is open: no key, no account, no rate limit beyond what one small
+	machine can answer. The web page on this site is one client of it.
+</p>
+
+<pre><code>POST https://lean-corpus.dzackgarza.com/api/search
+Content-Type: application/json</code></pre>
+
+<h2>A first query</h2>
+
+<pre><code>curl -s https://lean-corpus.dzackgarza.com/api/search \
+  -H 'Content-Type: application/json' \
+  -d '{"Q": "IsometryEquiv", "Opts": {"MaxDocDisplayCount": 5}}'</code></pre>
+
+<p>
+	Every file that matched, with its repository and path — enough to answer
+	“has anyone formalized this?”:
+</p>
+
+<pre><code>curl -s https://lean-corpus.dzackgarza.com/api/search \
+  -H 'Content-Type: application/json' \
+  -d '{"Q": "Hasse invariant file:\\.lean$", "Opts": {"MaxDocDisplayCount": 20}}' \
+  | jq -r '.Result.Files[] | "\(.Repository)  \(.FileName)"'</code></pre>
+
+<h2>The query language</h2>
+
+<p>
+	A bare term is a substring; anything more is a regular expression. Terms
+	combine with a space, <code>or</code> separates alternatives, and
+	<code>-</code> negates.
+</p>
+
+<table>
+	<thead><tr><th>Query</th><th>Means</th></tr></thead>
+	<tbody>
+		<tr><td><code>Jordan splitting</code></td><td>both substrings, in the same file</td></tr>
+		<tr><td><code>spinor (genus or norm)</code></td><td>grouping and alternation</td></tr>
+		<tr><td><code>theorem\s+\w*Hasse</code></td><td>a regular expression</td></tr>
+		<tr><td><code>repo:mathlib4</code></td><td>restrict to repositories matching that pattern</td></tr>
+		<tr><td><code>repo:^leanprover__hex-lll$</code></td><td>one repository exactly</td></tr>
+		<tr><td><code>file:\.lean$</code></td><td>restrict by path — <code>\.v$</code> for Rocq, <code>\.agda$</code> for Agda</td></tr>
+		<tr><td><code>-file:test</code></td><td>exclude paths matching test</td></tr>
+		<tr><td><code>case:yes</code></td><td>case-sensitive; the default folds case</td></tr>
+		<tr><td><code>content:foo</code></td><td>match file contents only, never a path</td></tr>
+	</tbody>
+</table>
+
+<p>
+	Repository names are the checkout names, <code>owner__repo</code> — as in
+	<code>leanprover-community__mathlib4</code>. The
+	<a href="./corpus.html">repository list</a> has all 869.
+</p>
+
+<h2>Options</h2>
+
+<table>
+	<thead><tr><th>Field</th><th>Effect</th></tr></thead>
+	<tbody>
+		<tr><td><code>MaxDocDisplayCount</code></td><td>How many files to return. Without it you get every match, which for a common term is thousands.</td></tr>
+		<tr><td><code>ChunkMatches</code></td><td>Return matching lines with their positions. Without it a file comes back named but empty.</td></tr>
+		<tr><td><code>NumContextLines</code></td><td>Lines of context around each match.</td></tr>
+		<tr><td><code>Whole</code></td><td>Return each matching file in full, base64 in <code>Files[].Content</code>. A 60-file result runs about 1–2 MB.</td></tr>
+		<tr><td><code>MaxMatchDisplayCount</code></td><td>Cap matches per file.</td></tr>
+		<tr><td><code>MaxWallTime</code></td><td>Nanoseconds. The server stops early and says so rather than hanging.</td></tr>
+	</tbody>
+</table>
+
+<h2>What comes back</h2>
+
+<pre><code>{
+  "Result": {
+    "Files": [
+      {
+        "Repository": "leanprover-community__mathlib4",
+        "FileName": "Mathlib/Analysis/Quaternion.lean",
+        "Language": "Lean",
+        "ChunkMatches": [
+          {
+            "Content": "…base64 of the matching lines…",
+            "ContentStart": {"ByteOffset": 4213, "LineNumber": 160, "Column": 1},
+            "Ranges": [{"Start": {"ByteOffset": 4260, "LineNumber": 160, "Column": 48},
+                        "End":   {"ByteOffset": 4273, "LineNumber": 160, "Column": 61}}],
+            "FileName": false
+          }
+        ]
+      }
+    ],
+    "FileCount": 122,
+    "MatchCount": 483,
+    "FilesConsidered": 129,
+    "Duration": 28853571
+  }
+}</code></pre>
+
+<p>Three details that bite:</p>
+
+<ul>
+	<li>
+		The counters sit directly in <code>Result</code>. There is no
+		<code>Stats</code> key, though zoekt's Go source names the embedded struct
+		that way. <code>Duration</code> is nanoseconds.
+	</li>
+	<li>
+		<code>Content</code> is base64 of raw bytes. Decode as UTF-8 — this corpus
+		is full of <code>ℍ</code>, <code>≃ₗᵢ[ℝ]</code> and <code>𝕜</code>, and a
+		latin-1 decode mangles all of it.
+	</li>
+	<li>
+		<code>Ranges</code> are byte offsets from the start of the <em>file</em>,
+		while <code>Content</code> starts at <code>ContentStart.ByteOffset</code>.
+		Subtract before indexing into the chunk.
+	</li>
+	<li>
+		A chunk with <code>"FileName": true</code> matched the path, not the
+		contents, and its <code>Content</code> is the path.
+	</li>
+</ul>
+
+<h2>Listing repositories</h2>
+
+<pre><code>curl -s https://lean-corpus.dzackgarza.com/api/list \
+  -H 'Content-Type: application/json' \
+  -d '{"Q": "repo:hex"}' \
+  | jq -r '.List.Repos[].Repository.Name'</code></pre>
+
+<p>
+	Each entry carries index statistics — document count, content bytes, line
+	counts — under <code>Stats</code>.
+</p>
+
+<h2>Fair use</h2>
+
+<p>
+	This runs on one small virtual machine against 4.6 GB of shards. A term
+	answers in tens of milliseconds warm; a broad regular expression across 869
+	repositories takes seconds and holds the machine while it does. Pass
+	<code>MaxDocDisplayCount</code>, prefer <code>repo:</code> and
+	<code>file:</code> filters over scanning everything, and set
+	<code>MaxWallTime</code> if you are running a loop.
+</p>
+
+<p>
+	Browsers are restricted by CORS to this site's origin. Scripts, agents and
+	servers are not affected — the examples above work from anywhere. To run the
+	whole thing yourself, the corpus builds from
+	<a href="https://github.com/dzackgarza/lean-reference-corpus">its repository</a>
+	with <code>just sync &amp;&amp; just index</code>.
+</p>
+
+</main>
+</body>
+</html>

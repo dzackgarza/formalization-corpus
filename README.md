@@ -81,8 +81,28 @@ The binary is cross-compiled from `tools/sourcegraph__zoekt`:
 GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o zoekt-webserver ./cmd/zoekt-webserver
 ```
 
-It runs with `-html=false`, so the host answers queries and serves no pages,
-and with `-cors_origin` naming the Pages site.
+It runs with `-html=false -rpc`, so the host answers queries and serves no
+pages, and with `-cors_origin` naming the Pages site. `-rpc` is what registers
+`/api/`: without it the process is healthy and every query is a 404.
+
+## Querying it
+
+The JSON API is open — no key, no account. The
+[API page](https://dzackgarza.github.io/lean-reference-corpus/api.html) has the
+query language, the options and the response shape; the short version:
+
+```sh
+curl -s https://lean-corpus.dzackgarza.com/api/search \
+  -H 'Content-Type: application/json' \
+  -d '{"Q": "Hasse invariant file:\\.lean$", "Opts": {"MaxDocDisplayCount": 20}}' \
+  | jq -r '.Result.Files[] | "\(.Repository)  \(.FileName)"'
+```
+
+`Opts` worth knowing: `MaxDocDisplayCount` caps files returned, `ChunkMatches`
+returns the matching lines rather than bare filenames, `NumContextLines` adds
+context, and `Whole` returns each file in full. `/api/list` enumerates
+repositories. CORS restricts browsers to the Pages origin; scripts are
+unaffected.
 
 Add a repository by describing it in `SOURCES.md` under the domain it belongs
 to, appending `url<TAB>path` to the matching manifest — `repos.tsv` for Lean 4,

@@ -79,6 +79,7 @@ PAGE = """<!doctype html>
 			<li><a href="./">Search</a></li>
 			<li><a href="./corpus.html">Every repository</a></li>
 			<li><a href="./subjects.html" aria-current="page">By subject</a></li>
+			<li><a href="./api.html">API</a></li>
 		</ul>
 	</nav>
 </header>
