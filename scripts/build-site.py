@@ -8,14 +8,11 @@ corpus can be browsed without a query.
 """
 
 import json
-import html
 import pathlib
-import re
 from urllib.parse import urlparse
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "corpus.json"
-SUBJECTS = ROOT / "site" / "subjects.html"
 
 SOURCE_TABLE = ROOT / "sources.tsv"
 
@@ -58,91 +55,6 @@ def descriptions() -> dict[str, str]:
     return out
 
 
-PAGE = """<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Subjects — Formalization Corpus</title>
-<link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-<header class="site-header">
-	<div class="shell masthead">
-			<a class="brand" href="./">
-				<span class="brand-mark" aria-hidden="true">FC</span>
-				<span class="brand-name">Formalization Corpus</span>
-		</a>
-		<nav class="site-nav" aria-label="Primary">
-			<a href="./">Search</a>
-			<a href="./corpus.html">Sources</a>
-			<a href="./subjects.html" aria-current="page">Subjects</a>
-			<a href="./api.html">API</a>
-		</nav>
-	</div>
-</header>
-<main class="shell page-main">
-	<header class="page-heading">
-			<h1>Subjects</h1>
-			<p class="lede">Formalization sources organized by mathematical area.</p>
-	</header>
-	<div class="content-layout">
-		<aside class="toc" aria-label="Subject areas">
-			<div class="toc-title">On this page</div>
-			<nav>{toc}</nav>
-		</aside>
-		<article class="prose">{body}</article>
-	</div>
-</main>
-<footer class="site-footer">
-	<div class="shell footer-inner">
-			<p>Subject descriptions are maintained in <code>SOURCES.md</code>.</p>
-		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div>
-	</div>
-</footer>
-</body>
-</html>
-"""
-
-
-def subjects_page() -> None:
-    """Render the registry as a page: what has been formalized, by subject."""
-    import markdown
-
-    source_text = (ROOT / "SOURCES.md").read_text()
-
-    # This page is a mathematical subject index, not a projection of the
-    # repository's maintenance taxonomy.  Keep only sections whose headings
-    # are mathematical subject areas.  Discovery indexes, package registries,
-    # proof-assistant groupings, and maintainer workflow remain in SOURCES.md.
-    public_subjects = {
-        "Category theory, higher structures, type-theory semantics",
-        "Algebra, number theory, algebraic geometry",
-        "Quadratic forms, lattices, sphere packing",
-        "Analysis, probability, geometry, dynamics",
-        "Combinatorics, discrete mathematics, logic, foundations",
-        "Computational and applied mathematics",
-    }
-    sections = re.split(r"(?m)^## ", source_text)
-    selected = []
-    for section in sections[1:]:
-        heading, _, body = section.partition("\n")
-        if heading.strip() in public_subjects:
-            selected.append(f"## {heading}\n{body}")
-    text = "\n".join(selected)
-
-    md = markdown.Markdown(extensions=["tables", "attr_list", "toc"])
-    rendered = md.convert(text)
-    toc_items = []
-    for token in getattr(md, "toc_tokens", []):
-        if token.get("level") != 2:
-            continue
-        label = html.escape(re.sub(r"<[^>]+>", "", token.get("name", "")))
-        toc_items.append(f'<a href="#{token["id"]}">{label}</a>')
-    SUBJECTS.write_text(PAGE.format(body=rendered, toc="".join(toc_items)))
-    print(f"{SUBJECTS}: {len(rendered)} bytes")
-
-
 def public_name(url: str, directory: str, transport: str) -> str:
     """Reader-facing source identity; never expose checkout/index naming."""
     parsed = urlparse(url)
@@ -158,7 +70,6 @@ def public_name(url: str, directory: str, transport: str) -> str:
 
 
 def main() -> None:
-    subjects_page()
     what = descriptions()
     sources = []
     for row in source_rows():

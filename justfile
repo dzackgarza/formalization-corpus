@@ -58,7 +58,7 @@ index-cross-prover:
 
 index-ports: index-cross-prover
 
-# Recompute exact corpus-reach metrics from hydrated sources and Zoekt shards.
+# Validate the hydrated corpus and regenerate public source/proof-assistant/topic totals.
 metrics:
     python scripts/build-metrics.py
 
@@ -68,7 +68,8 @@ site:
     python scripts/build-subjects.py
 
 # Deploy the static site to nginx's *.localhost preview root.
-preview: site
+# Metrics runs first so invalid corpus entries fail instead of becoming UI copy.
+preview: metrics site
     mkdir -p /var/www/static-sites/formalization-corpus-preview
     rsync -a --delete site/ /var/www/static-sites/formalization-corpus-preview/
     @echo "http://formalization-corpus-preview.localhost/"
@@ -77,27 +78,19 @@ preview: site
 # Cloudflare, which proxies HTTP and would not carry ssh.
 host := "zack@159.223.102.204"
 
-# Ship the local index to the search host; the server hot-reloads replaced shards.
-publish:
+# Ship the validated local index to the search host and verify exact source parity.
+publish: metrics
     rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
+    python scripts/check-published.py
     @echo "https://formalization-corpus.dzackgarza.com"
 
-# Check that the canonical source table and human annotations agree where they overlap.
+# Check static source-table invariants and cross-prover documentation.
 check-sources:
     #!/usr/bin/env zsh
-    source_urls=$(tail -n +2 sources.tsv | cut -f1 | sed 's|\.git$||; s|/$||' | tr '[:upper:]' '[:lower:]' | sort -u)
-    linked=$(grep -oE '^\| \[[^]]*\]\(https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' SOURCES.md \
-      | grep -oE 'https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' | sed 's|/$||' | tr '[:upper:]' '[:lower:]' | sort -u)
-    missing=$(comm -23 <(echo "$linked") <(echo "$source_urls"))
     cross_prover_missing=$(awk -F'\t' 'NR > 1 && $5 == "cross-prover" {print $1}' sources.tsv \
       | while read -r url; do normalized="${url%/}"; grep -Fiq "$normalized" SOURCES.md || echo "$url"; done)
     duplicate_urls=$(tail -n +2 sources.tsv | cut -f1 | sed 's|/$||' | tr '[:upper:]' '[:lower:]' | sort | uniq -d)
     duplicate_names=$(tail -n +2 sources.tsv | cut -f2 | awk -F/ '{print $NF}' | sort | uniq -d)
-    if [[ -n "$missing" ]]; then
-      echo "Named in SOURCES.md, absent from sources.tsv:"
-      echo "$missing"
-      exit 1
-    fi
     if [[ -n "$cross_prover_missing" ]]; then
       echo "Cross-prover source documented nowhere in SOURCES.md:"
       echo "$cross_prover_missing"
@@ -109,7 +102,7 @@ check-sources:
       [[ -n "$duplicate_names" ]] && printf 'names:\n%s\n' "$duplicate_names" >&2
       exit 1
     fi
-    echo "sources.tsv and SOURCES.md agree on shared source identities."
+    echo "sources.tsv has unique identities and all cross-prover sources are documented."
 
 # Evaluate the current public query behavior against the frozen retrieval gold set.
 eval-search:

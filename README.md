@@ -2,8 +2,9 @@
 
 One search across formalized mathematics, whichever assistant it was written
 in: *has this definition, construction, statement, or theorem already been
-formalized, and where?* A hit in Rocq answers the prior-art question even though
-it cannot be imported into Lean; a hit in Mathlib answers it and can be imported.
+formalized, and where?* A hit in Rocq shows that the mathematics has already
+been formalized even though it cannot be imported into Lean; a hit in Mathlib
+both locates the formalization and can be imported directly.
 
 Lean is where most of this material currently lives, which is why most of the
 corpus is Lean. It is not what the corpus is about.
@@ -11,12 +12,12 @@ corpus is Lean. It is not what the corpus is about.
 [`sources.tsv`](./sources.tsv) is the canonical source inventory: one row per
 formalization source, with its URL, local directory, proof assistant, transport,
 sync group, and discovery provenance. [`SOURCES.md`](./SOURCES.md) is a
-human-maintained subject guide and annotation layer over notable sources; it is
+human-maintained topic guide and annotation layer over notable sources; it is
 not a second inventory.
 
 ## What the corpus contains
 
-The canonical table currently has 909 sources. A source is an independently
+The canonical table currently has 893 sources. A source is an independently
 addressable formalization library, repository, or published source distribution:
 Mathlib is one source, UniMath is one source, and the Mizar Mathematical Library
 is one source. How a source was discovered does not change its identity.
@@ -48,10 +49,10 @@ just sync-bulk          # refresh the large secondary sync group
 just sync-cross-prover  # refresh non-Lean proof-assistant sources
 just index-cross-prover # incrementally rebuild only that group's Zoekt shards
 just index              # (re)build the Zoekt index over all sources
-just metrics            # recompute exact source/unit/line reach statistics
+just metrics            # validate corpus membership and regenerate public totals
 just site               # regenerate committed static source metadata
 just preview            # deploy site/ to formalization-corpus-preview.localhost
-just check-sources      # verify annotated sources exist in the canonical source table
+just check-sources      # verify static source-table identities and cross-prover documentation
 just eval-search        # measure the frozen mathematician-facing retrieval benchmark
 just test-search-quality # compare retrieval scores with the committed same-index baseline
 just search "Nat.Prime"                  # Zoekt text search
@@ -59,11 +60,15 @@ just ast "def $NAME : $TYPE := $VALUE"   # Lean syntax-tree pattern search
 just publish            # ship the index to the search host
 ```
 
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the source-inventory invariant,
+public terminology, and numbered copy/information-design rules.
+
 ## The hosted search
 
 [dzackgarza.github.io/formalization-corpus](https://dzackgarza.github.io/formalization-corpus/)
 searches the corpus from a browser. It is the real index behind it, not a
-derived summary: the same queries and the same results as `just search`.
+derived summary: the web interface queries the same index, compiling its
+proof-assistant/source/topic controls to backend filters.
 
 The work is split by what each side can host:
 
@@ -97,7 +102,8 @@ GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o zoekt-webserver ./cmd/zoekt-we
 ```
 
 It runs with `-html=false -rpc`, so the host answers queries and serves no
-pages, and with `-cors_origin` naming the Pages site. `-rpc` is what registers
+pages, and with `-cors_origin '*'` so the same static frontend can query it from
+GitHub Pages or the localhost deployment. `-rpc` is what registers
 `/api/`: without it the process is healthy and every query is a 404.
 
 ## Querying it
@@ -116,11 +122,11 @@ curl -s https://formalization-corpus.dzackgarza.com/api/search \
 `Opts` worth knowing: `MaxDocDisplayCount` caps files returned, `ChunkMatches`
 returns the matching lines rather than bare filenames, `NumContextLines` adds
 context, and `Whole` returns each file in full. `/api/list` enumerates indexed
-sources. CORS restricts browsers to the Pages origin; scripts are
-unaffected.
+sources.
 
 Add a source by adding one row to `sources.tsv`. Add or update a `SOURCES.md`
-entry only when a human subject annotation is useful. `proof_assistant` determines
+entry only when a human topic annotation or reference note is useful.
+`proof_assistant` determines
 which source extensions are materialized; `sync_group` controls refresh cadence
 without splitting the inventory into multiple files.
 

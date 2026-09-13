@@ -16,7 +16,7 @@
 		<nav class="site-nav" aria-label="Primary">
 			<a href="./" aria-current="page">Search</a>
 			<a href="./corpus.html">Sources</a>
-			<a href="./subjects.html">Subjects</a>
+			<a href="./topics.html">Topics</a>
 			<a href="./api.html">API</a>
 		</nav>
 	</div>
@@ -52,21 +52,15 @@
 									</select>
 									<a class="field-link" id="prover-home" href="#" hidden></a>
 								</label>
-							<label>Library or project
+				<label>Source
 								<input id="source-filter" list="source-options" placeholder="Any source" autocomplete="off">
 								<datalist id="source-options"></datalist>
 							</label>
-								<label>Subject
-									<select id="subject-filter">
-										<option value="">Any subject</option>
-									</select>
-								</label>
-								<label>Files
-									<select id="scope-filter">
-											<option value="formal">Formalization files</option>
-											<option value="all">All files</option>
-									</select>
-							</label>
+					<label>Topic
+						<select id="subject-filter">
+							<option value="">Any topic</option>
+						</select>
+					</label>
 						</div>
 							<div class="advanced-search-options">
 								<label><input type="checkbox" id="case-filter"> Case sensitive</label>
@@ -76,22 +70,13 @@
 				</div>
 			<div id="status" class="status-line" aria-live="polite"></div>
 		</div>
-			<aside class="hero-panel" aria-label="Corpus statistics">
-				<div class="hero-panel-head">Corpus statistics</div>
-			<div class="hero-metrics" id="hero-metrics">
-					<div class="hero-metric"><strong>—</strong><span>searchable sources</span></div>
-						<div class="hero-metric"><strong>—</strong><span>formalization files</span></div>
-					<div class="hero-metric"><strong>—</strong><span>lines of formalization code</span></div>
-				<div class="hero-metric"><strong>—</strong><span>proof assistants</span></div>
-			</div>
-		</aside>
-	</section>
+		</section>
 
 	<section id="browse" aria-labelledby="browse-title">
 			<h2 id="browse-title">Browse</h2>
 			<div class="browse-grid">
-				<a class="browse-card" href="./corpus.html"><strong>Sources</strong><span>Libraries and projects in the corpus, grouped by proof assistant.</span></a>
-				<a class="browse-card" href="./subjects.html"><strong>Subjects</strong><span>Libraries and projects organized by mathematical subject.</span></a>
+				<a class="browse-card" href="./corpus.html"><strong>Sources</strong><span>Sources grouped by proof assistant.</span></a>
+				<a class="browse-card" href="./topics.html"><strong>Topics</strong><span>Sources organized by mathematical topic.</span></a>
 				<a class="browse-card" href="./api.html"><strong>API</strong><span>JSON search endpoint, query syntax, and response format.</span></a>
 		</div>
 		<p class="muted" id="counts"></p>
@@ -190,11 +175,8 @@ function buildQuery(text) {
 		parts.push(...literalTerms(text));
 	}
 
-	const scope = el("scope-filter").value;
-	if (scope === "formal") {
-		parts.push(`file:${FORMAL_FILES}`);
-		parts.push(String.raw`-file:(^|/)\.sys/`);
-	}
+	parts.push(`file:${FORMAL_FILES}`);
+	parts.push(String.raw`-file:(^|/)\.sys/`);
 
 	const sourceSets = [];
 	const prover = el("prover-filter").value;
@@ -219,11 +201,10 @@ function restoreAdvancedState() {
 	const params = new URLSearchParams(location.search);
 	el("prover-filter").value = params.get("prover") || "";
 	el("source-filter").value = params.get("source") || "";
-	el("subject-filter").value = params.get("subject") || "";
-	el("scope-filter").value = params.get("scope") === "all" ? "all" : "formal";
+	el("subject-filter").value = params.get("topic") || params.get("subject") || "";
 	el("case-filter").checked = params.get("case") === "yes";
 	el("regex-filter").checked = params.get("regex") === "yes";
-	const active = ["prover", "source", "subject", "scope", "case", "regex"].some(key => params.has(key));
+	const active = ["prover", "source", "topic", "subject", "case", "regex"].some(key => params.has(key));
 	if (active) el("advanced-search").open = true;
 }
 
@@ -232,14 +213,15 @@ function storeSearchState(text) {
 	const values = {
 		prover: el("prover-filter").value,
 		source: el("source-filter").value.trim(),
-		subject: el("subject-filter").value,
-		scope: el("scope-filter").value === "all" ? "all" : "",
+		topic: el("subject-filter").value,
 		case: el("case-filter").checked ? "yes" : "",
 		regex: el("regex-filter").checked ? "yes" : "",
 	};
 	for (const [key, value] of Object.entries(values)) {
 		if (value) params.set(key, value); else params.delete(key);
 	}
+	params.delete("subject");
+	params.delete("scope");
 	const queryString = params.toString();
 	const hash = text ? `#${encodeURIComponent(text)}` : "";
 	history.replaceState(null, "", `${location.pathname}${queryString ? `?${queryString}` : ""}${hash}`);
@@ -425,7 +407,6 @@ async function search(q) {
 	el("status").textContent = "searching…";
 	el("results").innerHTML = "";
 	el("browse").hidden = true;
-	const started = performance.now();
 	let result;
 	try {
 		result = await query(buildQuery(q), {MaxDocDisplayCount: MAX, ChunkMatches: true, Whole: true});
@@ -437,11 +418,8 @@ async function search(q) {
 	// Zoekt embeds its Stats struct directly in Result, so the counters sit at
 	// the top level rather than under a Stats key.
 	const found = result.Files || [];
-	const roundTrip = Math.round(performance.now() - started);
-	const searchMs = Math.round((result.Duration || 0) / 1e6);
 	if (!found.length) {
-		el("status").textContent =
-			`no matches · ${result.FilesConsidered || 0} files considered · ${roundTrip} ms`;
+		el("status").textContent = "no matches";
 		return;
 	}
 	const shown = found.length;
@@ -449,8 +427,7 @@ async function search(q) {
 	el("status").textContent =
 		`${shown} file${shown === 1 ? "" : "s"}`
 		+ (total > shown ? ` of ${total} matching` : "")
-		+ ` · ${result.MatchCount || 0} matches`
-		+ ` · ${searchMs} ms search, ${roundTrip} ms round trip`;
+		+ ` · ${result.MatchCount || 0} matches`;
 	render(result);
 }
 
@@ -482,12 +459,7 @@ window.addEventListener("hashchange", fromHash);
 
 fetch("./metrics.json").then(r => r.json()).then(data => {
 	const s = data.summary;
-	const compact = n => new Intl.NumberFormat("en", {notation: "compact", maximumFractionDigits: 1}).format(n || 0);
-	el("hero-metrics").innerHTML = `
-		<div class="hero-metric"><strong>${Number(s.searchable_sources || 0).toLocaleString()}</strong><span>searchable sources</span></div>
-		<div class="hero-metric"><strong>${compact(s.proof_files)}</strong><span>formalization files</span></div>
-		<div class="hero-metric"><strong>${compact(s.proof_source_lines)}</strong><span>lines of formalization code</span></div>
-		<div class="hero-metric"><strong>${Number(s.proof_assistants || 0).toLocaleString()}</strong><span>proof assistants</span></div>`;
+	el("counts").textContent = `${Number(s.sources).toLocaleString()} sources · ${Number(s.proof_assistants).toLocaleString()} proof assistants · ${Number(s.topics).toLocaleString()} topics`;
 });
 
 Promise.all([
@@ -501,14 +473,12 @@ Promise.all([
 		.map(source => source.name)
 		.sort((a, b) => a.localeCompare(b))
 		.map(name => `<option value="${esc(name)}"></option>`).join("");
-	document.getElementById("subject-filter").innerHTML = '<option value="">Any subject</option>'
+	document.getElementById("subject-filter").innerHTML = '<option value="">Any topic</option>'
 		+ subjectData.groups.map(group => `<optgroup label="${esc(group.label)}">${group.subjects
 			.map(subject => `<option value="${esc(subject.slug)}">${esc(subject.label)} (${subject.source_count})</option>`).join("")}</optgroup>`).join("");
 	restoreAdvancedState();
 	updateProofAssistantLink();
 	el("prover-filter").addEventListener("change", updateProofAssistantLink);
-	el("counts").textContent =
-		"Search results link directly to the corresponding source files.";
 	fromHash();
 });
 </script>

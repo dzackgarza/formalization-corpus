@@ -17,7 +17,7 @@
 		<nav class="site-nav" aria-label="Primary">
 			<a href="./">Search</a>
 			<a href="./corpus.html" aria-current="page">Sources</a>
-			<a href="./subjects.html">Subjects</a>
+			<a href="./topics.html">Topics</a>
 			<a href="./api.html">API</a>
 		</nav>
 	</div>
@@ -26,30 +26,24 @@
 <main class="shell page-main">
 	<header class="page-heading">
 			<h1>Sources</h1>
-				<p class="lede">Formalization libraries and projects included in the corpus. Counts are computed from the files currently available to search.</p>
+			<p class="lede">Sources included in the corpus.</p>
 	</header>
 
-	<section aria-labelledby="reach-title">
-				<h2 id="reach-title">Corpus statistics</h2>
-		<div class="metric-grid" id="reach-cards" aria-live="polite"></div>
-				<p class="note">A formalization file is a file written in the language of a proof assistant. Generated ACL2 <code>.sys</code> rune reports and PVS <code>.prf</code> proof traces are excluded. Definition and theorem totals are omitted because comparable declaration counts are not yet available across all supported proof assistants.</p>
-	</section>
-
 	<section aria-labelledby="ecosystem-title">
-			<h2 id="ecosystem-title">By proof assistant</h2>
+		<h2 id="ecosystem-title">By proof assistant</h2>
 		<div class="table-wrap"><table id="ecosystems" class="metrics-table"></table></div>
 	</section>
 
 	<section aria-labelledby="source-browser-title">
-		<h2 id="source-browser-title">Libraries and projects</h2>
-				<p class="muted">Filter by name or mathematical content.</p>
+		<h2 id="source-browser-title">Sources</h2>
+		<p class="muted">Filter by name or description.</p>
 		<div class="source-browser" id="table"></div>
 	</section>
 </main>
 
 <footer class="site-footer">
 	<div class="shell footer-inner">
-			<p>Descriptions summarize the mathematical content or purpose of each source.</p>
+		<p>Descriptions summarize the content or purpose of each source.</p>
 		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./api.html">API</a></div>
 	</div>
 </footer>
@@ -67,25 +61,13 @@ Promise.all([
 		const meta = assistants[id] || {label: id, url: null};
 		return meta.url ? `<a href="${meta.url}">${meta.label}</a>` : meta.label;
 	};
-	const s = metrics.summary;
-	document.getElementById("reach-cards").innerHTML = `
-			<div class="metric-card"><div class="value">${fmt(s.searchable_sources)} / ${fmt(s.sources)}</div><div class="label">searchable sources</div></div>
-				<div class="metric-card"><div class="value">${fmt(s.sources_with_proof_files)}</div><div class="label">sources with formalization files</div></div>
-				<div class="metric-card"><div class="value">${fmt(s.proof_files)}</div><div class="label">formalization files</div></div>
-			<div class="metric-card"><div class="value">${fmt(s.proof_assistants)}</div><div class="label">proof assistants</div></div>`;
-
 	const rows = metrics.ecosystems.map(r => `
-			<tr><td>${assistantLink(r.kind)}</td><td>${fmt(r.searchable_sources)}</td>
-			<td>${fmt(r.sources_with_proof_files)}</td><td>${fmt(r.proof_files)}</td>
-			<td>${fmt(r.proof_source_lines)}</td></tr>`).join("");
+		<tr><td>${assistantLink(r.kind)}</td><td>${fmt(r.sources)}</td></tr>`).join("");
 	const total = metrics.summary;
 	document.getElementById("ecosystems").innerHTML = `
-				<thead><tr><th>Proof assistant</th><th>Searchable sources</th><th>With formalization files</th>
-				<th>Formalization files</th><th>Lines of formalization code</th></tr></thead>
-			<tbody>${rows}
-			<tr><th>Total</th><th>${fmt(total.searchable_sources)}</th>
-			<th>${fmt(total.sources_with_proof_files)}</th><th>${fmt(total.proof_files)}</th>
-			<th>${fmt(total.proof_source_lines)}</th></tr></tbody>`;
+		<thead><tr><th>Proof assistant</th><th>Sources</th></tr></thead>
+		<tbody>${rows}
+		<tr><th>Total</th><th>${fmt(total.sources)}</th></tr></tbody>`;
 
 	const rowsForTable = corpus.sources;
 
@@ -95,7 +77,7 @@ Promise.all([
 			height: "70vh",
 			initialSort: [{column: "name", dir: "asc"}],
 			columns: [
-				{title: "Library / project", field: "name", widthGrow: 2, headerFilter: "input",
+		{title: "Source", field: "name", widthGrow: 2, headerFilter: "input",
 				 headerFilterPlaceholder: "filter by name",
 				 variableHeight: true,
 				 formatter: cell => {
@@ -115,8 +97,8 @@ Promise.all([
 					 a.textContent = meta.label;
 					 return a;
 				 }},
-			{title: "Description", field: "what", widthGrow: 3, headerFilter: "input",
-			 headerFilterPlaceholder: "filter by subject — sphere packing, Hasse, category",
+		{title: "Description", field: "what", widthGrow: 3, headerFilter: "input",
+		 headerFilterPlaceholder: "filter by description — sphere packing, Hasse, category",
 			 formatter: "textarea"},
 			],
 		});

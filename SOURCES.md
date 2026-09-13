@@ -1,9 +1,9 @@
 # Formalization source annotations
 
 [`sources.tsv`](./sources.tsv) is the canonical inventory of formalization
-sources. This document is a human annotation layer: mathematical subject guides,
+sources. This document is a human annotation layer: mathematical topic guides,
 notes about notable source contents, and external search/discovery surfaces. It
-may mention only a useful subset of the 909 indexed sources and must never be
+may mention only a useful subset of the 893 corpus sources and must never be
 used to infer that an unmentioned repository is absent from the corpus.
 
 [`lean-categories`](https://github.com/dzackgarza/lean-categories) states the

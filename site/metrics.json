@@ -1,137 +1,64 @@
 {
-  "definitions": {
-    "declaration_counts": "Not reported until comparable declaration counts can be obtained from each proof assistant using its own parser or elaborator.",
-    "proof_file": "A source file written in the language of its proof assistant; ACL2 .sys generated rune reports and PVS .prf proof traces are excluded.",
-    "proof_source_lines": "Physical newline-delimited lines in those proof source files."
-  },
   "ecosystems": [
     {
       "kind": "lean",
       "label": "Lean 4",
-      "proof_files": 136244,
-      "proof_source_bytes": 2866458566,
-      "proof_source_lines": 29331968,
-      "searchable_sources": 857,
-      "sources": 864,
-      "sources_with_proof_files": 848
+      "sources": 848
     },
     {
       "kind": "rocq",
       "label": "Rocq",
-      "proof_files": 11351,
-      "proof_source_bytes": 364202671,
-      "proof_source_lines": 8025415,
-      "searchable_sources": 20,
-      "sources": 20,
-      "sources_with_proof_files": 20
+      "sources": 20
     },
     {
       "kind": "agda",
       "label": "Agda",
-      "proof_files": 7919,
-      "proof_source_bytes": 58460397,
-      "proof_source_lines": 1611913,
-      "searchable_sources": 7,
-      "sources": 7,
-      "sources_with_proof_files": 7
+      "sources": 7
     },
     {
       "kind": "isabelle",
       "label": "Isabelle",
-      "proof_files": 14355,
-      "proof_source_bytes": 394714227,
-      "proof_source_lines": 8381800,
-      "searchable_sources": 3,
-      "sources": 3,
-      "sources_with_proof_files": 3
+      "sources": 3
     },
     {
       "kind": "hol-light",
       "label": "HOL Light",
-      "proof_files": 2003,
-      "proof_source_bytes": 158645698,
-      "proof_source_lines": 3731876,
-      "searchable_sources": 4,
-      "sources": 4,
-      "sources_with_proof_files": 4
+      "sources": 4
     },
     {
       "kind": "hol4",
       "label": "HOL4",
-      "proof_files": 5133,
-      "proof_source_bytes": 128156968,
-      "proof_source_lines": 3238686,
-      "searchable_sources": 4,
-      "sources": 4,
-      "sources_with_proof_files": 4
+      "sources": 4
     },
     {
       "kind": "mizar",
       "label": "Mizar",
-      "proof_files": 1500,
-      "proof_source_bytes": 122186856,
-      "proof_source_lines": 3706915,
-      "searchable_sources": 1,
-      "sources": 1,
-      "sources_with_proof_files": 1
+      "sources": 1
     },
     {
       "kind": "metamath",
       "label": "Metamath",
-      "proof_files": 96,
-      "proof_source_bytes": 69064805,
-      "proof_source_lines": 1223609,
-      "searchable_sources": 2,
-      "sources": 2,
-      "sources_with_proof_files": 2
+      "sources": 2
     },
     {
       "kind": "acl2",
       "label": "ACL2",
-      "proof_files": 17220,
-      "proof_source_bytes": 342475323,
-      "proof_source_lines": 7752240,
-      "searchable_sources": 1,
-      "sources": 1,
-      "sources_with_proof_files": 1
+      "sources": 1
     },
     {
       "kind": "pvs",
       "label": "PVS",
-      "proof_files": 2504,
-      "proof_source_bytes": 8215573,
-      "proof_source_lines": 245760,
-      "searchable_sources": 2,
-      "sources": 2,
-      "sources_with_proof_files": 2
+      "sources": 2
     },
     {
       "kind": "twelf",
       "label": "Twelf / LF",
-      "proof_files": 1004,
-      "proof_source_bytes": 5562615,
-      "proof_source_lines": 175724,
-      "searchable_sources": 1,
-      "sources": 1,
-      "sources_with_proof_files": 1
+      "sources": 1
     }
   ],
   "summary": {
     "proof_assistants": 11,
-    "proof_files": 199329,
-    "proof_source_bytes": 4518143699,
-    "proof_source_lines": 67425906,
-    "searchable_sources": 902,
-    "sources": 909,
-    "sources_with_proof_files": 893
-  },
-  "unsearchable_sources": [
-    "Mintpath__p-neq-np-lean",
-    "Xiyou-Wu__RiemannianGeometry",
-    "jonwashburn__riemann",
-    "klavins__LeanBook",
-    "lexzaiello__DCC",
-    "pitmonticone__NewProject",
-    "quangvdao__ZKLib-deprecated"
-  ]
+    "sources": 893,
+    "topics": 71
+  }
 }

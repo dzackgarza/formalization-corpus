@@ -16,7 +16,7 @@
 		<nav class="site-nav" aria-label="Primary">
 			<a href="./">Search</a>
 			<a href="./corpus.html">Sources</a>
-			<a href="./subjects.html">Subjects</a>
+			<a href="./topics.html">Topics</a>
 			<a href="./api.html" aria-current="page">API</a>
 		</nav>
 	</div>
@@ -129,7 +129,7 @@
   }
 }</code></pre>
 
-<p>Three details that bite:</p>
+<p>Response details:</p>
 
 <ul>
 	<li>
@@ -169,7 +169,7 @@
 
 <p>
 	This runs on one small virtual machine against a multi-gigabyte Zoekt index.
-	A term answers in tens of milliseconds warm; a broad regular expression across
+	Simple repeated queries are usually fast; a broad regular expression across
 	hundreds of indexed sources can take several seconds on the search server. Pass
 	<code>MaxDocDisplayCount</code>, prefer <code>repo:</code> and
 	<code>file:</code> filters over scanning everything, and set

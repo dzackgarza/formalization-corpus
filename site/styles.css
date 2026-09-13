@@ -262,8 +262,7 @@ h3 {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(270px, 0.7fr);
-  gap: 2rem;
+  grid-template-columns: minmax(0, 820px);
   align-items: start;
   padding-block: 3.2rem 2.4rem;
 }

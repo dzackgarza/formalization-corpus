@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the many-to-many mathematical subject index used by the static site."""
+"""Build the many-to-many mathematical topic index used by the static site."""
 
 from __future__ import annotations
 
@@ -14,7 +14,8 @@ TAXONOMY = ROOT / "subject-taxonomy.tsv"
 MEMBERSHIPS = ROOT / "source-subjects.tsv"
 CORPUS = ROOT / "site" / "corpus.json"
 OUT = ROOT / "site" / "subjects.json"
-PAGE = ROOT / "site" / "subjects.html"
+PAGE = ROOT / "site" / "topics.html"
+LEGACY_PAGE = ROOT / "site" / "subjects.html"
 
 
 def taxonomy_rows() -> list[tuple[str, str, str]]:
@@ -28,7 +29,7 @@ def taxonomy_rows() -> list[tuple[str, str, str]]:
             raise ValueError(f"{TAXONOMY.name}:{lineno}: expected group, slug, label")
         group, slug, label = fields
         if slug in seen:
-            raise ValueError(f"{TAXONOMY.name}:{lineno}: duplicate subject {slug}")
+            raise ValueError(f"{TAXONOMY.name}:{lineno}: duplicate topic {slug}")
         seen.add(slug)
         rows.append((group, slug, label))
     return rows
@@ -61,7 +62,7 @@ def main() -> None:
         if source_id not in known_sources:
             raise ValueError(f"unknown source id in {MEMBERSHIPS.name}: {source_id}")
         if slug not in known_subjects:
-            raise ValueError(f"unknown subject in {MEMBERSHIPS.name}: {slug}")
+            raise ValueError(f"unknown topic in {MEMBERSHIPS.name}: {slug}")
         by_subject[slug].add(source_id)
 
     groups: OrderedDict[str, list[dict[str, object]]] = OrderedDict()
@@ -108,7 +109,7 @@ def main() -> None:
                 what = html.escape(source.get("what", ""))
                 rows.append(f'<tr><td><a href="{url}">{name}</a></td><td>{what}</td></tr>')
             section.append(
-                '<div class="table-wrap"><table><thead><tr><th>Library / project</th><th>Mathematical content</th></tr></thead>'
+                '<div class="table-wrap"><table><thead><tr><th>Source</th><th>Mathematical content</th></tr></thead>'
                 f'<tbody>{"".join(rows)}</tbody></table></div>'
             )
         sections.append("".join(section))
@@ -118,7 +119,7 @@ def main() -> None:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Subjects — Formalization Corpus</title>
+<title>Topics — Formalization Corpus</title>
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -126,29 +127,32 @@ def main() -> None:
   <div class="shell masthead">
     <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">FC</span><span class="brand-name">Formalization Corpus</span></a>
     <nav class="site-nav" aria-label="Primary">
-      <a href="./">Search</a><a href="./corpus.html">Sources</a><a href="./subjects.html" aria-current="page">Subjects</a><a href="./api.html">API</a>
+      <a href="./">Search</a><a href="./corpus.html">Sources</a><a href="./topics.html" aria-current="page">Topics</a><a href="./api.html">API</a>
     </nav>
   </div>
 </header>
 <main class="shell page-main">
   <header class="page-heading">
-    <h1>Subjects</h1>
-    <p class="lede">Libraries and projects by mathematical subject. A library or project may appear under more than one subject.</p>
-    <p class="note">Subjects are assigned from the mathematical content of each library or project. Libraries and projects not yet classified by subject remain searchable.</p>
+    <h1>Topics</h1>
+    <p class="lede">Sources by mathematical topic. A source may appear under more than one topic.</p>
   </header>
   <div class="content-layout subject-layout">
-    <aside class="toc subject-toc" aria-label="Subjects">{"".join(toc)}</aside>
+    <aside class="toc subject-toc" aria-label="Topics">{"".join(toc)}</aside>
     <article class="prose subject-prose">{"".join(sections)}</article>
   </div>
 </main>
 <footer class="site-footer">
-  <div class="shell footer-inner"><p>{payload['classified_sources']} libraries and projects are currently classified by subject.</p><div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div></div>
+  <div class="shell footer-inner"><div></div><div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div></div>
 </footer>
 </body>
 </html>
 """)
+    LEGACY_PAGE.write_text(
+        '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=./topics.html">'
+        '<link rel="canonical" href="./topics.html"><title>Topics — Formalization Corpus</title>'
+    )
     print(
-        f"{OUT}: {len(subjects)} subjects, "
+        f"{OUT}: {len(subjects)} topics, "
         f"{payload['classified_sources']} classified sources"
     )
 
