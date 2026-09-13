@@ -75,6 +75,24 @@
           "file": "v1/Atlas/AlgebraicGeometryI/code/Lec24RiemannRochSerre.lean",
           "relevance": 2,
           "note": "Riemann-Roch and Serre-duality development for curves."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochCurves.lean",
+          "relevance": 3,
+          "note": "States and proves a Riemann–Roch theorem for curves via the Euler-characteristic formula."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochRiemannForm.lean",
+          "relevance": 2,
+          "note": "Riemann-form consequences of Riemann–Roch under Serre duality for curves."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RiemannRochTheorem/Basic.lean",
+          "relevance": 3,
+          "note": "Dedicated Riemann–Roch theorem for function fields/curves."
         }
       ]
     },
@@ -121,6 +139,12 @@
           "file": "LeanEval/LinearAlgebra/JordanNormalForm.lean",
           "relevance": 3,
           "note": "Explicit Jordan normal form statement and proof development."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Jordan_Normal_Form/Jordan_Normal_Form_Existence.thy",
+          "relevance": 3,
+          "note": "AFP development proving existence and computation of Jordan normal forms."
         }
       ]
     },
@@ -145,6 +169,24 @@
           "file": "Mathlib/NumberTheory/Padics/Hensel.lean",
           "relevance": 2,
           "note": "Hensel's lemma over p-adic integers."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/NumberTheoryI/code/HenselLemmas.lean",
+          "relevance": 3,
+          "note": "Proves simple-root lifting and Newton Hensel statements for complete discrete valuation rings."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/HenselsLemma.lean",
+          "relevance": 2,
+          "note": "Hensel lemma over p-adic integers, a complete DVR special case."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Padic_Ints/Hensels_Lemma.thy",
+          "relevance": 2,
+          "note": "AFP proof of Hensel’s lemma over the p-adic integers."
         }
       ]
     },
@@ -235,6 +277,12 @@
           "file": "v1/Atlas/AlgebraicGeometryI/code/Lec1ZariskiNullstellensatz.lean",
           "relevance": 3,
           "note": "Algebraic-geometry presentation of the Nullstellensatz."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Nullstellensatz/Nullstellensatz.thy",
+          "relevance": 3,
+          "note": "AFP proof of the geometric Hilbert Nullstellensatz relating varieties and radical ideals."
         }
       ]
     },
@@ -305,6 +353,12 @@
           "file": "Mathlib/Algebra/Module/PID.lean",
           "relevance": 2,
           "note": "PID module structure theorem underpinning the group result."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Finitely_Generated_Abelian_Groups/Finitely_Generated_Abelian_Groups.thy",
+          "relevance": 3,
+          "note": "AFP formalization of the fundamental theorem of finitely generated abelian groups."
         }
       ]
     },
@@ -345,6 +399,18 @@
           "file": "BrownianMotion/Gaussian/ProjectiveLimit.lean",
           "relevance": 2,
           "note": "Gaussian/projective-limit construction infrastructure."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/FourierAnalysis/code/BrownianMotion.lean",
+          "relevance": 3,
+          "note": "Contains a Wiener-series construction culminating in wiener_construction_brownian_motion."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Probability/BrownianMotion/GaussianProjectiveFamily.lean",
+          "relevance": 2,
+          "note": "Constructs Brownian finite-dimensional Gaussian projective families; the file notes the Kolmogorov extension step is not yet in Mathlib."
         }
       ]
     },
@@ -391,6 +457,12 @@
           "file": "Carleson/Classical/CarlesonHunt.lean",
           "relevance": 2,
           "note": "Carleson-Hunt theorem development."
+        },
+        {
+          "repository": "fpvandoorn__carleson",
+          "file": "Challenge.lean",
+          "relevance": 2,
+          "note": "Formal target statement classical_carleson′ for Carleson’s theorem; proof intentionally left as a challenge/sorry."
         }
       ]
     },
@@ -437,6 +509,12 @@
           "file": "src/category-theory/yoneda-lemma-categories.lagda.md",
           "relevance": 3,
           "note": "agda-unimath Yoneda lemma for categories."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/Bicategories/Core/YonedaLemma.v",
+          "relevance": 2,
+          "note": "Proves a bicategorical Yoneda lemma with univalent-category targets; closely related but more general/different level than the category-level query."
         }
       ]
     },
