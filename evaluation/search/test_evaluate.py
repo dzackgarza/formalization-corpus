@@ -10,6 +10,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import evaluate  # noqa: E402
 from evaluate_multiquery import rrf_fuse  # noqa: E402
+from evaluate_rerank import bounded_excerpt, humanize_path  # noqa: E402
 
 
 class SearchEvaluationTests(unittest.TestCase):
@@ -78,6 +79,22 @@ class SearchEvaluationTests(unittest.TestCase):
         metrics = evaluate.aggregate([scored])
         self.assertNotIn("precision@1", metrics)
         self.assertEqual(metrics["hit@5"], 1)
+
+    def test_rerank_projection_humanizes_paths_and_removes_import_boilerplate(self) -> None:
+        self.assertIn(
+            "Jordan Normal Form",
+            humanize_path("LeanEval/LinearAlgebra/JordanNormalForm.lean"),
+        )
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            path = pathlib.Path(directory) / "x.lean"
+            path.write_text(
+                "import Foo\npublic import Bar\n/-- direct owner -/\ntheorem owner : True := by trivial\n"
+            )
+            excerpt = bounded_excerpt(path, max_lines=20, max_chars=1000)
+        self.assertNotIn("import Foo", excerpt)
+        self.assertNotIn("public import Bar", excerpt)
+        self.assertIn("theorem owner", excerpt)
 
     def test_rrf_rewards_results_supported_by_multiple_runs(self) -> None:
         fused = rrf_fuse([

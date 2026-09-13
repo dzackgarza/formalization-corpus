@@ -8,12 +8,16 @@ regressions.
 
 ## Same-index results
 
+All reports below are tied to the same current Zoekt index fingerprint recorded
+in the JSON reports.
+
 | Variant | owner Hit@10 | owner Hit@20 | Hit@10 | Hit@20 | MRR | nDCG@10 | zero-result rate |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `frontend_lexical_v1` baseline | 0.136 | 0.273 | 0.182 | 0.364 | 0.152 | 0.110 | 0.136 |
 | `normalized_content_v1` | 0.227 | 0.409 | 0.273 | 0.500 | 0.167 | 0.137 | 0.045 |
 | `normalized_path_content_v1` | **0.500** | 0.545 | 0.591 | 0.591 | 0.341 | 0.313 | 0.045 |
-| `gemini_multiquery_rrf_v1` | **0.500** | **0.682** | **0.636** | **0.773** | **0.421** | **0.330** | **0.000** |
+| `gemini_multiquery_rrf_v1` | **0.500** | 0.682 | 0.636 | 0.773 | 0.421 | 0.330 | **0.000** |
+| `gemini_multiquery_rrf_cohere_v4_fast_v1` (30 candidates) | **0.864** | **0.909** | **0.864** | **0.909** | **0.651** | **0.592** | **0.000** |
 
 The first two ablations isolate query normalization from path/filename matching.
 The larger gain comes from restoring path/filename evidence: formal libraries
@@ -28,7 +32,14 @@ metric beyond `normalized_path_content_v1`: owner Hit@10 remains 0.500.
 
 A candidate-depth audit of `normalized_path_content_v1` showed owner Hit@20 =
 owner Hit@50 = owner Hit@100 = owner Hit@150 = 0.545.  Therefore reranking that
-lexical candidate pool cannot recover the remaining owner files.  The next
-first-stage experiment should add an independent semantic retrieval signal
-(dense embeddings, learned sparse expansion, or another retrieval model) before
-reranking is evaluated.
+lexical candidate pool cannot recover the remaining owner files.  Multi-query
+expansion changes the candidate set: 20 of 22 judged owner files enter the first
+30 RRF candidates.  Reranking that expanded pool with Cohere `rerank-v4.0-fast`
+raises the predeclared primary owner Hit@10 metric to 0.864 and reaches the
+20/22 candidate-recall ceiling by rank 20.  The 22-query run consumed 44 Cohere
+search units.  Its serial prototype latency is recorded in the report and is not
+yet a serving target.
+
+The two owners absent from the expanded lexical pool still require an independent
+first-stage semantic signal (dense retrieval, learned sparse expansion, theorem-
+specific retrieval, etc.).  Reranking cannot recover candidates it never sees.

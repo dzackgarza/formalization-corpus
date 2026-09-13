@@ -112,6 +112,14 @@ eval-search:
 test-search-quality:
     python evaluation/search/evaluate.py --provider local --variant frontend_lexical_v1 --compare evaluation/search/baselines/frontend_lexical_v1.json
 
+# Reproduce the measured multi-query + Cohere reranker experiment (network/API key required).
+eval-search-rerank:
+    python evaluation/search/evaluate_rerank.py --candidate-pool 30 --output evaluation/search/experiments/reports/gemini_multiquery_rrf_cohere_v4_fast_v1.json
+
+# Rebuild the TREC-style top-10 relevance-judgment pool from the measured runs.
+build-search-pool:
+    python evaluation/search/build_pool.py evaluation/search/baselines/frontend_lexical_v1.json evaluation/search/experiments/reports/normalized_path_content_v1.json evaluation/search/experiments/reports/gemini_multiquery_rrf_v1.json evaluation/search/experiments/reports/gemini_multiquery_rrf_cohere_v4_fast_v1.json --depth 10 --output evaluation/search/pools/initial_top10_pool.json
+
 # Search declarations and source text across the corpus.
 search query:
     ./bin/zoekt -index_dir .zoekt -r "{{query}}"

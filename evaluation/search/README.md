@@ -189,10 +189,10 @@ before drawing strong conclusions from a new family of retrievers:
    retrieval-code comparison.
 
 `build_pool.py` produces that review set without assigning relevance to
-unjudged files.  The initial depth-10 pool combines the frozen frontend baseline,
-normalized path/content lexical retrieval, and frozen multi-query RRF.  It has
-330 unique query/file candidates: 23 already judged and 307 explicitly marked
-unjudged.  Unjudged does not mean irrelevant.
+unjudged files.  The current depth-10 pool combines the frozen frontend baseline, normalized
+path/content lexical retrieval, frozen multi-query RRF, and the measured Cohere
+reranker.  It has 414 unique query/file candidates: 32 already judged and 382
+explicitly marked unjudged.  Unjudged does not mean irrelevant.
 
 This follows the TREC test-collection model: pool top documents from diverse
 runs, judge the pool, and keep qrels distinct from run output.  It also avoids a

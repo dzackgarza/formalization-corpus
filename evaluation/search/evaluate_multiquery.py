@@ -41,6 +41,49 @@ def rrf_fuse(rankings: list[list[dict[str, Any]]], constant: int = 60, depth: in
     return fused
 
 
+def load_expansion_queries(path: pathlib.Path, gold: dict[str, Any]) -> tuple[dict[str, Any], dict[str, list[str]]]:
+    expansion_data = json.loads(path.read_text())
+    expansion_queries = expansion_data.get("queries") or {}
+    missing = [case["id"] for case in gold["cases"] if case["id"] not in expansion_queries]
+    if missing:
+        raise ValueError(f"missing frozen expansions for: {', '.join(missing)}")
+    return expansion_data, expansion_queries
+
+
+def retrieve_multiquery(
+    case: dict[str, Any],
+    expansion_queries: dict[str, list[str]],
+    *,
+    timeout: float = 30.0,
+    rrf_constant: int = 60,
+    depth: int = 200,
+) -> tuple[list[dict[str, Any]], dict[str, Any], list[str], list[str]]:
+    formulations = [case["query"], *expansion_queries[case["id"]]]
+    compiled: list[str] = []
+    rankings: list[list[dict[str, Any]]] = []
+    elapsed_ms = 0.0
+    payload_bytes = 0
+    seen_queries: set[str] = set()
+    for formulation in formulations:
+        query = evaluate.compile_query(formulation, "normalized_path_content_v1")
+        if query in seen_queries:
+            continue
+        seen_queries.add(query)
+        results, runtime = evaluate.local_search(query, timeout)
+        compiled.append(query)
+        rankings.append(results)
+        elapsed_ms += runtime["elapsed_ms"]
+        payload_bytes += runtime["payload_bytes"]
+    fused = rrf_fuse(rankings, constant=rrf_constant, depth=depth)
+    runtime = {
+        "elapsed_ms": elapsed_ms,
+        "payload_bytes": payload_bytes,
+        "returned_files": len(fused),
+        "retrieval_queries": len(rankings),
+    }
+    return fused, runtime, formulations, compiled
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--gold", type=pathlib.Path, default=evaluate.DEFAULT_GOLD)
@@ -57,38 +100,21 @@ def main() -> int:
         for error in errors:
             print(f"ERROR: {error}")
         return 2
-    expansion_data = json.loads(args.expansions.read_text())
-    expansion_queries = expansion_data.get("queries") or {}
-    missing = [case["id"] for case in gold["cases"] if case["id"] not in expansion_queries]
-    if missing:
-        print(f"ERROR: missing frozen expansions for: {', '.join(missing)}")
+    try:
+        expansion_data, expansion_queries = load_expansion_queries(args.expansions, gold)
+    except ValueError as exc:
+        print(f"ERROR: {exc}")
         return 2
 
     scored_cases: list[dict[str, Any]] = []
     for case in gold["cases"]:
-        formulations = [case["query"], *expansion_queries[case["id"]]]
-        compiled: list[str] = []
-        rankings: list[list[dict[str, Any]]] = []
-        elapsed_ms = 0.0
-        payload_bytes = 0
-        seen_queries: set[str] = set()
-        for formulation in formulations:
-            query = evaluate.compile_query(formulation, "normalized_path_content_v1")
-            if query in seen_queries:
-                continue
-            seen_queries.add(query)
-            results, runtime = evaluate.local_search(query, args.timeout)
-            compiled.append(query)
-            rankings.append(results)
-            elapsed_ms += runtime["elapsed_ms"]
-            payload_bytes += runtime["payload_bytes"]
-        fused = rrf_fuse(rankings, constant=args.rrf_constant, depth=args.depth)
-        runtime = {
-            "elapsed_ms": elapsed_ms,
-            "payload_bytes": payload_bytes,
-            "returned_files": len(fused),
-            "retrieval_queries": len(rankings),
-        }
+        fused, runtime, formulations, compiled = retrieve_multiquery(
+            case,
+            expansion_queries,
+            timeout=args.timeout,
+            rrf_constant=args.rrf_constant,
+            depth=args.depth,
+        )
         scored = evaluate.score_case(case, fused, " MULTIQUERY ".join(compiled), runtime)
         scored["formulations"] = formulations
         scored_cases.append(scored)
