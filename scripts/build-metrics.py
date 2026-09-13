@@ -121,7 +121,7 @@ def main() -> None:
     topic_count = len(
         {
             fields[1]
-            for line in (ROOT / "source-subjects.tsv").read_text().splitlines()
+            for line in (ROOT / "source-topics.tsv").read_text().splitlines()
             if line.strip() and not line.lstrip().startswith("#")
             for fields in [line.split("\t")]
             if len(fields) == 2 and fields[0] in registered_names

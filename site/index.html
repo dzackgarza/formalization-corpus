@@ -57,7 +57,7 @@
 								<datalist id="source-options"></datalist>
 							</label>
 					<label>Topic
-						<select id="subject-filter">
+						<select id="topic-filter">
 							<option value="">Any topic</option>
 						</select>
 					</label>
@@ -116,7 +116,7 @@ const shikiReady = (async () => {
 
 let corpus = {sources: [], sources_by_proof_assistant: {}, proof_assistants: {}};
 let sourcesByIndex = {};
-let subjectData = {groups: [], subjects: {}};
+let topicData = {groups: [], topics: {}};
 const el = id => document.getElementById(id);
 const esc = s => s.replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
 const rx = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -187,8 +187,8 @@ function buildQuery(text) {
 	}
 	const source = el("source-filter").value.trim();
 	if (source) sourceSets.push(sourceIdsMatching(source));
-	const subject = el("subject-filter").value;
-	if (subject) sourceSets.push(subjectData.subjects[subject]?.sources || []);
+	const topic = el("topic-filter").value;
+	if (topic) sourceSets.push(topicData.topics[topic]?.sources || []);
 	if (sourceSets.length) {
 		const allowed = sourceSets.reduce((left, right) => left.filter(id => right.includes(id)));
 		parts.push(repoFilter(allowed) || "repo:$a");
@@ -201,7 +201,7 @@ function restoreAdvancedState() {
 	const params = new URLSearchParams(location.search);
 	el("prover-filter").value = params.get("prover") || "";
 	el("source-filter").value = params.get("source") || "";
-	el("subject-filter").value = params.get("topic") || params.get("subject") || "";
+	el("topic-filter").value = params.get("topic") || params.get("subject") || "";
 	el("case-filter").checked = params.get("case") === "yes";
 	el("regex-filter").checked = params.get("regex") === "yes";
 	const active = ["prover", "source", "topic", "subject", "case", "regex"].some(key => params.has(key));
@@ -213,7 +213,7 @@ function storeSearchState(text) {
 	const values = {
 		prover: el("prover-filter").value,
 		source: el("source-filter").value.trim(),
-		topic: el("subject-filter").value,
+		topic: el("topic-filter").value,
 		case: el("case-filter").checked ? "yes" : "",
 		regex: el("regex-filter").checked ? "yes" : "",
 	};
@@ -464,18 +464,18 @@ fetch("./metrics.json").then(r => r.json()).then(data => {
 
 Promise.all([
 	fetch("./corpus.json").then(r => r.json()),
-	fetch("./subjects.json").then(r => r.json()),
-]).then(([corpusJson, subjectsJson]) => {
+	fetch("./topics.json").then(r => r.json()),
+]).then(([corpusJson, topicsJson]) => {
 	corpus = corpusJson;
-	subjectData = subjectsJson;
+	topicData = topicsJson;
 	sourcesByIndex = Object.fromEntries(corpus.sources.map(source => [source.index_id, source]));
 	document.getElementById("source-options").innerHTML = corpus.sources
 		.map(source => source.name)
 		.sort((a, b) => a.localeCompare(b))
 		.map(name => `<option value="${esc(name)}"></option>`).join("");
-	document.getElementById("subject-filter").innerHTML = '<option value="">Any topic</option>'
-		+ subjectData.groups.map(group => `<optgroup label="${esc(group.label)}">${group.subjects
-			.map(subject => `<option value="${esc(subject.slug)}">${esc(subject.label)} (${subject.source_count})</option>`).join("")}</optgroup>`).join("");
+	document.getElementById("topic-filter").innerHTML = '<option value="">Any topic</option>'
+		+ topicData.groups.map(group => `<optgroup label="${esc(group.label)}">${group.topics
+			.map(topic => `<option value="${esc(topic.slug)}">${esc(topic.label)} (${topic.source_count})</option>`).join("")}</optgroup>`).join("");
 	restoreAdvancedState();
 	updateProofAssistantLink();
 	el("prover-filter").addEventListener("change", updateProofAssistantLink);

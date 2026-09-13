@@ -10,10 +10,10 @@ from collections import OrderedDict, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TAXONOMY = ROOT / "subject-taxonomy.tsv"
-MEMBERSHIPS = ROOT / "source-subjects.tsv"
+TAXONOMY = ROOT / "topic-taxonomy.tsv"
+MEMBERSHIPS = ROOT / "source-topics.tsv"
 CORPUS = ROOT / "site" / "corpus.json"
-OUT = ROOT / "site" / "subjects.json"
+OUT = ROOT / "site" / "topics.json"
 PAGE = ROOT / "site" / "topics.html"
 LEGACY_PAGE = ROOT / "site" / "subjects.html"
 
@@ -43,7 +43,7 @@ def membership_rows() -> list[tuple[str, str]]:
             continue
         fields = line.split("\t")
         if len(fields) != 2:
-            raise ValueError(f"{MEMBERSHIPS.name}:{lineno}: expected source_id and subject_slug")
+            raise ValueError(f"{MEMBERSHIPS.name}:{lineno}: expected source_id and topic_slug")
         pair = (fields[0], fields[1])
         if pair not in seen:
             rows.append(pair)
@@ -53,35 +53,35 @@ def membership_rows() -> list[tuple[str, str]]:
 
 def main() -> None:
     taxonomy = taxonomy_rows()
-    known_subjects = {slug for _, slug, _ in taxonomy}
+    known_topics = {slug for _, slug, _ in taxonomy}
     corpus = json.loads(CORPUS.read_text())
     known_sources = {source["index_id"] for source in corpus["sources"]}
 
-    by_subject: dict[str, set[str]] = defaultdict(set)
+    by_topic: dict[str, set[str]] = defaultdict(set)
     for source_id, slug in membership_rows():
         if source_id not in known_sources:
             raise ValueError(f"unknown source id in {MEMBERSHIPS.name}: {source_id}")
-        if slug not in known_subjects:
+        if slug not in known_topics:
             raise ValueError(f"unknown topic in {MEMBERSHIPS.name}: {slug}")
-        by_subject[slug].add(source_id)
+        by_topic[slug].add(source_id)
 
     groups: OrderedDict[str, list[dict[str, object]]] = OrderedDict()
-    subjects = {}
+    topics = {}
     for group, slug, label in taxonomy:
-        sources = sorted(by_subject[slug])
+        sources = sorted(by_topic[slug])
         if not sources:
             continue
         item = {"slug": slug, "label": label, "source_count": len(sources)}
         groups.setdefault(group, []).append(item)
-        subjects[slug] = {"label": label, "group": group, "sources": sources}
+        topics[slug] = {"label": label, "group": group, "sources": sources}
 
     payload = {
         "groups": [
-            {"label": group, "subjects": items}
+            {"label": group, "topics": items}
             for group, items in groups.items()
         ],
-        "subjects": subjects,
-        "classified_sources": len({source for sources in by_subject.values() for source in sources}),
+        "topics": topics,
+        "classified_sources": len({source for sources in by_topic.values() for source in sources}),
     }
     OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
     sources_by_id = {source["index_id"]: source for source in corpus["sources"]}
@@ -89,17 +89,17 @@ def main() -> None:
     sections = []
     for group in payload["groups"]:
         group_slug = re.sub(r"[^a-z0-9]+", "-", group["label"].lower()).strip("-")
-        toc.append(f'<div class="toc-title subject-group-title">{html.escape(group["label"])}</div>')
+        toc.append(f'<div class="toc-title topic-group-title">{html.escape(group["label"])}</div>')
         section = [f'<h2 id="{group_slug}">{html.escape(group["label"])}</h2>']
-        for subject in group["subjects"]:
-            slug = subject["slug"]
-            detail = payload["subjects"][slug]
+        for topic in group["topics"]:
+            slug = topic["slug"]
+            detail = payload["topics"][slug]
             source_count = len(detail["sources"])
             source_word = "source" if source_count == 1 else "sources"
-            toc.append(f'<a href="#subject-{slug}">{html.escape(subject["label"])}</a>')
+            toc.append(f'<a href="#topic-{slug}">{html.escape(topic["label"])}</a>')
             section.append(
-                f'<h3 id="subject-{slug}">{html.escape(subject["label"])} '
-                f'<span class="subject-count">{source_count} {source_word}</span></h3>'
+                f'<h3 id="topic-{slug}">{html.escape(topic["label"])} '
+                f'<span class="topic-count">{source_count} {source_word}</span></h3>'
             )
             rows = []
             for source_id in detail["sources"]:
@@ -136,9 +136,9 @@ def main() -> None:
     <h1>Topics</h1>
     <p class="lede">Sources by mathematical topic. A source may appear under more than one topic.</p>
   </header>
-  <div class="content-layout subject-layout">
-    <aside class="toc subject-toc" aria-label="Topics">{"".join(toc)}</aside>
-    <article class="prose subject-prose">{"".join(sections)}</article>
+  <div class="content-layout topic-layout">
+    <aside class="toc topic-toc" aria-label="Topics">{"".join(toc)}</aside>
+    <article class="prose topic-prose">{"".join(sections)}</article>
   </div>
 </main>
 <footer class="site-footer">
@@ -152,7 +152,7 @@ def main() -> None:
         '<link rel="canonical" href="./topics.html"><title>Topics — Formalization Corpus</title>'
     )
     print(
-        f"{OUT}: {len(subjects)} topics, "
+        f"{OUT}: {len(topics)} topics, "
         f"{payload['classified_sources']} classified sources"
     )
 

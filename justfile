@@ -65,7 +65,7 @@ metrics:
 # Regenerate the committed static source and subject metadata.
 site:
     python scripts/build-site.py
-    python scripts/build-subjects.py
+    python scripts/build-topics.py
 
 # Deploy the static site to nginx's *.localhost preview root.
 # Metrics runs first so invalid corpus entries fail instead of becoming UI copy.
