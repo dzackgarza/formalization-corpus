@@ -6,11 +6,12 @@ on:
     paths:
       - "site/**"
       - "scripts/build-site.py"
+      - "scripts/build-subjects.py"
       - "SOURCES.md"
       - "descriptions.tsv"
-      - "repos.tsv"
-      - "reservoir.tsv"
-      - "port-sources.tsv"
+      - "sources.tsv"
+      - "source-subjects.tsv"
+      - "subject-taxonomy.tsv"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -32,11 +33,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # The repository table is derived from the manifests and SOURCES.md is
-      # rendered into a page, so a repository added to a manifest or a line
-      # written about one reaches the site without a second edit.
+      # The source table and mathematical subject metadata are generated from
+      # the canonical source inventory plus the human annotation tables.
       - run: pip install --quiet markdown
       - run: python3 scripts/build-site.py
+      - run: python3 scripts/build-subjects.py
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
