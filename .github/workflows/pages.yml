@@ -6,12 +6,12 @@ on:
     paths:
       - "site/**"
       - "scripts/build-site.py"
-      - "scripts/build-subjects.py"
+      - "scripts/build-topics.py"
       - "SOURCES.md"
       - "descriptions.tsv"
       - "sources.tsv"
-      - "source-subjects.tsv"
-      - "subject-taxonomy.tsv"
+      - "source-topics.tsv"
+      - "topic-taxonomy.tsv"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -33,11 +33,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # The source table and mathematical subject metadata are generated from
+      # The source table and mathematical topic metadata are generated from
       # the canonical source inventory plus the human annotation tables.
       - run: pip install --quiet markdown
       - run: python3 scripts/build-site.py
-      - run: python3 scripts/build-subjects.py
+      - run: python3 scripts/build-topics.py
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
