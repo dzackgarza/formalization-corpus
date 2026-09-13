@@ -51,7 +51,9 @@ just index              # (re)build the Zoekt index over all sources
 just metrics            # recompute exact source/unit/line reach statistics
 just site               # regenerate committed static source metadata
 just preview            # deploy site/ to formalization-corpus-preview.localhost
-just check-sources      # report repositories in SOURCES.md that no manifest checks out
+just check-sources      # verify annotated sources exist in the canonical source table
+just eval-search        # measure the frozen mathematician-facing retrieval benchmark
+just test-search-quality # compare retrieval scores with the committed same-index baseline
 just search "Nat.Prime"                  # Zoekt text search
 just ast "def $NAME : $TYPE := $VALUE"   # Lean syntax-tree pattern search
 just publish            # ship the index to the search host
@@ -67,7 +69,7 @@ The work is split by what each side can host:
 
 | Where | What it serves | Why there |
 | --- | --- | --- |
-| GitHub Pages (`site/`) | The page, the query UI, the source table | Static, versioned with the manifests, free to serve |
+| GitHub Pages (`site/`) | The page, the query UI, the source table | Static, versioned with the source metadata, free to serve |
 | `formalization-corpus.dzackgarza.com` | `POST /api/search` only | The multi-gigabyte Zoekt index cannot live in a Pages site |
 
 The page holds no index. It posts a zoekt query to the search host and renders

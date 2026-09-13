@@ -1,0 +1,432 @@
+#!/usr/bin/env python3
+"""Reproducible retrieval evaluation for the formalization corpus.
+
+The default provider searches the local Zoekt shards directly.  The baseline
+variant mirrors the public search page's current default query compilation:
+every whitespace-delimited token is an ANDed content term, restricted to proof
+source files, case-insensitively.
+
+This script intentionally evaluates retrieval only.  Generation/answer quality
+belongs in a separate downstream evaluation once retrieval is stable.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import json
+import math
+import pathlib
+import re
+import statistics
+import subprocess
+import sys
+import time
+from collections import defaultdict
+from datetime import datetime, timezone
+from typing import Any
+
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+DEFAULT_GOLD = ROOT / "evaluation/search/gold.json"
+DEFAULT_BASELINE = ROOT / "evaluation/search/baselines/frontend_lexical_v1.json"
+ZOEKT = ROOT / "bin/zoekt"
+INDEX_DIR = ROOT / ".zoekt"
+FORMAL_FILES = r"\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$"
+K_VALUES = (1, 5, 10, 20)
+
+
+def load_gold(path: pathlib.Path) -> dict[str, Any]:
+    data = json.loads(path.read_text())
+    if data.get("version") != 1 or not isinstance(data.get("cases"), list):
+        raise ValueError(f"unsupported gold schema in {path}")
+    return data
+
+
+def source_rows() -> dict[str, dict[str, str]]:
+    with (ROOT / "sources.tsv").open(newline="") as handle:
+        rows = csv.DictReader(handle, delimiter="\t")
+        return {pathlib.PurePosixPath(row["directory"]).name: row for row in rows}
+
+
+def validate_gold(data: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    sources = source_rows()
+    seen_ids: set[str] = set()
+    if not data["cases"]:
+        errors.append("gold set has no cases")
+    for case in data["cases"]:
+        case_id = case.get("id")
+        if not isinstance(case_id, str) or not case_id:
+            errors.append("case missing nonempty id")
+            continue
+        if case_id in seen_ids:
+            errors.append(f"duplicate case id: {case_id}")
+        seen_ids.add(case_id)
+        if not isinstance(case.get("query"), str) or not case["query"].strip():
+            errors.append(f"{case_id}: missing query")
+        judgments = case.get("judgments")
+        if not isinstance(judgments, list) or not judgments:
+            errors.append(f"{case_id}: needs at least one positive judgment")
+            continue
+        seen_targets: set[tuple[str, str]] = set()
+        for judgment in judgments:
+            repo = judgment.get("repository")
+            file_name = judgment.get("file")
+            rel = judgment.get("relevance")
+            if repo not in sources:
+                errors.append(f"{case_id}: unknown repository {repo!r}")
+                continue
+            if not isinstance(file_name, str) or not file_name:
+                errors.append(f"{case_id}: invalid file for {repo}")
+                continue
+            if not isinstance(rel, int) or not 1 <= rel <= 3:
+                errors.append(f"{case_id}: relevance must be an integer 1..3")
+            key = (repo, file_name)
+            if key in seen_targets:
+                errors.append(f"{case_id}: duplicate judgment {repo}:{file_name}")
+            seen_targets.add(key)
+            local_path = ROOT / sources[repo]["directory"] / file_name
+            if not local_path.is_file():
+                errors.append(f"{case_id}: judged file is missing: {local_path}")
+    return errors
+
+
+def regex_escape(text: str) -> str:
+    return re.sub(r"([.*+?^${}()|\[\]\\])", r"\\\1", text)
+
+
+def quoted_pattern(pattern: str) -> str:
+    return '"' + pattern.replace("\\", "\\\\").replace('"', '\\"') + '"'
+
+
+def literal_terms(text: str) -> list[str]:
+    terms: list[str] = []
+    for match in re.finditer(r'"([^"]+)"|(\S+)', text):
+        value = match.group(1) if match.group(1) is not None else match.group(2)
+        if value:
+            terms.append(f"content:{quoted_pattern(regex_escape(value))}")
+    return terms
+
+
+def compile_query(text: str, variant: str) -> str:
+    if variant != "frontend_lexical_v1":
+        raise ValueError(f"unknown retrieval variant: {variant}")
+    parts = literal_terms(text)
+    parts.append(f"file:{FORMAL_FILES}")
+    parts.append(r"-file:(^|/)\.sys/")
+    parts.append("case:no")
+    return " ".join(parts)
+
+
+def index_fingerprint() -> dict[str, Any]:
+    shards = sorted(INDEX_DIR.glob("*.zoekt"))
+    h = hashlib.sha256()
+    total = 0
+    latest_ns = 0
+    for shard in shards:
+        st = shard.stat()
+        total += st.st_size
+        latest_ns = max(latest_ns, st.st_mtime_ns)
+        h.update(f"{shard.name}\0{st.st_size}\0{st.st_mtime_ns}\n".encode())
+    return {
+        "shard_count": len(shards),
+        "total_bytes": total,
+        "latest_mtime_ns": latest_ns,
+        "metadata_sha256": h.hexdigest(),
+    }
+
+
+def local_search(query: str, timeout: float) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    if not ZOEKT.is_file():
+        raise FileNotFoundError(f"missing local search binary: {ZOEKT}")
+    started = time.perf_counter()
+    proc = subprocess.run(
+        [str(ZOEKT), "-index_dir", str(INDEX_DIR), "-jsonl", query],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        timeout=timeout,
+        check=False,
+    )
+    elapsed_ms = (time.perf_counter() - started) * 1000
+    if proc.returncode != 0:
+        raise RuntimeError(proc.stderr.decode(errors="replace").strip() or f"zoekt exited {proc.returncode}")
+    results = [json.loads(line) for line in proc.stdout.splitlines() if line.strip()]
+    return results, {
+        "elapsed_ms": elapsed_ms,
+        "payload_bytes": len(proc.stdout),
+        "returned_files": len(results),
+    }
+
+
+def api_search(query: str, timeout: float, top: int) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    payload = json.dumps({"Q": query, "Opts": {"MaxDocDisplayCount": top, "ChunkMatches": True}})
+    started = time.perf_counter()
+    proc = subprocess.run(
+        [
+            "curl", "-fsS", "--max-time", str(max(1, int(math.ceil(timeout)))),
+            "https://formalization-corpus.dzackgarza.com/api/search",
+            "-H", "Content-Type: application/json", "-d", payload,
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        timeout=timeout + 2,
+        check=False,
+    )
+    elapsed_ms = (time.perf_counter() - started) * 1000
+    if proc.returncode != 0:
+        raise RuntimeError(proc.stderr.decode(errors="replace").strip() or f"curl exited {proc.returncode}")
+    response = json.loads(proc.stdout)
+    result = response.get("Result") or {}
+    files = result.get("Files") or []
+    normalized = [
+        {
+            "Repository": item.get("Repository", ""),
+            "FileName": item.get("FileName", ""),
+            "Score": item.get("Score", 0),
+        }
+        for item in files
+    ]
+    return normalized, {
+        "elapsed_ms": elapsed_ms,
+        "payload_bytes": len(proc.stdout),
+        "returned_files": len(normalized),
+        "reported_file_count": result.get("FileCount", len(normalized)),
+        "server_duration_ns": result.get("Duration"),
+    }
+
+
+def judgment_map(case: dict[str, Any]) -> dict[tuple[str, str], int]:
+    return {(j["repository"], j["file"]): j["relevance"] for j in case["judgments"]}
+
+
+def dcg(relevances: list[int], k: int) -> float:
+    value = 0.0
+    for rank, relevance in enumerate(relevances[:k], start=1):
+        value += (2**relevance - 1) / math.log2(rank + 1)
+    return value
+
+
+def score_case(case: dict[str, Any], results: list[dict[str, Any]], compiled_query: str, runtime: dict[str, Any]) -> dict[str, Any]:
+    judgments = judgment_map(case)
+    gold_sources = {repo for repo, _ in judgments}
+    ranked_relevance: list[int] = []
+    ranked_keys: list[tuple[str, str]] = []
+    for item in results:
+        key = (item.get("Repository", ""), item.get("FileName", ""))
+        ranked_keys.append(key)
+        ranked_relevance.append(judgments.get(key, 0))
+
+    relevant_gold = {key for key, rel in judgments.items() if rel > 0}
+    owner_gold = {key for key, rel in judgments.items() if rel == 3}
+    first_relevant = next((i + 1 for i, rel in enumerate(ranked_relevance) if rel > 0), None)
+    first_owner = next((i + 1 for i, rel in enumerate(ranked_relevance) if rel == 3), None)
+    per_k: dict[str, Any] = {}
+    ideal = sorted(judgments.values(), reverse=True)
+    for k in K_VALUES:
+        top_keys = ranked_keys[:k]
+        top_rels = ranked_relevance[:k]
+        retrieved_gold = relevant_gold.intersection(top_keys)
+        ideal_dcg = dcg(ideal, k)
+        per_k[str(k)] = {
+            "hit": int(any(rel > 0 for rel in top_rels)),
+            "owner_hit": int(any(rel == 3 for rel in top_rels)),
+            "source_hit": int(any(repo in gold_sources for repo, _ in top_keys)),
+            "gold_recall": len(retrieved_gold) / len(relevant_gold),
+            "ndcg": dcg(top_rels, k) / ideal_dcg if ideal_dcg else 0.0,
+        }
+
+    return {
+        "id": case["id"],
+        "query": case["query"],
+        "tags": case.get("tags", []),
+        "compiled_query": compiled_query,
+        "result_count": len(results),
+        "first_relevant_rank": first_relevant,
+        "first_owner_rank": first_owner,
+        "reciprocal_rank": 1 / first_relevant if first_relevant else 0.0,
+        "owner_reciprocal_rank": 1 / first_owner if first_owner else 0.0,
+        "per_k": per_k,
+        "runtime": runtime,
+        "top_results": [
+            {
+                "rank": i + 1,
+                "repository": item.get("Repository", ""),
+                "file": item.get("FileName", ""),
+                "score": item.get("Score", 0),
+                "relevance": ranked_relevance[i],
+            }
+            for i, item in enumerate(results[:20])
+        ],
+    }
+
+
+def percentile(values: list[float], q: float) -> float:
+    if not values:
+        return 0.0
+    xs = sorted(values)
+    if len(xs) == 1:
+        return xs[0]
+    pos = (len(xs) - 1) * q
+    lo = math.floor(pos)
+    hi = math.ceil(pos)
+    if lo == hi:
+        return xs[lo]
+    return xs[lo] * (hi - pos) + xs[hi] * (pos - lo)
+
+
+def aggregate(cases: list[dict[str, Any]]) -> dict[str, Any]:
+    if not cases:
+        return {}
+    n = len(cases)
+    metrics: dict[str, Any] = {
+        "queries": n,
+        "zero_result_rate": sum(case["result_count"] == 0 for case in cases) / n,
+        "mrr": statistics.fmean(case["reciprocal_rank"] for case in cases),
+        "owner_mrr": statistics.fmean(case["owner_reciprocal_rank"] for case in cases),
+    }
+    for k in K_VALUES:
+        key = str(k)
+        metrics[f"hit@{k}"] = statistics.fmean(case["per_k"][key]["hit"] for case in cases)
+        metrics[f"owner_hit@{k}"] = statistics.fmean(case["per_k"][key]["owner_hit"] for case in cases)
+        metrics[f"source_hit@{k}"] = statistics.fmean(case["per_k"][key]["source_hit"] for case in cases)
+        metrics[f"gold_recall@{k}"] = statistics.fmean(case["per_k"][key]["gold_recall"] for case in cases)
+        metrics[f"ndcg@{k}"] = statistics.fmean(case["per_k"][key]["ndcg"] for case in cases)
+    latencies = [case["runtime"]["elapsed_ms"] for case in cases]
+    payloads = [float(case["runtime"]["payload_bytes"]) for case in cases]
+    metrics.update(
+        {
+            "latency_ms_mean": statistics.fmean(latencies),
+            "latency_ms_p50": percentile(latencies, 0.50),
+            "latency_ms_p95": percentile(latencies, 0.95),
+            "payload_bytes_mean": statistics.fmean(payloads),
+            "payload_bytes_p95": percentile(payloads, 0.95),
+        }
+    )
+    return metrics
+
+
+def by_tag(cases: list[dict[str, Any]]) -> dict[str, Any]:
+    groups: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for case in cases:
+        for tag in case.get("tags", []):
+            groups[tag].append(case)
+    return {tag: aggregate(items) for tag, items in sorted(groups.items())}
+
+
+def compare_reports(current: dict[str, Any], baseline: dict[str, Any], tolerance: float) -> list[str]:
+    problems: list[str] = []
+    if current.get("index") != baseline.get("index"):
+        problems.append("index fingerprint differs; do not attribute score changes to retrieval code until the index change is reviewed")
+        return problems
+    keys = [
+        "hit@1", "hit@5", "hit@10", "hit@20",
+        "owner_hit@1", "owner_hit@5", "owner_hit@10", "owner_hit@20",
+        "mrr", "owner_mrr", "ndcg@10", "ndcg@20",
+    ]
+    for key in keys:
+        before = float(baseline["metrics"][key])
+        after = float(current["metrics"][key])
+        if after + tolerance < before:
+            problems.append(f"{key} regressed: {before:.4f} -> {after:.4f}")
+    return problems
+
+
+def print_summary(report: dict[str, Any]) -> None:
+    m = report["metrics"]
+    print(f"variant={report['variant']} provider={report['provider']} queries={m['queries']}")
+    print(
+        "  ".join(
+            [
+                f"Hit@1={m['hit@1']:.3f}",
+                f"Hit@5={m['hit@5']:.3f}",
+                f"Hit@10={m['hit@10']:.3f}",
+                f"Hit@20={m['hit@20']:.3f}",
+                f"MRR={m['mrr']:.3f}",
+                f"nDCG@10={m['ndcg@10']:.3f}",
+                f"zero={m['zero_result_rate']:.3f}",
+            ]
+        )
+    )
+    print(
+        f"latency p50={m['latency_ms_p50']:.1f}ms p95={m['latency_ms_p95']:.1f}ms "
+        f"payload p95={m['payload_bytes_p95'] / 1024:.1f}KiB"
+    )
+    misses = [case for case in report["cases"] if not case["per_k"]["20"]["hit"]]
+    if misses:
+        print("misses@20:")
+        for case in misses:
+            print(f"  {case['id']}: {case['query']}")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--gold", type=pathlib.Path, default=DEFAULT_GOLD)
+    parser.add_argument("--variant", default="frontend_lexical_v1")
+    parser.add_argument("--provider", choices=("local", "api"), default="local")
+    parser.add_argument("--timeout", type=float, default=30.0)
+    parser.add_argument("--api-top", type=int, default=60)
+    parser.add_argument("--output", type=pathlib.Path)
+    parser.add_argument("--compare", type=pathlib.Path)
+    parser.add_argument("--tolerance", type=float, default=1e-12)
+    parser.add_argument("--validate-only", action="store_true")
+    args = parser.parse_args()
+
+    gold = load_gold(args.gold)
+    errors = validate_gold(gold)
+    if errors:
+        for error in errors:
+            print(f"ERROR: {error}", file=sys.stderr)
+        return 2
+    if args.validate_only:
+        print(f"gold ok: {len(gold['cases'])} cases, {sum(len(c['judgments']) for c in gold['cases'])} judgments")
+        return 0
+
+    if args.provider == "local" and (not INDEX_DIR.is_dir() or not any(INDEX_DIR.glob("*.zoekt"))):
+        print("ERROR: local .zoekt index is unavailable; build or materialize it before running retrieval evals", file=sys.stderr)
+        return 2
+
+    scored_cases: list[dict[str, Any]] = []
+    for case in gold["cases"]:
+        compiled = compile_query(case["query"], args.variant)
+        try:
+            if args.provider == "local":
+                results, runtime = local_search(compiled, args.timeout)
+            else:
+                results, runtime = api_search(compiled, args.timeout, args.api_top)
+        except Exception as exc:
+            print(f"ERROR {case['id']}: {exc}", file=sys.stderr)
+            return 2
+        scored_cases.append(score_case(case, results, compiled, runtime))
+
+    report = {
+        "schema_version": 1,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "corpus_git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
+        "variant": args.variant,
+        "provider": args.provider,
+        "index": index_fingerprint() if args.provider == "local" else None,
+        "metrics": aggregate(scored_cases),
+        "metrics_by_tag": by_tag(scored_cases),
+        "cases": scored_cases,
+    }
+    print_summary(report)
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+        print(f"wrote {args.output}")
+    if args.compare:
+        baseline = json.loads(args.compare.read_text())
+        problems = compare_reports(report, baseline, args.tolerance)
+        if problems:
+            for problem in problems:
+                print(f"REGRESSION: {problem}", file=sys.stderr)
+            return 1
+        print(f"no measured regression versus {args.compare}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -111,6 +111,14 @@ check-sources:
     fi
     echo "sources.tsv and SOURCES.md agree on shared source identities."
 
+# Evaluate the current public query behavior against the frozen retrieval gold set.
+eval-search:
+    python evaluation/search/evaluate.py --provider local --variant frontend_lexical_v1
+
+# Regression check against the committed baseline. Requires the same local Zoekt index.
+test-search-quality:
+    python evaluation/search/evaluate.py --provider local --variant frontend_lexical_v1 --compare evaluation/search/baselines/frontend_lexical_v1.json
+
 # Search declarations and source text across the corpus.
 search query:
     ./bin/zoekt -index_dir .zoekt -r "{{query}}"
@@ -122,6 +130,8 @@ ast pattern:
 # Prove that the custom parser supports Lean metavariable queries.
 test-commit:
     printf 'def formedModuleAnswer : Nat := 42\n' | ast-grep run --config sgconfig.yml --lang lean --pattern 'def $NAME : $TYPE := $VALUE' --stdin --json=compact | jq -e 'length == 1 and .[0].text == "def formedModuleAnswer : Nat := 42"' >/dev/null
+    python evaluation/search/evaluate.py --validate-only
+    python evaluation/search/test_evaluate.py
 
 # Same verification as test-commit; the push gate requires this name.
 test-push: test-commit
