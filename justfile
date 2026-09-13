@@ -1,9 +1,9 @@
 set shell := ["zsh", "-eu", "-o", "pipefail", "-c"]
 
-# Update existing source and tool repositories without changing their toolchains.
+# Update the routine formalization-source set and tool repositories.
 sync:
     #!/usr/bin/env zsh
-    ./sync-manifest.zsh repos.tsv
+    SYNC_GROUP=routine ./sync-manifest.zsh sources.tsv
     while IFS=$'\t' read -r url dir; do
       if [[ -d "$dir/.git" ]]; then
         git -C "$dir" pull --ff-only
@@ -12,16 +12,20 @@ sync:
       fi
     done < tools.tsv
 
-# Clone or update every Lean Reservoir package from reservoir.tsv.
-sync-reservoir:
-    ./sync-manifest.zsh reservoir.tsv
+# Refresh the large secondary source set without making it part of routine sync.
+sync-bulk:
+    SYNC_GROUP=bulk ./sync-manifest.zsh sources.tsv
 
-# Clone or update the registered non-Lean formalization sources.
-sync-ports:
-    ./sync-manifest.zsh port-sources.tsv
+# Compatibility spelling for the historical ingestion source.
+sync-reservoir: sync-bulk
 
-# Compatibility spelling kept for old local commands.
-sync-rocq-agda: sync-ports
+# Refresh sources maintained in proof assistants other than Lean.
+sync-cross-prover:
+    SYNC_GROUP=cross-prover ./sync-manifest.zsh sources.tsv
+
+# Compatibility spellings kept for old local commands.
+sync-ports: sync-cross-prover
+sync-rocq-agda: sync-cross-prover
 
 # Register every nested repository with gita.
 register:
@@ -33,29 +37,32 @@ build-tools:
     cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt ./cmd/zoekt
     cd tools/Julian__tree-sitter-lean && tree-sitter build --output ../../.ast-grep/lean.so
 
-# Incrementally index every reference repository: Lean, Reservoir, port sources.
+# Incrementally index every formalization source.
 index:
     #!/usr/bin/env zsh
     mkdir -p .zoekt
-    while IFS=$'\t' read -r _ dir _ _; do
+    tail -n +2 sources.tsv | while IFS=$'\t' read -r _ dir _ _ _ _; do
       [[ -d "$dir" ]] || continue
       ./bin/zoekt-index -index .zoekt "$dir"
-    done < <(cat repos.tsv reservoir.tsv port-sources.tsv)
+    done
 
-# Incrementally index only the cross-prover sources after `just sync-ports`.
-index-ports:
+# Incrementally index only the cross-prover sync group.
+index-cross-prover:
     #!/usr/bin/env zsh
     mkdir -p .zoekt
-    while IFS=$'\t' read -r _ dir _ _; do
-      [[ -d "$dir" ]] || continue
-      ./bin/zoekt-index -index .zoekt "$dir"
-    done < port-sources.tsv
+    awk -F'\t' 'NR > 1 && $5 == "cross-prover"' sources.tsv \
+      | while IFS=$'\t' read -r _ dir _ _ _ _; do
+          [[ -d "$dir" ]] || continue
+          ./bin/zoekt-index -index .zoekt "$dir"
+        done
+
+index-ports: index-cross-prover
 
 # Recompute exact corpus-reach metrics from hydrated sources and Zoekt shards.
 metrics:
     python scripts/build-metrics.py
 
-# Regenerate the committed static source metadata from the manifests.
+# Regenerate the committed static source and subject metadata.
 site:
     python scripts/build-site.py
     python scripts/build-subjects.py
@@ -75,37 +82,34 @@ publish:
     rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
     @echo "https://formalization-corpus.dzackgarza.com"
 
-# Report repositories named in SOURCES.md that no manifest checks out.
+# Check that the canonical source table and human annotations agree where they overlap.
 check-sources:
     #!/usr/bin/env zsh
-    manifests=$(cat repos.tsv reservoir.tsv port-sources.tsv tools.tsv | cut -f1 | sed 's|\.git$||' | tr '[:upper:]' '[:lower:]' | sort -u)
-    # A source table row names its repository in the first cell; later links are prose.
+    source_urls=$(tail -n +2 sources.tsv | cut -f1 | sed 's|\.git$||; s|/$||' | tr '[:upper:]' '[:lower:]' | sort -u)
     linked=$(grep -oE '^\| \[[^]]*\]\(https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' SOURCES.md \
-      | grep -oE 'https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' | tr '[:upper:]' '[:lower:]' | sort -u)
-    missing=$(comm -23 <(echo "$linked") <(echo "$manifests"))
-    port_missing=$(while IFS=$'\t' read -r url _; do
-      normalized="${url%/}"
-      grep -Fiq "$normalized" SOURCES.md || echo "$url"
-    done < port-sources.tsv)
-    duplicate_urls=$(cat repos.tsv reservoir.tsv port-sources.tsv | cut -f1 | sed 's|/$||' | tr '[:upper:]' '[:lower:]' | sort | uniq -d)
-    duplicate_names=$(cat repos.tsv reservoir.tsv port-sources.tsv | cut -f2 | awk -F/ '{print $NF}' | sort | uniq -d)
+      | grep -oE 'https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' | sed 's|/$||' | tr '[:upper:]' '[:lower:]' | sort -u)
+    missing=$(comm -23 <(echo "$linked") <(echo "$source_urls"))
+    cross_prover_missing=$(awk -F'\t' 'NR > 1 && $5 == "cross-prover" {print $1}' sources.tsv \
+      | while read -r url; do normalized="${url%/}"; grep -Fiq "$normalized" SOURCES.md || echo "$url"; done)
+    duplicate_urls=$(tail -n +2 sources.tsv | cut -f1 | sed 's|/$||' | tr '[:upper:]' '[:lower:]' | sort | uniq -d)
+    duplicate_names=$(tail -n +2 sources.tsv | cut -f2 | awk -F/ '{print $NF}' | sort | uniq -d)
     if [[ -n "$missing" ]]; then
-      echo "Named in SOURCES.md, checked out by no manifest:"
+      echo "Named in SOURCES.md, absent from sources.tsv:"
       echo "$missing"
       exit 1
     fi
-    if [[ -n "$port_missing" ]]; then
-      echo "Named in port-sources.tsv, documented nowhere in SOURCES.md:"
-      echo "$port_missing"
+    if [[ -n "$cross_prover_missing" ]]; then
+      echo "Cross-prover source documented nowhere in SOURCES.md:"
+      echo "$cross_prover_missing"
       exit 1
     fi
     if [[ -n "$duplicate_urls" || -n "$duplicate_names" ]]; then
-      echo "Duplicate source identity across manifests:" >&2
+      echo "Duplicate source identity in sources.tsv:" >&2
       [[ -n "$duplicate_urls" ]] && printf 'URLs:\n%s\n' "$duplicate_urls" >&2
       [[ -n "$duplicate_names" ]] && printf 'names:\n%s\n' "$duplicate_names" >&2
       exit 1
     fi
-    echo "SOURCES.md and the manifests agree."
+    echo "sources.tsv and SOURCES.md agree on shared source identities."
 
 # Search declarations and source text across the corpus.
 search query:
@@ -124,13 +128,14 @@ test-push: test-commit
 
 # Reservoir names packages, not repositories: the printed URL is the source
 # repository, and each link must be resolved before it enters the registry.
-# List Mathlib-dependent Reservoir packages not yet named in SOURCES.md
+# List Mathlib-dependent Reservoir package repositories absent from sources.tsv
 source-sweep:
     #!/usr/bin/env bash
     set -euo pipefail
     idx="$(mktemp -d)/reservoir-index"
     git clone -q --depth 1 https://github.com/leanprover/reservoir-index "$idx"
-    grep -oE 'github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' SOURCES.md | sed 's#github.com/##' | tr '[:upper:]' '[:lower:]' | sort -u > "$idx/../linked.txt"
+    tail -n +2 sources.tsv | cut -f1 | sed -E 's#https://github.com/##; s#\.git$##; s#/$##' \
+      | tr '[:upper:]' '[:lower:]' | sort -u > "$idx/../linked.txt"
     for d in "$idx"/*/*/; do
         [ -f "$d/metadata.json" ] || continue
         jq -r '[.data[0].dependencies[]?.name] | index("mathlib") != null' "$d/versions.json" 2>/dev/null | grep -q true || continue

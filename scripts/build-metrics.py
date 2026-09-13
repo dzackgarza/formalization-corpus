@@ -23,11 +23,7 @@ from collections import defaultdict
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "metrics.json"
 
-MANIFESTS: tuple[tuple[str | None, str], ...] = (
-    ("lean", "repos.tsv"),
-    ("lean", "reservoir.tsv"),
-    (None, "port-sources.tsv"),
-)
+SOURCE_TABLE = ROOT / "sources.tsv"
 
 FORMAL_SUFFIXES: dict[str, tuple[str, ...]] = {
     "lean": (".lean",),
@@ -62,23 +58,19 @@ SHARD = re.compile(r"(.+)_v\d+\.\d+\.zoekt$")
 SKIP_PARTS = {".git", ".lake", "node_modules"}
 
 
-def manifest_rows() -> list[tuple[str, pathlib.Path]]:
+def source_rows() -> list[tuple[str, pathlib.Path]]:
+    import csv
+
     rows: list[tuple[str, pathlib.Path]] = []
     names: set[str] = set()
-    for default_kind, manifest in MANIFESTS:
-        for line in (ROOT / manifest).read_text().splitlines():
-            if not line.strip():
-                continue
-            fields = line.split("\t")
-            directory = pathlib.Path(fields[1])
-            kind = fields[2] if len(fields) > 2 and fields[2] else default_kind
-            if kind is None:
-                raise ValueError(f"{manifest}: no kind for {line!r}")
+    with SOURCE_TABLE.open(newline="") as handle:
+        for record in csv.DictReader(handle, delimiter="\t"):
+            directory = pathlib.Path(record["directory"])
             name = directory.name
             if name in names:
                 raise ValueError(f"duplicate corpus source name: {name}")
             names.add(name)
-            rows.append((kind, directory))
+            rows.append((record["proof_assistant"], directory))
     return rows
 
 
@@ -111,7 +103,7 @@ def line_count(path: pathlib.Path) -> int:
 
 
 def main() -> None:
-    rows = manifest_rows()
+    rows = source_rows()
     indexed = indexed_source_names()
     stats: dict[str, dict[str, int]] = defaultdict(
         lambda: {

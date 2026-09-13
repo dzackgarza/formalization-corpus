@@ -1,28 +1,16 @@
-# Formalization sources
+# Formalization source annotations
 
-The registry of Lean 4 formalization repositories, port sources in other proof
-assistants, and search surfaces that this corpus indexes.
+[`sources.tsv`](./sources.tsv) is the canonical inventory of formalization
+sources. This document is a human annotation layer: mathematical subject guides,
+notes about notable source contents, and external search/discovery surfaces. It
+may mention only a useful subset of the 909 indexed sources and must never be
+used to infer that an unmentioned repository is absent from the corpus.
 
-**This file is the single source of truth for what the formalization ecosystem offers.**
-Consuming repositories link here; they do not keep their own copies of this list.
 [`lean-categories`](https://github.com/dzackgarza/lean-categories) states the
-reuse policy that governs how a source is used — import, port, or author — and
-defers the sources themselves to this file.
-
-The machine-readable manifests are the mechanism, this file is the judgment:
-
-| File | Holds |
-| --- | --- |
-| `repos.tsv` | Lean 4 formalization repositories, cloned by `just sync` and indexed by `just index`. |
-| `reservoir.tsv` | Additional Lean 4 repositories discovered through the Reservoir package index; synchronized separately for operational reasons. |
-| `port-sources.tsv` | Non-Lean formal libraries, tagged by prover and checked out for their formal source text. |
-| `tools.tsv` | Search and indexing tools the corpus builds. |
-
-`just check-sources` fails when a GitHub repository named in a source table below appears
-in none of the manifests. It also checks every `port-sources.tsv` URL, including
-GitLab and direct distribution URLs, against this document. This keeps the source registry and the machine-readable checkout surface from drifting apart. Tool and
-standard links — build tooling, review machinery, publication schemas — are not
-sources, and the check does not look at them.
+reuse policy governing import, port, or local authorship. Source identity itself
+is owned by `sources.tsv`. `just check-sources` verifies that every repository
+linked as a source here exists in that table and that the explicitly annotated
+cross-prover baseline remains represented.
 
 The original GitHub registry was link-checked on 2026-08-14; the cross-prover
 sources added in September 2026 were resolved against their authoritative GitHub,
@@ -41,7 +29,12 @@ not only projects organized around a headline mathematical theorem.
 
 ## Refreshing this registry
 
-Recall is not a source. The registry is refreshed by sweeping three machine-readable indexes and diffing them against the repositories linked here: the [Reservoir index](https://github.com/leanprover/reservoir-index) (every public Lake package with its dependency list, so packages that require Mathlib can be isolated), [Lean Pool](https://github.com/Vilin97/lean-pool)'s `LeanPool/projects.yml` (curated, subject-labelled, provenance-labelled), and the [Lean community projects page](https://leanprover-community.github.io/lean_projects.html). `just source-sweep` runs the [Reservoir](https://reservoir.lean-lang.org/) diff and prints the Mathlib-dependent packages not yet linked from this file, with stars and descriptions; judge relevance by hand and add rows in the domain tables. [Reservoir](https://reservoir.lean-lang.org/) names packages, not repositories, so take the URL from each package's `sources[0].repoUrl`, and resolve every new link before committing it.
+Recall is not a source. Discovery sweeps external indexes against the canonical
+`sources.tsv` inventory. `just source-sweep` currently checks the Reservoir
+package index and prints Mathlib-dependent package repositories not yet present
+in `sources.tsv`, with stars and descriptions. Lean Pool and the Lean community
+projects page are additional discovery surfaces. Discovery provenance may be
+recorded in the table's `discovered_via` field; it does not define a source type.
 
 The non-Lean side is refreshed against the canonical library/archive surfaces of
 each prover rather than by theorem-name recall: Rocq package/library sources,
@@ -66,7 +59,7 @@ in scope even when its headline result is not a theorem of pure mathematics.
 | [Lean Zulip](https://leanprover.zulipchat.com/) | Search it before concluding nonexistence; in-progress formalizations are announced and discussed there. |
 | [`CBirkbeck/LeanBridge`](https://github.com/CBirkbeck/LeanBridge) | Links [LMFDB](https://www.lmfdb.org/) objects to Lean declarations. |
 | [TheoremSearch](https://www.theoremsearch.com/) ([`uw-math-ai/TheoremSearch`](https://github.com/uw-math-ai/TheoremSearch), [arXiv:2602.05216](https://arxiv.org/abs/2602.05216)) | Semantic search over 9.2M *informal* theorem statements: all of arXiv, ProofWiki, the Stacks Project, CRing, the HoTT Book and three more. It holds no Lean, so it answers the question this corpus cannot — where a result is stated in the literature, and under what name. REST at `api.theoremsearch.com/search`, MCP at `api.theoremsearch.com/mcp`. |
-| [TheoremGraph](https://www.theoremsearch.com/) ([arXiv:2606.25363](https://arxiv.org/abs/2606.25363)) | Links those informal statements to 388,105 Lean declarations across 25 projects through a shared embedding space (47,952 matches above a 0.8 cosine floor; Mathlib is 90.5% of the declarations). Its formal side is a subset of this corpus — 24 of its 25 projects are already in the manifests here — but the matching is a capability this corpus lacks: use it to ask whether a paper's theorem has any formalization, then search here for the text. |
+| [TheoremGraph](https://www.theoremsearch.com/) ([arXiv:2606.25363](https://arxiv.org/abs/2606.25363)) | Links those informal statements to 388,105 Lean declarations across 25 projects through a shared embedding space (47,952 matches above a 0.8 cosine floor; Mathlib is 90.5% of the declarations). Its formal side is a subset of this corpus — 24 of its 25 projects are already present in `sources.tsv` — but the matching is a capability this corpus lacks: use it to ask whether a paper's theorem has any formalization, then search here for the text. |
 
 ## Where to look in Mathlib
 

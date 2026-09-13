@@ -1,37 +1,37 @@
 #!/usr/bin/env zsh
-# Hydrate or update the repositories of a manifest.
-# Usage: sync-manifest.zsh [manifest.tsv] [proof-text-glob ...]
-#   default manifest: reservoir.tsv
-#   default globs:    /**/*.lean plus the Lake build files
-# A four-column manifest may instead name the prover and transport:
-#   URL<TAB>DIR<TAB>KIND<TAB>TRANSPORT
-# In that form the proof-text globs are selected per row. TRANSPORT is `git`,
-# `gitlab`, or `web-dir`; the latter is used for the current Mizar MML, whose
-# authoritative distribution is an HTTP directory rather than a current git
-# mirror.
-# Logs failures to <manifest-basename>-missing.now for inspection.
-# Multiple workers can run in parallel on sharded manifests.
+# Hydrate or update formalization sources from the canonical source table.
+# Usage: SYNC_GROUP=<group> sync-manifest.zsh [sources.tsv] [proof-text-glob ...]
+#
+# sources.tsv columns:
+#   URL<TAB>DIRECTORY<TAB>PROOF_ASSISTANT<TAB>TRANSPORT<TAB>SYNC_GROUP<TAB>DISCOVERED_VIA
+#
+# SYNC_GROUP filters the table without creating a second manifest.  TRANSPORT is
+# `git`, `gitlab`, or `web-dir`; the latter is used for the current Mizar MML.
+# Logs failures to sources-<group>-missing.now (or sources-all-missing.now).
+# Multiple workers can still run in parallel on filtered/sharded table views.
 set -u
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT" || exit 1
-MANIFEST="${1:-reservoir.tsv}"
+MANIFEST="${1:-sources.tsv}"
 shift 2>/dev/null || true
 CLI_GLOBS=("$@")
 MANIFEST="$(realpath "$MANIFEST")"
-FAIL_LOG="${MANIFEST%.tsv}-missing.now"
+GROUP="${SYNC_GROUP:-all}"
+FAIL_LOG="$ROOT/sources-${GROUP}-missing.now"
 : > "$FAIL_LOG"
 COUNT=0
 FAILED=0
-while IFS=$'\t' read -r url dir kind transport; do
-  [[ -z "$url" ]] && continue
+while IFS=$'\t' read -r url dir proof_assistant transport sync_group discovered_via; do
+  [[ -z "$url" || "$url" == url ]] && continue
+  [[ "$GROUP" != all && "$sync_group" != "$GROUP" ]] && continue
   COUNT=$((COUNT + 1))
-  kind="${kind:-lean}"
+  proof_assistant="${proof_assistant:-lean}"
   transport="${transport:-git}"
 
   if (( ${#CLI_GLOBS} )); then
     PROOF_GLOBS=("${CLI_GLOBS[@]}")
   else
-    case "$kind" in
+    case "$proof_assistant" in
       lean)      PROOF_GLOBS=('/**/*.lean' '/lakefile.*' '/lean-toolchain' '/lake-manifest.json') ;;
       rocq)      PROOF_GLOBS=('/**/*.v') ;;
       agda)      PROOF_GLOBS=('/**/*.agda' '/**/*.lagda*') ;;
@@ -45,7 +45,7 @@ while IFS=$'\t' read -r url dir kind transport; do
       twelf)     PROOF_GLOBS=('/**/*.elf') ;;
       *)
         FAILED=$((FAILED + 1))
-        echo "$url	$dir	UNKNOWN-KIND:$kind" >> "$FAIL_LOG"
+        echo "$url	$dir	UNKNOWN-PROOF-ASSISTANT:$proof_assistant" >> "$FAIL_LOG"
         continue
         ;;
     esac
@@ -53,7 +53,7 @@ while IFS=$'\t' read -r url dir kind transport; do
 
   if [[ "$transport" == "web-dir" ]]; then
     mkdir -p "$dir"
-    case "$kind" in
+    case "$proof_assistant" in
       mizar)
         listing="$(mktemp)"
         if ! curl -fsSL --retry 3 --connect-timeout 20 --max-time 120 \
@@ -96,7 +96,7 @@ while IFS=$'\t' read -r url dir kind transport; do
         ;;
       *)
         FAILED=$((FAILED + 1))
-        echo "$url	$dir	UNSUPPORTED-WEB-DIR:$kind" >> "$FAIL_LOG"
+        echo "$url	$dir	UNSUPPORTED-WEB-DIR:$proof_assistant" >> "$FAIL_LOG"
         continue
         ;;
     esac

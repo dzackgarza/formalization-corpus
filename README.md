@@ -8,48 +8,46 @@ it cannot be imported into Lean; a hit in Mathlib answers it and can be imported
 Lean is where most of this material currently lives, which is why most of the
 corpus is Lean. It is not what the corpus is about.
 
-[`SOURCES.md`](./SOURCES.md) is the registry: every source the corpus knows
-about, grouped by mathematical domain, with what each one holds and how far it
-is to be trusted. It is the single source of truth for what the ecosystem
-offers, and consuming repositories link to it instead of keeping their own
-copies. The `.tsv` manifests beside it say what to check out; `SOURCES.md` says
-what the checkouts are worth.
+[`sources.tsv`](./sources.tsv) is the canonical source inventory: one row per
+formalization source, with its URL, local directory, proof assistant, transport,
+sync group, and discovery provenance. [`SOURCES.md`](./SOURCES.md) is a
+human-maintained subject guide and annotation layer over notable sources; it is
+not a second inventory.
 
 ## What the corpus contains
 
-- **The pinned Mathlib checkout** (`leanprover-community__mathlib4/`), matching
-  the exact version the corpus is indexed against. This is the primary search
-  surface.
-- **The Lean 4 repositories listed in `repos.tsv`**, each a
-  shallow (`--depth 1 --filter=blob:none`) sparse checkout containing only
-  `.lean` files, `lakefile.*`, `lean-toolchain`, `lake-manifest.json`, and
-  `README*`.
-- **The Reservoir package index** (`reservoir-index/`), the package metadata
-  registry cloned from
-  <https://github.com/leanprover/reservoir-index>.
-- **Additional Lean repositories discovered through Reservoir** (see `reservoir.tsv`), checked out into
-  `reservoir-sources/` with the same sparse convention. Packages already
-  present in `repos.tsv` (exact URL match) and Mathlib-family repositories are
-  excluded from the reservoir list; the reservoir is a separate manifest so a
-  routine `just sync` does not pull 800 repositories.
-- **The non-Lean formalization libraries** (see `port-sources.tsv`), checked out
-  into `port-sources/`.  The manifest records the prover for each source, and
-  synchronization keeps only its formal source: Rocq `.v`; Agda `.agda` and
-  literate Agda; Isabelle `.thy`; HOL Light `.ml`/`.hl`; HOL4/CakeML `.sml`/`.sig`;
-  Mizar `.miz`; Metamath `.mm`/`.mm0`/`.mm1`; ACL2 `.lisp`/`.lsp`/`.acl2`;
-  PVS `.pvs`/`.prf`; and Twelf `.elf`. Definitions, structures, specifications,
-  theorem statements, constructions, and proofs are all search material: a
-  source does not need to prove a headline theorem to be useful here.
+The canonical table currently has 909 sources. A source is an independently
+addressable formalization library, repository, or published source distribution:
+Mathlib is one source, UniMath is one source, and the Mizar Mathematical Library
+is one source. How a source was discovered does not change its identity.
+
+`sources.tsv` records six fields:
+
+- `url` — canonical upstream location;
+- `directory` — local checkout/mirror location and search-index identifier;
+- `proof_assistant` — Lean, Rocq, Agda, Isabelle, HOL, Mizar, Metamath, ACL2, PVS, or Twelf;
+- `transport` — `git`, `gitlab`, or `web-dir`;
+- `sync_group` — operational refresh cadence (`routine`, `bulk`, or `cross-prover`);
+- `discovered_via` — provenance such as `registry` or `reservoir`.
+
+The last two fields are ingestion/maintenance metadata only. In particular, a
+Lean repository discovered through Reservoir is still simply a Lean source. The
+separate `reservoir-index/` checkout is package metadata used to discover more
+source repositories; it is not itself a source category.
+
+Synchronization keeps only the proof-source extensions appropriate to each proof
+assistant plus minimal build metadata where needed. Definitions, structures,
+specifications, theorem statements, constructions, and proofs are all searchable.
 
 ## Workflow
 
 ```sh
 just build-tools        # build zoekt-index, zoekt, and the Lean ast-grep parser
-just sync               # clone or update the Lean repositories listed in repos.tsv
-just sync-reservoir     # clone or update additional Lean repositories discovered through Reservoir
-just sync-ports         # clone or update the non-Lean formalization libraries
-just index-ports        # incrementally rebuild only the non-Lean Zoekt shards
-just index              # (re)build the Zoekt index over all manifests
+just sync               # refresh the routine sync group
+just sync-bulk          # refresh the large secondary sync group
+just sync-cross-prover  # refresh non-Lean proof-assistant sources
+just index-cross-prover # incrementally rebuild only that group's Zoekt shards
+just index              # (re)build the Zoekt index over all sources
 just metrics            # recompute exact source/unit/line reach statistics
 just site               # regenerate committed static source metadata
 just preview            # deploy site/ to formalization-corpus-preview.localhost
@@ -119,18 +117,10 @@ context, and `Whole` returns each file in full. `/api/list` enumerates indexed
 sources. CORS restricts browsers to the Pages origin; scripts are
 unaffected.
 
-Add a repository by describing it in `SOURCES.md` under the domain it belongs
-to, appending `url<TAB>path` to `repos.tsv` for Lean 4 or
-`url<TAB>path<TAB>kind<TAB>transport` to `port-sources.tsv` for another prover,
-then running its sync recipe and `just index`.  Reservoir packages stay in
-`reservoir.tsv`, which is generated and synchronized separately.
-
-For `port-sources.tsv`, `kind` is the proof-source family (`rocq`, `agda`,
-`isabelle`, `hol-light`, `hol4`, `mizar`, `metamath`, `acl2`, `pvs`, or
-`twelf`). `transport` is normally `git`; `gitlab` records a GitLab-hosted git
-source and `web-dir` is reserved for an authoritative directory distribution
-such as the current Mizar MML. The kind determines which proof-source extensions
-are materialized by the sparse checkout.
+Add a source by adding one row to `sources.tsv`. Add or update a `SOURCES.md`
+entry only when a human subject annotation is useful. `proof_assistant` determines
+which source extensions are materialized; `sync_group` controls refresh cadence
+without splitting the inventory into multiple files.
 
 ## Usage facts
 
@@ -167,9 +157,10 @@ are materialized by the sparse checkout.
 
 ## Failure accounting
 
-`sync-manifest.zsh` writes failures beside the manifest, e.g.
-`reservoir-missing.now` or `port-sources-missing.now` (gitignored), one
-`url<TAB>path<TAB>REASON` line per failed source. Git-backed reasons include
+`sync-manifest.zsh` writes group-specific failure logs such as
+`sources-routine-missing.now`, `sources-bulk-missing.now`, or
+`sources-cross-prover-missing.now` (gitignored), one `url<TAB>path<TAB>REASON`
+line per failed source. Git-backed reasons include
 `CLONE-FAIL`, `SPARSE-FAIL`, `UPDATE-FAIL`, and `FETCH-FAIL`; direct directory
 sources can report `WEB-SYNC-FAIL`. Re-run the sync recipe to retry; existing
 working checkouts are updated in place.

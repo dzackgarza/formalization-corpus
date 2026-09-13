@@ -2,9 +2,9 @@
 """Generate the static data the Pages site needs from the manifests.
 
 The site itself holds no index: it queries the search host. What it does need
-locally is the source table — every checkout's name, its origin URL, and
-which manifest it came from — so a search hit can be linked back to its source
-on GitHub and the corpus can be browsed without a query.
+locally is the source table — every source's canonical URL, proof assistant,
+and index identifier — so a search hit can be linked back to its source and the
+corpus can be browsed without a query.
 """
 
 import json
@@ -17,25 +17,14 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "corpus.json"
 SUBJECTS = ROOT / "site" / "subjects.html"
 
-MANIFESTS = (
-    ("lean", "repos.tsv"),
-    ("lean", "reservoir.tsv"),
-    (None, "port-sources.tsv"),
-)
+SOURCE_TABLE = ROOT / "sources.tsv"
 
 
-def rows(name: str) -> list[tuple[str, str, str | None, str]]:
-    path = ROOT / name
-    out = []
-    for line in path.read_text().splitlines():
-        if not line.strip():
-            continue
-        fields = line.split("\t")
-        url, directory = fields[:2]
-        kind = fields[2] if len(fields) > 2 and fields[2] else None
-        transport = fields[3] if len(fields) > 3 and fields[3] else "git"
-        out.append((url.rstrip("/"), directory, kind, transport))
-    return out
+def source_rows() -> list[dict[str, str]]:
+    import csv
+
+    with SOURCE_TABLE.open(newline="") as handle:
+        return list(csv.DictReader(handle, delimiter="\t"))
 
 
 def descriptions() -> dict[str, str]:
@@ -158,22 +147,22 @@ def main() -> None:
     subjects_page()
     what = descriptions()
     sources = []
-    for default_kind, manifest in MANIFESTS:
-        for url, directory, declared_kind, transport in rows(manifest):
-            # The index identifier follows the checkout name because Zoekt uses
-            # it in raw search responses.  It is search metadata, not the
-            # source's public identity.
-            index_id = pathlib.PurePosixPath(directory).name
-            proof_assistant = declared_kind or default_kind
-            source = {
-                "index_id": index_id,
-                "name": public_name(url, directory, transport),
-                "url": url,
-                "proof_assistant": proof_assistant,
-            }
-            if index_id in what:
-                source["what"] = what[index_id]
-            sources.append(source)
+    for row in source_rows():
+        url = row["url"].rstrip("/")
+        directory = row["directory"]
+        transport = row["transport"]
+        # The index identifier follows the checkout name because Zoekt uses it
+        # in raw search responses. It is search metadata, not public identity.
+        index_id = pathlib.PurePosixPath(directory).name
+        source = {
+            "index_id": index_id,
+            "name": public_name(url, directory, transport),
+            "url": url,
+            "proof_assistant": row["proof_assistant"],
+        }
+        if index_id in what:
+            source["what"] = what[index_id]
+        sources.append(source)
 
     sources.sort(key=lambda source: source["name"].lower())
     counts: dict[str, int] = {}

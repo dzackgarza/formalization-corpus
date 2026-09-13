@@ -8,11 +8,12 @@ search surface is intentionally prover-independent.
 
 ## Current expansion (2026-09-13)
 
-- `port-sources.tsv` replaces the old Rocq/Agda-only manifest. It currently
-  registers 45 non-Lean sources across Rocq, Agda, Isabelle, HOL Light, HOL4,
-  Mizar, Metamath, ACL2, PVS, and Twelf. Together with the 125 direct Lean
-  sources and 738 Reservoir entries, the generated registry contains 909
-  searchable source entries before hydration/index availability is considered.
+- `sources.tsv` is now the single canonical source inventory: 909 independent
+  sources, one row each. It replaces the former `repos.tsv`, `reservoir.tsv`,
+  and `port-sources.tsv` split. Operational differences live in fields instead:
+  `proof_assistant`, `transport`, `sync_group`, and `discovered_via`. The current
+  sync groups are 126 routine sources, 738 bulk sources, and 45 cross-prover
+  sources. Discovery through Reservoir is provenance, not a source category.
 - Inclusion is based on reusable formal content, not headline-theorem status.
   Definitions, structures, interfaces, formal semantics, specifications,
   theorem statements, constructions, and proofs all count as prior art.
@@ -22,17 +23,19 @@ search surface is intentionally prover-independent.
   the current Mizar Mathematical Library, `set.mm`, ACL2 Community Books,
   NASALib/PVS, and Twelf, plus substantial theorem- and semantics-scale
   developments recorded in `SOURCES.md`.
-- `sync-manifest.zsh` selects proof-source extensions per prover and supports
-  GitHub, GitLab, and the current Mizar HTTP distribution. Existing ports were
-  migrated from `rocq-agda/` to `port-sources/` without recloning.
+- `sync-manifest.zsh` reads `sources.tsv`, filters by `sync_group`, selects
+  proof-source extensions by `proof_assistant`, and supports GitHub, GitLab, and
+  the current Mizar HTTP distribution. Existing checkout directories are
+  preserved; table unification does not require recloning.
 - Cross-prover hydration and indexing completed on 2026-09-13: all 45 manifest
   sources have Zoekt shards and the sparse source trees contain 76,700 formal
   source files — Rocq 11,349; Agda 7,914; Isabelle 14,355; HOL Light 2,003;
   HOL4 5,133; Mizar 1,500; Metamath 96; ACL2 28,666; PVS 4,680; Twelf 1,004.
   Representative lexical searches were verified against UniMath, agda-unimath,
   AFP, HOL Light, HOL4, MML, `set.mm`, ACL2, NASALib, and Twelf. `just
-  sync-ports` refreshes the sources and `just index-ports` refreshes only their
-  shards. The August completion record below is retained as historical
+  sync-cross-prover` refreshes that sync group and `just index-cross-prover`
+  refreshes only its shards. The old spellings remain compatibility aliases.
+  The August completion record below is retained as historical
   provenance, not a description of the current corpus boundary.
 
 Build provenance: the corpus was created in the 2026-08-13 codex session
@@ -68,15 +71,13 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
 
 ## Completed work
 
-1. **Hydrate the Lean Reservoir sources.** Decision (2026-08-16, after reading
-   the continuation session `rollout-2026-08-13T22-15-24-*.jsonl`, which records
-   no reservoir scope decision): hydrate every Reservoir package with a git
-   source, i.e. the exhaustive set the corpus needs. `reservoir.tsv` holds the
-   739 packages (URL-derived `reservoir-sources/<owner>__<repo>` paths,
-   exact-URL dedup against `repos.tsv`, Mathlib-family repos skipped). This
-   stays a separate manifest so `just sync` does not pull 800 repositories; the
-   `sync-reservoir` recipe and the `index` recipe (now reading `repos.tsv
-   reservoir.tsv`) cover it. Hydration is sharded and parallel. Result: 733
+1. **Hydrate the Lean Reservoir sources.** Historical decision (2026-08-16,
+   superseded by the unified `sources.tsv` table on 2026-09-13): hydrate every
+   Reservoir package with a git source. At the time, `reservoir.tsv` held 739
+   packages separately from `repos.tsv` solely so routine sync did not pull
+   hundreds of repositories. That operational split is now the `sync_group=bulk`
+   field in `sources.tsv`; `sync-reservoir` remains only as a compatibility alias.
+   Hydration was sharded and parallel. Result: 733
    sources hydrated and indexed; 7 packages have no source (CLONE-FAIL;
    `katzenpost/crypt_walker`, `leanprover/leanbv`, and
    `ocfnash/LieClassification` recovered on retry):
@@ -94,13 +95,15 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
    workflow (`just search`, `just ast`), update procedure (`just sync`,
    `just sync-reservoir`), indexing (`just index`), design decisions (Zoekt +
    ast-grep/tree-sitter-lean; sparse checkouts; no commit pinning), usage
-   facts, and failure accounting (`reservoir-missing.now`).
+   facts, and the then-current failure accounting.
 
-4. **Cover the Reservoir dirs in `just index`.** The `index` recipe now reads
-   `repos.tsv reservoir.tsv`, producing the reservoir shards reproducibly.
+4. **Cover the Reservoir-discovered directories in `just index`.** Historical
+   implementation used `repos.tsv reservoir.tsv`; current `just index` reads the
+   unified `sources.tsv` table and indexes all source rows.
 
-5. **Remove or reconcile `missing.now`.** Deleted. `reservoir-missing.now`
-   (gitignored) records per-run failures; the sharded hydration records live
+5. **Remove or reconcile `missing.now`.** Deleted. The historical
+   `reservoir-missing.now` log is superseded by `sources-<sync-group>-missing.now`;
+   the original sharded hydration records live
    in `/tmp/opencode/reservoir-shards/shard_{00..03}-missing.now`.
 
 6. **Run the exhaustive residue audit — the corpus's reason for existing.**

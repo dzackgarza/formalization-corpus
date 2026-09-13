@@ -4,7 +4,7 @@
 Run locally and commit the result; the Pages build merges it rather than
 hitting GitHub on every deploy. Sources, in order of preference:
 
-1. SOURCES.md — the curated judgment of what a repository holds, and the only
+1. SOURCES.md — human-maintained annotations of what notable sources hold, and the only
    source that says anything about mathematical content rather than repeating a
    project's own tagline.
 2. The Reservoir index checkout, which carries each package's description.
@@ -115,25 +115,25 @@ def previous() -> dict[str, str]:
     )
 
 
-def manifest_rows() -> list[tuple[str, str]]:
+def source_rows() -> list[tuple[str, str]]:
+    import csv
+
     rows = []
-    for name in ("repos.tsv", "reservoir.tsv", "port-sources.tsv"):
-        for line in (ROOT / name).read_text().splitlines():
-            if line.strip():
-                url, directory = line.split("\t")[:2]
-                rows.append((url.rstrip("/"), pathlib.PurePosixPath(directory).name))
+    with (ROOT / "sources.tsv").open(newline="") as handle:
+        for record in csv.DictReader(handle, delimiter="\t"):
+            rows.append((record["url"].rstrip("/"), pathlib.PurePosixPath(record["directory"]).name))
     return rows
 
 
 def main() -> None:
-    curated, reservoir, cached = from_sources(), from_reservoir(), previous()
-    print(f"{len(curated)} curated, {len(reservoir)} from the Reservoir index, {len(cached)} cached")
+    annotated, reservoir, cached = from_sources(), from_reservoir(), previous()
+    print(f"{len(annotated)} annotated, {len(reservoir)} described by the Reservoir index, {len(cached)} cached")
 
     out, missing = {}, []
-    for url, directory in manifest_rows():
+    for url, directory in source_rows():
         key = source_key(url)
-        if key in curated:
-            out[directory] = curated[key]
+        if key in annotated:
+            out[directory] = annotated[key]
         elif key in reservoir:
             out[directory] = reservoir[key]
         elif directory in cached:
@@ -157,7 +157,7 @@ def main() -> None:
     with OUT.open("w") as fh:
         for directory in sorted(out, key=str.lower):
             fh.write(f"{directory}\t{out[directory]}\n")
-    print(f"{OUT}: {len(out)} described, {len(manifest_rows()) - len(out)} without")
+    print(f"{OUT}: {len(out)} described, {len(source_rows()) - len(out)} without")
 
 
 if __name__ == "__main__":
