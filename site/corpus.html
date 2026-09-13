@@ -42,7 +42,7 @@
 
 	<section aria-labelledby="source-browser-title">
 		<h2 id="source-browser-title">Source browser</h2>
-			<p class="muted">Filter by source name or mathematical description. Sources are grouped by proof assistant.</p>
+			<p class="muted">Filter by source name or mathematical description. Each row is one source; proof assistant is metadata.</p>
 		<div class="source-browser" id="table"></div>
 	</section>
 </main>
@@ -69,7 +69,6 @@ const KINDS = {
 	pvs: "PVS",
 	twelf: "Twelf / LF",
 };
-const ORDER = ["lean", "rocq", "agda", "isabelle", "hol-light", "hol4", "mizar", "metamath", "acl2", "pvs", "twelf"];
 const fmt = n => Number(n || 0).toLocaleString("en-US");
 
 fetch("./metrics.json").then(r => r.json()).then(data => {
@@ -101,11 +100,6 @@ fetch("./corpus.json").then(r => r.json()).then(data => {
 			data: rows,
 			layout: "fitColumns",
 			height: "70vh",
-			groupBy: "proof_assistant",
-			// Groups otherwise appear in the order their first row happens to fall.
-			groupValues: [ORDER],
-			groupHeader: (proofAssistant, count) => `${KINDS[proofAssistant] || proofAssistant} <span>(${count})</span>`,
-			groupStartOpen: true,
 			initialSort: [{column: "name", dir: "asc"}],
 			columns: [
 				{title: "Source", field: "name", widthGrow: 2, headerFilter: "input",
@@ -119,6 +113,8 @@ fetch("./corpus.json").then(r => r.json()).then(data => {
 				 a.style.wordBreak = "break-word";
 				 return a;
 			 }},
+			{title: "Proof assistant", field: "proof_assistant", widthGrow: 1,
+			 formatter: cell => KINDS[cell.getValue()] || cell.getValue()},
 			{title: "What it holds", field: "what", widthGrow: 3, headerFilter: "input",
 			 headerFilterPlaceholder: "filter by subject — sphere packing, Hasse, category",
 			 formatter: "textarea"},
