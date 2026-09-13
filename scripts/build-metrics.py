@@ -89,7 +89,10 @@ def main() -> None:
     rows = source_rows()
     indexed = indexed_source_names()
     counts = Counter(kind for kind, _ in rows)
+    source_names = {relative.name for _, relative in rows}
     problems: list[str] = []
+    for name in sorted(indexed - source_names):
+        problems.append(f"{name}: index shard exists for a source absent from sources.tsv")
     registered_names = {relative.name for _, relative in rows}
 
     for kind, relative in rows:
