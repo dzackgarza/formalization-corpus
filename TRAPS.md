@@ -79,14 +79,16 @@ approximated by regexes across source text.
 
 ## Hosting
 
-**Local preview is a static nginx deploy, not a development server.** The laptop
+**Local preview is just a local deployment of the GitHub Pages tree.** The laptop
 already serves `/var/www/static-sites/<name>` through a wildcard `*.localhost`
 vhost. `just preview` copies `site/` to
 `/var/www/static-sites/formalization-corpus-preview/`, yielding
 `http://formalization-corpus-preview.localhost/` with no additional listener.
 Do not reintroduce `python -m http.server` or consume a localhost port for this.
-The production search API only permits the GitHub Pages browser origin via CORS,
-so local preview intentionally disables interactive search.
+Do not add localhost-only branches to the frontend: the point is to inspect the
+same bytes that will be published. If browser search from the local deployment is
+needed, extend the existing search API's CORS policy rather than changing the
+site or starting a second backend.
 
 
 **Test the deployed URL, not a tunnel.** A page published on GitHub Pages calls

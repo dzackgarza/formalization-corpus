@@ -83,13 +83,13 @@ the server watches its shard directory, so replaced shards load without a
 restart. The site is therefore exactly as current as the last local source sync,
 index build, and publish.
 
-For local visual review, `just preview` performs a **static deploy** to
-`/var/www/static-sites/formalization-corpus-preview/`. The machine's existing
-nginx `*.localhost` static-site vhost serves it at
-`http://formalization-corpus-preview.localhost/`; no preview daemon or additional
-TCP port is started. The production search API deliberately accepts browser CORS
-only from the production Pages origin, so the local static preview disables the
-search box rather than proxying or starting a local search backend.
+For local visual review, `just preview` deploys the same `site/` tree that GitHub
+Pages serves to `/var/www/static-sites/formalization-corpus-preview/`. The
+machine's existing nginx `*.localhost` static-site vhost exposes that copy at
+`http://formalization-corpus-preview.localhost/`; no preview daemon, alternate
+build, or additional TCP port is involved. The local and GitHub Pages frontends
+are therefore the same files; access to the separate search API is a CORS concern
+of that API, not a reason to fork the frontend.
 The binary is cross-compiled from `tools/sourcegraph__zoekt`:
 
 ```sh

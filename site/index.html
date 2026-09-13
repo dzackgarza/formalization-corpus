@@ -90,7 +90,6 @@
 // local zoekt, which is how this file is tested before it is published.
 const API = new URLSearchParams(location.search).get("api")
 		|| "https://formalization-corpus.dzackgarza.com/api/search";
-const STATIC_PREVIEW = location.hostname === "formalization-corpus-preview.localhost";
 const MAX = 60;
 
 // Shiki tokenises with the same TextMate grammars Lean's own editors use.
@@ -345,13 +344,8 @@ el("q").addEventListener("input", () => { if (!el("q").value.trim()) clear(); })
 window.addEventListener("hashchange", fromHash);
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
-		corpus = data;
-		if (STATIC_PREVIEW && !new URLSearchParams(location.search).has("api")) {
-			el("q").disabled = true;
-			document.querySelector("#f button").disabled = true;
-			el("status").textContent = "static local preview — interactive search is available on the production site";
-		}
-		el("counts").innerHTML =
+	corpus = data;
+	el("counts").innerHTML =
 			`Mathlib, the Fermat's Last Theorem and Carleson's theorem projects, `
 			+ `Viazovska's sphere packing, condensed mathematics, the Lean package `
 			+ `registry — plus the major Rocq, Agda, Isabelle, HOL, Mizar, Metamath, `
