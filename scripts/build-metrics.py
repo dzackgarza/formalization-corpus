@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Measure the searchable formal corpus without guessing declaration counts.
 
-The metrics here are deliberately syntax-agnostic.  A "formal unit" is a file
+The metrics here are deliberately syntax-agnostic.  A "proof file" is a file
 whose extension is native proof/theory source for its prover.  Generated ACL2
 `.sys` rune reports and PVS `.prf` proof traces are excluded: they are useful to
 Zoekt, but they would badly distort a measure of mathematical source coverage.
@@ -25,13 +25,12 @@ OUT = ROOT / "site" / "metrics.json"
 
 MANIFESTS: tuple[tuple[str | None, str], ...] = (
     ("lean", "repos.tsv"),
-    ("reservoir", "reservoir.tsv"),
+    ("lean", "reservoir.tsv"),
     (None, "port-sources.tsv"),
 )
 
 FORMAL_SUFFIXES: dict[str, tuple[str, ...]] = {
     "lean": (".lean",),
-    "reservoir": (".lean",),
     "rocq": (".v",),
     "agda": (".agda", ".lagda", ".lagda.md", ".lagda.rst", ".lagda.tex"),
     "isabelle": (".thy",),
@@ -45,8 +44,7 @@ FORMAL_SUFFIXES: dict[str, tuple[str, ...]] = {
 }
 
 LABELS = {
-    "lean": "Lean (curated)",
-    "reservoir": "Lean Reservoir",
+    "lean": "Lean 4",
     "rocq": "Rocq",
     "agda": "Agda",
     "isabelle": "Isabelle",
@@ -93,7 +91,7 @@ def indexed_source_names() -> set[str]:
     return out
 
 
-def is_formal_unit(kind: str, root: pathlib.Path, path: pathlib.Path) -> bool:
+def is_proof_file(kind: str, root: pathlib.Path, path: pathlib.Path) -> bool:
     rel = path.relative_to(root)
     if any(part in SKIP_PARTS for part in rel.parts):
         return False
@@ -117,12 +115,12 @@ def main() -> None:
     indexed = indexed_source_names()
     stats: dict[str, dict[str, int]] = defaultdict(
         lambda: {
-            "registered_sources": 0,
-            "indexed_sources": 0,
-            "formal_content_sources": 0,
-            "formal_units": 0,
-            "formal_lines": 0,
-            "formal_bytes": 0,
+            "sources": 0,
+            "searchable_sources": 0,
+            "sources_with_proof_files": 0,
+            "proof_files": 0,
+            "proof_source_lines": 0,
+            "proof_source_bytes": 0,
         }
     )
 
@@ -130,23 +128,23 @@ def main() -> None:
         source = ROOT / relative
         name = relative.name
         bucket = stats[kind]
-        bucket["registered_sources"] += 1
-        bucket["indexed_sources"] += int(name in indexed)
+        bucket["sources"] += 1
+        bucket["searchable_sources"] += int(name in indexed)
 
         files = 0
         lines = 0
         byte_count = 0
         if source.exists():
             for path in source.rglob("*"):
-                if not path.is_file() or not is_formal_unit(kind, source, path):
+                if not path.is_file() or not is_proof_file(kind, source, path):
                     continue
                 files += 1
                 lines += line_count(path)
                 byte_count += path.stat().st_size
-        bucket["formal_content_sources"] += int(files > 0)
-        bucket["formal_units"] += files
-        bucket["formal_lines"] += lines
-        bucket["formal_bytes"] += byte_count
+        bucket["sources_with_proof_files"] += int(files > 0)
+        bucket["proof_files"] += files
+        bucket["proof_source_lines"] += lines
+        bucket["proof_source_bytes"] += byte_count
 
     ecosystems = []
     for kind in ORDER:
@@ -156,44 +154,37 @@ def main() -> None:
     totals = {
         key: sum(bucket[key] for bucket in stats.values())
         for key in (
-            "registered_sources",
-            "indexed_sources",
-            "formal_content_sources",
-            "formal_units",
-            "formal_lines",
-            "formal_bytes",
+            "sources",
+            "searchable_sources",
+            "sources_with_proof_files",
+            "proof_files",
+            "proof_source_lines",
+            "proof_source_bytes",
         )
     }
-    totals["curated_sources"] = sum(
-        bucket["registered_sources"] for kind, bucket in stats.items() if kind != "reservoir"
-    )
-    totals["curated_formal_content_sources"] = sum(
-        bucket["formal_content_sources"] for kind, bucket in stats.items() if kind != "reservoir"
-    )
-    # Reservoir is Lean, not a twelfth proof assistant family.
-    totals["prover_families"] = len(stats) - int("reservoir" in stats)
+    totals["proof_assistants"] = len(stats)
 
     registered_names = {directory.name for _, directory in rows}
     payload = {
         "summary": totals,
         "ecosystems": ecosystems,
-        "unindexed_sources": sorted(registered_names - indexed),
+        "unsearchable_sources": sorted(registered_names - indexed),
         "definitions": {
-            "formal_unit": (
-                "A prover-native theory/source file; ACL2 .sys generated rune reports "
+            "proof_file": (
+                "A source file written in the language of its proof assistant; ACL2 .sys generated rune reports "
                 "and PVS .prf proof traces are excluded."
             ),
-            "formal_lines": "Physical newline-delimited lines in those formal units.",
+            "proof_source_lines": "Physical newline-delimited lines in those proof source files.",
             "declaration_counts": (
-                "Not reported until prover-native parsing/elaboration is available across the corpus."
+                "Not reported until comparable declaration counts can be obtained from each proof assistant using its own parser or elaborator."
             ),
         },
     }
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
     print(
-        f"{OUT}: {totals['indexed_sources']}/{totals['registered_sources']} indexed sources, "
-        f"{totals['formal_units']} formal units, {totals['formal_lines']} formal lines"
+        f"{OUT}: {totals['searchable_sources']}/{totals['sources']} searchable sources, "
+        f"{totals['proof_files']} proof files, {totals['proof_source_lines']} lines of proof source"
     )
 
 

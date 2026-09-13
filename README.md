@@ -20,19 +20,19 @@ what the checkouts are worth.
 - **The pinned Mathlib checkout** (`leanprover-community__mathlib4/`), matching
   the exact version the corpus is indexed against. This is the primary search
   surface.
-- **The registered Lean 4 formalization repositories** (see `repos.tsv`), each a
+- **The Lean 4 repositories listed in `repos.tsv`**, each a
   shallow (`--depth 1 --filter=blob:none`) sparse checkout containing only
   `.lean` files, `lakefile.*`, `lean-toolchain`, `lake-manifest.json`, and
   `README*`.
-- **The Lean Reservoir index** (`reservoir-index/`), the package metadata
+- **The Reservoir package index** (`reservoir-index/`), the package metadata
   registry cloned from
   <https://github.com/leanprover/reservoir-index>.
-- **The Lean Reservoir packages** (see `reservoir.tsv`), hydrated into
+- **Additional Lean repositories discovered through Reservoir** (see `reservoir.tsv`), checked out into
   `reservoir-sources/` with the same sparse convention. Packages already
   present in `repos.tsv` (exact URL match) and Mathlib-family repositories are
   excluded from the reservoir list; the reservoir is a separate manifest so a
   routine `just sync` does not pull 800 repositories.
-- **The non-Lean formalization libraries** (see `port-sources.tsv`), hydrated
+- **The non-Lean formalization libraries** (see `port-sources.tsv`), checked out
   into `port-sources/`.  The manifest records the prover for each source, and
   synchronization keeps only its formal source: Rocq `.v`; Agda `.agda` and
   literate Agda; Isabelle `.thy`; HOL Light `.ml`/`.hl`; HOL4/CakeML `.sml`/`.sig`;
@@ -45,8 +45,8 @@ what the checkouts are worth.
 
 ```sh
 just build-tools        # build zoekt-index, zoekt, and the Lean ast-grep parser
-just sync               # clone or update the registered Lean repositories
-just sync-reservoir     # clone or update the 738 Lean Reservoir packages
+just sync               # clone or update the Lean repositories listed in repos.tsv
+just sync-reservoir     # clone or update additional Lean repositories discovered through Reservoir
 just sync-ports         # clone or update the non-Lean formalization libraries
 just index-ports        # incrementally rebuild only the non-Lean Zoekt shards
 just index              # (re)build the Zoekt index over all manifests

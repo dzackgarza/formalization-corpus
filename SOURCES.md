@@ -14,14 +14,13 @@ The machine-readable manifests are the mechanism, this file is the judgment:
 | File | Holds |
 | --- | --- |
 | `repos.tsv` | Lean 4 formalization repositories, cloned by `just sync` and indexed by `just index`. |
-| `reservoir.tsv` | Lean Reservoir packages, hydrated by `just sync-reservoir`. |
+| `reservoir.tsv` | Additional Lean 4 repositories discovered through the Reservoir package index; synchronized separately for operational reasons. |
 | `port-sources.tsv` | Non-Lean formal libraries, tagged by prover and checked out for their formal source text. |
 | `tools.tsv` | Search and indexing tools the corpus builds. |
 
 `just check-sources` fails when a GitHub repository named in a source table below appears
 in none of the manifests. It also checks every `port-sources.tsv` URL, including
-GitLab and direct distribution URLs, against this document. This keeps the curated
-registry and the machine-readable checkout surface from drifting apart. Tool and
+GitLab and direct distribution URLs, against this document. This keeps the source registry and the machine-readable checkout surface from drifting apart. Tool and
 standard links — build tooling, review machinery, publication schemas — are not
 sources, and the check does not look at them.
 
@@ -57,7 +56,7 @@ in scope even when its headline result is not a theorem of pure mathematics.
 
 | Surface | Use |
 | --- | --- |
-| [Lean Reservoir](https://reservoir.lean-lang.org/) | Index of public Lake packages. Search before any general GitHub search. |
+| [Reservoir](https://reservoir.lean-lang.org/) | Public index of Lean packages; used here to discover additional repositories containing Lean source. |
 | [Loogle](https://loogle.lean-lang.org/) ([`nomeata/loogle`](https://github.com/nomeata/loogle)) | Type-pattern search over Mathlib; also the `lean_loogle` MCP tool. |
 | [LeanSearch](https://leansearch.net/) | Natural-language search over Mathlib; also the `lean_leansearch` MCP tool. |
 | [Mathlib docs](https://leanprover-community.github.io/mathlib4_docs/) | Declaration-level documentation for current Mathlib. |
@@ -92,22 +91,22 @@ The subtrees that carry the most relevant material. A search restricted by path 
 | [`sinhp/HoTTLean`](https://github.com/sinhp/HoTTLean) | Groupoid and natural models of HoTT; semantics of type theory. `Groupoids/ClovenIsofibration.lean` holds a complete split-classifier story for groupoids: cloven isofibrations, fiber reindexing, `Γ ⥤ Grpd`, Grothendieck reconstruction. |
 | [`sinhp/Poly`](https://github.com/sinhp/Poly) | Polynomial functors and locally cartesian closed categories. |
 | [`sinhp/LeanFibredCategories`](https://github.com/sinhp/LeanFibredCategories) | Fibred categories *(stale; superseded by Mathlib's `FiberedCategory` tree and `displayed_categories`)*. |
-| [`sinhp/displayed_categories`](https://github.com/sinhp/displayed_categories) | Displayed categories — the algebraic presentation of structure over a base; iso-level fibers (`EFiber`), cartesian lifts, Street fibrations *(stale; no LICENSE file — reference only, do not copy)*. |
+| [`sinhp/displayed_categories`](https://github.com/sinhp/displayed_categories) | Displayed categories: iso-level fibers (`EFiber`), cartesian lifts, and Street fibrations. The repository is stale and has no LICENSE file. |
 | [`kim-em/lean-category-theory`](https://github.com/kim-em/lean-category-theory) | Early category-theory experiments, upstreamed into Mathlib *(archived)*. |
 | [`rzrn/ground_zero`](https://github.com/rzrn/ground_zero) | HoTT library in Lean 4 *(archived)*. |
 | [`gebner/hott3`](https://github.com/gebner/hott3) | HoTT *(Lean 3)*. |
 | [`rkirov/category-theory-in-context-lean`](https://github.com/rkirov/category-theory-in-context-lean) | Lean companion to Riehl's *Category Theory in Context*. |
 | [`awodey/joyal`](https://github.com/awodey/joyal) | Joyal's representation theorem. |
 | [`mariovagomarzal/higher_category_theory`](https://github.com/mariovagomarzal/higher_category_theory) | Higher-order categories after Cosme Llópez. |
-| [`ivankobe/FactorizationSystems`](https://github.com/ivankobe/FactorizationSystems) | Factorization systems. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
-| [`zilberstein/domain-theory`](https://github.com/zilberstein/domain-theory) | Domain theory. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`ivankobe/FactorizationSystems`](https://github.com/ivankobe/FactorizationSystems) | Factorization systems. |
+| [`zilberstein/domain-theory`](https://github.com/zilberstein/domain-theory) | Domain theory. |
 | [`Verified-zkEVM/PolyFun`](https://github.com/Verified-zkEVM/PolyFun) | Polynomial functors and interaction trees. |
 | [`alexkeizer/QPFTypes`](https://github.com/alexkeizer/QPFTypes) | Quotients of polynomial functors; definitional (co)datatypes. |
 | [`dagurtomas/LeanCondensed`](https://github.com/dagurtomas/LeanCondensed) | Condensed mathematics beyond Mathlib's `Condensed/` tree, by the author of that tree. |
 | [`mattrobball/BridgelandStability`](https://github.com/mattrobball/BridgelandStability) | Bridgeland stability conditions on triangulated categories. |
-| [`YijunYuan/HarderNarasimhan`](https://github.com/YijunYuan/HarderNarasimhan) | Harder–Narasimhan theory. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`YijunYuan/HarderNarasimhan`](https://github.com/YijunYuan/HarderNarasimhan) | Harder–Narasimhan theory. |
 | [`Paul-Lez/PersistentDecomp`](https://github.com/Paul-Lez/PersistentDecomp) | Structure theorem for persistence modules. |
-| [`Dominique-Lawson/Directed-Topology-Lean-4`](https://github.com/Dominique-Lawson/Directed-Topology-Lean-4) | Directed topology. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`Dominique-Lawson/Directed-Topology-Lean-4`](https://github.com/Dominique-Lawson/Directed-Topology-Lean-4) | Directed topology. |
 | [`peabrainiac/lean-catdg`](https://github.com/peabrainiac/lean-catdg) | Categorical differential geometry. |
 | [`riccardobrasca/SDG`](https://github.com/riccardobrasca/SDG) | Synthetic differential geometry. |
 
@@ -115,11 +114,11 @@ The subtrees that carry the most relevant material. A search restricted by path 
 
 | Source | Content |
 | --- | --- |
-| [`ImperialCollegeLondon/FLT`](https://github.com/ImperialCollegeLondon/FLT) | Ongoing Fermat's Last Theorem formalization; substantial reusable commutative algebra, dimension theory, and number theory beyond the headline target. Its `FLT/Mathlib/` staging tree holds small upstream-bound files (integral adeles, tensor-versus-restricted-product equivalences); toolchain and Mathlib pin run ahead of this repo, so port those files rather than depend. Contains no quadratic-form or lattice theory. |
+| [`ImperialCollegeLondon/FLT`](https://github.com/ImperialCollegeLondon/FLT) | Ongoing Fermat's Last Theorem formalization with substantial commutative algebra, dimension theory, and number theory. Its `FLT/Mathlib/` staging tree includes upstream-bound files on integral adeles and tensor-versus-restricted-product equivalences. |
 | [`leanprover-community/flt-regular`](https://github.com/leanprover-community/flt-regular) | FLT for regular primes; cyclotomic-field material. |
 | [`kbuzzard/ClassFieldTheory`](https://github.com/kbuzzard/ClassFieldTheory) | 2025 Clay Summer School project on class field theory. Consumes Mathlib's local-field classes rather than building completion infrastructure; no higher unit groups. |
-| [`mariainesdff/LocalClassFieldTheory`](https://github.com/mariainesdff/LocalClassFieldTheory) | Local fields, toward local class field theory. Best external DVR/uniformizer API for completions at height-one primes, but *(no LICENSE file — proof-strategy reference only)*, stale toolchain, and a `sorry` inside its `isDiscrete` instance. |
-| [`AntoineChambert-Loir/DividedPowers4`](https://github.com/AntoineChambert-Loir/DividedPowers4) | Divided power structures and the divided-power algebra. The core construction is upstreamed in Mathlib `RingTheory/DividedPowerAlgebra/Init`; the grading and polynomial-law layers are not. No LICENSE file and a partially built source tree: reference only, do not copy code from it. |
+| [`mariainesdff/LocalClassFieldTheory`](https://github.com/mariainesdff/LocalClassFieldTheory) | Local fields toward local class field theory, including DVR/uniformizer APIs for completions at height-one primes. The repository has no LICENSE file, uses a stale toolchain, and contains a `sorry` in its `isDiscrete` instance. |
+| [`AntoineChambert-Loir/DividedPowers4`](https://github.com/AntoineChambert-Loir/DividedPowers4) | Divided power structures and the divided-power algebra. The core construction is upstreamed in Mathlib `RingTheory/DividedPowerAlgebra/Init`; the grading and polynomial-law layers are not. The repository has no LICENSE file and a partially built source tree. |
 | [`YaelDillies/toric`](https://github.com/YaelDillies/toric) | Toric varieties over Mathlib's schemes. |
 | [`MichaelStollBayreuth/EulerProducts`](https://github.com/MichaelStollBayreuth/EulerProducts) | Euler products and L-series. |
 | [`MichaelStollBayreuth/Heights`](https://github.com/MichaelStollBayreuth/Heights) | Theory of heights. |
@@ -134,36 +133,36 @@ The subtrees that carry the most relevant material. A search restricted by path 
 | [`teorth/expdb`](https://github.com/teorth/expdb) | Exponent-pair database for analytic number theory. |
 | [`b-mehta/ABC-Exceptions`](https://github.com/b-mehta/ABC-Exceptions) | Exceptions to the ABC conjecture. |
 | [`yawara/odd-order`](https://github.com/yawara/odd-order) | Feit–Thompson odd order theorem in Lean 4, with the finite group theory library it required. |
-| [`JobPetrovcic/ArtinWedderburn`](https://github.com/JobPetrovcic/ArtinWedderburn) | Artin–Wedderburn theorem. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
-| [`Whysoserioushah/BrauerGroup`](https://github.com/Whysoserioushah/BrauerGroup) | Brauer groups. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`JobPetrovcic/ArtinWedderburn`](https://github.com/JobPetrovcic/ArtinWedderburn) | Artin–Wedderburn theorem. |
+| [`Whysoserioushah/BrauerGroup`](https://github.com/Whysoserioushah/BrauerGroup) | Brauer groups. |
 | [`kckennylau/EllipticCurve`](https://github.com/kckennylau/EllipticCurve) | Toward a general definition of elliptic curves over schemes. |
-| [`KisaraBlue/ec-tate-lean`](https://github.com/KisaraBlue/ec-tate-lean) | Tate's algorithm for elliptic curves, executable. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`KisaraBlue/ec-tate-lean`](https://github.com/KisaraBlue/ec-tate-lean) | Tate's algorithm for elliptic curves, executable. |
 | [`acmepjz/lean-iwasawa`](https://github.com/acmepjz/lean-iwasawa) | Iwasawa theory. |
 | [`riccardobrasca/FLT3`](https://github.com/riccardobrasca/FLT3) | Fermat's Last Theorem for exponent 3. |
 | [`riccardobrasca/KummerCriterion`](https://github.com/riccardobrasca/KummerCriterion) | Kummer's criterion for regular primes. |
 | [`riccardobrasca/kaplanski4`](https://github.com/riccardobrasca/kaplanski4) | Kaplansky's criterion for unique factorization domains. |
-| [`chrisflav/bruhat-tits`](https://github.com/chrisflav/bruhat-tits) | The Bruhat–Tits tree. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`chrisflav/bruhat-tits`](https://github.com/chrisflav/bruhat-tits) | The Bruhat–Tits tree. |
 | [`smmercuri/adele-ring_locally-compact`](https://github.com/smmercuri/adele-ring_locally-compact) | Local compactness of the adele ring of a number field. |
 | [`pitmonticone/QuadraticIntegers`](https://github.com/pitmonticone/QuadraticIntegers) | Rings of integers of quadratic fields. |
 | [`MichaelStollBayreuth/Weights`](https://github.com/MichaelStollBayreuth/Weights) | Minimization of hypersurfaces (Elsenhans–Stoll). |
 | [`CBirkbeck/uniform-sheafy-tate-domains-lean`](https://github.com/CBirkbeck/uniform-sheafy-tate-domains-lean) | Uniform sheafy Tate rings that are not stably uniform; Huber/Tate ring examples. |
-| [`BochaoKong/nullstellensatz`](https://github.com/BochaoKong/nullstellensatz) | Local complex-analytic geometry: Rückert Nullstellensatz and foundations. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`BochaoKong/nullstellensatz`](https://github.com/BochaoKong/nullstellensatz) | Local complex-analytic geometry: Rückert Nullstellensatz and foundations. |
 | [`Mathias-Stout/Many-sorted-model-theory`](https://github.com/Mathias-Stout/Many-sorted-model-theory) | Many-sorted logic toward the model theory of valued fields. |
 | [`WuProver/groebner_proj`](https://github.com/WuProver/groebner_proj) | Gröbner basis theory; companions [`WuProver/MonomialOrderedPolynomial`](https://github.com/WuProver/MonomialOrderedPolynomial) and [`WuProver/GroebnerTactic`](https://github.com/WuProver/GroebnerTactic). |
 | [`Hagb/lean-groebner`](https://github.com/Hagb/lean-groebner) | Gröbner bases, independent development. |
-| [`JJYYY-JJY/lean-normal-forms`](https://github.com/JJYYY-JJY/lean-normal-forms) | Executable Hermite and Smith normal forms over Euclidean domains with a PID bridge to Mathlib. Direct reference for lattice coordinate normalization. |
-| [`LieLean/LowDimSolvClassification`](https://github.com/LieLean/LowDimSolvClassification) | Classification of solvable Lie algebras of dimension at most three. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`JJYYY-JJY/lean-normal-forms`](https://github.com/JJYYY-JJY/lean-normal-forms) | Executable Hermite and Smith normal forms over Euclidean domains with a PID bridge to Mathlib. |
+| [`LieLean/LowDimSolvClassification`](https://github.com/LieLean/LowDimSolvClassification) | Classification of solvable Lie algebras of dimension at most three. |
 | [`kkytola/VirasoroProject`](https://github.com/kkytola/VirasoroProject) | Witt algebra cohomology and the Virasoro algebra. |
 | [`singerng/steinberg-formalization`](https://github.com/singerng/steinberg-formalization) | Steinberg groups. |
-| [`npflueger/demazure`](https://github.com/npflueger/demazure) | Demazure products. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
-| [`Antoine-dSG/frieze_patterns`](https://github.com/Antoine-dSG/frieze_patterns) | Coxeter's frieze patterns. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
-| [`wupr/order-p-q`](https://github.com/wupr/order-p-q) | Classification of groups of order pq. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
-| [`Luka-O/polya-enumeration-theorem`](https://github.com/Luka-O/polya-enumeration-theorem) | Pólya enumeration theorem. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
-| [`wwylele/PentagonalNumberTheorem`](https://github.com/wwylele/PentagonalNumberTheorem) | Euler's pentagonal number theorem. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`npflueger/demazure`](https://github.com/npflueger/demazure) | Demazure products. |
+| [`Antoine-dSG/frieze_patterns`](https://github.com/Antoine-dSG/frieze_patterns) | Coxeter's frieze patterns. |
+| [`wupr/order-p-q`](https://github.com/wupr/order-p-q) | Classification of groups of order pq. |
+| [`Luka-O/polya-enumeration-theorem`](https://github.com/Luka-O/polya-enumeration-theorem) | Pólya enumeration theorem. |
+| [`wwylele/PentagonalNumberTheorem`](https://github.com/wwylele/PentagonalNumberTheorem) | Euler's pentagonal number theorem. |
 | [`b-mehta/PrimeCert`](https://github.com/b-mehta/PrimeCert) | Formal prime certificates. |
 | [`hanwenzhu/miller-rabin`](https://github.com/hanwenzhu/miller-rabin) | Miller–Rabin primality test. |
 | [`amellendijk/selberg-sieve4`](https://github.com/amellendijk/selberg-sieve4) | The Selberg sieve. |
-| [`samuelborza/IsTranscendentalPi`](https://github.com/samuelborza/IsTranscendentalPi) | Transcendence of π. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`samuelborza/IsTranscendentalPi`](https://github.com/samuelborza/IsTranscendentalPi) | Transcendence of π. |
 | [`ahhwuhu/zeta_3_irrational`](https://github.com/ahhwuhu/zeta_3_irrational) | Irrationality of ζ(3). |
 | [`teorth/sendov`](https://github.com/teorth/sendov) | Sendov's conjecture work. |
 | [`AxiomMath/fel-polynomial`](https://github.com/AxiomMath/fel-polynomial) | Fel's conjecture on syzygies of numerical semigroups; AI-formalized paper companion. Sibling companions: [`AxiomMath/lattice-triangle`](https://github.com/AxiomMath/lattice-triangle), [`AxiomMath/partial-regularity`](https://github.com/AxiomMath/partial-regularity), [`AxiomMath/PartitionPolynomial`](https://github.com/AxiomMath/PartitionPolynomial). |
@@ -173,16 +172,16 @@ The subtrees that carry the most relevant material. A search restricted by path 
 
 | Source | Content |
 | --- | --- |
-| [`thefundamentaltheor3m/Sphere-Packing-Lean`](https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean) | Viazovska's dimension-8 sphere packing; E8 lattice. Already integrated here under `Integration/SpherePacking` and `LeanCategoriesSpherePacking/E8`. |
-| [`mariainesdff/HassePrinciple`](https://github.com/mariainesdff/HassePrinciple) | Hilbert symbols and the Hasse–Minkowski invariant over general fields (Women in Numbers 7). Definitions in place; the key choice-independence proofs are still `sorry`. Apache 2.0, but the team accepts no outside contributions — copy with attribution. |
+| [`thefundamentaltheor3m/Sphere-Packing-Lean`](https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean) | Viazovska's dimension-8 sphere-packing theorem and the E8 lattice. |
+| [`mariainesdff/HassePrinciple`](https://github.com/mariainesdff/HassePrinciple) | Hilbert symbols and the Hasse–Minkowski invariant over general fields (Women in Numbers 7). Definitions are present; key choice-independence proofs remain `sorry`. Apache-2.0; the project does not accept outside contributions. |
 | [`roed-math/gq2-lean`](https://github.com/roed-math/gq2-lean) | Dyadic Hilbert symbol over ℚ₂ with Serre's evaluation formula and 2-adic square-class facts, sorry-free and self-contained inside a profinite `G_{ℚ₂}` presentation. Apache 2.0. |
 | [`MichaelStollBayreuth/LegendreQF`](https://github.com/MichaelStollBayreuth/LegendreQF) | Legendre's theorem on diagonal ternary quadratic forms; complete but defines no Hilbert symbol, Hasse invariant, or lattice notion. |
-| [`jonhanke/quadratic_forms_in_lean`](https://github.com/jonhanke/quadratic_forms_in_lean) | Skeleton only: the library files carry reference comments (Cassels) and a few thin definitions, no theorems; no LICENSE file. Do not mine. |
+| [`jonhanke/quadratic_forms_in_lean`](https://github.com/jonhanke/quadratic_forms_in_lean) | A small quadratic-forms skeleton with Cassels references and a few definitions, but no theorems; the repository has no LICENSE file. |
 | [`leanprover/hex-lll`](https://github.com/leanprover/hex-lll) | Verified LLL lattice-basis reduction with a proved short-vector bound; Mathlib bridge in [`leanprover/hex-lll-mathlib`](https://github.com/leanprover/hex-lll-mathlib). See the [Hex](https://github.com/leanprover/hex) rows below. |
-| [`Jun2M/Main-theorem-of-polytopes`](https://github.com/Jun2M/Main-theorem-of-polytopes) | Main theorem of polytopes. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`Jun2M/Main-theorem-of-polytopes`](https://github.com/Jun2M/Main-theorem-of-polytopes) | Main theorem of polytopes. |
 | [`jsm28/AperiodicMonotilesLean`](https://github.com/jsm28/AperiodicMonotilesLean) | Aperiodic monotiles (the hat and spectre), staging for Mathlib. |
 | [`dwrensha/Rupert.lean`](https://github.com/dwrensha/Rupert.lean) | The Rupert problem for convex polyhedra; with [`jcreedcmu/Noperthedron`](https://github.com/jcreedcmu/Noperthedron). |
-| [`vasnesterov/HadwigerNelson`](https://github.com/vasnesterov/HadwigerNelson) | Hadwiger–Nelson bounds. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`vasnesterov/HadwigerNelson`](https://github.com/vasnesterov/HadwigerNelson) | Hadwiger–Nelson bounds. |
 
 ## Analysis, probability, geometry, dynamics
 
@@ -212,15 +211,15 @@ The subtrees that carry the most relevant material. A search restricted by path 
 | [`weiran-sun/pde`](https://github.com/weiran-sun/pde) | PDE formalizations. |
 | [`RemyDegenne/brownian-motion`](https://github.com/RemyDegenne/brownian-motion) | Construction of Brownian motion; with [`RemyDegenne/kolmogorov_extension4`](https://github.com/RemyDegenne/kolmogorov_extension4). |
 | [`cameronfreer/exchangeability`](https://github.com/cameronfreer/exchangeability) | Exchangeability and three proofs of de Finetti's theorem. |
-| [`YellPika/quasi-borel-spaces`](https://github.com/YellPika/quasi-borel-spaces) | Quasi-Borel spaces. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
-| [`mrdouglasny/OSforGFF`](https://github.com/mrdouglasny/OSforGFF) | Gaussian free field in d=4 and the Osterwalder–Schrader axioms *(in [Lean Pool](https://github.com/Vilin97/lean-pool))*. Same author: [`gaussian-field`](https://github.com/mrdouglasny/gaussian-field), [`lgt`](https://github.com/mrdouglasny/lgt) (lattice gauge theory), [`pphi2`](https://github.com/mrdouglasny/pphi2) (φ⁴₂ construction), [`seiberg-witten`](https://github.com/mrdouglasny/seiberg-witten), [`hille-yosida`](https://github.com/mrdouglasny/hille-yosida), [`markov-semigroups`](https://github.com/mrdouglasny/markov-semigroups), [`spectral-positivity`](https://github.com/mrdouglasny/spectral-positivity) (Perron–Frobenius, Jentzsch). |
+| [`YellPika/quasi-borel-spaces`](https://github.com/YellPika/quasi-borel-spaces) | Quasi-Borel spaces. |
+| [`mrdouglasny/OSforGFF`](https://github.com/mrdouglasny/OSforGFF) | Gaussian free field in d=4 and the Osterwalder–Schrader axioms. Same author: [`gaussian-field`](https://github.com/mrdouglasny/gaussian-field), [`lgt`](https://github.com/mrdouglasny/lgt) (lattice gauge theory), [`pphi2`](https://github.com/mrdouglasny/pphi2) (φ⁴₂ construction), [`seiberg-witten`](https://github.com/mrdouglasny/seiberg-witten), [`hille-yosida`](https://github.com/mrdouglasny/hille-yosida), [`markov-semigroups`](https://github.com/mrdouglasny/markov-semigroups), [`spectral-positivity`](https://github.com/mrdouglasny/spectral-positivity) (Perron–Frobenius, Jentzsch). |
 | [`FredRaj3/SemicircleLaw`](https://github.com/FredRaj3/SemicircleLaw) | Wigner's semicircle law. |
 | [`dududuguo/HighDimProb`](https://github.com/dududuguo/HighDimProb) | High-dimensional probability, random matrices, concentration. |
-| [`lua-vr/pointwise-birkhoff`](https://github.com/lua-vr/pointwise-birkhoff) | Pointwise Birkhoff ergodic theorem. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`lua-vr/pointwise-birkhoff`](https://github.com/lua-vr/pointwise-birkhoff) | Pointwise Birkhoff ergodic theorem. |
 | [`kkytola/ExtremeValueProject`](https://github.com/kkytola/ExtremeValueProject) | Fisher–Tippett–Gnedenko theorem. |
-| [`roos-j/lean-booleanfun`](https://github.com/roos-j/lean-booleanfun) | Analysis of Boolean functions, including Arrow's theorem. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
-| [`sven-manthe/A-formalization-of-Borel-determinacy-in-Lean`](https://github.com/sven-manthe/A-formalization-of-Borel-determinacy-in-Lean) | Borel determinacy. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
-| [`YnirPaz/PCF-Theory`](https://github.com/YnirPaz/PCF-Theory) | PCF theory. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`roos-j/lean-booleanfun`](https://github.com/roos-j/lean-booleanfun) | Analysis of Boolean functions, including Arrow's theorem. |
+| [`sven-manthe/A-formalization-of-Borel-determinacy-in-Lean`](https://github.com/sven-manthe/A-formalization-of-Borel-determinacy-in-Lean) | Borel determinacy. |
+| [`YnirPaz/PCF-Theory`](https://github.com/YnirPaz/PCF-Theory) | PCF theory. |
 | [`VTrelat/ZFLean`](https://github.com/VTrelat/ZFLean) | Set-theoretic development framework. |
 
 ## Combinatorics, discrete mathematics, logic, foundations
@@ -243,7 +242,7 @@ The subtrees that carry the most relevant material. A search restricted by path 
 | [`vihdzp/combinatorial-games`](https://github.com/vihdzp/combinatorial-games) | Combinatorial game theory. |
 | [`leanprover-community/add-combi`](https://github.com/leanprover-community/add-combi) | Mathlib's additive-combinatorics sublibrary. |
 | [`YaelDillies/cam-combi`](https://github.com/YaelDillies/cam-combi) | Cambridge Part II/III graph theory, combinatorics, extremal and probabilistic combinatorics. Same author: [`mean-fourier`](https://github.com/YaelDillies/mean-fourier), [`gibbs-measure`](https://github.com/YaelDillies/gibbs-measure), [`forbidden-matrix`](https://github.com/YaelDillies/forbidden-matrix), [`chandra-furst-lipton`](https://github.com/YaelDillies/chandra-furst-lipton). |
-| [`b-mehta/AharoniKorman`](https://github.com/b-mehta/AharoniKorman) | Disproof of the Aharoni–Korman conjecture. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
+| [`b-mehta/AharoniKorman`](https://github.com/b-mehta/AharoniKorman) | Disproof of the Aharoni–Korman conjecture. |
 | [`celioboulay/expander-graphs`](https://github.com/celioboulay/expander-graphs) | Expander graphs. |
 | [`mitchell-horner/ErdosStoneSimonovitsKovariSosTuran`](https://github.com/mitchell-horner/ErdosStoneSimonovitsKovariSosTuran) | Erdős–Stone–Simonovits and Kővári–Sós–Turán theorems. |
 | [`DhyeyMavani2003/chip-firing-with-lean`](https://github.com/DhyeyMavani2003/chip-firing-with-lean) | Chip-firing games and Riemann–Roch for graphs. |
@@ -251,7 +250,7 @@ The subtrees that carry the most relevant material. A search restricted by path 
 | [`PierreSenellart/descriptive-complexity`](https://github.com/PierreSenellart/descriptive-complexity) | Descriptive complexity: NP-completeness via first-order reductions. |
 | [`ctchou/AutomataTheory`](https://github.com/ctchou/AutomataTheory) | Automata theory. |
 | [`madvorak/chomsky`](https://github.com/madvorak/chomsky) | Chomsky hierarchy and formal grammars. |
-| [`FormalizedFormalLogic/Incompleteness`](https://github.com/FormalizedFormalLogic/Incompleteness) | Incompleteness theorems *(in [Lean Pool](https://github.com/Vilin97/lean-pool))*; with [`FormalizedFormalLogic/ProvabilityLogic`](https://github.com/FormalizedFormalLogic/ProvabilityLogic). |
+| [`FormalizedFormalLogic/Incompleteness`](https://github.com/FormalizedFormalLogic/Incompleteness) | Incompleteness theorems; with [`FormalizedFormalLogic/ProvabilityLogic`](https://github.com/FormalizedFormalLogic/ProvabilityLogic). |
 | [`codyroux/traat-lean`](https://github.com/codyroux/traat-lean) | Selected lemmas from *Term Rewriting and All That*. |
 
 ## Computational and applied mathematics
@@ -270,11 +269,11 @@ The subtrees that carry the most relevant material. A search restricted by path 
 | [`or4nge19/NeuralNetworks`](https://github.com/or4nge19/NeuralNetworks) | Neural networks. |
 | [`shetzl/autth`](https://github.com/shetzl/autth) | Automata theory. |
 | [`leanprover/hex`](https://github.com/leanprover/hex) | Hex verified computational algebra; see the [Lean FRO](https://lean-lang.org/fro/) section below for the full library table. |
-| [`todbeibrot/Lean-Oscar`](https://github.com/todbeibrot/Lean-Oscar) | Interface between Lean 4 and the [OSCAR](https://www.oscar-system.org/) computer-algebra system. Direct reference for the `lean-cas-dsl` backend route. |
+| [`todbeibrot/Lean-Oscar`](https://github.com/todbeibrot/Lean-Oscar) | Interface between Lean 4 and the [OSCAR](https://www.oscar-system.org/) computer-algebra system. |
 | [`girving/series`](https://github.com/girving/series) | Power series arithmetic; same author [`bottcher`](https://github.com/girving/bottcher) (verified Böttcher series) and [`ray-render`](https://github.com/girving/ray-render) (verified Mandelbrot renders via interval arithmetic). |
 | [`alerad/LeanCert`](https://github.com/alerad/LeanCert) | Verified interval arithmetic: bounds on exp, sin, cos; root finding. |
-| [`Timeroot/computableReal`](https://github.com/Timeroot/computableReal) | Computable real numbers. *(in [Lean Pool](https://github.com/Vilin97/lean-pool))* |
-| [`josephmckinsey/Flean`](https://github.com/josephmckinsey/Flean) | Floating-point numbers, replacing `Mathlib.Data.FP` *(in [Lean Pool](https://github.com/Vilin97/lean-pool))*; with [`Beneficial-AI-Foundation/FloatSpec`](https://github.com/Beneficial-AI-Foundation/FloatSpec). |
+| [`Timeroot/computableReal`](https://github.com/Timeroot/computableReal) | Computable real numbers. |
+| [`josephmckinsey/Flean`](https://github.com/josephmckinsey/Flean) | Floating-point numbers, replacing `Mathlib.Data.FP`; with [`Beneficial-AI-Foundation/FloatSpec`](https://github.com/Beneficial-AI-Foundation/FloatSpec). |
 | [`alok/lean-inf`](https://github.com/alok/lean-inf) | Levi-Civita field for infinitesimal computation. |
 | [`Verified-zkEVM/CompPoly`](https://github.com/Verified-zkEVM/CompPoly) | Computable polynomials. |
 | [`leanprover/sos`](https://github.com/leanprover/sos) | Sum-of-squares tactic for nonlinear real arithmetic. |
@@ -350,7 +349,7 @@ The [Lean FRO](https://lean-lang.org/fro/) runs three AI projects ([Year 4 Part 
 
 | Source | Content |
 | --- | --- |
-| [`leanprover-community/mathlib4`](https://github.com/leanprover-community/mathlib4) | Algebra, number theory, topology, analysis, measure theory, geometry and combinatorics on one typeclass hierarchy; 256,512 declarations, and the first place to search. |
+| [`leanprover-community/mathlib4`](https://github.com/leanprover-community/mathlib4) | Algebra, number theory, topology, analysis, measure theory, geometry and combinatorics on one typeclass hierarchy; 256,512 declarations. |
 | [`leanprover-community/batteries`](https://github.com/leanprover-community/batteries) | Extended standard library. |
 | [`leanprover-community/aesop`](https://github.com/leanprover-community/aesop) | White-box proof automation. |
 | [`leanprover-community/duper`](https://github.com/leanprover-community/duper), [`leanprover-community/lean-auto`](https://github.com/leanprover-community/lean-auto) | Automated theorem proving in Lean. |
@@ -374,7 +373,7 @@ The [Lean FRO](https://lean-lang.org/fro/) runs three AI projects ([Year 4 Part 
 | [`rocq-community/fourcolor`](https://github.com/rocq-community/fourcolor) | Four Color Theorem development, including graph-theoretic and real-number infrastructure. |
 | [`rocq-community/corn`](https://github.com/rocq-community/corn) | Constructive mathematics repository at Nijmegen. |
 | [`GeoCoq/GeoCoq`](https://github.com/GeoCoq/GeoCoq) | Synthetic geometry from Tarski-style axioms, with Euclidean, Hilbert, parallel-postulate, and algebraic geometry developments. |
-| [`AbsInt/CompCert`](https://github.com/AbsInt/CompCert) | Formal definitions of C and assembly semantics, memory models and compiler passes, plus the correctness proofs of CompCert. Search it for semantics and program-logic definitions, not only compiler verification. |
+| [`AbsInt/CompCert`](https://github.com/AbsInt/CompCert) | Formal definitions of C and assembly semantics, memory models and compiler passes, plus the correctness proofs of CompCert. |
 | [`iris/iris`](https://gitlab.mpi-sws.org/iris/iris) | Iris higher-order concurrent separation logic, program logic, ghost-state constructions, and the MoSeL proof mode. |
 | [`iris/stdpp`](https://gitlab.mpi-sws.org/iris/stdpp) | Rocq general-purpose data structures and algebraic/finite-map infrastructure used by Iris; substantial reusable definitions independent of the headline verification work. |
 | [`thery/coqprime`](https://github.com/thery/coqprime) | Number theory, elliptic curves, modular arithmetic, and primality certification. |

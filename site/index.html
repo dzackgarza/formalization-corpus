@@ -45,10 +45,10 @@
 			<aside class="hero-panel" aria-label="Coverage">
 				<div class="hero-panel-head">Coverage</div>
 			<div class="hero-metrics" id="hero-metrics">
-				<div class="hero-metric"><strong>—</strong><span>indexed sources</span></div>
-					<div class="hero-metric"><strong>—</strong><span>formal source files</span></div>
-				<div class="hero-metric"><strong>—</strong><span>formal lines</span></div>
-				<div class="hero-metric"><strong>—</strong><span>prover families</span></div>
+				<div class="hero-metric"><strong>—</strong><span>searchable sources</span></div>
+					<div class="hero-metric"><strong>—</strong><span>proof source files</span></div>
+				<div class="hero-metric"><strong>—</strong><span>lines of proof source</span></div>
+				<div class="hero-metric"><strong>—</strong><span>proof assistants</span></div>
 			</div>
 		</aside>
 	</section>
@@ -56,8 +56,8 @@
 	<section id="browse" aria-labelledby="browse-title">
 			<h2 id="browse-title">Browse</h2>
 			<div class="browse-grid">
-				<a class="browse-card" href="./corpus.html"><strong>Sources</strong><span>Registered libraries and projects, with index status and coverage statistics.</span></a>
-				<a class="browse-card" href="./subjects.html"><strong>Subjects</strong><span>Registered sources organized by mathematical area.</span></a>
+				<a class="browse-card" href="./corpus.html"><strong>Sources</strong><span>Formalization sources, with search coverage and mathematical descriptions.</span></a>
+				<a class="browse-card" href="./subjects.html"><strong>Subjects</strong><span>Formalization sources organized by mathematical area.</span></a>
 				<a class="browse-card" href="./api.html"><strong>API</strong><span>JSON search endpoint, query syntax, and response format.</span></a>
 		</div>
 		<p class="muted" id="counts"></p>
@@ -93,7 +93,8 @@ const shikiReady = (async () => {
 	shiki = await createHighlighter({themes: [THEME], langs: Object.values(LANGS)});
 })().catch(err => console.error("syntax highlighting unavailable:", err));
 
-let corpus = {repos: {}, counts: {}};
+let corpus = {sources: [], sources_by_proof_assistant: {}};
+let sourcesByIndex = {};
 const el = id => document.getElementById(id);
 const esc = s => s.replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
 const rx = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -110,14 +111,14 @@ function b64(s) {
 }
 
 function sourceLink(repoName, path, line) {
-	const repo = corpus.repos[repoName];
+	const repo = sourcesByIndex[repoName];
 	if (!repo) return null;
-	if (repo.transport === "web-dir") {
+	const sourceUrl = new URL(repo.url);
+	if (sourceUrl.hostname.includes("mizar.uwb.edu.pl")) {
 		const base = repo.url.replace(/\/$/, "");
 		return `${base}/${path.split("/").pop()}`;
 	}
-	// Shallow checkouts track their default branch; HEAD resolves it.
-	const middle = repo.transport === "gitlab" ? "/-/blob/HEAD/" : "/blob/HEAD/";
+	const middle = sourceUrl.hostname.includes("gitlab") ? "/-/blob/HEAD/" : "/blob/HEAD/";
 	return `${repo.url}${middle}${path}` + (line ? `#L${line}` : "");
 }
 
@@ -233,14 +234,14 @@ function render(result) {
 
 		const pending = [];
 		el("results").innerHTML = [...byRepo].map(([name, matches]) => {
-			const repo = corpus.repos[name];
+			const repo = sourcesByIndex[name];
 			const kind = repo ? ({
-				lean: "Lean", reservoir: "Reservoir", rocq: "Rocq", agda: "Agda",
+				lean: "Lean 4", rocq: "Rocq", agda: "Agda",
 				isabelle: "Isabelle", "hol-light": "HOL Light", hol4: "HOL4",
 				mizar: "Mizar", metamath: "Metamath", acl2: "ACL2", pvs: "PVS",
 				twelf: "Twelf/LF",
-			}[repo.kind] || repo.kind) : "";
-		const head = repo ? `<a href="${repo.url}">${esc(name)}</a>` : esc(name);
+			}[repo.proof_assistant] || repo.proof_assistant) : "";
+		const head = repo ? `<a href="${repo.url}">${esc(repo.name || name)}</a>` : esc(name);
 		const body = matches.map((f, i) => {
 			const chunks = (f.ChunkMatches || []).filter(c => !c.FileName);
 			const line = chunks.length ? chunks[0].ContentStart.LineNumber : 0;
@@ -337,16 +338,16 @@ fetch("./metrics.json").then(r => r.json()).then(data => {
 	const s = data.summary;
 	const compact = n => new Intl.NumberFormat("en", {notation: "compact", maximumFractionDigits: 1}).format(n || 0);
 	el("hero-metrics").innerHTML = `
-		<div class="hero-metric"><strong>${Number(s.indexed_sources || 0).toLocaleString()}</strong><span>indexed sources</span></div>
-		<div class="hero-metric"><strong>${compact(s.formal_units)}</strong><span>formal units</span></div>
-		<div class="hero-metric"><strong>${compact(s.formal_lines)}</strong><span>formal lines</span></div>
-		<div class="hero-metric"><strong>${Number(s.prover_families || 0).toLocaleString()}</strong><span>prover families</span></div>`;
+		<div class="hero-metric"><strong>${Number(s.searchable_sources || 0).toLocaleString()}</strong><span>searchable sources</span></div>
+		<div class="hero-metric"><strong>${compact(s.proof_files)}</strong><span>proof source files</span></div>
+		<div class="hero-metric"><strong>${compact(s.proof_source_lines)}</strong><span>lines of proof source</span></div>
+		<div class="hero-metric"><strong>${Number(s.proof_assistants || 0).toLocaleString()}</strong><span>proof assistants</span></div>`;
 });
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
 	corpus = data;
-	el("counts").textContent =
-		"Indexed sources include Mathlib, package repositories, standard libraries, and formalization projects in eleven prover families.";
+	sourcesByIndex = Object.fromEntries(data.sources.map(source => [source.index_id, source]));
+	el("counts").textContent = "Each search result is linked back to its source repository or library.";
 	fromHash();
 });
 </script>

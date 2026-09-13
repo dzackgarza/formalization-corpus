@@ -1,143 +1,131 @@
 {
   "definitions": {
-    "declaration_counts": "Not reported until prover-native parsing/elaboration is available across the corpus.",
-    "formal_lines": "Physical newline-delimited lines in those formal units.",
-    "formal_unit": "A prover-native theory/source file; ACL2 .sys generated rune reports and PVS .prf proof traces are excluded."
+    "declaration_counts": "Not reported until comparable declaration counts can be obtained from each proof assistant using its own parser or elaborator.",
+    "proof_file": "A source file written in the language of its proof assistant; ACL2 .sys generated rune reports and PVS .prf proof traces are excluded.",
+    "proof_source_lines": "Physical newline-delimited lines in those proof source files."
   },
   "ecosystems": [
     {
-      "formal_bytes": 2020088057,
-      "formal_content_sources": 119,
-      "formal_lines": 10533691,
-      "formal_units": 41758,
-      "indexed_sources": 126,
       "kind": "lean",
-      "label": "Lean (curated)",
-      "registered_sources": 126
+      "label": "Lean 4",
+      "proof_files": 136244,
+      "proof_source_bytes": 2866458566,
+      "proof_source_lines": 29331968,
+      "searchable_sources": 857,
+      "sources": 864,
+      "sources_with_proof_files": 848
     },
     {
-      "formal_bytes": 846370509,
-      "formal_content_sources": 729,
-      "formal_lines": 18798277,
-      "formal_units": 94486,
-      "indexed_sources": 731,
-      "kind": "reservoir",
-      "label": "Lean Reservoir",
-      "registered_sources": 738
-    },
-    {
-      "formal_bytes": 364120649,
-      "formal_content_sources": 20,
-      "formal_lines": 8023208,
-      "formal_units": 11349,
-      "indexed_sources": 20,
       "kind": "rocq",
       "label": "Rocq",
-      "registered_sources": 20
+      "proof_files": 11351,
+      "proof_source_bytes": 364202671,
+      "proof_source_lines": 8025415,
+      "searchable_sources": 20,
+      "sources": 20,
+      "sources_with_proof_files": 20
     },
     {
-      "formal_bytes": 58425266,
-      "formal_content_sources": 7,
-      "formal_lines": 1610957,
-      "formal_units": 7914,
-      "indexed_sources": 7,
       "kind": "agda",
       "label": "Agda",
-      "registered_sources": 7
+      "proof_files": 7919,
+      "proof_source_bytes": 58460397,
+      "proof_source_lines": 1611913,
+      "searchable_sources": 7,
+      "sources": 7,
+      "sources_with_proof_files": 7
     },
     {
-      "formal_bytes": 394714227,
-      "formal_content_sources": 3,
-      "formal_lines": 8381800,
-      "formal_units": 14355,
-      "indexed_sources": 3,
       "kind": "isabelle",
       "label": "Isabelle",
-      "registered_sources": 3
+      "proof_files": 14355,
+      "proof_source_bytes": 394714227,
+      "proof_source_lines": 8381800,
+      "searchable_sources": 3,
+      "sources": 3,
+      "sources_with_proof_files": 3
     },
     {
-      "formal_bytes": 158645698,
-      "formal_content_sources": 4,
-      "formal_lines": 3731876,
-      "formal_units": 2003,
-      "indexed_sources": 4,
       "kind": "hol-light",
       "label": "HOL Light",
-      "registered_sources": 4
+      "proof_files": 2003,
+      "proof_source_bytes": 158645698,
+      "proof_source_lines": 3731876,
+      "searchable_sources": 4,
+      "sources": 4,
+      "sources_with_proof_files": 4
     },
     {
-      "formal_bytes": 128156968,
-      "formal_content_sources": 4,
-      "formal_lines": 3238686,
-      "formal_units": 5133,
-      "indexed_sources": 4,
       "kind": "hol4",
       "label": "HOL4",
-      "registered_sources": 4
+      "proof_files": 5133,
+      "proof_source_bytes": 128156968,
+      "proof_source_lines": 3238686,
+      "searchable_sources": 4,
+      "sources": 4,
+      "sources_with_proof_files": 4
     },
     {
-      "formal_bytes": 122186856,
-      "formal_content_sources": 1,
-      "formal_lines": 3706915,
-      "formal_units": 1500,
-      "indexed_sources": 1,
       "kind": "mizar",
       "label": "Mizar",
-      "registered_sources": 1
+      "proof_files": 1500,
+      "proof_source_bytes": 122186856,
+      "proof_source_lines": 3706915,
+      "searchable_sources": 1,
+      "sources": 1,
+      "sources_with_proof_files": 1
     },
     {
-      "formal_bytes": 69064805,
-      "formal_content_sources": 2,
-      "formal_lines": 1223609,
-      "formal_units": 96,
-      "indexed_sources": 2,
       "kind": "metamath",
       "label": "Metamath",
-      "registered_sources": 2
+      "proof_files": 96,
+      "proof_source_bytes": 69064805,
+      "proof_source_lines": 1223609,
+      "searchable_sources": 2,
+      "sources": 2,
+      "sources_with_proof_files": 2
     },
     {
-      "formal_bytes": 342475323,
-      "formal_content_sources": 1,
-      "formal_lines": 7752240,
-      "formal_units": 17220,
-      "indexed_sources": 1,
       "kind": "acl2",
       "label": "ACL2",
-      "registered_sources": 1
+      "proof_files": 17220,
+      "proof_source_bytes": 342475323,
+      "proof_source_lines": 7752240,
+      "searchable_sources": 1,
+      "sources": 1,
+      "sources_with_proof_files": 1
     },
     {
-      "formal_bytes": 8215573,
-      "formal_content_sources": 2,
-      "formal_lines": 245760,
-      "formal_units": 2504,
-      "indexed_sources": 2,
       "kind": "pvs",
       "label": "PVS",
-      "registered_sources": 2
+      "proof_files": 2504,
+      "proof_source_bytes": 8215573,
+      "proof_source_lines": 245760,
+      "searchable_sources": 2,
+      "sources": 2,
+      "sources_with_proof_files": 2
     },
     {
-      "formal_bytes": 5562615,
-      "formal_content_sources": 1,
-      "formal_lines": 175724,
-      "formal_units": 1004,
-      "indexed_sources": 1,
       "kind": "twelf",
       "label": "Twelf / LF",
-      "registered_sources": 1
+      "proof_files": 1004,
+      "proof_source_bytes": 5562615,
+      "proof_source_lines": 175724,
+      "searchable_sources": 1,
+      "sources": 1,
+      "sources_with_proof_files": 1
     }
   ],
   "summary": {
-    "curated_formal_content_sources": 164,
-    "curated_sources": 171,
-    "formal_bytes": 4518026546,
-    "formal_content_sources": 893,
-    "formal_lines": 67422743,
-    "formal_units": 199322,
-    "indexed_sources": 902,
-    "prover_families": 11,
-    "registered_sources": 909
+    "proof_assistants": 11,
+    "proof_files": 199329,
+    "proof_source_bytes": 4518143699,
+    "proof_source_lines": 67425906,
+    "searchable_sources": 902,
+    "sources": 909,
+    "sources_with_proof_files": 893
   },
-  "unindexed_sources": [
+  "unsearchable_sources": [
     "Mintpath__p-neq-np-lean",
     "Xiyou-Wu__RiemannianGeometry",
     "jonwashburn__riemann",

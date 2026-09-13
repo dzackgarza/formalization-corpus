@@ -81,11 +81,11 @@
 </table>
 
 <p>
-	Source names are normally checkout names, <code>owner__repo</code> — as in
-	<code>leanprover-community__mathlib4</code>. Direct distributions such as
-	MML use a stable corpus name instead. The <a href="./corpus.html">source
-	list</a> is generated from the current manifests rather than hard-coding a
-	count here.
+	The raw <code>Repository</code> field is the search index's source identifier,
+	not a reader-facing repository name. For GitHub sources it normally has the
+	form <code>owner__repo</code>; the <a href="./corpus.html">Sources page</a>
+	maps those identifiers to canonical repository/library names and URLs.
+	Use the identifier with <code>repo:</code> when filtering the raw API.
 </p>
 
 <h2 id="options">Options</h2>

@@ -11,6 +11,7 @@ import json
 import html
 import pathlib
 import re
+from urllib.parse import urlparse
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "corpus.json"
@@ -18,7 +19,7 @@ SUBJECTS = ROOT / "site" / "subjects.html"
 
 MANIFESTS = (
     ("lean", "repos.tsv"),
-    ("reservoir", "reservoir.tsv"),
+    ("lean", "reservoir.tsv"),
     (None, "port-sources.tsv"),
 )
 
@@ -80,7 +81,7 @@ PAGE = """<!doctype html>
 <main class="shell page-main">
 	<header class="page-heading">
 			<h1>Subjects</h1>
-			<p class="lede">Registered sources organized by mathematical area.</p>
+			<p class="lede">Formalization sources organized by mathematical area.</p>
 	</header>
 	<div class="content-layout">
 		<aside class="toc" aria-label="Subject areas">
@@ -105,13 +106,27 @@ def subjects_page() -> None:
     """Render the registry as a page: what has been formalized, by subject."""
     import markdown
 
-    text = (ROOT / "SOURCES.md").read_text()
+    source_text = (ROOT / "SOURCES.md").read_text()
 
-    # The page is for readers looking for formal content. How the corpus is kept
-    # in step with the manifests belongs to the repository, not to them.
-    text = re.sub(r"^## Refreshing this registry.*?(?=^## )", "", text, flags=re.S | re.M)
-    body = text.split("\n## ", 1)
-    text = "## " + body[1] if len(body) > 1 else text
+    # This page is a mathematical subject index, not a projection of the
+    # repository's maintenance taxonomy.  Keep only sections whose headings
+    # are mathematical subject areas.  Discovery indexes, package registries,
+    # proof-assistant groupings, and maintainer workflow remain in SOURCES.md.
+    public_subjects = {
+        "Category theory, higher structures, type-theory semantics",
+        "Algebra, number theory, algebraic geometry",
+        "Quadratic forms, lattices, sphere packing",
+        "Analysis, probability, geometry, dynamics",
+        "Combinatorics, discrete mathematics, logic, foundations",
+        "Computational and applied mathematics",
+    }
+    sections = re.split(r"(?m)^## ", source_text)
+    selected = []
+    for section in sections[1:]:
+        heading, _, body = section.partition("\n")
+        if heading.strip() in public_subjects:
+            selected.append(f"## {heading}\n{body}")
+    text = "\n".join(selected)
 
     md = markdown.Markdown(extensions=["tables", "attr_list", "toc"])
     rendered = md.convert(text)
@@ -125,26 +140,56 @@ def subjects_page() -> None:
     print(f"{SUBJECTS}: {len(rendered)} bytes")
 
 
+def public_name(url: str, directory: str, transport: str) -> str:
+    """Reader-facing source identity; never expose checkout/index naming."""
+    parsed = urlparse(url)
+    path = parsed.path.strip("/").removesuffix(".git")
+    if parsed.netloc in {"github.com", "www.github.com"} and path:
+        return path
+    if "gitlab" in parsed.netloc and path:
+        return path
+    if transport == "web-dir" and "mizar" in parsed.netloc.lower():
+        return "Mizar Mathematical Library"
+    name = pathlib.PurePosixPath(directory).name
+    return name.replace("__", "/")
+
+
 def main() -> None:
     subjects_page()
     what = descriptions()
-    repos = {}
+    sources = []
     for default_kind, manifest in MANIFESTS:
         for url, directory, declared_kind, transport in rows(manifest):
-            # Zoekt names a shard by the checkout's basename, which is how a
-            # search result identifies its source.
-            name = pathlib.PurePosixPath(directory).name
-            kind = declared_kind or default_kind
-            repos[name] = {"url": url, "kind": kind, "transport": transport}
-            if name in what:
-                repos[name]["what"] = what[name]
+            # The index identifier follows the checkout name because Zoekt uses
+            # it in raw search responses.  It is search metadata, not the
+            # source's public identity.
+            index_id = pathlib.PurePosixPath(directory).name
+            proof_assistant = declared_kind or default_kind
+            source = {
+                "index_id": index_id,
+                "name": public_name(url, directory, transport),
+                "url": url,
+                "proof_assistant": proof_assistant,
+            }
+            if index_id in what:
+                source["what"] = what[index_id]
+            sources.append(source)
 
+    sources.sort(key=lambda source: source["name"].lower())
     counts: dict[str, int] = {}
-    for repo in repos.values():
-        counts[repo["kind"]] = counts.get(repo["kind"], 0) + 1
+    for source in sources:
+        key = source["proof_assistant"]
+        counts[key] = counts.get(key, 0) + 1
     OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(json.dumps({"repos": repos, "counts": counts}, indent=0, sort_keys=True))
-    print(f"{OUT}: {len(repos)} sources {counts}")
+    OUT.write_text(
+        json.dumps(
+            {"sources": sources, "sources_by_proof_assistant": counts},
+            indent=0,
+            sort_keys=True,
+        )
+    )
+    print(f"{OUT}: {len(sources)} sources {counts}")
+
 
 
 if __name__ == "__main__":

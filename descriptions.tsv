@@ -201,7 +201,7 @@ formal-applied-math__formal-mathfin	Mathematical finance: Black–Scholes, Itô 
 formal-land__rocq-of-rust	Formal Rust semantics and libraries in Rocq: translated THIR, Rust types/traits, integer operations, control flow and simulation layers used to verify real Rust code
 FormalizedFormalLogic__Arithmetization	Formalization of Arithmetization of Mathematics/Metamathematics
 FormalizedFormalLogic__Foundation	Mathematical logic: completeness, incompleteness, provability logic
-FormalizedFormalLogic__Incompleteness	Incompleteness theorems (in Lean Pool); with FormalizedFormalLogic/ProvabilityLogic
+FormalizedFormalLogic__Incompleteness	Incompleteness theorems; with FormalizedFormalLogic/ProvabilityLogic
 FormalizedFormalLogic__ProvabilityLogic	Lean 4 Mechanization about Provability Logics
 formalproofs__MDPLib	Formalization of MDP Theory
 fplaunchpad__sal	Multimodal verification of Replicated Data Types in Lean
@@ -276,7 +276,7 @@ igrep__lean-workshop	SF.lean勉強会でigrepが書いたコードの記録
 imbrem__debruijn-ssa	A formalization of SSA in Lean 4
 imbrem__discretion	Utilities for formalizing programming languages in Lean 4, along with other tidbits
 ImperialCollegeLondon__condensed-sets	Early condensed mathematics (Lean 3)
-ImperialCollegeLondon__FLT	Ongoing Fermat's Last Theorem formalization; substantial reusable commutative algebra, dimension theory, and number theory beyond the headline target
+ImperialCollegeLondon__FLT	Ongoing Fermat's Last Theorem formalization with substantial commutative algebra, dimension theory, and number theory
 ImperialCollegeLondon__formalising-mathematics-2024	Formalising Mathematics; a course for undergraduate mathematicians. Ran between January and March 2024.
 ImperialCollegeLondon__IUM	Lean formalisation of parts of Imperial College London's Introduction to University Mathematics course
 ImperialCollegeLondon__LAGinLean2024	Questions related to Imperial College's Linear Algebra and Groups course running in November and December 2024.
@@ -319,9 +319,9 @@ JLimperg__regensburg-itp-school-2023	Materials for my lecture at the 2023 Intern
 JobPetrovcic__ArtinWedderburn	Artin–Wedderburn theorem
 joehendrix__lean-crypto	Cryptographic routines for the Lean 4 language
 JokerXin2025__Calculus_21	An Universe for Mitar —— Classical Calculus
-jonhanke__quadratic_forms_in_lean	Skeleton only: the library files carry reference comments (Cassels) and a few thin definitions, no theorems; no LICENSE file
+jonhanke__quadratic_forms_in_lean	A small quadratic-forms skeleton with Cassels references and a few definitions, but no theorems; the repository has no LICENSE file
 jonwashburn__riemann	{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository","status":"404"}
-josephmckinsey__Flean	Floating-point numbers, replacing Mathlib.Data.FP (in Lean Pool); with Beneficial-AI-Foundation/FloatSpec
+josephmckinsey__Flean	Floating-point numbers, replacing Mathlib.Data.FP; with Beneficial-AI-Foundation/FloatSpec
 JOSHCLUNE__LeanHammer	LeanHammer is an automated reasoning tool for Lean that brings together multiple proof search and reconstruction techniques and combines them into one tool.
 JoshuaPurtell__lithe	simple web service in lean4
 jrh13__hol-light	HOL Light and its mathematical library: analysis, topology, geometry, algebra, number theory and proof infrastructure
@@ -397,7 +397,7 @@ leanprover-community__LeanProject	A template for blueprint-driven formalization 
 leanprover-community__LeanSearchClient	Syntax for searching with natural language from Lean, using https://leansearch.net/ (may extend to other services)
 leanprover-community__llm	Interfacing with Large Language Models (remote and local) from Lean.
 leanprover-community__mathematics_in_lean	Mathematics in Lean tutorial
-leanprover-community__mathlib4	Algebra, number theory, topology, analysis, measure theory, geometry and combinatorics on one typeclass hierarchy; 256,512 declarations, and the first place to search
+leanprover-community__mathlib4	Algebra, number theory, topology, analysis, measure theory, geometry and combinatorics on one typeclass hierarchy; 256,512 declarations
 leanprover-community__mathport	Mathport is a tool for porting Lean3 projects to Lean4
 leanprover-community__NNG4	Natural Number Game
 leanprover-community__physlib	Physics results in Lean; active, over 700 stars
@@ -478,7 +478,7 @@ marcusrossel__lean-egg	A deprecated equality saturation tactic for Lean based on
 marcusrossel__lean-snakebird	An implementation of Snakebird in Lean.
 marcusrossel__verified-compiler	A toy example of a verified compiler.
 mariainesdff__HassePrinciple	Hilbert symbols and the Hasse–Minkowski invariant over general fields (Women in Numbers 7)
-mariainesdff__LocalClassFieldTheory	Local fields, toward local class field theory
+mariainesdff__LocalClassFieldTheory	Local fields toward local class field theory, including DVR/uniformizer APIs for completions at height-one primes
 mariovagomarzal__higher_category_theory	Higher-order categories after Cosme Llópez
 marozols__clifford-project	Lean formalization of the structure theorem for the single-qudit Clifford group
 martinescardo__TypeTopology	Topology and logic from the univalent point of view, in Agda
@@ -523,7 +523,7 @@ mortarsanjaya__IMOSLLean4	Formalization of IMO shortlist problems in Lean 4
 mrdouglasny__hille-yosida	Lean 4 formalization of strongly continuous semigroups, Hille-Yosida theorem, and BCR Bochner semigroup-to-group extension
 mrdouglasny__lgt	Lattice Gauge Theory in Lean 4 — toward the 2D Yang-Mills mass gap
 mrdouglasny__markov-semigroups	Markov semigroups, functional inequalities, and convergence to equilibrium in Lean 4
-mrdouglasny__OSforGFF	Gaussian free field in d=4 and the Osterwalder–Schrader axioms (in Lean Pool)
+mrdouglasny__OSforGFF	Gaussian free field in d=4 and the Osterwalder–Schrader axioms
 mrdouglasny__pphi2	Construction of phi^4_2 quantum field theory in Lean 4
 mrdouglasny__seiberg-witten	The Seiberg-Witten solution of N=2 SU(2) super-Yang-Mills, formalized in Lean 4: physics as named postulates, machine-checked consequences, audited assumptions
 mrdouglasny__spectral-positivity	Perron-Frobenius, Jentzsch theorem, and matrix/operator positivity in Lean 4
@@ -668,7 +668,7 @@ siddhartha-gadgil__Polylean	Group extensions and torsion-freeness with computati
 siddhartha-gadgil__proofs-and-programs-2023	Code and source for website for the course "Proofs and Programs", January 2023, Indian Institute of Science
 siddhartha-gadgil__Saturn	Experiments with SAT solvers with proofs in Lean 4
 singerng__steinberg-formalization	Steinberg groups
-sinhp__displayed_categories	Displayed categories — the algebraic presentation of structure over a base; iso-level fibers (EFiber), cartesian lifts, Street fibrations (stale; no LICENSE file — reference only, do not copy)
+sinhp__displayed_categories	Displayed categories: iso-level fibers (EFiber), cartesian lifts, and Street fibrations
 sinhp__HoTTLean	Groupoid and natural models of HoTT; semantics of type theory
 sinhp__LeanFibredCategories	Fibred categories (stale; superseded by Mathlib's FiberedCategory tree and displayed_categories)
 sinhp__Poly	Polynomial functors and locally cartesian closed categories
@@ -706,7 +706,7 @@ teorth__pfr	Polynomial Freiman–Ruzsa conjecture and related additive combinato
 teorth__sendov	Sendov's conjecture work
 Th0rgal__morpho-verity	Formal verification of Morpho Blue lending protocol using Verity (Lean 4)
 the1lab__1lab	Cross-linked HoTT reference in cubical Agda
-thefundamentaltheor3m__Sphere-Packing-Lean	Viazovska's dimension-8 sphere packing; E8 lattice
+thefundamentaltheor3m__Sphere-Packing-Lean	Viazovska's dimension-8 sphere-packing theorem and the E8 lattice
 themathqueen__monlib4	Formalising non-commutative graph theory in Lean
 thery__coqprime	Number theory, elliptic curves, modular arithmetic, and primality certification
 thery__Selinger	Laurent Théry's formalization of Selinger's quantum-gate synthesis proof, combining number-theoretic and linear-algebraic definitions over Mathematical Components

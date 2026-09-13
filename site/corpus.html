@@ -26,23 +26,23 @@
 <main class="shell page-main">
 	<header class="page-heading">
 			<h1>Sources</h1>
-			<p class="lede">Registered formalization libraries and projects. Counts are computed from hydrated source files and the local Zoekt index.</p>
+			<p class="lede">Formalization sources included in the searchable corpus. Counts reflect proof-assistant source files currently indexed for search.</p>
 	</header>
 
 	<section aria-labelledby="reach-title">
 			<h2 id="reach-title">Coverage</h2>
 		<div class="metric-grid" id="reach-cards" aria-live="polite"></div>
-			<p class="note">A formal source file is a prover-native source or theory file. Generated ACL2 <code>.sys</code> rune reports and PVS <code>.prf</code> proof traces are excluded. Definition and theorem totals are omitted because they are not yet available from prover-native parsers or elaborated environments across the corpus.</p>
+			<p class="note">A proof source file is a file written in the source language of its proof assistant. Generated ACL2 <code>.sys</code> rune reports and PVS <code>.prf</code> proof traces are excluded. Definition and theorem totals are omitted because comparable declaration counts are not yet available across all supported proof assistants.</p>
 	</section>
 
 	<section aria-labelledby="ecosystem-title">
-			<h2 id="ecosystem-title">By prover</h2>
+			<h2 id="ecosystem-title">By proof assistant</h2>
 		<div class="table-wrap"><table id="ecosystems" class="metrics-table"></table></div>
 	</section>
 
 	<section aria-labelledby="source-browser-title">
 		<h2 id="source-browser-title">Source browser</h2>
-			<p class="muted">Filter by source name or description. Sources are grouped by prover; Lean Reservoir packages are listed separately from curated Lean projects.</p>
+			<p class="muted">Filter by source name or mathematical description. Sources are grouped by proof assistant.</p>
 		<div class="source-browser" id="table"></div>
 	</section>
 </main>
@@ -58,7 +58,6 @@
 <script>
 const KINDS = {
 	lean: "Lean 4",
-	reservoir: "Lean package registry",
 	rocq: "Rocq",
 	agda: "Agda",
 	isabelle: "Isabelle",
@@ -70,43 +69,43 @@ const KINDS = {
 	pvs: "PVS",
 	twelf: "Twelf / LF",
 };
-const ORDER = ["lean", "rocq", "agda", "isabelle", "hol-light", "hol4", "mizar", "metamath", "acl2", "pvs", "twelf", "reservoir"];
+const ORDER = ["lean", "rocq", "agda", "isabelle", "hol-light", "hol4", "mizar", "metamath", "acl2", "pvs", "twelf"];
 const fmt = n => Number(n || 0).toLocaleString("en-US");
 
 fetch("./metrics.json").then(r => r.json()).then(data => {
 	const s = data.summary;
 	document.getElementById("reach-cards").innerHTML = `
-		<div class="metric-card"><div class="value">${fmt(s.indexed_sources)} / ${fmt(s.registered_sources)}</div><div class="label">indexed sources</div></div>
-			<div class="metric-card"><div class="value">${fmt(s.formal_content_sources)}</div><div class="label">sources with formal files</div></div>
-			<div class="metric-card"><div class="value">${fmt(s.formal_units)}</div><div class="label">formal source files</div></div>
-		<div class="metric-card"><div class="value">${fmt(s.prover_families)}</div><div class="label">prover families</div></div>`;
+		<div class="metric-card"><div class="value">${fmt(s.searchable_sources)} / ${fmt(s.sources)}</div><div class="label">searchable sources</div></div>
+			<div class="metric-card"><div class="value">${fmt(s.sources_with_proof_files)}</div><div class="label">sources with proof files</div></div>
+			<div class="metric-card"><div class="value">${fmt(s.proof_files)}</div><div class="label">proof source files</div></div>
+		<div class="metric-card"><div class="value">${fmt(s.proof_assistants)}</div><div class="label">proof assistants</div></div>`;
 
 	const rows = data.ecosystems.map(r => `
-		<tr><td>${r.label}</td><td>${fmt(r.indexed_sources)}</td>
-		<td>${fmt(r.formal_content_sources)}</td><td>${fmt(r.formal_units)}</td>
-		<td>${fmt(r.formal_lines)}</td></tr>`).join("");
+		<tr><td>${r.label}</td><td>${fmt(r.searchable_sources)}</td>
+		<td>${fmt(r.sources_with_proof_files)}</td><td>${fmt(r.proof_files)}</td>
+		<td>${fmt(r.proof_source_lines)}</td></tr>`).join("");
 	const total = data.summary;
 	document.getElementById("ecosystems").innerHTML = `
-			<thead><tr><th>Prover</th><th>Indexed sources</th><th>With formal files</th>
-			<th>Formal files</th><th>Formal lines</th></tr></thead>
+			<thead><tr><th>Proof assistant</th><th>Searchable sources</th><th>With proof files</th>
+			<th>Proof files</th><th>Lines of proof source</th></tr></thead>
 		<tbody>${rows}
-		<tr><th>Total</th><th>${fmt(total.indexed_sources)}</th>
-		<th>${fmt(total.formal_content_sources)}</th><th>${fmt(total.formal_units)}</th>
-		<th>${fmt(total.formal_lines)}</th></tr></tbody>`;
+		<tr><th>Total</th><th>${fmt(total.searchable_sources)}</th>
+		<th>${fmt(total.sources_with_proof_files)}</th><th>${fmt(total.proof_files)}</th>
+		<th>${fmt(total.proof_source_lines)}</th></tr></tbody>`;
 });
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
-	const rows = Object.entries(data.repos).map(([name, r]) => ({name, ...r}));
+	const rows = data.sources;
 
 	new Tabulator("#table", {
 			data: rows,
 			layout: "fitColumns",
 			height: "70vh",
-			groupBy: "kind",
+			groupBy: "proof_assistant",
 			// Groups otherwise appear in the order their first row happens to fall.
 			groupValues: [ORDER],
-			groupHeader: (kind, count) => `${KINDS[kind] || kind} <span>(${count})</span>`,
-			groupStartOpen: kind => kind !== "reservoir",
+			groupHeader: (proofAssistant, count) => `${KINDS[proofAssistant] || proofAssistant} <span>(${count})</span>`,
+			groupStartOpen: true,
 			initialSort: [{column: "name", dir: "asc"}],
 			columns: [
 				{title: "Source", field: "name", widthGrow: 2, headerFilter: "input",
