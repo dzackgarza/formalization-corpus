@@ -1,0 +1,28 @@
+[Unit]
+Description=Zoekt backend for the Formalization Corpus
+After=network.target
+
+[Service]
+Type=simple
+User=zack
+Group=zack
+# Zoekt is private. FastAPI owns the public HTTP contract on 127.0.0.1:6070.
+ExecStart=/home/zack/lean-corpus/bin/zoekt-webserver.stock \
+    -index /home/zack/lean-corpus/index \
+    -listen 127.0.0.1:6071 \
+    -html=false \
+    -rpc
+Restart=on-failure
+RestartSec=5
+
+MemoryMax=1200M
+MemoryHigh=900M
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadOnlyPaths=/home/zack/lean-corpus
+
+[Install]
+WantedBy=multi-user.target

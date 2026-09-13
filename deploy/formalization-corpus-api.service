@@ -1,0 +1,35 @@
+[Unit]
+Description=Formalization Corpus public API
+Requires=zoekt-webserver.service
+After=network.target zoekt-webserver.service
+
+[Service]
+Type=simple
+User=zack
+Group=zack
+WorkingDirectory=/home/zack/lean-corpus/api
+Environment=ZOEKT_BACKEND_URL=http://127.0.0.1:6071
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/home/zack/lean-corpus/api/.venv/bin/uvicorn \
+    formalization_api.app:app \
+    --host 127.0.0.1 \
+    --port 6070 \
+    --workers 1 \
+    --proxy-headers \
+    --forwarded-allow-ips 127.0.0.1
+Restart=always
+RestartSec=3
+
+# The response cache is capped at 64 MiB; leave headroom for Python, schemas,
+# and concurrent in-flight responses while keeping this sidecar small.
+MemoryHigh=144M
+MemoryMax=192M
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadOnlyPaths=/home/zack/lean-corpus
+
+[Install]
+WantedBy=multi-user.target

@@ -35,7 +35,7 @@ register:
 build-tools:
     cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt-index ./cmd/zoekt-index
     cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt ./cmd/zoekt
-    ./scripts/build-zoekt-webserver.sh
+    cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt-webserver ./cmd/zoekt-webserver
     cd tools/Julian__tree-sitter-lean && tree-sitter build --output ../../.ast-grep/lean.so
 
 # Incrementally index every formalization source.
@@ -83,7 +83,14 @@ host := "zack@159.223.102.204"
 publish: metrics
     rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
     python scripts/check-published.py
+    ssh {{host}} "pkill -TERM -u zack -f '/home/zack/lean-corpus/api/.venv/bin/uvicorn formalization_api.app:app' || true"
     @echo "https://formalization-corpus.dzackgarza.com"
+
+# Deploy the public FastAPI adapter and stock Zoekt backend binary. The first
+# migration requires one root systemd activation; later adapter deploys restart
+# the user-owned uvicorn process through systemd's Restart=always policy.
+deploy-api:
+    ./scripts/deploy-api.sh
 
 # Check static source-table invariants and cross-prover documentation.
 check-sources:
@@ -134,6 +141,7 @@ test-commit:
     printf 'def formedModuleAnswer : Nat := 42\n' | ast-grep run --config sgconfig.yml --lang lean --pattern 'def $NAME : $TYPE := $VALUE' --stdin --json=compact | jq -e 'length == 1 and .[0].text == "def formedModuleAnswer : Nat := 42"' >/dev/null
     python evaluation/search/evaluate.py --validate-only
     python evaluation/search/test_evaluate.py
+    cd server && uv run --frozen pytest -q
 
 # A push also refreshes the exact static tree served at *.localhost.
 test-push: test-commit preview

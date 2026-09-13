@@ -58,6 +58,7 @@ just test-search-quality # compare retrieval scores with the committed same-inde
 just search "Nat.Prime"                  # Zoekt text search
 just ast "def $NAME : $TYPE := $VALUE"   # Lean syntax-tree pattern search
 just publish            # ship the index to the search host
+just deploy-api         # deploy FastAPI adapter + stock Zoekt backend binary
 ```
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the source-inventory invariant,
@@ -75,18 +76,19 @@ The work is split by what each side can host:
 | Where | What it serves | Why there |
 | --- | --- | --- |
 | GitHub Pages (`site/`) | The page, the query UI, the source table | Static, versioned with the source metadata, free to serve |
-| `formalization-corpus.dzackgarza.com` | `POST /api/search` only | The multi-gigabyte Zoekt index cannot live in a Pages site |
+| `formalization-corpus.dzackgarza.com` | Search API and OpenAPI contract | The multi-gigabyte Zoekt index cannot live in a Pages site |
 
 The page holds no index. It posts a zoekt query to the search host and renders
 what comes back, so nothing but the answer crosses the wire. `site/corpus.json`
 is generated from the manifests by `scripts/build-site.py`, which is how a hit
 in `leanprover__hex-lll` links back to its file on GitHub.
 
-The search host carries the index alone — no checkouts, no Go toolchain, no
-indexing work. `just index` builds locally and `just publish` rsyncs `.zoekt/`;
-the server watches its shard directory, so replaced shards load without a
-restart. The site is therefore exactly as current as the last local source sync,
-index build, and publish.
+The search host carries the index alone — no source checkouts and no indexing
+work. `just index` builds locally and `just publish` rsyncs `.zoekt/`; Zoekt
+watches its shard directory, so replaced shards load without a restart. The
+public HTTP boundary is a small FastAPI/Pydantic adapter on `127.0.0.1:6070`.
+An unmodified `zoekt-webserver` listens privately on `127.0.0.1:6071` and is not
+exposed by nginx.
 
 For local visual review, `just preview` deploys the same `site/` tree that GitHub
 Pages serves to `/var/www/static-sites/formalization-corpus-preview/`. The
@@ -95,25 +97,29 @@ machine's existing nginx `*.localhost` static-site vhost exposes that copy at
 build, or additional TCP port is involved. The local and GitHub Pages frontends
 are therefore the same files; access to the separate search API is a CORS concern
 of that API, not a reason to fork the frontend.
-The binary is cross-compiled from `tools/sourcegraph__zoekt`:
+The Zoekt binary is built unmodified from `tools/sourcegraph__zoekt`:
 
 ```sh
 GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o zoekt-webserver ./cmd/zoekt-webserver
 ```
 
-It runs with `-html=false -rpc`, so the host answers queries and serves no
-pages, and with `-cors_origin '*'` so the same static frontend can query it from
-GitHub Pages or the localhost deployment. `-rpc` is what registers
-`/api/`: without it the process is healthy and every query is a 404.
+It runs with `-html=false -rpc` on the private backend port. FastAPI proxies
+`/api/search` and `/api/list`, validates the public request models, generates
+`/api/openapi.json` from those models, and supplies permissive CORS for the
+public read-only API. Search responses use a bounded in-process LRU/TTL cache:
+5 minute TTL, 64 MiB total, 8 MiB per entry, 256 entries maximum. Concurrent
+identical cache misses are coalesced so only one request reaches Zoekt.
 
 ## Querying it
 
-The JSON API is open — no key, no account. The running service publishes its
+The JSON API is open — no key, no account. FastAPI publishes its
 OpenAPI 3.1 contract at
 [`/api/openapi.json`](https://formalization-corpus.dzackgarza.com/api/openapi.json).
 The [API page](https://dzackgarza.github.io/formalization-corpus/api.html) renders
-that live contract with Scalar; request/response schemas, examples and client
-snippets therefore come from the API rather than a second hand-maintained copy.
+that live contract with Scalar; request/response schemas and client snippets
+therefore come from the API rather than a second hand-maintained copy. See the
+[For agents](https://dzackgarza.github.io/formalization-corpus/agents.html) page
+for a compact agent prompt and optional OpenAPI-to-MCP setup.
 The short version:
 
 ```sh

@@ -93,10 +93,15 @@ site or starting a second backend.
 
 **Test the deployed URL, not a tunnel.** A page published on GitHub Pages calls
 the production endpoint. Verifying it against `localhost` through an ssh
-tunnel, with a hand-started server and a matching `-cors_origin`, tests a
-configuration that will never exist again. `curl -X POST
+tunnel or a hand-started adapter tests a configuration that will never exist
+again. `curl -X POST
 https://<host>/api/search` takes two seconds and is the only check that means
 anything.
+
+**Keep Zoekt private and unmodified.** Public HTTP concerns belong in the
+FastAPI adapter on `127.0.0.1:6070`; stock `zoekt-webserver` listens only on
+`127.0.0.1:6071`. OpenAPI generation, Pydantic validation, CORS, caching, and
+request coalescing must not be patched into the vendored Zoekt checkout.
 
 **Cloudflare wildcard DNS hides the missing vhost.** Every `*.dzackgarza.com`
 name already resolves, so a subdomain with no nginx server block still answers
