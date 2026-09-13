@@ -27,6 +27,7 @@
   --button-text: #000000;
   --danger: #9f3025;
   --mark: #f3e7a6;
+  --mark-ink: #111111;
   --shadow: none;
   --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
@@ -55,6 +56,7 @@
     --button-text: #ffffff;
     --danger: #d98d83;
     --mark: #e3b171;
+    --mark-ink: #111111;
     --shadow: none;
   }
 }
@@ -122,8 +124,12 @@ mark {
   padding: 0 0.08em;
   border-radius: 2px;
   background: var(--mark);
-  color: inherit;
+  color: var(--mark-ink);
 }
+
+/* Shiki writes token colors as inline styles. A search hit must override those
+ * colors or identifiers/comments can become unreadable against the mark. */
+mark * { color: var(--mark-ink) !important; }
 
 .shell {
   width: min(calc(100% - 2.5rem), var(--shell));
