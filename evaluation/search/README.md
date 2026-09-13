@@ -172,3 +172,80 @@ queries have zero results under the strict compiler.  The two synonym-tagged
 queries have source Hit@10 = 1.0 but owner Hit@10 = 0.0: the corpus/source is
 being found, but the useful file is not being ranked into view.  These are
 predeclared targets for future query and ranking experiments.
+
+## Relevance-judgment pooling
+
+The initial qrels are intentionally high-confidence but incomplete.  Absolute
+ranking metrics can therefore underestimate a retriever that discovers a useful
+file which has not yet been judged.  Follow the standard IR pooling workflow
+before drawing strong conclusions from a new family of retrievers:
+
+1. run several materially different retrieval systems on the same queries and
+   index;
+2. take the union of their top results at a fixed depth;
+3. review those candidates independently of which system returned them;
+4. add new relevance judgments in a **gold-only commit**;
+5. regenerate the frozen baseline against the expanded qrels before the next
+   retrieval-code comparison.
+
+`build_pool.py` produces that review set without assigning relevance to
+unjudged files.  The initial depth-10 pool combines the frozen frontend baseline,
+normalized path/content lexical retrieval, and frozen multi-query RRF.  It has
+330 unique query/file candidates: 23 already judged and 307 explicitly marked
+unjudged.  Unjudged does not mean irrelevant.
+
+This follows the TREC test-collection model: pool top documents from diverse
+runs, judge the pool, and keep qrels distinct from run output.  It also avoids a
+known failure mode in neural retrieval evaluation where a new method appears
+worse simply because many of its top results were never judged.
+
+## Research directions after the lexical baseline
+
+The measured experiments narrow the next branches:
+
+- **Fielded lexical retrieval first.** Module/file paths are unusually valuable
+  in formal libraries.  Restoring path evidence plus conservative query
+  normalization raises owner Hit@10 from 0.136 to 0.500 on the initial qrels.
+- **Semantic first-stage retrieval, not reranking alone.** For normalized
+  path/content retrieval, owner Hit is identical at depths 20, 50, 100, and
+  150 (0.545).  The missing owner files are absent from the lexical candidate
+  set, so no reranker can recover them.  Dense retrieval, learned sparse
+  expansion (for example SPLADE), or another independent first-stage signal is
+  required for that residue.
+- **Hybrid fusion.** Exact formal identifiers and semantic paraphrases are
+  complementary.  Combine independent lexical/dense runs by a rank-based method
+  such as Reciprocal Rank Fusion before learning score calibration.
+- **Hierarchical retrieval.** Normalized lexical retrieval already has source
+  Hit@5 = 0.955 while owner Hit@10 = 0.500.  This supports testing a cheap
+  source-first stage followed by stronger file/chunk retrieval within a handful
+  of sources, rather than assuming every request needs a global dense scan.
+- **Deterministic chunk context before generated context.** For file/chunk
+  embeddings, include canonical source name, proof assistant, module path,
+  namespace/section and declaration names.  Then measure whether LLM-generated
+  chunk context adds anything beyond that deterministic mathematical context.
+- **Late interaction is a separate experiment.** ColBERT-style/Jina
+  multi-vector retrieval retains token-level evidence that a single dense
+  vector may blur.  It should be compared as its own first-stage run, not
+  silently substituted for dense embeddings.
+- **Reranking only after candidate recall is high.** Once a hybrid first stage
+  puts owner files into (say) the top 100--200 reliably, compare a cross-encoder
+  or LLM reranker on owner Hit@10/nDCG@10, with latency and API cost recorded.
+- **User-intent data should grow the benchmark.** Lean Finder reports gains from
+  training/evaluating against real mathematician intents rather than only
+  informalized theorem statements.  Real search failures from this site should
+  therefore become future gold queries, with a held-out partition once the set
+  is large enough for repeated tuning to overfit it.
+
+Additional references:
+
+- Anthropic, *Contextual Retrieval*:
+  https://www.anthropic.com/engineering/contextual-retrieval
+- TREC 2025 overview of relevance judgments and pooling:
+  https://trec.nist.gov/pubs/trec33/papers/overview_33.pdf
+- Lu et al., *Lean Finder: Semantic Search for Mathlib That Understands User
+  Intents*: https://arxiv.org/abs/2510.15940
+- Formal et al., *SPLADE v2*: https://arxiv.org/abs/2109.10086
+- Jina Embeddings retrieval/late-interaction documentation:
+  https://jina.ai/en-US/embeddings/
+- Google Gemini Embeddings documentation (including code-retrieval task
+  formatting): https://ai.google.dev/gemini-api/docs/embeddings

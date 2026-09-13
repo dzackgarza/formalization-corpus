@@ -109,11 +109,57 @@ def literal_terms(text: str) -> list[str]:
     return terms
 
 
+QUERY_STOPWORDS = {
+    "a", "an", "the", "is", "are", "was", "were", "be", "been", "being",
+    "do", "does", "did", "have", "has", "had", "already", "formalized",
+    "formalised", "formalization", "formalisation", "formal", "proof", "definition",
+    "theorem", "existence", "construction", "of", "for", "in", "on", "at", "to",
+    "from", "via", "with", "and", "or", "about", "near",
+}
+
+PROOF_ASSISTANT_FILTERS = {
+    "lean": r"\.lean$",
+    "rocq": r"\.v$",
+    "coq": r"\.v$",
+    "agda": r"\.(agda|lagda(\.(md|rst|tex))?)$",
+    "isabelle": r"\.thy$",
+    "mizar": r"\.miz$",
+    "metamath": r"\.(mm|mm0|mm1)$",
+    "acl2": r"\.(lisp|lsp|acl2)$",
+    "pvs": r"\.pvs$",
+    "twelf": r"\.elf$",
+}
+
+
+def normalized_query_terms(text: str) -> tuple[list[str], str | None]:
+    """Conservative query normalization for experiments, not production behavior."""
+    words = re.findall(r"[\w⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉ℚℤℝℂ∞+-]+", text, flags=re.UNICODE)
+    proof_filter = None
+    terms: list[str] = []
+    for word in words:
+        lower = word.casefold()
+        if lower in PROOF_ASSISTANT_FILTERS:
+            proof_filter = PROOF_ASSISTANT_FILTERS[lower]
+            continue
+        if lower in QUERY_STOPWORDS:
+            continue
+        terms.append(word)
+    return terms, proof_filter
+
+
 def compile_query(text: str, variant: str) -> str:
-    if variant != "frontend_lexical_v1":
+    if variant == "frontend_lexical_v1":
+        parts = literal_terms(text)
+        parts.append(f"file:{FORMAL_FILES}")
+    elif variant in {"normalized_content_v1", "normalized_path_content_v1"}:
+        terms, proof_filter = normalized_query_terms(text)
+        if variant == "normalized_content_v1":
+            parts = [f"content:{quoted_pattern(regex_escape(term))}" for term in terms]
+        else:
+            parts = [quoted_pattern(regex_escape(term)) for term in terms]
+        parts.append(f"file:{proof_filter or FORMAL_FILES}")
+    else:
         raise ValueError(f"unknown retrieval variant: {variant}")
-    parts = literal_terms(text)
-    parts.append(f"file:{FORMAL_FILES}")
     parts.append(r"-file:(^|/)\.sys/")
     parts.append("case:no")
     return " ".join(parts)

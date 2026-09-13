@@ -1,0 +1,136 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "prompt_template": "You generate lexical search formulations for a corpus of formalized mathematics source files across Lean, Rocq, Agda, Isabelle, HOL, Mizar, and related systems.\n\nGiven a mathematician's query, return JSON only: an array of 3 to 5 SHORT search formulations. Each formulation should be a mathematical noun phrase, not a question. Preserve technical proper names. Add standard mathematical synonyms or alternate theorem names when appropriate (for example canonical form / normal form, classification / structure theorem). Remove conversational filler and generic intent words such as \"formalized\", \"definition\", \"proof\", or \"does Lean have\". Do not answer the mathematical question and do not name repositories or files.\n\nQuery: {query}",
+  "prompt_version": 1,
+  "queries": {
+    "brownian-motion-construction": [
+      "Brownian motion construction",
+      "Wiener process existence",
+      "Gaussian process path continuity",
+      "Kolmogorov extension theorem"
+    ],
+    "bruhat-tits-tree": [
+      "Bruhat-Tits tree",
+      "Bruhat-Tits building",
+      "tree of a p-adic group",
+      "building of general linear group"
+    ],
+    "carleson-theorem": [
+      "Carleson theorem",
+      "Carleson Hunt theorem",
+      "pointwise convergence of Fourier series",
+      "Carleson convergence theorem"
+    ],
+    "dyadic-hilbert-symbol": [
+      "dyadic Hilbert symbol over Q2",
+      "Hilbert symbol 2-adic field",
+      "local Hilbert symbol p-adic",
+      "quadratic Hilbert symbol Qp"
+    ],
+    "feit-thompson-odd-order": [
+      "Feit Thompson theorem",
+      "odd order theorem",
+      "solvability of groups of odd order",
+      "Feit Thompson odd order theorem"
+    ],
+    "fg-abelian-structure-theorem": [
+      "classification of finitely generated abelian groups",
+      "structure theorem for finitely generated abelian groups",
+      "fundamental theorem of finitely generated abelian groups"
+    ],
+    "fundamental-group-covering-space": [
+      "fundamental group of covering space",
+      "covering space homotopy lifting",
+      "monodromy theorem",
+      "covering map fiber"
+    ],
+    "grothendieck-construction-indexed-categories": [
+      "Grothendieck construction",
+      "indexed category",
+      "fibration",
+      "category of elements"
+    ],
+    "hensel-complete-dvr": [
+      "Hensel's lemma",
+      "Hensels lemma complete discrete valuation ring",
+      "Newton polygon Hensel lemma",
+      "valuation ring root lifting theorem"
+    ],
+    "injective-resolutions": [
+      "injective resolution",
+      "injective cochain complex",
+      "existence of injective resolutions",
+      "abelian category injective resolution"
+    ],
+    "jordan-canonical-form": [
+      "Jordan canonical form",
+      "Jordan normal form",
+      "Jordan matrix decomposition",
+      "generalized eigenspace decomposition"
+    ],
+    "manifold-boundary-collar": [
+      "smooth manifold with boundary",
+      "collar neighborhood theorem",
+      "boundary collar smoothing",
+      "manifold boundary collar"
+    ],
+    "mapping-cone-quasi-isomorphism": [
+      "mapping cone quasi isomorphism criterion",
+      "mapping cone exact sequence",
+      "homological quasi isomorphism criterion",
+      "mapping cone acyclicity"
+    ],
+    "mizar-jordan-curve": [
+      "Jordan curve theorem",
+      "Jordan curve theorem topological plane",
+      "simple closed curve Jordan theorem"
+    ],
+    "morse-lemma": [
+      "Morse lemma",
+      "nondegenerate critical point",
+      "Morse theory",
+      "critical point classification"
+    ],
+    "nullstellensatz-affine": [
+      "Hilbert Nullstellensatz",
+      "affine Nullstellensatz",
+      "algebraic geometry Nullstellensatz",
+      "Nullstellensatz theorem"
+    ],
+    "pontryagin-duality-finite-abelian": [
+      "Pontryagin duality finite abelian groups",
+      "Pontryagin duality theorem",
+      "character group finite abelian groups",
+      "dual group abelian groups"
+    ],
+    "riemann-roch-curves": [
+      "Riemann Roch theorem algebraic curves",
+      "Riemann Roch formula curves",
+      "Riemann Roch theorem surfaces",
+      "Riemann Roch Riemann inequality"
+    ],
+    "serre-duality-coherent-sheaves": [
+      "Serre duality coherent sheaves",
+      "coherent sheaf Serre duality theorem",
+      "Serre duality algebraic geometry"
+    ],
+    "sphere-eversion": [
+      "sphere eversion",
+      "h principle",
+      "homotopy principle",
+      "immersions of spheres"
+    ],
+    "stone-weierstrass": [
+      "Stone Weierstrass theorem",
+      "Stone Weierstrass theorem continuous functions",
+      "Weierstrass approximation theorem",
+      "density of polynomials in continuous functions"
+    ],
+    "yoneda-univalent-categories": [
+      "Yoneda lemma univalent categories",
+      "Yoneda embedding univalent category theory",
+      "representable presheaves univalent categories"
+    ]
+  },
+  "schema_version": 1
+}

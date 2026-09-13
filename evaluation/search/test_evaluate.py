@@ -9,6 +9,7 @@ import unittest
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import evaluate  # noqa: E402
+from evaluate_multiquery import rrf_fuse  # noqa: E402
 
 
 class SearchEvaluationTests(unittest.TestCase):
@@ -22,6 +23,13 @@ class SearchEvaluationTests(unittest.TestCase):
         self.assertIn('content:"formalized\\\\?"', compiled)
         self.assertIn("file:", compiled)
         self.assertTrue(compiled.endswith("case:no"))
+
+    def test_normalized_query_removes_intent_words_and_detects_proof_assistant(self) -> None:
+        terms, proof_filter = evaluate.normalized_query_terms(
+            "does Lean have the Jordan canonical form theorem?"
+        )
+        self.assertEqual(terms, ["Jordan", "canonical", "form"])
+        self.assertEqual(proof_filter, r"\.lean$")
 
     def test_score_case_tracks_first_owner_and_graded_metrics(self) -> None:
         case = {
@@ -70,6 +78,20 @@ class SearchEvaluationTests(unittest.TestCase):
         metrics = evaluate.aggregate([scored])
         self.assertNotIn("precision@1", metrics)
         self.assertEqual(metrics["hit@5"], 1)
+
+    def test_rrf_rewards_results_supported_by_multiple_runs(self) -> None:
+        fused = rrf_fuse([
+            [
+                {"Repository": "r", "FileName": "a", "Score": 9},
+                {"Repository": "r", "FileName": "b", "Score": 8},
+            ],
+            [
+                {"Repository": "r", "FileName": "b", "Score": 9},
+                {"Repository": "r", "FileName": "c", "Score": 8},
+            ],
+        ])
+        self.assertEqual(fused[0]["FileName"], "b")
+        self.assertEqual(fused[0]["RRFLists"], 2)
 
     def test_compare_requires_same_index_fingerprint(self) -> None:
         base = {
