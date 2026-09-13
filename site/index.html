@@ -37,7 +37,7 @@
 						<div class="advanced-search-grid">
 								<label>Proof assistant
 								<select id="prover-filter">
-									<option value="">Any prover</option>
+									<option value="">Any proof assistant</option>
 									<option value="lean">Lean</option>
 									<option value="rocq">Rocq</option>
 									<option value="agda">Agda</option>
@@ -61,10 +61,10 @@
 										<option value="">Any subject</option>
 									</select>
 								</label>
-								<label>Search in
+								<label>Files
 									<select id="scope-filter">
-										<option value="formal">Formal source only</option>
-										<option value="all">All indexed text</option>
+										<option value="formal">Formal source files</option>
+										<option value="all">All indexed files</option>
 									</select>
 							</label>
 						</div>
@@ -76,12 +76,12 @@
 				</div>
 			<div id="status" class="status-line" aria-live="polite"></div>
 		</div>
-			<aside class="hero-panel" aria-label="Coverage">
-				<div class="hero-panel-head">Coverage</div>
+			<aside class="hero-panel" aria-label="Index statistics">
+				<div class="hero-panel-head">Index statistics</div>
 			<div class="hero-metrics" id="hero-metrics">
-				<div class="hero-metric"><strong>—</strong><span>searchable sources</span></div>
-					<div class="hero-metric"><strong>—</strong><span>proof source files</span></div>
-				<div class="hero-metric"><strong>—</strong><span>lines of proof source</span></div>
+					<div class="hero-metric"><strong>—</strong><span>indexed sources</span></div>
+						<div class="hero-metric"><strong>—</strong><span>formal source files</span></div>
+					<div class="hero-metric"><strong>—</strong><span>lines of formal source</span></div>
 				<div class="hero-metric"><strong>—</strong><span>proof assistants</span></div>
 			</div>
 		</aside>
@@ -90,7 +90,7 @@
 	<section id="browse" aria-labelledby="browse-title">
 			<h2 id="browse-title">Browse</h2>
 			<div class="browse-grid">
-				<a class="browse-card" href="./corpus.html"><strong>Sources</strong><span>Formalization sources, with search coverage and mathematical descriptions.</span></a>
+				<a class="browse-card" href="./corpus.html"><strong>Sources</strong><span>Indexed sources, proof assistants, and mathematical content.</span></a>
 				<a class="browse-card" href="./subjects.html"><strong>Subjects</strong><span>Formalization sources organized by mathematical area.</span></a>
 				<a class="browse-card" href="./api.html"><strong>API</strong><span>JSON search endpoint, query syntax, and response format.</span></a>
 		</div>
@@ -101,8 +101,8 @@
 </main>
 
 <footer class="site-footer">
-	<div class="shell footer-inner">
-			<p>Search across formal libraries and proof assistants.</p>
+		<div class="shell footer-inner">
+				<p>Search formal source files across proof assistants.</p>
 		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./api.html">API</a></div>
 	</div>
 </footer>
@@ -151,7 +151,7 @@ function updateProofAssistantLink() {
 		return;
 	}
 	link.href = meta.url;
-	link.textContent = `${meta.label} project site`;
+	link.textContent = `${meta.label} website`;
 	link.hidden = false;
 }
 
@@ -484,9 +484,9 @@ fetch("./metrics.json").then(r => r.json()).then(data => {
 	const s = data.summary;
 	const compact = n => new Intl.NumberFormat("en", {notation: "compact", maximumFractionDigits: 1}).format(n || 0);
 	el("hero-metrics").innerHTML = `
-		<div class="hero-metric"><strong>${Number(s.searchable_sources || 0).toLocaleString()}</strong><span>searchable sources</span></div>
-		<div class="hero-metric"><strong>${compact(s.proof_files)}</strong><span>proof source files</span></div>
-		<div class="hero-metric"><strong>${compact(s.proof_source_lines)}</strong><span>lines of proof source</span></div>
+		<div class="hero-metric"><strong>${Number(s.searchable_sources || 0).toLocaleString()}</strong><span>indexed sources</span></div>
+		<div class="hero-metric"><strong>${compact(s.proof_files)}</strong><span>formal source files</span></div>
+		<div class="hero-metric"><strong>${compact(s.proof_source_lines)}</strong><span>lines of formal source</span></div>
 		<div class="hero-metric"><strong>${Number(s.proof_assistants || 0).toLocaleString()}</strong><span>proof assistants</span></div>`;
 });
 
@@ -508,7 +508,7 @@ Promise.all([
 	updateProofAssistantLink();
 	el("prover-filter").addEventListener("change", updateProofAssistantLink);
 	el("counts").textContent =
-		"Each search result is linked back to its source repository or library.";
+		"Search results link directly to the corresponding source files.";
 	fromHash();
 });
 </script>

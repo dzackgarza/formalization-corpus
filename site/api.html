@@ -153,7 +153,7 @@
 	</li>
 </ul>
 
-<h2 id="list-sources">Listing indexed sources</h2>
+<h2 id="list-sources">List indexed sources</h2>
 
 <pre><code>curl -s https://formalization-corpus.dzackgarza.com/api/list \
   -H 'Content-Type: application/json' \
@@ -161,7 +161,7 @@
   | jq -r '.List.Repos[].Repository.Name'</code></pre>
 
 <p>
-	Each entry carries index statistics — document count, content bytes, line
+	Each entry includes index statistics — document count, content bytes, line
 	counts — under <code>Stats</code>.
 </p>
 
@@ -170,20 +170,20 @@
 <p>
 	This runs on one small virtual machine against a multi-gigabyte Zoekt index.
 	A term answers in tens of milliseconds warm; a broad regular expression across
-	hundreds of indexed sources takes seconds and holds the machine while it does. Pass
+	hundreds of indexed sources can take several seconds on the search server. Pass
 	<code>MaxDocDisplayCount</code>, prefer <code>repo:</code> and
 	<code>file:</code> filters over scanning everything, and set
 	<code>MaxWallTime</code> if you are running a loop.
 </p>
 
-<p>The endpoint sends permissive CORS headers because it is a public, read-only search surface. To run the whole index yourself, build from <a href="https://github.com/dzackgarza/formalization-corpus">the repository</a> with <code>just sync &amp;&amp; just index</code>.</p>
+<p>The endpoint sends permissive CORS headers because it is public and read-only. To run the whole index yourself, build from <a href="https://github.com/dzackgarza/formalization-corpus">the repository</a> with <code>just sync &amp;&amp; just index</code>.</p>
 		</article>
 	</div>
 </main>
 
 <footer class="site-footer">
 	<div class="shell footer-inner">
-		<p>The API exposes search over the published corpus; it does not mutate source repositories.</p>
+		<p>The API searches indexed source files and does not modify upstream repositories.</p>
 		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div>
 	</div>
 </footer>

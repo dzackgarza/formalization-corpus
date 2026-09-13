@@ -106,7 +106,7 @@ def main() -> None:
                 what = html.escape(source.get("what", ""))
                 rows.append(f'<tr><td><a href="{url}">{name}</a></td><td>{what}</td></tr>')
             section.append(
-                '<div class="table-wrap"><table><thead><tr><th>Source</th><th>Content</th></tr></thead>'
+                '<div class="table-wrap"><table><thead><tr><th>Source</th><th>Mathematical content</th></tr></thead>'
                 f'<tbody>{"".join(rows)}</tbody></table></div>'
             )
         sections.append("".join(section))
@@ -131,8 +131,8 @@ def main() -> None:
 <main class="shell page-main">
   <header class="page-heading">
     <h1>Subjects</h1>
-    <p class="lede">Formalization sources by mathematical subject. A source may appear under any number of subjects.</p>
-    <p class="note">Subject membership is curated from source contents and project descriptions. Unclassified sources remain available through Search and Sources.</p>
+    <p class="lede">Sources by mathematical subject. A source may appear under more than one subject.</p>
+    <p class="note">Subject assignments are curated from source contents and project descriptions. Sources without subject assignments remain searchable.</p>
   </header>
   <div class="content-layout subject-layout">
     <aside class="toc subject-toc" aria-label="Subjects">{"".join(toc)}</aside>
@@ -140,7 +140,7 @@ def main() -> None:
   </div>
 </main>
 <footer class="site-footer">
-  <div class="shell footer-inner"><p>{payload['classified_sources']} sources currently have subject classifications.</p><div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div></div>
+  <div class="shell footer-inner"><p>{payload['classified_sources']} sources are classified by subject.</p><div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div></div>
 </footer>
 </body>
 </html>
