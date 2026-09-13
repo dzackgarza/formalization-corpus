@@ -79,6 +79,12 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         self.assertEqual(prefixed, ["Feit", "Thompson", "odd", "order", "theorem"])
         definition, _ = evaluate.normalized_query_terms("definition of formal group law")
         self.assertEqual(definition, ["formal", "group", "law"])
+        lean4_terms, lean4_filter = evaluate.normalized_query_terms("does Lean4 have formal group laws")
+        self.assertEqual(lean4_terms, ["formal", "group", "laws"])
+        self.assertEqual(lean4_filter, r"\.lean$")
+        hol4_terms, hol4_filter = evaluate.normalized_query_terms("HOL4 Jordan curve theorem")
+        self.assertEqual(hol4_terms, ["Jordan", "curve", "theorem"])
+        self.assertEqual(hol4_filter, r"\.(sml|sig)$")
 
     def test_score_case_tracks_first_owner_and_graded_metrics(self) -> None:
         case = {
