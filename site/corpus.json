@@ -107,7 +107,7 @@
 "name": "acl2/acl2",
 "proof_assistant": "acl2",
 "url": "https://github.com/acl2/acl2",
-"what": "ACL2 system plus the canonical Community Books: arithmetic, algebra, data structures, hardware/software semantics, verified algorithms and extensive reusable definitions"
+"what": "ACL2 Community Books: arithmetic, algebra, data structures, formal models of hardware and software, verified algorithms, and reusable definitions"
 },
 {
 "index_id": "acmepjz__lean-iwasawa",
@@ -202,14 +202,14 @@
 "name": "agda/agda-stdlib",
 "proof_assistant": "agda",
 "url": "https://github.com/agda/agda-stdlib",
-"what": "Agda standard library: algebraic structures, orders, relations, finite structures, data types, solvers, reflection and general mathematical infrastructure"
+"what": "Agda standard library: algebraic structures, orders, relations, finite structures, and data types"
 },
 {
 "index_id": "agda__cubical",
 "name": "agda/cubical",
 "proof_assistant": "agda",
 "url": "https://github.com/agda/cubical",
-"what": "Cubical Agda library"
+"what": "Cubical type theory, homotopy type theory, and related mathematics in Agda"
 },
 {
 "index_id": "agenticsnz__unsorry",
@@ -869,7 +869,7 @@
 "name": "AxiomMath/fel-polynomial",
 "proof_assistant": "lean",
 "url": "https://github.com/AxiomMath/fel-polynomial",
-"what": "Fel's conjecture on syzygies of numerical semigroups; AI-formalized paper companion"
+"what": "Fel's conjecture on syzygies of numerical semigroups"
 },
 {
 "index_id": "AxiomMath__lattice-triangle",
@@ -1081,7 +1081,7 @@
 "name": "CakeML/candle",
 "proof_assistant": "hol-light",
 "url": "https://github.com/CakeML/candle",
-"what": "Candle's HOL Light-compatible source and extensions for the verified HOL Light implementation; useful when searching implementation-level HOL definitions alongside the CakeML soundness development"
+"what": "Formal definitions and proofs for Candle, a verified implementation of HOL Light developed within CakeML"
 },
 {
 "index_id": "CakeML__game-of-life",
@@ -1129,7 +1129,7 @@
 "name": "CBirkbeck/DirichletNonvanishing",
 "proof_assistant": "lean",
 "url": "https://github.com/CBirkbeck/DirichletNonvanishing",
-"what": "Nonvanishing of Dirichlet L-functions (archived)"
+"what": "Nonvanishing of Dirichlet L-functions"
 },
 {
 "index_id": "CBirkbeck__LeanBridge",
@@ -1143,7 +1143,7 @@
 "name": "CBirkbeck/ModularForms_Lean4",
 "proof_assistant": "lean",
 "url": "https://github.com/CBirkbeck/ModularForms_Lean4",
-"what": "Modular forms, largely upstreamed into Mathlib (stale)"
+"what": "Modular forms"
 },
 {
 "index_id": "CBirkbeck__uniform-sheafy-tate-domains-lean",
@@ -1266,14 +1266,14 @@
 "name": "dagurtomas/lean-solid",
 "proof_assistant": "lean",
 "url": "https://github.com/dagurtomas/lean-solid",
-"what": "Solid abelian groups (stale)"
+"what": "Solid abelian groups"
 },
 {
 "index_id": "dagurtomas__LeanCondensed",
 "name": "dagurtomas/LeanCondensed",
 "proof_assistant": "lean",
 "url": "https://github.com/dagurtomas/LeanCondensed",
-"what": "Condensed mathematics beyond Mathlib's Condensed/ tree, by the author of that tree"
+"what": "Additional work on condensed mathematics by the author of Mathlib's condensed-mathematics library"
 },
 {
 "index_id": "dannypsnl__violet-legacy",
@@ -1350,7 +1350,7 @@
 "name": "digama0/mm0",
 "proof_assistant": "metamath",
 "url": "https://github.com/digama0/mm0",
-"what": "Metamath Zero/One formal specifications and proof-source examples, including bootstrap/verifier formalization material"
+"what": "Metamath Zero/One formal specifications and examples, including arithmetic and metatheory"
 },
 {
 "index_id": "djvelleman__HTPILeanPackage",
@@ -1629,7 +1629,7 @@
 "name": "flyspeck/flyspeck",
 "proof_assistant": "hol-light",
 "url": "https://github.com/flyspeck/flyspeck",
-"what": "HOL Light formalization of the Kepler conjecture and its geometric/analytic infrastructure"
+"what": "HOL Light formalization of the Kepler conjecture, together with the supporting geometry and analysis"
 },
 {
 "index_id": "formal-applied-math__formal-mathfin",
@@ -1643,7 +1643,7 @@
 "name": "formal-land/rocq-of-rust",
 "proof_assistant": "rocq",
 "url": "https://github.com/formal-land/rocq-of-rust",
-"what": "Formal Rust semantics and libraries in Rocq: translated THIR, Rust types/traits, integer operations, control flow and simulation layers used to verify real Rust code"
+"what": "Formal definitions of Rust types, traits, integer operations, and control flow in Rocq, used to verify Rust programs"
 },
 {
 "index_id": "FormalizedFormalLogic__Arithmetization",
@@ -1926,7 +1926,7 @@
 "name": "girving/series",
 "proof_assistant": "lean",
 "url": "https://github.com/girving/series",
-"what": "Power series arithmetic; same author bottcher (verified B\u00f6ttcher series) and ray-render (verified Mandelbrot renders via interval arithmetic)"
+"what": "Power series arithmetic, with related formalizations of B\u00f6ttcher series and verified Mandelbrot rendering"
 },
 {
 "index_id": "glams-lean-2024__formal-2024",
@@ -2171,7 +2171,7 @@
 "name": "HOL-Theorem-Prover/HOL",
 "proof_assistant": "hol4",
 "url": "https://github.com/HOL-Theorem-Prover/HOL",
-"what": "Canonical HOL4 sources: core higher-order logic, standard libraries, algebra, analysis, semantics and large example developments"
+"what": "HOL4 libraries covering higher-order logic, algebra, analysis, semantics, and large formal developments"
 },
 {
 "index_id": "HOLMS-lib__HOLMS",
@@ -2359,28 +2359,28 @@
 "name": "iris/iris",
 "proof_assistant": "rocq",
 "url": "https://gitlab.mpi-sws.org/iris/iris",
-"what": "Iris higher-order concurrent separation logic, program logic, ghost-state constructions, and the MoSeL proof mode"
+"what": "Iris higher-order concurrent separation logic and program logic, including ghost-state constructions and proof automation"
 },
 {
 "index_id": "iris__stdpp",
 "name": "iris/stdpp",
 "proof_assistant": "rocq",
 "url": "https://gitlab.mpi-sws.org/iris/stdpp",
-"what": "Rocq general-purpose data structures and algebraic/finite-map infrastructure used by Iris; substantial reusable definitions independent of the headline verification work"
+"what": "General-purpose Rocq definitions for data structures, finite maps, and algebra, used by Iris and independently reusable"
 },
 {
 "index_id": "isabelle-prover__mirror-afp-devel",
 "name": "isabelle-prover/mirror-afp-devel",
 "proof_assistant": "isabelle",
 "url": "https://github.com/isabelle-prover/mirror-afp-devel",
-"what": "Development mirror of the Archive of Formal Proofs (AFP), the large centralized Isabelle archive spanning pure mathematics, algorithms, semantics, verification and scientific applications"
+"what": "Archive of Formal Proofs (AFP): a large Isabelle library spanning pure mathematics, algorithms, semantics, verification, and scientific applications"
 },
 {
 "index_id": "isabelle-prover__mirror-isabelle",
 "name": "isabelle-prover/mirror-isabelle",
 "proof_assistant": "isabelle",
 "url": "https://github.com/isabelle-prover/mirror-isabelle",
-"what": "Isabelle distribution, including the Isabelle/HOL libraries: logic, sets, algebra, analysis, topology, number theory, probability and the system's foundational theories"
+"what": "Isabelle/HOL libraries covering logic, sets, algebra, analysis, topology, number theory, probability, and foundational theories"
 },
 {
 "index_id": "ISTA-PLV__coinductive",
@@ -2539,7 +2539,7 @@
 "name": "JJYYY-JJY/lean-normal-forms",
 "proof_assistant": "lean",
 "url": "https://github.com/JJYYY-JJY/lean-normal-forms",
-"what": "Executable Hermite and Smith normal forms over Euclidean domains with a PID bridge to Mathlib"
+"what": "Executable Hermite and Smith normal forms over Euclidean domains, with proofs relating them to Mathlib's definitions"
 },
 {
 "index_id": "JLimperg__regensburg-itp-school-2023",
@@ -2574,14 +2574,13 @@
 "name": "jonhanke/quadratic_forms_in_lean",
 "proof_assistant": "lean",
 "url": "https://github.com/jonhanke/quadratic_forms_in_lean",
-"what": "A small quadratic-forms skeleton with Cassels references and a few definitions, but no theorems; the repository has no LICENSE file"
+"what": "Quadratic forms, with Cassels references and a small collection of definitions"
 },
 {
 "index_id": "jonwashburn__riemann",
 "name": "jonwashburn/riemann",
 "proof_assistant": "lean",
-"url": "https://github.com/jonwashburn/riemann",
-"what": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}"
+"url": "https://github.com/jonwashburn/riemann"
 },
 {
 "index_id": "Joonas-vonlerber__Type-Theory-Game",
@@ -2615,14 +2614,14 @@
 "name": "jrh13/hol-light",
 "proof_assistant": "hol-light",
 "url": "https://github.com/jrh13/hol-light",
-"what": "HOL Light and its mathematical library: analysis, topology, geometry, algebra, number theory and proof infrastructure"
+"what": "HOL Light and its mathematical library: analysis, topology, geometry, algebra, number theory, and related foundational material"
 },
 {
 "index_id": "jsm28__AperiodicMonotilesLean",
 "name": "jsm28/AperiodicMonotilesLean",
 "proof_assistant": "lean",
 "url": "https://github.com/jsm28/AperiodicMonotilesLean",
-"what": "Aperiodic monotiles (the hat and spectre), staging for Mathlib"
+"what": "Formalization of the aperiodic monotiles known as the hat and spectre"
 },
 {
 "index_id": "jsm28__IMOLean",
@@ -2779,7 +2778,7 @@
 "name": "kim-em/lean-category-theory",
 "proof_assistant": "lean",
 "url": "https://github.com/kim-em/lean-category-theory",
-"what": "Early category-theory experiments, upstreamed into Mathlib (archived)"
+"what": "Early category-theory development later incorporated into Mathlib"
 },
 {
 "index_id": "kim-em__lean-finmap",
@@ -3186,7 +3185,7 @@
 "name": "leanprover-community/mathlib4",
 "proof_assistant": "lean",
 "url": "https://github.com/leanprover-community/mathlib4",
-"what": "Algebra, number theory, topology, analysis, measure theory, geometry and combinatorics on one typeclass hierarchy; 256,512 declarations"
+"what": "Large formal mathematics library covering algebra, number theory, topology, analysis, measure theory, geometry, combinatorics, and many other subjects"
 },
 {
 "index_id": "leanprover-community__mathport",
@@ -3207,7 +3206,7 @@
 "name": "leanprover-community/physlib",
 "proof_assistant": "lean",
 "url": "https://github.com/leanprover-community/physlib",
-"what": "Physics results in Lean; active, over 700 stars"
+"what": "Formalized mathematical physics in Lean, including Riemannian and pseudo-Riemannian geometry, tensor calculus, relativity, distributions, Lie groups, crystal lattices, topological field theory, and lattice quantum\u2026"
 },
 {
 "index_id": "leanprover-community__plausible",
@@ -3284,7 +3283,7 @@
 "name": "leanprover/hex",
 "proof_assistant": "lean",
 "url": "https://github.com/leanprover/hex",
-"what": "Hex: verified computational algebra in Lean 4, built by spec-driven development (human specifications, AI implementations and proofs)"
+"what": "Verified computational algebra in Lean 4, including matrices, row reduction, determinants, Gram\u2013Schmidt orthogonalization, and LLL lattice reduction"
 },
 {
 "index_id": "leanprover__hex-bareiss",
@@ -3340,7 +3339,7 @@
 "name": "leanprover/hex-lll",
 "proof_assistant": "lean",
 "url": "https://github.com/leanprover/hex-lll",
-"what": "Verified LLL lattice-basis reduction with a proved short-vector bound; Mathlib bridge in leanprover/hex-lll-mathlib"
+"what": "Verified LLL lattice-basis reduction with a proved short-vector bound; a companion library proves correspondence with Mathlib's lattice definitions"
 },
 {
 "index_id": "leanprover__hex-lll-mathlib",
@@ -3423,8 +3422,7 @@
 "index_id": "leanprover__leanbv",
 "name": "leanprover/leanbv",
 "proof_assistant": "lean",
-"url": "https://github.com/leanprover/leanbv",
-"what": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}"
+"url": "https://github.com/leanprover/leanbv"
 },
 {
 "index_id": "leanprover__LeanInk",
@@ -3807,7 +3805,7 @@
 "name": "mariainesdff/LocalClassFieldTheory",
 "proof_assistant": "lean",
 "url": "https://github.com/mariainesdff/LocalClassFieldTheory",
-"what": "Local fields toward local class field theory, including DVR/uniformizer APIs for completions at height-one primes"
+"what": "Local fields toward local class field theory, including discrete valuation rings, uniformizers, and completions at height-one primes"
 },
 {
 "index_id": "mariovagomarzal__higher_category_theory",
@@ -3856,14 +3854,14 @@
 "name": "math-comp/math-comp",
 "proof_assistant": "rocq",
 "url": "https://github.com/math-comp/math-comp",
-"what": "Mathematical Components: finite structures, algebra, finite group theory, field theory, matrices, polynomials, and the SSReflect hierarchy"
+"what": "Mathematical Components: finite structures, algebra, finite group theory, field theory, matrices, and polynomials"
 },
 {
 "index_id": "math-comp__odd-order",
 "name": "math-comp/odd-order",
 "proof_assistant": "rocq",
 "url": "https://github.com/math-comp/odd-order",
-"what": "Feit\u2013Thompson Odd Order Theorem and the finite-group infrastructure built for its proof"
+"what": "Feit\u2013Thompson Odd Order Theorem and the supporting finite-group theory developed for its proof"
 },
 {
 "index_id": "math-inc__FormalQualBench",
@@ -3876,14 +3874,14 @@
 "name": "math-inc/FrontierMathOpen-Hypergraphs",
 "proof_assistant": "lean",
 "url": "https://github.com/math-inc/FrontierMathOpen-Hypergraphs",
-"what": "FrontierMath open-problem formalization on hypergraphs; sibling math-inc/FormalQualBench"
+"what": "Formalization of a FrontierMath open problem on hypergraphs"
 },
 {
 "index_id": "math-inc__strongpnt",
 "name": "math-inc/strongpnt",
 "proof_assistant": "lean",
 "url": "https://github.com/math-inc/strongpnt",
-"what": "Strong PNT with complex-analysis infrastructure; AI-generated, human-reviewed"
+"what": "Strong prime number theorem with the required complex analysis"
 },
 {
 "index_id": "math-xmum__AbstractAlgebra",
@@ -3966,7 +3964,7 @@
 "name": "metamatematico/Metamatematico---Razonamiento-Formal-con-Lean",
 "proof_assistant": "lean",
 "url": "https://github.com/metamatematico/Metamatematico---Razonamiento-Formal-con-Lean",
-"what": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}"
+"what": "Demostrador de enunciados matem\u00e1ticos con base Lean"
 },
 {
 "index_id": "metamath__set.mm",
@@ -4028,8 +4026,7 @@
 "index_id": "Mintpath__p-neq-np-lean",
 "name": "Mintpath/p-neq-np-lean",
 "proof_assistant": "lean",
-"url": "https://github.com/Mintpath/p-neq-np-lean",
-"what": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}"
+"url": "https://github.com/Mintpath/p-neq-np-lean"
 },
 {
 "index_id": "mirefek__lean-tactic-programming-guide",
@@ -4064,7 +4061,7 @@
 "name": "Mizar Mathematical Library",
 "proof_assistant": "mizar",
 "url": "https://mizar.uwb.edu.pl/version/current/mml",
-"what": "The authoritative current MML article sources (.miz): a large centrally maintained body of definitions and proofs across mainstream mathematics"
+"what": "Mizar Mathematical Library: a centrally maintained collection of formal definitions and proofs across mainstream mathematics"
 },
 {
 "index_id": "mkaratarakis__HopfieldNet",
@@ -4214,7 +4211,7 @@
 "name": "nasa/pvslib",
 "proof_assistant": "pvs",
 "url": "https://github.com/nasa/pvslib",
-"what": "NASALib, NASA's large PVS library of formal developments: algebra, analysis, geometry, numerical methods, decision procedures and application libraries"
+"what": "NASALib: PVS formalizations spanning algebra, analysis, geometry, numerical methods, decision procedures, and applications"
 },
 {
 "index_id": "nasqret__fineqs",
@@ -4374,8 +4371,7 @@
 "index_id": "ocfnash__LieClassification",
 "name": "ocfnash/LieClassification",
 "proof_assistant": "lean",
-"url": "https://github.com/ocfnash/LieClassification",
-"what": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}"
+"url": "https://github.com/ocfnash/LieClassification"
 },
 {
 "index_id": "ojhermann-org__pacioli",
@@ -4689,8 +4685,7 @@
 "index_id": "pitmonticone__NewProject",
 "name": "pitmonticone/NewProject",
 "proof_assistant": "lean",
-"url": "https://github.com/pitmonticone/NewProject",
-"what": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}"
+"url": "https://github.com/pitmonticone/NewProject"
 },
 {
 "index_id": "pitmonticone__QuadraticIntegers",
@@ -4764,8 +4759,7 @@
 "index_id": "Project-Navi__ordvec-formalization",
 "name": "Project-Navi/ordvec-formalization",
 "proof_assistant": "lean",
-"url": "https://github.com/Project-Navi/ordvec-formalization",
-"what": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}"
+"url": "https://github.com/Project-Navi/ordvec-formalization"
 },
 {
 "index_id": "project-numina__LeanGeo",
@@ -4819,8 +4813,7 @@
 "index_id": "quangvdao__ZKLib-deprecated",
 "name": "quangvdao/ZKLib-deprecated",
 "proof_assistant": "lean",
-"url": "https://github.com/quangvdao/ZKLib-deprecated",
-"what": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}"
+"url": "https://github.com/quangvdao/ZKLib-deprecated"
 },
 {
 "index_id": "QudeLeap__Lean-QuantumAlg",
@@ -5011,21 +5004,21 @@
 "name": "rocq-community/corn",
 "proof_assistant": "rocq",
 "url": "https://github.com/rocq-community/corn",
-"what": "Constructive mathematics repository at Nijmegen"
+"what": "Constructive mathematics library in Rocq/Coq"
 },
 {
 "index_id": "rocq-community__fourcolor",
 "name": "rocq-community/fourcolor",
 "proof_assistant": "rocq",
 "url": "https://github.com/rocq-community/fourcolor",
-"what": "Four Color Theorem development, including graph-theoretic and real-number infrastructure"
+"what": "Four Color Theorem, including the graph theory and real analysis needed for the proof"
 },
 {
 "index_id": "rocq-prover__rocq",
 "name": "rocq-prover/rocq",
 "proof_assistant": "rocq",
 "url": "https://github.com/rocq-prover/rocq",
-"what": "Rocq core library and prelude: elementary logical notions, datatypes, equality, arithmetic foundations, well-founded recursion, and core proof infrastructure"
+"what": "Rocq core library: elementary logic, basic data types, equality, arithmetic foundations, and well-founded recursion"
 },
 {
 "index_id": "rocq-prover__stdlib",
@@ -5039,7 +5032,7 @@
 "name": "roed-math/gq2-lean",
 "proof_assistant": "lean",
 "url": "https://github.com/roed-math/gq2-lean",
-"what": "Dyadic Hilbert symbol over \u211a\u2082 with Serre's evaluation formula and 2-adic square-class facts, sorry-free and self-contained inside a profinite G_{\u211a\u2082} presentation"
+"what": "Dyadic Hilbert symbol over \u211a\u2082 with Serre's evaluation formula and 2-adic square-class facts; all proofs are complete"
 },
 {
 "index_id": "roos-j__lean-booleanfun",
@@ -5079,7 +5072,7 @@
 "name": "rzrn/ground_zero",
 "proof_assistant": "lean",
 "url": "https://github.com/rzrn/ground_zero",
-"what": "HoTT library in Lean 4 (archived)"
+"what": "Homotopy type theory in Lean 4"
 },
 {
 "index_id": "SAIRcompetition__equational-theories-lean-stage2",
@@ -5107,7 +5100,7 @@
 "name": "SamuelSchlesinger/sensitivity-conjecture",
 "proof_assistant": "lean",
 "url": "https://github.com/SamuelSchlesinger/sensitivity-conjecture",
-"what": "Huang's proof of the sensitivity conjecture; same author complexitylib"
+"what": "Huang's proof of the sensitivity conjecture"
 },
 {
 "index_id": "SamuelSchlesinger__shannon-1948-formalization",
@@ -5197,7 +5190,7 @@
 "name": "seL4/l4v",
 "proof_assistant": "isabelle",
 "url": "https://github.com/seL4/l4v",
-"what": "Isabelle/HOL formal specifications and proofs for seL4, with reusable word, monadic, separation-logic, refinement and verification infrastructure"
+"what": "Isabelle/HOL formal specifications and proofs for seL4, with reusable theories for machine words, state monads, separation logic, refinement, and program verification"
 },
 {
 "index_id": "ShangtongZhang__rl-theory-in-lean",
@@ -5329,7 +5322,7 @@
 "name": "sinhp/displayed_categories",
 "proof_assistant": "lean",
 "url": "https://github.com/sinhp/displayed_categories",
-"what": "Displayed categories: iso-level fibers (EFiber), cartesian lifts, and Street fibrations"
+"what": "Displayed categories, including fibers, cartesian lifts, and Street fibrations"
 },
 {
 "index_id": "sinhp__HoTTLean",
@@ -5343,7 +5336,7 @@
 "name": "sinhp/LeanFibredCategories",
 "proof_assistant": "lean",
 "url": "https://github.com/sinhp/LeanFibredCategories",
-"what": "Fibred categories (stale; superseded by Mathlib's FiberedCategory tree and displayed_categories)"
+"what": "Fibred categories; this development is inactive and has been superseded by the corresponding Mathlib material"
 },
 {
 "index_id": "sinhp__Poly",
@@ -5434,7 +5427,7 @@
 "name": "SRI-CSL/PVS",
 "proof_assistant": "pvs",
 "url": "https://github.com/SRI-CSL/PVS",
-"what": "PVS distribution and built-in/prelude libraries, including the formal definitions on which NASALib developments build"
+"what": "PVS and its standard libraries, including the formal definitions used by NASALib"
 },
 {
 "index_id": "standardml__twelf",
@@ -5762,7 +5755,7 @@
 "name": "ufmg-smite/lean-smt",
 "proof_assistant": "lean",
 "url": "https://github.com/ufmg-smite/lean-smt",
-"what": "SMT-solver tactics"
+"what": "Automated proof tactics using satisfiability-modulo-theories solvers"
 },
 {
 "index_id": "ulfjack__ryu",
@@ -5823,7 +5816,7 @@
 "name": "uwplse/verdi",
 "proof_assistant": "rocq",
 "url": "https://github.com/uwplse/verdi",
-"what": "Formal semantics and reusable infrastructure for distributed systems and verified distributed-system implementations"
+"what": "Formal models and proofs for distributed systems, including reusable definitions for verified distributed algorithms"
 },
 {
 "index_id": "ValorZard__lean-sdl-test",
@@ -5877,7 +5870,7 @@
 "name": "verified-optimization/CvxLean",
 "proof_assistant": "lean",
 "url": "https://github.com/verified-optimization/CvxLean",
-"what": "Convex optimization modeling (stale)"
+"what": "Convex optimization modeling"
 },
 {
 "index_id": "Verified-zkEVM__ArkLib",
@@ -6118,8 +6111,7 @@
 "index_id": "Xiyou-Wu__RiemannianGeometry",
 "name": "Xiyou-Wu/RiemannianGeometry",
 "proof_assistant": "lean",
-"url": "https://github.com/Xiyou-Wu/RiemannianGeometry",
-"what": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}"
+"url": "https://github.com/Xiyou-Wu/RiemannianGeometry"
 },
 {
 "index_id": "YaelDillies__apap",

@@ -6,7 +6,7 @@
 a2435191__lean-logic-formalization	Formalize "Logic Notes" by Lou van den Dries in Lean
 abdoo8080__lean-cvc5	A Foreign Function Interface (FFI) to cvc5 solver in Lean.
 AbsInt__CompCert	Formal definitions of C and assembly semantics, memory models and compiler passes, plus the correctness proofs of CompCert
-acl2__acl2	ACL2 system plus the canonical Community Books: arithmetic, algebra, data structures, hardware/software semantics, verified algorithms and extensive reusable definitions
+acl2__acl2	ACL2 Community Books: arithmetic, algebra, data structures, formal models of hardware and software, verified algorithms, and reusable definitions
 acmepjz__lean-iwasawa	Iwasawa theory
 acmepjz__md4lean	a Lean wrapper for the MD4C Markdown parser
 adambornemann-glitch__Logos_Library	Lean verified Science.
@@ -17,8 +17,8 @@ AdrienChampion__safeIdx	Type-safe indexing library.
 AeneasVerif__icfp-tutorial	Aeneas tutorial for ICFP
 AfonsoBitoque__LeanServer	Verified HTTPS server in Lean 4 — TLS 1.3, HTTP/2, QUIC, WebSocket, gRPC — 914 machine-checked theorems, zero sorry. Pure library available (LeanServerPure).
 agda__agda-categories	Category theory in Agda: limits, adjunctions, monoidal/enriched and higher categorical structures, fibrations and topoi
-agda__agda-stdlib	Agda standard library: algebraic structures, orders, relations, finite structures, data types, solvers, reflection and general mathematical infrastructure
-agda__cubical	Cubical Agda library
+agda__agda-stdlib	Agda standard library: algebraic structures, orders, relations, finite structures, and data types
+agda__cubical	Cubical type theory, homotopy type theory, and related mathematics in Agda
 agenticsnz__unsorry	Autonomous agents proving theorems; git is the queue
 ahhwuhu__zeta_3_irrational	Irrationality of ζ(3)
 Alektronnik__Quantum4Lean	Verified quantum computing in Lean 4 with FFI bridge to Apple Silicon (Metal 3). Full NISQ stack, dependent types, formal circuit verification, and mathematical translators to Hamiltonians for autonomous AI.
@@ -96,7 +96,7 @@ avigad__LeanSudoku	Playing Sudoku in the Lean 4 proof assistant
 avigad__verification_demo	A temporary repository
 awodey__joyal	Joyal's representation theorem
 AxiomMath__AgreeToDisagree	Lean formalizations of the paper "We Can't Agree to Disagree, Formally: Aumann's Theorem and Assumption Accounting in Lean"
-AxiomMath__fel-polynomial	Fel's conjecture on syzygies of numerical semigroups; AI-formalized paper companion
+AxiomMath__fel-polynomial	Fel's conjecture on syzygies of numerical semigroups
 AxiomMath__lattice-triangle	Lean formalizations for the paper "On the paucity of lattice triangles"
 AxiomMath__partial-regularity	Lean formalizations for the paper "Almost all primes are partially regular"
 AxiomMath__PartitionPolynomial	Lean formalizations for the paper "Reciprocals of Partition Polynomials"
@@ -122,15 +122,15 @@ bridgekat__filter-game	Lean 4 version of the filter game.
 BRonen__sqlite-lean	Sqlite3 bindings for lean4
 CAIMEOX__json-schema-lean	Json Schema lean implementation
 CakeML__cakeml	HOL4 definitions of CakeML syntax and semantics, compiler/intermediate languages, type systems and the verified compiler proofs
-CakeML__candle	Candle's HOL Light-compatible source and extensions for the verified HOL Light implementation; useful when searching implementation-level HOL definitions alongside the CakeML soundness development
+CakeML__candle	Formal definitions and proofs for Candle, a verified implementation of HOL Light developed within CakeML
 CakeML__game-of-life	HOL4 formalization of Conway's Game of Life and verified compilation into Life circuits, including executable semantics and circuit definitions
 cameronfreer__exchangeability	Exchangeability and three proofs of de Finetti's theorem
 carlok__leanfrontier	Machine-generated, kernel-verified mathematics
 cavargar__SHSLib	Stochastic Hybrid Systems core definitions formalized in Lean
 CBirkbeck__AINTLIB	Atlas of formalized number theory
-CBirkbeck__DirichletNonvanishing	Nonvanishing of Dirichlet L-functions (archived)
+CBirkbeck__DirichletNonvanishing	Nonvanishing of Dirichlet L-functions
 CBirkbeck__LeanBridge	Links LMFDB objects to Lean declarations
-CBirkbeck__ModularForms_Lean4	Modular forms, largely upstreamed into Mathlib (stale)
+CBirkbeck__ModularForms_Lean4	Modular forms
 CBirkbeck__uniform-sheafy-tate-domains-lean	Uniform sheafy Tate rings that are not stably uniform; Huber/Tate ring examples
 CBirkbeck__WeilConverse	Weil converse theorem
 celioboulay__expander-graphs	Expander graphs
@@ -145,8 +145,8 @@ codyroux__traat-lean	Selected lemmas from Term Rewriting and All That
 compiler64__category-theory-notes	Notes for the category theory class I'm teaching at MIT (Jan 2026)
 cryspen__hax-lean	Hax Lean library (automatically generated from cryspen/hax)
 ctchou__AutomataTheory	Automata theory
-dagurtomas__lean-solid	Solid abelian groups (stale)
-dagurtomas__LeanCondensed	Condensed mathematics beyond Mathlib's Condensed/ tree, by the author of that tree
+dagurtomas__lean-solid	Solid abelian groups
+dagurtomas__LeanCondensed	Additional work on condensed mathematics by the author of Mathlib's condensed-mathematics library
 dannypsnl__violet-legacy	A programming language, half theorem prover
 dappalumbo91__FSOT-2.1-Lean	Lean 4 formalization of Fluid Spacetime Omni-Theory (FSOT) 2.1 by Damian Arthur Palumbo
 datokrat__lean-iterators	In this repository, I work on the Lean iterator library that is supposed to become part of the standard library.
@@ -157,7 +157,7 @@ DhyeyMavani2003__chip-firing-with-lean	Chip-firing games and Riemann–Roch for 
 DiagonaLean__DiagonaLean	A compositional toolkit for mechanised undecidability in Lean 4.
 digama0__ast_export	AST export from Lean 4
 digama0__lean4lean	Lean 4 kernel / 'external checker' written in Lean 4
-digama0__mm0	Metamath Zero/One formal specifications and proof-source examples, including bootstrap/verifier formalization material
+digama0__mm0	Metamath Zero/One formal specifications and examples, including arithmetic and metatheory
 djvelleman__HTPILeanPackage	How To Prove It companion
 Dominique-Lawson__Directed-Topology-Lean-4	Directed topology
 draperlaboratory__ELFSage	A toy ELF parser/validator
@@ -196,9 +196,9 @@ fgdorais__lean4-parser	Parser Combinator Library for Lean 4
 fgdorais__lean4-unicode-basic	Basic Unicode support for Lean 4
 fgdorais__logic4	Logic Library for Lean 4
 flypitch__flypitch	Independence of the continuum hypothesis (Lean 3)
-flyspeck__flyspeck	HOL Light formalization of the Kepler conjecture and its geometric/analytic infrastructure
+flyspeck__flyspeck	HOL Light formalization of the Kepler conjecture, together with the supporting geometry and analysis
 formal-applied-math__formal-mathfin	Mathematical finance: Black–Scholes, Itô calculus, FTAP, Girsanov
-formal-land__rocq-of-rust	Formal Rust semantics and libraries in Rocq: translated THIR, Rust types/traits, integer operations, control flow and simulation layers used to verify real Rust code
+formal-land__rocq-of-rust	Formal definitions of Rust types, traits, integer operations, and control flow in Rocq, used to verify Rust programs
 FormalizedFormalLogic__Arithmetization	Formalization of Arithmetization of Mathematics/Metamathematics
 FormalizedFormalLogic__Foundation	Mathematical logic: completeness, incompleteness, provability logic
 FormalizedFormalLogic__Incompleteness	Incompleteness theorems; with FormalizedFormalLogic/ProvabilityLogic
@@ -235,7 +235,7 @@ girving__bottcher	Verified computation of the Mandelbrot set Böttcher series
 girving__interval	Verified floating-point interval arithmetic
 girving__ray	Mandelbrot-set results
 girving__ray-render	Verified renders of the Mandelbrot set
-girving__series	Power series arithmetic; same author bottcher (verified Böttcher series) and ray-render (verified Mandelbrot renders via interval arithmetic)
+girving__series	Power series arithmetic, with related formalizations of Böttcher series and verified Mandelbrot rendering
 glams-lean-2024__formal-2024	Course repository for GlaMS - Formalising Mathematics in Lean (2024)
 goens__lean-hoare	Hoare Logic in Lean
 goens__lost-pop-lean	POP Memory Model in Lean
@@ -264,7 +264,7 @@ henryrobbins__flare	Official implementation of "FLARE: Verifying MILP Reformulat
 hhu-adam__lean-i18n	i18n library for Lean.
 hhu-adam__lean4web-tools	Helper tool for projects run in lean4web
 hhu-adam__Robo	A game for learning Lean 4 where a cute little smart-elf joins you on your exploration of the Leaniverse.
-HOL-Theorem-Prover__HOL	Canonical HOL4 sources: core higher-order logic, standard libraries, algebra, analysis, semantics and large example developments
+HOL-Theorem-Prover__HOL	HOL4 libraries covering higher-order logic, algebra, analysis, semantics, and large formal developments
 HOLMS-lib__HOLMS	HOL Light Library for Modal Systems: Kripke semantics, normal modal logics, labelled calculi, completeness and verified proof search
 HoTT-Intro__Agda	Section-by-section Agda formalization of Rijke's Introduction to Homotopy Type Theory
 HoTT__Coq-HoTT	Homotopy type theory in Rocq/Coq
@@ -290,10 +290,10 @@ int-y1__proofs	random proofs in lean 4
 intgrah__qdt	Query-based Dependent Type Elaborator
 ionathanch__CBPV	Lean 4 mechanization of assorted CBPV metatheory.
 ionathanch__MutualInduction	A mutual induction tactic for Lean 4.
-iris__iris	Iris higher-order concurrent separation logic, program logic, ghost-state constructions, and the MoSeL proof mode
-iris__stdpp	Rocq general-purpose data structures and algebraic/finite-map infrastructure used by Iris; substantial reusable definitions independent of the headline verification work
-isabelle-prover__mirror-afp-devel	Development mirror of the Archive of Formal Proofs (AFP), the large centralized Isabelle archive spanning pure mathematics, algorithms, semantics, verification and scientific applications
-isabelle-prover__mirror-isabelle	Isabelle distribution, including the Isabelle/HOL libraries: logic, sets, algebra, analysis, topology, number theory, probability and the system's foundational theories
+iris__iris	Iris higher-order concurrent separation logic and program logic, including ghost-state constructions and proof automation
+iris__stdpp	General-purpose Rocq definitions for data structures, finite maps, and algebra, used by Iris and independently reusable
+isabelle-prover__mirror-afp-devel	Archive of Formal Proofs (AFP): a large Isabelle library spanning pure mathematics, algorithms, semantics, verification, and scientific applications
+isabelle-prover__mirror-isabelle	Isabelle/HOL libraries covering logic, sets, algebra, analysis, topology, number theory, probability, and foundational theories
 ISTA-PLV__coinductive	Co-inductive datatypes for Lean
 itsalissonsilva__lean-ml	Formally verified machine learning in Lean 4.
 Ivan-Sergeyev__seymour	Seymour's decomposition theorem for regular matroids
@@ -314,18 +314,17 @@ jessealama__lint-llm-proofs	Lean 4 linters for LLM-generated proof patterns
 jessealama__thales	TypeScript compiler and JavaScript engine in Lean
 jeswr__RDF.lean	An RDF Library for Lean4
 jimscarver__quantum-logical-framework	quantum genesis constructive possibilist quantum logical synthesis
-JJYYY-JJY__lean-normal-forms	Executable Hermite and Smith normal forms over Euclidean domains with a PID bridge to Mathlib
+JJYYY-JJY__lean-normal-forms	Executable Hermite and Smith normal forms over Euclidean domains, with proofs relating them to Mathlib's definitions
 JLimperg__regensburg-itp-school-2023	Materials for my lecture at the 2023 International School on Interactions of Proof Assistants and Mathematics in Regensburg
 JobPetrovcic__ArtinWedderburn	Artin–Wedderburn theorem
 joehendrix__lean-crypto	Cryptographic routines for the Lean 4 language
 JokerXin2025__Calculus_21	An Universe for Mitar —— Classical Calculus
-jonhanke__quadratic_forms_in_lean	A small quadratic-forms skeleton with Cassels references and a few definitions, but no theorems; the repository has no LICENSE file
-jonwashburn__riemann	{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository","status":"404"}
+jonhanke__quadratic_forms_in_lean	Quadratic forms, with Cassels references and a small collection of definitions
 josephmckinsey__Flean	Floating-point numbers, replacing Mathlib.Data.FP; with Beneficial-AI-Foundation/FloatSpec
 JOSHCLUNE__LeanHammer	LeanHammer is an automated reasoning tool for Lean that brings together multiple proof search and reconstruction techniques and combines them into one tool.
 JoshuaPurtell__lithe	simple web service in lean4
-jrh13__hol-light	HOL Light and its mathematical library: analysis, topology, geometry, algebra, number theory and proof infrastructure
-jsm28__AperiodicMonotilesLean	Aperiodic monotiles (the hat and spectre), staging for Mathlib
+jrh13__hol-light	HOL Light and its mathematical library: analysis, topology, geometry, algebra, number theory, and related foundational material
+jsm28__AperiodicMonotilesLean	Formalization of the aperiodic monotiles known as the hat and spectre
 jsm28__IMOLean	Suggested conventions and examples for Lean formalization of IMO problem statements
 jtristan__UnicodeSkipListTable	A library to create and use Unicode tables based on the skip list data structure.
 jtristan__UnicodeSkipListTableExample	A library that shows how to use the Unicode skip list tables generation tool to create a table to test if a codepoint is numeric.
@@ -344,7 +343,7 @@ keilambda__eocia-lean	Essentials of Compilation: An Incremental Approach in Lean
 keilambda__ttfpi	"Type Theory and Formal Proof: An Introduction" book formalization in Lean
 kim-em__erdos-unit-distance	Alpöge's disproof of the uniform-constant Erdős unit-distance conjecture; the Palomar example submission
 kim-em__hex-dev	The development monorepo: SPEC/SPEC.md, SPEC/design-principles.md, PLAN.md, libraries.yml, bench/, conformance/
-kim-em__lean-category-theory	Early category-theory experiments, upstreamed into Mathlib (archived)
+kim-em__lean-category-theory	Early category-theory development later incorporated into Mathlib
 kim-em__lean-training-data	Tooling to extract training data from Lean projects
 kim-em__TauCetiWorker	The contributor agent loop (uv tool install git+https://github.com/kim-em/TauCetiWorker, then tauceti work --loop); reference implementation of a roadmap-driven Lean worker
 KisaraBlue__ec-tate-lean	Tate's algorithm for elliptic curves, executable
@@ -397,10 +396,10 @@ leanprover-community__LeanProject	A template for blueprint-driven formalization 
 leanprover-community__LeanSearchClient	Syntax for searching with natural language from Lean, using https://leansearch.net/ (may extend to other services)
 leanprover-community__llm	Interfacing with Large Language Models (remote and local) from Lean.
 leanprover-community__mathematics_in_lean	Mathematics in Lean tutorial
-leanprover-community__mathlib4	Algebra, number theory, topology, analysis, measure theory, geometry and combinatorics on one typeclass hierarchy; 256,512 declarations
+leanprover-community__mathlib4	Large formal mathematics library covering algebra, number theory, topology, analysis, measure theory, geometry, combinatorics, and many other subjects
 leanprover-community__mathport	Mathport is a tool for porting Lean3 projects to Lean4
 leanprover-community__NNG4	Natural Number Game
-leanprover-community__physlib	Physics results in Lean; active, over 700 stars
+leanprover-community__physlib	Formalized mathematical physics in Lean, including Riemannian and pseudo-Riemannian geometry, tensor calculus, relativity, distributions, Lie groups, crystal lattices, topological field theory, and lattice quantum…
 leanprover-community__plausible	Property-based counterexample search
 leanprover-community__ProofWidgets4	Helper toolkit for creating your own Lean 4 UserWidgets
 leanprover-community__quote4	Intuitive, type-safe expression quotations for Lean 4.
@@ -411,7 +410,7 @@ leanprover-cookbook__lean-metaprogramming-recipes	A cookbook for Metaprogramming
 leanprover__comparator	Comparator: judges that a Solution module proves exactly the theorems stated in a Challenge module, with sandboxing (landrun), lean4export, permitted-axiom checks, and optional ammkrn/nanoda_lib replay
 leanprover__cslib	Computer science library
 leanprover__doc-gen4	Document Generator for Lean 4
-leanprover__hex	Hex: verified computational algebra in Lean 4, built by spec-driven development (human specifications, AI implementations and proofs)
+leanprover__hex	Verified computational algebra in Lean 4, including matrices, row reduction, determinants, Gram–Schmidt orthogonalization, and LLL lattice reduction
 leanprover__hex-bareiss	Executable fraction-free Bareiss determinant over Int. Mathlib-free. Published from hex-dev.
 leanprover__hex-bareiss-mathlib	Mathlib correspondence proofs for hex-bareiss. Published from hex-dev.
 leanprover__hex-basic	The Mathlib-free computational libraries: dense matrices, row reduction, nullspaces, determinants (Bareiss over Int), Gram–Schmidt, and a verified LLL lattice-basis reduction with a proved short-vector bound, plus a…
@@ -419,7 +418,7 @@ leanprover__hex-determinant	Leibniz determinant + cofactor/adjugate/Cauchy-Binet
 leanprover__hex-determinant-mathlib	Mathlib correspondence proofs for hex-determinant. Published from hex-dev.
 leanprover__hex-gram-schmidt	Integer Gram-Schmidt orthogonalization for the hex project. Mathlib-free.
 leanprover__hex-gram-schmidt-mathlib	Mathlib correspondence proofs for hex-gram-schmidt
-leanprover__hex-lll	Verified LLL lattice-basis reduction with a proved short-vector bound; Mathlib bridge in leanprover/hex-lll-mathlib
+leanprover__hex-lll	Verified LLL lattice-basis reduction with a proved short-vector bound; a companion library proves correspondence with Mathlib's lattice definitions
 leanprover__hex-lll-mathlib	Mathlib correspondence proofs for hex-lll
 leanprover__hex-matrix	Dense matrices over an arbitrary coefficient type: arithmetic, elementary row and column operations, and the Gram matrix. Mathlib-free.
 leanprover__hex-matrix-mathlib	The Mathlib bridges: correspondence proofs between each Hex computation and Mathlib's definitions, transported typeclass instances, and theorems whose proofs need Mathlib
@@ -431,7 +430,6 @@ leanprover__lean-eval	Comparator-based formal-mathematics evaluation
 leanprover__lean4-cli	A Lean 4 library for configuring Command Line Interfaces and parsing command line arguments.
 leanprover__lean4checker	Replay the `Environment` for a given Lean module, ensuring that all declarations are accepted by the kernel.
 leanprover__lean4export	Plain-text declaration export for Lean 4
-leanprover__leanbv	{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository","status":"404"}
 leanprover__LeanInk	LeanInk is a command line helper tool for Alectryon which aims to ease the integration of Lean 4.
 leanprover__leansat	This package provides an interface and foundation for verified SAT reasoning
 leanprover__leansqlite	SQLite bindings for Lean
@@ -478,17 +476,17 @@ marcusrossel__lean-egg	A deprecated equality saturation tactic for Lean based on
 marcusrossel__lean-snakebird	An implementation of Snakebird in Lean.
 marcusrossel__verified-compiler	A toy example of a verified compiler.
 mariainesdff__HassePrinciple	Hilbert symbols and the Hasse–Minkowski invariant over general fields (Women in Numbers 7)
-mariainesdff__LocalClassFieldTheory	Local fields toward local class field theory, including DVR/uniformizer APIs for completions at height-one primes
+mariainesdff__LocalClassFieldTheory	Local fields toward local class field theory, including discrete valuation rings, uniformizers, and completions at height-one primes
 mariovagomarzal__higher_category_theory	Higher-order categories after Cosme Llópez
 marozols__clifford-project	Lean formalization of the structure theorem for the single-qudit Clifford group
 martinescardo__TypeTopology	Topology and logic from the univalent point of view, in Agda
 matematiflo__CompAssistedMath2024	GitHub repository for the seminar on Computer-assisted mathematics held at the University of Heidelberg during the Summer Semester of 2024.
 matematiflo__SumsOfSquares	Summing squares in Lean
 math-comp__analysis	Real and classical analysis over Mathematical Components: topology, measure/integration, real numbers, sequences, and distributions
-math-comp__math-comp	Mathematical Components: finite structures, algebra, finite group theory, field theory, matrices, polynomials, and the SSReflect hierarchy
-math-comp__odd-order	Feit–Thompson Odd Order Theorem and the finite-group infrastructure built for its proof
-math-inc__FrontierMathOpen-Hypergraphs	FrontierMath open-problem formalization on hypergraphs; sibling math-inc/FormalQualBench
-math-inc__strongpnt	Strong PNT with complex-analysis infrastructure; AI-generated, human-reviewed
+math-comp__math-comp	Mathematical Components: finite structures, algebra, finite group theory, field theory, matrices, and polynomials
+math-comp__odd-order	Feit–Thompson Odd Order Theorem and the supporting finite-group theory developed for its proof
+math-inc__FrontierMathOpen-Hypergraphs	Formalization of a FrontierMath open problem on hypergraphs
+math-inc__strongpnt	Strong prime number theorem with the required complex analysis
 math-xmum__AbstractAlgebra	Abstract Algebra Game
 math-xmum__Brouwer	This repo is about the proof of the Nash Equilibrium through Scarf and Brouwer by Mathlib.
 math-xmum__gametheory	Nash equilibrium via Scarf and Brouwer
@@ -499,7 +497,7 @@ mattrobball__BridgelandStability	Bridgeland stability conditions on triangulated
 mccorvie__classification-of-surfaces	Classification of compact surfaces
 mdbrnowski__apportionmentlib	Formal verification of apportionment theory.
 merely-true__merely-true	Permissive shared repository of AI-generated Lean mathematics with CI-only review (no sorry, no axioms)
-metamatematico__Metamatematico---Razonamiento-Formal-con-Lean	{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository","status":"404"}
+metamatematico__Metamatematico---Razonamiento-Formal-con-Lean	Demostrador de enunciados matemáticos con base Lean
 metamath__set.mm	Metamath Proof Explorer and companion databases: ZFC mathematics plus intuitionistic set theory, NF, higher-order and quantum logic databases
 mgignoux__lean4-gl-coalgebras	Craig interpolation for GL in Lean
 mhuisi__Uniq	Static Uniqueness Analysis for the Lean 4 Theorem Prover
@@ -508,12 +506,11 @@ MichaelStollBayreuth__Heights	Theory of heights
 MichaelStollBayreuth__LegendreQF	Legendre's theorem on diagonal ternary quadratic forms; complete but defines no Hilbert symbol, Hasse invariant, or lattice notion
 MichaelStollBayreuth__Weights	Minimization of hypersurfaces (Elsenhans–Stoll)
 midspiral__LemmaScript	verification toolchain for TypeScript (Tech Preview)
-Mintpath__p-neq-np-lean	{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository","status":"404"}
 mirefek__lean-tactic-programming-guide	Beginner's guide to Tactic Programming in Lean
 misaka10987__archimedes	Don't disturb my circle!
 mistralai__LeanstralSafeVerify	Leanstral's fork of SafeVerify, which we use for code agent training and as part of our evaluation stack.
 mitchell-horner__ErdosStoneSimonovitsKovariSosTuran	Erdős–Stone–Simonovits and Kővári–Sós–Turán theorems
-Mizar__MML-current	The authoritative current MML article sources (.miz): a large centrally maintained body of definitions and proofs across mainstream mathematics
+Mizar__MML-current	Mizar Mathematical Library: a centrally maintained collection of formal definitions and proofs across mainstream mathematics
 mo271__FormalBook	Aigner–Ziegler, Proofs from THE BOOK
 model-checking__rust-lean-models	Lean models of Rust libraries
 monsterkrampe__Existential-Rules-in-Lean	This repo contains formalizations around Existential Rules (aka. Tuple-Generating Dependencies) with disjunctions and the Chase algorithm. Mostly this will be about (basics of) my own formal works.
@@ -531,7 +528,7 @@ mseri__BET	Project for "Machine-Checked Mathematics" at the Lorentz Center
 mtoohey31__tabular-types	Proofs for Extensible Data Types with Ad-Hoc Polymorphism
 namin__climber	LCF checks theorem construction; climber checks theory construction
 namin__reviser	LCF checks theorem construction; reviser checks belief revision
-nasa__pvslib	NASALib, NASA's large PVS library of formal developments: algebra, analysis, geometry, numerical methods, decision procedures and application libraries
+nasa__pvslib	NASALib: PVS formalizations spanning algebra, analysis, geometry, numerical methods, decision procedures, and applications
 nasqret__fineqs	Lean4 formalization with Artistotle of the arXiv paper 1906.11174
 NaveenMaurya749__VerifiedVersionControl	A repository for participation in the LeanLang for Autonomy Hackathon held from April 17 to May 01, 2026 at Indian Institute of Science, organised by Emergence AI.
 NethermindEth__CertiPlonk	A framework for extracting and formally verifying constraint systems from the Plonky3 zkDSL in Lean.
@@ -548,7 +545,6 @@ nomeata__loogle	Type-pattern search over Mathlib; also the lean_loogle MCP tool
 npflueger__demazure	Demazure products
 NyxFoundation__tsl-formal-verification	Formal Verification of Top Single Layer Encoding
 objectionary__proof	Proof of 𝜑-calculus confluence in Lean4
-ocfnash__LieClassification	{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository","status":"404"}
 ojhermann-org__pacioli	A verified core of accounting mechanics in Lean 4, paired with curated accounting judgment in the Open Knowledge Format (OKF).
 oliver-butterley__SpectralThm	Spectral theorem
 oOo0oOo__LeanDoomed	Simple Raycasting Example in Lean4 using SDL3
@@ -587,7 +583,6 @@ PierreSenellart__provenance-lean	Lean4 formalization of some provenance notions
 pitmonticone__ItaLean2025	Repository hosting the resources for the conference "ItaLean 2025", held in Bologna, Italy, December 9–12, 2025.
 pitmonticone__LeanCHANGE	Repository hosting the resources for the Lean demo session of my talk presented at the weekly research seminar on CHallenges in ANalysis and GEometry (CHANGE) at the University of Trento on February 11, 2025.
 pitmonticone__LeanInVienna2024	Repository hosting resources for the "Lean Tutorial in Vienna" at TU Wien from September 18 to 20, 2024.
-pitmonticone__NewProject	{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository","status":"404"}
 pitmonticone__QuadraticIntegers	Rings of integers of quadratic fields
 PnVDiscord__software-foundations-lean	📚 (WIP) Rewriting Software Foundations in Lean 4
 pnwamk__lean4-assert-command	A simple assertion command for Lean4
@@ -596,14 +591,12 @@ predictable-machines__lean4-base64	RFC 4648 Base64 encoding and decoding for Lea
 predictable-machines__lean4-flow	Reactive streams library for Lean 4 — Flow, SharedFlow, StateFlow, ProgramFlow, and ReactiveProgram
 predictable-machines__lean4-json-schema	Lean 4 JSON Schema library — types, validation, correctness proofs, and deriving handlers
 Project-Navi__cd-formalization	Lean 4 + Mathlib formalization of the Creative Determinant framework — 15 theorems proved with zero sorry, CI-enforced via lake build --wfail
-Project-Navi__ordvec-formalization	{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository","status":"404"}
 project-numina__LeanGeo	Solving Competition Geometry Problems in Lean
 ProofOfKeags__btc-verified	Verified Bitcoin protocol components in Lean 4 — serialization, txids, and merkle commitments checked against real mainnet blocks.
 proofs-and-programs__proofs-and-programs-25	Code for the course "Proofs and Programs", January 2025, IISc
 provables__special-numbers	Special Numbers (Chapter 6 from Knuth's Concrete Mathematics)
 QDU-Math-in-lean__elementary-number-theory	elementary number theory
 qualgebra__LeanToolkit	A set of tools and extensions for Lean
-quangvdao__ZKLib-deprecated	{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository","status":"404"}
 rahul3613__miniF2F-lean4	miniF2F dataset ported into Lean 4
 rahul3613__ProofNet-lean4	ProofNet dataset ported into Lean 4
 rami3l__PLFaLean	Learn Lean 4 with PLFA proofs.
@@ -626,19 +619,19 @@ risc0__risc0-lean4	A model of the RISC Zero zkVM and ecosystem in the Lean 4 The
 rkirov__category-theory-in-context-lean	Lean companion to Riehl's Category Theory in Context
 Robby955__FormalSLT	Machine-checked statistical learning theory in Lean 4: empirical-Bernstein and time-uniform PAC-Bayes, Markov risk, Rademacher/VC, and Dudley chaining.
 RobertoZunino__ITPCourse	An Interactive Theorem Proving course with Lean 4
-rocq-community__corn	Constructive mathematics repository at Nijmegen
-rocq-community__fourcolor	Four Color Theorem development, including graph-theoretic and real-number infrastructure
-rocq-prover__rocq	Rocq core library and prelude: elementary logical notions, datatypes, equality, arithmetic foundations, well-founded recursion, and core proof infrastructure
+rocq-community__corn	Constructive mathematics library in Rocq/Coq
+rocq-community__fourcolor	Four Color Theorem, including the graph theory and real analysis needed for the proof
+rocq-prover__rocq	Rocq core library: elementary logic, basic data types, equality, arithmetic foundations, and well-founded recursion
 rocq-prover__stdlib	Rocq standard mathematical library: sets, lists, sorting, arithmetic, numbers, relations, and general-purpose definitions and theorems
-roed-math__gq2-lean	Dyadic Hilbert symbol over ℚ₂ with Serre's evaluation formula and 2-adic square-class facts, sorry-free and self-contained inside a profinite G_{ℚ₂} presentation
+roed-math__gq2-lean	Dyadic Hilbert symbol over ℚ₂ with Serre's evaluation formula and 2-adic square-class facts; all proofs are complete
 roos-j__lean-booleanfun	Analysis of Boolean functions, including Arrow's theorem
 RSoulatIOHK__Pigment	Terminal colors and styling for Lean 4
 runbikeswim__lean-semver	Semantic Versioning in Lean4
-rzrn__ground_zero	HoTT library in Lean 4 (archived)
+rzrn__ground_zero	Homotopy type theory in Lean 4
 SAIRcompetition__equational-theories-lean-stage2	This repository hosts the SAIR Mathematics Distillation Challenge: Equational Theories Stage 2, providing Lean 4 problem sets, judging tools, and submission harnesses for generating machine-checkable proof certificates.
 samuelborza__IsTranscendentalPi	Transcendence of π
 SamuelSchlesinger__complexitylib	Formalization of complexity theory
-SamuelSchlesinger__sensitivity-conjecture	Huang's proof of the sensitivity conjecture; same author complexitylib
+SamuelSchlesinger__sensitivity-conjecture	Huang's proof of the sensitivity conjecture
 SamuelSchlesinger__shannon-1948-formalization	A formalization of Shannon's seminal 1948 paper defining entropy.
 schergen-org__Leansi	Leansi is a Lean Library for terminal formatting.
 SchrodingerZhu__lean-gccjit	libgccjit bindings for Lean4
@@ -650,7 +643,7 @@ Seasawher__import-all	This script can check and auto-generate `import` statement
 Seasawher__lean-book	mdbook template for Lean project
 Seasawher__mdgen	Tool to generate markdown files from lean files.
 Seasawher__mk-exercise	Simple and intuitive tool to manage exercises in textbooks written in Lean.
-seL4__l4v	Isabelle/HOL formal specifications and proofs for seL4, with reusable word, monadic, separation-logic, refinement and verification infrastructure
+seL4__l4v	Isabelle/HOL formal specifications and proofs for seL4, with reusable theories for machine words, state monads, separation logic, refinement, and program verification
 ShangtongZhang__rl-theory-in-lean	Towards Formalizing RL Theory
 shetzl__autth	Automata theory
 Shilun-Allan-Li__tcslib	Lean 4 Theoretical Computer Science Library
@@ -668,9 +661,9 @@ siddhartha-gadgil__Polylean	Group extensions and torsion-freeness with computati
 siddhartha-gadgil__proofs-and-programs-2023	Code and source for website for the course "Proofs and Programs", January 2023, Indian Institute of Science
 siddhartha-gadgil__Saturn	Experiments with SAT solvers with proofs in Lean 4
 singerng__steinberg-formalization	Steinberg groups
-sinhp__displayed_categories	Displayed categories: iso-level fibers (EFiber), cartesian lifts, and Street fibrations
+sinhp__displayed_categories	Displayed categories, including fibers, cartesian lifts, and Street fibrations
 sinhp__HoTTLean	Groupoid and natural models of HoTT; semantics of type theory
-sinhp__LeanFibredCategories	Fibred categories (stale; superseded by Mathlib's FiberedCategory tree and displayed_categories)
+sinhp__LeanFibredCategories	Fibred categories; this development is inactive and has been superseded by the corresponding Mathlib material
 sinhp__Poly	Polynomial functors and locally cartesian closed categories
 smmercuri__adele-ring_locally-compact	Local compactness of the adele ring of a number field
 solana-foundation__leanprover-solanalib	⚠️ Experimental | Prototype
@@ -683,7 +676,7 @@ spitters__CatCrypt-core	Core of Catcrypt
 SrGaabriel__lapis	✏️ | A cutting-edge, concurrent & performant Language Server Protocol (LSP) framework for Lean 4.
 SrGaabriel__leaner	🪶 | A linter, formatter and whole-program dead code eliminator for Lean 4
 SrGaabriel__soma	⚗️ | Soma is a general-purpose dependently-typed functional programming language powered by Interaction Nets.
-SRI-CSL__PVS	PVS distribution and built-in/prelude libraries, including the formal definitions on which NASALib developments build
+SRI-CSL__PVS	PVS and its standard libraries, including the formal definitions used by NASALib
 standardml__twelf	Twelf/LF examples and case studies: lambda calculi, Cartesian closed categories, Church–Rosser, cut elimination, Mini-ML, logic programming and metatheory
 stat-lib__statlib	LEAN library supporting statistics formalization
 sunblaze-ucb__verina	Verina (Verifiable Code Generation Arena) is a high-quality benchmark enabling a comprehensive and modular evaluation of code, specification, and proof generation as well as their compositions.
@@ -723,20 +716,20 @@ tydeu__lean4-itertools	A Lean 4 library for iterators.
 tydeu__lean4-partax	Lean 4 library of tools for parsing and compiling syntax and parser definitions.
 typednotes__hale	Haskell-inspired libraries for Lean 4 with maximalist typing
 uda-lab__leray-hopf	Leray–Hopf weak solutions of incompressible Navier–Stokes
-ufmg-smite__lean-smt	SMT-solver tactics
+ufmg-smite__lean-smt	Automated proof tactics using satisfiability-modulo-theories solvers
 ulfjack__ryu	Converts floating point numbers to decimal strings
 umpolungfish__Imscribing_Grammar	A 12-primitive measurement apparatus for the structural type of any system — 17,280,000-address Crystal of Types
 UniMath__agda-unimath	Univalent mathematics in Agda, including extensive category theory
 UniMath__UniMath	Univalent mathematics in Rocq/Coq; large formal category-theory corpus
 urkud__SardMoreira	Moreira's version of Sard's theorem; with fpvandoorn/sard
 utensil__ginac-lean	A work-in-progress Lean 4 binding to GiNaC
-uwplse__verdi	Formal semantics and reusable infrastructure for distributed systems and verified distributed-system implementations
+uwplse__verdi	Formal models and proofs for distributed systems, including reusable definitions for verified distributed algorithms
 varosi__Bitmap	Lean 4 bitmap utilities with PNG encode/decode support, plus a small widget for visualization.
 vasnesterov__HadwigerNelson	Hadwiger–Nelson bounds
 vbeffara__RMT4	The Riemann mapping theorem
 VCA-EPFL__graphiti	Verified graph rewriting (for dataflow circuits).
 VCA-EPFL__leanses	Lean lens implementation with custom notation.
-verified-optimization__CvxLean	Convex optimization modeling (stale)
+verified-optimization__CvxLean	Convex optimization modeling
 Verified-zkEVM__ArkLib	Formally Verified Arguments of Knowledge in Lean
 Verified-zkEVM__clean	Lean circuit DSL
 Verified-zkEVM__CompPoly	Computable polynomials
@@ -768,7 +761,6 @@ WuProver__groebner_proj	Gröbner basis theory; companions WuProver/MonomialOrder
 WuProver__MonomialOrderedPolynomial	Monomial ordered polynomial implementation in Lean4
 wvhulle__ennreal-arith	Arithmetic tactics for extended non-negative real numbers (ENNReal)
 wwylele__PentagonalNumberTheorem	Euler's pentagonal number theorem
-Xiyou-Wu__RiemannianGeometry	{"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository","status":"404"}
 YaelDillies__apap	Kelley–Meka bound on Roth numbers
 YaelDillies__cam-combi	Cambridge Part II/III graph theory, combinatorics, extremal and probabilistic combinatorics
 YaelDillies__chandra-furst-lipton	Formalisation in the Lean theorem prover of the relation between corner-free sets and communication complexity

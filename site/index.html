@@ -26,7 +26,7 @@
 	<section class="hero">
 		<div class="hero-copy">
 				<h1>Search formalized mathematics.</h1>
-					<p class="lede">Definitions, constructions, statements, proofs, and formal semantics from <a href="https://lean-lang.org/">Lean</a>, <a href="https://rocq-prover.org/">Rocq</a>, <a href="https://agda.readthedocs.io/">Agda</a>, <a href="https://isabelle.in.tum.de/">Isabelle</a>, <a href="https://github.com/jrh13/hol-light">HOL Light</a>, <a href="https://hol-theorem-prover.org/">HOL4</a>, <a href="https://mizar.uwb.edu.pl/">Mizar</a>, <a href="https://us.metamath.org/">Metamath</a>, <a href="https://acl2.org/">ACL2</a>, <a href="https://pvs.csl.sri.com/">PVS</a>, and <a href="https://twelf.org/">Twelf</a>.</p>
+					<p class="lede">Definitions, constructions, theorem statements, and proofs from <a href="https://lean-lang.org/">Lean</a>, <a href="https://rocq-prover.org/">Rocq</a>, <a href="https://agda.readthedocs.io/">Agda</a>, <a href="https://isabelle.in.tum.de/">Isabelle</a>, <a href="https://github.com/jrh13/hol-light">HOL Light</a>, <a href="https://hol-theorem-prover.org/">HOL4</a>, <a href="https://mizar.uwb.edu.pl/">Mizar</a>, <a href="https://us.metamath.org/">Metamath</a>, <a href="https://acl2.org/">ACL2</a>, <a href="https://pvs.csl.sri.com/">PVS</a>, and <a href="https://twelf.org/">Twelf</a>.</p>
 				<div class="search-box">
 					<form id="f" class="search-form">
 						<input type="search" id="q" name="q" placeholder="Try: IsometryEquiv, Hasse invariant, univalent" autocomplete="off" autofocus spellcheck="false" aria-label="Search the formalization corpus">
@@ -52,7 +52,7 @@
 									</select>
 									<a class="field-link" id="prover-home" href="#" hidden></a>
 								</label>
-							<label>Source
+							<label>Library or project
 								<input id="source-filter" list="source-options" placeholder="Any source" autocomplete="off">
 								<datalist id="source-options"></datalist>
 							</label>
@@ -63,8 +63,8 @@
 								</label>
 								<label>Files
 									<select id="scope-filter">
-										<option value="formal">Formal source files</option>
-										<option value="all">All indexed files</option>
+											<option value="formal">Formalization files</option>
+											<option value="all">All files</option>
 									</select>
 							</label>
 						</div>
@@ -76,12 +76,12 @@
 				</div>
 			<div id="status" class="status-line" aria-live="polite"></div>
 		</div>
-			<aside class="hero-panel" aria-label="Index statistics">
-				<div class="hero-panel-head">Index statistics</div>
+			<aside class="hero-panel" aria-label="Corpus statistics">
+				<div class="hero-panel-head">Corpus statistics</div>
 			<div class="hero-metrics" id="hero-metrics">
-					<div class="hero-metric"><strong>—</strong><span>indexed sources</span></div>
-						<div class="hero-metric"><strong>—</strong><span>formal source files</span></div>
-					<div class="hero-metric"><strong>—</strong><span>lines of formal source</span></div>
+					<div class="hero-metric"><strong>—</strong><span>searchable sources</span></div>
+						<div class="hero-metric"><strong>—</strong><span>formalization files</span></div>
+					<div class="hero-metric"><strong>—</strong><span>lines of formalization code</span></div>
 				<div class="hero-metric"><strong>—</strong><span>proof assistants</span></div>
 			</div>
 		</aside>
@@ -90,8 +90,8 @@
 	<section id="browse" aria-labelledby="browse-title">
 			<h2 id="browse-title">Browse</h2>
 			<div class="browse-grid">
-				<a class="browse-card" href="./corpus.html"><strong>Sources</strong><span>Indexed sources, proof assistants, and mathematical content.</span></a>
-				<a class="browse-card" href="./subjects.html"><strong>Subjects</strong><span>Formalization sources organized by mathematical area.</span></a>
+				<a class="browse-card" href="./corpus.html"><strong>Sources</strong><span>Libraries and projects in the corpus, grouped by proof assistant.</span></a>
+				<a class="browse-card" href="./subjects.html"><strong>Subjects</strong><span>Libraries and projects organized by mathematical subject.</span></a>
 				<a class="browse-card" href="./api.html"><strong>API</strong><span>JSON search endpoint, query syntax, and response format.</span></a>
 		</div>
 		<p class="muted" id="counts"></p>
@@ -102,7 +102,7 @@
 
 <footer class="site-footer">
 		<div class="shell footer-inner">
-				<p>Search formal source files across proof assistants.</p>
+				<p>Search formalizations across proof assistants.</p>
 		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./api.html">API</a></div>
 	</div>
 </footer>
@@ -484,9 +484,9 @@ fetch("./metrics.json").then(r => r.json()).then(data => {
 	const s = data.summary;
 	const compact = n => new Intl.NumberFormat("en", {notation: "compact", maximumFractionDigits: 1}).format(n || 0);
 	el("hero-metrics").innerHTML = `
-		<div class="hero-metric"><strong>${Number(s.searchable_sources || 0).toLocaleString()}</strong><span>indexed sources</span></div>
-		<div class="hero-metric"><strong>${compact(s.proof_files)}</strong><span>formal source files</span></div>
-		<div class="hero-metric"><strong>${compact(s.proof_source_lines)}</strong><span>lines of formal source</span></div>
+		<div class="hero-metric"><strong>${Number(s.searchable_sources || 0).toLocaleString()}</strong><span>searchable sources</span></div>
+		<div class="hero-metric"><strong>${compact(s.proof_files)}</strong><span>formalization files</span></div>
+		<div class="hero-metric"><strong>${compact(s.proof_source_lines)}</strong><span>lines of formalization code</span></div>
 		<div class="hero-metric"><strong>${Number(s.proof_assistants || 0).toLocaleString()}</strong><span>proof assistants</span></div>`;
 });
 

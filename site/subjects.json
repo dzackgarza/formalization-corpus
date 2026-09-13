@@ -70,7 +70,7 @@
           "source_count": 3
         },
         {
-          "label": "Finite algebra",
+          "label": "Finite algebraic structures",
           "slug": "finite-algebra",
           "source_count": 4
         },
@@ -160,7 +160,7 @@
           "source_count": 11
         },
         {
-          "label": "p-adic mathematics",
+          "label": "p-adic number theory and geometry",
           "slug": "p-adic-mathematics",
           "source_count": 10
         },
@@ -332,7 +332,7 @@
       ]
     },
     {
-      "label": "Computation and formal methods",
+      "label": "Computation and verification",
       "subjects": [
         {
           "label": "Optimization",
@@ -360,7 +360,7 @@
           "source_count": 3
         },
         {
-          "label": "Formal semantics",
+          "label": "Semantics of programming languages and systems",
           "slug": "formal-semantics",
           "source_count": 19
         },
@@ -370,7 +370,7 @@
           "source_count": 13
         },
         {
-          "label": "Verification",
+          "label": "Program verification",
           "slug": "verification",
           "source_count": 29
         },
@@ -494,7 +494,7 @@
       ]
     },
     "automata-theory": {
-      "group": "Computation and formal methods",
+      "group": "Computation and verification",
       "label": "Automata theory",
       "sources": [
         "ctchou__AutomataTheory",
@@ -637,7 +637,7 @@
       ]
     },
     "computer-algebra": {
-      "group": "Computation and formal methods",
+      "group": "Computation and verification",
       "label": "Computer algebra",
       "sources": [
         "Hagb__lean-groebner",
@@ -777,7 +777,7 @@
     },
     "finite-algebra": {
       "group": "Algebra",
-      "label": "Finite algebra",
+      "label": "Finite algebraic structures",
       "sources": [
         "UniMath__agda-unimath",
         "agda__agda-stdlib",
@@ -799,15 +799,15 @@
       ]
     },
     "formal-language-theory": {
-      "group": "Computation and formal methods",
+      "group": "Computation and verification",
       "label": "Formal language theory",
       "sources": [
         "madvorak__chomsky"
       ]
     },
     "formal-semantics": {
-      "group": "Computation and formal methods",
-      "label": "Formal semantics",
+      "group": "Computation and verification",
+      "label": "Semantics of programming languages and systems",
       "sources": [
         "AbsInt__CompCert",
         "CakeML__cakeml",
@@ -1071,7 +1071,7 @@
       ]
     },
     "mathematical-physics": {
-      "group": "Computation and formal methods",
+      "group": "Computation and verification",
       "label": "Mathematical physics",
       "sources": [
         "LionSR__TNLean",
@@ -1141,7 +1141,7 @@
       ]
     },
     "numerical-analysis": {
-      "group": "Computation and formal methods",
+      "group": "Computation and verification",
       "label": "Numerical analysis",
       "sources": [
         "alerad__leancert",
@@ -1153,7 +1153,7 @@
       ]
     },
     "optimization": {
-      "group": "Computation and formal methods",
+      "group": "Computation and verification",
       "label": "Optimization",
       "sources": [
         "Lean-MoDS__StatsMLlib",
@@ -1183,7 +1183,7 @@
     },
     "p-adic-mathematics": {
       "group": "Number theory",
-      "label": "p-adic mathematics",
+      "label": "p-adic number theory and geometry",
       "sources": [
         "ANR-FALSE__PadicModForms",
         "CBirkbeck__uniform-sheafy-tate-domains-lean",
@@ -1234,7 +1234,7 @@
       ]
     },
     "programming-languages": {
-      "group": "Computation and formal methods",
+      "group": "Computation and verification",
       "label": "Programming languages",
       "sources": [
         "AbsInt__CompCert",
@@ -1263,7 +1263,7 @@
       ]
     },
     "quantum-information": {
-      "group": "Computation and formal methods",
+      "group": "Computation and verification",
       "label": "Quantum information",
       "sources": [
         "Hayata-Yamasaki-Group__lean-quantum",
@@ -1342,7 +1342,7 @@
       ]
     },
     "scientific-computing": {
-      "group": "Computation and formal methods",
+      "group": "Computation and verification",
       "label": "Scientific computing",
       "sources": [
         "leanprover__TensorLib",
@@ -1461,8 +1461,8 @@
       ]
     },
     "verification": {
-      "group": "Computation and formal methods",
-      "label": "Verification",
+      "group": "Computation and verification",
+      "label": "Program verification",
       "sources": [
         "AbsInt__CompCert",
         "CakeML__cakeml",

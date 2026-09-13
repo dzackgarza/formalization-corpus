@@ -110,9 +110,26 @@ def previous() -> dict[str, str]:
     whose line came from the GitHub API and has not changed."""
     if not OUT.exists():
         return {}
-    return dict(
+    cached = dict(
         line.split("\t", 1) for line in OUT.read_text().splitlines() if "\t" in line
     )
+    return {key: value for key, value in cached.items() if valid_description(value)}
+
+
+def valid_description(text: str) -> bool:
+    """Reject API error payloads and other failed lookups masquerading as prose."""
+    text = text.strip()
+    if not text:
+        return False
+    if text.startswith("{"):
+        try:
+            payload = json.loads(text)
+        except json.JSONDecodeError:
+            pass
+        else:
+            if isinstance(payload, dict) and "message" in payload:
+                return False
+    return True
 
 
 def source_rows() -> list[tuple[str, str]]:
@@ -151,7 +168,7 @@ def main() -> None:
              "--jq", ".description // \"\""],
             capture_output=True, text=True,
         )
-        if got.stdout.strip():
+        if got.returncode == 0 and valid_description(got.stdout):
             out[directory] = got.stdout.strip()
 
     with OUT.open("w") as fh:

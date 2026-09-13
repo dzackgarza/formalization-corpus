@@ -93,10 +93,12 @@ def main() -> None:
         for subject in group["subjects"]:
             slug = subject["slug"]
             detail = payload["subjects"][slug]
+            source_count = len(detail["sources"])
+            source_word = "source" if source_count == 1 else "sources"
             toc.append(f'<a href="#subject-{slug}">{html.escape(subject["label"])}</a>')
             section.append(
                 f'<h3 id="subject-{slug}">{html.escape(subject["label"])} '
-                f'<span class="subject-count">{len(detail["sources"])} sources</span></h3>'
+                f'<span class="subject-count">{source_count} {source_word}</span></h3>'
             )
             rows = []
             for source_id in detail["sources"]:
@@ -106,7 +108,7 @@ def main() -> None:
                 what = html.escape(source.get("what", ""))
                 rows.append(f'<tr><td><a href="{url}">{name}</a></td><td>{what}</td></tr>')
             section.append(
-                '<div class="table-wrap"><table><thead><tr><th>Source</th><th>Mathematical content</th></tr></thead>'
+                '<div class="table-wrap"><table><thead><tr><th>Library / project</th><th>Mathematical content</th></tr></thead>'
                 f'<tbody>{"".join(rows)}</tbody></table></div>'
             )
         sections.append("".join(section))
@@ -131,8 +133,8 @@ def main() -> None:
 <main class="shell page-main">
   <header class="page-heading">
     <h1>Subjects</h1>
-    <p class="lede">Sources by mathematical subject. A source may appear under more than one subject.</p>
-    <p class="note">Subject assignments are curated from source contents and project descriptions. Sources without subject assignments remain searchable.</p>
+    <p class="lede">Libraries and projects by mathematical subject. A library or project may appear under more than one subject.</p>
+    <p class="note">Subjects are assigned from the mathematical content of each library or project. Libraries and projects not yet classified by subject remain searchable.</p>
   </header>
   <div class="content-layout subject-layout">
     <aside class="toc subject-toc" aria-label="Subjects">{"".join(toc)}</aside>
@@ -140,7 +142,7 @@ def main() -> None:
   </div>
 </main>
 <footer class="site-footer">
-  <div class="shell footer-inner"><p>{payload['classified_sources']} sources are classified by subject.</p><div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div></div>
+  <div class="shell footer-inner"><p>{payload['classified_sources']} libraries and projects are currently classified by subject.</p><div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div></div>
 </footer>
 </body>
 </html>
