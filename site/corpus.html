@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Every repository — Formalization Corpus</title>
+<title>Every source — Formalization Corpus</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/css/tabulator_simple.min.css" media="(prefers-color-scheme: light)">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/css/tabulator_midnight.min.css" media="(prefers-color-scheme: dark)">
@@ -13,6 +13,10 @@
 	header.container { padding-block: 1.2rem 0; }
 	header.container nav { margin-bottom: 0; }
 	main { padding-block: 1rem; }
+	main h2 { font-size: 1.1rem; margin-top: 1.8rem; }
+	.metrics { font-size: 0.86rem; }
+	.metrics td:not(:first-child), .metrics th:not(:first-child) { text-align: right; }
+	.note { font-size: 0.8rem; color: var(--pico-muted-color); }
 	.tabulator { font-size: 0.82rem; }
 	.tabulator-row .tabulator-cell a { font-family: var(--pico-font-family-monospace); }
 	.tabulator-header-filter input { margin: 0; font-size: 0.8rem; }
@@ -26,7 +30,7 @@
 	<nav>
 		<ul>
 			<li><a href="./">Search</a></li>
-			<li><a href="./corpus.html" aria-current="page">Every repository</a></li>
+			<li><a href="./corpus.html" aria-current="page">Every source</a></li>
 			<li><a href="./subjects.html">By subject</a></li>
 			<li><a href="./api.html">API</a></li>
 		</ul>
@@ -34,38 +38,84 @@
 </header>
 
 <main class="container">
-	<table id="totals"></table>
-	<div id="table"></div>
+	<h2>Corpus reach</h2>
+	<table id="reach" class="metrics"></table>
+	<p class="note">
+		A formal unit is a prover-native source/theory file. Generated ACL2
+		<code>.sys</code> rune reports and PVS <code>.prf</code> proof traces are
+		excluded. Definition/theorem totals are intentionally omitted until they can
+		be obtained from prover-native parsers or elaborated environments rather than
+		keyword matching.
+	</p>
+
+	<h2>By formalization ecosystem</h2>
+	<table id="ecosystems" class="metrics"></table>
+
+	<h2>Sources</h2>
+		<div id="table"></div>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/js/tabulator.min.js"></script>
 <script>
-const KINDS = {lean: "Lean 4", "rocq-agda": "Rocq and Agda", reservoir: "Lean package registry"};
+const KINDS = {
+	lean: "Lean 4",
+	reservoir: "Lean package registry",
+	rocq: "Rocq",
+	agda: "Agda",
+	isabelle: "Isabelle",
+	"hol-light": "HOL Light",
+	hol4: "HOL4",
+	mizar: "Mizar",
+	metamath: "Metamath",
+	acl2: "ACL2",
+	pvs: "PVS",
+	twelf: "Twelf / LF",
+};
+const ORDER = ["lean", "rocq", "agda", "isabelle", "hol-light", "hol4", "mizar", "metamath", "acl2", "pvs", "twelf", "reservoir"];
+const fmt = n => Number(n || 0).toLocaleString("en-US");
+
+fetch("./metrics.json").then(r => r.json()).then(data => {
+	const s = data.summary;
+	document.getElementById("reach").innerHTML = `
+		<thead><tr><th>Measure</th><th>Count</th></tr></thead>
+		<tbody>
+			<tr><td>Indexed sources</td><td>${fmt(s.indexed_sources)} / ${fmt(s.registered_sources)}</td></tr>
+			<tr><td>Sources containing formal text</td><td>${fmt(s.formal_content_sources)}</td></tr>
+			<tr><td>Curated formal-content sources</td><td>${fmt(s.curated_formal_content_sources)}</td></tr>
+			<tr><td>Formal theory/source units</td><td>${fmt(s.formal_units)}</td></tr>
+			<tr><td>Formal source lines</td><td>${fmt(s.formal_lines)}</td></tr>
+			<tr><td>Prover families</td><td>${fmt(s.prover_families)}</td></tr>
+		</tbody>`;
+
+	const rows = data.ecosystems.map(r => `
+		<tr><td>${r.label}</td><td>${fmt(r.indexed_sources)}</td>
+		<td>${fmt(r.formal_content_sources)}</td><td>${fmt(r.formal_units)}</td>
+		<td>${fmt(r.formal_lines)}</td></tr>`).join("");
+	const total = data.summary;
+	document.getElementById("ecosystems").innerHTML = `
+		<thead><tr><th>Ecosystem</th><th>Indexed sources</th><th>With formal text</th>
+		<th>Formal units</th><th>Formal lines</th></tr></thead>
+		<tbody>${rows}
+		<tr><th>Total</th><th>${fmt(total.indexed_sources)}</th>
+		<th>${fmt(total.formal_content_sources)}</th><th>${fmt(total.formal_units)}</th>
+		<th>${fmt(total.formal_lines)}</th></tr></tbody>`;
+});
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
-	const rows = Object.entries(data.repos).map(([name, r]) => ({name, ...r}));
-	const c = data.counts;
-	document.getElementById("totals").innerHTML =
-		[["Lean 4 formalizations", c.lean],
-		 ["Lean package registry", c.reservoir],
-		 ["Rocq and Agda", c["rocq-agda"]],
-		 ["Total", c.lean + c.reservoir + c["rocq-agda"]]]
-			.map(([label, n], i, all) =>
-				`<tr${i === all.length - 1 ? ' class="total"' : ""}>`
-				+ `<td>${label}</td><td>${n}</td></tr>`).join("");
+		const rows = Object.entries(data.repos).map(([name, r]) => ({name, ...r}));
 
-	new Tabulator("#table", {
+		new Tabulator("#table", {
 		data: rows,
 		layout: "fitColumns",
 		height: "70vh",
 		groupBy: "kind",
 		// Groups otherwise appear in the order their first row happens to fall.
-		groupValues: [["lean", "rocq-agda", "reservoir"]],
+			groupValues: [ORDER],
 		groupHeader: (kind, count) => `${KINDS[kind] || kind} <span>(${count})</span>`,
 		groupStartOpen: kind => kind !== "reservoir",
 		initialSort: [{column: "name", dir: "asc"}],
 		columns: [
-			{title: "Repository", field: "name", widthGrow: 2, headerFilter: "input",
+				{title: "Source", field: "name", widthGrow: 2, headerFilter: "input",
 			 headerFilterPlaceholder: "filter by name",
 			 variableHeight: true,
 			 formatter: cell => {

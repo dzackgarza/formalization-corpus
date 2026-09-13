@@ -1,10 +1,39 @@
 # Active corpus work
 
-This repository is the local search corpus of every Lean formalization repository
-recorded in the lean-categories formalization source registry, plus the pinned
-Mathlib checkout and Lean Reservoir metadata. Its purpose is to make
-"this mathematics is not formalized anywhere in the registry" claims exhaustively
-checkable, per the lean-categories reuse gate.
+This repository is the local search corpus for the formalization source registry.
+Its purpose is to make "this definition, construction, statement, or theorem is
+not formalized anywhere in the registry" claims exhaustively checkable, per the
+lean-categories reuse gate. Lean remains the largest indexed ecosystem, but the
+search surface is intentionally prover-independent.
+
+## Current expansion (2026-09-13)
+
+- `port-sources.tsv` replaces the old Rocq/Agda-only manifest. It currently
+  registers 45 non-Lean sources across Rocq, Agda, Isabelle, HOL Light, HOL4,
+  Mizar, Metamath, ACL2, PVS, and Twelf. Together with the 125 direct Lean
+  sources and 738 Reservoir entries, the generated registry contains 909
+  searchable source entries before hydration/index availability is considered.
+- Inclusion is based on reusable formal content, not headline-theorem status.
+  Definitions, structures, interfaces, formal semantics, specifications,
+  theorem statements, constructions, and proofs all count as prior art.
+- The cross-prover baseline now includes the major library/archive surfaces:
+  UniMath and agda-unimath, MathComp and MathComp Analysis, Rocq stdlib,
+  Agda stdlib and agda-categories, Isabelle/HOL and AFP, HOL Light and HOL4,
+  the current Mizar Mathematical Library, `set.mm`, ACL2 Community Books,
+  NASALib/PVS, and Twelf, plus substantial theorem- and semantics-scale
+  developments recorded in `SOURCES.md`.
+- `sync-manifest.zsh` selects proof-source extensions per prover and supports
+  GitHub, GitLab, and the current Mizar HTTP distribution. Existing ports were
+  migrated from `rocq-agda/` to `port-sources/` without recloning.
+- Cross-prover hydration and indexing completed on 2026-09-13: all 45 manifest
+  sources have Zoekt shards and the sparse source trees contain 76,700 formal
+  source files — Rocq 11,349; Agda 7,914; Isabelle 14,355; HOL Light 2,003;
+  HOL4 5,133; Mizar 1,500; Metamath 96; ACL2 28,666; PVS 4,680; Twelf 1,004.
+  Representative lexical searches were verified against UniMath, agda-unimath,
+  AFP, HOL Light, HOL4, MML, `set.mm`, ACL2, NASALib, and Twelf. `just
+  sync-ports` refreshes the sources and `just index-ports` refreshes only their
+  shards. The August completion record below is retained as historical
+  provenance, not a description of the current corpus boundary.
 
 Build provenance: the corpus was created in the 2026-08-13 codex session
 (`rollout-2026-08-13T15-07-42-019ff9f2-bc0e-7de0-9bcd-c9630d6a8813.jsonl`,
@@ -17,7 +46,7 @@ sparse-checkout earlier failed with exit 128 and network errors ("Timeout,
 server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
 3e12236"). `usage_limit` appears once in the transcript, not at the end.
 
-## Corpus state (verified 2026-08-16)
+## Historical corpus state (verified 2026-08-16)
 
 - 97 manifest repos in `repos.tsv`; 101 Zoekt shard files (LeanBridge spans 3).
 - 36,541 `.lean` files in the tree; the Zoekt index matches the tree exactly
@@ -172,7 +201,7 @@ server github.com not responding"; "fatal: early EOF"; "fatal: could not fetch
    - sage-preamble now 51/234 (was 38/247). All catalogues total: 664
      checked / 469 unchecked across 1133 entries (651/482 + 13).)
 
-## Completion summary (2026-08-16)
+## Historical completion summary (2026-08-16)
 
 The owning session's goal was an exhaustive search corpus for the
 lean-categories reuse gate: every Lean formalization repository in the

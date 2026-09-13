@@ -27,7 +27,7 @@
 	<nav>
 		<ul>
 			<li><a href="./">Search</a></li>
-			<li><a href="./corpus.html">Every repository</a></li>
+			<li><a href="./corpus.html">Every source</a></li>
 			<li><a href="./subjects.html">By subject</a></li>
 			<li><a href="./api.html" aria-current="page">API</a></li>
 		</ul>
@@ -52,7 +52,7 @@ Content-Type: application/json</code></pre>
   -d '{"Q": "IsometryEquiv", "Opts": {"MaxDocDisplayCount": 5}}'</code></pre>
 
 <p>
-	Every file that matched, with its repository and path — enough to answer
+	Every file that matched, with its source and path — enough to answer
 	“has anyone formalized this?”:
 </p>
 
@@ -75,9 +75,9 @@ Content-Type: application/json</code></pre>
 		<tr><td><code>Jordan splitting</code></td><td>both substrings, in the same file</td></tr>
 		<tr><td><code>spinor (genus or norm)</code></td><td>grouping and alternation</td></tr>
 		<tr><td><code>theorem\s+\w*Hasse</code></td><td>a regular expression</td></tr>
-		<tr><td><code>repo:mathlib4</code></td><td>restrict to repositories matching that pattern</td></tr>
-		<tr><td><code>repo:^leanprover__hex-lll$</code></td><td>one repository exactly</td></tr>
-		<tr><td><code>file:\.lean$</code></td><td>restrict by path — <code>\.v$</code> for Rocq, <code>\.agda$</code> for Agda</td></tr>
+			<tr><td><code>repo:mathlib4</code></td><td>restrict to indexed sources matching that pattern</td></tr>
+			<tr><td><code>repo:^leanprover__hex-lll$</code></td><td>one indexed source exactly</td></tr>
+			<tr><td><code>file:\.lean$</code></td><td>restrict by path — e.g. <code>\.v$</code> Rocq, <code>\.agda$</code> Agda, <code>\.thy$</code> Isabelle, <code>\.miz$</code> Mizar, <code>\.mm$</code> Metamath</td></tr>
 		<tr><td><code>-file:test</code></td><td>exclude paths matching test</td></tr>
 		<tr><td><code>case:yes</code></td><td>case-sensitive; the default folds case</td></tr>
 		<tr><td><code>content:foo</code></td><td>match file contents only, never a path</td></tr>
@@ -85,9 +85,11 @@ Content-Type: application/json</code></pre>
 </table>
 
 <p>
-	Repository names are the checkout names, <code>owner__repo</code> — as in
-	<code>leanprover-community__mathlib4</code>. The
-	<a href="./corpus.html">repository list</a> has all 869.
+	Source names are normally checkout names, <code>owner__repo</code> — as in
+	<code>leanprover-community__mathlib4</code>. Direct distributions such as
+	MML use a stable corpus name instead. The <a href="./corpus.html">source
+	list</a> is generated from the current manifests rather than hard-coding a
+	count here.
 </p>
 
 <h2>Options</h2>
@@ -155,7 +157,7 @@ Content-Type: application/json</code></pre>
 	</li>
 </ul>
 
-<h2>Listing repositories</h2>
+<h2>Listing indexed sources</h2>
 
 <pre><code>curl -s https://formalization-corpus.dzackgarza.com/api/list \
   -H 'Content-Type: application/json' \
@@ -170,9 +172,9 @@ Content-Type: application/json</code></pre>
 <h2>Fair use</h2>
 
 <p>
-	This runs on one small virtual machine against 4.6 GB of shards. A term
-	answers in tens of milliseconds warm; a broad regular expression across 869
-	repositories takes seconds and holds the machine while it does. Pass
+	This runs on one small virtual machine against a multi-gigabyte Zoekt index.
+	A term answers in tens of milliseconds warm; a broad regular expression across
+	hundreds of indexed sources takes seconds and holds the machine while it does. Pass
 	<code>MaxDocDisplayCount</code>, prefer <code>repo:</code> and
 	<code>file:</code> filters over scanning everything, and set
 	<code>MaxWallTime</code> if you are running a loop.

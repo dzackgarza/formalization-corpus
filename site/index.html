@@ -61,7 +61,7 @@
 	<nav>
 		<ul>
 			<li><a href="./" aria-current="page">Search</a></li>
-			<li><a href="./corpus.html">Every repository</a></li>
+				<li><a href="./corpus.html">Every source</a></li>
 			<li><a href="./subjects.html">By subject</a></li>
 			<li><a href="./api.html">API</a></li>
 		</ul>
@@ -69,9 +69,9 @@
 </header>
 
 <main class="container">
-	<form id="f">
-		<input type="search" id="q" name="q" placeholder="IsometryEquiv" autocomplete="off" autofocus spellcheck="false">
-		<button type="submit">Search</button>
+		<form id="f">
+			<input type="search" id="q" name="q" placeholder="IsometryEquiv" autocomplete="off" autofocus spellcheck="false">
+			<button type="submit">Search</button>
 	</form>
 	<p class="hint">
 		Regular expressions, and zoekt's filters:
@@ -89,7 +89,8 @@
 // ?api=http://localhost:6070/api/search points the page at a tunnelled or
 // local zoekt, which is how this file is tested before it is published.
 const API = new URLSearchParams(location.search).get("api")
-	|| "https://formalization-corpus.dzackgarza.com/api/search";
+		|| "https://formalization-corpus.dzackgarza.com/api/search";
+const STATIC_PREVIEW = location.hostname === "formalization-corpus-preview.localhost";
 const MAX = 60;
 
 // Shiki tokenises with the same TextMate grammars Lean's own editors use.
@@ -124,8 +125,13 @@ function b64(s) {
 function sourceLink(repoName, path, line) {
 	const repo = corpus.repos[repoName];
 	if (!repo) return null;
+	if (repo.transport === "web-dir") {
+		const base = repo.url.replace(/\/$/, "");
+		return `${base}/${path.split("/").pop()}`;
+	}
 	// Shallow checkouts track their default branch; HEAD resolves it.
-	return `${repo.url}/blob/HEAD/${path}` + (line ? `#L${line}` : "");
+	const middle = repo.transport === "gitlab" ? "/-/blob/HEAD/" : "/blob/HEAD/";
+	return `${repo.url}${middle}${path}` + (line ? `#L${line}` : "");
 }
 
 async function query(Q, Opts) {
@@ -238,10 +244,15 @@ function render(result) {
 		byRepo.get(f.Repository).push(f);
 	}
 
-	const pending = [];
-	el("results").innerHTML = [...byRepo].map(([name, matches]) => {
-		const repo = corpus.repos[name];
-		const kind = repo ? {lean: "Lean", reservoir: "Reservoir", "rocq-agda": "Rocq/Agda"}[repo.kind] : "";
+		const pending = [];
+		el("results").innerHTML = [...byRepo].map(([name, matches]) => {
+			const repo = corpus.repos[name];
+			const kind = repo ? ({
+				lean: "Lean", reservoir: "Reservoir", rocq: "Rocq", agda: "Agda",
+				isabelle: "Isabelle", "hol-light": "HOL Light", hol4: "HOL4",
+				mizar: "Mizar", metamath: "Metamath", acl2: "ACL2", pvs: "PVS",
+				twelf: "Twelf/LF",
+			}[repo.kind] || repo.kind) : "";
 		const head = repo ? `<a href="${repo.url}">${esc(name)}</a>` : esc(name);
 		const body = matches.map((f, i) => {
 			const chunks = (f.ChunkMatches || []).filter(c => !c.FileName);
@@ -334,13 +345,18 @@ el("q").addEventListener("input", () => { if (!el("q").value.trim()) clear(); })
 window.addEventListener("hashchange", fromHash);
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
-	corpus = data;
-	el("counts").innerHTML =
-		`Mathlib, the Fermat's Last Theorem and Carleson's theorem projects, `
-		+ `Viazovska's sphere packing, condensed mathematics, the Lean package `
-		+ `registry — and Feit–Thompson and the univalent libraries in Rocq and `
-		+ `Agda. <a href="./corpus.html">Every repository</a>, or `
-		+ `<a href="./subjects.html">by subject</a>.`;
+		corpus = data;
+		if (STATIC_PREVIEW && !new URLSearchParams(location.search).has("api")) {
+			el("q").disabled = true;
+			document.querySelector("#f button").disabled = true;
+			el("status").textContent = "static local preview — interactive search is available on the production site";
+		}
+		el("counts").innerHTML =
+			`Mathlib, the Fermat's Last Theorem and Carleson's theorem projects, `
+			+ `Viazovska's sphere packing, condensed mathematics, the Lean package `
+			+ `registry — plus the major Rocq, Agda, Isabelle, HOL, Mizar, Metamath, `
+			+ `ACL2, PVS and LF libraries. <a href="./corpus.html">Every source</a>, or `
+			+ `<a href="./subjects.html">by subject</a>.`;
 	fromHash();
 });
 </script>

@@ -2,7 +2,7 @@
 """Generate the static data the Pages site needs from the manifests.
 
 The site itself holds no index: it queries the search host. What it does need
-locally is the repository table — every checkout's name, its origin URL, and
+locally is the source table — every checkout's name, its origin URL, and
 which manifest it came from — so a search hit can be linked back to its source
 on GitHub and the corpus can be browsed without a query.
 """
@@ -15,21 +15,24 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "corpus.json"
 SUBJECTS = ROOT / "site" / "subjects.html"
 
-MANIFESTS = {
-    "lean": "repos.tsv",
-    "reservoir": "reservoir.tsv",
-    "rocq-agda": "rocq-agda.tsv",
-}
+MANIFESTS = (
+    ("lean", "repos.tsv"),
+    ("reservoir", "reservoir.tsv"),
+    (None, "port-sources.tsv"),
+)
 
 
-def rows(name: str) -> list[tuple[str, str]]:
+def rows(name: str) -> list[tuple[str, str, str | None, str]]:
     path = ROOT / name
     out = []
     for line in path.read_text().splitlines():
         if not line.strip():
             continue
-        url, directory = line.split("\t")[:2]
-        out.append((url.rstrip("/"), directory))
+        fields = line.split("\t")
+        url, directory = fields[:2]
+        kind = fields[2] if len(fields) > 2 and fields[2] else None
+        transport = fields[3] if len(fields) > 3 and fields[3] else "git"
+        out.append((url.rstrip("/"), directory, kind, transport))
     return out
 
 
@@ -76,7 +79,7 @@ PAGE = """<!doctype html>
 	<nav>
 		<ul>
 			<li><a href="./">Search</a></li>
-			<li><a href="./corpus.html">Every repository</a></li>
+				<li><a href="./corpus.html">Every source</a></li>
 			<li><a href="./subjects.html" aria-current="page">By subject</a></li>
 			<li><a href="./api.html">API</a></li>
 		</ul>
@@ -96,8 +99,8 @@ def subjects_page() -> None:
 
     text = (ROOT / "SOURCES.md").read_text()
 
-    # The page is for readers looking for theorems. How the corpus is kept in
-    # step with the manifests belongs to the repository, not to them.
+    # The page is for readers looking for formal content. How the corpus is kept
+    # in step with the manifests belongs to the repository, not to them.
     text = re.sub(r"^## Refreshing this registry.*?(?=^## )", "", text, flags=re.S | re.M)
     body = text.split("\n## ", 1)
     text = "## " + body[1] if len(body) > 1 else text
@@ -111,19 +114,22 @@ def main() -> None:
     subjects_page()
     what = descriptions()
     repos = {}
-    for kind, manifest in MANIFESTS.items():
-        for url, directory in rows(manifest):
+    for default_kind, manifest in MANIFESTS:
+        for url, directory, declared_kind, transport in rows(manifest):
             # Zoekt names a shard by the checkout's basename, which is how a
-            # search result identifies its repository.
+            # search result identifies its source.
             name = pathlib.PurePosixPath(directory).name
-            repos[name] = {"url": url, "kind": kind}
+            kind = declared_kind or default_kind
+            repos[name] = {"url": url, "kind": kind, "transport": transport}
             if name in what:
                 repos[name]["what"] = what[name]
 
-    counts = {kind: sum(1 for r in repos.values() if r["kind"] == kind) for kind in MANIFESTS}
+    counts: dict[str, int] = {}
+    for repo in repos.values():
+        counts[repo["kind"]] = counts.get(repo["kind"], 0) + 1
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps({"repos": repos, "counts": counts}, indent=0, sort_keys=True))
-    print(f"{OUT}: {len(repos)} repositories {counts}")
+    print(f"{OUT}: {len(repos)} sources {counts}")
 
 
 if __name__ == "__main__":

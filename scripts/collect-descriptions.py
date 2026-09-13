@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Collect one line of description per registered repository.
+"""Collect one line of description per registered source.
 
 Run locally and commit the result; the Pages build merges it rather than
 hitting GitHub on every deploy. Sources, in order of preference:
@@ -10,8 +10,8 @@ hitting GitHub on every deploy. Sources, in order of preference:
 2. The Reservoir index checkout, which carries each package's description.
 3. The GitHub API, for repositories in neither.
 
-A repository none of them describe gets no line. Inventing a description for a
-repository nobody has read is the one thing this must not do.
+A source none of them describe gets no line. Inventing a description for a
+source nobody has read is the one thing this must not do.
 
 SOURCES.md is parsed, not pattern-matched: rendered to HTML with the same
 markdown library the site build uses, then walked as a document. A table cell
@@ -24,14 +24,21 @@ import json
 import pathlib
 import re
 import subprocess
+import urllib.parse
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "descriptions.tsv"
 REPO_URL = re.compile(r"https://github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)")
 
 
+def source_key(url: str) -> str:
+    """Canonical key for a registry link or manifest source URL."""
+    parsed = urllib.parse.urlsplit(url.rstrip("/"))
+    return f"{parsed.netloc.lower()}{parsed.path.rstrip('/').lower()}"
+
+
 class Registry(html.parser.HTMLParser):
-    """Rows of the domain tables: the repository a row is about, and its line.
+    """Rows of the domain tables: the source a row is about, and its line.
 
     A row's subject is the first repository link in its first cell; everything
     after that cell is what the row says about it.
@@ -50,9 +57,8 @@ class Registry(html.parser.HTMLParser):
             self.in_cell, self.text = True, []
         elif tag == "a" and self.in_cell and not self.cells and not self.subject:
             href = dict(attrs).get("href", "")
-            found = REPO_URL.match(href)
-            if found:
-                self.subject = f"{found.group(1)}/{found.group(2)}".lower()
+            if href.startswith(("https://", "http://")):
+                self.subject = source_key(href)
 
     def handle_endtag(self, tag):
         if tag == "td":
@@ -111,7 +117,7 @@ def previous() -> dict[str, str]:
 
 def manifest_rows() -> list[tuple[str, str]]:
     rows = []
-    for name in ("repos.tsv", "reservoir.tsv", "rocq-agda.tsv"):
+    for name in ("repos.tsv", "reservoir.tsv", "port-sources.tsv"):
         for line in (ROOT / name).read_text().splitlines():
             if line.strip():
                 url, directory = line.split("\t")[:2]
@@ -125,8 +131,7 @@ def main() -> None:
 
     out, missing = {}, []
     for url, directory in manifest_rows():
-        found = REPO_URL.match(url)
-        key = f"{found.group(1)}/{found.group(2)}".lower() if found else ""
+        key = source_key(url)
         if key in curated:
             out[directory] = curated[key]
         elif key in reservoir:

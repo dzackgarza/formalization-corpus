@@ -3,7 +3,7 @@
 The registry of Lean 4 formalization repositories, port sources in other proof
 assistants, and search surfaces that this corpus indexes.
 
-**This file is the single source of truth for what the Lean ecosystem offers.**
+**This file is the single source of truth for what the formalization ecosystem offers.**
 Consuming repositories link here; they do not keep their own copies of this list.
 [`lean-categories`](https://github.com/dzackgarza/lean-categories) states the
 reuse policy that governs how a source is used — import, port, or author — and
@@ -15,19 +15,43 @@ The machine-readable manifests are the mechanism, this file is the judgment:
 | --- | --- |
 | `repos.tsv` | Lean 4 formalization repositories, cloned by `just sync` and indexed by `just index`. |
 | `reservoir.tsv` | Lean Reservoir packages, hydrated by `just sync-reservoir`. |
-| `port-sources.tsv` | Rocq and Agda libraries, checked out for their proof text and indexed with the Lean sources. |
+| `port-sources.tsv` | Non-Lean formal libraries, tagged by prover and checked out for their formal source text. |
 | `tools.tsv` | Search and indexing tools the corpus builds. |
 
-`just check-sources` fails when a repository named in a source table below appears in
-none of them, which is what keeps this file and the manifests from drifting apart.
-Tool and standard links — build tooling, review machinery, publication schemas — are
-not sources, and the check does not look at them.
+`just check-sources` fails when a GitHub repository named in a source table below appears
+in none of the manifests. It also checks every `port-sources.tsv` URL, including
+GitLab and direct distribution URLs, against this document. This keeps the curated
+registry and the machine-readable checkout surface from drifting apart. Tool and
+standard links — build tooling, review machinery, publication schemas — are not
+sources, and the check does not look at them.
 
-Every repository listed here resolved on GitHub on 2026-08-14. *(Lean 3)* marks code that cannot be built against Lean 4 — still readable as a proof, not usable as a dependency. *(archived)* and *(stale)* describe how actively a project is maintained, not whether its mathematics is sound: an archived proof is still a proof. A dormant Lean 4 library remains importable whenever it still compiles against current Mathlib, and is worth reading either way.
+The original GitHub registry was link-checked on 2026-08-14; the cross-prover
+sources added in September 2026 were resolved against their authoritative GitHub,
+GitLab, Isabelle, and Mizar locations. *(Lean 3)* marks code that cannot be built
+against Lean 4 — still readable as a proof, not usable as a dependency.
+*(archived)* and *(stale)* describe how actively a project is maintained, not
+whether its mathematics is sound: an archived proof is still a proof. A dormant
+Lean 4 library remains importable whenever it still compiles against current
+Mathlib, and is worth reading either way.
+
+**Formal content, not theorem prestige, is the inclusion criterion.** A checked
+definition, structure, interface, formal semantics, theorem statement, construction,
+or proof can answer a reuse question. The corpus therefore indexes foundational
+libraries and verification developments when they contain reusable formal concepts,
+not only projects organized around a headline mathematical theorem.
 
 ## Refreshing this registry
 
 Recall is not a source. The registry is refreshed by sweeping three machine-readable indexes and diffing them against the repositories linked here: the [Reservoir index](https://github.com/leanprover/reservoir-index) (every public Lake package with its dependency list, so packages that require Mathlib can be isolated), [Lean Pool](https://github.com/Vilin97/lean-pool)'s `LeanPool/projects.yml` (curated, subject-labelled, provenance-labelled), and the [Lean community projects page](https://leanprover-community.github.io/lean_projects.html). `just source-sweep` runs the [Reservoir](https://reservoir.lean-lang.org/) diff and prints the Mathlib-dependent packages not yet linked from this file, with stars and descriptions; judge relevance by hand and add rows in the domain tables. [Reservoir](https://reservoir.lean-lang.org/) names packages, not repositories, so take the URL from each package's `sources[0].repoUrl`, and resolve every new link before committing it.
+
+The non-Lean side is refreshed against the canonical library/archive surfaces of
+each prover rather than by theorem-name recall: Rocq package/library sources,
+Agda's standard and category/univalent libraries, Isabelle plus AFP, HOL Light
+and HOL4, MML, Metamath databases, ACL2 Community Books, NASALib/PVS, and Twelf.
+When deciding whether a source belongs, search for reusable formal definitions
+and semantics as well as proved theorems. A verification project with a useful
+formal memory model, language semantics, algebraic hierarchy, or program logic is
+in scope even when its headline result is not a theorem of pure mathematics.
 
 ## Indexes and search surfaces
 
@@ -62,7 +86,7 @@ The subtrees that carry the most relevant material. A search restricted by path 
 
 ## Category theory, higher structures, type-theory semantics
 
-| Repository | Content |
+| Source | Content |
 | --- | --- |
 | [`emilyriehl/infinity-cosmos`](https://github.com/emilyriehl/infinity-cosmos) | ∞-cosmos theory over Mathlib's quasicategories; formal ∞-category theory. |
 | [`sinhp/HoTTLean`](https://github.com/sinhp/HoTTLean) | Groupoid and natural models of HoTT; semantics of type theory. `Groupoids/ClovenIsofibration.lean` holds a complete split-classifier story for groupoids: cloven isofibrations, fiber reindexing, `Γ ⥤ Grpd`, Grothendieck reconstruction. |
@@ -89,7 +113,7 @@ The subtrees that carry the most relevant material. A search restricted by path 
 
 ## Algebra, number theory, algebraic geometry
 
-| Repository | Content |
+| Source | Content |
 | --- | --- |
 | [`ImperialCollegeLondon/FLT`](https://github.com/ImperialCollegeLondon/FLT) | Ongoing Fermat's Last Theorem formalization; substantial reusable commutative algebra, dimension theory, and number theory beyond the headline target. Its `FLT/Mathlib/` staging tree holds small upstream-bound files (integral adeles, tensor-versus-restricted-product equivalences); toolchain and Mathlib pin run ahead of this repo, so port those files rather than depend. Contains no quadratic-form or lattice theory. |
 | [`leanprover-community/flt-regular`](https://github.com/leanprover-community/flt-regular) | FLT for regular primes; cyclotomic-field material. |
@@ -147,7 +171,7 @@ The subtrees that carry the most relevant material. A search restricted by path 
 
 ## Quadratic forms, lattices, sphere packing
 
-| Repository | Content |
+| Source | Content |
 | --- | --- |
 | [`thefundamentaltheor3m/Sphere-Packing-Lean`](https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean) | Viazovska's dimension-8 sphere packing; E8 lattice. Already integrated here under `Integration/SpherePacking` and `LeanCategoriesSpherePacking/E8`. |
 | [`mariainesdff/HassePrinciple`](https://github.com/mariainesdff/HassePrinciple) | Hilbert symbols and the Hasse–Minkowski invariant over general fields (Women in Numbers 7). Definitions in place; the key choice-independence proofs are still `sorry`. Apache 2.0, but the team accepts no outside contributions — copy with attribution. |
@@ -162,7 +186,7 @@ The subtrees that carry the most relevant material. A search restricted by path 
 
 ## Analysis, probability, geometry, dynamics
 
-| Repository | Content |
+| Source | Content |
 | --- | --- |
 | [`teorth/analysis`](https://github.com/teorth/analysis) | Lean companion to Tao's *Analysis I*. |
 | [`fpvandoorn/carleson`](https://github.com/fpvandoorn/carleson) | Carleson's theorem. |
@@ -179,6 +203,7 @@ The subtrees that carry the most relevant material. A search restricted by path 
 | [`ImperialCollegeLondon/condensed-sets`](https://github.com/ImperialCollegeLondon/condensed-sets) | Early condensed mathematics *(Lean 3)*. |
 | [`AlexKontorovich/CoveringSpacesProject`](https://github.com/AlexKontorovich/CoveringSpacesProject) | Covering spaces and universal covers; overlaps the [Tau Ceti](https://github.com/TauCetiProject/TauCeti) universal-covers roadmap. |
 | [`mccorvie/classification-of-surfaces`](https://github.com/mccorvie/classification-of-surfaces) | Classification of compact surfaces. |
+| [`loganrjmurphy/LeanEuclid`](https://github.com/loganrjmurphy/LeanEuclid) | Formal System E for Euclidean geometry, Book I of Euclid's *Elements*, and the UniGeo formalized problem corpus. |
 | [`urkud/SardMoreira`](https://github.com/urkud/SardMoreira) | Moreira's version of Sard's theorem; with [`fpvandoorn/sard`](https://github.com/fpvandoorn/sard). |
 | [`kebekus/ProjectVD`](https://github.com/kebekus/ProjectVD) | Value distribution theory (Nevanlinna). |
 | [`vbeffara/RMT4`](https://github.com/vbeffara/RMT4) | The Riemann mapping theorem. |
@@ -200,7 +225,7 @@ The subtrees that carry the most relevant material. A search restricted by path 
 
 ## Combinatorics, discrete mathematics, logic, foundations
 
-| Repository | Content |
+| Source | Content |
 | --- | --- |
 | [`teorth/equational_theories`](https://github.com/teorth/equational_theories) | Implication graph between magma equational laws. |
 | [`teorth/pfr`](https://github.com/teorth/pfr) | Polynomial Freiman–Ruzsa conjecture and related additive combinatorics. |
@@ -231,7 +256,7 @@ The subtrees that carry the most relevant material. A search restricted by path 
 
 ## Computational and applied mathematics
 
-| Repository | Content |
+| Source | Content |
 | --- | --- |
 | [`lecopivo/SciLean`](https://github.com/lecopivo/SciLean) | Scientific computing. |
 | [`leanprover-community/physlib`](https://github.com/leanprover-community/physlib) (formerly PhysLean/HepLean) | Physics results in Lean; active, over 700 stars. Reusable mathematics under `Physlib/Mathematics/`: pseudo-Riemannian and Riemannian metrics built on Mathlib's Riemannian bundles, with chart-coordinate transformation laws; Levi-Civita symbol; variational calculus; distributions; SO(3) and one-parameter subgroups. Under `Physlib/Relativity/`: a tensor-species framework with index notation, contraction, and conjugation for real and complex tensors; the Lorentz group, its algebra, and SL(2,C). Also crystal lattices, topological field theory, and lattice QFT. Its `Meta/Informal` layer records informal definitions and lemmas as Lean declarations, a reference pattern for statement banks. |
@@ -266,7 +291,7 @@ The subtrees that carry the most relevant material. A search restricted by path 
 
 ## Statement banks and generated corpora — always search these
 
-| Repository | Content |
+| Source | Content |
 | --- | --- |
 | [`google-deepmind/formal-conjectures`](https://github.com/google-deepmind/formal-conjectures) | Formalized conjecture statements. When it has a relevant one, import, reuse, or extend it — never restate it from scratch. Sanctioned home for genuinely-unproved deep statements (conjecture ledger, issue #21). |
 | [`facebookresearch/atlas-lean`](https://github.com/facebookresearch/atlas-lean) | ATLAS Autoformalized Textbook Library At Scale. Search for textbook definitions, statements, and dependency chains before reconstructing standard mathematics from prose. |
@@ -278,6 +303,9 @@ The subtrees that carry the most relevant material. A search restricted by path 
 | [`ShouqiaoW/erdos`](https://github.com/ShouqiaoW/erdos) | Erdős problems: checked proofs, partially formalized in Lean. |
 | [`trishullab/PutnamBench`](https://github.com/trishullab/PutnamBench) | Putnam problems in Lean 4, Isabelle, and Coq. |
 | [`google-deepmind/alphaproof-nexus-results`](https://github.com/google-deepmind/alphaproof-nexus-results) | AlphaProof-generated Lean proofs with prose companions. |
+| [`google-deepmind/debate`](https://github.com/google-deepmind/debate) | AI-generated formalized conjecture and theorem statement bank. |
+| [`google-deepmind/formal-putnam-like`](https://github.com/google-deepmind/formal-putnam-like) | Formalized Putnam-like olympiad problems and companion statements. |
+| [`google-deepmind/miniF2F`](https://github.com/google-deepmind/miniF2F) | Formalized miniF2F benchmark statements and proofs in Lean. |
 | [`mo271/FormalBook`](https://github.com/mo271/FormalBook) | Aigner–Ziegler, *Proofs from THE BOOK*. |
 | [`lean-dojo/LeanMillenniumPrizeProblems`](https://github.com/lean-dojo/LeanMillenniumPrizeProblems) | Formal statements of the Millennium Prize Problems. |
 | [`google-deepmind/formal-imo`](https://github.com/google-deepmind/formal-imo) | IMO problem statements; with [`google-deepmind/formal-putnam-like`](https://github.com/google-deepmind/formal-putnam-like), [`google-deepmind/miniF2F`](https://github.com/google-deepmind/miniF2F), and [`google-deepmind/debate`](https://github.com/google-deepmind/debate). |
@@ -291,7 +319,7 @@ The subtrees that carry the most relevant material. A search restricted by path 
 
 The [Lean FRO](https://lean-lang.org/fro/) runs three AI projects ([Year 4 Part 1 roadmap](https://lean-lang.org/fro/roadmap/y4-1/), September 2026 to February 2027). [Tau Ceti](https://github.com/TauCetiProject/TauCeti) is a growing foundational library downstream of Mathlib. [Hex](https://github.com/leanprover/hex) is Mathlib-free verified computation — LLL reduction, determinants, Gram-Schmidt — with Mathlib correspondence proofs. [Palomar](https://palomar-registry.org/) indexes already-verified statements pinned to exact commits, which makes it the fastest place to check whether a named result is done. Entries in this section resolved on GitHub on 2026-09-09.
 
-| Repository | Content |
+| Source | Content |
 | --- | --- |
 | [`TauCetiProject/TauCeti`](https://github.com/TauCetiProject/TauCeti) ([site](https://taucetiproject.github.io/TauCeti/)) | AI-authored Lean library downstream of Mathlib, incubated by the [Lean FRO](https://lean-lang.org/fro/) and the [Mathlib Initiative](https://mathlib-initiative.org/): humans own the roadmap, AI agents author the proofs, AI reviewers gate every PR against open adversarial rubrics. Roadmap themes: universal covers, the Jacobian challenge, reductive algebraic groups, PDE, Heegaard Floer and grid homology, multiquadratic fields and genus theory, geometric topology. Worth searching for anything foundational; [Palomar](https://palomar-registry.org/) allows it as a statement dependency. |
 | [`TauCetiProject/TauCetiRoadmap`](https://github.com/TauCetiProject/TauCetiRoadmap) | The human-controlled roadmaps: one `README.md` specification per area plus `Suggested.lean` target signatures. Read it to learn what [Tau Ceti](https://github.com/TauCetiProject/TauCeti) intends to formalize next. |
@@ -310,7 +338,7 @@ The [Lean FRO](https://lean-lang.org/fro/) runs three AI projects ([Year 4 Part 
 
 ## Textbook companions and worked proof corpora
 
-| Repository | Content |
+| Source | Content |
 | --- | --- |
 | [`leanprover-community/mathematics_in_lean`](https://github.com/leanprover-community/mathematics_in_lean) | *Mathematics in Lean* tutorial. |
 | [`hrmacbeth/math2001`](https://github.com/hrmacbeth/math2001) | Proof-writing course, paper and Lean. |
@@ -320,7 +348,7 @@ The [Lean FRO](https://lean-lang.org/fro/) runs three AI projects ([Year 4 Part 
 
 ## Core libraries and infrastructure
 
-| Repository | Content |
+| Source | Content |
 | --- | --- |
 | [`leanprover-community/mathlib4`](https://github.com/leanprover-community/mathlib4) | Algebra, number theory, topology, analysis, measure theory, geometry and combinatorics on one typeclass hierarchy; 256,512 declarations, and the first place to search. |
 | [`leanprover-community/batteries`](https://github.com/leanprover-community/batteries) | Extended standard library. |
@@ -333,14 +361,60 @@ The [Lean FRO](https://lean-lang.org/fro/) runs three AI projects ([Year 4 Part 
 
 ## Rocq and Agda
 
-| Repository | Content |
+| Source | Content |
 | --- | --- |
+| [`rocq-prover/rocq`](https://github.com/rocq-prover/rocq) | Rocq core library and prelude: elementary logical notions, datatypes, equality, arithmetic foundations, well-founded recursion, and core proof infrastructure. |
+| [`rocq-prover/stdlib`](https://github.com/rocq-prover/stdlib) | Rocq standard mathematical library: sets, lists, sorting, arithmetic, numbers, relations, and general-purpose definitions and theorems. |
 | [`UniMath/UniMath`](https://github.com/UniMath/UniMath) | Univalent mathematics in Rocq/Coq; large formal category-theory corpus. |
 | [`HoTT/Coq-HoTT`](https://github.com/HoTT/Coq-HoTT) | Homotopy type theory in Rocq/Coq. |
-| [`math-comp/math-comp`](https://github.com/math-comp/math-comp), [`math-comp/odd-order`](https://github.com/math-comp/odd-order) | Mathematical Components; the Odd Order Theorem. |
+| [`inQWIRE/QuantumLib`](https://github.com/inQWIRE/QuantumLib) | Reusable quantum-computing mathematics in Rocq/Coq: complex matrices, finite groups, subspaces, permutations, measurement and quantum operations. |
+| [`math-comp/math-comp`](https://github.com/math-comp/math-comp) | Mathematical Components: finite structures, algebra, finite group theory, field theory, matrices, polynomials, and the SSReflect hierarchy. |
+| [`math-comp/analysis`](https://github.com/math-comp/analysis) | Real and classical analysis over Mathematical Components: topology, measure/integration, real numbers, sequences, and distributions. |
+| [`math-comp/odd-order`](https://github.com/math-comp/odd-order) | Feit–Thompson Odd Order Theorem and the finite-group infrastructure built for its proof. |
+| [`rocq-community/fourcolor`](https://github.com/rocq-community/fourcolor) | Four Color Theorem development, including graph-theoretic and real-number infrastructure. |
 | [`rocq-community/corn`](https://github.com/rocq-community/corn) | Constructive mathematics repository at Nijmegen. |
+| [`GeoCoq/GeoCoq`](https://github.com/GeoCoq/GeoCoq) | Synthetic geometry from Tarski-style axioms, with Euclidean, Hilbert, parallel-postulate, and algebraic geometry developments. |
+| [`AbsInt/CompCert`](https://github.com/AbsInt/CompCert) | Formal definitions of C and assembly semantics, memory models and compiler passes, plus the correctness proofs of CompCert. Search it for semantics and program-logic definitions, not only compiler verification. |
+| [`iris/iris`](https://gitlab.mpi-sws.org/iris/iris) | Iris higher-order concurrent separation logic, program logic, ghost-state constructions, and the MoSeL proof mode. |
+| [`iris/stdpp`](https://gitlab.mpi-sws.org/iris/stdpp) | Rocq general-purpose data structures and algebraic/finite-map infrastructure used by Iris; substantial reusable definitions independent of the headline verification work. |
+| [`thery/coqprime`](https://github.com/thery/coqprime) | Number theory, elliptic curves, modular arithmetic, and primality certification. |
+| [`jwiegley/category-theory`](https://github.com/jwiegley/category-theory) | Large axiom-free category-theory development: categories, functors, adjunctions, (co)limits, Kan constructions, monads/comonads and related structures. |
+| [`uwplse/verdi`](https://github.com/uwplse/verdi) | Formal semantics and reusable infrastructure for distributed systems and verified distributed-system implementations. |
+| [`IBM/FormalML`](https://github.com/IBM/FormalML) | General probability in Rocq/Coq, including sigma-algebras, expectation, conditional expectation and martingales, with applications to stochastic approximation and reinforcement learning. |
+| [`formal-land/rocq-of-rust`](https://github.com/formal-land/rocq-of-rust) | Formal Rust semantics and libraries in Rocq: translated THIR, Rust types/traits, integer operations, control flow and simulation layers used to verify real Rust code. |
+| [`thery/Selinger`](https://github.com/thery/Selinger) | Laurent Théry's formalization of Selinger's quantum-gate synthesis proof, combining number-theoretic and linear-algebraic definitions over Mathematical Components. |
+| [`agda/agda-stdlib`](https://github.com/agda/agda-stdlib) | Agda standard library: algebraic structures, orders, relations, finite structures, data types, solvers, reflection and general mathematical infrastructure. |
 | [`UniMath/agda-unimath`](https://github.com/UniMath/agda-unimath) | Univalent mathematics in Agda, including extensive category theory. |
 | [`agda/cubical`](https://github.com/agda/cubical) | Cubical Agda library. |
+| [`agda/agda-categories`](https://github.com/agda/agda-categories) | Category theory in Agda: limits, adjunctions, monoidal/enriched and higher categorical structures, fibrations and topoi. |
 | [`the1lab/1lab`](https://github.com/the1lab/1lab) | Cross-linked HoTT reference in cubical Agda. |
 | [`martinescardo/TypeTopology`](https://github.com/martinescardo/TypeTopology) | Topology and logic from the univalent point of view, in Agda. |
-| [Isabelle Archive of Formal Proofs](https://www.isa-afp.org/) | Searchable archive of Isabelle developments by topic. |
+| [`HoTT-Intro/Agda`](https://github.com/HoTT-Intro/Agda) | Section-by-section Agda formalization of Rijke's *Introduction to Homotopy Type Theory*. |
+
+## Isabelle and HOL
+
+| Source | Content |
+| --- | --- |
+| [`isabelle-prover/mirror-isabelle`](https://github.com/isabelle-prover/mirror-isabelle) | Isabelle distribution, including the Isabelle/HOL libraries: logic, sets, algebra, analysis, topology, number theory, probability and the system's foundational theories. |
+| [`isabelle-prover/mirror-afp-devel`](https://github.com/isabelle-prover/mirror-afp-devel) | Development mirror of the Archive of Formal Proofs (AFP), the large centralized Isabelle archive spanning pure mathematics, algorithms, semantics, verification and scientific applications. |
+| [`seL4/l4v`](https://github.com/seL4/l4v) | Isabelle/HOL formal specifications and proofs for seL4, with reusable word, monadic, separation-logic, refinement and verification infrastructure. |
+| [`jrh13/hol-light`](https://github.com/jrh13/hol-light) | HOL Light and its mathematical library: analysis, topology, geometry, algebra, number theory and proof infrastructure. |
+| [`flyspeck/flyspeck`](https://github.com/flyspeck/flyspeck) | HOL Light formalization of the Kepler conjecture and its geometric/analytic infrastructure. |
+| [`HOL-Theorem-Prover/HOL`](https://github.com/HOL-Theorem-Prover/HOL) | Canonical HOL4 sources: core higher-order logic, standard libraries, algebra, analysis, semantics and large example developments. |
+| [`CakeML/cakeml`](https://github.com/CakeML/cakeml) | HOL4 definitions of CakeML syntax and semantics, compiler/intermediate languages, type systems and the verified compiler proofs. |
+| [`CakeML/candle`](https://github.com/CakeML/candle) | Candle's HOL Light-compatible source and extensions for the verified HOL Light implementation; useful when searching implementation-level HOL definitions alongside the CakeML soundness development. |
+| [`HOLMS-lib/HOLMS`](https://github.com/HOLMS-lib/HOLMS) | HOL Light Library for Modal Systems: Kripke semantics, normal modal logics, labelled calculi, completeness and verified proof search. |
+| [`kth-step/HOL4P4`](https://github.com/kth-step/HOL4P4) | HOL4 formal syntax, small-step semantics, type system, architecture models and symbolic execution for the P4 language. |
+| [`CakeML/game-of-life`](https://github.com/CakeML/game-of-life) | HOL4 formalization of Conway's Game of Life and verified compilation into Life circuits, including executable semantics and circuit definitions. |
+
+## Mizar, Metamath, ACL2, PVS, Twelf
+
+| Source | Content |
+| --- | --- |
+| [Current Mizar Mathematical Library](https://mizar.uwb.edu.pl/version/current/mml/) | The authoritative current MML article sources (`.miz`): a large centrally maintained body of definitions and proofs across mainstream mathematics. It is synchronized directly from the Mizar distribution because the public `MizarSystem/MML` GitHub repository is an old 2012 snapshot. |
+| [`metamath/set.mm`](https://github.com/metamath/set.mm) | Metamath Proof Explorer and companion databases: ZFC mathematics plus intuitionistic set theory, NF, higher-order and quantum logic databases. |
+| [`digama0/mm0`](https://github.com/digama0/mm0) | Metamath Zero/One formal specifications and proof-source examples, including bootstrap/verifier formalization material. |
+| [`acl2/acl2`](https://github.com/acl2/acl2) | ACL2 system plus the canonical Community Books: arithmetic, algebra, data structures, hardware/software semantics, verified algorithms and extensive reusable definitions. |
+| [`nasa/pvslib`](https://github.com/nasa/pvslib) | NASALib, NASA's large PVS library of formal developments: algebra, analysis, geometry, numerical methods, decision procedures and application libraries. |
+| [`SRI-CSL/PVS`](https://github.com/SRI-CSL/PVS) | PVS distribution and built-in/prelude libraries, including the formal definitions on which NASALib developments build. |
+| [`standardml/twelf`](https://github.com/standardml/twelf) | Twelf/LF examples and case studies: lambda calculi, Cartesian closed categories, Church–Rosser, cut elimination, Mini-ML, logic programming and metatheory. |

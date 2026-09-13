@@ -1,0 +1,149 @@
+{
+  "definitions": {
+    "declaration_counts": "Not reported until prover-native parsing/elaboration is available across the corpus.",
+    "formal_lines": "Physical newline-delimited lines in those formal units.",
+    "formal_unit": "A prover-native theory/source file; ACL2 .sys generated rune reports and PVS .prf proof traces are excluded."
+  },
+  "ecosystems": [
+    {
+      "formal_bytes": 2020088057,
+      "formal_content_sources": 119,
+      "formal_lines": 10533691,
+      "formal_units": 41758,
+      "indexed_sources": 126,
+      "kind": "lean",
+      "label": "Lean (curated)",
+      "registered_sources": 126
+    },
+    {
+      "formal_bytes": 846370509,
+      "formal_content_sources": 729,
+      "formal_lines": 18798277,
+      "formal_units": 94486,
+      "indexed_sources": 731,
+      "kind": "reservoir",
+      "label": "Lean Reservoir",
+      "registered_sources": 738
+    },
+    {
+      "formal_bytes": 364120649,
+      "formal_content_sources": 20,
+      "formal_lines": 8023208,
+      "formal_units": 11349,
+      "indexed_sources": 20,
+      "kind": "rocq",
+      "label": "Rocq",
+      "registered_sources": 20
+    },
+    {
+      "formal_bytes": 58425266,
+      "formal_content_sources": 7,
+      "formal_lines": 1610957,
+      "formal_units": 7914,
+      "indexed_sources": 7,
+      "kind": "agda",
+      "label": "Agda",
+      "registered_sources": 7
+    },
+    {
+      "formal_bytes": 394714227,
+      "formal_content_sources": 3,
+      "formal_lines": 8381800,
+      "formal_units": 14355,
+      "indexed_sources": 3,
+      "kind": "isabelle",
+      "label": "Isabelle",
+      "registered_sources": 3
+    },
+    {
+      "formal_bytes": 158645698,
+      "formal_content_sources": 4,
+      "formal_lines": 3731876,
+      "formal_units": 2003,
+      "indexed_sources": 4,
+      "kind": "hol-light",
+      "label": "HOL Light",
+      "registered_sources": 4
+    },
+    {
+      "formal_bytes": 128156968,
+      "formal_content_sources": 4,
+      "formal_lines": 3238686,
+      "formal_units": 5133,
+      "indexed_sources": 4,
+      "kind": "hol4",
+      "label": "HOL4",
+      "registered_sources": 4
+    },
+    {
+      "formal_bytes": 122186856,
+      "formal_content_sources": 1,
+      "formal_lines": 3706915,
+      "formal_units": 1500,
+      "indexed_sources": 1,
+      "kind": "mizar",
+      "label": "Mizar",
+      "registered_sources": 1
+    },
+    {
+      "formal_bytes": 69064805,
+      "formal_content_sources": 2,
+      "formal_lines": 1223609,
+      "formal_units": 96,
+      "indexed_sources": 2,
+      "kind": "metamath",
+      "label": "Metamath",
+      "registered_sources": 2
+    },
+    {
+      "formal_bytes": 342475323,
+      "formal_content_sources": 1,
+      "formal_lines": 7752240,
+      "formal_units": 17220,
+      "indexed_sources": 1,
+      "kind": "acl2",
+      "label": "ACL2",
+      "registered_sources": 1
+    },
+    {
+      "formal_bytes": 8215573,
+      "formal_content_sources": 2,
+      "formal_lines": 245760,
+      "formal_units": 2504,
+      "indexed_sources": 2,
+      "kind": "pvs",
+      "label": "PVS",
+      "registered_sources": 2
+    },
+    {
+      "formal_bytes": 5562615,
+      "formal_content_sources": 1,
+      "formal_lines": 175724,
+      "formal_units": 1004,
+      "indexed_sources": 1,
+      "kind": "twelf",
+      "label": "Twelf / LF",
+      "registered_sources": 1
+    }
+  ],
+  "summary": {
+    "curated_formal_content_sources": 164,
+    "curated_sources": 171,
+    "formal_bytes": 4518026546,
+    "formal_content_sources": 893,
+    "formal_lines": 67422743,
+    "formal_units": 199322,
+    "indexed_sources": 902,
+    "prover_families": 11,
+    "registered_sources": 909
+  },
+  "unindexed_sources": [
+    "Mintpath__p-neq-np-lean",
+    "Xiyou-Wu__RiemannianGeometry",
+    "jonwashburn__riemann",
+    "klavins__LeanBook",
+    "lexzaiello__DCC",
+    "pitmonticone__NewProject",
+    "quangvdao__ZKLib-deprecated"
+  ]
+}

@@ -3,25 +3,25 @@ set shell := ["zsh", "-eu", "-o", "pipefail", "-c"]
 # Update existing source and tool repositories without changing their toolchains.
 sync:
     #!/usr/bin/env zsh
+    ./sync-manifest.zsh repos.tsv
     while IFS=$'\t' read -r url dir; do
       if [[ -d "$dir/.git" ]]; then
-        if git -C "$dir" symbolic-ref --quiet HEAD >/dev/null; then
-          git -C "$dir" pull --ff-only
-        else
-          git -C "$dir" fetch --prune origin
-        fi
+        git -C "$dir" pull --ff-only
       else
         git clone --depth 1 --filter=blob:none "$url" "$dir"
       fi
-    done < <(cat repos.tsv tools.tsv)
+    done < tools.tsv
 
 # Clone or update every Lean Reservoir package from reservoir.tsv.
 sync-reservoir:
     ./sync-manifest.zsh reservoir.tsv
 
-# Clone or update the Rocq and Agda libraries.
-sync-rocq-agda:
-    ./sync-manifest.zsh rocq-agda.tsv '/**/*.v' '/**/*.agda' '/**/*.lagda*'
+# Clone or update the registered non-Lean formalization sources.
+sync-ports:
+    ./sync-manifest.zsh port-sources.tsv
+
+# Compatibility spelling kept for old local commands.
+sync-rocq-agda: sync-ports
 
 # Register every nested repository with gita.
 register:
@@ -37,17 +37,39 @@ build-tools:
 index:
     #!/usr/bin/env zsh
     mkdir -p .zoekt
-    while IFS=$'\t' read -r _ dir; do
+    while IFS=$'\t' read -r _ dir _ _; do
       [[ -d "$dir" ]] || continue
       ./bin/zoekt-index -index .zoekt "$dir"
-    done < <(cat repos.tsv reservoir.tsv rocq-agda.tsv)
+    done < <(cat repos.tsv reservoir.tsv port-sources.tsv)
+
+# Incrementally index only the cross-prover sources after `just sync-ports`.
+index-ports:
+    #!/usr/bin/env zsh
+    mkdir -p .zoekt
+    while IFS=$'\t' read -r _ dir _ _; do
+      [[ -d "$dir" ]] || continue
+      ./bin/zoekt-index -index .zoekt "$dir"
+    done < port-sources.tsv
+
+# Recompute exact corpus-reach metrics from hydrated sources and Zoekt shards.
+metrics:
+    python scripts/build-metrics.py
+
+# Regenerate the committed static source metadata from the manifests.
+site:
+    python scripts/build-site.py
+
+# Deploy the static site to nginx's *.localhost preview root.
+preview: site
+    mkdir -p /var/www/static-sites/formalization-corpus-preview
+    rsync -a --delete site/ /var/www/static-sites/formalization-corpus-preview/
+    @echo "http://formalization-corpus-preview.localhost/"
 
 # The origin address, not formalization-corpus.dzackgarza.com: that name resolves to
 # Cloudflare, which proxies HTTP and would not carry ssh.
 host := "zack@159.223.102.204"
 
-# Ship the local index to the search host. The server watches its shard
-# directory, so replaced shards are picked up without a restart.
+# Ship the local index to the search host; the server hot-reloads replaced shards.
 publish:
     rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
     @echo "https://formalization-corpus.dzackgarza.com"
@@ -55,17 +77,34 @@ publish:
 # Report repositories named in SOURCES.md that no manifest checks out.
 check-sources:
     #!/usr/bin/env zsh
-    manifests=$(cat repos.tsv reservoir.tsv rocq-agda.tsv tools.tsv | cut -f1 | sed 's|\.git$||' | tr '[:upper:]' '[:lower:]' | sort -u)
+    manifests=$(cat repos.tsv reservoir.tsv port-sources.tsv tools.tsv | cut -f1 | sed 's|\.git$||' | tr '[:upper:]' '[:lower:]' | sort -u)
     # A source table row names its repository in the first cell; later links are prose.
     linked=$(grep -oE '^\| \[[^]]*\]\(https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' SOURCES.md \
       | grep -oE 'https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' | tr '[:upper:]' '[:lower:]' | sort -u)
     missing=$(comm -23 <(echo "$linked") <(echo "$manifests"))
-    if [[ -z "$missing" ]]; then
-      echo "SOURCES.md and the manifests agree."
-    else
+    port_missing=$(while IFS=$'\t' read -r url _; do
+      normalized="${url%/}"
+      grep -Fiq "$normalized" SOURCES.md || echo "$url"
+    done < port-sources.tsv)
+    duplicate_urls=$(cat repos.tsv reservoir.tsv port-sources.tsv | cut -f1 | sed 's|/$||' | tr '[:upper:]' '[:lower:]' | sort | uniq -d)
+    duplicate_names=$(cat repos.tsv reservoir.tsv port-sources.tsv | cut -f2 | awk -F/ '{print $NF}' | sort | uniq -d)
+    if [[ -n "$missing" ]]; then
       echo "Named in SOURCES.md, checked out by no manifest:"
       echo "$missing"
+      exit 1
     fi
+    if [[ -n "$port_missing" ]]; then
+      echo "Named in port-sources.tsv, documented nowhere in SOURCES.md:"
+      echo "$port_missing"
+      exit 1
+    fi
+    if [[ -n "$duplicate_urls" || -n "$duplicate_names" ]]; then
+      echo "Duplicate source identity across manifests:" >&2
+      [[ -n "$duplicate_urls" ]] && printf 'URLs:\n%s\n' "$duplicate_urls" >&2
+      [[ -n "$duplicate_names" ]] && printf 'names:\n%s\n' "$duplicate_names" >&2
+      exit 1
+    fi
+    echo "SOURCES.md and the manifests agree."
 
 # Search declarations and source text across the corpus.
 search query:

@@ -33,9 +33,15 @@ support, so it is worse than a crash.
 **`zoekt-webserver` watches its shard directory** (`NewDirectorySearcherFast`),
 so `just publish` needs no restart and no privileged step. Do not add one.
 
-**The index is far larger than the sources.** 45k Lean files plus 8.9k Rocq and
-Agda files produce 4.6 GB of shards across 864 files. It cannot be hosted
-anywhere static: GitHub Pages caps a published site at 1 GB.
+**The index is far larger than the sources.** Before the September 2026
+cross-prover expansion, 45k Lean files plus 8.9k Rocq and Agda files produced
+about 4.6 GB of shards across 864 shard files. That is a historical measurement,
+not a size estimate for the expanded corpus. After indexing all 45 cross-prover
+sources on 2026-09-13, `.zoekt/` measured 9.8 GB while the corresponding
+`port-sources/` sparse checkouts measured 3.2 GB. Check free disk space before
+`just index` or `just index-ports`; ACL2 and AFP alone split across many large
+shards. The index is already too large for static hosting: GitHub Pages caps a
+published site at 1 GB.
 
 ## Counting declarations
 
@@ -64,7 +70,24 @@ needs each project built, which is not available for 859 unbuilt checkouts. So
 the site states what mathematics is in the corpus and names no totals. Do not
 reintroduce a count from either method.
 
+The cross-prover corpus makes an aggregate "number of theorems" or "number of
+definitions" even less meaningful: each prover has different declaration forms,
+generated material, namespace/module conventions, and notions of what constitutes
+a theorem-like entity. Repository and source-file counts are operational facts;
+formal-entity totals require a prover-aware elaborated index and must not be
+approximated by regexes across source text.
+
 ## Hosting
+
+**Local preview is a static nginx deploy, not a development server.** The laptop
+already serves `/var/www/static-sites/<name>` through a wildcard `*.localhost`
+vhost. `just preview` copies `site/` to
+`/var/www/static-sites/formalization-corpus-preview/`, yielding
+`http://formalization-corpus-preview.localhost/` with no additional listener.
+Do not reintroduce `python -m http.server` or consume a localhost port for this.
+The production search API only permits the GitHub Pages browser origin via CORS,
+so local preview intentionally disables interactive search.
+
 
 **Test the deployed URL, not a tunnel.** A page published on GitHub Pages calls
 the production endpoint. Verifying it against `localhost` through an ssh
@@ -84,6 +107,15 @@ certbot cert with an explicit SAN list; a new name needs `certbot --nginx
 the others are dropped.
 
 ## Shell
+
+**A global Git `url.*.insteadOf` rule can silently turn public HTTPS clones back
+into SSH.** This laptop has carried `url.git@github.com:.insteadof
+https://github.com/`; a partial clone then appears to succeed but the later
+`git checkout` performs its lazy blob fetch over SSH and can hang indefinitely
+when the connector does not inherit an SSH agent. `sync-manifest.zsh` therefore
+runs public-source network and checkout commands with `GIT_CONFIG_GLOBAL=/dev/null`
+and records GitHub origins as their canonical HTTPS URLs. Do not remove that
+isolation in favor of the ambient user Git configuration.
 
 **`pgrep -f <pattern>` matches its own invoking shell.** The command line
 containing the pattern is itself a process, so `pgrep -f 'just sync'` inside a
