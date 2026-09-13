@@ -478,7 +478,7 @@ h3 {
 
 .browse-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 1rem;
   margin-top: 0.65rem;
 }
@@ -510,6 +510,82 @@ h3 {
   margin-top: 0.28rem;
   color: var(--muted);
   font-size: 0.81rem;
+}
+
+.agent-guide {
+  max-width: 900px;
+}
+
+.agent-guide > section {
+  margin-top: 2.4rem;
+}
+
+.copy-panel {
+  margin-top: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--surface-subtle);
+}
+
+.copy-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 44px;
+  padding: 0.45rem 0.65rem 0.45rem 0.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.copy-panel-header strong {
+  font-size: 0.84rem;
+}
+
+.copy-button {
+  min-height: 32px;
+  padding: 0.42rem 0.7rem;
+  border: 1px solid var(--button-border);
+  border-radius: 3px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  font: 650 0.76rem/1 var(--sans);
+  cursor: pointer;
+}
+
+.copy-button:hover { background: var(--button-hover); }
+
+.copy-panel pre {
+  max-height: 36rem;
+  padding: 1rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.agent-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.agent-links a {
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.agent-links strong,
+.agent-links span { display: block; }
+
+.agent-links span {
+  margin-top: 0.18rem;
+  color: var(--muted);
+  font-size: 0.78rem;
 }
 
 .section-rule {
