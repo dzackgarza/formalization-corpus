@@ -4,48 +4,51 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>API — Formalization Corpus</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-<style>
-	html { font-size: 87.5%; }
-	header.container > hgroup > h1 { font-size: 1.4rem; margin-bottom: 0.2rem; }
-	header.container { padding-block: 1.2rem 0; }
-	header.container nav { margin-bottom: 0; }
-	main { padding-block: 1rem; }
-	main h2 { font-size: 1.15rem; margin-top: 2.2rem; }
-	main h3 { font-size: 1rem; margin-top: 1.6rem; }
-	pre { font-size: 0.78rem; }
-	table { font-size: 0.85rem; }
-	td:first-child { white-space: nowrap; }
-</style>
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<header class="container">
-	<hgroup>
-		<h1><a href="./">Formalization Corpus</a></h1>
-		<p>Querying the index directly.</p>
-	</hgroup>
-	<nav>
-		<ul>
-			<li><a href="./">Search</a></li>
-			<li><a href="./corpus.html">Every source</a></li>
-			<li><a href="./subjects.html">By subject</a></li>
-			<li><a href="./api.html" aria-current="page">API</a></li>
-		</ul>
-	</nav>
+<header class="site-header">
+	<div class="shell masthead">
+		<a class="brand" href="./">
+			<span class="brand-mark" aria-hidden="true">FC</span>
+			<span class="brand-copy">
+				<span class="brand-name">Formalization Corpus</span>
+				<span class="brand-tagline">Cross-prover formal mathematics index</span>
+			</span>
+		</a>
+		<nav class="site-nav" aria-label="Primary">
+			<a href="./">Search</a>
+			<a href="./corpus.html">Sources</a>
+			<a href="./subjects.html">Subjects</a>
+			<a href="./api.html" aria-current="page">API</a>
+		</nav>
+	</div>
 </header>
 
-<main class="container">
+<main class="shell page-main docs">
+	<header class="page-heading">
+		<p class="eyebrow">Programmatic access</p>
+		<h1>Search API</h1>
+		<p class="lede">Query the same Zoekt index used by the web interface from scripts, agents, notebooks, and external tools. The API is public and read-only: no key and no account.</p>
+	</header>
 
-<p>
-	The search is <a href="https://github.com/sourcegraph/zoekt">zoekt</a>, and its
-	JSON API is open: no key, no account, no rate limit beyond what one small
-	machine can answer. The web page on this site is one client of it.
-</p>
+	<div class="docs-layout">
+		<aside class="toc" aria-label="API contents">
+			<div class="toc-title">On this page</div>
+			<nav>
+				<a href="#first-query">First query</a>
+				<a href="#query-language">Query language</a>
+				<a href="#options">Options</a>
+				<a href="#response">Response shape</a>
+				<a href="#list-sources">List sources</a>
+				<a href="#fair-use">Fair use</a>
+			</nav>
+		</aside>
+		<article>
+			<p>The search backend is <a href="https://github.com/sourcegraph/zoekt">Zoekt</a>. The browser search on this site is simply one client of the same JSON endpoint.</p>
+			<div class="endpoint"><span class="method">POST</span><span>https://formalization-corpus.dzackgarza.com/api/search</span></div>
 
-<pre><code>POST https://formalization-corpus.dzackgarza.com/api/search
-Content-Type: application/json</code></pre>
-
-<h2>A first query</h2>
+<h2 id="first-query">A first query</h2>
 
 <pre><code>curl -s https://formalization-corpus.dzackgarza.com/api/search \
   -H 'Content-Type: application/json' \
@@ -61,7 +64,7 @@ Content-Type: application/json</code></pre>
   -d '{"Q": "Hasse invariant file:\\.lean$", "Opts": {"MaxDocDisplayCount": 20}}' \
   | jq -r '.Result.Files[] | "\(.Repository)  \(.FileName)"'</code></pre>
 
-<h2>The query language</h2>
+<h2 id="query-language">The query language</h2>
 
 <p>
 	A bare term is a substring; anything more is a regular expression. Terms
@@ -92,7 +95,7 @@ Content-Type: application/json</code></pre>
 	count here.
 </p>
 
-<h2>Options</h2>
+<h2 id="options">Options</h2>
 
 <table>
 	<thead><tr><th>Field</th><th>Effect</th></tr></thead>
@@ -106,7 +109,7 @@ Content-Type: application/json</code></pre>
 	</tbody>
 </table>
 
-<h2>What comes back</h2>
+<h2 id="response">What comes back</h2>
 
 <pre><code>{
   "Result": {
@@ -157,7 +160,7 @@ Content-Type: application/json</code></pre>
 	</li>
 </ul>
 
-<h2>Listing indexed sources</h2>
+<h2 id="list-sources">Listing indexed sources</h2>
 
 <pre><code>curl -s https://formalization-corpus.dzackgarza.com/api/list \
   -H 'Content-Type: application/json' \
@@ -169,7 +172,7 @@ Content-Type: application/json</code></pre>
 	counts — under <code>Stats</code>.
 </p>
 
-<h2>Fair use</h2>
+<h2 id="fair-use">Fair use</h2>
 
 <p>
 	This runs on one small virtual machine against a multi-gigabyte Zoekt index.
@@ -180,14 +183,16 @@ Content-Type: application/json</code></pre>
 	<code>MaxWallTime</code> if you are running a loop.
 </p>
 
-<p>
-	Browsers are restricted by CORS to this site's origin. Scripts, agents and
-	servers are not affected — the examples above work from anywhere. To run the
-	whole thing yourself, the corpus builds from
-	<a href="https://github.com/dzackgarza/formalization-corpus">its repository</a>
-	with <code>just sync &amp;&amp; just index</code>.
-</p>
-
+<p>The endpoint sends permissive CORS headers because it is a public, read-only search surface. To run the whole index yourself, build from <a href="https://github.com/dzackgarza/formalization-corpus">the repository</a> with <code>just sync &amp;&amp; just index</code>.</p>
+		</article>
+	</div>
 </main>
+
+<footer class="site-footer">
+	<div class="shell footer-inner">
+		<p>The API exposes search over the published corpus; it does not mutate source repositories.</p>
+		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div>
+	</div>
+</footer>
 </body>
 </html>

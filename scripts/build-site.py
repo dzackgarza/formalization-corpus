@@ -8,6 +8,7 @@ on GitHub and the corpus can be browsed without a query.
 """
 
 import json
+import html
 import pathlib
 import re
 
@@ -58,36 +59,47 @@ PAGE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>By subject — Formalization Corpus</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-<style>
-	html {{ font-size: 87.5%; }}
-	header.container > hgroup > h1 {{ font-size: 1.4rem; margin-bottom: 0.2rem; }}
-	header.container {{ padding-block: 1.2rem 0; }}
-	header.container nav {{ margin-bottom: 0; }}
-	main {{ padding-block: 1rem; }}
-	main table {{ font-size: 0.85rem; }}
-	main td:first-child {{ width: 22em; }}
-	main h2 {{ font-size: 1.15rem; margin-top: 2.2rem; }}
-</style>
+<title>Subjects — Formalization Corpus</title>
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<header class="container">
-	<hgroup>
-		<h1><a href="./">Formalization Corpus</a></h1>
-	</hgroup>
-	<nav>
-		<ul>
-			<li><a href="./">Search</a></li>
-				<li><a href="./corpus.html">Every source</a></li>
-			<li><a href="./subjects.html" aria-current="page">By subject</a></li>
-			<li><a href="./api.html">API</a></li>
-		</ul>
-	</nav>
+<header class="site-header">
+	<div class="shell masthead">
+		<a class="brand" href="./">
+			<span class="brand-mark" aria-hidden="true">FC</span>
+			<span class="brand-copy">
+				<span class="brand-name">Formalization Corpus</span>
+				<span class="brand-tagline">Cross-prover formal mathematics index</span>
+			</span>
+		</a>
+		<nav class="site-nav" aria-label="Primary">
+			<a href="./">Search</a>
+			<a href="./corpus.html">Sources</a>
+			<a href="./subjects.html" aria-current="page">Subjects</a>
+			<a href="./api.html">API</a>
+		</nav>
+	</div>
 </header>
-<main class="container">
-{body}
+<main class="shell page-main">
+	<header class="page-heading">
+		<p class="eyebrow">Mathematical coverage</p>
+		<h1>Subjects</h1>
+		<p class="lede">Browse formal prior art by area rather than prover. These descriptions identify the mathematical content worth searching inside each registered source.</p>
+	</header>
+	<div class="content-layout">
+		<aside class="toc" aria-label="Subject areas">
+			<div class="toc-title">On this page</div>
+			<nav>{toc}</nav>
+		</aside>
+		<article class="prose">{body}</article>
+	</div>
 </main>
+<footer class="site-footer">
+	<div class="shell footer-inner">
+		<p>Subject descriptions are curated from source content, not inferred from repository names.</p>
+		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div>
+	</div>
+</footer>
 </body>
 </html>
 """
@@ -105,9 +117,16 @@ def subjects_page() -> None:
     body = text.split("\n## ", 1)
     text = "## " + body[1] if len(body) > 1 else text
 
-    html = markdown.markdown(text, extensions=["tables", "attr_list"])
-    SUBJECTS.write_text(PAGE.format(body=html))
-    print(f"{SUBJECTS}: {len(html)} bytes")
+    md = markdown.Markdown(extensions=["tables", "attr_list", "toc"])
+    rendered = md.convert(text)
+    toc_items = []
+    for token in getattr(md, "toc_tokens", []):
+        if token.get("level") != 2:
+            continue
+        label = html.escape(re.sub(r"<[^>]+>", "", token.get("name", "")))
+        toc_items.append(f'<a href="#{token["id"]}">{label}</a>')
+    SUBJECTS.write_text(PAGE.format(body=rendered, toc="".join(toc_items)))
+    print(f"{SUBJECTS}: {len(rendered)} bytes")
 
 
 def main() -> None:

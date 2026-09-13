@@ -3,57 +3,60 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Every source — Formalization Corpus</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/css/tabulator_simple.min.css" media="(prefers-color-scheme: light)">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/css/tabulator_midnight.min.css" media="(prefers-color-scheme: dark)">
-<style>
-	html { font-size: 87.5%; }
-	header.container > hgroup > h1 { font-size: 1.4rem; margin-bottom: 0.2rem; }
-	header.container { padding-block: 1.2rem 0; }
-	header.container nav { margin-bottom: 0; }
-	main { padding-block: 1rem; }
-	main h2 { font-size: 1.1rem; margin-top: 1.8rem; }
-	.metrics { font-size: 0.86rem; }
-	.metrics td:not(:first-child), .metrics th:not(:first-child) { text-align: right; }
-	.note { font-size: 0.8rem; color: var(--pico-muted-color); }
-	.tabulator { font-size: 0.82rem; }
-	.tabulator-row .tabulator-cell a { font-family: var(--pico-font-family-monospace); }
-	.tabulator-header-filter input { margin: 0; font-size: 0.8rem; }
-</style>
+<title>Sources — Formalization Corpus</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/css/tabulator.min.css">
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<header class="container">
-	<hgroup>
-		<h1><a href="./">Formalization Corpus</a></h1>
-	</hgroup>
-	<nav>
-		<ul>
-			<li><a href="./">Search</a></li>
-			<li><a href="./corpus.html" aria-current="page">Every source</a></li>
-			<li><a href="./subjects.html">By subject</a></li>
-			<li><a href="./api.html">API</a></li>
-		</ul>
-	</nav>
+<header class="site-header">
+	<div class="shell masthead">
+		<a class="brand" href="./">
+			<span class="brand-mark" aria-hidden="true">FC</span>
+			<span class="brand-copy">
+				<span class="brand-name">Formalization Corpus</span>
+				<span class="brand-tagline">Cross-prover formal mathematics index</span>
+			</span>
+		</a>
+		<nav class="site-nav" aria-label="Primary">
+			<a href="./">Search</a>
+			<a href="./corpus.html" aria-current="page">Sources</a>
+			<a href="./subjects.html">Subjects</a>
+			<a href="./api.html">API</a>
+		</nav>
+	</div>
 </header>
 
-<main class="container">
-	<h2>Corpus reach</h2>
-	<table id="reach" class="metrics"></table>
-	<p class="note">
-		A formal unit is a prover-native source/theory file. Generated ACL2
-		<code>.sys</code> rune reports and PVS <code>.prf</code> proof traces are
-		excluded. Definition/theorem totals are intentionally omitted until they can
-		be obtained from prover-native parsers or elaborated environments rather than
-		keyword matching.
-	</p>
+<main class="shell page-main">
+	<header class="page-heading">
+		<p class="eyebrow">Coverage and provenance</p>
+		<h1>Sources</h1>
+		<p class="lede">A registry of formal mathematics projects, standard libraries, package ecosystems, and archival developments. Counts below describe what is actually hydrated and indexed, not recalled from project claims.</p>
+	</header>
 
-	<h2>By formalization ecosystem</h2>
-	<table id="ecosystems" class="metrics"></table>
+	<section aria-labelledby="reach-title">
+		<h2 id="reach-title">Corpus reach</h2>
+		<div class="metric-grid" id="reach-cards" aria-live="polite"></div>
+		<p class="note">A formal unit is a prover-native source or theory file. Generated ACL2 <code>.sys</code> rune reports and PVS <code>.prf</code> proof traces are excluded. Definition and theorem totals remain omitted until they can be obtained from prover-native parsers or elaborated environments rather than keyword matching.</p>
+	</section>
 
-	<h2>Sources</h2>
-		<div id="table"></div>
+	<section aria-labelledby="ecosystem-title">
+		<h2 id="ecosystem-title">By formalization ecosystem</h2>
+		<div class="table-wrap"><table id="ecosystems" class="metrics-table"></table></div>
+	</section>
+
+	<section aria-labelledby="source-browser-title">
+		<h2 id="source-browser-title">Source browser</h2>
+		<p class="muted">Filter by project name or mathematical content. Groups distinguish curated Lean projects, the Reservoir package surface, and each non-Lean prover family.</p>
+		<div class="source-browser" id="table"></div>
+	</section>
 </main>
+
+<footer class="site-footer">
+	<div class="shell footer-inner">
+		<p>Registry descriptions are curated in <code>SOURCES.md</code>; machine-readable coverage comes from the manifests and local index.</p>
+		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./api.html">API</a></div>
+	</div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/js/tabulator.min.js"></script>
 <script>
@@ -76,16 +79,11 @@ const fmt = n => Number(n || 0).toLocaleString("en-US");
 
 fetch("./metrics.json").then(r => r.json()).then(data => {
 	const s = data.summary;
-	document.getElementById("reach").innerHTML = `
-		<thead><tr><th>Measure</th><th>Count</th></tr></thead>
-		<tbody>
-			<tr><td>Indexed sources</td><td>${fmt(s.indexed_sources)} / ${fmt(s.registered_sources)}</td></tr>
-			<tr><td>Sources containing formal text</td><td>${fmt(s.formal_content_sources)}</td></tr>
-			<tr><td>Curated formal-content sources</td><td>${fmt(s.curated_formal_content_sources)}</td></tr>
-			<tr><td>Formal theory/source units</td><td>${fmt(s.formal_units)}</td></tr>
-			<tr><td>Formal source lines</td><td>${fmt(s.formal_lines)}</td></tr>
-			<tr><td>Prover families</td><td>${fmt(s.prover_families)}</td></tr>
-		</tbody>`;
+	document.getElementById("reach-cards").innerHTML = `
+		<div class="metric-card"><div class="value">${fmt(s.indexed_sources)} / ${fmt(s.registered_sources)}</div><div class="label">indexed sources</div></div>
+		<div class="metric-card"><div class="value">${fmt(s.formal_content_sources)}</div><div class="label">sources containing formal text</div></div>
+		<div class="metric-card"><div class="value">${fmt(s.formal_units)}</div><div class="label">formal theory/source units</div></div>
+		<div class="metric-card"><div class="value">${fmt(s.prover_families)}</div><div class="label">prover families</div></div>`;
 
 	const rows = data.ecosystems.map(r => `
 		<tr><td>${r.label}</td><td>${fmt(r.indexed_sources)}</td>
@@ -102,23 +100,23 @@ fetch("./metrics.json").then(r => r.json()).then(data => {
 });
 
 fetch("./corpus.json").then(r => r.json()).then(data => {
-		const rows = Object.entries(data.repos).map(([name, r]) => ({name, ...r}));
+	const rows = Object.entries(data.repos).map(([name, r]) => ({name, ...r}));
 
-		new Tabulator("#table", {
-		data: rows,
-		layout: "fitColumns",
-		height: "70vh",
-		groupBy: "kind",
-		// Groups otherwise appear in the order their first row happens to fall.
+	new Tabulator("#table", {
+			data: rows,
+			layout: "fitColumns",
+			height: "70vh",
+			groupBy: "kind",
+			// Groups otherwise appear in the order their first row happens to fall.
 			groupValues: [ORDER],
-		groupHeader: (kind, count) => `${KINDS[kind] || kind} <span>(${count})</span>`,
-		groupStartOpen: kind => kind !== "reservoir",
-		initialSort: [{column: "name", dir: "asc"}],
-		columns: [
+			groupHeader: (kind, count) => `${KINDS[kind] || kind} <span>(${count})</span>`,
+			groupStartOpen: kind => kind !== "reservoir",
+			initialSort: [{column: "name", dir: "asc"}],
+			columns: [
 				{title: "Source", field: "name", widthGrow: 2, headerFilter: "input",
-			 headerFilterPlaceholder: "filter by name",
-			 variableHeight: true,
-			 formatter: cell => {
+				 headerFilterPlaceholder: "filter by name",
+				 variableHeight: true,
+				 formatter: cell => {
 				 const a = document.createElement("a");
 				 a.href = cell.getRow().getData().url;
 				 a.textContent = cell.getValue();
@@ -129,8 +127,8 @@ fetch("./corpus.json").then(r => r.json()).then(data => {
 			{title: "What it holds", field: "what", widthGrow: 3, headerFilter: "input",
 			 headerFilterPlaceholder: "filter by subject — sphere packing, Hasse, category",
 			 formatter: "textarea"},
-		],
-	});
+			],
+		});
 });
 </script>
 </body>

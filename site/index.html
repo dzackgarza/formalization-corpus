@@ -4,86 +4,78 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Formalization Corpus</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-<style>
-	/* Pico's default scale suits an article; this is a search tool. */
-	html { font-size: 87.5%; }
-	header.container > hgroup > h1 { font-size: 1.4rem; margin-bottom: 0.2rem; }
-	header.container { padding-block: 1.2rem 0; }
-	header.container nav { margin-bottom: 0; }
-
-	/* Only what Pico has no opinion about: the shape of a search result. */
-	main { padding-block: 1rem; }
-	#status { margin-bottom: 0.8rem; }
-	form { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
-	form input { margin: 0; font-family: var(--pico-font-family-monospace); }
-	form button { width: auto; margin: 0; }
-	.hint, #status { font-size: 0.8rem; color: var(--pico-muted-color); }
-	#status.broken { color: var(--pico-del-color); font-family: var(--pico-font-family-monospace); }
-	article { padding: 0; margin-bottom: 1rem; }
-	article > header {
-		padding: 0.4rem 0.8rem;
-		font-size: 0.8rem;
-		font-weight: 600;
-		display: flex;
-		justify-content: space-between;
-		gap: 0.6rem;
-		align-items: baseline;
-	}
-	article > header a { text-decoration: none; font-family: var(--pico-font-family-monospace); }
-	.tag { font-weight: 400; font-size: 0.7rem; color: var(--pico-muted-color); }
-	.file { border-top: 1px solid var(--pico-muted-border-color); }
-	.path {
-		font-family: var(--pico-font-family-monospace);
-		font-size: 0.72rem;
-		padding: 0.35rem 0.8rem 0.1rem;
-		color: var(--pico-muted-color);
-	}
-	.path a { color: inherit; }
-	pre {
-		margin: 0;
-		padding: 0 0.8rem 0.5rem;
-		background: none;
-		border: 0;
-		font-size: 0.75rem;
-		line-height: 1.5;
-	}
-	pre.namehit { color: var(--pico-muted-color); font-style: italic; }
-	pre .ln { color: var(--pico-muted-color); user-select: none; }
-	mark { padding: 0 1px; border-radius: 2px; }
-</style>
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<header class="container">
-	<hgroup>
-		<h1><a href="./">Formalization Corpus</a></h1>
-	</hgroup>
-	<nav>
-		<ul>
-			<li><a href="./" aria-current="page">Search</a></li>
-				<li><a href="./corpus.html">Every source</a></li>
-			<li><a href="./subjects.html">By subject</a></li>
-			<li><a href="./api.html">API</a></li>
-		</ul>
-	</nav>
+<header class="site-header">
+	<div class="shell masthead">
+		<a class="brand" href="./">
+			<span class="brand-mark" aria-hidden="true">FC</span>
+			<span class="brand-copy">
+				<span class="brand-name">Formalization Corpus</span>
+				<span class="brand-tagline">Cross-prover formal mathematics index</span>
+			</span>
+		</a>
+		<nav class="site-nav" aria-label="Primary">
+			<a href="./" aria-current="page">Search</a>
+			<a href="./corpus.html">Sources</a>
+			<a href="./subjects.html">Subjects</a>
+			<a href="./api.html">API</a>
+		</nav>
+	</div>
 </header>
 
-<main class="container">
-		<form id="f">
-			<input type="search" id="q" name="q" placeholder="IsometryEquiv" autocomplete="off" autofocus spellcheck="false">
-			<button type="submit">Search</button>
-	</form>
-	<p class="hint">
-		Regular expressions, and zoekt's filters:
-		<code>repo:mathlib4</code>, <code>file:\.lean$</code>, <code>case:yes</code>.
-		Terms combine with a space; <code>-</code> negates.
-	</p>
+<main class="shell page-main">
+	<section class="hero">
+		<div class="hero-copy">
+			<p class="eyebrow">Formal prior art, across proof assistants</p>
+			<h1>Find where mathematics has already been formalized.</h1>
+			<p class="lede">Search definitions, constructions, theorem statements, proofs, and formal semantics across Lean, Rocq, Agda, Isabelle, HOL, Mizar, Metamath, ACL2, PVS, and Twelf.</p>
+			<div class="search-box">
+				<form id="f" class="search-form">
+					<input type="search" id="q" name="q" placeholder="Try: IsometryEquiv, Hasse invariant, repo:UniMath" autocomplete="off" autofocus spellcheck="false" aria-label="Search the formalization corpus">
+					<button type="submit">Search corpus</button>
+				</form>
+				<div class="query-help">
+					<span>Zoekt syntax:</span>
+					<code>repo:mathlib4</code>
+					<code>file:\.lean$</code>
+					<code>case:yes</code>
+					<a href="./api.html#query-language">query guide</a>
+				</div>
+			</div>
+			<div id="status" class="status-line" aria-live="polite"></div>
+		</div>
+		<aside class="hero-panel" aria-label="Corpus snapshot">
+			<div class="hero-panel-head">Corpus snapshot</div>
+			<div class="hero-metrics" id="hero-metrics">
+				<div class="hero-metric"><strong>—</strong><span>indexed sources</span></div>
+				<div class="hero-metric"><strong>—</strong><span>formal units</span></div>
+				<div class="hero-metric"><strong>—</strong><span>formal lines</span></div>
+				<div class="hero-metric"><strong>—</strong><span>prover families</span></div>
+			</div>
+		</aside>
+	</section>
 
-	<div id="status"></div>
-	<div id="results"></div>
+	<section id="browse" aria-labelledby="browse-title">
+		<p class="eyebrow" id="browse-title">Browse the index</p>
+		<div class="browse-grid">
+			<a class="browse-card" href="./corpus.html"><strong>Sources</strong><span>Inspect coverage, ecosystems, and every indexed formal library or project.</span></a>
+			<a class="browse-card" href="./subjects.html"><strong>Subjects</strong><span>Move by mathematical area: category theory, algebra, geometry, analysis, logic, and more.</span></a>
+			<a class="browse-card" href="./api.html"><strong>Search API</strong><span>Use the same Zoekt index from scripts, agents, notebooks, and external tools.</span></a>
+		</div>
+		<p class="muted" id="counts"></p>
+	</section>
 
-	<p class="hint" id="counts"></p>
+	<section class="search-results" id="results" aria-label="Search results"></section>
 </main>
+
+<footer class="site-footer">
+	<div class="shell footer-inner">
+		<p>One lexical index over formal mathematics, independent of proof assistant.</p>
+		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./api.html">API</a></div>
+	</div>
+</footer>
 
 <script>
 // ?api=http://localhost:6070/api/search points the page at a tunnelled or
@@ -281,14 +273,15 @@ function render(result) {
 
 function fail(err) {
 	console.error(err);
-	el("status").className = "broken";
+	el("status").className = "status-line broken";
 	el("status").textContent = `search failed — ${err.message || err}`;
 }
 
 async function search(q) {
-	el("status").className = "";
+	el("status").className = "status-line";
 	el("status").textContent = "searching…";
 	el("results").innerHTML = "";
+	el("browse").hidden = true;
 	const started = performance.now();
 	let result;
 	try {
@@ -333,8 +326,9 @@ el("f").addEventListener("submit", e => {
 
 function clear() {
 	el("results").innerHTML = "";
-	el("status").className = "";
+	el("status").className = "status-line";
 	el("status").textContent = "";
+	el("browse").hidden = false;
 	if (location.hash) history.replaceState(null, "", location.pathname + location.search);
 }
 
@@ -343,14 +337,20 @@ function clear() {
 el("q").addEventListener("input", () => { if (!el("q").value.trim()) clear(); });
 window.addEventListener("hashchange", fromHash);
 
+fetch("./metrics.json").then(r => r.json()).then(data => {
+	const s = data.summary;
+	const compact = n => new Intl.NumberFormat("en", {notation: "compact", maximumFractionDigits: 1}).format(n || 0);
+	el("hero-metrics").innerHTML = `
+		<div class="hero-metric"><strong>${Number(s.indexed_sources || 0).toLocaleString()}</strong><span>indexed sources</span></div>
+		<div class="hero-metric"><strong>${compact(s.formal_units)}</strong><span>formal units</span></div>
+		<div class="hero-metric"><strong>${compact(s.formal_lines)}</strong><span>formal lines</span></div>
+		<div class="hero-metric"><strong>${Number(s.prover_families || 0).toLocaleString()}</strong><span>prover families</span></div>`;
+});
+
 fetch("./corpus.json").then(r => r.json()).then(data => {
 	corpus = data;
-	el("counts").innerHTML =
-			`Mathlib, the Fermat's Last Theorem and Carleson's theorem projects, `
-			+ `Viazovska's sphere packing, condensed mathematics, the Lean package `
-			+ `registry — plus the major Rocq, Agda, Isabelle, HOL, Mizar, Metamath, `
-			+ `ACL2, PVS and LF libraries. <a href="./corpus.html">Every source</a>, or `
-			+ `<a href="./subjects.html">by subject</a>.`;
+	el("counts").textContent =
+		"Coverage includes Mathlib, major theorem-scale projects, package registries, standard libraries, and archival formal developments across eleven prover families.";
 	fromHash();
 });
 </script>
