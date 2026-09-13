@@ -107,11 +107,11 @@ check-sources:
 
 # Evaluate the current public query behavior against the frozen retrieval gold set.
 eval-search:
-    python evaluation/search/evaluate.py --provider local --variant frontend_lexical_v1
+    python evaluation/search/evaluate.py --provider local --variant frontend_lexical_v2
 
-# Regression check against the committed baseline. Requires the same local Zoekt index.
+# Regression check against the deployed lexical-v2 baseline. Requires the same local Zoekt index.
 test-search-quality:
-    python evaluation/search/evaluate.py --provider local --variant frontend_lexical_v1 --compare evaluation/search/baselines/frontend_lexical_v1.json
+    python evaluation/search/evaluate.py --provider local --variant frontend_lexical_v2 --compare evaluation/search/baselines/frontend_lexical_v2.json
 
 # Reproduce the measured multi-query + Cohere reranker experiment (network/API key required).
 eval-search-rerank:

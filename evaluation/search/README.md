@@ -80,16 +80,22 @@ Latency from the local provider measures retrieval execution and JSONL output;
 production browser latency should additionally be measured whenever the API or
 rendering payload changes.
 
-## Baseline
+## Baselines
 
-`frontend_lexical_v1` mirrors the current public default: split the user's text
+`frontend_lexical_v1` is the historical public behavior: split the user's text
 on whitespace/quotes, turn every token into a mandatory `content:` regex term,
-restrict to proof-source files, and search case-insensitively.  The committed
-baseline is the score of that behavior before any retrieval improvement.
+restrict to proof-source files, and search case-insensitively.  It is retained as
+the before-state for the first measured search improvement.
 
-Do not replace this baseline in the same commit as a candidate retrieval change.
-A candidate should receive a new variant name and be compared against the frozen
-baseline on the same index.
+`frontend_lexical_v2` is the deployed lexical baseline.  It uses the same
+`site/search-query.json` normalization policy as the browser: conversational
+intent words and punctuation are removed conservatively, proof-assistant names
+can narrow the proof-source extension, and mathematical terms may match file/module
+paths as well as contents.  `just test-search-quality` guards this baseline.
+
+Do not replace a baseline merely because a candidate scores better.  A candidate
+receives its own variant/report first; a deployed behavior receives a new baseline
+only in the separate production-change step after the comparison is reviewed.
 
 ## Experimental protocol
 
@@ -149,29 +155,41 @@ fusion rule, and reranker must each be named experimental variables in reports.
   https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf
 - Santhanam et al., *ColBERTv2* (late-interaction retrieval):
   https://arxiv.org/abs/2112.01488
+- Lu et al., *Lean Finder: Semantic Search for Mathlib That Understands User
+  Intents* (retrieval aligned to real mathematician query intent):
+  https://arxiv.org/abs/2510.15940
+- Gao et al., *LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem
+  Proving* (hierarchy-informalized corpus plus embedding/reranker retrieval):
+  https://arxiv.org/abs/2605.13137
+- Kurgan et al., *TheoremGraph: Bridging Formal and Informal Mathematics*
+  (declaration name/signature representations plus dependency-graph expansion):
+  https://arxiv.org/abs/2606.25363
+- Lu et al., *Automated Formalization via Conceptual Retrieval-Augmented LLMs*
+  (concept-definition knowledge base, query augmentation, hybrid retrieval and
+  reranking): https://proceedings.iclr.cc/paper_files/paper/2026/hash/fd83f4e0dcaf1c64ea15bbb1695bb40f-Abstract-Conference.html
 
-## Initial measured baseline
+## Measured lexical baselines
 
-On the 22-case initial gold set and the local index fingerprint committed in
-`baselines/frontend_lexical_v1.json`, the current frontend behavior scores:
+On the 24-case gold set, including adversarial cases for mathematical uses of
+words such as “formal” and “existence,” the original v1 behavior and the promoted
+v2 lexical behavior score as follows on the same current index:
 
-| Metric | Baseline |
-| --- | ---: |
-| owner Hit@10 (primary) | 0.136 |
-| Hit@1 | 0.091 |
-| Hit@5 | 0.182 |
-| Hit@10 | 0.182 |
-| Hit@20 | 0.364 |
-| source Hit@10 | 0.864 |
-| MRR | 0.152 |
-| nDCG@10 | 0.110 |
-| zero-result rate | 0.136 |
+| Metric | v1 historical | v2 deployed |
+| --- | ---: | ---: |
+| owner Hit@10 (primary) | 0.167 | **0.542** |
+| Hit@1 | 0.083 | **0.250** |
+| Hit@5 | 0.208 | **0.542** |
+| Hit@10 | 0.208 | **0.625** |
+| Hit@20 | 0.375 | **0.625** |
+| source Hit@10 | 0.833 | **0.958** |
+| MRR | 0.148 | **0.381** |
+| nDCG@10 | 0.117 | **0.357** |
+| zero-result rate | 0.125 | **0.042** |
 
-Two diagnostic slices are especially informative.  The two conversational
-queries have zero results under the strict compiler.  The two synonym-tagged
-queries have source Hit@10 = 1.0 but owner Hit@10 = 0.0: the corpus/source is
-being found, but the useful file is not being ranked into view.  These are
-predeclared targets for future query and ranking experiments.
+The historical conversational slice had zero results for both queries.  The v2
+normalization fixes those lexical false negatives while preserving the exact-name
+queries; synonym-shift queries still motivate the semantic/multi-query experiments
+below.
 
 ## Relevance-judgment pooling
 
@@ -191,7 +209,7 @@ before drawing strong conclusions from a new family of retrievers:
 `build_pool.py` produces that review set without assigning relevance to
 unjudged files.  The current depth-10 pool combines the frozen frontend baseline, normalized
 path/content lexical retrieval, frozen multi-query RRF, and the measured Cohere
-reranker.  It has 414 unique query/file candidates: 32 already judged and 382
+reranker.  It has 444 unique query/file candidates: 33 already judged and 411
 explicitly marked unjudged.  Unjudged does not mean irrelevant.
 
 This follows the TREC test-collection model: pool top documents from diverse
@@ -205,10 +223,10 @@ The measured experiments narrow the next branches:
 
 - **Fielded lexical retrieval first.** Module/file paths are unusually valuable
   in formal libraries.  Restoring path evidence plus conservative query
-  normalization raises owner Hit@10 from 0.136 to 0.500 on the initial qrels.
+  normalization raises owner Hit@10 from 0.167 to 0.542 on the current qrels.
 - **Semantic first-stage retrieval, not reranking alone.** For normalized
   path/content retrieval, owner Hit is identical at depths 20, 50, 100, and
-  150 (0.545).  The missing owner files are absent from the lexical candidate
+  150 (0.583).  The missing owner files are absent from the lexical candidate
   set, so no reranker can recover them.  Dense retrieval, learned sparse
   expansion (for example SPLADE), or another independent first-stage signal is
   required for that residue.
@@ -216,7 +234,7 @@ The measured experiments narrow the next branches:
   complementary.  Combine independent lexical/dense runs by a rank-based method
   such as Reciprocal Rank Fusion before learning score calibration.
 - **Hierarchical retrieval.** Normalized lexical retrieval already has source
-  Hit@5 = 0.955 while owner Hit@10 = 0.500.  This supports testing a cheap
+  Hit@5 = 0.958 while owner Hit@10 = 0.542.  This supports testing a cheap
   source-first stage followed by stronger file/chunk retrieval within a handful
   of sources, rather than assuming every request needs a global dense scan.
 - **Deterministic chunk context before generated context.** For file/chunk
@@ -227,23 +245,23 @@ The measured experiments narrow the next branches:
   multi-vector retrieval retains token-level evidence that a single dense
   vector may blur.  It should be compared as its own first-stage run, not
   silently substituted for dense embeddings.
+- **Declaration-aware retrieval where parsers permit it.** For Lean and other
+  systems with reliable declaration extraction, compare file/chunk retrieval
+  against records containing declaration name, signature/type, docstring,
+  namespace and dependency neighborhood.  TheoremGraph's results make this a
+  stronger hypothesis than embedding arbitrary fixed source windows.
+- **Train/evaluate on user intent, not only theorem paraphrases.** Lean Finder's
+  gains come from modeling how mathematicians actually ask for library material.
+  As this corpus accumulates real queries, keep a held-out user-query slice and
+  use it before considering any domain-specific embedding fine-tuning.
 - **Reranking only after candidate recall is high.** Once a hybrid first stage
   puts owner files into (say) the top 100--200 reliably, compare a cross-encoder
   or LLM reranker on owner Hit@10/nDCG@10, with latency and API cost recorded.
-- **User-intent data should grow the benchmark.** Lean Finder reports gains from
-  training/evaluating against real mathematician intents rather than only
-  informalized theorem statements.  Real search failures from this site should
-  therefore become future gold queries, with a held-out partition once the set
-  is large enough for repeated tuning to overfit it.
 
 Additional references:
 
-- Anthropic, *Contextual Retrieval*:
-  https://www.anthropic.com/engineering/contextual-retrieval
 - TREC 2025 overview of relevance judgments and pooling:
   https://trec.nist.gov/pubs/trec33/papers/overview_33.pdf
-- Lu et al., *Lean Finder: Semantic Search for Mathlib That Understands User
-  Intents*: https://arxiv.org/abs/2510.15940
 - Formal et al., *SPLADE v2*: https://arxiv.org/abs/2109.10086
 - Jina Embeddings retrieval/late-interaction documentation:
   https://jina.ai/en-US/embeddings/

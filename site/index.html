@@ -30,7 +30,7 @@
 				<div class="search-box">
 					<form id="f" class="search-form">
 						<input type="search" id="q" name="q" placeholder="Try: IsometryEquiv, Hasse invariant, univalent" autocomplete="off" autofocus spellcheck="false" aria-label="Search the formalization corpus">
-						<button type="submit">Search</button>
+						<button type="submit" id="search-button" disabled>Search</button>
 					</form>
 					<details class="advanced-search" id="advanced-search">
 						<summary>Advanced search</summary>
@@ -92,6 +92,7 @@
 	</div>
 </footer>
 
+<script src="./search-query.js"></script>
 <script>
 // ?api=http://localhost:6070/api/search points the page at a tunnelled or
 // local zoekt, which is how this file is tested before it is published.
@@ -117,9 +118,10 @@ const shikiReady = (async () => {
 let corpus = {sources: [], sources_by_proof_assistant: {}, proof_assistants: {}};
 let sourcesByIndex = {};
 let topicData = {groups: [], topics: {}};
+let queryConfig = {version: 1, stopwords: [], proof_assistant_terms: {}};
 const el = id => document.getElementById(id);
 const esc = s => s.replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
-const rx = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const {rx, quotedPattern, normalizedQueryTerms} = FormalizationSearchQuery;
 
 function proofAssistantMeta(id) {
 	return corpus.proof_assistants?.[id] || {label: id, url: null};
@@ -140,19 +142,6 @@ function updateProofAssistantLink() {
 	link.hidden = false;
 }
 
-function quotedPattern(pattern) {
-	return `"${pattern.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
-}
-
-function literalTerms(text) {
-	const terms = [];
-	for (const match of text.matchAll(/"([^"]+)"|(\S+)/g)) {
-		const value = match[1] ?? match[2];
-		if (value) terms.push(`content:${quotedPattern(rx(value))}`);
-	}
-	return terms;
-}
-
 function repoFilter(ids) {
 	if (!ids.length) return null;
 	return `repo:${quotedPattern(`^(?:${ids.map(rx).join("|")})$`)}`;
@@ -169,17 +158,22 @@ function sourceIdsMatching(text) {
 
 function buildQuery(text) {
 	const parts = [];
+	let naturalProofFilter = null;
 	if (el("regex-filter").checked) {
 		if (text.trim()) parts.push(`regex:${quotedPattern(text.trim())}`);
 	} else {
-		parts.push(...literalTerms(text));
+		const normalized = normalizedQueryTerms(text, queryConfig);
+		naturalProofFilter = normalized.proofFilter;
+		parts.push(...normalized.terms.map(term => quotedPattern(rx(term))));
+		if (!normalized.terms.length) parts.push('content:"$a"');
 	}
-
-	parts.push(`file:${FORMAL_FILES}`);
-	parts.push(String.raw`-file:(^|/)\.sys/`);
 
 	const sourceSets = [];
 	const prover = el("prover-filter").value;
+	// An explicit filter wins over a proof-assistant name inferred from prose.
+	parts.push(`file:${prover ? FORMAL_FILES : (naturalProofFilter || FORMAL_FILES)}`);
+	parts.push(String.raw`-file:(^|/)\.sys/`);
+
 	if (prover) {
 		sourceSets.push(corpus.sources
 			.filter(source => source.proof_assistant === prover)
@@ -465,9 +459,12 @@ fetch("./metrics.json").then(r => r.json()).then(data => {
 Promise.all([
 	fetch("./corpus.json").then(r => r.json()),
 	fetch("./topics.json").then(r => r.json()),
-]).then(([corpusJson, topicsJson]) => {
+	fetch("./search-query.json").then(r => r.json()),
+]).then(([corpusJson, topicsJson, searchQueryJson]) => {
 	corpus = corpusJson;
 	topicData = topicsJson;
+	queryConfig = searchQueryJson;
+	el("search-button").disabled = false;
 	sourcesByIndex = Object.fromEntries(corpus.sources.map(source => [source.index_id, source]));
 	document.getElementById("source-options").innerHTML = corpus.sources
 		.map(source => source.name)
