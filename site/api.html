@@ -20,13 +20,12 @@
     </nav>
   </div>
 </header>
-<main id="api-reference" aria-label="Formalization Corpus API reference"></main>
-<script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference@1.68.0"></script>
+<div id="api-docs" aria-label="Formalization Corpus API reference"></div>
+<script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference@1.68.0/dist/browser/standalone.js"></script>
 <script>
 const spec = new URLSearchParams(location.search).get("spec")
   || "https://formalization-corpus.dzackgarza.com/api/openapi.json";
-
-Scalar.createApiReference("#api-reference", {
+Scalar.createApiReference("#api-docs", {
   url: spec,
   theme: "default",
   darkMode: matchMedia("(prefers-color-scheme: dark)").matches,

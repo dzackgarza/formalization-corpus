@@ -73,7 +73,7 @@ body { background: var(--shell-bg); color: var(--shell-ink); font-family: var(--
 .api-site-nav a:hover { color: var(--shell-ink); }
 .api-site-nav a[aria-current="page"] { color: var(--shell-ink); border-bottom-color: var(--shell-accent); }
 
-#api-reference { min-height: calc(100vh - 69px); }
+#api-docs { min-height: calc(100vh - 69px); }
 
 @media (max-width: 720px) {
   .api-masthead { width: min(calc(100% - 1.25rem), 1180px); gap: .75rem; }

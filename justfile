@@ -135,8 +135,8 @@ test-commit:
     python evaluation/search/evaluate.py --validate-only
     python evaluation/search/test_evaluate.py
 
-# Same verification as test-commit; the push gate requires this name.
-test-push: test-commit
+# A push also refreshes the exact static tree served at *.localhost.
+test-push: test-commit preview
 
 # Reservoir names packages, not repositories: the printed URL is the source
 # repository, and each link must be resolved before it enters the registry.
