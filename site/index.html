@@ -27,19 +27,52 @@
 		<div class="hero-copy">
 				<h1>Search formalized mathematics.</h1>
 				<p class="lede">Definitions, constructions, statements, proofs, and formal semantics from Lean, Rocq, Agda, Isabelle, HOL, Mizar, Metamath, ACL2, PVS, and Twelf.</p>
-			<div class="search-box">
-				<form id="f" class="search-form">
-					<input type="search" id="q" name="q" placeholder="Try: IsometryEquiv, Hasse invariant, repo:UniMath" autocomplete="off" autofocus spellcheck="false" aria-label="Search the formalization corpus">
+				<div class="search-box">
+					<form id="f" class="search-form">
+						<input type="search" id="q" name="q" placeholder="Try: IsometryEquiv, Hasse invariant, univalent" autocomplete="off" autofocus spellcheck="false" aria-label="Search the formalization corpus">
 						<button type="submit">Search</button>
-				</form>
-				<div class="query-help">
-					<span>Zoekt syntax:</span>
-					<code>repo:mathlib4</code>
-					<code>file:\.lean$</code>
-					<code>case:yes</code>
-					<a href="./api.html#query-language">query guide</a>
+					</form>
+					<details class="advanced-search" id="advanced-search">
+						<summary>Advanced search</summary>
+						<div class="advanced-search-grid">
+								<label>Proof assistant
+								<select id="prover-filter">
+									<option value="">Any prover</option>
+									<option value="lean">Lean</option>
+									<option value="rocq">Rocq</option>
+									<option value="agda">Agda</option>
+									<option value="isabelle">Isabelle</option>
+									<option value="hol-light">HOL Light</option>
+									<option value="hol4">HOL4</option>
+									<option value="mizar">Mizar</option>
+									<option value="metamath">Metamath</option>
+									<option value="acl2">ACL2</option>
+									<option value="pvs">PVS</option>
+									<option value="twelf">Twelf / LF</option>
+								</select>
+							</label>
+							<label>Source
+								<input id="source-filter" list="source-options" placeholder="Any source" autocomplete="off">
+								<datalist id="source-options"></datalist>
+							</label>
+								<label>Subject
+									<select id="subject-filter">
+										<option value="">Any subject</option>
+									</select>
+								</label>
+								<label>Search in
+									<select id="scope-filter">
+										<option value="formal">Formal source only</option>
+										<option value="all">All indexed text</option>
+									</select>
+							</label>
+						</div>
+							<div class="advanced-search-options">
+								<label><input type="checkbox" id="case-filter"> Case sensitive</label>
+								<label><input type="checkbox" id="regex-filter"> Regular expression</label>
+							</div>
+					</details>
 				</div>
-			</div>
 			<div id="status" class="status-line" aria-live="polite"></div>
 		</div>
 			<aside class="hero-panel" aria-label="Coverage">
@@ -77,8 +110,10 @@
 // ?api=http://localhost:6070/api/search points the page at a tunnelled or
 // local zoekt, which is how this file is tested before it is published.
 const API = new URLSearchParams(location.search).get("api")
-		|| "https://formalization-corpus.dzackgarza.com/api/search";
+				|| "https://formalization-corpus.dzackgarza.com/api/search";
 const MAX = 60;
+
+const FORMAL_FILES = String.raw`\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$`;
 
 // Shiki tokenises with the same TextMate grammars Lean's own editors use.
 // Agda is not in the bundle, so .agda files stay plain rather than being
@@ -95,9 +130,100 @@ const shikiReady = (async () => {
 
 let corpus = {sources: [], sources_by_proof_assistant: {}};
 let sourcesByIndex = {};
+let subjectData = {groups: [], subjects: {}};
 const el = id => document.getElementById(id);
 const esc = s => s.replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
 const rx = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+function quotedPattern(pattern) {
+	return `"${pattern.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
+}
+
+function literalTerms(text) {
+	const terms = [];
+	for (const match of text.matchAll(/"([^"]+)"|(\S+)/g)) {
+		const value = match[1] ?? match[2];
+		if (value) terms.push(`content:${quotedPattern(rx(value))}`);
+	}
+	return terms;
+}
+
+function repoFilter(ids) {
+	if (!ids.length) return null;
+	return `repo:${quotedPattern(`^(?:${ids.map(rx).join("|")})$`)}`;
+}
+
+function sourceIdsMatching(text) {
+	const needle = text.trim().toLocaleLowerCase();
+	if (!needle) return [];
+	return corpus.sources
+		.filter(source => source.index_id.toLocaleLowerCase().includes(needle)
+			|| source.name.toLocaleLowerCase().includes(needle))
+		.map(source => source.index_id);
+}
+
+function buildQuery(text) {
+	const parts = [];
+	if (el("regex-filter").checked) {
+		if (text.trim()) parts.push(`regex:${quotedPattern(text.trim())}`);
+	} else {
+		parts.push(...literalTerms(text));
+	}
+
+	const scope = el("scope-filter").value;
+	if (scope === "formal") {
+		parts.push(`file:${FORMAL_FILES}`);
+		parts.push(String.raw`-file:(^|/)\.sys/`);
+	}
+
+	const sourceSets = [];
+	const prover = el("prover-filter").value;
+	if (prover) {
+		sourceSets.push(corpus.sources
+			.filter(source => source.proof_assistant === prover)
+			.map(source => source.index_id));
+	}
+	const source = el("source-filter").value.trim();
+	if (source) sourceSets.push(sourceIdsMatching(source));
+	const subject = el("subject-filter").value;
+	if (subject) sourceSets.push(subjectData.subjects[subject]?.sources || []);
+	if (sourceSets.length) {
+		const allowed = sourceSets.reduce((left, right) => left.filter(id => right.includes(id)));
+		parts.push(repoFilter(allowed) || "repo:$a");
+	}
+	parts.push(el("case-filter").checked ? "case:yes" : "case:no");
+	return parts.join(" ");
+}
+
+function restoreAdvancedState() {
+	const params = new URLSearchParams(location.search);
+	el("prover-filter").value = params.get("prover") || "";
+	el("source-filter").value = params.get("source") || "";
+	el("subject-filter").value = params.get("subject") || "";
+	el("scope-filter").value = params.get("scope") === "all" ? "all" : "formal";
+	el("case-filter").checked = params.get("case") === "yes";
+	el("regex-filter").checked = params.get("regex") === "yes";
+	const active = ["prover", "source", "subject", "scope", "case", "regex"].some(key => params.has(key));
+	if (active) el("advanced-search").open = true;
+}
+
+function storeSearchState(text) {
+	const params = new URLSearchParams(location.search);
+	const values = {
+		prover: el("prover-filter").value,
+		source: el("source-filter").value.trim(),
+		subject: el("subject-filter").value,
+		scope: el("scope-filter").value === "all" ? "all" : "",
+		case: el("case-filter").checked ? "yes" : "",
+		regex: el("regex-filter").checked ? "yes" : "",
+	};
+	for (const [key, value] of Object.entries(values)) {
+		if (value) params.set(key, value); else params.delete(key);
+	}
+	const queryString = params.toString();
+	const hash = text ? `#${encodeURIComponent(text)}` : "";
+	history.replaceState(null, "", `${location.pathname}${queryString ? `?${queryString}` : ""}${hash}`);
+}
 
 // Zoekt returns file content as base64 of raw bytes; the corpus is full of
 // non-ASCII mathematical notation, so decode as UTF-8 rather than latin-1.
@@ -282,7 +408,7 @@ async function search(q) {
 	const started = performance.now();
 	let result;
 	try {
-		result = await query(q, {MaxDocDisplayCount: MAX, ChunkMatches: true, Whole: true});
+		result = await query(buildQuery(q), {MaxDocDisplayCount: MAX, ChunkMatches: true, Whole: true});
 	} catch (err) {
 		fail(err);
 		return;
@@ -317,7 +443,7 @@ el("f").addEventListener("submit", e => {
 	e.preventDefault();
 	const q = el("q").value.trim();
 	if (!q) return clear();
-	location.hash = encodeURIComponent(q);
+	storeSearchState(q);
 	search(q);
 });
 
@@ -326,7 +452,7 @@ function clear() {
 	el("status").className = "status-line";
 	el("status").textContent = "";
 	el("browse").hidden = false;
-	if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+	storeSearchState("");
 }
 
 // Emptying the box — including with the search field's own clear button, which
@@ -344,10 +470,23 @@ fetch("./metrics.json").then(r => r.json()).then(data => {
 		<div class="hero-metric"><strong>${Number(s.proof_assistants || 0).toLocaleString()}</strong><span>proof assistants</span></div>`;
 });
 
-fetch("./corpus.json").then(r => r.json()).then(data => {
-	corpus = data;
-	sourcesByIndex = Object.fromEntries(data.sources.map(source => [source.index_id, source]));
-	el("counts").textContent = "Each search result is linked back to its source repository or library.";
+Promise.all([
+	fetch("./corpus.json").then(r => r.json()),
+	fetch("./subjects.json").then(r => r.json()),
+]).then(([corpusJson, subjectsJson]) => {
+	corpus = corpusJson;
+	subjectData = subjectsJson;
+	sourcesByIndex = Object.fromEntries(corpus.sources.map(source => [source.index_id, source]));
+	document.getElementById("source-options").innerHTML = corpus.sources
+		.map(source => source.name)
+		.sort((a, b) => a.localeCompare(b))
+		.map(name => `<option value="${esc(name)}"></option>`).join("");
+	document.getElementById("subject-filter").innerHTML = '<option value="">Any subject</option>'
+		+ subjectData.groups.map(group => `<optgroup label="${esc(group.label)}">${group.subjects
+			.map(subject => `<option value="${esc(subject.slug)}">${esc(subject.label)} (${subject.source_count})</option>`).join("")}</optgroup>`).join("");
+	restoreAdvancedState();
+	el("counts").textContent =
+		"Each search result is linked back to its source repository or library.";
 	fromHash();
 });
 </script>

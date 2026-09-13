@@ -58,6 +58,7 @@ metrics:
 # Regenerate the committed static source metadata from the manifests.
 site:
     python scripts/build-site.py
+    python scripts/build-subjects.py
 
 # Deploy the static site to nginx's *.localhost preview root.
 preview: site

@@ -33,7 +33,7 @@
 			<div class="toc-title">On this page</div>
 			<nav>
 				<a href="#first-query">First query</a>
-				<a href="#query-language">Query language</a>
+					<a href="#query-language">Backend syntax</a>
 				<a href="#options">Options</a>
 				<a href="#response">Response shape</a>
 				<a href="#list-sources">List sources</a>
@@ -41,7 +41,7 @@
 			</nav>
 		</aside>
 		<article>
-				<p>The search backend is <a href="https://github.com/sourcegraph/zoekt">Zoekt</a>. The web search uses this endpoint directly.</p>
+				<p>The search backend is <a href="https://github.com/sourcegraph/zoekt">Zoekt</a>. The web interface compiles its search fields to the backend query syntax documented below; API callers may use that syntax directly.</p>
 			<div class="endpoint"><span class="method">POST</span><span>https://formalization-corpus.dzackgarza.com/api/search</span></div>
 
 	<h2 id="first-query">Example</h2>
@@ -57,7 +57,7 @@
   -d '{"Q": "Hasse invariant file:\\.lean$", "Opts": {"MaxDocDisplayCount": 20}}' \
   | jq -r '.Result.Files[] | "\(.Repository)  \(.FileName)"'</code></pre>
 
-	<h2 id="query-language">Query language</h2>
+	<h2 id="query-language">Backend query syntax</h2>
 
 <p>
 	A bare term is a substring; anything more is a regular expression. Terms
