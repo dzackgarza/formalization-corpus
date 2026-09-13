@@ -25,7 +25,10 @@ def published_sources() -> set[str]:
     request = urllib.request.Request(
         API,
         data=b'{"Q":""}',
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            "User-Agent": "formalization-corpus-publish-check/1.0",
+        },
         method="POST",
     )
     with urllib.request.urlopen(request, timeout=30) as response:
