@@ -11,10 +11,23 @@
 		return `"${pattern.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
 	}
 
+	function stripIntentPrefix(text, config) {
+		const trimmed = text.trim();
+		const lower = trimmed.toLocaleLowerCase();
+		const prefixes = [...(config.intent_prefixes || [])].sort((a, b) => b.length - a.length);
+		for (const rawPrefix of prefixes) {
+			const prefix = rawPrefix.toLocaleLowerCase();
+			if (lower === prefix) return "";
+			if (lower.startsWith(`${prefix} `)) return trimmed.slice(rawPrefix.length).trim();
+		}
+		return trimmed;
+	}
+
 	function normalizedQueryTerms(text, config) {
 		const stopwords = new Set(config.stopwords || []);
 		const proofAssistantTerms = config.proof_assistant_terms || {};
-		const words = text.match(/[\p{L}\p{N}_⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉ℚℤℝℂ∞+-]+/gu) || [];
+		const normalized = stripIntentPrefix(text, config);
+		const words = normalized.match(/[\p{L}\p{N}_⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉ℚℤℝℂ∞+-]+/gu) || [];
 		const terms = [];
 		let proofFilter = null;
 		for (const word of words) {
@@ -28,5 +41,5 @@
 		return {terms, proofFilter};
 	}
 
-	return {rx, quotedPattern, normalizedQueryTerms};
+	return {rx, quotedPattern, stripIntentPrefix, normalizedQueryTerms};
 });

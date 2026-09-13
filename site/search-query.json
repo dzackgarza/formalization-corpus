@@ -22,12 +22,6 @@
     "formalised",
     "formalization",
     "formalisation",
-    "formal",
-    "proof",
-    "definition",
-    "theorem",
-    "existence",
-    "construction",
     "of",
     "for",
     "in",
@@ -56,9 +50,6 @@
     "should",
     "whether",
     "please",
-    "find",
-    "show",
-    "tell",
     "me"
   ],
   "proof_assistant_terms": {
@@ -71,6 +62,19 @@
     "metamath": "\\.(mm|mm0|mm1)$",
     "acl2": "\\.(lisp|lsp|acl2)$",
     "pvs": "\\.pvs$",
-    "twelf": "\\.elf$"
-  }
+    "twelf": "\\.elf$",
+    "lean4": "\\\\.lean$",
+    "hol4": "\\\\.(sml|sig)$",
+    "hol-light": "\\\\.(ml|hl)$"
+  },
+  "intent_prefixes": [
+    "formal proof of",
+    "proof of",
+    "definition of",
+    "find me",
+    "find",
+    "show me",
+    "show",
+    "tell me"
+  ]
 }

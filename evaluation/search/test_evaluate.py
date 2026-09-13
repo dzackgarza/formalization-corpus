@@ -62,8 +62,23 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         terms, proof_filter = evaluate.normalized_query_terms(
             "does Lean have the Jordan canonical form theorem?"
         )
-        self.assertEqual(terms, ["Jordan", "canonical", "form"])
+        self.assertEqual(terms, ["Jordan", "canonical", "form", "theorem"])
         self.assertEqual(proof_filter, r"\.lean$")
+
+    def test_mathematical_words_are_not_global_stopwords(self) -> None:
+        terms, _ = evaluate.normalized_query_terms(
+            "formal group law proof irrelevance existence construction"
+        )
+        self.assertEqual(
+            terms,
+            ["formal", "group", "law", "proof", "irrelevance", "existence", "construction"],
+        )
+        prefixed, _ = evaluate.normalized_query_terms(
+            "formal proof of the Feit Thompson odd order theorem"
+        )
+        self.assertEqual(prefixed, ["Feit", "Thompson", "odd", "order", "theorem"])
+        definition, _ = evaluate.normalized_query_terms("definition of formal group law")
+        self.assertEqual(definition, ["formal", "group", "law"])
 
     def test_score_case_tracks_first_owner_and_graded_metrics(self) -> None:
         case = {
@@ -145,6 +160,7 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
 
     def test_compare_requires_same_index_fingerprint(self) -> None:
         base = {
+            "gold_sha256": "gold",
             "index": {"metadata_sha256": "a"},
             "metrics": {
                 "hit@1": 1, "hit@5": 1, "hit@10": 1, "hit@20": 1,
@@ -158,6 +174,18 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         problems = evaluate.compare_reports(current, base, 0)
         self.assertEqual(len(problems), 1)
         self.assertIn("index fingerprint differs", problems[0])
+
+    def test_compare_requires_same_gold_hash(self) -> None:
+        base = {
+            "gold_sha256": "a",
+            "index": {"metadata_sha256": "same"},
+            "metrics": {},
+        }
+        current = copy.deepcopy(base)
+        current["gold_sha256"] = "b"
+        problems = evaluate.compare_reports(current, base, 0)
+        self.assertEqual(len(problems), 1)
+        self.assertIn("gold-set hash differs", problems[0])
 
 
 if __name__ == "__main__":

@@ -119,12 +119,25 @@ def query_config() -> dict[str, Any]:
     return data
 
 
+def strip_intent_prefix(text: str, config: dict[str, Any]) -> str:
+    trimmed = text.strip()
+    lower = trimmed.casefold()
+    for raw_prefix in sorted(config.get("intent_prefixes", []), key=len, reverse=True):
+        prefix = raw_prefix.casefold()
+        if lower == prefix:
+            return ""
+        if lower.startswith(prefix + " "):
+            return trimmed[len(raw_prefix):].strip()
+    return trimmed
+
+
 def normalized_query_terms(text: str) -> tuple[list[str], str | None]:
     """Conservative natural-query normalization shared with the public frontend."""
     config = query_config()
     stopwords = set(config["stopwords"])
     proof_assistant_filters = config["proof_assistant_terms"]
-    words = re.findall(r"[\w⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉ℚℤℝℂ∞+-]+", text, flags=re.UNICODE)
+    normalized = strip_intent_prefix(text, config)
+    words = re.findall(r"[\w⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉ℚℤℝℂ∞+-]+", normalized, flags=re.UNICODE)
     proof_filter = None
     terms: list[str] = []
     for word in words:
@@ -356,6 +369,9 @@ def by_tag(cases: list[dict[str, Any]]) -> dict[str, Any]:
 
 def compare_reports(current: dict[str, Any], baseline: dict[str, Any], tolerance: float) -> list[str]:
     problems: list[str] = []
+    if current.get("gold_sha256") != baseline.get("gold_sha256"):
+        problems.append("gold-set hash differs; regenerate both runs against the same relevance judgments before comparing")
+        return problems
     if current.get("index") != baseline.get("index"):
         problems.append("index fingerprint differs; do not attribute score changes to retrieval code until the index change is reviewed")
         return problems

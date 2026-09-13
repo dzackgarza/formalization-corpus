@@ -2,7 +2,7 @@
   "candidate_pool": 30,
   "cases": [
     {
-      "compiled_query": "\"Serre\" \"duality\" \"coherent\" \"sheaves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"coherent\" \"sheaf\" \"Serre\" \"duality\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Serre\" \"duality\" \"algebraic\" \"geometry\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Serre\" \"duality\" \"coherent\" \"sheaves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"coherent\" \"sheaf\" \"Serre\" \"duality\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Serre\" \"duality\" \"algebraic\" \"geometry\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -47,11 +47,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3784.486175980419,
-        "payload_bytes": 902575,
-        "rerank_ms": 1251.6890419647098,
+        "elapsed_ms": 2471.7566369799897,
+        "payload_bytes": 966009,
+        "rerank_ms": 1458.6428080219775,
         "rerank_request_bytes": 203922,
-        "retrieval_ms": 2532.797134015709,
+        "retrieval_ms": 1013.1138289580122,
         "retrieval_queries": 3,
         "returned_files": 30,
         "search_units": 2
@@ -102,7 +102,7 @@
           "rank": 6,
           "relevance": 2,
           "repository": "facebookresearch__atlas-lean",
-          "score": 0.58472174
+          "score": 0.5828235
         },
         {
           "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochRiemannForm.lean",
@@ -251,11 +251,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3581.8698280490935,
+        "elapsed_ms": 2801.4660510234535,
         "payload_bytes": 8778776,
-        "rerank_ms": 1212.980423006229,
+        "rerank_ms": 1308.2694860640913,
         "rerank_request_bytes": 260529,
-        "retrieval_ms": 2368.8894050428644,
+        "retrieval_ms": 1493.1965649593621,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -410,7 +410,7 @@
       ]
     },
     {
-      "compiled_query": "\"Riemann\" \"Roch\" \"algebraic\" \"curves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"formula\" \"curves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"surfaces\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"Riemann\" \"inequality\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Riemann\" \"Roch\" \"theorem\" \"algebraic\" \"curves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"formula\" \"curves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"theorem\" \"surfaces\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"Riemann\" \"inequality\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 16,
       "first_relevant_rank": 16,
       "formulations": [
@@ -456,11 +456,11 @@
       "reciprocal_rank": 0.0625,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 2808.5693429457024,
-        "payload_bytes": 1167082,
-        "rerank_ms": 1342.34146901872,
-        "rerank_request_bytes": 262079,
-        "retrieval_ms": 1466.2278739269823,
+        "elapsed_ms": 2652.877332177013,
+        "payload_bytes": 1500227,
+        "rerank_ms": 1308.6412170669064,
+        "rerank_request_bytes": 269356,
+        "retrieval_ms": 1344.2361151101068,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -546,7 +546,7 @@
           "rank": 11,
           "relevance": 0,
           "repository": "Vilin97__lean-pool",
-          "score": 0.67542213
+          "score": 0.67370707
         },
         {
           "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityCurves.lean",
@@ -660,11 +660,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3365.2358511462808,
+        "elapsed_ms": 2867.798552964814,
         "payload_bytes": 1673784,
-        "rerank_ms": 1256.854637991637,
+        "rerank_ms": 1299.6303050313145,
         "rerank_request_bytes": 320023,
-        "retrieval_ms": 2108.381213154644,
+        "retrieval_ms": 1568.1682479334995,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -864,11 +864,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 4139.291122904979,
+        "elapsed_ms": 2659.811567980796,
         "payload_bytes": 6785803,
-        "rerank_ms": 1220.2271890128031,
+        "rerank_ms": 742.9044309537858,
         "rerank_request_bytes": 292447,
-        "retrieval_ms": 2919.0639338921756,
+        "retrieval_ms": 1916.9071370270103,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -1022,7 +1022,7 @@
       ]
     },
     {
-      "compiled_query": "\"Hensel\" \"lemma\" \"over\" \"complete\" \"discrete\" \"valuation\" \"rings\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hensel\" \"s\" \"lemma\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hensels\" \"lemma\" \"complete\" \"discrete\" \"valuation\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Newton\" \"polygon\" \"Hensel\" \"lemma\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"valuation\" \"ring\" \"root\" \"lifting\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Hensel\" \"lemma\" \"over\" \"complete\" \"discrete\" \"valuation\" \"rings\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hensel\" \"s\" \"lemma\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hensels\" \"lemma\" \"complete\" \"discrete\" \"valuation\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Newton\" \"polygon\" \"Hensel\" \"lemma\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"valuation\" \"ring\" \"root\" \"lifting\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": null,
       "first_relevant_rank": null,
       "formulations": [
@@ -1068,11 +1068,11 @@
       "reciprocal_rank": 0.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3889.7108709206805,
-        "payload_bytes": 70786127,
-        "rerank_ms": 1386.425798991695,
-        "rerank_request_bytes": 309156,
-        "retrieval_ms": 2503.2850719289854,
+        "elapsed_ms": 3683.802428888157,
+        "payload_bytes": 72824181,
+        "rerank_ms": 1402.0900489995256,
+        "rerank_request_bytes": 318707,
+        "retrieval_ms": 2281.7123798886314,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -1110,7 +1110,7 @@
           "rank": 4,
           "relevance": 0,
           "repository": "facebookresearch__atlas-lean",
-          "score": 0.7756728
+          "score": 0.7777053
         },
         {
           "file": "thys/Padic_Ints/Hensels_Lemma.thy",
@@ -1159,7 +1159,7 @@
           "rank": 11,
           "relevance": 0,
           "repository": "kim-em__hex-dev",
-          "score": 0.49179763
+          "score": 0.49375033
         },
         {
           "file": "HexManual/Chapters/HexPolyZ.lean",
@@ -1190,44 +1190,44 @@
           "score": 0.41641688
         },
         {
-          "file": "FLT/Mathlib/RingTheory/Unramified/LocalRing.lean",
+          "file": "HexHensel/WordStep.lean",
           "rank": 16,
+          "relevance": 0,
+          "repository": "kim-em__hex-dev",
+          "score": 0.40507212
+        },
+        {
+          "file": "FLT/Mathlib/RingTheory/Unramified/LocalRing.lean",
+          "rank": 17,
           "relevance": 0,
           "repository": "ImperialCollegeLondon__FLT",
           "score": 0.3938279
         },
         {
           "file": "HassePrinciple/Padics/Lemmas.lean",
-          "rank": 17,
+          "rank": 18,
           "relevance": 0,
           "repository": "mariainesdff__HassePrinciple",
           "score": 0.3938279
         },
         {
           "file": "projects/HasseWeil/HasseWeil/Foundation/EC/TranslateValuation.lean",
-          "rank": 18,
+          "rank": 19,
           "relevance": 0,
           "repository": "CBirkbeck__AINTLIB",
           "score": 0.37534004
         },
         {
           "file": "Mathlib/Tactic/Ring/Basic.lean",
-          "rank": 19,
+          "rank": 20,
           "relevance": 0,
           "repository": "leanprover-community__mathlib4",
           "score": 0.33947718
-        },
-        {
-          "file": "thys/Padic_Field/Padic_Field_Powers.thy",
-          "rank": 20,
-          "relevance": 0,
-          "repository": "isabelle-prover__mirror-afp-devel",
-          "score": 0.3153985
         }
       ]
     },
     {
-      "compiled_query": "\"fundamental\" \"group\" \"covering\" \"space\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"covering\" \"space\" \"homotopy\" \"lifting\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"monodromy\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"covering\" \"map\" \"fiber\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"fundamental\" \"group\" \"covering\" \"space\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"covering\" \"space\" \"homotopy\" \"lifting\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"monodromy\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"covering\" \"map\" \"fiber\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 8,
       "first_relevant_rank": 3,
       "formulations": [
@@ -1273,11 +1273,11 @@
       "reciprocal_rank": 0.3333333333333333,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 2812.128335935995,
-        "payload_bytes": 15809047,
-        "rerank_ms": 1228.8193920394406,
+        "elapsed_ms": 2903.583127888851,
+        "payload_bytes": 16534733,
+        "rerank_ms": 1237.946192966774,
         "rerank_request_bytes": 272738,
-        "retrieval_ms": 1583.3089438965544,
+        "retrieval_ms": 1665.6369349220768,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -1430,7 +1430,7 @@
       ]
     },
     {
-      "compiled_query": "\"smooth\" \"manifolds\" \"boundary\" \"collars\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"smooth\" \"manifold\" \"boundary\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"collar\" \"neighborhood\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"boundary\" \"collar\" \"smoothing\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"manifold\" \"boundary\" \"collar\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"smooth\" \"manifolds\" \"boundary\" \"collars\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"smooth\" \"manifold\" \"boundary\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"collar\" \"neighborhood\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"boundary\" \"collar\" \"smoothing\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"manifold\" \"boundary\" \"collar\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 3,
       "first_relevant_rank": 3,
       "formulations": [
@@ -1476,11 +1476,11 @@
       "reciprocal_rank": 0.3333333333333333,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3360.1630841149017,
-        "payload_bytes": 2659968,
-        "rerank_ms": 1290.997700067237,
-        "rerank_request_bytes": 347071,
-        "retrieval_ms": 2069.1653840476647,
+        "elapsed_ms": 3106.611544149928,
+        "payload_bytes": 3079695,
+        "rerank_ms": 1342.823441955261,
+        "rerank_request_bytes": 352265,
+        "retrieval_ms": 1763.7881021946669,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -1624,16 +1624,16 @@
           "score": 0.48789302
         },
         {
-          "file": "v1/Atlas/LieGroups/code/SmoothVectorsProps.lean",
+          "file": "Schoenflies/MoiseChapter9.lean",
           "rank": 20,
           "relevance": 0,
-          "repository": "facebookresearch__atlas-lean",
-          "score": 0.47813898
+          "repository": "mccorvie__classification-of-surfaces",
+          "score": 0.48203897
         }
       ]
     },
     {
-      "compiled_query": "\"injective\" \"resolutions\" \"abelian\" \"categories\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"resolution\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"cochain\" \"complex\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"resolutions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"abelian\" \"category\" \"injective\" \"resolution\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"existence\" \"injective\" \"resolutions\" \"abelian\" \"categories\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"resolution\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"cochain\" \"complex\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"existence\" \"injective\" \"resolutions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"abelian\" \"category\" \"injective\" \"resolution\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 2,
       "first_relevant_rank": 2,
       "formulations": [
@@ -1663,7 +1663,7 @@
         "20": {
           "gold_recall": 1.0,
           "hit": 1,
-          "ndcg": 0.5746951563393883,
+          "ndcg": 0.5760549210055832,
           "owner_hit": 1,
           "source_hit": 1
         },
@@ -1679,11 +1679,11 @@
       "reciprocal_rank": 0.5,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 4496.974477078766,
-        "payload_bytes": 7894555,
-        "rerank_ms": 1168.9903490478173,
-        "rerank_request_bytes": 290347,
-        "retrieval_ms": 3327.9841280309483,
+        "elapsed_ms": 3695.9736201679334,
+        "payload_bytes": 7419795,
+        "rerank_ms": 1365.398662048392,
+        "rerank_request_bytes": 302485,
+        "retrieval_ms": 2330.5749581195414,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -1737,74 +1737,74 @@
           "score": 0.77702934
         },
         {
-          "file": "v1/Atlas/NumberTheoryI/code/Prop2357.lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23DerivedFunctors.lean",
           "rank": 7,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 0.74510175
+        },
+        {
+          "file": "v1/Atlas/NumberTheoryI/code/Prop2357.lean",
+          "rank": 8,
           "relevance": 0,
           "repository": "facebookresearch__atlas-lean",
           "score": 0.7322856
         },
         {
           "file": "Mathlib/CategoryTheory/Abelian/Injective/Ext.lean",
-          "rank": 8,
+          "rank": 9,
           "relevance": 0,
           "repository": "leanprover-community__mathlib4",
           "score": 0.726115
         },
         {
           "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AcyclicResolution.lean",
-          "rank": 9,
+          "rank": 10,
           "relevance": 0,
           "repository": "Vilin97__Clawristotle",
           "score": 0.69892573
         },
         {
-          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23AdaptedResolution.lean",
-          "rank": 10,
+          "file": "Structure/Projective.v",
+          "rank": 11,
           "relevance": 0,
-          "repository": "facebookresearch__atlas-lean",
-          "score": 0.69562757
+          "repository": "jwiegley__category-theory",
+          "score": 0.6771325
         },
         {
           "file": "Mathlib/CategoryTheory/Abelian/RightDerived.lean",
-          "rank": 11,
+          "rank": 12,
           "relevance": 0,
           "repository": "leanprover-community__mathlib4",
           "score": 0.67542213
         },
         {
           "file": "Mathlib/Algebra/Homology/HomotopyCategory/KInjective.lean",
-          "rank": 12,
+          "rank": 13,
           "relevance": 0,
           "repository": "leanprover-community__mathlib4",
           "score": 0.6563059
         },
         {
           "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ExtAcyclicResolution.lean",
-          "rank": 13,
+          "rank": 14,
           "relevance": 0,
           "repository": "Vilin97__Clawristotle",
           "score": 0.64922285
         },
         {
           "file": "Mathlib/CategoryTheory/Localization/Resolution.lean",
-          "rank": 14,
+          "rank": 15,
           "relevance": 0,
           "repository": "leanprover-community__mathlib4",
           "score": 0.6402761
         },
         {
-          "file": "LeanCondensed/Mathlib/Algebra/Homology/DerivedCategory/TwoVariable.lean",
-          "rank": 15,
-          "relevance": 0,
-          "repository": "dagurtomas__LeanCondensed",
-          "score": 0.6184118
-        },
-        {
-          "file": "Mathlib/Algebra/Homology/LeftResolution/Basic.lean",
+          "file": "src/Cat/Diagram/Injective.lagda.md",
           "rank": 16,
           "relevance": 0,
-          "repository": "leanprover-community__mathlib4",
-          "score": 0.5885108
+          "repository": "the1lab__1lab",
+          "score": 0.5424755
         },
         {
           "file": "Mathlib/CategoryTheory/Abelian/Ext.lean",
@@ -1814,18 +1814,18 @@
           "score": 0.5424755
         },
         {
-          "file": "src/Cat/Diagram/Injective.lagda.md",
-          "rank": 18,
-          "relevance": 0,
-          "repository": "the1lab__1lab",
-          "score": 0.5424755
-        },
-        {
           "file": "Mathlib/CategoryTheory/Abelian/LeftDerived.lean",
-          "rank": 19,
+          "rank": 18,
           "relevance": 2,
           "repository": "leanprover-community__mathlib4",
           "score": 0.5249792
+        },
+        {
+          "file": "src/for_mathlib/derived/ProjectiveResolution.lean",
+          "rank": 19,
+          "relevance": 0,
+          "repository": "leanprover-community__lean-liquid",
+          "score": 0.5113262
         },
         {
           "file": "v1/Atlas/AlgebraicTopologyI/code/Section25.lean",
@@ -1837,7 +1837,7 @@
       ]
     },
     {
-      "compiled_query": "\"Hilbert\" \"Nullstellensatz\" \"affine\" \"varieties\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hilbert\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"affine\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"algebraic\" \"geometry\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Hilbert\" \"Nullstellensatz\" \"affine\" \"varieties\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hilbert\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"affine\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"algebraic\" \"geometry\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Nullstellensatz\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 2,
       "first_relevant_rank": 2,
       "formulations": [
@@ -1883,11 +1883,11 @@
       "reciprocal_rank": 0.5,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3138.982391334139,
-        "payload_bytes": 1651839,
-        "rerank_ms": 1298.4963970957324,
-        "rerank_request_bytes": 310248,
-        "retrieval_ms": 1840.4859942384064,
+        "elapsed_ms": 3254.9459519796073,
+        "payload_bytes": 2677397,
+        "rerank_ms": 1196.9943259609863,
+        "rerank_request_bytes": 316478,
+        "retrieval_ms": 2057.951626018621,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -2041,7 +2041,7 @@
       ]
     },
     {
-      "compiled_query": "\"Pontryagin\" \"duality\" \"finite\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Pontryagin\" \"duality\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"character\" \"group\" \"finite\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"dual\" \"group\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Pontryagin\" \"duality\" \"finite\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Pontryagin\" \"duality\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"character\" \"group\" \"finite\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"dual\" \"group\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -2087,11 +2087,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3086.3483420107514,
-        "payload_bytes": 71403719,
-        "rerank_ms": 738.4562719380483,
+        "elapsed_ms": 3221.587029984221,
+        "payload_bytes": 71575701,
+        "rerank_ms": 1013.5835469700396,
         "rerank_request_bytes": 339176,
-        "retrieval_ms": 2347.892070072703,
+        "retrieval_ms": 2208.0034830141813,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -2291,11 +2291,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3510.7174437725917,
+        "elapsed_ms": 3331.400804105215,
         "payload_bytes": 2864218,
-        "rerank_ms": 1247.2710269503295,
+        "rerank_ms": 1324.1137000732124,
         "rerank_request_bytes": 292258,
-        "retrieval_ms": 2263.446416822262,
+        "retrieval_ms": 2007.2871040320024,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -2449,7 +2449,7 @@
       ]
     },
     {
-      "compiled_query": "\"classification\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"structure\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"fundamental\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"classification\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"structure\" \"theorem\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"fundamental\" \"theorem\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -2494,11 +2494,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 1970.3397589037195,
-        "payload_bytes": 3741030,
-        "rerank_ms": 782.3275290429592,
-        "rerank_request_bytes": 361331,
-        "retrieval_ms": 1188.0122298607603,
+        "elapsed_ms": 2648.390956921503,
+        "payload_bytes": 4983015,
+        "rerank_ms": 1247.885193908587,
+        "rerank_request_bytes": 361899,
+        "retrieval_ms": 1400.5057630129158,
         "retrieval_queries": 3,
         "returned_files": 30,
         "search_units": 2
@@ -2630,30 +2630,30 @@
           "score": 0.38269496
         },
         {
-          "file": "blueprint-verso/LeanBridgeBlueprint/Chapters/NumberFields.lean",
-          "rank": 18,
-          "relevance": 0,
-          "repository": "CBirkbeck__LeanBridge",
-          "score": 0.37534004
-        },
-        {
           "file": "Multivariate/multivariate_database.ml",
-          "rank": 19,
+          "rank": 18,
           "relevance": 0,
           "repository": "CakeML__candle",
           "score": 0.36080432
         },
         {
           "file": "projects/ModularCurves/ModularCurves/GroupScheme/NIsogeny.lean",
-          "rank": 20,
+          "rank": 19,
           "relevance": 0,
           "repository": "CBirkbeck__AINTLIB",
           "score": 0.36080432
+        },
+        {
+          "file": "TauCetiRoadmap/RepresentationTheory/LieHighestWeight/Suggested.lean",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "score": 0.33598238
         }
       ]
     },
     {
-      "compiled_query": "\"Stone\" \"Weierstrass\" \"continuous\" \"functions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Stone\" \"Weierstrass\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Weierstrass\" \"approximation\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"density\" \"polynomials\" \"continuous\" \"functions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Stone\" \"Weierstrass\" \"theorem\" \"continuous\" \"functions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Stone\" \"Weierstrass\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Weierstrass\" \"approximation\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"density\" \"polynomials\" \"continuous\" \"functions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -2699,11 +2699,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3047.2216500202194,
-        "payload_bytes": 7141537,
-        "rerank_ms": 1360.206843004562,
+        "elapsed_ms": 2874.512027017772,
+        "payload_bytes": 9550834,
+        "rerank_ms": 1374.5780140161514,
         "rerank_request_bytes": 346667,
-        "retrieval_ms": 1687.0148070156574,
+        "retrieval_ms": 1499.9340130016208,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -2857,9 +2857,9 @@
       ]
     },
     {
-      "compiled_query": "\"Brownian\" \"motion\" \"Gaussian\" \"processes\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Brownian\" \"motion\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Wiener\" \"process\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Gaussian\" \"process\" \"path\" \"continuity\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Kolmogorov\" \"extension\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
-      "first_owner_rank": 3,
-      "first_relevant_rank": 3,
+      "compiled_query": "\"construction\" \"Brownian\" \"motion\" \"Gaussian\" \"processes\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Brownian\" \"motion\" \"construction\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Wiener\" \"process\" \"existence\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Gaussian\" \"process\" \"path\" \"continuity\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Kolmogorov\" \"extension\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "first_owner_rank": null,
+      "first_relevant_rank": null,
       "formulations": [
         "construction of Brownian motion from Gaussian processes",
         "Brownian motion construction",
@@ -2868,7 +2868,7 @@
         "Kolmogorov extension theorem"
       ],
       "id": "brownian-motion-construction",
-      "owner_reciprocal_rank": 0.3333333333333333,
+      "owner_reciprocal_rank": 0.0,
       "per_k": {
         "1": {
           "gold_recall": 0.0,
@@ -2878,36 +2878,36 @@
           "source_hit": 1
         },
         "10": {
-          "gold_recall": 0.5,
-          "hit": 1,
-          "ndcg": 0.3935773014954859,
-          "owner_hit": 1,
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
           "source_hit": 1
         },
         "20": {
-          "gold_recall": 0.5,
-          "hit": 1,
-          "ndcg": 0.3935773014954859,
-          "owner_hit": 1,
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
           "source_hit": 1
         },
         "5": {
-          "gold_recall": 0.5,
-          "hit": 1,
-          "ndcg": 0.3935773014954859,
-          "owner_hit": 1,
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
           "source_hit": 1
         }
       },
       "query": "construction of Brownian motion from Gaussian processes",
-      "reciprocal_rank": 0.3333333333333333,
+      "reciprocal_rank": 0.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 2857.172373100184,
-        "payload_bytes": 2674751,
-        "rerank_ms": 1224.7040700167418,
-        "rerank_request_bytes": 284839,
-        "retrieval_ms": 1632.4683030834422,
+        "elapsed_ms": 2837.7517759799957,
+        "payload_bytes": 2844095,
+        "rerank_ms": 1169.2572860047221,
+        "rerank_request_bytes": 341963,
+        "retrieval_ms": 1668.4944899752736,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -2926,137 +2926,137 @@
           "score": 0.89537644
         },
         {
-          "file": "BrownianMotion/Gaussian/GaussianProcess.lean",
-          "rank": 2,
-          "relevance": 0,
-          "repository": "RemyDegenne__brownian-motion",
-          "score": 0.8588548
-        },
-        {
-          "file": "BrownianMotion/Gaussian/BrownianMotion.lean",
-          "rank": 3,
-          "relevance": 3,
-          "repository": "RemyDegenne__brownian-motion",
-          "score": 0.84637463
-        },
-        {
-          "file": "Mathlib/Probability/BrownianMotion/Basic.lean",
-          "rank": 4,
-          "relevance": 0,
-          "repository": "leanprover-community__mathlib4",
-          "score": 0.82281643
-        },
-        {
           "file": "Mathlib/Probability/BrownianMotion/GaussianProjectiveFamily.lean",
-          "rank": 5,
+          "rank": 2,
           "relevance": 0,
           "repository": "leanprover-community__mathlib4",
           "score": 0.7567892
         },
         {
-          "file": "BrownianMotion/Gaussian/StochasticProcesses.lean",
-          "rank": 6,
-          "relevance": 0,
-          "repository": "RemyDegenne__brownian-motion",
-          "score": 0.7198565
-        },
-        {
           "file": "v1/Atlas/FourierAnalysis/code/BrownianMotion.lean",
-          "rank": 7,
+          "rank": 3,
           "relevance": 0,
           "repository": "facebookresearch__atlas-lean",
           "score": 0.67883813
         },
         {
-          "file": "verso/Manual/Pages/Gaussian.lean",
-          "rank": 8,
-          "relevance": 0,
-          "repository": "RemyDegenne__brownian-motion",
-          "score": 0.6615731
-        },
-        {
-          "file": "MathFin/Foundations/WienerIntegralL2.lean",
-          "rank": 9,
-          "relevance": 0,
-          "repository": "formal-applied-math__formal-mathfin",
-          "score": 0.658066
-        },
-        {
-          "file": "MathFin/Blueprint.lean",
-          "rank": 10,
-          "relevance": 0,
-          "repository": "formal-applied-math__formal-mathfin",
-          "score": 0.63486034
-        },
-        {
           "file": "MathFin/Foundations/ExpMartingaleQBrownian.lean",
-          "rank": 11,
+          "rank": 4,
           "relevance": 0,
           "repository": "formal-applied-math__formal-mathfin",
           "score": 0.63486034
-        },
-        {
-          "file": "MathFin/Foundations/BrownianQuadraticVariation.lean",
-          "rank": 12,
-          "relevance": 0,
-          "repository": "formal-applied-math__formal-mathfin",
-          "score": 0.63304734
         },
         {
           "file": "MathFin/Foundations/ItoIntegralBrownian.lean",
-          "rank": 13,
+          "rank": 5,
           "relevance": 0,
           "repository": "formal-applied-math__formal-mathfin",
           "score": 0.62209207
         },
         {
-          "file": "MathFin/Foundations/WienerIntegral.lean",
-          "rank": 14,
+          "file": "BrownianMotion/Choquet/MeasurableSection.lean",
+          "rank": 6,
           "relevance": 0,
-          "repository": "formal-applied-math__formal-mathfin",
-          "score": 0.6110107
+          "repository": "RemyDegenne__brownian-motion",
+          "score": 0.6202536
         },
         {
-          "file": "MathFin/Foundations/WienerExponentialTotality.lean",
-          "rank": 15,
+          "file": "BrownianMotion/StochasticIntegral/MonotoneProcess.lean",
+          "rank": 7,
           "relevance": 0,
-          "repository": "formal-applied-math__formal-mathfin",
-          "score": 0.6091522
+          "repository": "RemyDegenne__brownian-motion",
+          "score": 0.6165665
         },
         {
-          "file": "MathFin/Foundations/WienerIntegralGaussian.lean",
-          "rank": 16,
+          "file": "BrownianMotion/StochasticIntegral/SimpleProcess.lean",
+          "rank": 8,
           "relevance": 0,
-          "repository": "formal-applied-math__formal-mathfin",
-          "score": 0.59981334
+          "repository": "RemyDegenne__brownian-motion",
+          "score": 0.61286587
         },
         {
           "file": "MathFin/Foundations/ItoIntegralProcess.lean",
-          "rank": 17,
+          "rank": 9,
           "relevance": 0,
           "repository": "formal-applied-math__formal-mathfin",
           "score": 0.59981334
         },
         {
-          "file": "MathFin/Foundations/ItoIntegralCLM.lean",
-          "rank": 18,
+          "file": "BrownianMotion/Continuity/LimitModification.lean",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "RemyDegenne__brownian-motion",
+          "score": 0.59981334
+        },
+        {
+          "file": "MathFin/Foundations/ItoIntegralProcessMartingale.lean",
+          "rank": 11,
           "relevance": 0,
           "repository": "formal-applied-math__formal-mathfin",
           "score": 0.56946963
         },
         {
-          "file": "BrownianMotion/Continuity/KolmogorovChentsov.lean",
-          "rank": 19,
+          "file": "BrownianMotion/Choquet/AnalyticSet.lean",
+          "rank": 12,
           "relevance": 0,
           "repository": "RemyDegenne__brownian-motion",
-          "score": 0.56563467
+          "score": 0.52692705
         },
         {
-          "file": "MathFin/BlackScholes/AsianGeometric.lean",
-          "rank": 20,
+          "file": "MathFin/Foundations/MartingaleRepresentation.lean",
+          "rank": 13,
           "relevance": 0,
           "repository": "formal-applied-math__formal-mathfin",
-          "score": 0.53665286
+          "score": 0.5230306
+        },
+        {
+          "file": "verso/Manual/Pages/Extension.lean",
+          "rank": 14,
+          "relevance": 0,
+          "repository": "RemyDegenne__brownian-motion",
+          "score": 0.5093739
+        },
+        {
+          "file": "MathFin/AxiomAuditGen.lean",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "formal-applied-math__formal-mathfin",
+          "score": 0.5074213
+        },
+        {
+          "file": "BrownianMotion/StochasticIntegral/Komlos.lean",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "RemyDegenne__brownian-motion",
+          "score": 0.50546855
+        },
+        {
+          "file": "MathFin.lean",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "formal-applied-math__formal-mathfin",
+          "score": 0.46840155
+        },
+        {
+          "file": "MathFin/AxiomAudit.lean",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "formal-applied-math__formal-mathfin",
+          "score": 0.44707403
+        },
+        {
+          "file": "HighDimProb/Concentration/SubGaussianMax.lean",
+          "rank": 19,
+          "relevance": 0,
+          "repository": "dududuguo__HighDimProb",
+          "score": 0.41641688
+        },
+        {
+          "file": "KolmogorovExtension4/KolmogorovExtension.lean",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "RemyDegenne__kolmogorov_extension4",
+          "score": 0.41641688
         }
       ]
     },
@@ -3107,11 +3107,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 8134.69802797772,
+        "elapsed_ms": 6045.42666207999,
         "payload_bytes": 530524905,
-        "rerank_ms": 1194.2898579873145,
+        "rerank_ms": 1201.7862690845504,
         "rerank_request_bytes": 247929,
-        "retrieval_ms": 6940.408169990405,
+        "retrieval_ms": 4843.6403929954395,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -3265,7 +3265,7 @@
       ]
     },
     {
-      "compiled_query": "\"Carleson\" \"pointwise\" \"convergence\" \"Fourier\" \"series\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" \"Hunt\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"pointwise\" \"convergence\" \"Fourier\" \"series\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" \"convergence\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Carleson\" \"theorem\" \"pointwise\" \"convergence\" \"Fourier\" \"series\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" \"Hunt\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"pointwise\" \"convergence\" \"Fourier\" \"series\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" \"convergence\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -3288,21 +3288,21 @@
         "10": {
           "gold_recall": 1.0,
           "hit": 1,
-          "ndcg": 0.95583058934618,
+          "ndcg": 1.0,
           "owner_hit": 1,
           "source_hit": 1
         },
         "20": {
           "gold_recall": 1.0,
           "hit": 1,
-          "ndcg": 0.95583058934618,
+          "ndcg": 1.0,
           "owner_hit": 1,
           "source_hit": 1
         },
         "5": {
           "gold_recall": 1.0,
           "hit": 1,
-          "ndcg": 0.95583058934618,
+          "ndcg": 1.0,
           "owner_hit": 1,
           "source_hit": 1
         }
@@ -3311,11 +3311,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 2923.885309952311,
-        "payload_bytes": 2119192,
-        "rerank_ms": 1130.5159550393,
-        "rerank_request_bytes": 290839,
-        "retrieval_ms": 1793.3693549130112,
+        "elapsed_ms": 2999.8792541446164,
+        "payload_bytes": 2172113,
+        "rerank_ms": 1286.3893089815974,
+        "rerank_request_bytes": 311558,
+        "retrieval_ms": 1713.489945163019,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -3334,46 +3334,46 @@
           "score": 0.9045157
         },
         {
-          "file": "Autoformalization/carleson.ml",
-          "rank": 2,
-          "relevance": 0,
-          "repository": "jrh13__hol-light",
-          "score": 0.89986295
-        },
-        {
           "file": "Carleson/Classical/CarlesonHunt.lean",
-          "rank": 3,
+          "rank": 2,
           "relevance": 2,
           "repository": "fpvandoorn__carleson",
           "score": 0.86562496
         },
         {
           "file": "Challenge.lean",
-          "rank": 4,
+          "rank": 3,
           "relevance": 0,
           "repository": "fpvandoorn__carleson",
-          "score": 0.8567704
+          "score": 0.8582618
         },
         {
           "file": "Carleson/Classical/CarlesonHuntBasic.lean",
-          "rank": 5,
+          "rank": 4,
           "relevance": 0,
           "repository": "fpvandoorn__carleson",
           "score": 0.8542049
         },
         {
           "file": "Carleson/Defs.lean",
-          "rank": 6,
+          "rank": 5,
           "relevance": 0,
           "repository": "fpvandoorn__carleson",
           "score": 0.81053895
         },
         {
-          "file": "Carleson/Classical/VanDerCorput.lean",
+          "file": "Carleson/Classical/Basic.lean",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "fpvandoorn__carleson",
+          "score": 0.7743104
+        },
+        {
+          "file": "Carleson/FinitaryCarleson.lean",
           "rank": 7,
           "relevance": 0,
           "repository": "fpvandoorn__carleson",
-          "score": 0.70464814
+          "score": 0.6889709
         },
         {
           "file": "Carleson/MetricCarleson/Truncation.lean",
@@ -3390,7 +3390,7 @@
           "score": 0.6456563
         },
         {
-          "file": "Carleson/Classical/Helper.lean",
+          "file": "Carleson/TwoSidedCarleson/MainTheorem.lean",
           "rank": 10,
           "relevance": 0,
           "repository": "fpvandoorn__carleson",
@@ -3404,67 +3404,67 @@
           "score": 0.6438669
         },
         {
-          "file": "LeanEval/Analysis/FourierConvergence.lean",
+          "file": "Carleson/Discrete/MainTheorem.lean",
           "rank": 12,
           "relevance": 0,
-          "repository": "leanprover__lean-eval",
-          "score": 0.63486034
+          "repository": "fpvandoorn__carleson",
+          "score": 0.6384747
         },
         {
-          "file": "Carleson/ToMathlib/IntegralBallContinuity.lean",
+          "file": "LeanEval/Analysis/FourierConvergence.lean",
           "rank": 13,
           "relevance": 0,
-          "repository": "fpvandoorn__carleson",
-          "score": 0.6091522
+          "repository": "leanprover__lean-eval",
+          "score": 0.6384747
         },
         {
-          "file": "Carleson/ToMathlib/Data/ENNReal.lean",
+          "file": "Carleson/Operators.lean",
           "rank": 14,
           "relevance": 0,
           "repository": "fpvandoorn__carleson",
-          "score": 0.5885108
+          "score": 0.63123065
+        },
+        {
+          "file": "Carleson/ToMathlib/Misc.lean",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "fpvandoorn__carleson",
+          "score": 0.6202536
+        },
+        {
+          "file": "generated/fourier_dirichlet_fejer/Solution.lean",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "leanprover__lean-eval",
+          "score": 0.596057
+        },
+        {
+          "file": "Carleson/TileExistence.lean",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "fpvandoorn__carleson",
+          "score": 0.57138395
         },
         {
           "file": "v1/Atlas/IntroductionToFunctionalAnalysis/code/FourierSeries.lean",
-          "rank": 15,
+          "rank": 18,
           "relevance": 0,
           "repository": "facebookresearch__atlas-lean",
           "score": 0.56755316
         },
         {
-          "file": "Carleson/ToMathlib/MeasureTheory/Function/LpSeminorm/Basic.lean",
-          "rank": 16,
-          "relevance": 0,
-          "repository": "fpvandoorn__carleson",
-          "score": 0.52692705
-        },
-        {
-          "file": "Carleson/ToMathlib/MinLayer.lean",
-          "rank": 17,
-          "relevance": 0,
-          "repository": "fpvandoorn__carleson",
-          "score": 0.5093739
-        },
-        {
-          "file": "Carleson.lean",
-          "rank": 18,
-          "relevance": 0,
-          "repository": "fpvandoorn__carleson",
-          "score": 0.49570328
-        },
-        {
-          "file": "Carleson/ToMathlib/Analysis/Convolution.lean",
+          "file": "Carleson/ToMathlib/ENorm.lean",
           "rank": 19,
           "relevance": 0,
           "repository": "fpvandoorn__carleson",
-          "score": 0.48789302
+          "score": 0.5598677
         },
         {
-          "file": "Carleson/ToMathlib/Data/NNReal.lean",
+          "file": "Carleson/ToMathlib/MeasureTheory/Function/LpSeminorm/Basic.lean",
           "rank": 20,
           "relevance": 0,
           "repository": "fpvandoorn__carleson",
-          "score": 0.48398986
+          "score": 0.52692705
         }
       ]
     },
@@ -3515,11 +3515,11 @@
       "reciprocal_rank": 0.16666666666666666,
       "result_count": 29,
       "runtime": {
-        "elapsed_ms": 2790.648153750226,
+        "elapsed_ms": 2511.8351710261777,
         "payload_bytes": 1248828,
-        "rerank_ms": 1265.0429389905185,
+        "rerank_ms": 1308.0058180494234,
         "rerank_request_bytes": 287631,
-        "retrieval_ms": 1525.6052147597075,
+        "retrieval_ms": 1203.8293529767543,
         "retrieval_queries": 4,
         "returned_files": 29,
         "search_units": 2
@@ -3718,11 +3718,11 @@
       "reciprocal_rank": 0.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 7483.198528061621,
+        "elapsed_ms": 2350.8651048177853,
         "payload_bytes": 1181559,
-        "rerank_ms": 6247.588407015428,
+        "rerank_ms": 1345.4462299123406,
         "rerank_request_bytes": 290907,
-        "retrieval_ms": 1235.610121046193,
+        "retrieval_ms": 1005.4188749054447,
         "retrieval_queries": 3,
         "returned_files": 30,
         "search_units": 2
@@ -3876,7 +3876,7 @@
       ]
     },
     {
-      "compiled_query": "\"Grothendieck\" \"indexed\" \"categories\" \"fibrations\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Grothendieck\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"indexed\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"fibration\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"category\" \"elements\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Grothendieck\" \"construction\" \"indexed\" \"categories\" \"fibrations\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Grothendieck\" \"construction\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"indexed\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"fibration\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"category\" \"elements\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -3922,11 +3922,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 4228.317808359861,
-        "payload_bytes": 22705972,
-        "rerank_ms": 1215.2293730759993,
-        "rerank_request_bytes": 310266,
-        "retrieval_ms": 3013.088435283862,
+        "elapsed_ms": 3520.3374369302765,
+        "payload_bytes": 21731871,
+        "rerank_ms": 1296.7212669318542,
+        "rerank_request_bytes": 331813,
+        "retrieval_ms": 2223.6161699984223,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -3994,93 +3994,93 @@
           "score": 0.94199663
         },
         {
-          "file": "UniMath/Bicategories/Grothendieck/Counit.v",
+          "file": "Construction/Grothendieck/Fibration.v",
           "rank": 9,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 0.9407027
+        },
+        {
+          "file": "Construction/Indexed.v",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 0.931612
+        },
+        {
+          "file": "UniMath/Bicategories/Grothendieck/Counit.v",
+          "rank": 11,
           "relevance": 0,
           "repository": "UniMath__UniMath",
           "score": 0.92778313
         },
         {
           "file": "UniMath/CategoryTheory/IndexedCategories/FibrationToIndexedCategory.v",
-          "rank": 10,
+          "rank": 12,
           "relevance": 0,
           "repository": "UniMath__UniMath",
           "score": 0.91628957
         },
         {
           "file": "UniMath/CategoryTheory/IndexedCategories/IndexedFunctorToCartesian.v",
-          "rank": 11,
+          "rank": 13,
           "relevance": 0,
           "repository": "UniMath__UniMath",
           "score": 0.90993905
         },
         {
           "file": "Theory/Fibration.v",
-          "rank": 12,
+          "rank": 14,
           "relevance": 0,
           "repository": "jwiegley__category-theory",
           "score": 0.8879257
         },
         {
           "file": "Theory/Displayed.v",
-          "rank": 13,
+          "rank": 15,
           "relevance": 0,
           "repository": "jwiegley__category-theory",
           "score": 0.8741202
         },
         {
           "file": "Mathlib/CategoryTheory/Grothendieck.lean",
-          "rank": 14,
+          "rank": 16,
           "relevance": 0,
           "repository": "leanprover-community__mathlib4",
           "score": 0.8593572
         },
         {
+          "file": "Construction/Slice.v",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 0.85341257
+        },
+        {
           "file": "LeanFibredCategories/GrothendieckFibration.lean",
-          "rank": 15,
+          "rank": 18,
           "relevance": 0,
           "repository": "sinhp__LeanFibredCategories",
           "score": 0.8253646
         },
         {
           "file": "UniMath/CategoryTheory/DisplayedCats/Core.v",
-          "rank": 16,
+          "rank": 19,
           "relevance": 0,
           "repository": "UniMath__UniMath",
           "score": 0.8248009
         },
         {
-          "file": "UniMath/CategoryTheory/GrothendieckConstruction/IsOpfibration.v",
-          "rank": 17,
-          "relevance": 0,
-          "repository": "UniMath__UniMath",
-          "score": 0.7589397
-        },
-        {
-          "file": "UniMath/CategoryTheory/IndexedCategories/NatTransToIndexed.v",
-          "rank": 18,
-          "relevance": 0,
-          "repository": "UniMath__UniMath",
-          "score": 0.6685341
-        },
-        {
-          "file": "UniMath/AlgebraicTheories/PresheafCategory.v",
-          "rank": 19,
-          "relevance": 0,
-          "repository": "UniMath__UniMath",
-          "score": 0.6509999
-        },
-        {
-          "file": "Mathlib/CategoryTheory/Sites/Sheaf.lean",
+          "file": "Construction/Elements.v",
           "rank": 20,
           "relevance": 0,
-          "repository": "leanprover-community__mathlib4",
-          "score": 0.5790196
+          "repository": "jwiegley__category-theory",
+          "score": 0.7947675
         }
       ]
     },
     {
-      "compiled_query": "\"Feit\" \"Thompson\" \"odd\" \"order\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Feit\" \"Thompson\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"odd\" \"order\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"solvability\" \"groups\" \"odd\" \"order\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Feit\" \"Thompson\" \"odd\" \"order\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Feit\" \"Thompson\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"odd\" \"order\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"solvability\" \"groups\" \"odd\" \"order\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 10,
       "first_relevant_rank": 10,
       "formulations": [
@@ -4126,11 +4126,11 @@
       "reciprocal_rank": 0.1,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3817.118967999704,
-        "payload_bytes": 51936974,
-        "rerank_ms": 1367.9462869185954,
-        "rerank_request_bytes": 341744,
-        "retrieval_ms": 2449.1726810811087,
+        "elapsed_ms": 3609.7332348581403,
+        "payload_bytes": 75211203,
+        "rerank_ms": 1305.3302760235965,
+        "rerank_request_bytes": 343504,
+        "retrieval_ms": 2304.402958834544,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -4226,65 +4226,65 @@
           "score": 0.8216746
         },
         {
-          "file": "theories/PFsection4.v",
-          "rank": 13,
-          "relevance": 0,
-          "repository": "math-comp__odd-order",
-          "score": 0.81470233
-        },
-        {
           "file": "OddOrder/BG/AppC_FinalContradiction.lean",
-          "rank": 14,
+          "rank": 13,
           "relevance": 0,
           "repository": "yawara__odd-order",
           "score": 0.81053895
         },
         {
           "file": "OddOrder/Peterfalvi/Appendices/FeitSibleyInduction.lean",
-          "rank": 15,
+          "rank": 14,
           "relevance": 0,
           "repository": "yawara__odd-order",
           "score": 0.8013768
         },
         {
           "file": "OddOrder/BG/AppD_CNGroups.lean",
-          "rank": 16,
+          "rank": 15,
           "relevance": 0,
           "repository": "yawara__odd-order",
           "score": 0.7969886
         },
         {
           "file": "OddOrder/BG/AppC_LemmaC3_Setup.lean",
-          "rank": 17,
+          "rank": 16,
           "relevance": 0,
           "repository": "yawara__odd-order",
           "score": 0.77702934
         },
         {
           "file": "OddOrder/Peterfalvi/S08_GeneralAdjoin.lean",
-          "rank": 18,
+          "rank": 17,
           "relevance": 0,
           "repository": "yawara__odd-order",
           "score": 0.7524494
         },
         {
           "file": "OddOrder/BG/AppC_HypothesisB.lean",
-          "rank": 19,
+          "rank": 18,
           "relevance": 0,
           "repository": "yawara__odd-order",
           "score": 0.7517211
         },
         {
           "file": "OddOrder/Peterfalvi/S08_SixTwoThreeFromImageFamilies.lean",
-          "rank": 20,
+          "rank": 19,
           "relevance": 0,
           "repository": "yawara__odd-order",
           "score": 0.74952745
+        },
+        {
+          "file": "OddOrder/Peterfalvi/Appendices/Huppert.lean",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 0.69562757
         }
       ]
     },
     {
-      "compiled_query": "\"Jordan\" \"curve\" file:\\.miz$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"curve\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"curve\" \"topological\" \"plane\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"simple\" \"closed\" \"curve\" \"Jordan\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Jordan\" \"curve\" \"theorem\" file:\\.miz$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"curve\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"curve\" \"theorem\" \"topological\" \"plane\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"simple\" \"closed\" \"curve\" \"Jordan\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -4329,11 +4329,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 2717.1048631425947,
-        "payload_bytes": 19025921,
-        "rerank_ms": 1363.3348540170118,
-        "rerank_request_bytes": 321997,
-        "retrieval_ms": 1353.7700091255829,
+        "elapsed_ms": 3168.570626876317,
+        "payload_bytes": 24054332,
+        "rerank_ms": 1387.0787270134315,
+        "rerank_request_bytes": 326777,
+        "retrieval_ms": 1781.4918998628855,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -4353,11 +4353,11 @@
           "score": 0.93186045
         },
         {
-          "file": "jordan14.miz",
+          "file": "Jordan/jordan_curve_theorem.ml",
           "rank": 2,
           "relevance": 0,
-          "repository": "Mizar__MML-current",
-          "score": 0.88216424
+          "repository": "jrh13__hol-light",
+          "score": 0.8732581
         },
         {
           "file": "jordan21.miz",
@@ -4388,67 +4388,67 @@
           "score": 0.8623328
         },
         {
-          "file": "jordan11.miz",
+          "file": "Jordan/jordan_curve_theorem.ml",
           "rank": 7,
+          "relevance": 0,
+          "repository": "CakeML__candle",
+          "score": 0.85950464
+        },
+        {
+          "file": "jordan11.miz",
+          "rank": 8,
           "relevance": 0,
           "repository": "Mizar__MML-current",
           "score": 0.8533515
         },
         {
           "file": "jordan16.miz",
-          "rank": 8,
+          "rank": 9,
           "relevance": 0,
           "repository": "Mizar__MML-current",
           "score": 0.8371412
         },
         {
           "file": "jordan18.miz",
-          "rank": 9,
+          "rank": 10,
           "relevance": 0,
           "repository": "Mizar__MML-current",
           "score": 0.8298232
         },
         {
           "file": "jordan24.miz",
-          "rank": 10,
+          "rank": 11,
           "relevance": 0,
           "repository": "Mizar__MML-current",
           "score": 0.8278838
         },
         {
           "file": "jordan_a.miz",
-          "rank": 11,
+          "rank": 12,
           "relevance": 0,
           "repository": "Mizar__MML-current",
           "score": 0.8262076
         },
         {
           "file": "jordan6.miz",
-          "rank": 12,
+          "rank": 13,
           "relevance": 0,
           "repository": "Mizar__MML-current",
           "score": 0.8250829
         },
         {
           "file": "jordan1b.miz",
-          "rank": 13,
+          "rank": 14,
           "relevance": 0,
           "repository": "Mizar__MML-current",
           "score": 0.81704956
         },
         {
           "file": "jordan1e.miz",
-          "rank": 14,
-          "relevance": 0,
-          "repository": "Mizar__MML-current",
-          "score": 0.80812776
-        },
-        {
-          "file": "jordan1f.miz",
           "rank": 15,
           "relevance": 0,
           "repository": "Mizar__MML-current",
-          "score": 0.8050811
+          "score": 0.80812776
         },
         {
           "file": "jordan4.miz",
@@ -4458,38 +4458,446 @@
           "score": 0.7954039
         },
         {
-          "file": "Matroid/ForMathlib/Topology/JordanCurve.lean",
+          "file": "thys/Picks_Theorem/Polygon_Jordan_Curve.thy",
           "rank": 17,
+          "relevance": 0,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "score": 0.77905303
+        },
+        {
+          "file": "Matroid/ForMathlib/Topology/JordanCurve.lean",
+          "rank": 18,
           "relevance": 0,
           "repository": "apnelson1__Matroid",
           "score": 0.64922285
         },
         {
           "file": "JordanCurve/Main.lean",
-          "rank": 18,
+          "rank": 19,
           "relevance": 0,
           "repository": "mccorvie__classification-of-surfaces",
           "score": 0.6474416
         },
         {
           "file": "LeanEval/Topology/JordanCurve.lean",
-          "rank": 19,
+          "rank": 20,
           "relevance": 0,
           "repository": "leanprover__lean-eval",
           "score": 0.62209207
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"formal\" \"group\" \"law\" \"over\" \"commutative\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"formal\" \"group\" \"law\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"commutative\" \"formal\" \"group\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"formal\" \"group\" \"over\" \"commutative\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"additive\" \"formal\" \"group\" \"law\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "first_owner_rank": 1,
+      "first_relevant_rank": 1,
+      "formulations": [
+        "formal group law over a commutative ring",
+        "formal group law",
+        "commutative formal group",
+        "formal group over commutative ring",
+        "additive formal group law"
+      ],
+      "id": "formal-group-law",
+      "owner_reciprocal_rank": 1.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "formal group law over a commutative ring",
+      "reciprocal_rank": 1.0,
+      "result_count": 30,
+      "runtime": {
+        "elapsed_ms": 3861.058696056716,
+        "payload_bytes": 64138494,
+        "rerank_ms": 1311.1562239937484,
+        "rerank_request_bytes": 342163,
+        "retrieval_ms": 2549.9024720629677,
+        "retrieval_queries": 5,
+        "returned_files": 30,
+        "search_units": 2
+      },
+      "tags": [
+        "algebra",
+        "ambiguous-stopword",
+        "exact-name"
+      ],
+      "top_results": [
+        {
+          "file": "Mathlib/RingTheory/FormalGroup/Basic.lean",
+          "rank": 1,
+          "relevance": 3,
+          "repository": "leanprover-community__mathlib4",
+          "score": 0.9617643
         },
         {
-          "file": "ClassificationOfSurfaces/Moise/PolygonalJordan.lean",
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/Definition.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 0.9559155
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupAssoc.lean",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 0.92539185
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupLawSpec.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 0.8813496
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Basic.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 0.8704487
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/EvalGroup.lean",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 0.8653337
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Inverse.lean",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 0.8364744
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Assoc.lean",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 0.8358054
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/WExpansion.lean",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 0.81763273
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/Logarithm.lean",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 0.80660903
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Chord.lean",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 0.7963558
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/AdicPoint.lean",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 0.74879336
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/EllipticCurve/GroupLaw.lean",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 0.6856128
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/Height.lean",
+          "rank": 14,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 0.6650626
+        },
+        {
+          "file": "src/commutative-algebra/formal-power-series-commutative-rings.lagda.md",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "UniMath__agda-unimath",
+          "score": 0.6294102
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/Isogeny/OmegaCoeffViaFormalGroup.lean",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 0.5790196
+        },
+        {
+          "file": "Structure/Ring.v",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 0.5463509
+        },
+        {
+          "file": "src/algebra/construction/groupScript.sml",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "HOL-Theorem-Prover__HOL",
+          "score": 0.53082025
+        },
+        {
+          "file": "OddOrder/Peterfalvi/Appendices/Suzuki2Groups/QuadraticExtensions.lean",
+          "rank": 19,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 0.5152297
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/GroupScheme/NIsogeny.lean",
           "rank": 20,
           "relevance": 0,
-          "repository": "mccorvie__classification-of-surfaces",
-          "score": 0.61471784
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 0.5132781
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"existence\" \"enough\" \"injectives\" \"Grothendieck\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"enough\" \"injectives\" \"Grothendieck\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"objects\" \"Grothendieck\" \"abelian\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"enough\" \"injectives\" \"abelian\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Grothendieck\" \"category\" \"injective\" \"resolution\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "first_owner_rank": 1,
+      "first_relevant_rank": 1,
+      "formulations": [
+        "existence of enough injectives in a Grothendieck category",
+        "enough injectives Grothendieck category",
+        "injective objects Grothendieck abelian category",
+        "enough injectives abelian category",
+        "Grothendieck category injective resolution"
+      ],
+      "id": "enough-injectives-grothendieck",
+      "owner_reciprocal_rank": 1.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "existence of enough injectives in a Grothendieck category",
+      "reciprocal_rank": 1.0,
+      "result_count": 30,
+      "runtime": {
+        "elapsed_ms": 2771.5218047378585,
+        "payload_bytes": 4456287,
+        "rerank_ms": 1244.808944989927,
+        "rerank_request_bytes": 257196,
+        "retrieval_ms": 1526.7128597479314,
+        "retrieval_queries": 5,
+        "returned_files": 30,
+        "search_units": 2
+      },
+      "tags": [
+        "category-theory",
+        "ambiguous-stopword",
+        "descriptive"
+      ],
+      "top_results": [
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/EnoughInjectives.lean",
+          "rank": 1,
+          "relevance": 3,
+          "repository": "leanprover-community__mathlib4",
+          "score": 0.92067564
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Generator/Abelian.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 0.874817
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/ColimCoyoneda.lean",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 0.8481439
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/FreydMitchell.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 0.785045
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/HasExt.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 0.76741105
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23DerivedFunctors.lean",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 0.6889709
+        },
+        {
+          "file": "Comparator/Definitions.lean",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "chrisflav__proetale",
+          "score": 0.6822351
+        },
+        {
+          "file": "Mathlib/CategoryTheory/SmallObject/Basic.lean",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 0.6650626
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/FlasqueCohomology.lean",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 0.60542583
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/Coseparator.lean",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 0.5809227
+        },
+        {
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ChallengeDeps.lean",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "Vilin97__Clawristotle",
+          "score": 0.5790196
+        },
+        {
+          "file": "grothendieck-vanishing/Aristotle/GrothendieckVanishing/main/CohomologyAPI.lean",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "Vilin97__Clawristotle",
+          "score": 0.57138395
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/ModuleEmbedding/Opposite.lean",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 0.5502207
+        },
+        {
+          "file": "grothendieck-vanishing/Aristotle/GrothendieckVanishing/main/ClosedImmersionCohomology.lean",
+          "rank": 14,
+          "relevance": 0,
+          "repository": "Vilin97__Clawristotle",
+          "score": 0.53082025
+        },
+        {
+          "file": "grothendieck-vanishing/Aristotle/GrothendieckVanishing/main/FlasqueVanishing.lean",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "Vilin97__Clawristotle",
+          "score": 0.5230306
+        },
+        {
+          "file": "LeanPool/GrothendieckVanishing/FlasqueVanishing.lean",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "Vilin97__lean-pool",
+          "score": 0.5191313
+        },
+        {
+          "file": "LeanPool/GrothendieckVanishing/ClosedImmersionCohomology.lean",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "Vilin97__lean-pool",
+          "score": 0.5191313
+        },
+        {
+          "file": "v1/Atlas/TensorCategories/code/FiniteTensorCategory.lean",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 0.5093739
+        },
+        {
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/SchemePushforwardCohomology.lean",
+          "rank": 19,
+          "relevance": 0,
+          "repository": "Vilin97__Clawristotle",
+          "score": 0.5074213
+        },
+        {
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/SheafFlasqueCohomology.lean",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "Vilin97__Clawristotle",
+          "score": 0.4976563
         }
       ]
     }
   ],
-  "corpus_git_commit": "81d995e1a059a3225e8135ca1b367a7705c25091",
-  "created_at": "2026-09-13T15:37:41.155064+00:00",
+  "corpus_git_commit": "46f837d89a00f7ea0b5c623f991fcd08b7c0f182",
+  "created_at": "2026-09-13T16:01:25.652664+00:00",
   "document_projection": {
     "excerpt_chars": 12000,
     "excerpt_lines": 300,
@@ -4506,9 +4914,9 @@
   "document_projection_version": 1,
   "expansion_model": "gemini-3.5-flash-lite",
   "expansion_prompt_version": 1,
-  "expansions_sha256": "72f60e8b093253083115ee98fe3fbc322c54a95e3ae42f5daa030fc67e73b8bc",
+  "expansions_sha256": "84b47314869ea58550d399945569504b911048fe1895d93107eca9984c112c67",
   "fusion_depth": 200,
-  "gold_sha256": "74d0380db32e9b71ce85fac03c0465b6b894480f9fc854237c39cfade3cc6526",
+  "gold_sha256": "f1fbdeef6cfad3c8c0a03d3f677969aac7bcbc7b4cad1a8b6cd277658f68c774",
   "index": {
     "latest_mtime_ns": 1789301804577138257,
     "metadata_sha256": "602c79f8912be9574b8ebf03fcb701bb0de412ef182c4f55e29c73af48b7dc7e",
@@ -4516,62 +4924,62 @@
     "total_bytes": 10451699803
   },
   "metrics": {
-    "gold_recall@1": 0.28787878787878785,
-    "gold_recall@10": 0.6893939393939393,
-    "gold_recall@20": 0.7575757575757577,
-    "gold_recall@5": 0.4696969696969697,
-    "hit@1": 0.5454545454545454,
-    "hit@10": 0.8636363636363636,
-    "hit@20": 0.9090909090909091,
-    "hit@5": 0.7727272727272727,
-    "latency_ms_mean": 3724.73557761193,
-    "latency_ms_p50": 3362.6994676305912,
-    "latency_ms_p95": 7333.887325512476,
-    "mrr": 0.6513257575757575,
-    "ndcg@1": 0.5194805194805195,
-    "ndcg@10": 0.5919878263092855,
-    "ndcg@20": 0.6080408735825814,
-    "ndcg@5": 0.515436842032524,
-    "owner_hit@1": 0.5,
-    "owner_hit@10": 0.8636363636363636,
-    "owner_hit@20": 0.9090909090909091,
-    "owner_hit@5": 0.6818181818181818,
-    "owner_mrr": 0.6014520202020202,
-    "payload_bytes_mean": 37939916.45454545,
-    "payload_bytes_p95": 71372839.4,
-    "queries": 22,
-    "source_hit@1": 0.8636363636363636,
-    "source_hit@10": 0.9545454545454546,
+    "gold_recall@1": 0.34722222222222227,
+    "gold_recall@10": 0.6944444444444445,
+    "gold_recall@20": 0.7569444444444445,
+    "gold_recall@5": 0.4930555555555556,
+    "hit@1": 0.5833333333333334,
+    "hit@10": 0.8333333333333334,
+    "hit@20": 0.875,
+    "hit@5": 0.75,
+    "latency_ms_mean": 3160.4790583223803,
+    "latency_ms_p50": 2951.7311910167336,
+    "latency_ms_p95": 3836.2959346733983,
+    "mrr": 0.6664930555555556,
+    "ndcg@1": 0.5595238095238095,
+    "ndcg@10": 0.611430178665109,
+    "ndcg@20": 0.626202128860055,
+    "ndcg@5": 0.5412584430780777,
+    "owner_hit@1": 0.5416666666666666,
+    "owner_hit@10": 0.8333333333333334,
+    "owner_hit@20": 0.875,
+    "owner_hit@5": 0.6666666666666666,
+    "owner_mrr": 0.6207754629629629,
+    "payload_bytes_mean": 39115743.958333336,
+    "payload_bytes_p95": 74853149.69999999,
+    "queries": 24,
+    "source_hit@1": 0.875,
+    "source_hit@10": 0.9583333333333334,
     "source_hit@20": 1.0,
-    "source_hit@5": 0.9090909090909091,
+    "source_hit@5": 0.9166666666666666,
     "zero_result_rate": 0.0
   },
   "metrics_by_tag": {
     "algebra": {
-      "gold_recall@1": 0.5,
-      "gold_recall@10": 0.5,
-      "gold_recall@20": 0.5,
-      "gold_recall@5": 0.5,
+      "gold_recall@1": 0.75,
+      "gold_recall@10": 0.75,
+      "gold_recall@20": 0.75,
+      "gold_recall@5": 0.75,
       "hit@1": 1.0,
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 1970.3397589037195,
-      "latency_ms_p50": 1970.3397589037195,
-      "latency_ms_p95": 1970.3397589037195,
+      "latency_ms_mean": 3254.7248264891095,
+      "latency_ms_p50": 3254.7248264891095,
+      "latency_ms_p95": 3800.4253090999555,
       "mrr": 1.0,
       "ndcg@1": 1.0,
-      "ndcg@10": 0.7871546029909718,
-      "ndcg@20": 0.7871546029909718,
-      "ndcg@5": 0.7871546029909718,
+      "ndcg@10": 0.893577301495486,
+      "ndcg@20": 0.893577301495486,
+      "ndcg@5": 0.893577301495486,
       "owner_hit@1": 1.0,
       "owner_hit@10": 1.0,
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 1.0,
-      "payload_bytes_mean": 3741030.0,
-      "payload_bytes_p95": 3741030.0,
-      "queries": 1,
+      "payload_bytes_mean": 34560754.5,
+      "payload_bytes_p95": 61180720.05,
+      "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
       "source_hit@20": 1.0,
@@ -4587,9 +4995,9 @@
       "hit@10": 0.6666666666666666,
       "hit@20": 1.0,
       "hit@5": 0.6666666666666666,
-      "latency_ms_mean": 3244.01263675342,
-      "latency_ms_p50": 3138.982391334139,
-      "latency_ms_p95": 3719.935797515791,
+      "latency_ms_mean": 2793.1933070455366,
+      "latency_ms_p50": 2652.877332177013,
+      "latency_ms_p95": 3194.739089999348,
       "mrr": 0.5208333333333334,
       "ndcg@1": 0.3333333333333333,
       "ndcg@10": 0.49951900169283975,
@@ -4600,8 +5008,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 0.6666666666666666,
       "owner_mrr": 0.5208333333333334,
-      "payload_bytes_mean": 1240498.6666666667,
-      "payload_bytes_p95": 1603363.3,
+      "payload_bytes_mean": 1714544.3333333333,
+      "payload_bytes_p95": 2559680.0,
       "queries": 3,
       "source_hit@1": 0.6666666666666666,
       "source_hit@10": 1.0,
@@ -4618,9 +5026,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 2812.128335935995,
-      "latency_ms_p50": 2812.128335935995,
-      "latency_ms_p95": 2812.128335935995,
+      "latency_ms_mean": 2903.583127888851,
+      "latency_ms_p50": 2903.583127888851,
+      "latency_ms_p95": 2903.583127888851,
       "mrr": 0.3333333333333333,
       "ndcg@1": 0.0,
       "ndcg@10": 0.4169956161990744,
@@ -4631,9 +5039,40 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 0.0,
       "owner_mrr": 0.125,
-      "payload_bytes_mean": 15809047.0,
-      "payload_bytes_p95": 15809047.0,
+      "payload_bytes_mean": 16534733.0,
+      "payload_bytes_p95": 16534733.0,
       "queries": 1,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@5": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "ambiguous-stopword": {
+      "gold_recall@1": 1.0,
+      "gold_recall@10": 1.0,
+      "gold_recall@20": 1.0,
+      "gold_recall@5": 1.0,
+      "hit@1": 1.0,
+      "hit@10": 1.0,
+      "hit@20": 1.0,
+      "hit@5": 1.0,
+      "latency_ms_mean": 3316.2902503972873,
+      "latency_ms_p50": 3316.2902503972873,
+      "latency_ms_p95": 3806.5818514907733,
+      "mrr": 1.0,
+      "ndcg@1": 1.0,
+      "ndcg@10": 1.0,
+      "ndcg@20": 1.0,
+      "ndcg@5": 1.0,
+      "owner_hit@1": 1.0,
+      "owner_hit@10": 1.0,
+      "owner_hit@20": 1.0,
+      "owner_hit@5": 1.0,
+      "owner_mrr": 1.0,
+      "payload_bytes_mean": 34297390.5,
+      "payload_bytes_p95": 61154383.65,
+      "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
       "source_hit@20": 1.0,
@@ -4649,9 +5088,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3278.9695468964055,
-      "latency_ms_p50": 3278.9695468964055,
-      "latency_ms_p95": 3487.542654084973,
+      "latency_ms_mean": 3102.9564155614935,
+      "latency_ms_p50": 3102.9564155614935,
+      "latency_ms_p95": 3308.5563652508426,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.946788650747743,
@@ -4662,8 +5101,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 1.0,
-      "payload_bytes_mean": 5002877.5,
-      "payload_bytes_p95": 6927671.05,
+      "payload_bytes_mean": 6207526.0,
+      "payload_bytes_p95": 9216503.2,
       "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -4672,30 +5111,30 @@
       "zero_result_rate": 0.0
     },
     "category-theory": {
-      "gold_recall@1": 0.16666666666666666,
-      "gold_recall@10": 0.3333333333333333,
-      "gold_recall@20": 0.5,
-      "gold_recall@5": 0.3333333333333333,
-      "hit@1": 0.3333333333333333,
-      "hit@10": 0.6666666666666666,
-      "hit@20": 0.6666666666666666,
-      "hit@5": 0.6666666666666666,
-      "latency_ms_mean": 5402.830271166749,
-      "latency_ms_p50": 4496.974477078766,
-      "latency_ms_p95": 7184.5761229633345,
-      "mrr": 0.5,
-      "ndcg@1": 0.3333333333333333,
-      "ndcg@10": 0.3699288174843969,
-      "ndcg@20": 0.39594744970161555,
-      "ndcg@5": 0.3699288174843969,
-      "owner_hit@1": 0.3333333333333333,
-      "owner_hit@10": 0.6666666666666666,
-      "owner_hit@20": 0.6666666666666666,
-      "owner_hit@5": 0.6666666666666666,
-      "owner_mrr": 0.5,
-      "payload_bytes_mean": 10594028.666666666,
-      "payload_bytes_p95": 21224830.299999997,
-      "queries": 3,
+      "gold_recall@1": 0.375,
+      "gold_recall@10": 0.5,
+      "gold_recall@20": 0.625,
+      "gold_recall@5": 0.5,
+      "hit@1": 0.5,
+      "hit@10": 0.75,
+      "hit@20": 0.75,
+      "hit@5": 0.75,
+      "latency_ms_mean": 3084.6744916634634,
+      "latency_ms_p50": 3145.9296208340675,
+      "latency_ms_p95": 3669.628192682285,
+      "mrr": 0.625,
+      "ndcg@1": 0.5,
+      "ndcg@10": 0.5274466131132977,
+      "ndcg@20": 0.5473005284427603,
+      "ndcg@5": 0.5274466131132977,
+      "owner_hit@1": 0.5,
+      "owner_hit@10": 0.75,
+      "owner_hit@20": 0.75,
+      "owner_hit@5": 0.75,
+      "owner_mrr": 0.625,
+      "payload_bytes_mean": 8697378.0,
+      "payload_bytes_p95": 19585059.599999998,
+      "queries": 4,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
       "source_hit@20": 1.0,
@@ -4711,9 +5150,9 @@
       "hit@10": 0.5,
       "hit@20": 0.5,
       "hit@5": 0.5,
-      "latency_ms_mean": 3514.3466311274096,
-      "latency_ms_p50": 3514.3466311274096,
-      "latency_ms_p95": 3852.1744469413534,
+      "latency_ms_mean": 3469.374190433882,
+      "latency_ms_p50": 3469.374190433882,
+      "latency_ms_p95": 3662.3596050427295,
       "mrr": 0.25,
       "ndcg@1": 0.0,
       "ndcg@10": 0.2956176024115139,
@@ -4724,8 +5163,8 @@
       "owner_hit@20": 0.5,
       "owner_hit@5": 0.5,
       "owner_mrr": 0.25,
-      "payload_bytes_mean": 36218983.0,
-      "payload_bytes_p95": 67329412.6,
+      "payload_bytes_mean": 37750789.0,
+      "payload_bytes_p95": 69316841.8,
       "queries": 2,
       "source_hit@1": 0.0,
       "source_hit@10": 0.5,
@@ -4742,9 +5181,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3683.178002014756,
-      "latency_ms_p50": 3683.178002014756,
-      "latency_ms_p95": 3774.3553585838526,
+      "latency_ms_mean": 2636.6113440017216,
+      "latency_ms_p50": 2636.6113440017216,
+      "latency_ms_p95": 2784.9805803212803,
       "mrr": 1.0,
       "ndcg@1": 0.7142857142857143,
       "ndcg@10": 0.6993702011405911,
@@ -4755,8 +5194,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 0.5,
       "owner_mrr": 0.5555555555555556,
-      "payload_bytes_mean": 4840675.5,
-      "payload_bytes_p95": 8384965.949999999,
+      "payload_bytes_mean": 4872392.5,
+      "payload_bytes_p95": 8388137.649999999,
       "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -4773,9 +5212,9 @@
       "hit@10": 0.75,
       "hit@20": 0.75,
       "hit@5": 0.5,
-      "latency_ms_mean": 4561.435041890945,
-      "latency_ms_p50": 4022.718388179783,
-      "latency_ms_p95": 6994.966420106356,
+      "latency_ms_mean": 3162.3766008706298,
+      "latency_ms_p50": 3344.4540319032967,
+      "latency_ms_p95": 3596.3238651689608,
       "mrr": 0.525,
       "ndcg@1": 0.5,
       "ndcg@10": 0.4223416555185795,
@@ -4786,8 +5225,8 @@
       "owner_hit@20": 0.75,
       "owner_hit@5": 0.5,
       "owner_mrr": 0.525,
-      "payload_bytes_mean": 23712606.5,
-      "payload_bytes_p95": 47552323.69999999,
+      "payload_bytes_mean": 30544741.25,
+      "payload_bytes_p95": 67537672.34999998,
       "queries": 4,
       "source_hit@1": 0.75,
       "source_hit@10": 1.0,
@@ -4796,34 +5235,34 @@
       "zero_result_rate": 0.0
     },
     "descriptive": {
-      "gold_recall@1": 0.14285714285714285,
-      "gold_recall@10": 0.6428571428571429,
-      "gold_recall@20": 0.7142857142857143,
-      "gold_recall@5": 0.42857142857142855,
-      "hit@1": 0.2857142857142857,
-      "hit@10": 0.8571428571428571,
-      "hit@20": 0.8571428571428571,
-      "hit@5": 0.8571428571428571,
-      "latency_ms_mean": 3572.8146858080954,
-      "latency_ms_p50": 3365.2358511462808,
-      "latency_ms_p95": 4416.377476463094,
-      "mrr": 0.5,
-      "ndcg@1": 0.2857142857142857,
-      "ndcg@10": 0.47624416135269526,
-      "ndcg@20": 0.4873950037315033,
-      "ndcg@5": 0.4075388063986204,
-      "owner_hit@1": 0.2857142857142857,
-      "owner_hit@10": 0.8571428571428571,
-      "owner_hit@20": 0.8571428571428571,
-      "owner_hit@5": 0.7142857142857143,
-      "owner_mrr": 0.47023809523809523,
-      "payload_bytes_mean": 17743457.714285713,
-      "payload_bytes_p95": 56362080.49999996,
-      "queries": 7,
-      "source_hit@1": 0.8571428571428571,
-      "source_hit@10": 0.8571428571428571,
+      "gold_recall@1": 0.25,
+      "gold_recall@10": 0.625,
+      "gold_recall@20": 0.6875,
+      "gold_recall@5": 0.4375,
+      "hit@1": 0.375,
+      "hit@10": 0.75,
+      "hit@20": 0.75,
+      "hit@5": 0.75,
+      "latency_ms_mean": 3173.4225364634767,
+      "latency_ms_p50": 3005.0973360193893,
+      "latency_ms_p95": 3691.7137032200117,
+      "mrr": 0.5208333333333334,
+      "ndcg@1": 0.375,
+      "ndcg@10": 0.4925164784966727,
+      "ndcg@20": 0.502443436161404,
+      "ndcg@5": 0.4323992929118571,
+      "owner_hit@1": 0.375,
+      "owner_hit@10": 0.75,
+      "owner_hit@20": 0.75,
+      "owner_hit@5": 0.625,
+      "owner_mrr": 0.4947916666666667,
+      "payload_bytes_mean": 16320555.125,
+      "payload_bytes_p95": 54941872.49999997,
+      "queries": 8,
+      "source_hit@1": 0.875,
+      "source_hit@10": 0.875,
       "source_hit@20": 1.0,
-      "source_hit@5": 0.8571428571428571,
+      "source_hit@5": 0.875,
       "zero_result_rate": 0.0
     },
     "differential-geometry": {
@@ -4835,9 +5274,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3435.4402639437467,
-      "latency_ms_p50": 3435.4402639437467,
-      "latency_ms_p95": 3503.189725789707,
+      "latency_ms_mean": 3219.0061741275713,
+      "latency_ms_p50": 3219.0061741275713,
+      "latency_ms_p95": 3320.1613411074504,
       "mrr": 0.6666666666666666,
       "ndcg@1": 0.5,
       "ndcg@10": 0.6998026302805553,
@@ -4848,8 +5287,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 0.6666666666666666,
-      "payload_bytes_mean": 2762093.0,
-      "payload_bytes_p95": 2854005.5,
+      "payload_bytes_mean": 2971956.5,
+      "payload_bytes_p95": 3068921.1500000004,
       "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -4866,9 +5305,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 8134.69802797772,
-      "latency_ms_p50": 8134.69802797772,
-      "latency_ms_p95": 8134.69802797772,
+      "latency_ms_mean": 6045.42666207999,
+      "latency_ms_p50": 6045.42666207999,
+      "latency_ms_p95": 6045.42666207999,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 1.0,
@@ -4889,30 +5328,30 @@
       "zero_result_rate": 0.0
     },
     "exact-name": {
-      "gold_recall@1": 0.4,
-      "gold_recall@10": 0.6,
-      "gold_recall@20": 0.7,
-      "gold_recall@5": 0.5,
-      "hit@1": 0.6,
-      "hit@10": 0.8,
-      "hit@20": 0.8,
-      "hit@5": 0.6,
-      "latency_ms_mean": 4908.4229403641075,
-      "latency_ms_p50": 3086.3483420107514,
-      "latency_ms_p95": 8004.3981279945,
-      "mrr": 0.6333333333333333,
-      "ndcg@1": 0.6,
-      "ndcg@10": 0.6135089459883035,
-      "ndcg@20": 0.6300156145899549,
-      "ndcg@5": 0.5574309205981944,
-      "owner_hit@1": 0.6,
-      "owner_hit@10": 0.8,
-      "owner_hit@20": 0.8,
-      "owner_hit@5": 0.6,
-      "owner_mrr": 0.6333333333333333,
-      "payload_bytes_mean": 122300109.6,
-      "payload_bytes_p95": 438700667.7999999,
-      "queries": 5,
+      "gold_recall@1": 0.5,
+      "gold_recall@10": 0.6666666666666666,
+      "gold_recall@20": 0.75,
+      "gold_recall@5": 0.5833333333333334,
+      "hit@1": 0.6666666666666666,
+      "hit@10": 0.8333333333333334,
+      "hit@20": 0.8333333333333334,
+      "hit@5": 0.6666666666666666,
+      "latency_ms_mean": 3477.5474484971105,
+      "latency_ms_p50": 3048.0495285009965,
+      "latency_ms_p95": 5499.3346705741715,
+      "mrr": 0.6944444444444445,
+      "ndcg@1": 0.6666666666666666,
+      "ndcg@10": 0.6779241216569196,
+      "ndcg@20": 0.6916796788249623,
+      "ndcg@5": 0.6311924338318287,
+      "owner_hit@1": 0.6666666666666666,
+      "owner_hit@10": 0.8333333333333334,
+      "owner_hit@20": 0.8333333333333334,
+      "owner_hit@5": 0.6666666666666666,
+      "owner_mrr": 0.6944444444444445,
+      "payload_bytes_mean": 113036720.16666667,
+      "payload_bytes_p95": 415787604.0,
+      "queries": 6,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
       "source_hit@20": 1.0,
@@ -4928,9 +5367,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3581.8698280490935,
-      "latency_ms_p50": 3581.8698280490935,
-      "latency_ms_p95": 3581.8698280490935,
+      "latency_ms_mean": 2801.4660510234535,
+      "latency_ms_p50": 2801.4660510234535,
+      "latency_ms_p95": 2801.4660510234535,
       "mrr": 1.0,
       "ndcg@1": 0.42857142857142855,
       "ndcg@10": 0.4914186020256907,
@@ -4959,9 +5398,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 0.6666666666666666,
-      "latency_ms_mean": 2957.935689638058,
-      "latency_ms_p50": 3086.3483420107514,
-      "latency_ms_p95": 3744.041905400809,
+      "latency_ms_mean": 3159.903740587955,
+      "latency_ms_p50": 3221.587029984221,
+      "latency_ms_p95": 3570.9186143707484,
       "mrr": 0.7000000000000001,
       "ndcg@1": 0.6666666666666666,
       "ndcg@10": 0.6211246774332772,
@@ -4972,8 +5411,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 0.6666666666666666,
       "owner_mrr": 0.7000000000000001,
-      "payload_bytes_mean": 42360574.333333336,
-      "payload_bytes_p95": 69457044.5,
+      "payload_bytes_mean": 50589973.0,
+      "payload_bytes_p95": 74847652.8,
       "queries": 3,
       "source_hit@1": 0.6666666666666666,
       "source_hit@10": 1.0,
@@ -4990,21 +5429,21 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3005.1168259815313,
-      "latency_ms_p50": 3005.1168259815313,
-      "latency_ms_p95": 3078.2251904078294,
+      "latency_ms_mean": 3110.7331420644186,
+      "latency_ms_p50": 3110.7331420644186,
+      "latency_ms_p95": 3210.5016411922406,
       "mrr": 1.0,
       "ndcg@1": 1.0,
-      "ndcg@10": 0.871492596168576,
-      "ndcg@20": 0.871492596168576,
-      "ndcg@5": 0.871492596168576,
+      "ndcg@10": 0.893577301495486,
+      "ndcg@20": 0.893577301495486,
+      "ndcg@5": 0.893577301495486,
       "owner_hit@1": 1.0,
       "owner_hit@10": 1.0,
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 1.0,
-      "payload_bytes_mean": 36761455.5,
-      "payload_bytes_p95": 67939492.64999999,
+      "payload_bytes_mean": 36873907.0,
+      "payload_bytes_p95": 68105521.60000001,
       "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5021,21 +5460,21 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3931.105164112523,
-      "latency_ms_p50": 3931.105164112523,
-      "latency_ms_p95": 4440.387545782141,
+      "latency_ms_mean": 3281.8860865663737,
+      "latency_ms_p50": 3281.8860865663737,
+      "latency_ms_p95": 3654.5648668077774,
       "mrr": 0.75,
       "ndcg@1": 0.5,
       "ndcg@10": 0.7019805299716119,
-      "ndcg@20": 0.7410084782974399,
+      "ndcg@20": 0.7416883606305373,
       "ndcg@5": 0.6418969313393521,
       "owner_hit@1": 0.5,
       "owner_hit@10": 1.0,
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 0.75,
-      "payload_bytes_mean": 4784169.5,
-      "payload_bytes_p95": 7583516.45,
+      "payload_bytes_mean": 4546789.5,
+      "payload_bytes_p95": 7132494.45,
       "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5052,9 +5491,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 4139.291122904979,
-      "latency_ms_p50": 4139.291122904979,
-      "latency_ms_p95": 4139.291122904979,
+      "latency_ms_mean": 2659.811567980796,
+      "latency_ms_p50": 2659.811567980796,
+      "latency_ms_p95": 2659.811567980796,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.9197207891481876,
@@ -5083,9 +5522,9 @@
       "hit@10": 0.0,
       "hit@20": 1.0,
       "hit@5": 0.0,
-      "latency_ms_mean": 2808.5693429457024,
-      "latency_ms_p50": 2808.5693429457024,
-      "latency_ms_p95": 2808.5693429457024,
+      "latency_ms_mean": 2652.877332177013,
+      "latency_ms_p50": 2652.877332177013,
+      "latency_ms_p95": 2652.877332177013,
       "mrr": 0.0625,
       "ndcg@1": 0.0,
       "ndcg@10": 0.0,
@@ -5096,8 +5535,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 0.0,
       "owner_mrr": 0.0625,
-      "payload_bytes_mean": 1167082.0,
-      "payload_bytes_p95": 1167082.0,
+      "payload_bytes_mean": 1500227.0,
+      "payload_bytes_p95": 1500227.0,
       "queries": 1,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5114,9 +5553,9 @@
       "hit@10": 0.6666666666666666,
       "hit@20": 0.6666666666666666,
       "hit@5": 0.3333333333333333,
-      "latency_ms_mean": 3420.7429509066665,
-      "latency_ms_p50": 3581.8698280490935,
-      "latency_ms_p95": 3858.9267666335218,
+      "latency_ms_mean": 2999.034550312596,
+      "latency_ms_p50": 2801.4660510234535,
+      "latency_ms_p95": 3595.5687911016867,
       "mrr": 0.3888888888888889,
       "ndcg@1": 0.14285714285714285,
       "ndcg@10": 0.25726957632541225,
@@ -5127,8 +5566,8 @@
       "owner_hit@20": 0.6666666666666666,
       "owner_hit@5": 0.0,
       "owner_mrr": 0.0925925925925926,
-      "payload_bytes_mean": 26937910.333333332,
-      "payload_bytes_p95": 64585391.9,
+      "payload_bytes_mean": 27617261.666666668,
+      "payload_bytes_p95": 66419640.49999999,
       "queries": 3,
       "source_hit@1": 0.6666666666666666,
       "source_hit@10": 0.6666666666666666,
@@ -5138,28 +5577,28 @@
     },
     "probability": {
       "gold_recall@1": 0.0,
-      "gold_recall@10": 0.5,
-      "gold_recall@20": 0.5,
-      "gold_recall@5": 0.5,
+      "gold_recall@10": 0.0,
+      "gold_recall@20": 0.0,
+      "gold_recall@5": 0.0,
       "hit@1": 0.0,
-      "hit@10": 1.0,
-      "hit@20": 1.0,
-      "hit@5": 1.0,
-      "latency_ms_mean": 2857.172373100184,
-      "latency_ms_p50": 2857.172373100184,
-      "latency_ms_p95": 2857.172373100184,
-      "mrr": 0.3333333333333333,
+      "hit@10": 0.0,
+      "hit@20": 0.0,
+      "hit@5": 0.0,
+      "latency_ms_mean": 2837.7517759799957,
+      "latency_ms_p50": 2837.7517759799957,
+      "latency_ms_p95": 2837.7517759799957,
+      "mrr": 0.0,
       "ndcg@1": 0.0,
-      "ndcg@10": 0.3935773014954859,
-      "ndcg@20": 0.3935773014954859,
-      "ndcg@5": 0.3935773014954859,
+      "ndcg@10": 0.0,
+      "ndcg@20": 0.0,
+      "ndcg@5": 0.0,
       "owner_hit@1": 0.0,
-      "owner_hit@10": 1.0,
-      "owner_hit@20": 1.0,
-      "owner_hit@5": 1.0,
-      "owner_mrr": 0.3333333333333333,
-      "payload_bytes_mean": 2674751.0,
-      "payload_bytes_p95": 2674751.0,
+      "owner_hit@10": 0.0,
+      "owner_hit@20": 0.0,
+      "owner_hit@5": 0.0,
+      "owner_mrr": 0.0,
+      "payload_bytes_mean": 2844095.0,
+      "payload_bytes_p95": 2844095.0,
       "queries": 1,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5176,9 +5615,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 2717.1048631425947,
-      "latency_ms_p50": 2717.1048631425947,
-      "latency_ms_p95": 2717.1048631425947,
+      "latency_ms_mean": 3168.570626876317,
+      "latency_ms_p50": 3168.570626876317,
+      "latency_ms_p95": 3168.570626876317,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.7871546029909718,
@@ -5189,8 +5628,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 1.0,
-      "payload_bytes_mean": 19025921.0,
-      "payload_bytes_p95": 19025921.0,
+      "payload_bytes_mean": 24054332.0,
+      "payload_bytes_p95": 24054332.0,
       "queries": 1,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5207,9 +5646,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 0.0,
-      "latency_ms_mean": 2790.648153750226,
-      "latency_ms_p50": 2790.648153750226,
-      "latency_ms_p95": 2790.648153750226,
+      "latency_ms_mean": 2511.8351710261777,
+      "latency_ms_p50": 2511.8351710261777,
+      "latency_ms_p95": 2511.8351710261777,
       "mrr": 0.16666666666666666,
       "ndcg@1": 0.0,
       "ndcg@10": 0.280390126950546,
@@ -5231,27 +5670,27 @@
     },
     "repository-name": {
       "gold_recall@1": 0.3333333333333333,
-      "gold_recall@10": 0.7916666666666666,
-      "gold_recall@20": 0.7916666666666666,
-      "gold_recall@5": 0.7083333333333334,
+      "gold_recall@10": 0.6666666666666666,
+      "gold_recall@20": 0.6666666666666666,
+      "gold_recall@5": 0.5833333333333334,
       "hit@1": 0.75,
-      "hit@10": 1.0,
-      "hit@20": 1.0,
-      "hit@5": 1.0,
-      "latency_ms_mean": 4374.406384769827,
-      "latency_ms_p50": 3252.8775690007024,
-      "latency_ms_p95": 7451.773797988424,
-      "mrr": 0.8333333333333334,
+      "hit@10": 0.75,
+      "hit@20": 0.75,
+      "hit@5": 0.75,
+      "latency_ms_mean": 3671.130935807014,
+      "latency_ms_p50": 2918.815515062306,
+      "latency_ms_p95": 5588.594550889683,
+      "mrr": 0.75,
       "ndcg@1": 0.6071428571428571,
-      "ndcg@10": 0.7102066232168391,
-      "ndcg@20": 0.7102066232168391,
-      "ndcg@5": 0.6595173925207714,
+      "ndcg@10": 0.6228546505064226,
+      "ndcg@20": 0.6228546505064226,
+      "ndcg@5": 0.5721654198103548,
       "owner_hit@1": 0.5,
-      "owner_hit@10": 1.0,
-      "owner_hit@20": 1.0,
-      "owner_hit@5": 0.75,
-      "owner_mrr": 0.6111111111111112,
-      "payload_bytes_mean": 136024406.0,
+      "owner_hit@10": 0.75,
+      "owner_hit@20": 0.75,
+      "owner_hit@5": 0.5,
+      "owner_mrr": 0.5277777777777778,
+      "payload_bytes_mean": 136079972.25,
       "payload_bytes_p95": 452262985.6499998,
       "queries": 4,
       "source_hit@1": 1.0,
@@ -5269,9 +5708,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3054.815440904349,
-      "latency_ms_p50": 3054.815440904349,
-      "latency_ms_p95": 4030.8435547049157,
+      "latency_ms_mean": 2654.1012624511495,
+      "latency_ms_p50": 2654.1012624511495,
+      "latency_ms_p95": 2659.2405374278314,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.8534376960695798,
@@ -5282,8 +5721,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 1.0,
-      "payload_bytes_mean": 5263416.5,
-      "payload_bytes_p95": 6633564.35,
+      "payload_bytes_mean": 5884409.0,
+      "payload_bytes_p95": 6695663.6,
       "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5300,9 +5739,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3365.2358511462808,
-      "latency_ms_p50": 3365.2358511462808,
-      "latency_ms_p95": 3365.2358511462808,
+      "latency_ms_mean": 2867.798552964814,
+      "latency_ms_p50": 2867.798552964814,
+      "latency_ms_p95": 2867.798552964814,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.9073218002554915,
@@ -5331,21 +5770,21 @@
       "hit@10": 0.8,
       "hit@20": 0.9,
       "hit@5": 0.7,
-      "latency_ms_mean": 3270.020624785684,
-      "latency_ms_p50": 3324.8499175533652,
-      "latency_ms_p95": 4026.980009512044,
+      "latency_ms_mean": 3048.1168794911355,
+      "latency_ms_p50": 3084.2249405104667,
+      "latency_ms_p95": 3650.4712915746495,
       "mrr": 0.66625,
       "ndcg@1": 0.6,
-      "ndcg@10": 0.6131059717368205,
-      "ndcg@20": 0.6323637517720803,
-      "ndcg@5": 0.5411022597692796,
+      "ndcg@10": 0.6175229128022024,
+      "ndcg@20": 0.6367806928374622,
+      "ndcg@5": 0.5455192008346617,
       "owner_hit@1": 0.6,
       "owner_hit@10": 0.8,
       "owner_hit@20": 0.9,
       "owner_hit@5": 0.7,
       "owner_mrr": 0.66625,
-      "payload_bytes_mean": 16098076.1,
-      "payload_bytes_p95": 62304008.14999998,
+      "payload_bytes_mean": 19403849.8,
+      "payload_bytes_p95": 74137043.1,
       "queries": 10,
       "source_hit@1": 0.7,
       "source_hit@10": 0.9,
@@ -5362,9 +5801,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 2882.163256581407,
-      "latency_ms_p50": 2882.163256581407,
-      "latency_ms_p95": 3030.715810676338,
+      "latency_ms_mean": 3021.5413269470446,
+      "latency_ms_p50": 3021.5413269470446,
+      "latency_ms_p95": 3153.8676968833897,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.893577301495486,
@@ -5375,8 +5814,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 1.0,
-      "payload_bytes_mean": 13083729.0,
-      "payload_bytes_p95": 18431701.8,
+      "payload_bytes_mean": 16802583.0,
+      "payload_bytes_p95": 23329157.099999998,
       "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5386,11 +5825,11 @@
     }
   },
   "provider": "local+cohere",
-  "query_config_sha256": "8618e1f63078dca56eb37cf84f19ba7f867a986e021a6a3e72aaedf2b4d61c10",
+  "query_config_sha256": "4f885c046844e8359c0fb61af2926d041d6e768e2686fe550e054d9f0eb5b99e",
   "rerank_model": "rerank-v4.0-fast",
   "rrf_constant": 60,
   "schema_version": 1,
-  "search_units": 44,
+  "search_units": 48,
   "source_table_sha256": "10f7ac8884792d1d12f092a1a8de22d73e1bd2568134f97e0bbe2f77b9e28394",
   "variant": "gemini_multiquery_rrf_cohere_v4_fast_v1"
 }

@@ -363,19 +363,8 @@
           "runs": {
             "frontend_lexical_v2": 2,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
-            "gemini_multiquery_rrf_v1": 9,
+            "gemini_multiquery_rrf_v1": 8,
             "normalized_path_content_v1": 2
-          }
-        },
-        {
-          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochGeometric.lean",
-          "judgment": null,
-          "repository": "facebookresearch__atlas-lean",
-          "runs": {
-            "frontend_lexical_v2": 10,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 2,
-            "gemini_multiquery_rrf_v1": 10,
-            "normalized_path_content_v1": 10
           }
         },
         {
@@ -396,12 +385,20 @@
           }
         },
         {
-          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Basic.lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochGeometric.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 2
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RiemannRochTheorem/Corollaries.lean",
           "judgment": null,
           "repository": "CBirkbeck__AINTLIB",
           "runs": {
-            "frontend_lexical_v1": 6,
             "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 10,
             "normalized_path_content_v1": 3
           }
         },
@@ -423,21 +420,22 @@
           }
         },
         {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Basic.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v1": 6,
+            "frontend_lexical_v2": 4,
+            "normalized_path_content_v1": 4
+          }
+        },
+        {
           "file": "projects/HasseWeil/HasseWeil/HasseBound/PoleDivisorFallback.lean",
           "judgment": null,
           "repository": "CBirkbeck__AINTLIB",
           "runs": {
             "frontend_lexical_v1": 4,
             "gemini_multiquery_rrf_v1": 5
-          }
-        },
-        {
-          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/PlaceEquiv.lean",
-          "judgment": null,
-          "repository": "CBirkbeck__AINTLIB",
-          "runs": {
-            "frontend_lexical_v2": 4,
-            "normalized_path_content_v1": 4
           }
         },
         {
@@ -449,12 +447,11 @@
           }
         },
         {
-          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Basic.lean",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/PlaceEquiv.lean",
           "judgment": null,
           "repository": "CBirkbeck__AINTLIB",
           "runs": {
             "frontend_lexical_v2": 5,
-            "gemini_multiquery_rrf_v1": 8,
             "normalized_path_content_v1": 5
           }
         },
@@ -467,11 +464,12 @@
           }
         },
         {
-          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Polar.lean",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Basic.lean",
           "judgment": null,
           "repository": "CBirkbeck__AINTLIB",
           "runs": {
             "frontend_lexical_v2": 6,
+            "gemini_multiquery_rrf_v1": 9,
             "normalized_path_content_v1": 6
           }
         },
@@ -485,7 +483,7 @@
           }
         },
         {
-          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/LinearKneser.lean",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Polar.lean",
           "judgment": null,
           "repository": "CBirkbeck__AINTLIB",
           "runs": {
@@ -510,7 +508,7 @@
           }
         },
         {
-          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RRspace/Basic.lean",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/LinearKneser.lean",
           "judgment": null,
           "repository": "CBirkbeck__AINTLIB",
           "runs": {
@@ -535,9 +533,9 @@
           }
         },
         {
-          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochDedekind.lean",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RRspace/Basic.lean",
           "judgment": null,
-          "repository": "facebookresearch__atlas-lean",
+          "repository": "CBirkbeck__AINTLIB",
           "runs": {
             "frontend_lexical_v2": 9,
             "normalized_path_content_v1": 9
@@ -557,6 +555,15 @@
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 9
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochDedekind.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 10,
+            "normalized_path_content_v1": 10
           }
         },
         {
@@ -957,7 +964,7 @@
           "runs": {
             "frontend_lexical_v1": 2,
             "frontend_lexical_v2": 2,
-            "gemini_multiquery_rrf_v1": 8,
+            "gemini_multiquery_rrf_v1": 7,
             "normalized_path_content_v1": 2
           }
         },
@@ -967,7 +974,7 @@
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 2,
-            "gemini_multiquery_rrf_v1": 6
+            "gemini_multiquery_rrf_v1": 5
           }
         },
         {
@@ -977,7 +984,7 @@
           "runs": {
             "frontend_lexical_v1": 3,
             "frontend_lexical_v2": 3,
-            "gemini_multiquery_rrf_v1": 9,
+            "gemini_multiquery_rrf_v1": 8,
             "normalized_path_content_v1": 3
           }
         },
@@ -987,7 +994,7 @@
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
-            "gemini_multiquery_rrf_v1": 7
+            "gemini_multiquery_rrf_v1": 6
           }
         },
         {
@@ -1024,14 +1031,6 @@
           }
         },
         {
-          "file": "ClassFieldTheory.lean",
-          "judgment": null,
-          "repository": "kbuzzard__ClassFieldTheory",
-          "runs": {
-            "gemini_multiquery_rrf_v1": 5
-          }
-        },
-        {
           "file": "OddOrder/Algebra/IdempotentLift.lean",
           "judgment": null,
           "repository": "yawara__odd-order",
@@ -1052,7 +1051,8 @@
           "judgment": null,
           "repository": "yawara__odd-order",
           "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 9
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 9,
+            "gemini_multiquery_rrf_v1": 10
           }
         },
         {
@@ -1060,7 +1060,7 @@
           "judgment": null,
           "repository": "CBirkbeck__AINTLIB",
           "runs": {
-            "gemini_multiquery_rrf_v1": 10
+            "gemini_multiquery_rrf_v1": 9
           }
         },
         {
@@ -1143,7 +1143,7 @@
           "repository": "Vilin97__lean-pool",
           "runs": {
             "frontend_lexical_v1": 2,
-            "gemini_multiquery_rrf_v1": 5
+            "gemini_multiquery_rrf_v1": 4
           }
         },
         {
@@ -1189,7 +1189,7 @@
           "repository": "TauCetiProject__TauCeti",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 4,
-            "gemini_multiquery_rrf_v1": 4
+            "gemini_multiquery_rrf_v1": 5
           }
         },
         {
@@ -1234,11 +1234,10 @@
           }
         },
         {
-          "file": "TauCeti/Topology/Covering/Monodromy/Basic.lean",
+          "file": "TauCeti/Topology/Homotopy/Monodromy/Functoriality.lean",
           "judgment": null,
           "repository": "TauCetiProject__TauCeti",
           "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 7,
             "gemini_multiquery_rrf_v1": 6
           }
         },
@@ -1270,10 +1269,11 @@
           }
         },
         {
-          "file": "TauCeti/Topology/Homotopy/Monodromy/Functoriality.lean",
+          "file": "TauCeti/Topology/Covering/Monodromy/Basic.lean",
           "judgment": null,
           "repository": "TauCetiProject__TauCeti",
           "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 7,
             "gemini_multiquery_rrf_v1": 7
           }
         },
@@ -1291,7 +1291,7 @@
           "repository": "HoTT__Coq-HoTT",
           "runs": {
             "frontend_lexical_v1": 9,
-            "gemini_multiquery_rrf_v1": 9
+            "gemini_multiquery_rrf_v1": 10
           }
         },
         {
@@ -1300,7 +1300,7 @@
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 9,
-            "gemini_multiquery_rrf_v1": 10
+            "gemini_multiquery_rrf_v1": 9
           }
         },
         {
@@ -1464,10 +1464,10 @@
           "repository": "jwiegley__category-theory",
           "runs": {
             "frontend_lexical_v1": 1,
-            "frontend_lexical_v2": 2,
+            "frontend_lexical_v2": 1,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 5,
-            "gemini_multiquery_rrf_v1": 8,
-            "normalized_path_content_v1": 2
+            "gemini_multiquery_rrf_v1": 1,
+            "normalized_path_content_v1": 1
           }
         },
         {
@@ -1475,21 +1475,8 @@
           "judgment": null,
           "repository": "leanprover-community__mathlib4",
           "runs": {
-            "frontend_lexical_v2": 1,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 1,
-            "gemini_multiquery_rrf_v1": 1,
-            "normalized_path_content_v1": 1
-          }
-        },
-        {
-          "file": "Mathlib/Algebra/Homology/DerivedCategory/DerivabilityStructureInjectives.lean",
-          "judgment": null,
-          "repository": "leanprover-community__mathlib4",
-          "runs": {
-            "frontend_lexical_v2": 5,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 6,
-            "gemini_multiquery_rrf_v1": 2,
-            "normalized_path_content_v1": 5
+            "gemini_multiquery_rrf_v1": 4
           }
         },
         {
@@ -1503,7 +1490,19 @@
           "repository": "leanprover-community__mathlib4",
           "runs": {
             "frontend_lexical_v1": 2,
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 3,
+            "normalized_path_content_v1": 2
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/RightDerived.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v1": 3,
             "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 2,
             "normalized_path_content_v1": 3
           }
         },
@@ -1522,43 +1521,11 @@
           }
         },
         {
-          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AcyclicResolution.lean",
-          "judgment": null,
-          "repository": "Vilin97__Clawristotle",
-          "runs": {
-            "frontend_lexical_v2": 8,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 9,
-            "gemini_multiquery_rrf_v1": 3,
-            "normalized_path_content_v1": 8
-          }
-        },
-        {
-          "file": "Mathlib/CategoryTheory/Abelian/RightDerived.lean",
-          "judgment": null,
-          "repository": "leanprover-community__mathlib4",
-          "runs": {
-            "frontend_lexical_v1": 3,
-            "frontend_lexical_v2": 4,
-            "normalized_path_content_v1": 4
-          }
-        },
-        {
           "file": "v1/Atlas/AlgebraicGeometryI/code/AdjustedResolutions.lean",
           "judgment": null,
           "repository": "facebookresearch__atlas-lean",
           "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
-            "gemini_multiquery_rrf_v1": 10
-          }
-        },
-        {
-          "file": "Mathlib.lean",
-          "judgment": null,
-          "repository": "leanprover-community__mathlib4",
-          "runs": {
-            "frontend_lexical_v2": 6,
-            "gemini_multiquery_rrf_v1": 4,
-            "normalized_path_content_v1": 6
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3
           }
         },
         {
@@ -1567,32 +1534,23 @@
           "repository": "leanprover-community__mathlib4",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 4,
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/SheafCechInjectiveBicomplex.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
             "gemini_multiquery_rrf_v1": 6
           }
         },
         {
-          "file": "TauCeti/Algebra/Category/ModuleCat/CartanMap.lean",
-          "judgment": null,
-          "repository": "TauCetiProject__TauCeti",
-          "runs": {
-            "frontend_lexical_v2": 7,
-            "normalized_path_content_v1": 7
-          }
-        },
-        {
-          "file": "v1/Atlas/NumberTheoryI/code/Prop2357.lean",
-          "judgment": null,
-          "repository": "facebookresearch__atlas-lean",
-          "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 7
-          }
-        },
-        {
-          "file": "Mathlib/Algebra/Homology/HomotopyCategory/KInjective.lean",
+          "file": "Mathlib/Algebra/Homology/DerivedCategory/DerivabilityStructureInjectives.lean",
           "judgment": null,
           "repository": "leanprover-community__mathlib4",
           "runs": {
-            "gemini_multiquery_rrf_v1": 7
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 6
           }
         },
         {
@@ -1600,32 +1558,46 @@
           "judgment": null,
           "repository": "leanprover-community__mathlib4",
           "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 9,
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23DerivedFunctors.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 7
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/SheafCechInjectiveCokernel.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "v1/Atlas/NumberTheoryI/code/Prop2357.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 8
           }
         },
         {
-          "file": "Mathlib/CategoryTheory/Localization/Resolution.lean",
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/SheafCechInjectiveComparison.lean",
           "judgment": null,
-          "repository": "leanprover-community__mathlib4",
+          "repository": "CBirkbeck__AINTLIB",
           "runs": {
-            "frontend_lexical_v2": 9,
-            "gemini_multiquery_rrf_v1": 9,
-            "normalized_path_content_v1": 9
+            "gemini_multiquery_rrf_v1": 10
           }
         },
         {
-          "file": "LeanCondensed/Mathlib/Algebra/Homology/DerivedCategory/TwoVariable.lean",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AcyclicResolution.lean",
           "judgment": null,
-          "repository": "dagurtomas__LeanCondensed",
-          "runs": {
-            "frontend_lexical_v2": 10,
-            "normalized_path_content_v1": 10
-          }
-        },
-        {
-          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23AdaptedResolution.lean",
-          "judgment": null,
-          "repository": "facebookresearch__atlas-lean",
+          "repository": "Vilin97__Clawristotle",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 10
           }
@@ -2316,7 +2288,7 @@
           "runs": {
             "frontend_lexical_v2": 1,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 1,
-            "gemini_multiquery_rrf_v1": 4,
+            "gemini_multiquery_rrf_v1": 5,
             "normalized_path_content_v1": 1
           }
         },
@@ -2336,18 +2308,17 @@
           "runs": {
             "frontend_lexical_v2": 3,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 2,
-            "gemini_multiquery_rrf_v1": 5,
+            "gemini_multiquery_rrf_v1": 4,
             "normalized_path_content_v1": 3
           }
         },
         {
-          "file": "Mathlib/Topology/ContinuousMap/Weierstrass.lean",
+          "file": "projects/PadicLFunctions/PadicLFunctions/Coleman/Theorem.lean",
           "judgment": null,
-          "repository": "leanprover-community__mathlib4",
+          "repository": "CBirkbeck__AINTLIB",
           "runs": {
+            "frontend_lexical_v1": 4,
             "frontend_lexical_v2": 2,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 4,
-            "gemini_multiquery_rrf_v1": 6,
             "normalized_path_content_v1": 2
           }
         },
@@ -2366,10 +2337,10 @@
           "repository": "ShouqiaoW__erdos",
           "runs": {
             "frontend_lexical_v1": 9,
-            "frontend_lexical_v2": 6,
+            "frontend_lexical_v2": 5,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 6,
             "gemini_multiquery_rrf_v1": 3,
-            "normalized_path_content_v1": 6
+            "normalized_path_content_v1": 5
           }
         },
         {
@@ -2378,7 +2349,7 @@
           "repository": "isabelle-prover__mirror-afp-devel",
           "runs": {
             "frontend_lexical_v1": 3,
-            "gemini_multiquery_rrf_v1": 8
+            "gemini_multiquery_rrf_v1": 9
           }
         },
         {
@@ -2390,21 +2361,13 @@
           }
         },
         {
-          "file": "projects/PadicLFunctions/PadicLFunctions/Coleman/Theorem.lean",
-          "judgment": null,
-          "repository": "CBirkbeck__AINTLIB",
-          "runs": {
-            "frontend_lexical_v1": 4,
-            "frontend_lexical_v2": 5,
-            "normalized_path_content_v1": 5
-          }
-        },
-        {
-          "file": "Mathlib/Analysis/SpecialFunctions/ContinuousFunctionalCalculus/PosPart/Basic.lean",
+          "file": "Mathlib/Topology/ContinuousMap/Weierstrass.lean",
           "judgment": null,
           "repository": "leanprover-community__mathlib4",
           "runs": {
             "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 4,
+            "gemini_multiquery_rrf_v1": 6,
             "normalized_path_content_v1": 4
           }
         },
@@ -2413,7 +2376,8 @@
           "judgment": null,
           "repository": "jrh13__hol-light",
           "runs": {
-            "frontend_lexical_v1": 5
+            "frontend_lexical_v1": 5,
+            "gemini_multiquery_rrf_v1": 8
           }
         },
         {
@@ -2425,11 +2389,29 @@
           }
         },
         {
+          "file": "Mathlib/Topology/ContinuousMap/Algebra.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 6,
+            "normalized_path_content_v1": 6
+          }
+        },
+        {
           "file": "100/fourier.ml",
           "judgment": null,
           "repository": "CakeML__candle",
           "runs": {
             "frontend_lexical_v1": 6
+          }
+        },
+        {
+          "file": "Game/Levels/L14Levels/L01_BolzanoWeierstrass.lean",
+          "judgment": null,
+          "repository": "AlexKontorovich__RealAnalysisGame",
+          "runs": {
+            "frontend_lexical_v2": 7,
+            "normalized_path_content_v1": 7
           }
         },
         {
@@ -2439,15 +2421,6 @@
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 8,
             "gemini_multiquery_rrf_v1": 7
-          }
-        },
-        {
-          "file": "Mathlib/Topology/ContinuousMap/Algebra.lean",
-          "judgment": null,
-          "repository": "leanprover-community__mathlib4",
-          "runs": {
-            "frontend_lexical_v2": 7,
-            "normalized_path_content_v1": 7
           }
         },
         {
@@ -2467,9 +2440,9 @@
           }
         },
         {
-          "file": "Game/Levels/L14Levels/L01_BolzanoWeierstrass.lean",
+          "file": "Mathlib/Analysis/SpecialFunctions/MulExpNegMulSqIntegral.lean",
           "judgment": null,
-          "repository": "AlexKontorovich__RealAnalysisGame",
+          "repository": "leanprover-community__mathlib4",
           "runs": {
             "frontend_lexical_v2": 8,
             "normalized_path_content_v1": 8
@@ -2484,7 +2457,7 @@
           }
         },
         {
-          "file": "Mathlib/Analysis/SpecialFunctions/MulExpNegMulSqIntegral.lean",
+          "file": "Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Basic.lean",
           "judgment": null,
           "repository": "leanprover-community__mathlib4",
           "runs": {
@@ -2501,15 +2474,7 @@
           }
         },
         {
-          "file": "Multivariate/realanalysis.ml",
-          "judgment": null,
-          "repository": "jrh13__hol-light",
-          "runs": {
-            "gemini_multiquery_rrf_v1": 9
-          }
-        },
-        {
-          "file": "Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Basic.lean",
+          "file": "Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Unique.lean",
           "judgment": null,
           "repository": "leanprover-community__mathlib4",
           "runs": {
@@ -2518,19 +2483,19 @@
           }
         },
         {
-          "file": "Multivariate/realanalysis.ml",
-          "judgment": null,
-          "repository": "CakeML__candle",
-          "runs": {
-            "gemini_multiquery_rrf_v1": 10
-          }
-        },
-        {
           "file": "TauCeti/Analysis/CompletelyMonotone/Laplace/Measurability.lean",
           "judgment": null,
           "repository": "TauCetiProject__TauCeti",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 10
+          }
+        },
+        {
+          "file": "Multivariate/realanalysis.ml",
+          "judgment": null,
+          "repository": "jrh13__hol-light",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
           }
         },
         {
@@ -2548,32 +2513,15 @@
     {
       "candidates": [
         {
-          "file": "BrownianMotion/Gaussian/StochasticProcesses.lean",
-          "judgment": null,
-          "repository": "RemyDegenne__brownian-motion",
-          "runs": {
-            "frontend_lexical_v2": 1,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 6,
-            "normalized_path_content_v1": 1
-          }
-        },
-        {
           "file": "verso/Manual/Front.lean",
           "judgment": null,
           "repository": "RemyDegenne__brownian-motion",
           "runs": {
             "frontend_lexical_v1": 1,
+            "frontend_lexical_v2": 4,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 1,
-            "gemini_multiquery_rrf_v1": 2
-          }
-        },
-        {
-          "file": "MathFin/Blueprint.lean",
-          "judgment": null,
-          "repository": "formal-applied-math__formal-mathfin",
-          "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 10,
-            "gemini_multiquery_rrf_v1": 1
+            "gemini_multiquery_rrf_v1": 1,
+            "normalized_path_content_v1": 4
           }
         },
         {
@@ -2582,19 +2530,10 @@
           "repository": "leanprover-community__mathlib4",
           "runs": {
             "frontend_lexical_v1": 4,
-            "frontend_lexical_v2": 2,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 5,
-            "normalized_path_content_v1": 2
-          }
-        },
-        {
-          "file": "BrownianMotion/Gaussian/GaussianProcess.lean",
-          "judgment": null,
-          "repository": "RemyDegenne__brownian-motion",
-          "runs": {
-            "frontend_lexical_v2": 7,
+            "frontend_lexical_v2": 1,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 2,
-            "normalized_path_content_v1": 7
+            "gemini_multiquery_rrf_v1": 6,
+            "normalized_path_content_v1": 1
           }
         },
         {
@@ -2603,18 +2542,19 @@
           "repository": "formal-applied-math__formal-mathfin",
           "runs": {
             "frontend_lexical_v1": 2,
-            "frontend_lexical_v2": 8,
-            "normalized_path_content_v1": 8
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 5,
+            "gemini_multiquery_rrf_v1": 7,
+            "normalized_path_content_v1": 2
           }
         },
         {
-          "file": "BrownianMotion.lean",
+          "file": "v1/Atlas/FourierAnalysis/code/BrownianMotion.lean",
           "judgment": null,
-          "repository": "RemyDegenne__brownian-motion",
+          "repository": "facebookresearch__atlas-lean",
           "runs": {
-            "frontend_lexical_v2": 3,
-            "gemini_multiquery_rrf_v1": 3,
-            "normalized_path_content_v1": 3
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
+            "gemini_multiquery_rrf_v1": 2
           }
         },
         {
@@ -2623,49 +2563,10 @@
           "repository": "formal-applied-math__formal-mathfin",
           "runs": {
             "frontend_lexical_v1": 3,
-            "frontend_lexical_v2": 10,
-            "normalized_path_content_v1": 10
-          }
-        },
-        {
-          "file": "BrownianMotion/Gaussian/BrownianMotion.lean",
-          "judgment": {
-            "file": "BrownianMotion/Gaussian/BrownianMotion.lean",
-            "note": "Brownian-motion construction in the dedicated project.",
-            "relevance": 3,
-            "repository": "RemyDegenne__brownian-motion"
-          },
-          "repository": "RemyDegenne__brownian-motion",
-          "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3
-          }
-        },
-        {
-          "file": "Mathlib/Probability/BrownianMotion/Basic.lean",
-          "judgment": null,
-          "repository": "leanprover-community__mathlib4",
-          "runs": {
-            "frontend_lexical_v2": 4,
+            "frontend_lexical_v2": 3,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 4,
-            "normalized_path_content_v1": 4
-          }
-        },
-        {
-          "file": "v1/Atlas/FourierAnalysis/code/BrownianMotion.lean",
-          "judgment": null,
-          "repository": "facebookresearch__atlas-lean",
-          "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 7,
-            "gemini_multiquery_rrf_v1": 4
-          }
-        },
-        {
-          "file": "BrownianMotion/Continuity/KolmogorovChentsov.lean",
-          "judgment": null,
-          "repository": "RemyDegenne__brownian-motion",
-          "runs": {
-            "frontend_lexical_v2": 5,
-            "normalized_path_content_v1": 5
+            "gemini_multiquery_rrf_v1": 8,
+            "normalized_path_content_v1": 3
           }
         },
         {
@@ -2673,27 +2574,7 @@
           "judgment": null,
           "repository": "formal-applied-math__formal-mathfin",
           "runs": {
-            "gemini_multiquery_rrf_v1": 5
-          }
-        },
-        {
-          "file": "verso/Manual/Pages/Gaussian.lean",
-          "judgment": null,
-          "repository": "RemyDegenne__brownian-motion",
-          "runs": {
-            "frontend_lexical_v2": 6,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 8,
-            "normalized_path_content_v1": 6
-          }
-        },
-        {
-          "file": "MathFin/Foundations/WienerIntegralGaussian.lean",
-          "judgment": null,
-          "repository": "formal-applied-math__formal-mathfin",
-          "runs": {
-            "frontend_lexical_v2": 9,
-            "gemini_multiquery_rrf_v1": 6,
-            "normalized_path_content_v1": 9
+            "gemini_multiquery_rrf_v1": 3
           }
         },
         {
@@ -2701,7 +2582,39 @@
           "judgment": null,
           "repository": "formal-applied-math__formal-mathfin",
           "runs": {
-            "gemini_multiquery_rrf_v1": 7
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "BrownianMotion/Choquet/MeasurableSection.lean",
+          "judgment": null,
+          "repository": "RemyDegenne__brownian-motion",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 6
+          }
+        },
+        {
+          "file": "BrownianMotion/StochasticIntegral/MonotoneProcess.lean",
+          "judgment": null,
+          "repository": "RemyDegenne__brownian-motion",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 7
+          }
+        },
+        {
+          "file": "BrownianMotion/StochasticIntegral/SimpleProcess.lean",
+          "judgment": null,
+          "repository": "RemyDegenne__brownian-motion",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 8
           }
         },
         {
@@ -2709,19 +2622,11 @@
           "judgment": null,
           "repository": "formal-applied-math__formal-mathfin",
           "runs": {
-            "gemini_multiquery_rrf_v1": 8
-          }
-        },
-        {
-          "file": "MathFin/Foundations/ItoIntegralL2.lean",
-          "judgment": null,
-          "repository": "formal-applied-math__formal-mathfin",
-          "runs": {
             "gemini_multiquery_rrf_v1": 9
           }
         },
         {
-          "file": "MathFin/Foundations/WienerIntegralL2.lean",
+          "file": "MathFin/Foundations/ItoIntegralProcess.lean",
           "judgment": null,
           "repository": "formal-applied-math__formal-mathfin",
           "runs": {
@@ -2729,9 +2634,17 @@
           }
         },
         {
-          "file": "Mathlib.lean",
+          "file": "BrownianMotion/Continuity/LimitModification.lean",
           "judgment": null,
-          "repository": "leanprover-community__mathlib4",
+          "repository": "RemyDegenne__brownian-motion",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 10
+          }
+        },
+        {
+          "file": "LeanPool.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
           "runs": {
             "gemini_multiquery_rrf_v1": 10
           }
@@ -2971,7 +2884,7 @@
           },
           "repository": "fpvandoorn__carleson",
           "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 2,
             "gemini_multiquery_rrf_v1": 1
           }
         },
@@ -2990,28 +2903,12 @@
           }
         },
         {
-          "file": "Autoformalization/carleson.ml",
-          "judgment": null,
-          "repository": "jrh13__hol-light",
-          "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 2
-          }
-        },
-        {
-          "file": "Carleson.lean",
-          "judgment": null,
-          "repository": "fpvandoorn__carleson",
-          "runs": {
-            "gemini_multiquery_rrf_v1": 3
-          }
-        },
-        {
           "file": "Carleson/Defs.lean",
           "judgment": null,
           "repository": "fpvandoorn__carleson",
           "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 6,
-            "gemini_multiquery_rrf_v1": 4
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 5,
+            "gemini_multiquery_rrf_v1": 3
           }
         },
         {
@@ -3019,7 +2916,7 @@
           "judgment": null,
           "repository": "fpvandoorn__carleson",
           "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 4
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3
           }
         },
         {
@@ -3027,8 +2924,16 @@
           "judgment": null,
           "repository": "fpvandoorn__carleson",
           "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 5,
-            "gemini_multiquery_rrf_v1": 6
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 4,
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "Carleson.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 4
           }
         },
         {
@@ -3046,11 +2951,19 @@
           "repository": "fpvandoorn__carleson",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 8,
-            "gemini_multiquery_rrf_v1": 7
+            "gemini_multiquery_rrf_v1": 6
           }
         },
         {
-          "file": "Carleson/Classical/VanDerCorput.lean",
+          "file": "Carleson/Classical/Basic.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 6
+          }
+        },
+        {
+          "file": "Carleson/FinitaryCarleson.lean",
           "judgment": null,
           "repository": "fpvandoorn__carleson",
           "runs": {
@@ -3058,7 +2971,7 @@
           }
         },
         {
-          "file": "Carleson/ToMathlib/IntegralBallContinuity.lean",
+          "file": "Carleson/TwoSidedCarleson/NontangentialOperator.lean",
           "judgment": null,
           "repository": "fpvandoorn__carleson",
           "runs": {
@@ -3066,7 +2979,7 @@
           }
         },
         {
-          "file": "Carleson/TwoSidedCarleson/NontangentialOperator.lean",
+          "file": "Carleson/ToMathlib/MeasureTheory/Function/LpSeminorm/Basic.lean",
           "judgment": null,
           "repository": "fpvandoorn__carleson",
           "runs": {
@@ -3074,19 +2987,19 @@
           }
         },
         {
-          "file": "Carleson/Classical/Helper.lean",
+          "file": "lakefile.lean",
+          "judgment": null,
+          "repository": "brettkoonce__lean4-mlir",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        },
+        {
+          "file": "Carleson/TwoSidedCarleson/MainTheorem.lean",
           "judgment": null,
           "repository": "fpvandoorn__carleson",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 10
-          }
-        },
-        {
-          "file": "Carleson/ToMathlib/MeasureTheory/Function/LpSeminorm/Basic.lean",
-          "judgment": null,
-          "repository": "fpvandoorn__carleson",
-          "runs": {
-            "gemini_multiquery_rrf_v1": 10
           }
         }
       ],
@@ -3519,6 +3432,18 @@
     {
       "candidates": [
         {
+          "file": "UniMath/Bicategories/Grothendieck/FibrationToPseudoFunctor.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v1": 9,
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
+            "gemini_multiquery_rrf_v1": 1,
+            "normalized_path_content_v1": 5
+          }
+        },
+        {
           "file": "UniMath/Bicategories/Grothendieck/Unit.v",
           "judgment": null,
           "repository": "UniMath__UniMath",
@@ -3526,7 +3451,7 @@
             "frontend_lexical_v1": 5,
             "frontend_lexical_v2": 1,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 4,
-            "gemini_multiquery_rrf_v1": 3,
+            "gemini_multiquery_rrf_v1": 4,
             "normalized_path_content_v1": 1
           }
         },
@@ -3540,10 +3465,10 @@
           },
           "repository": "UniMath__UniMath",
           "runs": {
-            "frontend_lexical_v2": 8,
+            "frontend_lexical_v2": 9,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 1,
-            "gemini_multiquery_rrf_v1": 1,
-            "normalized_path_content_v1": 8
+            "gemini_multiquery_rrf_v1": 2,
+            "normalized_path_content_v1": 9
           }
         },
         {
@@ -3562,21 +3487,8 @@
           "runs": {
             "frontend_lexical_v1": 6,
             "frontend_lexical_v2": 2,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 9,
-            "gemini_multiquery_rrf_v1": 6,
+            "gemini_multiquery_rrf_v1": 5,
             "normalized_path_content_v1": 2
-          }
-        },
-        {
-          "file": "UniMath/Bicategories/Grothendieck/FibrationToPseudoFunctor.v",
-          "judgment": null,
-          "repository": "UniMath__UniMath",
-          "runs": {
-            "frontend_lexical_v1": 9,
-            "frontend_lexical_v2": 5,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
-            "gemini_multiquery_rrf_v1": 2,
-            "normalized_path_content_v1": 5
           }
         },
         {
@@ -3584,9 +3496,10 @@
           "judgment": null,
           "repository": "jwiegley__category-theory",
           "runs": {
-            "frontend_lexical_v2": 9,
+            "frontend_lexical_v2": 7,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 2,
-            "normalized_path_content_v1": 9
+            "gemini_multiquery_rrf_v1": 9,
+            "normalized_path_content_v1": 7
           }
         },
         {
@@ -3598,13 +3511,25 @@
           }
         },
         {
+          "file": "UniMath/Bicategories/Grothendieck/PseudoFunctorToFibration.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v1": 10,
+            "frontend_lexical_v2": 6,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 5,
+            "gemini_multiquery_rrf_v1": 3,
+            "normalized_path_content_v1": 6
+          }
+        },
+        {
           "file": "src/Cat/Bi/Functor/IndexedCategory.lagda.md",
           "judgment": null,
           "repository": "the1lab__1lab",
           "runs": {
             "frontend_lexical_v2": 3,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 6,
-            "gemini_multiquery_rrf_v1": 4,
+            "gemini_multiquery_rrf_v1": 6,
             "normalized_path_content_v1": 3
           }
         },
@@ -3614,7 +3539,7 @@
           "repository": "jwiegley__category-theory",
           "runs": {
             "frontend_lexical_v1": 3,
-            "gemini_multiquery_rrf_v1": 8
+            "gemini_multiquery_rrf_v1": 7
           }
         },
         {
@@ -3625,7 +3550,7 @@
             "frontend_lexical_v1": 8,
             "frontend_lexical_v2": 4,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 7,
-            "gemini_multiquery_rrf_v1": 7,
+            "gemini_multiquery_rrf_v1": 8,
             "normalized_path_content_v1": 4
           }
         },
@@ -3635,28 +3560,6 @@
           "repository": "jwiegley__category-theory",
           "runs": {
             "frontend_lexical_v1": 4
-          }
-        },
-        {
-          "file": "UniMath/Bicategories/Grothendieck/PseudoFunctorToFibration.v",
-          "judgment": null,
-          "repository": "UniMath__UniMath",
-          "runs": {
-            "frontend_lexical_v1": 10,
-            "frontend_lexical_v2": 6,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 5,
-            "gemini_multiquery_rrf_v1": 5,
-            "normalized_path_content_v1": 6
-          }
-        },
-        {
-          "file": "UniMath/CategoryTheory/IndexedCategories/IndexedFunctorToCartesian.v",
-          "judgment": null,
-          "repository": "UniMath__UniMath",
-          "runs": {
-            "frontend_lexical_v2": 7,
-            "gemini_multiquery_rrf_v1": 9,
-            "normalized_path_content_v1": 7
           }
         },
         {
@@ -3678,9 +3581,26 @@
           }
         },
         {
-          "file": "UniMath/CategoryTheory/IndexedCategories/FibrationToIndexedCategory.v",
+          "file": "UniMath/CategoryTheory/IndexedCategories/IndexedFunctorToCartesian.v",
           "judgment": null,
           "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 8,
+            "normalized_path_content_v1": 8
+          }
+        },
+        {
+          "file": "Construction/Grothendieck/Fibration.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 9
+          }
+        },
+        {
+          "file": "Construction/Indexed.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 10
           }
@@ -3699,7 +3619,7 @@
             "frontend_lexical_v1": 1,
             "frontend_lexical_v2": 1,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 2,
-            "gemini_multiquery_rrf_v1": 3,
+            "gemini_multiquery_rrf_v1": 4,
             "normalized_path_content_v1": 1
           }
         },
@@ -3740,7 +3660,7 @@
           "runs": {
             "frontend_lexical_v2": 2,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 5,
-            "gemini_multiquery_rrf_v1": 4,
+            "gemini_multiquery_rrf_v1": 5,
             "normalized_path_content_v1": 2
           }
         },
@@ -3764,6 +3684,7 @@
           "runs": {
             "frontend_lexical_v2": 3,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 10,
+            "gemini_multiquery_rrf_v1": 3,
             "normalized_path_content_v1": 3
           }
         },
@@ -3792,7 +3713,7 @@
           "runs": {
             "frontend_lexical_v2": 4,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 9,
-            "gemini_multiquery_rrf_v1": 5,
+            "gemini_multiquery_rrf_v1": 6,
             "normalized_path_content_v1": 4
           }
         },
@@ -3822,7 +3743,8 @@
           "judgment": null,
           "repository": "yawara__odd-order",
           "runs": {
-            "frontend_lexical_v1": 5
+            "frontend_lexical_v1": 5,
+            "gemini_multiquery_rrf_v1": 10
           }
         },
         {
@@ -3831,7 +3753,7 @@
           "repository": "yawara__odd-order",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 6,
-            "gemini_multiquery_rrf_v1": 6
+            "gemini_multiquery_rrf_v1": 7
           }
         },
         {
@@ -3844,14 +3766,6 @@
         },
         {
           "file": "OddOrder/BG/AppD_CNGroups.lean",
-          "judgment": null,
-          "repository": "yawara__odd-order",
-          "runs": {
-            "gemini_multiquery_rrf_v1": 7
-          }
-        },
-        {
-          "file": "OddOrder/BG/AppC_SL2Example.lean",
           "judgment": null,
           "repository": "yawara__odd-order",
           "runs": {
@@ -3892,14 +3806,6 @@
           }
         },
         {
-          "file": "OddOrder/BG/AppC_HypothesisB.lean",
-          "judgment": null,
-          "repository": "yawara__odd-order",
-          "runs": {
-            "gemini_multiquery_rrf_v1": 10
-          }
-        },
-        {
           "file": "OddOrder/GroupTheory/RepresentationTheory/CliffordDecomposition.lean",
           "judgment": null,
           "repository": "yawara__odd-order",
@@ -3926,8 +3832,16 @@
             "frontend_lexical_v1": 1,
             "frontend_lexical_v2": 1,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 1,
-            "gemini_multiquery_rrf_v1": 1,
+            "gemini_multiquery_rrf_v1": 3,
             "normalized_path_content_v1": 1
+          }
+        },
+        {
+          "file": "JordanPick/PicksTheorem/Pick.lean",
+          "judgment": null,
+          "repository": "rkirov__jordan_pick",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 1
           }
         },
         {
@@ -3937,16 +3851,8 @@
           "runs": {
             "frontend_lexical_v1": 3,
             "frontend_lexical_v2": 2,
-            "gemini_multiquery_rrf_v1": 3,
+            "gemini_multiquery_rrf_v1": 4,
             "normalized_path_content_v1": 2
-          }
-        },
-        {
-          "file": "jordan14.miz",
-          "judgment": null,
-          "repository": "Mizar__MML-current",
-          "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 2
           }
         },
         {
@@ -3958,9 +3864,17 @@
           }
         },
         {
-          "file": "Matroid/ForMathlib/Topology/JordanCurve.lean",
+          "file": "Jordan/jordan_curve_theorem.ml",
           "judgment": null,
-          "repository": "apnelson1__Matroid",
+          "repository": "jrh13__hol-light",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 2
+          }
+        },
+        {
+          "file": "JordanPick/PicksTheorem/Jordan.lean",
+          "judgment": null,
+          "repository": "rkirov__jordan_pick",
           "runs": {
             "gemini_multiquery_rrf_v1": 2
           }
@@ -3973,7 +3887,7 @@
             "frontend_lexical_v1": 4,
             "frontend_lexical_v2": 3,
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 6,
-            "gemini_multiquery_rrf_v1": 4,
+            "gemini_multiquery_rrf_v1": 5,
             "normalized_path_content_v1": 3
           }
         },
@@ -3992,7 +3906,7 @@
           "runs": {
             "frontend_lexical_v1": 6,
             "frontend_lexical_v2": 4,
-            "gemini_multiquery_rrf_v1": 5,
+            "gemini_multiquery_rrf_v1": 6,
             "normalized_path_content_v1": 4
           }
         },
@@ -4044,17 +3958,8 @@
           "runs": {
             "frontend_lexical_v1": 8,
             "frontend_lexical_v2": 6,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 10,
-            "gemini_multiquery_rrf_v1": 7,
+            "gemini_multiquery_rrf_v1": 8,
             "normalized_path_content_v1": 6
-          }
-        },
-        {
-          "file": "Schoenflies/TwoArcJordan.lean",
-          "judgment": null,
-          "repository": "mccorvie__classification-of-surfaces",
-          "runs": {
-            "gemini_multiquery_rrf_v1": 6
           }
         },
         {
@@ -4064,17 +3969,25 @@
           "runs": {
             "frontend_lexical_v1": 9,
             "frontend_lexical_v2": 7,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 8,
-            "gemini_multiquery_rrf_v1": 8,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 9,
+            "gemini_multiquery_rrf_v1": 9,
             "normalized_path_content_v1": 7
           }
         },
         {
-          "file": "jordan11.miz",
+          "file": "Jordan/jordan_curve_theorem.ml",
           "judgment": null,
-          "repository": "Mizar__MML-current",
+          "repository": "CakeML__candle",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 7
+          }
+        },
+        {
+          "file": "Matroid/ForMathlib/Topology/JordanCurve.lean",
+          "judgment": null,
+          "repository": "apnelson1__Matroid",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
           }
         },
         {
@@ -4084,17 +3997,16 @@
           "runs": {
             "frontend_lexical_v1": 10,
             "frontend_lexical_v2": 8,
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 9,
-            "gemini_multiquery_rrf_v1": 10,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 10,
             "normalized_path_content_v1": 8
           }
         },
         {
-          "file": "Schoenflies/AuxiliaryJordan.lean",
+          "file": "jordan11.miz",
           "judgment": null,
-          "repository": "mccorvie__classification-of-surfaces",
+          "repository": "Mizar__MML-current",
           "runs": {
-            "gemini_multiquery_rrf_v1": 9
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 8
           }
         },
         {
@@ -4105,13 +4017,387 @@
             "frontend_lexical_v2": 10,
             "normalized_path_content_v1": 10
           }
+        },
+        {
+          "file": "Schoenflies/TwoArcJordan.lean",
+          "judgment": null,
+          "repository": "mccorvie__classification-of-surfaces",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
         }
       ],
       "id": "mizar-jordan-curve",
       "query": "Jordan curve theorem in Mizar"
+    },
+    {
+      "candidates": [
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/EvalGroup.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v1": 4,
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 6,
+            "gemini_multiquery_rrf_v1": 1,
+            "normalized_path_content_v1": 4
+          }
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupLawSpec.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 4,
+            "gemini_multiquery_rrf_v1": 7,
+            "normalized_path_content_v1": 1
+          }
+        },
+        {
+          "file": "Mathlib/RingTheory/FormalGroup/Basic.lean",
+          "judgment": {
+            "file": "Mathlib/RingTheory/FormalGroup/Basic.lean",
+            "note": "Defines one-dimensional formal group laws and their basic API.",
+            "relevance": 3,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 1,
+            "gemini_multiquery_rrf_v1": 3,
+            "normalized_path_content_v1": 2
+          }
+        },
+        {
+          "file": "OddOrder/Algebra/AlgInt.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v1": 1
+          }
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/Definition.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v1": 7,
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 2,
+            "gemini_multiquery_rrf_v1": 2,
+            "normalized_path_content_v1": 5
+          }
+        },
+        {
+          "file": "TauCeti/Algebra/Octonion/Basic.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v1": 2
+          }
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupAssoc.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 6,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
+            "gemini_multiquery_rrf_v1": 8,
+            "normalized_path_content_v1": 6
+          }
+        },
+        {
+          "file": "src/commutative-algebra/formal-power-series-commutative-rings.lagda.md",
+          "judgment": null,
+          "repository": "UniMath__agda-unimath",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 6,
+            "normalized_path_content_v1": 3
+          }
+        },
+        {
+          "file": "src/1Lab/Path.lagda.md",
+          "judgment": null,
+          "repository": "the1lab__1lab",
+          "runs": {
+            "frontend_lexical_v1": 3
+          }
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/Isogeny/OmegaCoeffViaFormalGroup.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 7,
+            "gemini_multiquery_rrf_v1": 4,
+            "normalized_path_content_v1": 7
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/WExpansion.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 9,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/HasseBound/Primitives.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v1": 5
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Basic.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 5
+          }
+        },
+        {
+          "file": "Instance/Grp.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "frontend_lexical_v1": 6
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Inverse.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 7
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Assoc.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 10,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 8,
+            "normalized_path_content_v1": 10
+          }
+        },
+        {
+          "file": "FormalConjectures/Mathoverflow/507128.lean",
+          "judgment": null,
+          "repository": "google-deepmind__formal-conjectures",
+          "runs": {
+            "frontend_lexical_v2": 8,
+            "normalized_path_content_v1": 8
+          }
+        },
+        {
+          "file": "TauCeti/KnotTheory/Burau/Alexander.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v1": 8
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Chord.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 9,
+            "gemini_multiquery_rrf_v1": 10,
+            "normalized_path_content_v1": 9
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/GroupScheme/MuN.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v1": 9
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/GroupScheme/NIsogeny.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/Logarithm.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 10
+          }
+        },
+        {
+          "file": "projects/PadicLFunctions/PadicLFunctions/ValuesAtOne.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v1": 10
+          }
+        }
+      ],
+      "id": "formal-group-law",
+      "query": "formal group law over a commutative ring"
+    },
+    {
+      "candidates": [
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/EnoughInjectives.lean",
+          "judgment": {
+            "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/EnoughInjectives.lean",
+            "note": "Grothendieck categories have enough injectives.",
+            "relevance": 3,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v1": 5,
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 1,
+            "gemini_multiquery_rrf_v1": 1,
+            "normalized_path_content_v1": 1
+          }
+        },
+        {
+          "file": "v1/Atlas/TensorCategories/code/FiniteTensorCategory.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v1": 1,
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 4,
+            "normalized_path_content_v1": 3
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/ColimCoyoneda.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v1": 4,
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
+            "gemini_multiquery_rrf_v1": 2,
+            "normalized_path_content_v1": 2
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/SmallObject/Basic.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v1": 2,
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 8,
+            "gemini_multiquery_rrf_v1": 8,
+            "normalized_path_content_v1": 4
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Generator/Abelian.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 2
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23DerivedFunctors.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v1": 3,
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 6,
+            "gemini_multiquery_rrf_v1": 3,
+            "normalized_path_content_v1": 5
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/FreydMitchell.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 4,
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/HasExt.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 5,
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "Comparator/Definitions.lean",
+          "judgment": null,
+          "repository": "chrisflav__proetale",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 7
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/FlasqueCohomology.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 9
+          }
+        },
+        {
+          "file": "LeanCondensed/Projects/SolidProjectiveGenerator/RealVanishing.lean",
+          "judgment": null,
+          "repository": "dagurtomas__LeanCondensed",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "LeanPool/GrothendieckVanishing/FlasqueVanishing.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/Coseparator.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 10
+          }
+        }
+      ],
+      "id": "enough-injectives-grothendieck",
+      "query": "existence of enough injectives in a Grothendieck category"
     }
   ],
-  "gold_sha256": "74d0380db32e9b71ce85fac03c0465b6b894480f9fc854237c39cfade3cc6526",
+  "gold_sha256": "f1fbdeef6cfad3c8c0a03d3f677969aac7bcbc7b4cad1a8b6cd277658f68c774",
   "index": {
     "latest_mtime_ns": 1789301804577138257,
     "metadata_sha256": "602c79f8912be9574b8ebf03fcb701bb0de412ef182c4f55e29c73af48b7dc7e",
@@ -4148,9 +4434,9 @@
   ],
   "schema_version": 1,
   "summary": {
-    "already_judged": 32,
-    "candidates": 414,
-    "queries": 22,
-    "unjudged": 382
+    "already_judged": 33,
+    "candidates": 444,
+    "queries": 24,
+    "unjudged": 411
   }
 }

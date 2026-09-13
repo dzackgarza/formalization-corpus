@@ -5,198 +5,537 @@
     {
       "id": "serre-duality-coherent-sheaves",
       "query": "Is Serre duality for coherent sheaves already formalized?",
-      "tags": ["algebraic-geometry", "conversational", "theorem"],
+      "tags": [
+        "algebraic-geometry",
+        "conversational",
+        "theorem"
+      ],
       "judgments": [
-        {"repository": "facebookresearch__atlas-lean", "file": "v1/Atlas/AlgebraicGeometryI/code/Lec24RiemannRochSerre.lean", "relevance": 3, "note": "Contains serre_duality_dimension and reverse Serre duality for sheaves on smooth complete curves."},
-        {"repository": "facebookresearch__atlas-lean", "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityUnconditional.lean", "relevance": 2, "note": "Unconditional numerical Serre-duality results."}
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec24RiemannRochSerre.lean",
+          "relevance": 3,
+          "note": "Contains serre_duality_dimension and reverse Serre duality for sheaves on smooth complete curves."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityUnconditional.lean",
+          "relevance": 2,
+          "note": "Unconditional numerical Serre-duality results."
+        }
       ]
     },
     {
       "id": "bruhat-tits-tree",
       "query": "does Lean have the Bruhat Tits tree?",
-      "tags": ["number-theory", "geometry", "conversational", "repository-name"],
+      "tags": [
+        "number-theory",
+        "geometry",
+        "conversational",
+        "repository-name"
+      ],
       "judgments": [
-        {"repository": "chrisflav__bruhat-tits", "file": "BruhatTits.lean", "relevance": 3, "note": "Dedicated Bruhat-Tits tree formalization."},
-        {"repository": "Vilin97__lean-pool", "file": "LeanPool/BruhatTits.lean", "relevance": 2, "note": "Additional Lean formalization."},
-        {"repository": "facebookresearch__atlas-lean", "file": "v1/Atlas/Buildings/code/BNPair/FurtherBruhatTits.lean", "relevance": 2, "note": "Atlas Bruhat-Tits/building material."}
+        {
+          "repository": "chrisflav__bruhat-tits",
+          "file": "BruhatTits.lean",
+          "relevance": 3,
+          "note": "Dedicated Bruhat-Tits tree formalization."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits.lean",
+          "relevance": 2,
+          "note": "Additional Lean formalization."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/BNPair/FurtherBruhatTits.lean",
+          "relevance": 2,
+          "note": "Atlas Bruhat-Tits/building material."
+        }
       ]
     },
     {
       "id": "riemann-roch-curves",
       "query": "Riemann Roch theorem for algebraic curves",
-      "tags": ["algebraic-geometry", "theorem", "natural-phrase"],
+      "tags": [
+        "algebraic-geometry",
+        "theorem",
+        "natural-phrase"
+      ],
       "judgments": [
-        {"repository": "facebookresearch__atlas-lean", "file": "v1/Atlas/ArithmeticGeometry/code/RiemannRoch.lean", "relevance": 3, "note": "Dedicated Riemann-Roch development for curves/function fields."},
-        {"repository": "facebookresearch__atlas-lean", "file": "v1/Atlas/AlgebraicGeometryI/code/Lec24RiemannRochSerre.lean", "relevance": 2, "note": "Riemann-Roch and Serre-duality development for curves."}
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/RiemannRoch.lean",
+          "relevance": 3,
+          "note": "Dedicated Riemann-Roch development for curves/function fields."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec24RiemannRochSerre.lean",
+          "relevance": 2,
+          "note": "Riemann-Roch and Serre-duality development for curves."
+        }
       ]
     },
     {
       "id": "mapping-cone-quasi-isomorphism",
       "query": "mapping cone criterion for quasi isomorphisms",
-      "tags": ["homological-algebra", "descriptive", "terminology"],
+      "tags": [
+        "homological-algebra",
+        "descriptive",
+        "terminology"
+      ],
       "judgments": [
-        {"repository": "leanprover-community__mathlib4", "file": "Mathlib/Algebra/Homology/HomotopyCategory/ShortExact.lean", "relevance": 3, "note": "Constructs a quasi-isomorphism from the mapping cone of a monomorphism."},
-        {"repository": "leanprover-community__mathlib4", "file": "Mathlib/Algebra/Homology/DerivedCategory/ShortExact.lean", "relevance": 2, "note": "Uses mapping-cone quasi-isomorphisms in the derived category."}
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/HomotopyCategory/ShortExact.lean",
+          "relevance": 3,
+          "note": "Constructs a quasi-isomorphism from the mapping cone of a monomorphism."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/DerivedCategory/ShortExact.lean",
+          "relevance": 2,
+          "note": "Uses mapping-cone quasi-isomorphisms in the derived category."
+        }
       ]
     },
     {
       "id": "jordan-canonical-form",
       "query": "Jordan canonical form of a linear operator",
-      "tags": ["linear-algebra", "synonym", "theorem"],
+      "tags": [
+        "linear-algebra",
+        "synonym",
+        "theorem"
+      ],
       "judgments": [
-        {"repository": "facebookresearch__atlas-lean", "file": "v1/Atlas/AlgebraNotes/code/JordanForm.lean", "relevance": 3, "note": "Jordan-form development."},
-        {"repository": "leanprover__lean-eval", "file": "LeanEval/LinearAlgebra/JordanNormalForm.lean", "relevance": 3, "note": "Explicit Jordan normal form statement and proof development."}
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraNotes/code/JordanForm.lean",
+          "relevance": 3,
+          "note": "Jordan-form development."
+        },
+        {
+          "repository": "leanprover__lean-eval",
+          "file": "LeanEval/LinearAlgebra/JordanNormalForm.lean",
+          "relevance": 3,
+          "note": "Explicit Jordan normal form statement and proof development."
+        }
       ]
     },
     {
       "id": "hensel-complete-dvr",
       "query": "Hensel lemma over complete discrete valuation rings",
-      "tags": ["number-theory", "commutative-algebra", "theorem", "descriptive"],
+      "tags": [
+        "number-theory",
+        "commutative-algebra",
+        "theorem",
+        "descriptive"
+      ],
       "judgments": [
-        {"repository": "leanprover-community__mathlib4", "file": "Mathlib/RingTheory/Henselian.lean", "relevance": 3, "note": "Adically complete rings are Henselian; general Henselian-ring infrastructure."},
-        {"repository": "leanprover-community__mathlib4", "file": "Mathlib/NumberTheory/Padics/Hensel.lean", "relevance": 2, "note": "Hensel's lemma over p-adic integers."}
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/RingTheory/Henselian.lean",
+          "relevance": 3,
+          "note": "Adically complete rings are Henselian; general Henselian-ring infrastructure."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/NumberTheory/Padics/Hensel.lean",
+          "relevance": 2,
+          "note": "Hensel's lemma over p-adic integers."
+        }
       ]
     },
     {
       "id": "fundamental-group-covering-space",
       "query": "fundamental group of a covering space",
-      "tags": ["algebraic-topology", "descriptive"],
+      "tags": [
+        "algebraic-topology",
+        "descriptive"
+      ],
       "judgments": [
-        {"repository": "TauCetiProject__TauCeti", "file": "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/UniversalCover.lean", "relevance": 3, "note": "Fundamental group and universal-cover deck transformations."},
-        {"repository": "TauCetiProject__TauCeti", "file": "TauCeti/Topology/Homotopy/Covering.lean", "relevance": 2, "note": "Covering-space homotopy infrastructure."}
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/UniversalCover.lean",
+          "relevance": 3,
+          "note": "Fundamental group and universal-cover deck transformations."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/Homotopy/Covering.lean",
+          "relevance": 2,
+          "note": "Covering-space homotopy infrastructure."
+        }
       ]
     },
     {
       "id": "manifold-boundary-collar",
       "query": "smooth manifolds with boundary and collars",
-      "tags": ["differential-geometry", "descriptive"],
+      "tags": [
+        "differential-geometry",
+        "descriptive"
+      ],
       "judgments": [
-        {"repository": "TauCetiProject__TauCeti", "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Local.lean", "relevance": 3, "note": "Local collar construction for manifolds with boundary."},
-        {"repository": "TauCetiProject__TauCeti", "file": "TauCeti/Geometry/Manifold/Boundary/Model.lean", "relevance": 2, "note": "Boundary model infrastructure."}
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Local.lean",
+          "relevance": 3,
+          "note": "Local collar construction for manifolds with boundary."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Geometry/Manifold/Boundary/Model.lean",
+          "relevance": 2,
+          "note": "Boundary model infrastructure."
+        }
       ]
     },
     {
       "id": "injective-resolutions",
       "query": "existence of injective resolutions in abelian categories",
-      "tags": ["category-theory", "homological-algebra", "descriptive"],
+      "tags": [
+        "category-theory",
+        "homological-algebra",
+        "descriptive"
+      ],
       "judgments": [
-        {"repository": "leanprover-community__mathlib4", "file": "Mathlib/CategoryTheory/Preadditive/Injective/Resolution.lean", "relevance": 3, "note": "Injective resolutions and their quasi-isomorphisms."},
-        {"repository": "leanprover-community__mathlib4", "file": "Mathlib/CategoryTheory/Abelian/LeftDerived.lean", "relevance": 2, "note": "Derived-functor consumer of resolution infrastructure."}
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Preadditive/Injective/Resolution.lean",
+          "relevance": 3,
+          "note": "Injective resolutions and their quasi-isomorphisms."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/LeftDerived.lean",
+          "relevance": 2,
+          "note": "Derived-functor consumer of resolution infrastructure."
+        }
       ]
     },
     {
       "id": "nullstellensatz-affine",
       "query": "Hilbert Nullstellensatz for affine varieties",
-      "tags": ["algebraic-geometry", "commutative-algebra", "theorem"],
+      "tags": [
+        "algebraic-geometry",
+        "commutative-algebra",
+        "theorem"
+      ],
       "judgments": [
-        {"repository": "leanprover-community__mathlib4", "file": "Mathlib/RingTheory/Nullstellensatz.lean", "relevance": 3, "note": "Mathlib's Hilbert Nullstellensatz development."},
-        {"repository": "facebookresearch__atlas-lean", "file": "v1/Atlas/AlgebraicGeometryI/code/Lec1ZariskiNullstellensatz.lean", "relevance": 3, "note": "Algebraic-geometry presentation of the Nullstellensatz."}
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/RingTheory/Nullstellensatz.lean",
+          "relevance": 3,
+          "note": "Mathlib's Hilbert Nullstellensatz development."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec1ZariskiNullstellensatz.lean",
+          "relevance": 3,
+          "note": "Algebraic-geometry presentation of the Nullstellensatz."
+        }
       ]
     },
     {
       "id": "pontryagin-duality-finite-abelian",
       "query": "Pontryagin duality for finite abelian groups",
-      "tags": ["harmonic-analysis", "group-theory", "exact-name"],
+      "tags": [
+        "harmonic-analysis",
+        "group-theory",
+        "exact-name"
+      ],
       "judgments": [
-        {"repository": "leanprover-community__mathlib4", "file": "Mathlib/Analysis/Fourier/FiniteAbelian/PontryaginDuality.lean", "relevance": 3, "note": "Dedicated Mathlib Pontryagin-duality file."},
-        {"repository": "YaelDillies__apap", "file": "APAP/Mathlib/Analysis/Fourier/FiniteAbelian/PontryaginDuality.lean", "relevance": 2, "note": "Downstream copy/extension of the Mathlib result."}
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Analysis/Fourier/FiniteAbelian/PontryaginDuality.lean",
+          "relevance": 3,
+          "note": "Dedicated Mathlib Pontryagin-duality file."
+        },
+        {
+          "repository": "YaelDillies__apap",
+          "file": "APAP/Mathlib/Analysis/Fourier/FiniteAbelian/PontryaginDuality.lean",
+          "relevance": 2,
+          "note": "Downstream copy/extension of the Mathlib result."
+        }
       ]
     },
     {
       "id": "morse-lemma",
       "query": "Morse lemma near a nondegenerate critical point",
-      "tags": ["differential-geometry", "analysis", "theorem"],
+      "tags": [
+        "differential-geometry",
+        "analysis",
+        "theorem"
+      ],
       "judgments": [
-        {"repository": "TauCetiProject__TauCeti", "file": "TauCeti/Analysis/Calculus/Morse/NormalForm.lean", "relevance": 3, "note": "Morse normal-form development."},
-        {"repository": "TauCetiProject__TauCeti", "file": "TauCeti/Analysis/Calculus/Morse/Basic.lean", "relevance": 2, "note": "Core Morse-theory definitions and lemmas."}
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Calculus/Morse/NormalForm.lean",
+          "relevance": 3,
+          "note": "Morse normal-form development."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Calculus/Morse/Basic.lean",
+          "relevance": 2,
+          "note": "Core Morse-theory definitions and lemmas."
+        }
       ]
     },
     {
       "id": "fg-abelian-structure-theorem",
       "query": "classification of finitely generated abelian groups",
-      "tags": ["algebra", "group-theory", "synonym", "theorem"],
+      "tags": [
+        "algebra",
+        "group-theory",
+        "synonym",
+        "theorem"
+      ],
       "judgments": [
-        {"repository": "leanprover-community__mathlib4", "file": "Mathlib/GroupTheory/FiniteAbelian/Basic.lean", "relevance": 3, "note": "Contains the structure theorem for finitely generated abelian groups."},
-        {"repository": "leanprover-community__mathlib4", "file": "Mathlib/Algebra/Module/PID.lean", "relevance": 2, "note": "PID module structure theorem underpinning the group result."}
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/GroupTheory/FiniteAbelian/Basic.lean",
+          "relevance": 3,
+          "note": "Contains the structure theorem for finitely generated abelian groups."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Module/PID.lean",
+          "relevance": 2,
+          "note": "PID module structure theorem underpinning the group result."
+        }
       ]
     },
     {
       "id": "stone-weierstrass",
       "query": "Stone Weierstrass theorem for continuous functions",
-      "tags": ["analysis", "topology", "exact-name"],
+      "tags": [
+        "analysis",
+        "topology",
+        "exact-name"
+      ],
       "judgments": [
-        {"repository": "leanprover-community__mathlib4", "file": "Mathlib/Topology/ContinuousMap/StoneWeierstrass.lean", "relevance": 3, "note": "Dedicated Stone-Weierstrass development."}
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Topology/ContinuousMap/StoneWeierstrass.lean",
+          "relevance": 3,
+          "note": "Dedicated Stone-Weierstrass development."
+        }
       ]
     },
     {
       "id": "brownian-motion-construction",
       "query": "construction of Brownian motion from Gaussian processes",
-      "tags": ["probability", "descriptive", "repository-name"],
+      "tags": [
+        "probability",
+        "descriptive",
+        "repository-name"
+      ],
       "judgments": [
-        {"repository": "RemyDegenne__brownian-motion", "file": "BrownianMotion/Gaussian/BrownianMotion.lean", "relevance": 3, "note": "Brownian-motion construction in the dedicated project."},
-        {"repository": "RemyDegenne__brownian-motion", "file": "BrownianMotion/Gaussian/ProjectiveLimit.lean", "relevance": 2, "note": "Gaussian/projective-limit construction infrastructure."}
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/Gaussian/BrownianMotion.lean",
+          "relevance": 3,
+          "note": "Brownian-motion construction in the dedicated project."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/Gaussian/ProjectiveLimit.lean",
+          "relevance": 2,
+          "note": "Gaussian/projective-limit construction infrastructure."
+        }
       ]
     },
     {
       "id": "sphere-eversion",
       "query": "sphere eversion via the h principle",
-      "tags": ["differential-topology", "exact-name", "repository-name"],
+      "tags": [
+        "differential-topology",
+        "exact-name",
+        "repository-name"
+      ],
       "judgments": [
-        {"repository": "leanprover-community__sphere-eversion", "file": "SphereEversion/Local/SphereEversion.lean", "relevance": 3, "note": "Sphere-eversion construction."},
-        {"repository": "leanprover-community__sphere-eversion", "file": "SphereEversion/Local/ParametricHPrinciple.lean", "relevance": 2, "note": "Parametric h-principle machinery used by the proof."}
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/Local/SphereEversion.lean",
+          "relevance": 3,
+          "note": "Sphere-eversion construction."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/Local/ParametricHPrinciple.lean",
+          "relevance": 2,
+          "note": "Parametric h-principle machinery used by the proof."
+        }
       ]
     },
     {
       "id": "carleson-theorem",
       "query": "Carleson theorem on pointwise convergence of Fourier series",
-      "tags": ["harmonic-analysis", "theorem", "repository-name"],
+      "tags": [
+        "harmonic-analysis",
+        "theorem",
+        "repository-name"
+      ],
       "judgments": [
-        {"repository": "fpvandoorn__carleson", "file": "Carleson/Classical/ClassicalCarleson.lean", "relevance": 3, "note": "Classical Carleson theorem development."},
-        {"repository": "fpvandoorn__carleson", "file": "Carleson/Classical/CarlesonHunt.lean", "relevance": 2, "note": "Carleson-Hunt theorem development."}
+        {
+          "repository": "fpvandoorn__carleson",
+          "file": "Carleson/Classical/ClassicalCarleson.lean",
+          "relevance": 3,
+          "note": "Classical Carleson theorem development."
+        },
+        {
+          "repository": "fpvandoorn__carleson",
+          "file": "Carleson/Classical/CarlesonHunt.lean",
+          "relevance": 2,
+          "note": "Carleson-Hunt theorem development."
+        }
       ]
     },
     {
       "id": "dyadic-hilbert-symbol",
       "query": "dyadic Hilbert symbol over Q2",
-      "tags": ["number-theory", "quadratic-forms", "exact-name"],
+      "tags": [
+        "number-theory",
+        "quadratic-forms",
+        "exact-name"
+      ],
       "judgments": [
-        {"repository": "roed-math__gq2-lean", "file": "GQ2/HilbertSymbolSufficiency.lean", "relevance": 3, "note": "Hilbert-symbol evaluation/sufficiency machinery over Q2."},
-        {"repository": "roed-math__gq2-lean", "file": "GQ2/Statement.lean", "relevance": 2, "note": "Project statement involving the dyadic Hilbert symbol."}
+        {
+          "repository": "roed-math__gq2-lean",
+          "file": "GQ2/HilbertSymbolSufficiency.lean",
+          "relevance": 3,
+          "note": "Hilbert-symbol evaluation/sufficiency machinery over Q2."
+        },
+        {
+          "repository": "roed-math__gq2-lean",
+          "file": "GQ2/Statement.lean",
+          "relevance": 2,
+          "note": "Project statement involving the dyadic Hilbert symbol."
+        }
       ]
     },
     {
       "id": "yoneda-univalent-categories",
       "query": "Yoneda lemma for univalent categories",
-      "tags": ["category-theory", "cross-prover", "exact-name"],
+      "tags": [
+        "category-theory",
+        "cross-prover",
+        "exact-name"
+      ],
       "judgments": [
-        {"repository": "UniMath__UniMath", "file": "UniMath/CategoryTheory/yoneda.v", "relevance": 3, "note": "UniMath Yoneda development."},
-        {"repository": "UniMath__agda-unimath", "file": "src/category-theory/yoneda-lemma-categories.lagda.md", "relevance": 3, "note": "agda-unimath Yoneda lemma for categories."}
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/yoneda.v",
+          "relevance": 3,
+          "note": "UniMath Yoneda development."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/category-theory/yoneda-lemma-categories.lagda.md",
+          "relevance": 3,
+          "note": "agda-unimath Yoneda lemma for categories."
+        }
       ]
     },
     {
       "id": "grothendieck-construction-indexed-categories",
       "query": "Grothendieck construction for indexed categories and fibrations",
-      "tags": ["category-theory", "cross-prover", "descriptive"],
+      "tags": [
+        "category-theory",
+        "cross-prover",
+        "descriptive"
+      ],
       "judgments": [
-        {"repository": "UniMath__UniMath", "file": "UniMath/CategoryTheory/GrothendieckConstruction/TotalCategory.v", "relevance": 3, "note": "Total category in the Grothendieck construction."},
-        {"repository": "UniMath__UniMath", "file": "UniMath/CategoryTheory/IndexedCategories/IndexedCategoryToFibration.v", "relevance": 3, "note": "Indexed category to fibration comparison."}
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/GrothendieckConstruction/TotalCategory.v",
+          "relevance": 3,
+          "note": "Total category in the Grothendieck construction."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/IndexedCategories/IndexedCategoryToFibration.v",
+          "relevance": 3,
+          "note": "Indexed category to fibration comparison."
+        }
       ]
     },
     {
       "id": "feit-thompson-odd-order",
       "query": "formal proof of the Feit Thompson odd order theorem",
-      "tags": ["group-theory", "cross-prover", "theorem"],
+      "tags": [
+        "group-theory",
+        "cross-prover",
+        "theorem"
+      ],
       "judgments": [
-        {"repository": "math-comp__odd-order", "file": "theories/stripped_odd_order_theorem.v", "relevance": 3, "note": "MathComp/Rocq odd-order theorem proof."}
+        {
+          "repository": "math-comp__odd-order",
+          "file": "theories/stripped_odd_order_theorem.v",
+          "relevance": 3,
+          "note": "MathComp/Rocq odd-order theorem proof."
+        }
       ]
     },
     {
       "id": "mizar-jordan-curve",
       "query": "Jordan curve theorem in Mizar",
-      "tags": ["topology", "cross-prover", "theorem", "proof-assistant-name"],
+      "tags": [
+        "topology",
+        "cross-prover",
+        "theorem",
+        "proof-assistant-name"
+      ],
       "judgments": [
-        {"repository": "Mizar__MML-current", "file": "jordan.miz", "relevance": 3, "note": "Mizar Jordan-curve development."},
-        {"repository": "Mizar__MML-current", "file": "jordan9.miz", "relevance": 2, "note": "Further Mizar Jordan-curve material."}
+        {
+          "repository": "Mizar__MML-current",
+          "file": "jordan.miz",
+          "relevance": 3,
+          "note": "Mizar Jordan-curve development."
+        },
+        {
+          "repository": "Mizar__MML-current",
+          "file": "jordan9.miz",
+          "relevance": 2,
+          "note": "Further Mizar Jordan-curve material."
+        }
+      ]
+    },
+    {
+      "id": "formal-group-law",
+      "query": "formal group law over a commutative ring",
+      "tags": [
+        "algebra",
+        "ambiguous-stopword",
+        "exact-name"
+      ],
+      "judgments": [
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/RingTheory/FormalGroup/Basic.lean",
+          "relevance": 3,
+          "note": "Defines one-dimensional formal group laws and their basic API."
+        }
+      ]
+    },
+    {
+      "id": "enough-injectives-grothendieck",
+      "query": "existence of enough injectives in a Grothendieck category",
+      "tags": [
+        "category-theory",
+        "ambiguous-stopword",
+        "descriptive"
+      ],
+      "judgments": [
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/EnoughInjectives.lean",
+          "relevance": 3,
+          "note": "Grothendieck categories have enough injectives."
+        }
       ]
     }
   ]
