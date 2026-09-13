@@ -330,7 +330,12 @@
       "candidates": [
         {
           "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochCurves.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochCurves.lean",
+            "note": "States and proves a Riemann\u2013Roch theorem for curves via the Euler-characteristic formula.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "frontend_lexical_v2": 1,
@@ -341,7 +346,12 @@
         },
         {
           "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochRiemannForm.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochRiemannForm.lean",
+            "note": "Riemann-form consequences of Riemann\u2013Roch under Serre duality for curves.",
+            "relevance": 2,
+            "repository": "facebookresearch__atlas-lean"
+          },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 5,
@@ -812,7 +822,12 @@
         },
         {
           "file": "thys/Jordan_Normal_Form/Jordan_Normal_Form_Existence.thy",
-          "judgment": null,
+          "judgment": {
+            "file": "thys/Jordan_Normal_Form/Jordan_Normal_Form_Existence.thy",
+            "note": "AFP development proving existence and computation of Jordan normal forms.",
+            "relevance": 3,
+            "repository": "isabelle-prover__mirror-afp-devel"
+          },
           "repository": "isabelle-prover__mirror-afp-devel",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 2
@@ -950,7 +965,12 @@
         },
         {
           "file": "v1/Atlas/NumberTheoryI/code/HenselLemmas.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "v1/Atlas/NumberTheoryI/code/HenselLemmas.lean",
+            "note": "Proves simple-root lifting and Newton Hensel statements for complete discrete valuation rings.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 1,
@@ -1016,7 +1036,12 @@
         },
         {
           "file": "v1/Atlas/ArithmeticGeometry/code/HenselsLemma.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "v1/Atlas/ArithmeticGeometry/code/HenselsLemma.lean",
+            "note": "Hensel lemma over p-adic integers, a complete DVR special case.",
+            "relevance": 2,
+            "repository": "facebookresearch__atlas-lean"
+          },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 4
@@ -1024,7 +1049,12 @@
         },
         {
           "file": "thys/Padic_Ints/Hensels_Lemma.thy",
-          "judgment": null,
+          "judgment": {
+            "file": "thys/Padic_Ints/Hensels_Lemma.thy",
+            "note": "AFP proof of Hensel\u2019s lemma over the p-adic integers.",
+            "relevance": 2,
+            "repository": "isabelle-prover__mirror-afp-devel"
+          },
           "repository": "isabelle-prover__mirror-afp-devel",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 5
@@ -1632,7 +1662,12 @@
         },
         {
           "file": "thys/Nullstellensatz/Nullstellensatz.thy",
-          "judgment": null,
+          "judgment": {
+            "file": "thys/Nullstellensatz/Nullstellensatz.thy",
+            "note": "AFP proof of the geometric Hilbert Nullstellensatz relating varieties and radical ideals.",
+            "relevance": 3,
+            "repository": "isabelle-prover__mirror-afp-devel"
+          },
           "repository": "isabelle-prover__mirror-afp-devel",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 1
@@ -2141,7 +2176,12 @@
         },
         {
           "file": "thys/Finitely_Generated_Abelian_Groups/Finitely_Generated_Abelian_Groups.thy",
-          "judgment": null,
+          "judgment": {
+            "file": "thys/Finitely_Generated_Abelian_Groups/Finitely_Generated_Abelian_Groups.thy",
+            "note": "AFP formalization of the fundamental theorem of finitely generated abelian groups.",
+            "relevance": 3,
+            "repository": "isabelle-prover__mirror-afp-devel"
+          },
           "repository": "isabelle-prover__mirror-afp-devel",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 2
@@ -2526,7 +2566,12 @@
         },
         {
           "file": "Mathlib/Probability/BrownianMotion/GaussianProjectiveFamily.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "Mathlib/Probability/BrownianMotion/GaussianProjectiveFamily.lean",
+            "note": "Constructs Brownian finite-dimensional Gaussian projective families; the file notes the Kolmogorov extension step is not yet in Mathlib.",
+            "relevance": 2,
+            "repository": "leanprover-community__mathlib4"
+          },
           "repository": "leanprover-community__mathlib4",
           "runs": {
             "frontend_lexical_v1": 4,
@@ -2550,7 +2595,12 @@
         },
         {
           "file": "v1/Atlas/FourierAnalysis/code/BrownianMotion.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "v1/Atlas/FourierAnalysis/code/BrownianMotion.lean",
+            "note": "Contains a Wiener-series construction culminating in wiener_construction_brownian_motion.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
@@ -2913,7 +2963,12 @@
         },
         {
           "file": "Challenge.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "Challenge.lean",
+            "note": "Formal target statement classical_carleson\u2032 for Carleson\u2019s theorem; proof intentionally left as a challenge/sorry.",
+            "relevance": 2,
+            "repository": "fpvandoorn__carleson"
+          },
           "repository": "fpvandoorn__carleson",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 3
@@ -3216,7 +3271,12 @@
       "candidates": [
         {
           "file": "UniMath/Bicategories/Core/YonedaLemma.v",
-          "judgment": null,
+          "judgment": {
+            "file": "UniMath/Bicategories/Core/YonedaLemma.v",
+            "note": "Proves a bicategorical Yoneda lemma with univalent-category targets; closely related but more general/different level than the category-level query.",
+            "relevance": 2,
+            "repository": "UniMath__UniMath"
+          },
           "repository": "UniMath__UniMath",
           "runs": {
             "frontend_lexical_v1": 7,
@@ -4397,7 +4457,7 @@
       "query": "existence of enough injectives in a Grothendieck category"
     }
   ],
-  "gold_sha256": "f1fbdeef6cfad3c8c0a03d3f677969aac7bcbc7b4cad1a8b6cd277658f68c774",
+  "gold_sha256": "17a32a863d5e8254eeefc2106e561ab8aa7f54ed03a9bce946b850a753c00617",
   "index": {
     "latest_mtime_ns": 1789301804577138257,
     "metadata_sha256": "602c79f8912be9574b8ebf03fcb701bb0de412ef182c4f55e29c73af48b7dc7e",
@@ -4434,9 +4494,9 @@
   ],
   "schema_version": 1,
   "summary": {
-    "already_judged": 33,
+    "already_judged": 45,
     "candidates": 444,
     "queries": 24,
-    "unjudged": 411
+    "unjudged": 399
   }
 }

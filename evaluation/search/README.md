@@ -176,20 +176,25 @@ v2 lexical behavior score as follows on the same current index:
 
 | Metric | v1 historical | v2 deployed |
 | --- | ---: | ---: |
-| owner Hit@10 (primary) | 0.167 | **0.542** |
-| Hit@1 | 0.083 | **0.250** |
-| Hit@5 | 0.208 | **0.542** |
-| Hit@10 | 0.208 | **0.625** |
-| Hit@20 | 0.375 | **0.625** |
+| owner Hit@10 (primary) | 0.167 | **0.583** |
+| Hit@1 | 0.083 | **0.375** |
+| Hit@5 | 0.250 | **0.667** |
+| Hit@10 | 0.292 | **0.750** |
+| Hit@20 | 0.458 | **0.750** |
 | source Hit@10 | 0.833 | **0.958** |
-| MRR | 0.148 | **0.381** |
-| nDCG@10 | 0.117 | **0.357** |
+| MRR | 0.167 | **0.506** |
+| nDCG@10 | 0.124 | **0.392** |
 | zero-result rate | 0.125 | **0.042** |
 
 The historical conversational slice had zero results for both queries.  The v2
 normalization fixes those lexical false negatives while preserving the exact-name
 queries; synonym-shift queries still motivate the semantic/multi-query experiments
 below.
+
+The absolute scores rose after the first pooled-review pass added 13 source-backed
+relevance judgments.  This is expected: previously unjudged direct formalizations
+were not false positives.  The v2-over-v1 ordering remained large after that qrel
+expansion.
 
 ## Relevance-judgment pooling
 
@@ -209,8 +214,9 @@ before drawing strong conclusions from a new family of retrievers:
 `build_pool.py` produces that review set without assigning relevance to
 unjudged files.  The current depth-10 pool combines the frozen frontend baseline, normalized
 path/content lexical retrieval, frozen multi-query RRF, and the measured Cohere
-reranker.  It has 444 unique query/file candidates: 33 already judged and 411
-explicitly marked unjudged.  Unjudged does not mean irrelevant.
+reranker.  It has 444 unique query/file candidates: 45 already judged and 399
+explicitly marked unjudged.  The gold set currently contains 58 judgments total;
+some judged files lie outside this depth-10 pool.  Unjudged does not mean irrelevant.
 
 This follows the TREC test-collection model: pool top documents from diverse
 runs, judge the pool, and keep qrels distinct from run output.  It also avoids a
@@ -223,10 +229,10 @@ The measured experiments narrow the next branches:
 
 - **Fielded lexical retrieval first.** Module/file paths are unusually valuable
   in formal libraries.  Restoring path evidence plus conservative query
-  normalization raises owner Hit@10 from 0.167 to 0.542 on the current qrels.
+  normalization raises owner Hit@10 from 0.167 to 0.583 on the current qrels.
 - **Semantic first-stage retrieval, not reranking alone.** For normalized
   path/content retrieval, owner Hit is identical at depths 20, 50, 100, and
-  150 (0.583).  The missing owner files are absent from the lexical candidate
+  150 (0.625).  The missing owner files are absent from the lexical candidate
   set, so no reranker can recover them.  Dense retrieval, learned sparse
   expansion (for example SPLADE), or another independent first-stage signal is
   required for that residue.
@@ -234,7 +240,7 @@ The measured experiments narrow the next branches:
   complementary.  Combine independent lexical/dense runs by a rank-based method
   such as Reciprocal Rank Fusion before learning score calibration.
 - **Hierarchical retrieval.** Normalized lexical retrieval already has source
-  Hit@5 = 0.958 while owner Hit@10 = 0.542.  This supports testing a cheap
+  Hit@5 = 0.958 while owner Hit@10 = 0.583.  This supports testing a cheap
   source-first stage followed by stronger file/chunk retrieval within a handful
   of sources, rather than assuming every request needs a global dense scan.
 - **Deterministic chunk context before generated context.** For file/chunk
