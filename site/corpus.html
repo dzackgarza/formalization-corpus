@@ -10,12 +10,9 @@
 <body>
 <header class="site-header">
 	<div class="shell masthead">
-		<a class="brand" href="./">
-			<span class="brand-mark" aria-hidden="true">FC</span>
-			<span class="brand-copy">
+			<a class="brand" href="./">
+				<span class="brand-mark" aria-hidden="true">FC</span>
 				<span class="brand-name">Formalization Corpus</span>
-				<span class="brand-tagline">Cross-prover formal mathematics index</span>
-			</span>
 		</a>
 		<nav class="site-nav" aria-label="Primary">
 			<a href="./">Search</a>
@@ -28,32 +25,31 @@
 
 <main class="shell page-main">
 	<header class="page-heading">
-		<p class="eyebrow">Coverage and provenance</p>
-		<h1>Sources</h1>
-		<p class="lede">A registry of formal mathematics projects, standard libraries, package ecosystems, and archival developments. Counts below describe what is actually hydrated and indexed, not recalled from project claims.</p>
+			<h1>Sources</h1>
+			<p class="lede">Registered formalization libraries and projects. Counts are computed from hydrated source files and the local Zoekt index.</p>
 	</header>
 
 	<section aria-labelledby="reach-title">
-		<h2 id="reach-title">Corpus reach</h2>
+			<h2 id="reach-title">Coverage</h2>
 		<div class="metric-grid" id="reach-cards" aria-live="polite"></div>
-		<p class="note">A formal unit is a prover-native source or theory file. Generated ACL2 <code>.sys</code> rune reports and PVS <code>.prf</code> proof traces are excluded. Definition and theorem totals remain omitted until they can be obtained from prover-native parsers or elaborated environments rather than keyword matching.</p>
+			<p class="note">A formal source file is a prover-native source or theory file. Generated ACL2 <code>.sys</code> rune reports and PVS <code>.prf</code> proof traces are excluded. Definition and theorem totals are omitted because they are not yet available from prover-native parsers or elaborated environments across the corpus.</p>
 	</section>
 
 	<section aria-labelledby="ecosystem-title">
-		<h2 id="ecosystem-title">By formalization ecosystem</h2>
+			<h2 id="ecosystem-title">By prover</h2>
 		<div class="table-wrap"><table id="ecosystems" class="metrics-table"></table></div>
 	</section>
 
 	<section aria-labelledby="source-browser-title">
 		<h2 id="source-browser-title">Source browser</h2>
-		<p class="muted">Filter by project name or mathematical content. Groups distinguish curated Lean projects, the Reservoir package surface, and each non-Lean prover family.</p>
+			<p class="muted">Filter by source name or description. Sources are grouped by prover; Lean Reservoir packages are listed separately from curated Lean projects.</p>
 		<div class="source-browser" id="table"></div>
 	</section>
 </main>
 
 <footer class="site-footer">
 	<div class="shell footer-inner">
-		<p>Registry descriptions are curated in <code>SOURCES.md</code>; machine-readable coverage comes from the manifests and local index.</p>
+			<p>Source descriptions are maintained in <code>SOURCES.md</code>.</p>
 		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./api.html">API</a></div>
 	</div>
 </footer>
@@ -81,8 +77,8 @@ fetch("./metrics.json").then(r => r.json()).then(data => {
 	const s = data.summary;
 	document.getElementById("reach-cards").innerHTML = `
 		<div class="metric-card"><div class="value">${fmt(s.indexed_sources)} / ${fmt(s.registered_sources)}</div><div class="label">indexed sources</div></div>
-		<div class="metric-card"><div class="value">${fmt(s.formal_content_sources)}</div><div class="label">sources containing formal text</div></div>
-		<div class="metric-card"><div class="value">${fmt(s.formal_units)}</div><div class="label">formal theory/source units</div></div>
+			<div class="metric-card"><div class="value">${fmt(s.formal_content_sources)}</div><div class="label">sources with formal files</div></div>
+			<div class="metric-card"><div class="value">${fmt(s.formal_units)}</div><div class="label">formal source files</div></div>
 		<div class="metric-card"><div class="value">${fmt(s.prover_families)}</div><div class="label">prover families</div></div>`;
 
 	const rows = data.ecosystems.map(r => `
@@ -91,8 +87,8 @@ fetch("./metrics.json").then(r => r.json()).then(data => {
 		<td>${fmt(r.formal_lines)}</td></tr>`).join("");
 	const total = data.summary;
 	document.getElementById("ecosystems").innerHTML = `
-		<thead><tr><th>Ecosystem</th><th>Indexed sources</th><th>With formal text</th>
-		<th>Formal units</th><th>Formal lines</th></tr></thead>
+			<thead><tr><th>Prover</th><th>Indexed sources</th><th>With formal files</th>
+			<th>Formal files</th><th>Formal lines</th></tr></thead>
 		<tbody>${rows}
 		<tr><th>Total</th><th>${fmt(total.indexed_sources)}</th>
 		<th>${fmt(total.formal_content_sources)}</th><th>${fmt(total.formal_units)}</th>

@@ -9,12 +9,9 @@
 <body>
 <header class="site-header">
 	<div class="shell masthead">
-		<a class="brand" href="./">
-			<span class="brand-mark" aria-hidden="true">FC</span>
-			<span class="brand-copy">
+			<a class="brand" href="./">
+				<span class="brand-mark" aria-hidden="true">FC</span>
 				<span class="brand-name">Formalization Corpus</span>
-				<span class="brand-tagline">Cross-prover formal mathematics index</span>
-			</span>
 		</a>
 		<nav class="site-nav" aria-label="Primary">
 			<a href="./">Search</a>
@@ -27,9 +24,8 @@
 
 <main class="shell page-main docs">
 	<header class="page-heading">
-		<p class="eyebrow">Programmatic access</p>
-		<h1>Search API</h1>
-		<p class="lede">Query the same Zoekt index used by the web interface from scripts, agents, notebooks, and external tools. The API is public and read-only: no key and no account.</p>
+			<h1>API</h1>
+			<p class="lede">JSON access to the Zoekt search index. The API is public and read-only; no key is required.</p>
 	</header>
 
 	<div class="docs-layout">
@@ -45,26 +41,23 @@
 			</nav>
 		</aside>
 		<article>
-			<p>The search backend is <a href="https://github.com/sourcegraph/zoekt">Zoekt</a>. The browser search on this site is simply one client of the same JSON endpoint.</p>
+				<p>The search backend is <a href="https://github.com/sourcegraph/zoekt">Zoekt</a>. The web search uses this endpoint directly.</p>
 			<div class="endpoint"><span class="method">POST</span><span>https://formalization-corpus.dzackgarza.com/api/search</span></div>
 
-<h2 id="first-query">A first query</h2>
+	<h2 id="first-query">Example</h2>
 
 <pre><code>curl -s https://formalization-corpus.dzackgarza.com/api/search \
   -H 'Content-Type: application/json' \
   -d '{"Q": "IsometryEquiv", "Opts": {"MaxDocDisplayCount": 5}}'</code></pre>
 
-<p>
-	Every file that matched, with its source and path — enough to answer
-	“has anyone formalized this?”:
-</p>
+	<p>Print the source and path of each matching file:</p>
 
 <pre><code>curl -s https://formalization-corpus.dzackgarza.com/api/search \
   -H 'Content-Type: application/json' \
   -d '{"Q": "Hasse invariant file:\\.lean$", "Opts": {"MaxDocDisplayCount": 20}}' \
   | jq -r '.Result.Files[] | "\(.Repository)  \(.FileName)"'</code></pre>
 
-<h2 id="query-language">The query language</h2>
+	<h2 id="query-language">Query language</h2>
 
 <p>
 	A bare term is a substring; anything more is a regular expression. Terms
@@ -109,7 +102,7 @@
 	</tbody>
 </table>
 
-<h2 id="response">What comes back</h2>
+	<h2 id="response">Response</h2>
 
 <pre><code>{
   "Result": {

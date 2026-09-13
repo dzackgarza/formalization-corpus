@@ -9,12 +9,9 @@
 <body>
 <header class="site-header">
 	<div class="shell masthead">
-		<a class="brand" href="./">
-			<span class="brand-mark" aria-hidden="true">FC</span>
-			<span class="brand-copy">
+			<a class="brand" href="./">
+				<span class="brand-mark" aria-hidden="true">FC</span>
 				<span class="brand-name">Formalization Corpus</span>
-				<span class="brand-tagline">Cross-prover formal mathematics index</span>
-			</span>
 		</a>
 		<nav class="site-nav" aria-label="Primary">
 			<a href="./" aria-current="page">Search</a>
@@ -28,13 +25,12 @@
 <main class="shell page-main">
 	<section class="hero">
 		<div class="hero-copy">
-			<p class="eyebrow">Formal prior art, across proof assistants</p>
-			<h1>Find where mathematics has already been formalized.</h1>
-			<p class="lede">Search definitions, constructions, theorem statements, proofs, and formal semantics across Lean, Rocq, Agda, Isabelle, HOL, Mizar, Metamath, ACL2, PVS, and Twelf.</p>
+				<h1>Search formalized mathematics.</h1>
+				<p class="lede">Definitions, constructions, statements, proofs, and formal semantics from Lean, Rocq, Agda, Isabelle, HOL, Mizar, Metamath, ACL2, PVS, and Twelf.</p>
 			<div class="search-box">
 				<form id="f" class="search-form">
 					<input type="search" id="q" name="q" placeholder="Try: IsometryEquiv, Hasse invariant, repo:UniMath" autocomplete="off" autofocus spellcheck="false" aria-label="Search the formalization corpus">
-					<button type="submit">Search corpus</button>
+						<button type="submit">Search</button>
 				</form>
 				<div class="query-help">
 					<span>Zoekt syntax:</span>
@@ -46,11 +42,11 @@
 			</div>
 			<div id="status" class="status-line" aria-live="polite"></div>
 		</div>
-		<aside class="hero-panel" aria-label="Corpus snapshot">
-			<div class="hero-panel-head">Corpus snapshot</div>
+			<aside class="hero-panel" aria-label="Coverage">
+				<div class="hero-panel-head">Coverage</div>
 			<div class="hero-metrics" id="hero-metrics">
 				<div class="hero-metric"><strong>—</strong><span>indexed sources</span></div>
-				<div class="hero-metric"><strong>—</strong><span>formal units</span></div>
+					<div class="hero-metric"><strong>—</strong><span>formal source files</span></div>
 				<div class="hero-metric"><strong>—</strong><span>formal lines</span></div>
 				<div class="hero-metric"><strong>—</strong><span>prover families</span></div>
 			</div>
@@ -58,11 +54,11 @@
 	</section>
 
 	<section id="browse" aria-labelledby="browse-title">
-		<p class="eyebrow" id="browse-title">Browse the index</p>
-		<div class="browse-grid">
-			<a class="browse-card" href="./corpus.html"><strong>Sources</strong><span>Inspect coverage, ecosystems, and every indexed formal library or project.</span></a>
-			<a class="browse-card" href="./subjects.html"><strong>Subjects</strong><span>Move by mathematical area: category theory, algebra, geometry, analysis, logic, and more.</span></a>
-			<a class="browse-card" href="./api.html"><strong>Search API</strong><span>Use the same Zoekt index from scripts, agents, notebooks, and external tools.</span></a>
+			<h2 id="browse-title">Browse</h2>
+			<div class="browse-grid">
+				<a class="browse-card" href="./corpus.html"><strong>Sources</strong><span>Registered libraries and projects, with index status and coverage statistics.</span></a>
+				<a class="browse-card" href="./subjects.html"><strong>Subjects</strong><span>Registered sources organized by mathematical area.</span></a>
+				<a class="browse-card" href="./api.html"><strong>API</strong><span>JSON search endpoint, query syntax, and response format.</span></a>
 		</div>
 		<p class="muted" id="counts"></p>
 	</section>
@@ -72,7 +68,7 @@
 
 <footer class="site-footer">
 	<div class="shell footer-inner">
-		<p>One lexical index over formal mathematics, independent of proof assistant.</p>
+			<p>Search across formal libraries and proof assistants.</p>
 		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./api.html">API</a></div>
 	</div>
 </footer>
@@ -350,7 +346,7 @@ fetch("./metrics.json").then(r => r.json()).then(data => {
 fetch("./corpus.json").then(r => r.json()).then(data => {
 	corpus = data;
 	el("counts").textContent =
-		"Coverage includes Mathlib, major theorem-scale projects, package registries, standard libraries, and archival formal developments across eleven prover families.";
+		"Indexed sources include Mathlib, package repositories, standard libraries, and formalization projects in eleven prover families.";
 	fromHash();
 });
 </script>

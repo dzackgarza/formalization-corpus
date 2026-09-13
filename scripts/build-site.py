@@ -65,12 +65,9 @@ PAGE = """<!doctype html>
 <body>
 <header class="site-header">
 	<div class="shell masthead">
-		<a class="brand" href="./">
-			<span class="brand-mark" aria-hidden="true">FC</span>
-			<span class="brand-copy">
+			<a class="brand" href="./">
+				<span class="brand-mark" aria-hidden="true">FC</span>
 				<span class="brand-name">Formalization Corpus</span>
-				<span class="brand-tagline">Cross-prover formal mathematics index</span>
-			</span>
 		</a>
 		<nav class="site-nav" aria-label="Primary">
 			<a href="./">Search</a>
@@ -82,9 +79,8 @@ PAGE = """<!doctype html>
 </header>
 <main class="shell page-main">
 	<header class="page-heading">
-		<p class="eyebrow">Mathematical coverage</p>
-		<h1>Subjects</h1>
-		<p class="lede">Browse formal prior art by area rather than prover. These descriptions identify the mathematical content worth searching inside each registered source.</p>
+			<h1>Subjects</h1>
+			<p class="lede">Registered sources organized by mathematical area.</p>
 	</header>
 	<div class="content-layout">
 		<aside class="toc" aria-label="Subject areas">
@@ -96,7 +92,7 @@ PAGE = """<!doctype html>
 </main>
 <footer class="site-footer">
 	<div class="shell footer-inner">
-		<p>Subject descriptions are curated from source content, not inferred from repository names.</p>
+			<p>Subject descriptions are maintained in <code>SOURCES.md</code>.</p>
 		<div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div>
 	</div>
 </footer>
