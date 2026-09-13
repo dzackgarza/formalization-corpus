@@ -1,0 +1,477 @@
+|diff --git a/go.mod b/go.mod
+|index db33117..8e9c98e 100644
+|--- a/go.mod
+|+++ b/go.mod
+|@@ -19,6 +19,7 @@ require (
+| 	github.com/grafana/regexp v0.0.0-20240607082908-2cb410fa05da
+| 	github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.0.1
+| 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.3
+|+	github.com/invopop/jsonschema v0.14.0
+| 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f
+| 	github.com/opentracing/opentracing-go v1.2.0
+| 	github.com/peterbourgon/ff/v3 v3.4.0
+|@@ -59,15 +60,19 @@ require (
+|~
+| require (
+| 	github.com/42wim/httpsig v1.2.2 // indirect
+|+	github.com/bahlo/generic-list-go v0.2.0 // indirect
+|+	github.com/buger/jsonparser v1.1.2 // indirect
+| 	github.com/cenkalti/backoff/v5 v5.0.3 // indirect
+| 	github.com/davidmz/go-pageant v1.0.2 // indirect
+| 	github.com/go-fed/httpsig v1.1.0 // indirect
+| 	github.com/hashicorp/go-version v1.7.0 // indirect
+| 	github.com/klauspost/cpuid/v2 v2.3.0 // indirect
+| 	github.com/kylelemons/godebug v1.1.0 // indirect
+|+	github.com/pb33f/ordered-map/v2 v2.3.1 // indirect
+| 	github.com/tetratelabs/wazero v1.9.0 // indirect
+| 	github.com/wasilibs/wazero-helpers v0.0.0-20240620070341-3dff1577cd52 // indirect
+| 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
+|+	go.yaml.in/yaml/v4 v4.0.0-rc.2 // indirect
+| )
+|~
+| require (
+|diff --git a/go.sum b/go.sum
+|index 6f54532..f8169fb 100644
+|--- a/go.sum
+|+++ b/go.sum
+|@@ -39,12 +39,16 @@ github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be h1:9AeTilPcZAjCFI
+| github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be/go.mod h1:ySMOLuWl6zY27l47sB3qLNK6tF2fkHG55UZxx8oIVo4=
+| github.com/armon/go-socks5 v0.0.0-20160902184237-e75332964ef5 h1:0CwZNZbxp69SHPdPJAN/hZIm0C4OItdklCFmMRWYpio=
+| github.com/armon/go-socks5 v0.0.0-20160902184237-e75332964ef5/go.mod h1:wHh0iHkYZB8zMSxRWpUBQtwG5a7fFgvEO+odwuTv2gs=
+|+github.com/bahlo/generic-list-go v0.2.0 h1:5sz/EEAK+ls5wF+NeqDpk5+iNdMDXrh3z3nPnH1Wvgk=
+|+github.com/bahlo/generic-list-go v0.2.0/go.mod h1:2KvAjgMlE5NNynlg/5iLrrCCZ2+5xWbdbCW3pNTGyYg=
+| github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
+| github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
+| github.com/bits-and-blooms/bitset v1.24.4 h1:95H15Og1clikBrKr/DuzMXkQzECs1M6hhoGXLwLQOZE=
+| github.com/bits-and-blooms/bitset v1.24.4/go.mod h1:7hO7Gc7Pp1vODcmWvKMRA9BNmbv6a/7QIWpPxHddWR8=
+| github.com/bmatcuk/doublestar/v4 v4.10.0 h1:zU9WiOla1YA122oLM6i4EXvGW62DvKZVxIe6TYWexEs=
+| github.com/bmatcuk/doublestar/v4 v4.10.0/go.mod h1:xBQ8jztBU6kakFMg+8WGxn0c6z1fTSPVIjEY1Wr7jzc=
+|+github.com/buger/jsonparser v1.1.2 h1:frqHqw7otoVbk5M8LlE/L7HTnIq2v9RX6EJ48i9AxJk=
+|+github.com/buger/jsonparser v1.1.2/go.mod h1:6RYKKt7H4d4+iWqouImQ9R2FZql3VbhNgx27UK13J/0=
+| github.com/cenkalti/backoff/v5 v5.0.3 h1:ZN+IMa753KfX5hd8vVaMixjnqRZ3y8CuJKRKj1xcsSM=
+| github.com/cenkalti/backoff/v5 v5.0.3/go.mod h1:rkhZdG3JZukswDf7f0cwqPNk4K0sa+F97BxZthm/crw=
+| github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
+|@@ -198,6 +202,8 @@ github.com/hexops/gotextdiff v1.0.3/go.mod h1:pSWU5MAI3yDq+fZBTazCSJysOMbxWL1BSo
+| github.com/hexops/valast v1.4.3 h1:oBoGERMJh6UZdRc6cduE1CTPK+VAdXA59Y1HFgu3sm0=
+| github.com/hexops/valast v1.4.3/go.mod h1:Iqx2kLj3Jn47wuXpj3wX40xn6F93QNFBHuiKBerkTGA=
+| github.com/ianlancetaylor/demangle v0.0.0-20230524184225-eabc099b10ab/go.mod h1:gx7rwoVhcfuVKG5uya9Hs3Sxj7EIvldVofAWIUtGouw=
+|+github.com/invopop/jsonschema v0.14.0 h1:MHQqLhvpNUZfw+hM3AZDYK7jxO8FZoQeQM77g8iyZjg=
+|+github.com/invopop/jsonschema v0.14.0/go.mod h1:ygm6C2EaVNMBDPpaPlnOA2pFAxBnxGjFlMZABxm9n2I=
+| github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 h1:BQSFePA1RWJOlocH6Fxy8MmwDt+yVQYULKfN0RoTN8A=
+| github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99/go.mod h1:1lJo3i6rXxKeerYnT8Nvf0QmHCRC1n8sfWVwXF2Frvo=
+| github.com/josharian/intern v1.0.0/go.mod h1:5DoeVV0s6jJacbCEi61lwdGj/aVlrQvzHFFd8Hwg//Y=
+|@@ -254,6 +260,8 @@ github.com/opentracing-contrib/go-grpc/test v0.0.0-20260320052726-de6f1ccdd147/g
+| github.com/opentracing/opentracing-go v1.2.0 h1:uEJPy/1a5RIPAJ0Ov+OIO8OxWu77jEv+1B0VhjKrZUs=
+| github.com/opentracing/opentracing-go v1.2.0/go.mod h1:GxEUsuufX4nBwe+T+Wl9TAgYrxe9dPLANfrWvHYVTgc=
+| github.com/orisano/pixelmatch v0.0.0-20220722002657-fb0b55479cde/go.mod h1:nZgzbfBr3hhjoZnS66nKrHmduYNpc34ny7RK4z5/HM0=
+|+github.com/pb33f/ordered-map/v2 v2.3.1 h1:5319HDO0aw4DA4gzi+zv4FXU9UlSs3xGZ40wcP1nBjY=
+|+github.com/pb33f/ordered-map/v2 v2.3.1/go.mod h1:qxFQgd0PkVUtOMCkTapqotNgzRhMPL7VvaHKbd1HnmQ=
+| github.com/peterbourgon/ff/v3 v3.4.0 h1:QBvM/rizZM1cB0p0lGMdmR7HxZeI/ZrBWB4DqLkMUBc=
+| github.com/peterbourgon/ff/v3 v3.4.0/go.mod h1:zjJVUhx+twciwfDl0zBcFzl4dW8axCRyXE/eKY9RztQ=
+| github.com/pingcap/errors v0.11.4 h1:lFuQV/oaUMGcD2tqt+01ROSmJs75VG1ToEOkZIZ4nE4=
+|@@ -381,6 +389,8 @@ go.uber.org/multierr v1.11.0 h1:blXXJkSxSSfBVBlC76pxqeO+LN3aDfLQo+309xJstO0=
+| go.uber.org/multierr v1.11.0/go.mod h1:20+QtiLqy0Nd6FdQB9TLXag12DsQkrbs3htMFfDN80Y=
+| go.uber.org/zap v1.27.0 h1:aJMhYGrd5QSmlpLMr2MftRKl7t8J8PTZPA732ud/XR8=
+| go.uber.org/zap v1.27.0/go.mod h1:GB2qFLM7cTU87MWRP2mPIjqfIDnGu+VIO4V/SdhGo2E=
+|+go.yaml.in/yaml/v4 v4.0.0-rc.2 h1:/FrI8D64VSr4HtGIlUtlFMGsm7H7pWTbj6vOLVZcA6s=
+|+go.yaml.in/yaml/v4 v4.0.0-rc.2/go.mod h1:aZqd9kCMsGL7AuUv/m/PvWLdg5sjJsZ4oHDEnfPPfY0=
+| golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
+| golang.org/x/crypto v0.0.0-20190510104115-cbcb75029529/go.mod h1:yigFU9vqHzYiE8UmvKecakEJjdnWj3jj499lnFckfCI=
+| golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550/go.mod h1:yigFU9vqHzYiE8UmvKecakEJjdnWj3jj499lnFckfCI=
+|diff --git a/internal/json/json.go b/internal/json/json.go
+|index 5f860ac..ed87aa3 100644
+|--- a/internal/json/json.go
+|+++ b/internal/json/json.go
+|@@ -19,6 +19,7 @@ func JSONServer(searcher zoekt.Searcher) http.Handler {
+| 	mux := http.NewServeMux()
+| 	mux.HandleFunc("/search", s.jsonSearch)
+| 	mux.HandleFunc("/list", s.jsonList)
+|+	mux.HandleFunc("/openapi.json", openAPIHandler)
+| 	return mux
+| }
+|~
+|@@ -27,22 +28,22 @@ type jsonSearcher struct {
+| }
+|~
+| type jsonSearchArgs struct {
+|-	Q       string
+|-	RepoIDs *[]uint32
+|-	Opts    *zoekt.SearchOptions
+|+	Q       string               `json:"Q" jsonschema_description:"Zoekt query string."`
+|+	RepoIDs *[]uint32            `json:"RepoIDs,omitempty" jsonschema_description:"Optional Sourcegraph repository IDs to intersect with the query."`
+|+	Opts    *zoekt.SearchOptions `json:"Opts,omitempty" jsonschema_description:"Search result and resource-limit options."`
+| }
+|~
+| type jsonSearchReply struct {
+|-	Result *zoekt.SearchResult
+|+	Result *zoekt.SearchResult `json:"Result"`
+| }
+|~
+| type jsonListArgs struct {
+|-	Q    string
+|-	Opts *zoekt.ListOptions
+|+	Q    string             `json:"Q,omitempty" jsonschema_description:"Repository query. Empty lists all sources."`
+|+	Opts *zoekt.ListOptions `json:"Opts,omitempty" jsonschema_description:"Controls which repository-list fields are populated."`
+| }
+|~
+| type jsonListReply struct {
+|-	List *zoekt.RepoList
+|+	List *zoekt.RepoList `json:"List"`
+| }
+|~
+| func (s *jsonSearcher) jsonSearch(w http.ResponseWriter, req *http.Request) {
+|@@ -101,7 +102,7 @@ func (s *jsonSearcher) jsonSearch(w http.ResponseWriter, req *http.Request) {
+|~
+| func jsonError(w http.ResponseWriter, statusCode int, err string) {
+| 	w.WriteHeader(statusCode)
+|-	json.NewEncoder(w).Encode(struct{ Error string }{Error: err})
+|+	json.NewEncoder(w).Encode(jsonErrorReply{Error: err})
+| }
+|~
+| func writeJSONResponse(w http.ResponseWriter, response any) {
+|diff --git a/internal/json/json_test.go b/internal/json/json_test.go
+|index d63e80e..f0e64e4 100644
+|--- a/internal/json/json_test.go
+|+++ b/internal/json/json_test.go
+|@@ -8,6 +8,7 @@ import (
+| 	"net/http"
+| 	"net/http/httptest"
+| 	"reflect"
+|+	"strings"
+| 	"testing"
+|~
+| 	"github.com/sourcegraph/zoekt"
+|@@ -16,6 +17,92 @@ import (
+| 	"github.com/sourcegraph/zoekt/query"
+| )
+|~
+|+func TestOpenAPIContract(t *testing.T) {
+|+	ts := httptest.NewServer(zjson.JSONServer(&mockSearcher.MockSearcher{}))
+|+	defer ts.Close()
+|+
+|+	r, err := http.Get(ts.URL + "/openapi.json")
+|+	if err != nil {
+|+		t.Fatal(err)
+|+	}
+|+	defer r.Body.Close()
+|+	if r.StatusCode != http.StatusOK {
+|+		body, _ := io.ReadAll(r.Body)
+|+		t.Fatalf("got status %d, body %s", r.StatusCode, body)
+|+	}
+|+	if got := r.Header.Get("Content-Type"); !strings.HasPrefix(got, "application/vnd.oai.openapi+json") {
+|+		t.Fatalf("unexpected content type %q", got)
+|+	}
+|+
+|+	var doc map[string]any
+|+	if err := json.NewDecoder(r.Body).Decode(&doc); err != nil {
+|+		t.Fatal(err)
+|+	}
+|+	if got := doc["openapi"]; got != "3.1.0" {
+|+		t.Fatalf("openapi = %v, want 3.1.0", got)
+|+	}
+|+	paths, ok := doc["paths"].(map[string]any)
+|+	if !ok {
+|+		t.Fatalf("paths has type %T", doc["paths"])
+|+	}
+|+	for _, path := range []string{"/api/search", "/api/list", "/api/openapi.json"} {
+|+		if _, ok := paths[path]; !ok {
+|+			t.Errorf("missing path %s", path)
+|+		}
+|+	}
+|+
+|+	encoded, err := json.Marshal(doc)
+|+	if err != nil {
+|+		t.Fatal(err)
+|+	}
+|+	if bytes.Contains(encoded, []byte(`"$ref":"#/$defs/`)) {
+|+		t.Fatal("contract contains component-local $ref that resolves against the document root")
+|+	}
+|+	for _, want := range []string{
+|+		`"SearchRequest"`, `"SearchResponse"`, `"ListRequest"`, `"ListResponse"`,
+|+		`"operationId":"searchCorpus"`, `"operationId":"listSources"`,
+|+	} {
+|+		if !bytes.Contains(encoded, []byte(want)) {
+|+			t.Errorf("contract missing %s", want)
+|+		}
+|+	}
+|+}
+|+
+|+func TestOpenAPIContractHead(t *testing.T) {
+|+	ts := httptest.NewServer(zjson.JSONServer(&mockSearcher.MockSearcher{}))
+|+	defer ts.Close()
+|+
+|+	req, err := http.NewRequest(http.MethodHead, ts.URL+"/openapi.json", nil)
+|+	if err != nil {
+|+		t.Fatal(err)
+|+	}
+|+	r, err := http.DefaultClient.Do(req)
+|+	if err != nil {
+|+		t.Fatal(err)
+|+	}
+|+	defer r.Body.Close()
+|+	if r.StatusCode != http.StatusOK {
+|+		t.Fatalf("got status %d, want %d", r.StatusCode, http.StatusOK)
+|+	}
+|+	if got := r.Header.Get("Content-Type"); !strings.HasPrefix(got, "application/vnd.oai.openapi+json") {
+|+		t.Fatalf("unexpected content type %q", got)
+|+	}
+|+}
+|+
+|+func TestOpenAPIContractRejectsPost(t *testing.T) {
+|+	ts := httptest.NewServer(zjson.JSONServer(&mockSearcher.MockSearcher{}))
+|+	defer ts.Close()
+|+
+|+	r, err := http.Post(ts.URL+"/openapi.json", "application/json", bytes.NewBufferString("{}"))
+|+	if err != nil {
+|+		t.Fatal(err)
+|+	}
+|+	defer r.Body.Close()
+|+	if r.StatusCode != http.StatusMethodNotAllowed {
+|+		t.Fatalf("got status %d, want %d", r.StatusCode, http.StatusMethodNotAllowed)
+|+	}
+|+}
+|+
+| func TestClientServer(t *testing.T) {
+| 	searchQuery := "\"hello world|universe\""
+| 	mock := &mockSearcher.MockSearcher{
+|diff --git a/internal/json/openapi.go b/internal/json/openapi.go
+|new file mode 100644
+|index 0000000..2b16c47
+|--- /dev/null
+|+++ b/internal/json/openapi.go
+|@@ -0,0 +1,235 @@
+|+package json
+|+
+|+import (
+|+	"encoding/json"
+|+	"net/http"
+|+	"strings"
+|+
+|+	"github.com/invopop/jsonschema"
+|+)
+|+
+|+const openAPIVersion = "1.0.0"
+|+
+|+type jsonErrorReply struct {
+|+	Error string `json:"Error" jsonschema_description:"Human-readable error message."`
+|+}
+|+
+|+func schemaFor(name string, value any) map[string]any {
+|+	reflector := &jsonschema.Reflector{
+|+		Anonymous:                 true,
+|+		ExpandedStruct:            true,
+|+		AllowAdditionalProperties: false,
+|+	}
+|+	encoded, err := json.Marshal(reflector.Reflect(value))
+|+	if err != nil {
+|+		panic(err)
+|+	}
+|+	var schema map[string]any
+|+	if err := json.Unmarshal(encoded, &schema); err != nil {
+|+		panic(err)
+|+	}
+|+	delete(schema, "$schema")
+|+	if name == "SearchRequest" {
+|+		makeDefinitionOptional(schema, "SearchOptions")
+|+	}
+|+	if name == "ListRequest" {
+|+		makeDefinitionOptional(schema, "ListOptions")
+|+	}
+|+	rewriteLocalRefs(schema, "#/components/schemas/"+name+"/$defs/")
+|+	return schema
+|+}
+|+
+|+func makeDefinitionOptional(schema map[string]any, definition string) {
+|+	defs, ok := schema["$defs"].(map[string]any)
+|+	if !ok {
+|+		return
+|+	}
+|+	def, ok := defs[definition].(map[string]any)
+|+	if !ok {
+|+		return
+|+	}
+|+	delete(def, "required")
+|+}
+|+
+|+func rewriteLocalRefs(value any, prefix string) {
+|+	switch node := value.(type) {
+|+	case map[string]any:
+|+		for key, child := range node {
+|+			if key == "$ref" {
+|+				if ref, ok := child.(string); ok && strings.HasPrefix(ref, "#/$defs/") {
+|+					node[key] = prefix + strings.TrimPrefix(ref, "#/$defs/")
+|+				}
+|+				continue
+|+			}
+|+			rewriteLocalRefs(child, prefix)
+|+		}
+|+	case []any:
+|+		for _, child := range node {
+|+			rewriteLocalRefs(child, prefix)
+|+		}
+|+	}
+|+}
+|+
+|+func schemaRef(name string) map[string]any {
+|+	return map[string]any{"$ref": "#/components/schemas/" + name}
+|+}
+|+
+|+func jsonContent(schema map[string]any) map[string]any {
+|+	return map[string]any{
+|+		"application/json": map[string]any{"schema": schema},
+|+	}
+|+}
+|+
+|+func errorResponse(description string) map[string]any {
+|+	return map[string]any{
+|+		"description": description,
+|+		"content":     jsonContent(schemaRef("Error")),
+|+	}
+|+}
+|+
+|+func openAPIDocument() map[string]any {
+|+	components := map[string]any{
+|+		"SearchRequest":  schemaFor("SearchRequest", jsonSearchArgs{}),
+|+		"SearchResponse": schemaFor("SearchResponse", jsonSearchReply{}),
+|+		"ListRequest":    schemaFor("ListRequest", jsonListArgs{}),
+|+		"ListResponse":   schemaFor("ListResponse", jsonListReply{}),
+|+		"Error":          schemaFor("Error", jsonErrorReply{}),
+|+	}
+|+
+|+	searchExample := map[string]any{
+|+		"Q": `content:Hasse file:\.lean$`,
+|+		"Opts": map[string]any{
+|+			"MaxDocDisplayCount": 5,
+|+			"ChunkMatches":       true,
+|+			"NumContextLines":    2,
+|+		},
+|+	}
+|+	listExample := map[string]any{"Q": `repo:mathlib4`}
+|+
+|+	return map[string]any{
+|+		"openapi":           "3.1.0",
+|+		"jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+|+		"info": map[string]any{
+|+			"title":       "Formalization Corpus API",
+|+			"version":     openAPIVersion,
+|+			"summary":     "Search formalized mathematics across proof assistants.",
+|+			"description": "Public, read-only API for the Formalization Corpus search index. No authentication is required.",
+|+			"license": map[string]any{
+|+				"name":       "Apache-2.0",
+|+				"identifier": "Apache-2.0",
+|+			},
+|+		},
+|+		"security": []any{},
+|+		"servers": []any{
+|+			map[string]any{
+|+				"url":         "https://formalization-corpus.dzackgarza.com",
+|+				"description": "Production",
+|+			},
+|+		},
+|+		"tags": []any{
+|+			map[string]any{"name": "Search", "description": "Search source text in the corpus."},
+|+			map[string]any{"name": "Sources", "description": "Inspect indexed source metadata."},
+|+			map[string]any{"name": "Contract", "description": "Machine-readable API contract."},
+|+		},
+|+		"paths": map[string]any{
+|+			"/api/search": map[string]any{
+|+				"post": map[string]any{
+|+					"tags":        []string{"Search"},
+|+					"summary":     "Search the corpus",
+|+					"operationId": "searchCorpus",
+|+					"description": "Search formal source text using Zoekt query syntax. Bare terms match substrings. Terms separated by spaces are combined; `or` forms alternatives; `-` negates. Filters include `repo:`, `file:`, `content:`, and `case:`.",
+|+					"requestBody": map[string]any{
+|+						"required": true,
+|+						"content": map[string]any{
+|+							"application/json": map[string]any{
+|+								"schema": schemaRef("SearchRequest"),
+|+								"examples": map[string]any{
+|+									"hasse": map[string]any{
+|+										"summary": "Find Hasse in Lean source",
+|+										"value":   searchExample,
+|+									},
+|+								},
+|+							},
+|+						},
+|+					},
+|+					"responses": map[string]any{
+|+						"200": map[string]any{
+|+							"description": "Search results grouped by file.",
+|+							"content":     jsonContent(schemaRef("SearchResponse")),
+|+						},
+|+						"400": errorResponse("Invalid or missing query."),
+|+						"405": errorResponse("Method not allowed."),
+|+						"500": errorResponse("Search failed."),
+|+					},
+|+				},
+|+			},
+|+			"/api/list": map[string]any{
+|+				"post": map[string]any{
+|+					"tags":        []string{"Sources"},
+|+					"summary":     "List sources",
+|+					"operationId": "listSources",
+|+					"description": "Return metadata for sources matching a repository query. An empty query lists every source in the live index.",
+|+					"requestBody": map[string]any{
+|+						"required": true,
+|+						"content": map[string]any{
+|+							"application/json": map[string]any{
+|+								"schema": schemaRef("ListRequest"),
+|+								"examples": map[string]any{
+|+									"mathlib": map[string]any{
+|+										"summary": "List Mathlib source metadata",
+|+										"value":   listExample,
+|+									},
+|+								},
+|+							},
+|+						},
+|+					},
+|+					"responses": map[string]any{
+|+						"200": map[string]any{
+|+							"description": "Matching source metadata and index statistics.",
+|+							"content":     jsonContent(schemaRef("ListResponse")),
+|+						},
+|+						"400": errorResponse("Invalid repository query."),
+|+						"405": errorResponse("Method not allowed."),
+|+						"500": errorResponse("Listing failed."),
+|+					},
+|+				},
+|+			},
+|+			"/api/openapi.json": map[string]any{
+|+				"get": map[string]any{
+|+					"tags":        []string{"Contract"},
+|+					"summary":     "OpenAPI contract",
+|+					"operationId": "getOpenAPIContract",
+|+					"responses": map[string]any{
+|+						"200": map[string]any{
+|+							"description": "OpenAPI 3.1 contract for this live API.",
+|+							"content": map[string]any{
+|+								"application/vnd.oai.openapi+json;version=3.1": map[string]any{
+|+									"schema": map[string]any{"type": "object"},
+|+								},
+|+							},
+|+						},
+|+						"405": errorResponse("Method not allowed."),
+|+					},
+|+				},
+|+			},
+|+		},
+|+		"components": map[string]any{"schemas": components},
+|+		"externalDocs": map[string]any{
+|+			"description": "Formalization Corpus",
+|+			"url":         "https://dzackgarza.github.io/formalization-corpus/",
+|+		},
+|+	}
+|+}
+|+
+|+func openAPIHandler(w http.ResponseWriter, req *http.Request) {
+|+	if req.Method != http.MethodGet && req.Method != http.MethodHead {
+|+		w.Header().Set("Content-Type", "application/json")
+|+		jsonError(w, http.StatusMethodNotAllowed, "Only GET is supported")
+|+		return
+|+	}
+|+	w.Header().Set("Content-Type", "application/vnd.oai.openapi+json;version=3.1")
+|+	if req.Method == http.MethodHead {
+|+		return
+|+	}
+|+	writeJSONResponse(w, openAPIDocument())
+|+}

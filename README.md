@@ -108,9 +108,13 @@ GitHub Pages or the localhost deployment. `-rpc` is what registers
 
 ## Querying it
 
-The JSON API is open — no key, no account. The
-[API page](https://dzackgarza.github.io/formalization-corpus/api.html) has the
-query language, the options and the response shape; the short version:
+The JSON API is open — no key, no account. The running service publishes its
+OpenAPI 3.1 contract at
+[`/api/openapi.json`](https://formalization-corpus.dzackgarza.com/api/openapi.json).
+The [API page](https://dzackgarza.github.io/formalization-corpus/api.html) renders
+that live contract with Scalar; request/response schemas, examples and client
+snippets therefore come from the API rather than a second hand-maintained copy.
+The short version:
 
 ```sh
 curl -s https://formalization-corpus.dzackgarza.com/api/search \

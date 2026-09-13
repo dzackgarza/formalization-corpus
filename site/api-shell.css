@@ -1,0 +1,82 @@
+:root {
+  color-scheme: light dark;
+  --shell-bg: #fff;
+  --shell-ink: #111;
+  --shell-muted: #555;
+  --shell-rule: #dfdfdf;
+  --shell-accent: #0645ad;
+  --shell-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --shell-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --shell-bg: #0f1419;
+    --shell-ink: #e6e1cf;
+    --shell-muted: #a4a4a4;
+    --shell-rule: #25303a;
+    --shell-accent: #36a3d9;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body { background: var(--shell-bg); color: var(--shell-ink); font-family: var(--shell-sans); }
+
+.api-site-header {
+  position: relative;
+  z-index: 50;
+  border-bottom: 1px solid var(--shell-rule);
+  background: var(--shell-bg);
+}
+
+.api-masthead {
+  width: min(calc(100% - 2.5rem), 1180px);
+  min-height: 68px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.api-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .78rem;
+  color: var(--shell-ink);
+  text-decoration: none;
+  font-family: var(--shell-serif);
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.api-brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--shell-muted);
+  border-radius: 3px;
+  font-size: .92rem;
+}
+
+.api-site-nav { display: flex; align-items: center; gap: .2rem; }
+.api-site-nav a {
+  padding: .45rem .68rem .4rem;
+  border-bottom: 2px solid transparent;
+  color: var(--shell-muted);
+  text-decoration: none;
+  font-size: .84rem;
+  font-weight: 650;
+}
+.api-site-nav a:hover { color: var(--shell-ink); }
+.api-site-nav a[aria-current="page"] { color: var(--shell-ink); border-bottom-color: var(--shell-accent); }
+
+#api-reference { min-height: calc(100vh - 69px); }
+
+@media (max-width: 720px) {
+  .api-masthead { width: min(calc(100% - 1.25rem), 1180px); gap: .75rem; }
+  .api-brand span:last-child { display: none; }
+  .api-site-nav a { padding-inline: .45rem; }
+}

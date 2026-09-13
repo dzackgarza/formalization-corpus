@@ -35,6 +35,7 @@ register:
 build-tools:
     cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt-index ./cmd/zoekt-index
     cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt ./cmd/zoekt
+    ./scripts/build-zoekt-webserver.sh
     cd tools/Julian__tree-sitter-lean && tree-sitter build --output ../../.ast-grep/lean.so
 
 # Incrementally index every formalization source.
