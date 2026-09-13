@@ -1,21 +1,25 @@
 :root {
   color-scheme: light dark;
-  --bg: #f5f7fa;
+  --bg: #f8f7f4;
   --surface: #ffffff;
-  --surface-subtle: #eef2f7;
-  --surface-code: #f3f5f8;
-  --ink: #172033;
-  --ink-strong: #0d1525;
-  --muted: #687386;
-  --rule: #d7dde7;
-  --rule-strong: #bcc6d4;
-  --accent: #215ea8;
-  --accent-strong: #17497f;
-  --accent-soft: #e7eff9;
-  --accent-ink: #123d6b;
-  --danger: #b42318;
-  --mark: #fff2a8;
-  --shadow: 0 1px 2px rgb(15 23 42 / 0.05), 0 8px 24px rgb(15 23 42 / 0.04);
+  --surface-subtle: #f1f0ec;
+  --surface-code: #f4f3ef;
+  --ink: #30343a;
+  --ink-strong: #171a1e;
+  --muted: #6a7076;
+  --rule: #d9dad7;
+  --rule-strong: #bec1c0;
+  --accent: #315f7d;
+  --accent-strong: #244a62;
+  --accent-soft: #eef2f4;
+  --accent-ink: #244a62;
+  --button-bg: #30343a;
+  --button-hover: #1f2327;
+  --button-border: #30343a;
+  --button-text: #ffffff;
+  --danger: #9f3025;
+  --mark: #f3e7a6;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.035);
   --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
@@ -24,22 +28,26 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0e141d;
-    --surface: #141c27;
-    --surface-subtle: #192330;
-    --surface-code: #101720;
-    --ink: #dce5f0;
-    --ink-strong: #f7f9fc;
-    --muted: #95a2b4;
-    --rule: #2b3848;
-    --rule-strong: #405065;
-    --accent: #82b4f2;
-    --accent-strong: #a9cbf7;
-    --accent-soft: #172b44;
-    --accent-ink: #c5ddfb;
-    --danger: #ff9b8e;
-    --mark: #66571a;
-    --shadow: 0 1px 2px rgb(0 0 0 / 0.24), 0 10px 28px rgb(0 0 0 / 0.12);
+    --bg: #171819;
+    --surface: #1d1f20;
+    --surface-subtle: #242627;
+    --surface-code: #202223;
+    --ink: #d7d5d0;
+    --ink-strong: #f2f0eb;
+    --muted: #a29f98;
+    --rule: #383b3c;
+    --rule-strong: #515556;
+    --accent: #9eb1bd;
+    --accent-strong: #c0ccd3;
+    --accent-soft: #252b2f;
+    --accent-ink: #d4dde2;
+    --button-bg: #34383a;
+    --button-hover: #414649;
+    --button-border: #555b5e;
+    --button-text: #f3f1ec;
+    --danger: #d98d83;
+    --mark: #665e2a;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.18);
   }
 }
 
@@ -118,8 +126,7 @@ mark {
   position: relative;
   z-index: 10;
   border-bottom: 1px solid var(--rule);
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
-  backdrop-filter: blur(10px);
+  background: var(--surface);
 }
 
 .masthead {
@@ -144,9 +151,9 @@ mark {
   width: 34px;
   height: 34px;
   border: 1px solid var(--rule-strong);
-  border-radius: 7px;
-  background: var(--surface-subtle);
-  color: var(--accent-strong);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink-strong);
   font-family: var(--serif);
   font-size: 0.96rem;
   font-weight: 700;
@@ -176,8 +183,9 @@ mark {
 }
 
 .site-nav a {
-  padding: 0.48rem 0.68rem;
-  border-radius: 6px;
+  padding: 0.48rem 0.68rem 0.42rem;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
   color: var(--muted);
   font-size: 0.84rem;
   font-weight: 650;
@@ -185,13 +193,13 @@ mark {
 }
 
 .site-nav a:hover {
-  background: var(--surface-subtle);
   color: var(--ink-strong);
 }
 
 .site-nav a[aria-current="page"] {
-  background: var(--accent-soft);
-  color: var(--accent-ink);
+  border-bottom-color: var(--accent);
+  background: transparent;
+  color: var(--ink-strong);
 }
 
 .page-main { padding-block: 2.4rem 4rem; }
@@ -261,7 +269,7 @@ h3 {
   margin-top: 1.65rem;
   padding: 0.58rem;
   border: 1px solid var(--rule-strong);
-  border-radius: 10px;
+  border-radius: 4px;
   background: var(--surface);
   box-shadow: var(--shadow);
 }
@@ -279,7 +287,7 @@ h3 {
   margin: 0;
   padding: 0 0.95rem;
   border: 0;
-  border-radius: 6px;
+  border-radius: 2px;
   outline: none;
   background: transparent;
   color: var(--ink-strong);
@@ -293,18 +301,18 @@ h3 {
 .button {
   min-height: 48px;
   padding: 0.68rem 1.15rem;
-  border: 1px solid var(--accent-strong);
-  border-radius: 6px;
-  background: var(--accent-strong);
-  color: #fff;
+  border: 1px solid var(--button-border);
+  border-radius: 3px;
+  background: var(--button-bg);
+  color: var(--button-text);
   font: 650 0.86rem/1 var(--sans);
   cursor: pointer;
 }
 
 .search-form button:hover,
 .button:hover {
-  background: color-mix(in srgb, var(--accent-strong) 88%, #000);
-  color: #fff;
+  background: var(--button-hover);
+  color: var(--button-text);
 }
 
 .query-help {
@@ -358,7 +366,7 @@ h3 {
   margin: 0;
   padding: 0 0.65rem;
   border: 1px solid var(--rule);
-  border-radius: 6px;
+  border-radius: 3px;
   background: var(--surface-subtle);
   color: var(--ink);
   font: 0.8rem var(--sans);
@@ -392,7 +400,7 @@ h3 {
   display: grid;
   align-content: start;
   border: 1px solid var(--rule);
-  border-radius: 10px;
+  border-radius: 4px;
   background: var(--surface);
   box-shadow: var(--shadow);
 }
@@ -459,7 +467,7 @@ h3 {
   display: block;
   padding: 1.15rem 1.2rem 1.25rem;
   border: 1px solid var(--rule);
-  border-radius: 9px;
+  border-radius: 4px;
   background: var(--surface);
   color: inherit;
   text-decoration: none;
@@ -467,7 +475,6 @@ h3 {
 
 .browse-card:hover {
   border-color: var(--rule-strong);
-  box-shadow: var(--shadow);
   color: inherit;
 }
 
