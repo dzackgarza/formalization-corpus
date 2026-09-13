@@ -263,6 +263,7 @@ def main() -> int:
             ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
         ).strip(),
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
+        "query_config_sha256": hashlib.sha256(evaluate.QUERY_CONFIG.read_bytes()).hexdigest(),
         "expansions_sha256": hashlib.sha256(args.expansions.read_bytes()).hexdigest(),
         "source_table_sha256": hashlib.sha256((ROOT / "sources.tsv").read_bytes()).hexdigest(),
         "expansion_model": expansion_data.get("model"),

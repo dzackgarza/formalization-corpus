@@ -25,11 +25,13 @@ import sys
 import time
 from collections import defaultdict
 from datetime import datetime, timezone
+from functools import lru_cache
 from typing import Any
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 DEFAULT_GOLD = ROOT / "evaluation/search/gold.json"
 DEFAULT_BASELINE = ROOT / "evaluation/search/baselines/frontend_lexical_v1.json"
+QUERY_CONFIG = ROOT / "site/search-query.json"
 ZOEKT = ROOT / "bin/zoekt"
 INDEX_DIR = ROOT / ".zoekt"
 FORMAL_FILES = r"\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$"
@@ -109,39 +111,28 @@ def literal_terms(text: str) -> list[str]:
     return terms
 
 
-QUERY_STOPWORDS = {
-    "a", "an", "the", "is", "are", "was", "were", "be", "been", "being",
-    "do", "does", "did", "have", "has", "had", "already", "formalized",
-    "formalised", "formalization", "formalisation", "formal", "proof", "definition",
-    "theorem", "existence", "construction", "of", "for", "in", "on", "at", "to",
-    "from", "via", "with", "and", "or", "about", "near",
-}
-
-PROOF_ASSISTANT_FILTERS = {
-    "lean": r"\.lean$",
-    "rocq": r"\.v$",
-    "coq": r"\.v$",
-    "agda": r"\.(agda|lagda(\.(md|rst|tex))?)$",
-    "isabelle": r"\.thy$",
-    "mizar": r"\.miz$",
-    "metamath": r"\.(mm|mm0|mm1)$",
-    "acl2": r"\.(lisp|lsp|acl2)$",
-    "pvs": r"\.pvs$",
-    "twelf": r"\.elf$",
-}
+@lru_cache(maxsize=1)
+def query_config() -> dict[str, Any]:
+    data = json.loads(QUERY_CONFIG.read_text())
+    if data.get("version") != 1:
+        raise ValueError(f"unsupported query config version in {QUERY_CONFIG}")
+    return data
 
 
 def normalized_query_terms(text: str) -> tuple[list[str], str | None]:
-    """Conservative query normalization for experiments, not production behavior."""
+    """Conservative natural-query normalization shared with the public frontend."""
+    config = query_config()
+    stopwords = set(config["stopwords"])
+    proof_assistant_filters = config["proof_assistant_terms"]
     words = re.findall(r"[\w⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉ℚℤℝℂ∞+-]+", text, flags=re.UNICODE)
     proof_filter = None
     terms: list[str] = []
     for word in words:
         lower = word.casefold()
-        if lower in PROOF_ASSISTANT_FILTERS:
-            proof_filter = PROOF_ASSISTANT_FILTERS[lower]
+        if lower in proof_assistant_filters:
+            proof_filter = proof_assistant_filters[lower]
             continue
-        if lower in QUERY_STOPWORDS:
+        if lower in stopwords:
             continue
         terms.append(word)
     return terms, proof_filter
@@ -151,12 +142,14 @@ def compile_query(text: str, variant: str) -> str:
     if variant == "frontend_lexical_v1":
         parts = literal_terms(text)
         parts.append(f"file:{FORMAL_FILES}")
-    elif variant in {"normalized_content_v1", "normalized_path_content_v1"}:
+    elif variant in {"normalized_content_v1", "normalized_path_content_v1", "frontend_lexical_v2"}:
         terms, proof_filter = normalized_query_terms(text)
         if variant == "normalized_content_v1":
             parts = [f"content:{quoted_pattern(regex_escape(term))}" for term in terms]
         else:
             parts = [quoted_pattern(regex_escape(term)) for term in terms]
+        if not terms:
+            parts.append('content:"$a"')
         parts.append(f"file:{proof_filter or FORMAL_FILES}")
     else:
         raise ValueError(f"unknown retrieval variant: {variant}")
@@ -366,6 +359,9 @@ def compare_reports(current: dict[str, Any], baseline: dict[str, Any], tolerance
     if current.get("index") != baseline.get("index"):
         problems.append("index fingerprint differs; do not attribute score changes to retrieval code until the index change is reviewed")
         return problems
+    if current.get("query_config_sha256") != baseline.get("query_config_sha256"):
+        problems.append("query-normalization config differs; regenerate and review the retrieval baseline before comparing scores")
+        return problems
     keys = [
         "hit@1", "hit@5", "hit@10", "hit@20",
         "owner_hit@1", "owner_hit@5", "owner_hit@10", "owner_hit@20",
@@ -451,6 +447,7 @@ def main() -> int:
         "created_at": datetime.now(timezone.utc).isoformat(),
         "corpus_git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
+        "query_config_sha256": hashlib.sha256(QUERY_CONFIG.read_bytes()).hexdigest(),
         "variant": args.variant,
         "provider": args.provider,
         "index": index_fingerprint() if args.provider == "local" else None,

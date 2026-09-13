@@ -2,7 +2,9 @@
 from __future__ import annotations
 
 import copy
+import json
 import pathlib
+import subprocess
 import sys
 import unittest
 
@@ -24,6 +26,37 @@ class SearchEvaluationTests(unittest.TestCase):
         self.assertIn('content:"formalized\\\\?"', compiled)
         self.assertIn("file:", compiled)
         self.assertTrue(compiled.endswith("case:no"))
+
+    def test_frontend_and_evaluator_share_normalization_contract(self) -> None:
+        queries = [
+            "Is Serre duality for coherent sheaves already formalized?",
+            "does Lean have the Bruhat Tits tree?",
+            "Jordan canonical form of a linear operator",
+            "Yoneda lemma for univalent categories in Rocq",
+            "dyadic Hilbert symbol over Q2",
+        ]
+        script = r"""
+const fs = require('fs');
+const q = require('./site/search-query.js');
+const config = JSON.parse(fs.readFileSync('./site/search-query.json', 'utf8'));
+const queries = JSON.parse(process.argv[1]);
+process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(text, config))));
+"""
+        output = subprocess.check_output(
+            ["node", "-e", script, json.dumps(queries)],
+            cwd=HERE.parents[1],
+            text=True,
+        )
+        javascript = json.loads(output)
+        python = [
+            {"terms": terms, "proofFilter": proof_filter}
+            for terms, proof_filter in map(evaluate.normalized_query_terms, queries)
+        ]
+        self.assertEqual(javascript, python)
+
+    def test_frontend_v2_does_not_turn_intent_only_text_into_match_all(self) -> None:
+        compiled = evaluate.compile_query("is this already formalized?", "frontend_lexical_v2")
+        self.assertIn('content:"$a"', compiled)
 
     def test_normalized_query_removes_intent_words_and_detects_proof_assistant(self) -> None:
         terms, proof_filter = evaluate.normalized_query_terms(

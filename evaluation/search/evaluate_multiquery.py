@@ -124,6 +124,7 @@ def main() -> int:
         "created_at": datetime.now(timezone.utc).isoformat(),
         "corpus_git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
+        "query_config_sha256": hashlib.sha256(evaluate.QUERY_CONFIG.read_bytes()).hexdigest(),
         "expansions_sha256": hashlib.sha256(args.expansions.read_bytes()).hexdigest(),
         "expansion_model": expansion_data.get("model"),
         "expansion_prompt_version": expansion_data.get("prompt_version"),
