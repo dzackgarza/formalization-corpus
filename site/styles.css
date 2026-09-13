@@ -1,25 +1,34 @@
 :root {
   color-scheme: light dark;
-  --bg: #f8f7f4;
+  /*
+   * Reference palette, not project branding:
+   * - Stacks / AFP / Mathlib: white page, black text, gray structure, blue links.
+   * - agda-unimath light: #fff/#000, #fafafa surfaces, #aaa control borders.
+   * - agda-unimath Ayu dark: #0f1419 page, #14191f sidebar/surface,
+   *   #191f26 hover, #c5c5c5 text, #424242 controls. Its #2b79a2 link
+   *   token is 3.84:1 on #0f1419, so links use the same theme's brighter
+   *   #36a3d9 blue (6.52:1) instead.
+   */
+  --bg: #ffffff;
   --surface: #ffffff;
-  --surface-subtle: #f1f0ec;
-  --surface-code: #f4f3ef;
-  --ink: #30343a;
-  --ink-strong: #171a1e;
-  --muted: #6a7076;
-  --rule: #d9dad7;
-  --rule-strong: #bec1c0;
-  --accent: #315f7d;
-  --accent-strong: #244a62;
-  --accent-soft: #eef2f4;
-  --accent-ink: #244a62;
-  --button-bg: #30343a;
-  --button-hover: #1f2327;
-  --button-border: #30343a;
-  --button-text: #ffffff;
+  --surface-subtle: #f8f9fa;
+  --surface-code: #f3f3f3;
+  --ink: #000000;
+  --ink-strong: #000000;
+  --muted: #555555;
+  --rule: #dfdfdf;
+  --rule-strong: #bfbfbf;
+  --accent: #0645ad;
+  --accent-strong: #004d99;
+  --accent-soft: #f0f4fa;
+  --accent-ink: #0645ad;
+  --button-bg: #fafafa;
+  --button-hover: #e6e6e6;
+  --button-border: #aaaaaa;
+  --button-text: #000000;
   --danger: #9f3025;
   --mark: #f3e7a6;
-  --shadow: 0 1px 2px rgb(0 0 0 / 0.035);
+  --shadow: none;
   --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
@@ -28,26 +37,26 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #171819;
-    --surface: #1d1f20;
-    --surface-subtle: #242627;
-    --surface-code: #202223;
-    --ink: #d7d5d0;
-    --ink-strong: #f2f0eb;
-    --muted: #a29f98;
-    --rule: #383b3c;
-    --rule-strong: #515556;
-    --accent: #9eb1bd;
-    --accent-strong: #c0ccd3;
-    --accent-soft: #252b2f;
-    --accent-ink: #d4dde2;
-    --button-bg: #34383a;
-    --button-hover: #414649;
-    --button-border: #555b5e;
-    --button-text: #f3f1ec;
+    --bg: #0f1419;
+    --surface: #14191f;
+    --surface-subtle: #191f26;
+    --surface-code: #1e1e1e;
+    --ink: #c5c5c5;
+    --ink-strong: #e6e1cf;
+    --muted: #848484;
+    --rule: hsl(210 25% 13%);
+    --rule-strong: #5c6773;
+    --accent: #36a3d9;
+    --accent-strong: #36a3d9;
+    --accent-soft: #191f26;
+    --accent-ink: #2b79a2;
+    --button-bg: #424242;
+    --button-hover: #505050;
+    --button-border: #848484;
+    --button-text: #ffffff;
     --danger: #d98d83;
-    --mark: #665e2a;
-    --shadow: 0 1px 2px rgb(0 0 0 / 0.18);
+    --mark: #e3b171;
+    --shadow: none;
   }
 }
 
