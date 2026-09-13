@@ -19,6 +19,20 @@ SUBJECTS = ROOT / "site" / "subjects.html"
 
 SOURCE_TABLE = ROOT / "sources.tsv"
 
+PROOF_ASSISTANTS = {
+    "lean": {"label": "Lean", "url": "https://lean-lang.org/"},
+    "rocq": {"label": "Rocq", "url": "https://rocq-prover.org/"},
+    "agda": {"label": "Agda", "url": "https://agda.readthedocs.io/"},
+    "isabelle": {"label": "Isabelle", "url": "https://isabelle.in.tum.de/"},
+    "hol-light": {"label": "HOL Light", "url": "https://github.com/jrh13/hol-light"},
+    "hol4": {"label": "HOL4", "url": "https://hol-theorem-prover.org/"},
+    "mizar": {"label": "Mizar", "url": "https://mizar.uwb.edu.pl/"},
+    "metamath": {"label": "Metamath", "url": "https://us.metamath.org/"},
+    "acl2": {"label": "ACL2", "url": "https://acl2.org/"},
+    "pvs": {"label": "PVS", "url": "https://pvs.csl.sri.com/"},
+    "twelf": {"label": "Twelf", "url": "https://twelf.org/"},
+}
+
 
 def source_rows() -> list[dict[str, str]]:
     import csv
@@ -172,7 +186,11 @@ def main() -> None:
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(
         json.dumps(
-            {"sources": sources, "sources_by_proof_assistant": counts},
+            {
+                "sources": sources,
+                "sources_by_proof_assistant": counts,
+                "proof_assistants": PROOF_ASSISTANTS,
+            },
             indent=0,
             sort_keys=True,
         )

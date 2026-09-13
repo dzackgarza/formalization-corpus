@@ -374,6 +374,13 @@ h3 {
 
 .advanced-search-grid input { font-family: var(--mono); }
 
+.field-link {
+  width: max-content;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
 .advanced-search-options {
   display: flex;
   flex-wrap: wrap;
@@ -533,6 +540,18 @@ h3 {
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
+
+.search-results article > header a.tag {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.67rem;
+  font-weight: 750;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
+.search-results article > header a.tag:hover { color: var(--accent); }
 
 .file + .file { border-top: 1px solid var(--rule); }
 

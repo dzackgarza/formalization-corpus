@@ -26,7 +26,7 @@
 	<section class="hero">
 		<div class="hero-copy">
 				<h1>Search formalized mathematics.</h1>
-				<p class="lede">Definitions, constructions, statements, proofs, and formal semantics from Lean, Rocq, Agda, Isabelle, HOL, Mizar, Metamath, ACL2, PVS, and Twelf.</p>
+					<p class="lede">Definitions, constructions, statements, proofs, and formal semantics from <a href="https://lean-lang.org/">Lean</a>, <a href="https://rocq-prover.org/">Rocq</a>, <a href="https://agda.readthedocs.io/">Agda</a>, <a href="https://isabelle.in.tum.de/">Isabelle</a>, <a href="https://github.com/jrh13/hol-light">HOL Light</a>, <a href="https://hol-theorem-prover.org/">HOL4</a>, <a href="https://mizar.uwb.edu.pl/">Mizar</a>, <a href="https://us.metamath.org/">Metamath</a>, <a href="https://acl2.org/">ACL2</a>, <a href="https://pvs.csl.sri.com/">PVS</a>, and <a href="https://twelf.org/">Twelf</a>.</p>
 				<div class="search-box">
 					<form id="f" class="search-form">
 						<input type="search" id="q" name="q" placeholder="Try: IsometryEquiv, Hasse invariant, univalent" autocomplete="off" autofocus spellcheck="false" aria-label="Search the formalization corpus">
@@ -47,10 +47,11 @@
 									<option value="mizar">Mizar</option>
 									<option value="metamath">Metamath</option>
 									<option value="acl2">ACL2</option>
-									<option value="pvs">PVS</option>
-									<option value="twelf">Twelf / LF</option>
-								</select>
-							</label>
+										<option value="pvs">PVS</option>
+										<option value="twelf">Twelf / LF</option>
+									</select>
+									<a class="field-link" id="prover-home" href="#" hidden></a>
+								</label>
 							<label>Source
 								<input id="source-filter" list="source-options" placeholder="Any source" autocomplete="off">
 								<datalist id="source-options"></datalist>
@@ -128,12 +129,31 @@ const shikiReady = (async () => {
 	shiki = await createHighlighter({themes: [THEME], langs: Object.values(LANGS)});
 })().catch(err => console.error("syntax highlighting unavailable:", err));
 
-let corpus = {sources: [], sources_by_proof_assistant: {}};
+let corpus = {sources: [], sources_by_proof_assistant: {}, proof_assistants: {}};
 let sourcesByIndex = {};
 let subjectData = {groups: [], subjects: {}};
 const el = id => document.getElementById(id);
 const esc = s => s.replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
 const rx = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+function proofAssistantMeta(id) {
+	return corpus.proof_assistants?.[id] || {label: id, url: null};
+}
+
+function updateProofAssistantLink() {
+	const link = el("prover-home");
+	const id = el("prover-filter").value;
+	const meta = id ? proofAssistantMeta(id) : null;
+	if (!meta?.url) {
+		link.hidden = true;
+		link.removeAttribute("href");
+		link.textContent = "";
+		return;
+	}
+	link.href = meta.url;
+	link.textContent = `${meta.label} project site`;
+	link.hidden = false;
+}
 
 function quotedPattern(pattern) {
 	return `"${pattern.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
@@ -361,12 +381,12 @@ function render(result) {
 		const pending = [];
 		el("results").innerHTML = [...byRepo].map(([name, matches]) => {
 			const repo = sourcesByIndex[name];
-			const kind = repo ? ({
-				lean: "Lean 4", rocq: "Rocq", agda: "Agda",
-				isabelle: "Isabelle", "hol-light": "HOL Light", hol4: "HOL4",
-				mizar: "Mizar", metamath: "Metamath", acl2: "ACL2", pvs: "PVS",
-				twelf: "Twelf/LF",
-			}[repo.proof_assistant] || repo.proof_assistant) : "";
+				const assistant = repo ? proofAssistantMeta(repo.proof_assistant) : null;
+				const kind = assistant
+					? (assistant.url
+						? `<a class="tag" href="${assistant.url}">${esc(assistant.label)}</a>`
+						: `<span class="tag">${esc(assistant.label)}</span>`)
+					: "";
 		const head = repo ? `<a href="${repo.url}">${esc(repo.name || name)}</a>` : esc(name);
 		const body = matches.map((f, i) => {
 			const chunks = (f.ChunkMatches || []).filter(c => !c.FileName);
@@ -384,7 +404,7 @@ function render(result) {
 			return `<div class="file" id="${id}"><div class="path">${path}</div>`
 				+ `<pre>${text ? fileHtml(f, text, null) : ""}</pre></div>`;
 		}).join("");
-		return `<article><header>${head}<span class="tag">${kind}</span></header>${body}</article>`;
+			return `<article><header>${head}${kind}</header>${body}</article>`;
 	}).join("");
 
 	colourise(pending
@@ -485,6 +505,8 @@ Promise.all([
 		+ subjectData.groups.map(group => `<optgroup label="${esc(group.label)}">${group.subjects
 			.map(subject => `<option value="${esc(subject.slug)}">${esc(subject.label)} (${subject.source_count})</option>`).join("")}</optgroup>`).join("");
 	restoreAdvancedState();
+	updateProofAssistantLink();
+	el("prover-filter").addEventListener("change", updateProofAssistantLink);
 	el("counts").textContent =
 		"Each search result is linked back to its source repository or library.";
 	fromHash();

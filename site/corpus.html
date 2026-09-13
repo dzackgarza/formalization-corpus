@@ -56,48 +56,41 @@
 
 <script src="https://cdn.jsdelivr.net/npm/tabulator-tables@6/dist/js/tabulator.min.js"></script>
 <script>
-const KINDS = {
-	lean: "Lean 4",
-	rocq: "Rocq",
-	agda: "Agda",
-	isabelle: "Isabelle",
-	"hol-light": "HOL Light",
-	hol4: "HOL4",
-	mizar: "Mizar",
-	metamath: "Metamath",
-	acl2: "ACL2",
-	pvs: "PVS",
-	twelf: "Twelf / LF",
-};
 const fmt = n => Number(n || 0).toLocaleString("en-US");
 
-fetch("./metrics.json").then(r => r.json()).then(data => {
-	const s = data.summary;
+Promise.all([
+	fetch("./metrics.json").then(r => r.json()),
+	fetch("./corpus.json").then(r => r.json()),
+]).then(([metrics, corpus]) => {
+	const assistants = corpus.proof_assistants || {};
+	const assistantLink = id => {
+		const meta = assistants[id] || {label: id, url: null};
+		return meta.url ? `<a href="${meta.url}">${meta.label}</a>` : meta.label;
+	};
+	const s = metrics.summary;
 	document.getElementById("reach-cards").innerHTML = `
-		<div class="metric-card"><div class="value">${fmt(s.searchable_sources)} / ${fmt(s.sources)}</div><div class="label">searchable sources</div></div>
-			<div class="metric-card"><div class="value">${fmt(s.sources_with_proof_files)}</div><div class="label">sources with proof files</div></div>
-			<div class="metric-card"><div class="value">${fmt(s.proof_files)}</div><div class="label">proof source files</div></div>
-		<div class="metric-card"><div class="value">${fmt(s.proof_assistants)}</div><div class="label">proof assistants</div></div>`;
+			<div class="metric-card"><div class="value">${fmt(s.searchable_sources)} / ${fmt(s.sources)}</div><div class="label">searchable sources</div></div>
+				<div class="metric-card"><div class="value">${fmt(s.sources_with_proof_files)}</div><div class="label">sources with proof files</div></div>
+				<div class="metric-card"><div class="value">${fmt(s.proof_files)}</div><div class="label">proof source files</div></div>
+			<div class="metric-card"><div class="value">${fmt(s.proof_assistants)}</div><div class="label">proof assistants</div></div>`;
 
-	const rows = data.ecosystems.map(r => `
-		<tr><td>${r.label}</td><td>${fmt(r.searchable_sources)}</td>
-		<td>${fmt(r.sources_with_proof_files)}</td><td>${fmt(r.proof_files)}</td>
-		<td>${fmt(r.proof_source_lines)}</td></tr>`).join("");
-	const total = data.summary;
+	const rows = metrics.ecosystems.map(r => `
+			<tr><td>${assistantLink(r.kind)}</td><td>${fmt(r.searchable_sources)}</td>
+			<td>${fmt(r.sources_with_proof_files)}</td><td>${fmt(r.proof_files)}</td>
+			<td>${fmt(r.proof_source_lines)}</td></tr>`).join("");
+	const total = metrics.summary;
 	document.getElementById("ecosystems").innerHTML = `
-			<thead><tr><th>Proof assistant</th><th>Searchable sources</th><th>With proof files</th>
-			<th>Proof files</th><th>Lines of proof source</th></tr></thead>
-		<tbody>${rows}
-		<tr><th>Total</th><th>${fmt(total.searchable_sources)}</th>
-		<th>${fmt(total.sources_with_proof_files)}</th><th>${fmt(total.proof_files)}</th>
-		<th>${fmt(total.proof_source_lines)}</th></tr></tbody>`;
-});
+				<thead><tr><th>Proof assistant</th><th>Searchable sources</th><th>With proof files</th>
+				<th>Proof files</th><th>Lines of proof source</th></tr></thead>
+			<tbody>${rows}
+			<tr><th>Total</th><th>${fmt(total.searchable_sources)}</th>
+			<th>${fmt(total.sources_with_proof_files)}</th><th>${fmt(total.proof_files)}</th>
+			<th>${fmt(total.proof_source_lines)}</th></tr></tbody>`;
 
-fetch("./corpus.json").then(r => r.json()).then(data => {
-	const rows = data.sources;
+	const rowsForTable = corpus.sources;
 
-	new Tabulator("#table", {
-			data: rows,
+		new Tabulator("#table", {
+				data: rowsForTable,
 			layout: "fitColumns",
 			height: "70vh",
 			initialSort: [{column: "name", dir: "asc"}],
@@ -113,8 +106,15 @@ fetch("./corpus.json").then(r => r.json()).then(data => {
 				 a.style.wordBreak = "break-word";
 				 return a;
 			 }},
-			{title: "Proof assistant", field: "proof_assistant", widthGrow: 1,
-			 formatter: cell => KINDS[cell.getValue()] || cell.getValue()},
+				{title: "Proof assistant", field: "proof_assistant", widthGrow: 1,
+				 formatter: cell => {
+					 const meta = assistants[cell.getValue()] || {label: cell.getValue(), url: null};
+					 if (!meta.url) return meta.label;
+					 const a = document.createElement("a");
+					 a.href = meta.url;
+					 a.textContent = meta.label;
+					 return a;
+				 }},
 			{title: "What it holds", field: "what", widthGrow: 3, headerFilter: "input",
 			 headerFilterPlaceholder: "filter by subject — sphere packing, Hasse, category",
 			 formatter: "textarea"},
