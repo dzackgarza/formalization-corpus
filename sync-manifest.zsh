@@ -113,16 +113,30 @@ while IFS=$'\t' read -r url dir kind transport; do
       git -C "$dir" remote set-url origin "$url" >/dev/null 2>&1 || true
     fi
     if git -C "$dir" symbolic-ref --quiet HEAD >/dev/null 2>&1; then
+      branch="$(git -C "$dir" symbolic-ref --short HEAD)"
       if ! GIT_CONFIG_GLOBAL=/dev/null timeout "${SYNC_UPDATE_TIMEOUT:-60}" \
            git -C "$dir" pull --ff-only --depth 1 >/dev/null 2>&1; then
-        FAILED=$((FAILED + 1))
-        echo "$url	$dir	UPDATE-FAIL" >> "$FAIL_LOG"
+        # A depth-1 mirror can look "diverged" as soon as upstream advances
+        # beyond the one visible commit: pull cannot see the common history.
+        # These are read-only corpus mirrors, so a clean shallow checkout may
+        # be refreshed directly to the current remote branch tip. Never reset
+        # a dirty checkout; preserve it and report the failure instead.
+        if [[ "$(git -C "$dir" rev-parse --is-shallow-repository 2>/dev/null)" == true ]] && \
+           [[ -z "$(git -C "$dir" status --porcelain=v1 2>/dev/null)" ]] && \
+           GIT_CONFIG_GLOBAL=/dev/null timeout "${SYNC_UPDATE_TIMEOUT:-60}" \
+             git -C "$dir" fetch --prune --depth 1 origin "$branch" >/dev/null 2>&1 && \
+           GIT_CONFIG_GLOBAL=/dev/null git -C "$dir" reset --hard FETCH_HEAD >/dev/null 2>&1; then
+          :
+        else
+          FAILED=$((FAILED + 1))
+          echo "$url\t$dir\tUPDATE-FAIL" >> "$FAIL_LOG"
+        fi
       fi
     else
       if ! GIT_CONFIG_GLOBAL=/dev/null timeout "${SYNC_UPDATE_TIMEOUT:-60}" \
            git -C "$dir" fetch --prune origin >/dev/null 2>&1; then
         FAILED=$((FAILED + 1))
-        echo "$url	$dir	FETCH-FAIL" >> "$FAIL_LOG"
+        echo "$url\t$dir\tFETCH-FAIL" >> "$FAIL_LOG"
       fi
     fi
     if ! GIT_CONFIG_GLOBAL=/dev/null git -C "$dir" sparse-checkout set --no-cone \
