@@ -10,7 +10,7 @@ import subprocess
 import sys
 from typing import Any
 
-from filtering_lib import ROOT, source_revision, sources
+from filtering_lib import ROOT, append_filter_ledger, load_catalog, source_revision, sources
 from repository_review_lib import (
     BATCHES,
     BATCH_PRIMARY_FILE_TARGET,
@@ -641,6 +641,35 @@ def _filter_tsv_by_repository(path: pathlib.Path, repositories: set[str], *, dir
     path.write_text("\n".join(kept) + "\n")
 
 
+def source_retirement_ledger_event(*, catalogue: dict[str, Any], unit: dict[str, Any], review: dict[str, Any], action: dict[str, Any], timestamp: str, commit: str) -> dict[str, Any]:
+    definition = load_catalog()["FD-012"]
+    return {
+        "schema_version": 1,
+        "scope": "source",
+        "repository": unit["repository"],
+        "url": catalogue["url"],
+        "proof_assistant": catalogue["proof_assistant"],
+        "source_revision": catalogue.get("source_revision"),
+        "decision_id": "FD-012",
+        "title": definition["title"],
+        "primary": definition["primary"],
+        "auxiliary": definition["auxiliary"],
+        "policies": definition["policies"],
+        "justification": definition["justification"],
+        "ledger_event": "removed-from-corpus",
+        "review_id": review["review_id"],
+        "unit_id": unit["unit_id"],
+        "source_snapshot_sha256": catalogue["source_snapshot_sha256"],
+        "source_specific_reason": action["rationale"],
+        "content_invariant": action["content_invariant"],
+        "evidence": action["evidence"],
+        "reversible_action": "Remove live registry/description/topic rows only. Preserve the hydrated checkout and frozen repository-review catalogue; the source can be re-added after a new audited revision gains qualifying formal content.",
+        "observed_at": timestamp,
+        "recorded_at": timestamp,
+        "corpus_git_commit": commit,
+    }
+
+
 def retire_source(uid: str) -> int:
     units = load_units(active_only=True)
     unit = units.get(uid)
@@ -664,6 +693,8 @@ def retire_source(uid: str) -> int:
         raise SystemExit(f"{repository}: source is already retired")
     catalogue_row = next(row for row in load_catalogue_index() if row["repository"] == repository)
     catalogue = json.loads((ROOT / catalogue_row["catalogue_file"]).read_text())
+    timestamp = utc_now()
+    commit = corpus_commit()
     retirement = {
         "schema_version": SCHEMA_VERSION,
         "decision_id": "FD-012",
@@ -683,8 +714,8 @@ def retire_source(uid: str) -> int:
         "content_invariant": action["content_invariant"],
         "evidence": action["evidence"],
         "policies": action["policies"],
-        "retired_at": utc_now(),
-        "corpus_git_commit": corpus_commit(),
+        "retired_at": timestamp,
+        "corpus_git_commit": commit,
     }
     existing_retired = load_retired_sources()
     dump_jsonl(RETIRED_SOURCES, [*existing_retired, retirement])
@@ -699,7 +730,13 @@ def retire_source(uid: str) -> int:
             row["inventory_status"] = "retired"
             row["retirement_review_id"] = review["review_id"]
     dump_jsonl(CATALOGUE_INDEX, index)
-    print(f"retired {repository} from sources.tsv; frozen review catalogue preserved")
+    append_filter_ledger([
+        source_retirement_ledger_event(
+            catalogue=catalogue, unit=unit, review=review, action=action,
+            timestamp=timestamp, commit=commit,
+        )
+    ])
+    print(f"retired {repository} from sources.tsv; frozen review catalogue and source-ledger event preserved")
     return 0
 
 
