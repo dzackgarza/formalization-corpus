@@ -39,6 +39,7 @@ All times are UTC ISO-8601.  Each measurement carries at least:
 - clean/dirty worktree state and state fingerprint for new-format reports;
 - qrel (`gold.json`) SHA-256;
 - query-normalization SHA-256;
+- result-role state/fingerprint when file-role ranking is active;
 - Zoekt index fingerprint;
 - Zoekt binary SHA-256 and source-checkout commit for local retrieval runs;
 - named retrieval variant/provider;

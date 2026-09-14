@@ -250,19 +250,33 @@ owner Hit@10 from 0.583 to 0.625 while Hit@10 remains 0.792; nDCG@10 rises from
 rules: formal prover sources such as `README.lean`, `README.thy`, `README.agda`,
 and `Readme.lsp` remain primary content, as do all 498 `lakefile.lean` files.
 ACL2 `.sys` filtering is now limited to the exact
-`*@useless-runes.lsp` certification-report class.  The final conservative index
-is 9,225,980,789 bytes with 198,653 primary documents, still about 11.7% smaller
-than the 10,451,699,803-byte raw control.  `FD-015` additionally removes exactly
-12 nonempty formal-source files (19 source bytes total) whose complete byte
-contents are whitespace; it explicitly does not cover comment-only or merely
-declaration-free files.  Restoring the formal README modules changed none of the
-six measured metric sets; restoring `lakefile.lean` likewise leaves the deployed
-lexical metrics unchanged, though the raw multi-query nDCG changes slightly.
-The whitespace-only correction also reproduces all six prior ranking metric
-sets exactly on its new index fingerprint.  This is an important reminder that
-benchmark stability does not prove a hard filter is recall-safe.  The immutable
-before/after/corrected reports and superseding deployment decisions are recorded
-in `ledger.jsonl`; the individual file-level decisions and reversions are in
+`*@useless-runes.lsp` certification-report class.  `FD-015` additionally removes
+exactly 12 nonempty formal-source files (19 source bytes total) whose complete
+byte contents are whitespace; it explicitly does not cover comment-only or
+merely declaration-free files.
+
+A later deployment audit found that the original import-only rule had violated
+its own preservation condition.  `FD-005` moved 2,711 parser-verified Lean import
+modules out of primary search on the premise that their module names, paths,
+comments and imports remained searchable through an auxiliary index, but the
+production service published and queried only the primary index.  `FD-005` is
+therefore superseded by `FD-016`: those 2,711 files are primary-retained and are
+also classified as navigation material.  The current primary index contains
+201,364 documents and is 9,235,224,098 bytes, still about 11.6% smaller than the
+10,451,699,803-byte raw control.
+
+Restoring those navigation modules exposes a real ranking effect rather than a
+reason to hide them.  On the restored index, raw normalized path/content search
+has Owner Hit@10 0.583 and nDCG@10 0.408; stable result-role ordering that keeps
+ordinary formal-content hits ahead of verified import-only navigation hits
+recovers Owner Hit@10 0.625 and nDCG@10 0.419, with Hit@10 0.792 and MRR 0.548
+unchanged.  The public API applies that role ordering without removing the
+navigation files from the returned candidate set.  The Cohere reranker on the
+same restored index retains Owner Hit@10 0.958 and Hit@10 1.000.  This is an
+important reminder that benchmark gains do not certify a hard filter as
+recall-safe: the correct repair was to separate retrieval eligibility from
+ranking.  The immutable measurements and superseding decisions are recorded in
+`ledger.jsonl`; individual file-level decisions and reversions are in
 `filtering/ledger.jsonl`.
 
 The public webserver also has a measured serving-quality parameter. Zoekt's JSON
