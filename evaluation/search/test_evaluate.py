@@ -86,6 +86,9 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         hol4_terms, hol4_filter = evaluate.normalized_query_terms("HOL4 Jordan curve theorem")
         self.assertEqual(hol4_terms, ["Jordan", "curve", "theorem"])
         self.assertEqual(hol4_filter, r"\.(sml|sig)$")
+        pvs_terms, pvs_filter = evaluate.normalized_query_terms("PVS sound polynomial bound")
+        self.assertEqual(pvs_terms, ["sound", "polynomial", "bound"])
+        self.assertEqual(pvs_filter, r"\.(pvs|prf)$")
 
     def test_score_case_tracks_first_owner_and_graded_metrics(self) -> None:
         case = {
