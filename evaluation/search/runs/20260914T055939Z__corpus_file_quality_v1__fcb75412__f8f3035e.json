@@ -1,0 +1,892 @@
+{
+  "baseline_artifact_sha256": "74ecb68db2cb881af88029cad607d5a75707f3e91e86b3fce9b98c7df160fae3",
+  "baseline_report": "evaluation/search/baselines/frontend_lexical_v2.json",
+  "corpus_git_commit": "fcb75412793f85c3792c0d7e8ece82b1957a874f",
+  "created_at": "2026-09-14T05:59:39.315162+00:00",
+  "duplicates": {
+    "cross_source_groups": 1081,
+    "exact_groups": 2214,
+    "largest_cross_source_groups": [
+      {
+        "examples": [
+          [
+            "leanprover__lean-eval",
+            "generated/jordan_normal_form/WorkspaceTest.lean"
+          ],
+          [
+            "leanprover__lean-eval",
+            "generated/parallel_postulate_independent/WorkspaceTest.lean"
+          ],
+          [
+            "leanprover__lean-eval",
+            "generated/exists_topologically_slice_not_smoothly_slice/WorkspaceTest.lean"
+          ],
+          [
+            "leanprover__lean-eval",
+            "generated/jacobian_challenge_alggeo/WorkspaceTest.lean"
+          ],
+          [
+            "leanprover__lean-eval",
+            "generated/chen_theorem/WorkspaceTest.lean"
+          ],
+          [
+            "leanprover__lean-eval",
+            "generated/bakerWustholz_linearForms_logs/WorkspaceTest.lean"
+          ],
+          [
+            "leanprover__lean-eval",
+            "generated/multi_hole_helpers_example/WorkspaceTest.lean"
+          ],
+          [
+            "leanprover__lean-eval",
+            "generated/deBranges_theorem/WorkspaceTest.lean"
+          ],
+          [
+            "leanprover__lean-eval",
+            "generated/ramanujan_petersson/WorkspaceTest.lean"
+          ],
+          [
+            "leanprover__lean-eval",
+            "generated/stable_unstable_manifolds/WorkspaceTest.lean"
+          ],
+          [
+            "leanprover__lean-eval",
+            "generated/sobolev_embedding_morrey/WorkspaceTest.lean"
+          ],
+          [
+            "leanprover__lean-eval",
+            "generated/radon_transform_inversion/WorkspaceTest.lean"
+          ]
+        ],
+        "size": 255
+      },
+      {
+        "examples": [
+          [
+            "AlexKontorovich__RealAnalysisGame",
+            ".sofi-test-folders/Test/future-level.lean"
+          ],
+          [
+            "alok__TetraGray",
+            "TetraGray/Servant.lean"
+          ],
+          [
+            "ammkrn__lean-url",
+            "Tests/OpaqueHost.lean"
+          ],
+          [
+            "ammkrn__lean-url",
+            "Tests/Host.lean"
+          ],
+          [
+            "ammkrn__timelib",
+            "Timelib/DateTime/TaiDateTime.lean"
+          ],
+          [
+            "anoma__juvix-lean",
+            "Juvix/Core/Stored/Language.lean"
+          ],
+          [
+            "anoma__juvix-lean",
+            "Juvix/Core/Stored/Semantics.lean"
+          ],
+          [
+            "anoma__juvix-lean",
+            "Juvix/Core/Stripped/Language.lean"
+          ],
+          [
+            "anoma__juvix-lean",
+            "Juvix/Core/Stripped/Semantics.lean"
+          ],
+          [
+            "apnelson1__Matroid",
+            "WIP/Jun/Planarity/PLDrawing.lean"
+          ],
+          [
+            "arademaker__delphin",
+            "Tsdb/Basic.lean"
+          ],
+          [
+            "arademaker__vizagrams",
+            "Examples/Chess/Chess.lean"
+          ]
+        ],
+        "size": 107
+      },
+      {
+        "examples": [
+          [
+            "AdrienChampion__loadTerms.lean",
+            "LoadTerms/Basic.lean"
+          ],
+          [
+            "alexjbest__leaff",
+            "test/Test/Basic.lean"
+          ],
+          [
+            "alexjbest__leaff",
+            "test2/Test/Basic.lean"
+          ],
+          [
+            "algebraic-dev__http",
+            "example/Example/Basic.lean"
+          ],
+          [
+            "alok__lean-autograd",
+            "LeanAutograd/Basic.lean"
+          ],
+          [
+            "anlucia__ChromaticPolynomial",
+            "ChromaticPolynomial/Basic.lean"
+          ],
+          [
+            "argumentcomputer__Bellanova.lean",
+            "BellaNova.lean"
+          ],
+          [
+            "Arthur742Ramos__Metatheory",
+            "Metatheory/Basic.lean"
+          ],
+          [
+            "atlas-computing-org__CoqLeanTranslation",
+            "CoqLeanTranslation.lean"
+          ],
+          [
+            "Dominique-Lawson__Directed-Topology-Lean-4",
+            "Lean4.lean"
+          ],
+          [
+            "FWuermse__lean-postgres",
+            "examples/Examples/Basic.lean"
+          ],
+          [
+            "GasStationManager__ArtificialAlgorithms",
+            "ArtificialAlgorithms/Basic.lean"
+          ]
+        ],
+        "size": 20
+      },
+      {
+        "examples": [
+          [
+            "alok__AsciiPlot",
+            "AsciiPlot/Basic.lean"
+          ],
+          [
+            "alok__Leantix",
+            "Leantix/Basic.lean"
+          ],
+          [
+            "austinletson__use-lean-standard-action-with-bare-project",
+            "UseLeanStandardActionWithBareProject/Basic.lean"
+          ],
+          [
+            "bjoernkjoshanssen__math654",
+            "Math654/Basic.lean"
+          ],
+          [
+            "CBirkbeck__AINTLIB",
+            "projects/NagellLutz/LutzNagell/Basic.lean"
+          ],
+          [
+            "chrisflav__proetale",
+            "Proetale/Basic.lean"
+          ],
+          [
+            "HannahSantos__FMCn_Lean",
+            "FMCnLean/Basic.lean"
+          ],
+          [
+            "jamesj64__lean-modal-logic",
+            "Modal/Basic.lean"
+          ],
+          [
+            "kckennylau__EllipticCurve",
+            "EllipticCurve/Basic.lean"
+          ],
+          [
+            "Koukyosyumei__PoL",
+            "PoL/Basic.lean"
+          ],
+          [
+            "postechsv__DMC-Logic",
+            "Bakery/Basic.lean"
+          ],
+          [
+            "tim-br__LeanTest",
+            "LeanTest/Basic.lean"
+          ]
+        ],
+        "size": 16
+      },
+      {
+        "examples": [
+          [
+            "Beneficial-AI-Foundation__FloatSpec",
+            "FloatSpec/src/ErrorBound/MakeRounding.lean"
+          ],
+          [
+            "Beneficial-AI-Foundation__FloatSpec",
+            "FloatSpec/src/ErrorBound/Types.lean"
+          ],
+          [
+            "Beneficial-AI-Foundation__FloatSpec",
+            "FloatSpec/src/ErrorBound/Compose.lean"
+          ],
+          [
+            "Beneficial-AI-Foundation__FloatSpec",
+            "FloatSpec/src/ErrorBound/Absolute.lean"
+          ],
+          [
+            "Beneficial-AI-Foundation__FloatSpec",
+            "FloatSpec/src/ErrorBound/RExpr.lean"
+          ],
+          [
+            "Beneficial-AI-Foundation__FloatSpec",
+            "FloatSpec/src/ErrorBound/Examples/FPBench.lean"
+          ],
+          [
+            "or4nge19__NeuralNetworks",
+            "NeuralNetworks/LLM/GPT2/TensorView.lean"
+          ]
+        ],
+        "size": 7
+      },
+      {
+        "examples": [
+          [
+            "AlexKontorovich__RealAnalysisGame",
+            ".sofi-test-folders/Test.lean"
+          ],
+          [
+            "emilyriehl__ReintroductionToProofs",
+            ".sofi-test-folders/Test.lean"
+          ],
+          [
+            "Geoc2022__AlgebraGame",
+            ".sofi-test-folders/Test.lean"
+          ],
+          [
+            "hhu-adam__Robo",
+            ".sofi-test-folders/Test.lean"
+          ],
+          [
+            "JadAbouHawili__KnightsAndKnaves-Lean4Game",
+            ".sofi-test-folders/Test.lean"
+          ],
+          [
+            "math-xmum__AbstractAlgebra",
+            ".sofi-test-folders/Test.lean"
+          ]
+        ],
+        "size": 6
+      },
+      {
+        "examples": [
+          [
+            "AlexKontorovich__RealAnalysisGame",
+            ".sofi-test-folders/Test/L11_once-was-level-03.lean"
+          ],
+          [
+            "emilyriehl__ReintroductionToProofs",
+            ".sofi-test-folders/Test/L11_once-was-level-03.lean"
+          ],
+          [
+            "Geoc2022__AlgebraGame",
+            ".sofi-test-folders/Test/L11_once-was-level-03.lean"
+          ],
+          [
+            "hhu-adam__Robo",
+            ".sofi-test-folders/Test/L11_once-was-level-03.lean"
+          ],
+          [
+            "JadAbouHawili__KnightsAndKnaves-Lean4Game",
+            ".sofi-test-folders/Test/L11_once-was-level-03.lean"
+          ],
+          [
+            "math-xmum__AbstractAlgebra",
+            ".sofi-test-folders/Test/L11_once-was-level-03.lean"
+          ]
+        ],
+        "size": 6
+      },
+      {
+        "examples": [
+          [
+            "AlexKontorovich__RealAnalysisGame",
+            ".sofi-test-folders/Test/L04b_new_level.lean"
+          ],
+          [
+            "emilyriehl__ReintroductionToProofs",
+            ".sofi-test-folders/Test/L04b_new_level.lean"
+          ],
+          [
+            "Geoc2022__AlgebraGame",
+            ".sofi-test-folders/Test/L04b_new_level.lean"
+          ],
+          [
+            "hhu-adam__Robo",
+            ".sofi-test-folders/Test/L04b_new_level.lean"
+          ],
+          [
+            "JadAbouHawili__KnightsAndKnaves-Lean4Game",
+            ".sofi-test-folders/Test/L04b_new_level.lean"
+          ],
+          [
+            "math-xmum__AbstractAlgebra",
+            ".sofi-test-folders/Test/L04b_new_level.lean"
+          ]
+        ],
+        "size": 6
+      },
+      {
+        "examples": [
+          [
+            "AlexKontorovich__RealAnalysisGame",
+            ".sofi-test-folders/Test/L01_once-was-level-02.lean"
+          ],
+          [
+            "emilyriehl__ReintroductionToProofs",
+            ".sofi-test-folders/Test/L01_once-was-level-02.lean"
+          ],
+          [
+            "Geoc2022__AlgebraGame",
+            ".sofi-test-folders/Test/L01_once-was-level-02.lean"
+          ],
+          [
+            "hhu-adam__Robo",
+            ".sofi-test-folders/Test/L01_once-was-level-02.lean"
+          ],
+          [
+            "JadAbouHawili__KnightsAndKnaves-Lean4Game",
+            ".sofi-test-folders/Test/L01_once-was-level-02.lean"
+          ],
+          [
+            "math-xmum__AbstractAlgebra",
+            ".sofi-test-folders/Test/L01_once-was-level-02.lean"
+          ]
+        ],
+        "size": 6
+      },
+      {
+        "examples": [
+          [
+            "AlexKontorovich__RealAnalysisGame",
+            ".sofi-test-folders/Test/L04a_once-was-level-05.lean"
+          ],
+          [
+            "emilyriehl__ReintroductionToProofs",
+            ".sofi-test-folders/Test/L04a_once-was-level-05.lean"
+          ],
+          [
+            "Geoc2022__AlgebraGame",
+            ".sofi-test-folders/Test/L04a_once-was-level-05.lean"
+          ],
+          [
+            "hhu-adam__Robo",
+            ".sofi-test-folders/Test/L04a_once-was-level-05.lean"
+          ],
+          [
+            "JadAbouHawili__KnightsAndKnaves-Lean4Game",
+            ".sofi-test-folders/Test/L04a_once-was-level-05.lean"
+          ],
+          [
+            "math-xmum__AbstractAlgebra",
+            ".sofi-test-folders/Test/L04a_once-was-level-05.lean"
+          ]
+        ],
+        "size": 6
+      },
+      {
+        "examples": [
+          [
+            "AlexKontorovich__RealAnalysisGame",
+            ".sofi-test-folders/Test/L12_once-was-level-04.lean"
+          ],
+          [
+            "emilyriehl__ReintroductionToProofs",
+            ".sofi-test-folders/Test/L12_once-was-level-04.lean"
+          ],
+          [
+            "Geoc2022__AlgebraGame",
+            ".sofi-test-folders/Test/L12_once-was-level-04.lean"
+          ],
+          [
+            "hhu-adam__Robo",
+            ".sofi-test-folders/Test/L12_once-was-level-04.lean"
+          ],
+          [
+            "JadAbouHawili__KnightsAndKnaves-Lean4Game",
+            ".sofi-test-folders/Test/L12_once-was-level-04.lean"
+          ],
+          [
+            "math-xmum__AbstractAlgebra",
+            ".sofi-test-folders/Test/L12_once-was-level-04.lean"
+          ]
+        ],
+        "size": 6
+      },
+      {
+        "examples": [
+          [
+            "AlexKontorovich__RealAnalysisGame",
+            ".sofi-test-folders/Test/L02_once-was-level-01.lean"
+          ],
+          [
+            "emilyriehl__ReintroductionToProofs",
+            ".sofi-test-folders/Test/L02_once-was-level-01.lean"
+          ],
+          [
+            "Geoc2022__AlgebraGame",
+            ".sofi-test-folders/Test/L02_once-was-level-01.lean"
+          ],
+          [
+            "JadAbouHawili__KnightsAndKnaves-Lean4Game",
+            ".sofi-test-folders/Test/L02_once-was-level-01.lean"
+          ],
+          [
+            "math-xmum__AbstractAlgebra",
+            ".sofi-test-folders/Test/L02_once-was-level-01.lean"
+          ]
+        ],
+        "size": 5
+      },
+      {
+        "examples": [
+          [
+            "argumentcomputer__ix",
+            "Benchmarks/Compile/CompileMathlib.lean"
+          ],
+          [
+            "leanprover-community__mathlib4",
+            "DownstreamTest/DownstreamTest.lean"
+          ],
+          [
+            "leanprover-community__repl",
+            "test/Mathlib/ReplMathlibTests.lean"
+          ],
+          [
+            "leanprover-community__repl",
+            "test/Mathlib/test/import_Mathlib.lean"
+          ],
+          [
+            "leansolving__leancsp",
+            "CSP.lean"
+          ]
+        ],
+        "size": 5
+      },
+      {
+        "examples": [
+          [
+            "AlexBrodbelt__metric-spaces-and-topology-game",
+            "Game/Metadata.lean"
+          ],
+          [
+            "Joonas-vonlerber__Type-Theory-Game",
+            "Game/Metadata.lean"
+          ],
+          [
+            "kbuzzard__FilterGame",
+            "Game/Metadata.lean"
+          ],
+          [
+            "NUS-Math-Formalization__CalculusSkeleton",
+            "Game/Metadata.lean"
+          ]
+        ],
+        "size": 4
+      },
+      {
+        "examples": [
+          [
+            "fpvandoorn__LeanCourse24",
+            "LeanCourse/MIL/Common.lean"
+          ],
+          [
+            "glams-lean-2024__formal-2024",
+            "References/MIL/Common.lean"
+          ],
+          [
+            "leanprover-community__mathematics_in_lean",
+            "MIL/Common.lean"
+          ],
+          [
+            "pitmonticone__LeanInVienna2024",
+            "LeanInVienna/Common.lean"
+          ]
+        ],
+        "size": 4
+      },
+      {
+        "examples": [
+          [
+            "fpvandoorn__LeanCourse24",
+            "LeanCourse/MIL/C01_Introduction/S01_Getting_Started.lean"
+          ],
+          [
+            "glams-lean-2024__formal-2024",
+            "References/MIL/C01_Introduction/S01_Getting_Started.lean"
+          ],
+          [
+            "leanprover-community__mathematics_in_lean",
+            "MIL/C01_Introduction/S01_Getting_Started.lean"
+          ],
+          [
+            "pitmonticone__LeanInVienna2024",
+            "LeanInVienna/C01_Introduction/S01_Getting_Started.lean"
+          ]
+        ],
+        "size": 4
+      },
+      {
+        "examples": [
+          [
+            "girafe-ai__lean-course",
+            "FormalisingMathematics/Section21galoisTheory/Sheet5.lean"
+          ],
+          [
+            "girafe-ai__lean-course",
+            "FormalisingMathematics/Solutions/Section21galoisTheory/Sheet5.lean"
+          ],
+          [
+            "ImperialCollegeLondon__formalising-mathematics-2024",
+            "FormalisingMathematics2024/Section21galoisTheory/Sheet5.lean"
+          ],
+          [
+            "ImperialCollegeLondon__formalising-mathematics-2024",
+            "FormalisingMathematics2024/Solutions/Section21galoisTheory/Sheet5.lean"
+          ]
+        ],
+        "size": 4
+      },
+      {
+        "examples": [
+          [
+            "girafe-ai__lean-course",
+            "FormalisingMathematics/Section21galoisTheory/Sheet4.lean"
+          ],
+          [
+            "girafe-ai__lean-course",
+            "FormalisingMathematics/Solutions/Section21galoisTheory/Sheet4.lean"
+          ],
+          [
+            "ImperialCollegeLondon__formalising-mathematics-2024",
+            "FormalisingMathematics2024/Section21galoisTheory/Sheet4.lean"
+          ],
+          [
+            "ImperialCollegeLondon__formalising-mathematics-2024",
+            "FormalisingMathematics2024/Solutions/Section21galoisTheory/Sheet4.lean"
+          ]
+        ],
+        "size": 4
+      },
+      {
+        "examples": [
+          [
+            "girafe-ai__lean-course",
+            "FormalisingMathematics/Section21galoisTheory/Sheet3.lean"
+          ],
+          [
+            "girafe-ai__lean-course",
+            "FormalisingMathematics/Solutions/Section21galoisTheory/Sheet3.lean"
+          ],
+          [
+            "ImperialCollegeLondon__formalising-mathematics-2024",
+            "FormalisingMathematics2024/Section21galoisTheory/Sheet3.lean"
+          ],
+          [
+            "ImperialCollegeLondon__formalising-mathematics-2024",
+            "FormalisingMathematics2024/Solutions/Section21galoisTheory/Sheet3.lean"
+          ]
+        ],
+        "size": 4
+      },
+      {
+        "examples": [
+          [
+            "girafe-ai__lean-course",
+            "FormalisingMathematics/Section09bijectionsAndIsomorphisms/Sheet4.lean"
+          ],
+          [
+            "girafe-ai__lean-course",
+            "FormalisingMathematics/Solutions/Section09bijectionsAndIsomorphisms/Sheet4.lean"
+          ],
+          [
+            "ImperialCollegeLondon__formalising-mathematics-2024",
+            "FormalisingMathematics2024/Section09bijectionsAndIsomorphisms/Sheet4.lean"
+          ],
+          [
+            "ImperialCollegeLondon__formalising-mathematics-2024",
+            "FormalisingMathematics2024/Solutions/Section09bijectionsAndIsomorphisms/Sheet4.lean"
+          ]
+        ],
+        "size": 4
+      }
+    ]
+  },
+  "formal_files_by_proof_assistant": {
+    "acl2": 28666,
+    "agda": 6924,
+    "hol-light": 2003,
+    "hol4": 5133,
+    "isabelle": 14355,
+    "lean": 136244,
+    "metamath": 96,
+    "mizar": 1500,
+    "pvs": 2507,
+    "rocq": 11351,
+    "twelf": 1005
+  },
+  "gold_sha256": "47974b4fa9f75df3ede35db0a913d5577a3bcb524000ab8e72f85a9d58255160",
+  "heuristic_policy": {
+    "contains_sorry_admit": "Diagnostic only; never used by the post-hoc exclusion simulations.",
+    "import_aggregator": "Lean file with >=1 import, zero declaration-regex matches, and >=90% of non-comment nonblank lines import/public import lines.",
+    "warning": "Role labels are diagnostics, not relevance judgments or automatic exclusion rules."
+  },
+  "index": {
+    "latest_mtime_ns": 1789301804577138257,
+    "metadata_sha256": "602c79f8912be9574b8ebf03fcb701bb0de412ef182c4f55e29c73af48b7dc7e",
+    "shard_count": 909,
+    "total_bytes": 10451699803
+  },
+  "lean_content_role_counts": {
+    "contains-sorry-admit": 33684,
+    "import-aggregator": 1514,
+    "no-declaration-regex": 11244
+  },
+  "metrics": {
+    "formal_source_bytes": 5147364987,
+    "formal_source_files": 209784,
+    "lean_bytes": 2866458566,
+    "lean_contains_sorry_admit": 33684,
+    "lean_contains_sorry_admit_rate": 0.24723290566924047,
+    "lean_cross_source_duplicate_file_rate": 0.019252223951146473,
+    "lean_cross_source_duplicate_files": 2623,
+    "lean_exact_duplicate_file_rate": 0.03815213880978245,
+    "lean_exact_duplicate_files": 5198,
+    "lean_files": 136244,
+    "lean_import_aggregator_rate": 0.011112415959601891,
+    "lean_import_aggregators": 1514,
+    "nonformal_materialized_bytes": 724547675,
+    "nonformal_materialized_files": 10618,
+    "top10_import_aggregator_slots": 16,
+    "top10_roadmap_suggested_slots": 5,
+    "top10_vendored_slots": 7
+  },
+  "nonformal_materialized_kinds": {
+    "PVS .prf": 2176,
+    "README*": 974,
+    "lake-manifest.json": 726,
+    "lakefile.*": 417,
+    "lean-toolchain": 748,
+    "other": 5577
+  },
+  "path_role_counts": {
+    "audit-path": 1335,
+    "build-config": 500,
+    "generated-path": 3683,
+    "roadmap-suggested": 56,
+    "test-fixture-path": 28959,
+    "vendored-path": 164
+  },
+  "posthoc_filter_simulations": {
+    "no-aggregators-or-roadmaps": {
+      "banned_roles": [
+        "import-aggregator",
+        "roadmap-suggested"
+      ],
+      "changed_queries": [
+        {
+          "after": {
+            "first_owner": null,
+            "first_relevant": 1,
+            "hit": 1,
+            "owner_hit": 0
+          },
+          "before": {
+            "first_owner": null,
+            "first_relevant": 3,
+            "hit": 1,
+            "owner_hit": 0
+          },
+          "id": "hensel-complete-dvr"
+        },
+        {
+          "after": {
+            "first_owner": 10,
+            "first_relevant": 2,
+            "hit": 1,
+            "owner_hit": 1
+          },
+          "before": {
+            "first_owner": null,
+            "first_relevant": 2,
+            "hit": 1,
+            "owner_hit": 0
+          },
+          "id": "sphere-eversion"
+        }
+      ],
+      "hit@10": 0.7916666666666666,
+      "mrr": 0.575462962962963,
+      "owner_hit@10": 0.625,
+      "owner_mrr": 0.4025462962962963,
+      "queries_with_incomplete_refill": 0,
+      "window": 20
+    },
+    "no-import-aggregators": {
+      "banned_roles": [
+        "import-aggregator"
+      ],
+      "changed_queries": [
+        {
+          "after": {
+            "first_owner": null,
+            "first_relevant": 2,
+            "hit": 1,
+            "owner_hit": 0
+          },
+          "before": {
+            "first_owner": null,
+            "first_relevant": 3,
+            "hit": 1,
+            "owner_hit": 0
+          },
+          "id": "hensel-complete-dvr"
+        },
+        {
+          "after": {
+            "first_owner": 10,
+            "first_relevant": 2,
+            "hit": 1,
+            "owner_hit": 1
+          },
+          "before": {
+            "first_owner": null,
+            "first_relevant": 2,
+            "hit": 1,
+            "owner_hit": 0
+          },
+          "id": "sphere-eversion"
+        }
+      ],
+      "hit@10": 0.7916666666666666,
+      "mrr": 0.5546296296296297,
+      "owner_hit@10": 0.625,
+      "owner_mrr": 0.4025462962962963,
+      "queries_with_incomplete_refill": 0,
+      "window": 20
+    },
+    "no-obvious-nontarget-roles": {
+      "banned_roles": [
+        "audit-path",
+        "generated-path",
+        "import-aggregator",
+        "roadmap-suggested",
+        "test-fixture-path"
+      ],
+      "changed_queries": [
+        {
+          "after": {
+            "first_owner": null,
+            "first_relevant": 1,
+            "hit": 1,
+            "owner_hit": 0
+          },
+          "before": {
+            "first_owner": null,
+            "first_relevant": 3,
+            "hit": 1,
+            "owner_hit": 0
+          },
+          "id": "hensel-complete-dvr"
+        },
+        {
+          "after": {
+            "first_owner": 10,
+            "first_relevant": 2,
+            "hit": 1,
+            "owner_hit": 1
+          },
+          "before": {
+            "first_owner": null,
+            "first_relevant": 2,
+            "hit": 1,
+            "owner_hit": 0
+          },
+          "id": "sphere-eversion"
+        }
+      ],
+      "hit@10": 0.7916666666666666,
+      "mrr": 0.575462962962963,
+      "owner_hit@10": 0.625,
+      "owner_mrr": 0.4025462962962963,
+      "queries_with_incomplete_refill": 0,
+      "window": 20
+    }
+  },
+  "provider": "filesystem+frozen-ranking",
+  "query_config_sha256": "c154b0491e9955c9adfb3aad9effa19a3c9e188e6b4cd816975c3efd01caa5b9",
+  "repository_state": {
+    "commit": "fcb75412793f85c3792c0d7e8ece82b1957a874f",
+    "state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": [],
+    "untracked_files": [],
+    "worktree_clean": true
+  },
+  "retrieval_engine": null,
+  "schema_version": 1,
+  "top10_role_judgment_state": {
+    "contains-sorry-admit": {
+      "queries": 10,
+      "slots": 19,
+      "states": {
+        "relevance-0": 1,
+        "relevance-3": 1,
+        "unjudged": 17
+      }
+    },
+    "import-aggregator": {
+      "queries": 11,
+      "slots": 16,
+      "states": {
+        "relevance-0": 1,
+        "relevance-3": 1,
+        "unjudged": 14
+      }
+    },
+    "no-declaration-regex": {
+      "queries": 11,
+      "slots": 19,
+      "states": {
+        "relevance-0": 2,
+        "relevance-2": 1,
+        "relevance-3": 1,
+        "unjudged": 15
+      }
+    },
+    "roadmap-suggested": {
+      "queries": 3,
+      "slots": 5,
+      "states": {
+        "relevance-0": 1,
+        "unjudged": 4
+      }
+    },
+    "vendored-path": {
+      "queries": 1,
+      "slots": 7,
+      "states": {
+        "unjudged": 7
+      }
+    }
+  },
+  "variant": "corpus_file_quality_v1",
+  "zoekt_indexed_metadata_file_counts": {
+    "PVS .prf": 2176,
+    "README*": 1047,
+    "lakefile*": 922,
+    "lean-toolchain": 748
+  }
+}
