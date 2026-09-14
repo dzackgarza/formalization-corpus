@@ -136,6 +136,10 @@ audit-search-data output="/tmp/formalization-corpus-data-audit.json":
 filter-state:
     python scripts/build-filter-state.py
 
+# Replay and validate the append-only filtering ledger against derived snapshots.
+filter-validate:
+    python scripts/validate-filter-state.py
+
 # Materialize hard-link views for primary mathematical content and auxiliary navigation/docs.
 filter-views:
     python scripts/materialize-index-views.py
@@ -152,6 +156,7 @@ ast pattern:
 test-commit:
     printf 'def formedModuleAnswer : Nat := 42\n' | ast-grep run --config sgconfig.yml --lang lean --pattern 'def $NAME : $TYPE := $VALUE' --stdin --json=compact | jq -e 'length == 1 and .[0].text == "def formedModuleAnswer : Nat := 42"' >/dev/null
     python scripts/check-policy-codes.py
+    python scripts/validate-filter-state.py
     python evaluation/search/evaluate.py --validate-only
     python -m unittest discover -s evaluation/search -p 'test_*.py'
     python evaluation/search/lablog.py validate

@@ -16,6 +16,12 @@ remain physically indexable because their distinct paths and sources are useful
 retrieval/provenance signals.  The API uses the alias map to collapse identical
 hits while reporting every original occurrence.
 
+`python scripts/validate-filter-state.py` replays the append-only ledger and
+requires exact agreement with `current.jsonl`, the duplicate alias map, the
+source inventory, and the generated snapshot counters.  It is part of the
+ordinary commit gate.  Do not edit the derived snapshots by hand; change the
+classifier/decision catalog and regenerate them.
+
 The derived local views are gitignored:
 
 - `.index-primary/` — formal mathematical documents eligible for the public
