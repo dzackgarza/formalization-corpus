@@ -128,6 +128,10 @@ eval-search-rerank:
 build-search-pool:
     python evaluation/search/build_pool.py evaluation/search/baselines/frontend_lexical_v1.json evaluation/search/experiments/reports/normalized_path_content_v1.json evaluation/search/experiments/reports/gemini_multiquery_rrf_v1.json evaluation/search/experiments/reports/gemini_multiquery_rrf_cohere_v4_fast_v1.json --depth 10 --output evaluation/search/pools/initial_top10_pool.json
 
+# Audit the material fed to search before attributing ranking failures to retrieval.
+audit-search-data output="/tmp/formalization-corpus-data-audit.json":
+    python evaluation/search/audit_corpus_data.py --output "{{output}}"
+
 # Search declarations and source text across the corpus.
 search query:
     ./bin/zoekt -index_dir .zoekt -r "{{query}}"

@@ -42,6 +42,18 @@ KEY_METRICS = (
     "zero_result_rate",
     "latency_ms_p50",
     "latency_ms_p95",
+    "formal_source_files",
+    "nonformal_materialized_files",
+    "lean_files",
+    "lean_import_aggregators",
+    "lean_import_aggregator_rate",
+    "lean_exact_duplicate_files",
+    "lean_exact_duplicate_file_rate",
+    "lean_cross_source_duplicate_files",
+    "lean_cross_source_duplicate_file_rate",
+    "top10_import_aggregator_slots",
+    "top10_roadmap_suggested_slots",
+    "top10_vendored_slots",
 )
 
 

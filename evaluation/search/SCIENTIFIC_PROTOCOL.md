@@ -6,6 +6,12 @@ components are therefore experiments, not ordinary UI tuning.  Every claim
 about search quality must be recoverable from timestamped data tied to an exact
 corpus state.
 
+The same rule applies before retrieval tuning: audit the indexed material itself.
+Do not attribute poor rankings to a search algorithm until file-role pollution,
+generated material, aggregators, duplication and other corpus-quality effects
+have been measured.  Data-quality role heuristics are diagnostics, not relevance
+judgments; test proposed filters against qrels before changing ingestion.
+
 ## The permanent record
 
 `ledger.jsonl` is the append-only chronological record.  It contains four kinds
