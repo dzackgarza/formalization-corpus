@@ -218,6 +218,17 @@ metadata channel.  A search system may fuse that channel when it helps identify
 a source, but the README should not outrank the source file that actually owns
 the theorem/definition.
 
+The 2026-09-14 deployment audit found that FD-002 initially violated this
+preservation requirement operationally: 969 non-formal README-like files were
+materialized into `.index-metadata`, but production neither published nor queried
+that index. A corpus-wide sample of 3,000 rare readable FD-002 terms found 831
+absent from primary document text; `running-on-a-project-other-than-mathlib` is
+one concrete README-only example. Production now serves the auxiliary index from
+a distinct private Zoekt backend and exposes only exact FD-002 members through
+`/api/search/documentation`. The browser appends documentation after formal
+results, preserving discovery terms without making README prose compete for
+theorem/definition ranks.
+
 The 2026-09-14 audit initially found over a thousand README-named files
 physically present in the Zoekt index. That observation led to an overly broad
 basename classifier; a subsequent audit found formal `README.*` modules in Lean,

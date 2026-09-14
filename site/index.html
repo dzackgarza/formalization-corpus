@@ -196,6 +196,40 @@ function buildQuery(text) {
 	return parts.join(" ");
 }
 
+function buildDocumentationQuery(text) {
+	const parts = [];
+	if (el("regex-filter").checked) {
+		if (text.trim()) parts.push(`regex:${quotedPattern(text.trim())}`);
+	} else {
+		const normalized = normalizedQueryTerms(text, queryConfig);
+		parts.push(...normalized.terms.map(term => quotedPattern(rx(term))));
+		if (!normalized.terms.length) parts.push('content:"$a"');
+	}
+
+	// The auxiliary index also contains retained import-navigation files.  This
+	// narrows the backend work to README-like paths; the API still enforces exact
+	// FD-002 membership before returning anything.
+	parts.push(String.raw`file:(^|/)readme`);
+
+	const sourceSets = [];
+	const prover = el("prover-filter").value;
+	if (prover) {
+		sourceSets.push(corpus.sources
+			.filter(source => source.proof_assistant === prover)
+			.map(source => source.index_id));
+	}
+	const source = el("source-filter").value.trim();
+	if (source) sourceSets.push(sourceIdsMatching(source));
+	const topic = el("topic-filter").value;
+	if (topic) sourceSets.push(topicData.topics[topic]?.sources || []);
+	if (sourceSets.length) {
+		const allowed = sourceSets.reduce((left, right) => left.filter(id => right.includes(id)));
+		parts.push(repoFilter(allowed) || "repo:$a");
+	}
+	parts.push(el("case-filter").checked ? "case:yes" : "case:no");
+	return parts.join(" ");
+}
+
 function restoreAdvancedState() {
 	const params = new URLSearchParams(location.search);
 	el("prover-filter").value = params.get("prover") || "";
@@ -264,6 +298,16 @@ function exactAliasHtml(match) {
 
 async function query(Q, Opts) {
 	const res = await fetch(API, {
+		method: "POST",
+		headers: {"Content-Type": "application/json"},
+		body: JSON.stringify({Q, Opts}),
+	});
+	if (!res.ok) throw new Error(`${res.status} ${res.statusText}: ${(await res.text()).slice(0, 300)}`);
+	return (await res.json()).Result || {};
+}
+
+async function queryDocumentation(Q, Opts) {
+	const res = await fetch(`${API}/documentation`, {
 		method: "POST",
 		headers: {"Content-Type": "application/json"},
 		body: JSON.stringify({Q, Opts}),
@@ -384,20 +428,22 @@ function render(result) {
 		const head = repo ? `<a href="${repo.url}">${esc(repo.name || name)}</a>` : esc(name);
 			const body = matches.map((f, i) => {
 			const chunks = (f.ChunkMatches || []).filter(c => !c.FileName);
-			const line = chunks.length ? chunks[0].ContentStart.LineNumber : 0;
-				const href = sourceLink(name, f.FileName, line);
-				const path = href ? `<a href="${href}">${esc(f.FileName)}</a>` : esc(f.FileName);
-				const aliases = exactAliasHtml(f);
-				// A file can match on its name alone, which has no lines to show.
-				if (!chunks.length) {
-					return `<div class="file"><div class="path">${path}</div>${aliases}`
-						+ `<pre class="namehit">matched in the file name</pre></div>`;
-				}
+				const line = chunks.length ? chunks[0].ContentStart.LineNumber : 0;
+					const href = sourceLink(name, f.FileName, line);
+					const path = href ? `<a href="${href}">${esc(f.FileName)}</a>` : esc(f.FileName);
+					const role = f.FileRole === "documentation-readme"
+						? `<span class="tag">documentation</span>` : "";
+					const aliases = exactAliasHtml(f);
+					// A file can match on its name alone, which has no lines to show.
+					if (!chunks.length) {
+						return `<div class="file"><div class="path">${path}${role}</div>${aliases}`
+							+ `<pre class="namehit">matched in the file name</pre></div>`;
+					}
 			const text = f.Content ? b64(f.Content) : null;
 			const id = `f${byRepo.size}-${esc(name)}-${i}`.replace(/[^\w-]/g, "_");
 			pending.push({id, match: f, text});
-				return `<div class="file" id="${id}"><div class="path">${path}</div>${aliases}`
-					+ `<pre>${text ? fileHtml(f, text, null) : ""}</pre></div>`;
+					return `<div class="file" id="${id}"><div class="path">${path}${role}</div>${aliases}`
+						+ `<pre>${text ? fileHtml(f, text, null) : ""}</pre></div>`;
 		}).join("");
 			return `<article><header>${head}${kind}</header>${body}</article>`;
 	}).join("");
@@ -421,6 +467,7 @@ async function search(q) {
 	el("results").innerHTML = "";
 	el("browse").hidden = true;
 	let result;
+	let documentation = {Files: []};
 	try {
 		const serving = queryConfig.serving || {};
 		const opts = {
@@ -434,7 +481,18 @@ async function search(q) {
 		if ((serving.total_max_match_count || 0) > 0) {
 			opts.TotalMaxMatchCount = serving.total_max_match_count;
 		}
+		const documentationOpts = {
+			...opts,
+			MaxDocDisplayCount: Math.min(opts.MaxDocDisplayCount, 20),
+		};
+		const documentationPromise = queryDocumentation(
+			buildDocumentationQuery(q), documentationOpts
+		).catch(err => {
+			console.warn("documentation search unavailable:", err);
+			return {Files: []};
+		});
 		result = await query(buildQuery(q), opts);
+		documentation = await documentationPromise;
 	} catch (err) {
 		fail(err);
 		return;
@@ -442,16 +500,22 @@ async function search(q) {
 
 	// Zoekt embeds its Stats struct directly in Result, so the counters sit at
 	// the top level rather than under a Stats key.
-	const found = result.Files || [];
+	const formalFiles = result.Files || [];
+	const documentationFiles = documentation.Files || [];
+	result.Files = [...formalFiles, ...documentationFiles];
+	result.DocumentationFilesAppended = documentationFiles.length;
+	const found = result.Files;
 	if (!found.length) {
 		el("status").textContent = "no matches";
 		return;
 	}
-	const shown = found.length;
-	const total = result.FileCount || shown;
+	const total = result.FileCount || formalFiles.length;
 	el("status").textContent =
-		`${shown} file${shown === 1 ? "" : "s"}`
-		+ (total > shown ? ` of ${total} matching` : "")
+		`${formalFiles.length} formal file${formalFiles.length === 1 ? "" : "s"}`
+		+ (total > formalFiles.length ? ` of ${total} matching` : "")
+		+ (documentationFiles.length
+			? ` · ${documentationFiles.length} documentation file${documentationFiles.length === 1 ? "" : "s"}`
+			: "")
 		+ ` · ${result.MatchCount || 0} matches`;
 	render(result);
 }

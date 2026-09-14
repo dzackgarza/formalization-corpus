@@ -1,7 +1,7 @@
 [Unit]
 Description=Formalization Corpus public API
-Requires=zoekt-webserver.service
-After=network.target zoekt-webserver.service
+Requires=zoekt-webserver.service zoekt-metadata-webserver.service
+After=network.target zoekt-webserver.service zoekt-metadata-webserver.service
 
 [Service]
 Type=simple
@@ -9,6 +9,7 @@ User=zack
 Group=zack
 WorkingDirectory=/home/zack/lean-corpus/api
 Environment=ZOEKT_BACKEND_URL=http://127.0.0.1:6071
+Environment=ZOEKT_DOCUMENTATION_BACKEND_URL=http://127.0.0.1:6072
 Environment=DUPLICATE_ALIASES_PATH=/home/zack/lean-corpus/api/data/duplicate-aliases.json
 Environment=PYTHONDONTWRITEBYTECODE=1
 ExecStart=/home/zack/lean-corpus/api/.venv/bin/uvicorn \

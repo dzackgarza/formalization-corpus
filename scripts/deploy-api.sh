@@ -15,7 +15,7 @@ trap 'rm -f "$binary"' EXIT
 )
 
 rsync -a "$binary" "$host:$remote_root/bin/zoekt-webserver.stock"
-ssh "$host" "mkdir -p '$remote_root/api' '$remote_root/systemd'"
+ssh "$host" "mkdir -p '$remote_root/api' '$remote_root/systemd' '$remote_root/metadata-index'"
 rsync -a --delete --exclude .venv/ "$root/server/" "$host:$remote_root/api/"
 ssh "$host" "mkdir -p '$remote_root/api/data'"
 rsync -a "$root/filtering/duplicate-aliases.json" "$host:$remote_root/api/data/duplicate-aliases.json"
@@ -43,9 +43,11 @@ staged API code, stock Zoekt binary, and systemd units on $host.
 
 First-time activation requires root once:
   sudo install -m 0644 $remote_root/systemd/zoekt-webserver.service /etc/systemd/system/zoekt-webserver.service
+  sudo install -m 0644 $remote_root/systemd/zoekt-metadata-webserver.service /etc/systemd/system/zoekt-metadata-webserver.service
   sudo install -m 0644 $remote_root/systemd/formalization-corpus-api.service /etc/systemd/system/formalization-corpus-api.service
   sudo systemctl daemon-reload
   sudo systemctl restart zoekt-webserver.service
+  sudo systemctl restart zoekt-metadata-webserver.service
   sudo systemctl enable --now formalization-corpus-api.service
 EOF
 fi

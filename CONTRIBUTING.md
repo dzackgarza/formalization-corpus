@@ -308,6 +308,13 @@ terminology, provenance, or locating an implementation.  Preserve them for an
 auxiliary documentation/source-discovery index rather than assuming they are
 worthless and deleting them.
 
+That auxiliary channel must exist end to end, not merely as a local materialized
+directory. Production publishes the auxiliary Zoekt index separately and exposes
+exact FD-002 rows through `/api/search/documentation`; the browser appends those
+hits only after primary formal-source results. The auxiliary index also contains
+retained import-navigation material, so the API must use durable FD-002 membership
+as the serving boundary rather than trusting a filename pattern alone.
+
 ### FILTER-009 — Never filter on `sorry`, `admit`, holes, or proof incompleteness alone
 
 Proof incompleteness is not a corpus-quality failure for the project's prior-art

@@ -66,8 +66,9 @@ index-cross-prover: filter-views
 index-ports: index-cross-prover
 
 # Build the small auxiliary README/import-navigation index separately from the
-# mathematical-content index. It is retained for source/module discovery and is
-# not published as the primary search backend.
+# mathematical-content index. Production serves it through a distinct private
+# Zoekt backend; the public documentation endpoint exposes only exact FD-002
+# rows and the browser appends them after primary formal results.
 index-metadata: filter-views
     #!/usr/bin/env zsh
     rm -rf .zoekt-metadata
@@ -98,9 +99,11 @@ preview: metrics site
 # Cloudflare, which proxies HTTP and would not carry ssh.
 host := "zack@159.223.102.204"
 
-# Ship the validated local index to the search host and verify exact source parity.
-publish: metrics
+# Ship both validated search channels to the search host. Documentation remains
+# a separate auxiliary index and never competes for primary mathematical ranks.
+publish: metrics index-metadata
     rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
+    rsync -a --delete --partial --info=stats1 .zoekt-metadata/ {{host}}:lean-corpus/metadata-index/
     python scripts/check-published.py
     if ssh {{host}} 'systemctl is-active --quiet formalization-corpus-api.service'; then ssh {{host}} "pkill -TERM -u zack -f '/home/zack/lean-corpus/api/.venv/bin/uvicorn formalization_api.app:app' || true"; else echo 'FastAPI adapter inactive; filtered index published to the currently active search backend'; fi
     @echo "https://formalization-corpus.dzackgarza.com"

@@ -158,10 +158,53 @@ class SearchResult(APIModel):
         description="Counts of returned lower-priority file roles when role ranking is applied.",
     )
     RoleRerankingApplied: bool | None = None
+    DocumentationFilesReturned: int | None = Field(
+        default=None,
+        description="Number of FD-002 README/source-documentation files returned by the auxiliary channel.",
+    )
+    AuxiliaryChannel: str | None = None
 
 
 class SearchResponse(APIModel):
     Result: SearchResult
+
+
+class BatchSearchItem(APIModel):
+    ID: str = Field(
+        min_length=1,
+        max_length=200,
+        description="Caller-supplied identifier returned unchanged with this query's result.",
+    )
+    Request: SearchRequest
+
+
+class BatchSearchRequest(APIModel):
+    Searches: list[BatchSearchItem] = Field(
+        min_length=1,
+        max_length=512,
+        description="Independent corpus searches evaluated concurrently and returned in input order.",
+    )
+    MaxConcurrency: int = Field(
+        default=16,
+        ge=1,
+        le=32,
+        description="Maximum searches from this batch allowed to execute concurrently.",
+    )
+
+
+class BatchSearchItemResponse(APIModel):
+    ID: str
+    StatusCode: int
+    Cache: str | None = Field(
+        default=None,
+        description="Per-query cache result when the search succeeded.",
+    )
+    Result: SearchResult | None = None
+    Error: str | None = None
+
+
+class BatchSearchResponse(APIModel):
+    Results: list[BatchSearchItemResponse]
 
 
 class ListOptions(APIModel):

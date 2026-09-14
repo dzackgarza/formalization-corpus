@@ -23,6 +23,9 @@ from .cache import ByteLRUTTLCache, SingleFlight
 from .duplicates import DuplicateAliasIndex
 from .roles import FileRoleIndex
 from .models import (
+    BatchSearchItemResponse,
+    BatchSearchRequest,
+    BatchSearchResponse,
     ErrorResponse,
     ListRequest,
     ListResponse,
@@ -33,6 +36,7 @@ from .models import (
 )
 
 DEFAULT_BACKEND_URL = "http://127.0.0.1:6071"
+DEFAULT_DOCUMENTATION_BACKEND_URL = "http://127.0.0.1:6072"
 DEFAULT_DUPLICATE_ALIASES_PATH = (
     pathlib.Path(__file__).resolve().parents[1] / "data" / "duplicate-aliases.json"
 )
@@ -43,6 +47,7 @@ CACHE_TTL_SECONDS = 300.0
 CACHE_MAX_BYTES = 64 * 1024 * 1024
 CACHE_MAX_ENTRY_BYTES = 8 * 1024 * 1024
 CACHE_MAX_ENTRIES = 256
+BATCH_GLOBAL_CONCURRENCY = 32
 DEFAULT_SOURCE_LEAD_REMOTE = "git@github.com:dzackgarza/formalization-corpus.git"
 DEFAULT_SOURCE_LEAD_BASE_BRANCH = "main"
 SOURCE_LEAD_QUEUE_URL = (
@@ -139,10 +144,12 @@ class SearchProxy:
     def __init__(
         self,
         client: httpx.AsyncClient,
+        documentation_client: httpx.AsyncClient | None,
         duplicate_aliases: DuplicateAliasIndex,
         file_roles: FileRoleIndex,
     ) -> None:
         self.client = client
+        self.documentation_client = documentation_client
         self.duplicate_aliases = duplicate_aliases
         self.file_roles = file_roles
         self.cache = ByteLRUTTLCache(
@@ -152,6 +159,7 @@ class SearchProxy:
             max_entries=CACHE_MAX_ENTRIES,
         )
         self.singleflight = SingleFlight()
+        self.batch_slots = asyncio.Semaphore(BATCH_GLOBAL_CONCURRENCY)
 
     async def search(self, payload: dict[str, Any]) -> tuple[bytes, str]:
         normalized = json.dumps(
@@ -184,6 +192,60 @@ class SearchProxy:
     async def list_sources(self, payload: dict[str, Any]) -> bytes:
         return await self._post("/api/list", payload)
 
+    async def batch_search(
+        self,
+        items: list[tuple[str, dict[str, Any]]],
+        *,
+        max_concurrency: int,
+    ) -> list[BatchSearchItemResponse]:
+        local_slots = asyncio.Semaphore(max_concurrency)
+
+        async def run(item_id: str, payload: dict[str, Any]) -> BatchSearchItemResponse:
+            async with local_slots, self.batch_slots:
+                try:
+                    body, cache_status = await self.search(payload)
+                except BackendError as exc:
+                    try:
+                        error_body = json.loads(exc.body)
+                    except (json.JSONDecodeError, UnicodeDecodeError):
+                        message = exc.body.decode("utf-8", "replace")
+                    else:
+                        message = (
+                            error_body.get("Error", "search backend rejected the query")
+                            if isinstance(error_body, dict)
+                            else "search backend rejected the query"
+                        )
+                    return BatchSearchItemResponse(
+                        ID=item_id,
+                        StatusCode=exc.status_code,
+                        Error=message,
+                    )
+
+                response = SearchResponse.model_validate_json(body)
+                return BatchSearchItemResponse(
+                    ID=item_id,
+                    StatusCode=200,
+                    Cache=cache_status,
+                    Result=response.Result,
+                )
+
+        return list(
+            await asyncio.gather(
+                *(run(item_id, payload) for item_id, payload in items)
+            )
+        )
+
+    async def search_documentation(self, payload: dict[str, Any]) -> bytes:
+        if self.documentation_client is None:
+            raise BackendError(502, b'{"Error":"documentation search backend unavailable"}')
+        try:
+            response = await self.documentation_client.post("/api/search", json=payload)
+        except httpx.HTTPError as exc:
+            raise BackendError(502, b'{"Error":"documentation search backend unavailable"}') from exc
+        if response.status_code >= 400:
+            raise BackendError(response.status_code, response.content)
+        return self.file_roles.documentation_response(response.content)
+
     async def _post(self, path: str, payload: dict[str, Any]) -> bytes:
         try:
             response = await self.client.post(path, json=payload)
@@ -203,12 +265,16 @@ API_DESCRIPTION = (
 def create_app(
     *,
     backend_url: str | None = None,
+    documentation_backend_url: str | None = None,
     duplicate_aliases_path: str | pathlib.Path | None = None,
     file_roles_path: str | pathlib.Path | None = None,
     source_lead_remote: str | None = None,
     source_lead_base_branch: str = DEFAULT_SOURCE_LEAD_BASE_BRANCH,
 ) -> FastAPI:
     backend = backend_url or os.environ.get("ZOEKT_BACKEND_URL", DEFAULT_BACKEND_URL)
+    documentation_backend = documentation_backend_url or os.environ.get(
+        "ZOEKT_DOCUMENTATION_BACKEND_URL"
+    )
     aliases_value = duplicate_aliases_path or os.environ.get("DUPLICATE_ALIASES_PATH")
     aliases_path = pathlib.Path(aliases_value) if aliases_value else DEFAULT_DUPLICATE_ALIASES_PATH
     roles_value = file_roles_path or os.environ.get("FILE_ROLES_PATH")
@@ -221,9 +287,14 @@ def create_app(
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         client = httpx.AsyncClient(base_url=backend, timeout=60.0)
+        documentation_client = (
+            httpx.AsyncClient(base_url=documentation_backend, timeout=30.0)
+            if documentation_backend
+            else None
+        )
         duplicate_aliases = DuplicateAliasIndex.from_path(aliases_path)
         file_roles = FileRoleIndex.from_path(roles_path)
-        app.state.proxy = SearchProxy(client, duplicate_aliases, file_roles)
+        app.state.proxy = SearchProxy(client, documentation_client, duplicate_aliases, file_roles)
         app.state.source_leads = SourceLeadDispatcher(
             lead_remote, base_branch=source_lead_base_branch
         )
@@ -231,10 +302,12 @@ def create_app(
             yield
         finally:
             await client.aclose()
+            if documentation_client is not None:
+                await documentation_client.aclose()
 
     app = FastAPI(
         title="Formalization Corpus API",
-        version="1.0.0",
+        version="1.1.0",
         description=API_DESCRIPTION,
         openapi_url="/api/openapi.json",
         docs_url=None,
@@ -335,6 +408,69 @@ def create_app(
             media_type="application/json",
             headers={"X-Cache": cache_status},
         )
+
+    @app.post(
+        "/api/search/batch",
+        operation_id="searchCorpusBatch",
+        summary="Search the corpus in bulk",
+        response_model=BatchSearchResponse,
+        responses={
+            200: {
+                "model": BatchSearchResponse,
+                "description": (
+                    "Per-query search results in input order. Backend errors are "
+                    "reported on the affected item without failing the whole batch."
+                ),
+            },
+            400: {"model": ErrorResponse, "description": "Invalid batch request."},
+        },
+        tags=["Search"],
+    )
+    async def batch_search(
+        request: BatchSearchRequest,
+        raw_request: Request,
+    ) -> BatchSearchResponse:
+        proxy: SearchProxy = raw_request.app.state.proxy
+        items = [
+            (
+                item.ID,
+                item.Request.model_dump(by_alias=True, exclude_none=True),
+            )
+            for item in request.Searches
+        ]
+        results = await proxy.batch_search(
+            items,
+            max_concurrency=request.MaxConcurrency,
+        )
+        return BatchSearchResponse(Results=results)
+
+    @app.post(
+        "/api/search/documentation",
+        operation_id="searchDocumentation",
+        summary="Search auxiliary source documentation",
+        response_model=None,
+        responses={
+            200: {
+                "model": SearchResponse,
+                "description": "README/source-documentation results from the auxiliary index.",
+            },
+            400: {"model": ErrorResponse, "description": "Invalid search request."},
+            502: {"model": ErrorResponse, "description": "Documentation backend unavailable."},
+        },
+        tags=["Search"],
+    )
+    async def search_documentation(request: SearchRequest, raw_request: Request) -> Response:
+        proxy: SearchProxy = raw_request.app.state.proxy
+        payload = request.model_dump(by_alias=True, exclude_none=True)
+        try:
+            body = await proxy.search_documentation(payload)
+        except BackendError as exc:
+            return Response(
+                content=exc.body,
+                status_code=exc.status_code,
+                media_type="application/json",
+            )
+        return Response(content=body, media_type="application/json")
 
     @app.post(
         "/api/submit/source",

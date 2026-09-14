@@ -79,11 +79,13 @@ async def with_client(
     url: str,
     callback,
     *,
+    documentation_url=None,
     duplicate_aliases_path=None,
     file_roles_path=None,
 ) -> None:
     app = create_app(
         backend_url=url,
+        documentation_backend_url=documentation_url,
         duplicate_aliases_path=duplicate_aliases_path,
         file_roles_path=file_roles_path,
     )
@@ -121,6 +123,78 @@ def test_search_is_cached_and_preserves_request_shape() -> None:
         server.shutdown()
 
 
+def test_documentation_search_uses_auxiliary_backend_and_exact_fd002_membership() -> None:
+    class DocumentationBackendHandler(BackendHandler):
+        def do_POST(self) -> None:  # noqa: N802
+            size = int(self.headers.get("Content-Length", "0"))
+            self.rfile.read(size)
+            payload = {
+                "Result": {
+                    "Files": [
+                        {"FileName": "README.md", "Repository": "docs", "Score": 30},
+                        {"FileName": "Index.lean", "Repository": "lean", "Score": 20},
+                        {"FileName": "README.md", "Repository": "not-fd002", "Score": 10},
+                    ],
+                    "FileCount": 3,
+                }
+            }
+            encoded = json.dumps(payload).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(encoded)))
+            self.end_headers()
+            self.wfile.write(encoded)
+
+    primary, primary_url = backend_server()
+    documentation = ThreadingHTTPServer(("127.0.0.1", 0), DocumentationBackendHandler)
+    threading.Thread(target=documentation.serve_forever, daemon=True).start()
+    host, port = documentation.server_address
+    documentation_url = f"http://{host}:{port}"
+    try:
+        with tempfile.TemporaryDirectory() as directory:
+            roles = pathlib.Path(directory) / "filter-state.jsonl"
+            roles.write_text(
+                "\n".join(
+                    [
+                        json.dumps({
+                            "decision_id": "FD-002", "primary": "exclude", "auxiliary": "include",
+                            "repository": "docs", "file": "README.md",
+                        }),
+                        json.dumps({
+                            "decision_id": "FD-016", "primary": "retain", "auxiliary": "include",
+                            "repository": "lean", "file": "Index.lean",
+                        }),
+                    ]
+                ) + "\n"
+            )
+
+            async def run(client: httpx.AsyncClient) -> None:
+                response = await client.post(
+                    "/api/search/documentation", json={"Q": "topic file:README case:no"}
+                )
+                assert response.status_code == 200
+                result = response.json()["Result"]
+                assert [(f["Repository"], f["FileName"]) for f in result["Files"]] == [
+                    ("docs", "README.md")
+                ]
+                assert result["Files"][0]["FileRole"] == "documentation-readme"
+                assert result["DocumentationFilesReturned"] == 1
+                assert result["AuxiliaryChannel"] == "documentation"
+                assert result["FileCount"] == 1
+
+            asyncio.run(
+                with_client(
+                    primary_url,
+                    run,
+                    documentation_url=documentation_url,
+                    file_roles_path=roles,
+                )
+            )
+    finally:
+        primary.shutdown()
+        documentation.shutdown()
+
+
 def test_list_is_proxied_without_search_cache() -> None:
     server, url = backend_server()
     try:
@@ -144,9 +218,15 @@ def test_openapi_is_generated_from_pydantic_models() -> None:
             assert document["openapi"].startswith("3.1.")
             assert document["security"] == []
             assert document["paths"]["/api/search"]["post"]["operationId"] == "searchCorpus"
+            assert (
+                document["paths"]["/api/search/batch"]["post"]["operationId"]
+                == "searchCorpusBatch"
+            )
             assert document["paths"]["/api/list"]["post"]["operationId"] == "listSources"
             assert "SearchRequest" in document["components"]["schemas"]
             assert "SearchResponse" in document["components"]["schemas"]
+            assert "BatchSearchRequest" in document["components"]["schemas"]
+            assert "BatchSearchResponse" in document["components"]["schemas"]
         asyncio.run(with_client(url, run))
     finally:
         server.shutdown()
@@ -159,6 +239,109 @@ def test_validation_errors_keep_public_error_shape() -> None:
             response = await client.post("/api/search", json={"Q": ""})
             assert response.status_code == 400
             assert set(response.json()) == {"Error"}
+        asyncio.run(with_client(url, run))
+    finally:
+        server.shutdown()
+
+
+def test_batch_search_preserves_order_and_reuses_cache() -> None:
+    server, url = backend_server()
+    try:
+        async def run(client: httpx.AsyncClient) -> None:
+            payload = {
+                "Searches": [
+                    {"ID": "first", "Request": {"Q": "quasicategory"}},
+                    {"ID": "second", "Request": {"Q": "inner fibration"}},
+                    {"ID": "repeat", "Request": {"Q": "quasicategory"}},
+                ],
+                "MaxConcurrency": 3,
+            }
+            first = await client.post("/api/search/batch", json=payload)
+            assert first.status_code == 200
+            results = first.json()["Results"]
+            assert [item["ID"] for item in results] == ["first", "second", "repeat"]
+            assert [item["StatusCode"] for item in results] == [200, 200, 200]
+            assert results[0]["Result"]["Echo"]["Q"] == "quasicategory"
+            assert results[1]["Result"]["Echo"]["Q"] == "inner fibration"
+            assert results[2]["Result"]["Echo"]["Q"] == "quasicategory"
+            assert BackendHandler.search_calls == 2
+            assert results[0]["Cache"] == "MISS"
+            assert results[1]["Cache"] == "MISS"
+            assert results[2]["Cache"] in {"COALESCED", "HIT"}
+
+            second = await client.post("/api/search/batch", json=payload)
+            assert second.status_code == 200
+            second_results = second.json()["Results"]
+            assert all(item["Cache"] == "HIT" for item in second_results)
+            assert BackendHandler.search_calls == 2
+
+        asyncio.run(with_client(url, run))
+    finally:
+        server.shutdown()
+
+
+def test_batch_search_reports_backend_errors_per_query() -> None:
+    class SelectiveErrorHandler(BackendHandler):
+        def do_POST(self) -> None:  # noqa: N802
+            size = int(self.headers.get("Content-Length", "0"))
+            body = json.loads(self.rfile.read(size))
+            if self.path != "/api/search":
+                self.send_response(404)
+                self.end_headers()
+                return
+            if body.get("Q") == "bad query":
+                encoded = json.dumps({"Error": "invalid query syntax"}).encode()
+                self.send_response(400)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Content-Length", str(len(encoded)))
+                self.end_headers()
+                self.wfile.write(encoded)
+                return
+            encoded = json.dumps(
+                {
+                    "Result": {
+                        "Files": [],
+                        "FileCount": 0,
+                        "MatchCount": 0,
+                        "Echo": body,
+                    }
+                }
+            ).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(encoded)))
+            self.end_headers()
+            self.wfile.write(encoded)
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), SelectiveErrorHandler)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    host, port = server.server_address
+    url = f"http://{host}:{port}"
+    try:
+        async def run(client: httpx.AsyncClient) -> None:
+            response = await client.post(
+                "/api/search/batch",
+                json={
+                    "Searches": [
+                        {"ID": "good", "Request": {"Q": "theorem"}},
+                        {"ID": "bad", "Request": {"Q": "bad query"}},
+                    ]
+                },
+            )
+            assert response.status_code == 200
+            good, bad = response.json()["Results"]
+            assert good["ID"] == "good"
+            assert good["StatusCode"] == 200
+            assert good["Result"]["Echo"]["Q"] == "theorem"
+            assert good["Error"] is None
+            assert bad == {
+                "ID": "bad",
+                "StatusCode": 400,
+                "Cache": None,
+                "Result": None,
+                "Error": "invalid query syntax",
+            }
+
         asyncio.run(with_client(url, run))
     finally:
         server.shutdown()
