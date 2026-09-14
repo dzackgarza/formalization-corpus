@@ -246,15 +246,19 @@ The current baseline is measured on the filtered primary-content index introduce
 by the corpus-hygiene experiment.  Against the immediately preceding raw-index
 control on the same 24 queries and qrels, filtering raises deployed lexical-v2
 owner Hit@10 from 0.583 to 0.625 while Hit@10 remains 0.792; nDCG@10 rises from
-0.410 to 0.419.  After correcting the README classifier so that formal prover
-sources such as `README.lean`, `README.thy`, `README.agda`, and `Readme.lsp`
-remain primary content, the index is 9,221,772,678 bytes, still about 11.8%
-smaller than the 10,451,699,803-byte raw control.  Restoring those 73 formal
-documents changes none of the six measured retrieval metric sets, which is an
-important reminder that benchmark stability does not prove a hard filter is
-recall-safe.  The immutable before/after/corrected reports and superseding
-deployment decision are recorded in `ledger.jsonl`; the individual file-level
-decisions and reversions are in `filtering/ledger.jsonl`.
+0.410 to 0.419.  Two subsequent safety audits narrowed overbroad filename/path
+rules: formal prover sources such as `README.lean`, `README.thy`, `README.agda`,
+and `Readme.lsp` remain primary content, as do all 498 `lakefile.lean` files.
+ACL2 `.sys` filtering is now limited to the exact
+`*@useless-runes.lsp` certification-report class.  The final conservative index
+is 9,225,984,895 bytes, still about 11.7% smaller than the
+10,451,699,803-byte raw control.  Restoring the formal README modules changed
+none of the six measured metric sets; restoring `lakefile.lean` likewise leaves
+the deployed lexical metrics unchanged, though the raw multi-query nDCG changes
+slightly.  This is an important reminder that benchmark stability does not prove
+a hard filter is recall-safe.  The immutable before/after/corrected reports and
+superseding deployment decisions are recorded in `ledger.jsonl`; the individual
+file-level decisions and reversions are in `filtering/ledger.jsonl`.
 
 ## Relevance-judgment pooling
 
@@ -276,8 +280,8 @@ unjudged files.  Reviewed nonrelevant files are recorded explicitly as relevance
 0 and reported separately from candidates still awaiting review.  The current
 depth-10 pool combines the frozen frontend baseline, normalized
 path/content lexical retrieval, frozen multi-query RRF, and the measured Cohere
-reranker.  It has 442 unique query/file candidates: 63 judged relevant, 5 judged
-nonrelevant, and 374 explicitly unjudged.  The gold set currently contains 84
+reranker.  It has 443 unique query/file candidates: 63 judged relevant, 5 judged
+nonrelevant, and 375 explicitly unjudged.  The gold set currently contains 84
 judgments total; some judged files lie outside this depth-10 pool.  Unjudged does
 not mean irrelevant.
 

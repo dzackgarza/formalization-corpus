@@ -2954,8 +2954,7 @@
           },
           "repository": "fpvandoorn__carleson",
           "runs": {
-            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
-            "gemini_multiquery_rrf_v1": 10
+            "gemini_multiquery_rrf_cohere_v4_fast_v1": 3
           }
         },
         {
@@ -3023,6 +3022,14 @@
           "repository": "fpvandoorn__carleson",
           "runs": {
             "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "lakefile.lean",
+          "judgment": null,
+          "repository": "brettkoonce__lean4-mlir",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
           }
         },
         {
@@ -4377,10 +4384,10 @@
   ],
   "gold_sha256": "5e3ad198fbe2ddf7cbd94a7707c5573adba12fb48dfd84f477dbe45fc0daabe1",
   "index": {
-    "latest_mtime_ns": 1789377580134254796,
-    "metadata_sha256": "1cd6707e0b25f166916212da1438c3feb803718f9dcc5f12e3716b892b5d3d7e",
+    "latest_mtime_ns": 1789379900096665214,
+    "metadata_sha256": "d8e191525339345cf6ae380db04fcc07bd13d72a521120f469ab0945232ea55f",
     "shard_count": 900,
-    "total_bytes": 9221772678
+    "total_bytes": 9225984895
   },
   "pool_depth_per_run": 10,
   "runs": [
@@ -4408,10 +4415,10 @@
   "schema_version": 1,
   "summary": {
     "already_judged": 68,
-    "candidates": 442,
+    "candidates": 443,
     "judged_nonrelevant": 5,
     "judged_relevant": 63,
     "queries": 24,
-    "unjudged": 374
+    "unjudged": 375
   }
 }
