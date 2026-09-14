@@ -14,9 +14,9 @@ from filtering_lib import (
     CURRENT,
     DUPLICATES,
     FILTER_ROOT,
-    LEDGER,
     ROOT,
     SNAPSHOT,
+    append_filter_ledger,
     is_formal_file,
     is_acl2_useless_runes_report,
     is_lean_build_metadata,
@@ -317,10 +317,7 @@ def main() -> int:
         )
 
     FILTER_ROOT.mkdir(parents=True, exist_ok=True)
-    if events:
-        with LEDGER.open("a") as handle:
-            for event in events:
-                handle.write(json.dumps(event, sort_keys=True, separators=(",", ":")) + "\n")
+    append_filter_ledger(events)
     from filtering_lib import dump_jsonl
     dump_jsonl(CURRENT, current)
     DUPLICATES.write_text(

@@ -17,7 +17,9 @@ SOURCE_TABLE = ROOT / "sources.tsv"
 FILTER_ROOT = ROOT / "filtering"
 CATALOG = FILTER_ROOT / "decision-catalog.json"
 CURRENT = FILTER_ROOT / "current.jsonl"
-LEDGER = FILTER_ROOT / "ledger.jsonl"
+LEDGER_DIR = FILTER_ROOT / "ledger"
+LEGACY_LEDGER = FILTER_ROOT / "ledger.jsonl"
+LEDGER_SHARD_MAX_BYTES = 40 * 1024 * 1024
 DUPLICATES = FILTER_ROOT / "duplicate-aliases.json"
 SNAPSHOT = FILTER_ROOT / "snapshot.json"
 
@@ -177,6 +179,72 @@ def load_jsonl(path: pathlib.Path) -> list[dict[str, Any]]:
     if not path.exists():
         return []
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+
+
+def filter_ledger_paths() -> list[pathlib.Path]:
+    """Return filtering-ledger shards in replay order.
+
+    ``LEGACY_LEDGER`` is accepted only as a read fallback so historical clones
+    remain inspectable during the storage migration.  New writes require the
+    sharded directory and never append to the legacy monolith.
+    """
+    shards = sorted(LEDGER_DIR.glob("*.jsonl")) if LEDGER_DIR.is_dir() else []
+    if shards:
+        return shards
+    if LEGACY_LEDGER.is_file():
+        return [LEGACY_LEDGER]
+    return []
+
+
+def load_filter_ledger() -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for path in filter_ledger_paths():
+        rows.extend(load_jsonl(path))
+    return rows
+
+
+def append_filter_ledger(events: Iterable[dict[str, Any]]) -> None:
+    """Append filtering events to bounded JSONL shards without changing order."""
+    encoded = [
+        (json.dumps(event, sort_keys=True, separators=(",", ":")) + "\n").encode()
+        for event in events
+    ]
+    if not encoded:
+        return
+    if LEGACY_LEDGER.exists():
+        raise RuntimeError(
+            f"legacy filtering ledger still exists at {LEGACY_LEDGER}; migrate it before appending"
+        )
+    if any(len(line) > LEDGER_SHARD_MAX_BYTES for line in encoded):
+        raise ValueError("one filtering-ledger event exceeds the shard-size limit")
+
+    LEDGER_DIR.mkdir(parents=True, exist_ok=True)
+    shards = sorted(LEDGER_DIR.glob("*.jsonl"))
+    if shards:
+        last = shards[-1]
+        try:
+            shard_number = int(last.stem)
+        except ValueError as exc:
+            raise ValueError(f"invalid filtering-ledger shard name: {last}") from exc
+        current_size = last.stat().st_size
+    else:
+        shard_number = 1
+        last = LEDGER_DIR / f"{shard_number:06d}.jsonl"
+        current_size = 0
+
+    handle = last.open("ab")
+    try:
+        for line in encoded:
+            if current_size and current_size + len(line) > LEDGER_SHARD_MAX_BYTES:
+                handle.close()
+                shard_number += 1
+                last = LEDGER_DIR / f"{shard_number:06d}.jsonl"
+                handle = last.open("ab")
+                current_size = 0
+            handle.write(line)
+            current_size += len(line)
+    finally:
+        handle.close()
 
 
 def dump_jsonl(path: pathlib.Path, rows: Iterable[dict[str, Any]]) -> None:

@@ -277,7 +277,7 @@ important reminder that benchmark gains do not certify a hard filter as
 recall-safe: the correct repair was to separate retrieval eligibility from
 ranking.  The immutable measurements and superseding decisions are recorded in
 `ledger.jsonl`; individual file-level decisions and reversions are in
-`filtering/ledger.jsonl`.
+the ordered `filtering/ledger/*.jsonl` shards.
 
 The public webserver also has a measured serving-quality parameter. Zoekt's JSON
 handler derives internal per-shard match limits from `MaxDocDisplayCount` when no

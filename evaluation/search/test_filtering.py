@@ -4,6 +4,7 @@ import pathlib
 import sys
 import unittest
 import importlib.util
+import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -95,6 +96,49 @@ class FilteringTests(unittest.TestCase):
         self.assertFalse(filtering_lib.is_whitespace_only_formal_source(b"/- useful docs -/\n"))
         self.assertFalse(filtering_lib.is_whitespace_only_formal_source(b"theorem t : True := by trivial\n"))
         self.assertTrue(filtering_lib.is_nonformal_readme("lean", pathlib.Path("README.md")))
+
+    def test_filter_ledger_shards_preserve_append_order_and_roll_over(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            saved = (
+                filtering_lib.LEDGER_DIR,
+                filtering_lib.LEGACY_LEDGER,
+                filtering_lib.LEDGER_SHARD_MAX_BYTES,
+            )
+            filtering_lib.LEDGER_DIR = root / "ledger"
+            filtering_lib.LEGACY_LEDGER = root / "ledger.jsonl"
+            filtering_lib.LEDGER_SHARD_MAX_BYTES = 50
+            try:
+                events = [
+                    {"n": 1, "payload": "a" * 15},
+                    {"n": 2, "payload": "b" * 15},
+                    {"n": 3, "payload": "c" * 15},
+                ]
+                filtering_lib.append_filter_ledger(events)
+                self.assertEqual(filtering_lib.load_filter_ledger(), events)
+                shards = filtering_lib.filter_ledger_paths()
+                self.assertGreater(len(shards), 1)
+                self.assertEqual(shards, sorted(shards))
+            finally:
+                (
+                    filtering_lib.LEDGER_DIR,
+                    filtering_lib.LEGACY_LEDGER,
+                    filtering_lib.LEDGER_SHARD_MAX_BYTES,
+                ) = saved
+
+    def test_filter_ledger_refuses_to_append_to_legacy_monolith(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            saved = filtering_lib.LEDGER_DIR, filtering_lib.LEGACY_LEDGER
+            filtering_lib.LEDGER_DIR = root / "ledger"
+            filtering_lib.LEGACY_LEDGER = root / "ledger.jsonl"
+            filtering_lib.LEGACY_LEDGER.write_text('{"old":true}\n')
+            try:
+                self.assertEqual(filtering_lib.load_filter_ledger(), [{"old": True}])
+                with self.assertRaises(RuntimeError):
+                    filtering_lib.append_filter_ledger([{"new": True}])
+            finally:
+                filtering_lib.LEDGER_DIR, filtering_lib.LEGACY_LEDGER = saved
 
     def test_ledger_replay_detects_snapshot_drift(self) -> None:
         validator = load_validator()

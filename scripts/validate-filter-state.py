@@ -11,8 +11,8 @@ from typing import Any
 from filtering_lib import (
     CURRENT,
     DUPLICATES,
-    LEDGER,
     SNAPSHOT,
+    load_filter_ledger,
     load_catalog,
     load_jsonl,
     source_revision,
@@ -218,7 +218,7 @@ def validate_state(
 
 def main() -> int:
     catalog = load_catalog()
-    ledger = load_jsonl(LEDGER)
+    ledger = load_filter_ledger()
     current = load_jsonl(CURRENT)
     duplicates = json.loads(DUPLICATES.read_text())
     snapshot = json.loads(SNAPSHOT.read_text())
