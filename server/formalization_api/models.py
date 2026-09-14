@@ -107,6 +107,18 @@ class FileMatch(APIModel):
     )
     Checksum: str | None = None
     Score: float | None = None
+    ExactDuplicateAliases: list["FileAlias"] | None = Field(
+        default=None,
+        description=(
+            "Other corpus source/path occurrences with byte-identical formal source. "
+            "They are aliases/provenance for this returned hit, not additional ranked results."
+        ),
+    )
+
+
+class FileAlias(APIModel):
+    Repository: str
+    FileName: str
 
 
 class SearchResult(APIModel):
@@ -121,6 +133,14 @@ class SearchResult(APIModel):
     FilesLoaded: int | None = None
     FilesSkipped: int | None = None
     ShardsScanned: int | None = None
+    DuplicateFilesCollapsed: int | None = Field(
+        default=None,
+        description="Number of byte-identical returned file hits collapsed into earlier ranked hits.",
+    )
+    DistinctFilesReturned: int | None = Field(
+        default=None,
+        description="Number of file hits remaining after exact-duplicate collapse.",
+    )
 
 
 class SearchResponse(APIModel):

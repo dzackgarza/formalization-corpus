@@ -653,6 +653,25 @@ h3 {
 
 .path a { color: inherit; }
 
+.exact-aliases {
+  margin: 0 0.9rem 0.35rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.67rem;
+}
+
+.exact-aliases summary {
+  cursor: pointer;
+  width: fit-content;
+}
+
+.exact-aliases div {
+  margin-top: 0.28rem;
+  padding-left: 0.9rem;
+}
+
+.exact-aliases a { color: inherit; }
+
 .file pre {
   padding: 0.15rem 0.9rem 0.72rem;
   background: var(--surface);

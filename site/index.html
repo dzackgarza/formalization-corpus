@@ -246,6 +246,19 @@ function sourceLink(repoName, path, line) {
 	return `${repo.url}${middle}${path}` + (line ? `#L${line}` : "");
 }
 
+function exactAliasHtml(match) {
+	const aliases = match.ExactDuplicateAliases || [];
+	if (!aliases.length) return "";
+	const links = aliases.map(alias => {
+		const repo = sourcesByIndex[alias.Repository];
+		const label = `${repo?.name || alias.Repository}/${alias.FileName}`;
+		const href = sourceLink(alias.Repository, alias.FileName, 0);
+		return href ? `<a href="${href}">${esc(label)}</a>` : esc(label);
+	});
+	return `<details class="exact-aliases"><summary>${aliases.length} exact-content alias${aliases.length === 1 ? "" : "es"}</summary>`
+		+ `<div>${links.join("<br>")}</div></details>`;
+}
+
 async function query(Q, Opts) {
 	const res = await fetch(API, {
 		method: "POST",
@@ -366,21 +379,22 @@ function render(result) {
 						: `<span class="tag">${esc(assistant.label)}</span>`)
 					: "";
 		const head = repo ? `<a href="${repo.url}">${esc(repo.name || name)}</a>` : esc(name);
-		const body = matches.map((f, i) => {
+			const body = matches.map((f, i) => {
 			const chunks = (f.ChunkMatches || []).filter(c => !c.FileName);
 			const line = chunks.length ? chunks[0].ContentStart.LineNumber : 0;
-			const href = sourceLink(name, f.FileName, line);
-			const path = href ? `<a href="${href}">${esc(f.FileName)}</a>` : esc(f.FileName);
-			// A file can match on its name alone, which has no lines to show.
-			if (!chunks.length) {
-				return `<div class="file"><div class="path">${path}</div>`
-					+ `<pre class="namehit">matched in the file name</pre></div>`;
-			}
+				const href = sourceLink(name, f.FileName, line);
+				const path = href ? `<a href="${href}">${esc(f.FileName)}</a>` : esc(f.FileName);
+				const aliases = exactAliasHtml(f);
+				// A file can match on its name alone, which has no lines to show.
+				if (!chunks.length) {
+					return `<div class="file"><div class="path">${path}</div>${aliases}`
+						+ `<pre class="namehit">matched in the file name</pre></div>`;
+				}
 			const text = f.Content ? b64(f.Content) : null;
 			const id = `f${byRepo.size}-${esc(name)}-${i}`.replace(/[^\w-]/g, "_");
 			pending.push({id, match: f, text});
-			return `<div class="file" id="${id}"><div class="path">${path}</div>`
-				+ `<pre>${text ? fileHtml(f, text, null) : ""}</pre></div>`;
+				return `<div class="file" id="${id}"><div class="path">${path}</div>${aliases}`
+					+ `<pre>${text ? fileHtml(f, text, null) : ""}</pre></div>`;
 		}).join("");
 			return `<article><header>${head}${kind}</header>${body}</article>`;
 	}).join("");

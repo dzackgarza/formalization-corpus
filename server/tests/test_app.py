@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import json
+import pathlib
 import threading
 import asyncio
+import tempfile
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import httpx
@@ -72,8 +74,8 @@ def backend_server() -> tuple[ThreadingHTTPServer, str]:
     return server, f"http://{host}:{port}"
 
 
-async def with_client(url: str, callback) -> None:
-    app = create_app(backend_url=url)
+async def with_client(url: str, callback, *, duplicate_aliases_path=None) -> None:
+    app = create_app(backend_url=url, duplicate_aliases_path=duplicate_aliases_path)
     async with app.router.lifespan_context(app):
         transport = httpx.ASGITransport(app=app)
         async with httpx.AsyncClient(
@@ -142,5 +144,72 @@ def test_validation_errors_keep_public_error_shape() -> None:
             assert response.status_code == 400
             assert set(response.json()) == {"Error"}
         asyncio.run(with_client(url, run))
+    finally:
+        server.shutdown()
+
+
+def test_exact_duplicate_hits_are_collapsed_with_alias_provenance() -> None:
+    class DuplicateBackendHandler(BackendHandler):
+        def do_POST(self) -> None:  # noqa: N802
+            size = int(self.headers.get("Content-Length", "0"))
+            self.rfile.read(size)
+            payload = {
+                "Result": {
+                    "Files": [
+                        {"FileName": "A.lean", "Repository": "repo-a", "ChunkMatches": []},
+                        {"FileName": "B.lean", "Repository": "repo-b", "ChunkMatches": []},
+                        {"FileName": "C.lean", "Repository": "repo-c", "ChunkMatches": []},
+                    ],
+                    "FileCount": 3,
+                    "MatchCount": 3,
+                }
+            }
+            encoded = json.dumps(payload).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(encoded)))
+            self.end_headers()
+            self.wfile.write(encoded)
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), DuplicateBackendHandler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    host, port = server.server_address
+    url = f"http://{host}:{port}"
+    try:
+        with tempfile.TemporaryDirectory() as directory:
+            aliases = pathlib.Path(directory) / "aliases.json"
+            aliases.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "groups": [
+                            {
+                                "sha256": "a" * 64,
+                                "occurrences": [
+                                    {"repository": "repo-a", "file": "A.lean"},
+                                    {"repository": "repo-b", "file": "B.lean"},
+                                ],
+                            }
+                        ],
+                    }
+                )
+            )
+
+            async def run(client: httpx.AsyncClient) -> None:
+                response = await client.post("/api/search", json={"Q": "theorem"})
+                assert response.status_code == 200
+                result = response.json()["Result"]
+                assert [(f["Repository"], f["FileName"]) for f in result["Files"]] == [
+                    ("repo-a", "A.lean"),
+                    ("repo-c", "C.lean"),
+                ]
+                assert result["DuplicateFilesCollapsed"] == 1
+                assert result["DistinctFilesReturned"] == 2
+                assert result["Files"][0]["ExactDuplicateAliases"] == [
+                    {"Repository": "repo-b", "FileName": "B.lean"}
+                ]
+
+            asyncio.run(with_client(url, run, duplicate_aliases_path=aliases))
     finally:
         server.shutdown()

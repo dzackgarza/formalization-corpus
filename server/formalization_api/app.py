@@ -4,6 +4,7 @@ import asyncio
 import hashlib
 import json
 import os
+import pathlib
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from typing import Any
@@ -16,6 +17,7 @@ from fastapi.responses import JSONResponse, Response
 from fastapi.openapi.utils import get_openapi
 
 from .cache import ByteLRUTTLCache, SingleFlight
+from .duplicates import DuplicateAliasIndex
 from .models import (
     ErrorResponse,
     ListRequest,
@@ -39,8 +41,9 @@ class BackendError(RuntimeError):
 
 
 class SearchProxy:
-    def __init__(self, client: httpx.AsyncClient) -> None:
+    def __init__(self, client: httpx.AsyncClient, duplicate_aliases: DuplicateAliasIndex) -> None:
         self.client = client
+        self.duplicate_aliases = duplicate_aliases
         self.cache = ByteLRUTTLCache(
             ttl_seconds=CACHE_TTL_SECONDS,
             max_bytes=CACHE_MAX_BYTES,
@@ -69,6 +72,7 @@ class SearchProxy:
             if cached_again is not None:
                 return cached_again
             body = await self._post("/api/search", payload)
+            body = self.duplicate_aliases.collapse_response(body)
             await self.cache.put(key, body)
             return body
 
@@ -94,13 +98,20 @@ API_DESCRIPTION = (
 )
 
 
-def create_app(*, backend_url: str | None = None) -> FastAPI:
+def create_app(
+    *,
+    backend_url: str | None = None,
+    duplicate_aliases_path: str | pathlib.Path | None = None,
+) -> FastAPI:
     backend = backend_url or os.environ.get("ZOEKT_BACKEND_URL", DEFAULT_BACKEND_URL)
+    aliases_value = duplicate_aliases_path or os.environ.get("DUPLICATE_ALIASES_PATH")
+    aliases_path = pathlib.Path(aliases_value) if aliases_value else None
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         client = httpx.AsyncClient(base_url=backend, timeout=60.0)
-        app.state.proxy = SearchProxy(client)
+        duplicate_aliases = DuplicateAliasIndex.from_path(aliases_path)
+        app.state.proxy = SearchProxy(client, duplicate_aliases)
         try:
             yield
         finally:

@@ -9,6 +9,7 @@ User=zack
 Group=zack
 WorkingDirectory=/home/zack/lean-corpus/api
 Environment=ZOEKT_BACKEND_URL=http://127.0.0.1:6071
+Environment=DUPLICATE_ALIASES_PATH=/home/zack/lean-corpus/api/data/duplicate-aliases.json
 Environment=PYTHONDONTWRITEBYTECODE=1
 ExecStart=/home/zack/lean-corpus/api/.venv/bin/uvicorn \
     formalization_api.app:app \
