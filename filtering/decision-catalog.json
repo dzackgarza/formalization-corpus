@@ -11,11 +11,11 @@
     },
     {
       "decision_id": "FD-002",
-      "title": "README or source documentation",
+      "title": "Non-formal README or source documentation",
       "primary": "exclude",
       "auxiliary": "include",
       "policies": ["FILTER-003", "FILTER-004", "FILTER-008", "FILTER-020"],
-      "justification": "README and source-documentation files can contain useful project terminology, provenance, references, and navigation, but they do not themselves constitute proof-assistant declarations or proofs. They are removed only from the primary mathematical-content index and retained in the auxiliary documentation/navigation index."
+      "justification": "README and source-documentation files outside the proof assistant's formal-source extensions can contain useful project terminology, provenance, references, and navigation, but they do not themselves constitute proof-assistant declarations or proofs. They are removed only from the primary mathematical-content index and retained in the auxiliary documentation/navigation index. A formal-source file such as README.lean, README.thy, README.agda, or Readme.lsp is never covered by this decision merely because of its basename."
     },
     {
       "decision_id": "FD-003",

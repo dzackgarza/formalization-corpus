@@ -251,12 +251,16 @@ commands take a file outside this unilateral class.
 
 ### FILTER-008 — Documentation/build metadata belongs in a separate retrieval role
 
-README files, toolchain pins, manifests, package/build files, and similar
-metadata do not themselves constitute formal theorem/definition/proof content.
-They should not consume primary mathematical result slots merely because they
-are present in a hydrated source.
+Non-formal README files, toolchain pins, manifests, package/build files, and
+similar metadata do not themselves constitute formal theorem/definition/proof
+content. They should not consume primary mathematical result slots merely
+because they are present in a hydrated source. The filename is not enough when
+the file itself is in a proof assistant's source language: `README.lean`,
+`README.thy`, `README.agda`, `Readme.lsp`, and analogous formal-source files
+remain primary mathematical content unless some stronger independent invariant
+applies.
 
-README and project documentation can still be valuable for source discovery,
+Non-formal README and project documentation can still be valuable for source discovery,
 terminology, provenance, or locating an implementation.  Preserve them for an
 auxiliary documentation/source-discovery index rather than assuming they are
 worthless and deleting them.
