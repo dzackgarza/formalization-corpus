@@ -183,11 +183,28 @@ class SearchProxy:
             body = await self._post("/api/search", payload)
             body = self.duplicate_aliases.collapse_response(body)
             body = self.file_roles.rerank_response(body)
+            body = self._normalize_search_response(body)
             await self.cache.put(key, body)
             return body
 
         body, leader = await self.singleflight.run(key, produce)
         return body, "MISS" if leader else "COALESCED"
+
+    @staticmethod
+    def _normalize_search_response(body: bytes) -> bytes:
+        """Normalize backend no-hit responses to the public response schema."""
+
+        try:
+            payload = json.loads(body)
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            return body
+        if not isinstance(payload, dict):
+            return body
+        result = payload.get("Result")
+        if isinstance(result, dict) and result.get("Files") is None:
+            result["Files"] = []
+            return json.dumps(payload, separators=(",", ":"), ensure_ascii=False).encode()
+        return body
 
     async def list_sources(self, payload: dict[str, Any]) -> bytes:
         return await self._post("/api/list", payload)

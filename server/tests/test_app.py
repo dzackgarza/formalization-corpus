@@ -347,6 +347,60 @@ def test_batch_search_reports_backend_errors_per_query() -> None:
         server.shutdown()
 
 
+def test_no_hit_backend_null_files_is_normalized_for_search_and_batch() -> None:
+    class NoHitBackendHandler(BackendHandler):
+        def do_POST(self) -> None:  # noqa: N802
+            size = int(self.headers.get("Content-Length", "0"))
+            body = json.loads(self.rfile.read(size))
+            if self.path != "/api/search":
+                self.send_response(404)
+                self.end_headers()
+                return
+            encoded = json.dumps(
+                {
+                    "Result": {
+                        "Files": None,
+                        "FileCount": 0,
+                        "MatchCount": 0,
+                        "Echo": body,
+                    }
+                }
+            ).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(encoded)))
+            self.end_headers()
+            self.wfile.write(encoded)
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), NoHitBackendHandler)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    host, port = server.server_address
+    url = f"http://{host}:{port}"
+    try:
+        async def run(client: httpx.AsyncClient) -> None:
+            single = await client.post("/api/search", json={"Q": "no such mathematics"})
+            assert single.status_code == 200
+            assert single.json()["Result"]["Files"] == []
+
+            batch = await client.post(
+                "/api/search/batch",
+                json={
+                    "Searches": [
+                        {"ID": "none", "Request": {"Q": "still no such mathematics"}}
+                    ]
+                },
+            )
+            assert batch.status_code == 200
+            item = batch.json()["Results"][0]
+            assert item["StatusCode"] == 200
+            assert item["Result"]["Files"] == []
+            assert item["Error"] is None
+
+        asyncio.run(with_client(url, run))
+    finally:
+        server.shutdown()
+
+
 def test_exact_duplicate_hits_are_collapsed_with_alias_provenance() -> None:
     class DuplicateBackendHandler(BackendHandler):
         def do_POST(self) -> None:  # noqa: N802
