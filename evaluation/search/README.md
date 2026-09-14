@@ -183,13 +183,13 @@ v2 lexical behavior score as follows on the same current index:
 | Metric | v1 historical | v2 deployed |
 | --- | ---: | ---: |
 | owner Hit@10 (primary) | 0.167 | **0.583** |
-| Hit@1 | 0.083 | **0.375** |
-| Hit@5 | 0.250 | **0.667** |
-| Hit@10 | 0.292 | **0.750** |
-| Hit@20 | 0.458 | **0.750** |
+| Hit@1 | 0.083 | **0.417** |
+| Hit@5 | 0.292 | **0.708** |
+| Hit@10 | 0.333 | **0.792** |
+| Hit@20 | 0.500 | **0.792** |
 | source Hit@10 | 0.833 | **0.958** |
-| MRR | 0.167 | **0.506** |
-| nDCG@10 | 0.124 | **0.392** |
+| MRR | 0.181 | **0.548** |
+| nDCG@10 | 0.125 | **0.413** |
 | zero-result rate | 0.125 | **0.042** |
 
 The historical conversational slice had zero results for both queries.  The v2
@@ -222,8 +222,9 @@ unjudged files.  Reviewed nonrelevant files are recorded explicitly as relevance
 0 and reported separately from candidates still awaiting review.  The current
 depth-10 pool combines the frozen frontend baseline, normalized
 path/content lexical retrieval, frozen multi-query RRF, and the measured Cohere
-reranker.  It has 444 unique query/file candidates: 45 already judged and 399
-explicitly marked unjudged.  The gold set currently contains 58 judgments total;
+reranker.  It has 444 unique query/file candidates: 65 judged relevant, 6 judged
+nonrelevant, and 373 explicitly unjudged.  The gold set currently contains 84
+judgments total; the Hensel/DVR and Bruhat--Tits depth-10 pools are fully judged;
 some judged files lie outside this depth-10 pool.  Unjudged does not mean irrelevant.
 
 This follows the TREC test-collection model: pool top documents from diverse

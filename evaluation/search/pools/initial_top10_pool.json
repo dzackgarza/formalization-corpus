@@ -178,7 +178,12 @@
         },
         {
           "file": "LeanPool/BruhatTits/Graph/Tree.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph/Tree.lean",
+            "note": "Direct proof that the Bruhat\u2013Tits graph is a tree, including acyclicity and the `BTtree` result.",
+            "relevance": 3,
+            "repository": "Vilin97__lean-pool"
+          },
           "repository": "Vilin97__lean-pool",
           "runs": {
             "frontend_lexical_v2": 1,
@@ -189,7 +194,12 @@
         },
         {
           "file": "v1/Atlas/Buildings/code/Building/AffineSLV.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "v1/Atlas/Buildings/code/Building/AffineSLV.lean",
+            "note": "Formalizes the Bruhat\u2013Tits affine building of SL(V); for rank two this is the tree, but the file is a more general building development.",
+            "relevance": 2,
+            "repository": "facebookresearch__atlas-lean"
+          },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_v1": 1
@@ -197,7 +207,12 @@
         },
         {
           "file": "BruhatTits/Graph/Tree.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "BruhatTits/Graph/Tree.lean",
+            "note": "Direct owner file proving the Bruhat\u2013Tits graph is a tree.",
+            "relevance": 3,
+            "repository": "chrisflav__bruhat-tits"
+          },
           "repository": "chrisflav__bruhat-tits",
           "runs": {
             "frontend_lexical_v2": 2,
@@ -208,7 +223,12 @@
         },
         {
           "file": "v1/Atlas/Buildings/code/Building/AffineSLVStrong.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "v1/Atlas/Buildings/code/Building/AffineSLVStrong.lean",
+            "note": "Supporting higher-rank Bruhat\u2013Tits building/action theory for SL(V), not the tree theorem itself.",
+            "relevance": 1,
+            "repository": "facebookresearch__atlas-lean"
+          },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_v1": 2
@@ -216,7 +236,12 @@
         },
         {
           "file": "v1/Atlas/Buildings/code/Building/AffineIsometry/Contexts.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "v1/Atlas/Buildings/code/Building/AffineIsometry/Contexts.lean",
+            "note": "Defines contexts for affine buildings of types C, D, and B; it is not a formalization of the Bruhat\u2013Tits tree.",
+            "relevance": 0,
+            "repository": "facebookresearch__atlas-lean"
+          },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_v1": 3
@@ -224,7 +249,12 @@
         },
         {
           "file": "LeanPool/BruhatTits/Graph.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph.lean",
+            "note": "Import aggregator for Bruhat\u2013Tits graph component modules; the mathematical content lives in the imported files.",
+            "relevance": 0,
+            "repository": "Vilin97__lean-pool"
+          },
           "repository": "Vilin97__lean-pool",
           "runs": {
             "frontend_lexical_v2": 4,
@@ -235,7 +265,12 @@
         },
         {
           "file": "LeanPool/BruhatTits/Graph/Orientation.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph/Orientation.lean",
+            "note": "Formalizes the canonical orientation of the Bruhat\u2013Tits tree, a substantive component of the tree development.",
+            "relevance": 2,
+            "repository": "Vilin97__lean-pool"
+          },
           "repository": "Vilin97__lean-pool",
           "runs": {
             "frontend_lexical_v2": 10,
@@ -260,7 +295,12 @@
         },
         {
           "file": "LeanPool/BruhatTits/Graph/Regular.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph/Regular.lean",
+            "note": "Proves that the Bruhat\u2013Tits tree is q+1-regular and develops its neighbor structure.",
+            "relevance": 2,
+            "repository": "Vilin97__lean-pool"
+          },
           "repository": "Vilin97__lean-pool",
           "runs": {
             "frontend_lexical_v2": 7,
@@ -271,7 +311,12 @@
         },
         {
           "file": "LeanPool/BruhatTits/Graph/Edges.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph/Edges.lean",
+            "note": "Defines and proves the edge/neighbor relation used to construct the Bruhat\u2013Tits graph/tree.",
+            "relevance": 2,
+            "repository": "Vilin97__lean-pool"
+          },
           "repository": "Vilin97__lean-pool",
           "runs": {
             "frontend_lexical_v2": 6,
@@ -281,7 +326,12 @@
         },
         {
           "file": "BruhatTits/Graph/Vertices.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "BruhatTits/Graph/Vertices.lean",
+            "note": "Defines vertices of the Bruhat\u2013Tits tree as homothety classes of lattices and develops the distance used for the graph.",
+            "relevance": 2,
+            "repository": "chrisflav__bruhat-tits"
+          },
           "repository": "chrisflav__bruhat-tits",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 7
@@ -289,7 +339,12 @@
         },
         {
           "file": "LeanPool/BruhatTits/Graph/Vertices.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph/Vertices.lean",
+            "note": "Defines vertices of the Bruhat\u2013Tits tree and the distance/intermediate-vertex infrastructure used for connectedness.",
+            "relevance": 2,
+            "repository": "Vilin97__lean-pool"
+          },
           "repository": "Vilin97__lean-pool",
           "runs": {
             "frontend_lexical_v2": 8,
@@ -299,7 +354,12 @@
         },
         {
           "file": "BruhatTits/Graph/Orientation.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "BruhatTits/Graph/Orientation.lean",
+            "note": "Formalizes the canonical orientation and graph action on the Bruhat\u2013Tits tree.",
+            "relevance": 2,
+            "repository": "chrisflav__bruhat-tits"
+          },
           "repository": "chrisflav__bruhat-tits",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 8
@@ -307,7 +367,12 @@
         },
         {
           "file": "LeanPool/BruhatTits/Harmonic/Basic.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Harmonic/Basic.lean",
+            "note": "Generic harmonic/Laplacian theory for trees used by the Bruhat\u2013Tits development; supporting rather than tree-specific.",
+            "relevance": 1,
+            "repository": "Vilin97__lean-pool"
+          },
           "repository": "Vilin97__lean-pool",
           "runs": {
             "frontend_lexical_v2": 9,
@@ -316,7 +381,12 @@
         },
         {
           "file": "BruhatTits/Harmonic/Application.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "BruhatTits/Harmonic/Application.lean",
+            "note": "Applies the tree structure and regularity to define the Bruhat\u2013Tits Laplacian and prove its surjectivity.",
+            "relevance": 2,
+            "repository": "chrisflav__bruhat-tits"
+          },
           "repository": "chrisflav__bruhat-tits",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 10
@@ -954,7 +1024,12 @@
       "candidates": [
         {
           "file": "Mathlib.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "Mathlib.lean",
+            "note": "Repository-wide Mathlib import aggregator; it only mentions Hensel-related modules indirectly and does not formalize the theorem here.",
+            "relevance": 0,
+            "repository": "leanprover-community__mathlib4"
+          },
           "repository": "leanprover-community__mathlib4",
           "runs": {
             "frontend_lexical_v1": 1,
@@ -979,7 +1054,12 @@
         },
         {
           "file": "TauCetiRoadmap/LocalFieldsRamification/Suggested.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "TauCetiRoadmap/LocalFieldsRamification/Suggested.lean",
+            "note": "Roadmap/suggested declarations with `sorry`; Hensel appears only as a proposed implementation route for Teichm\u00fcller lifts, not as a completed Hensel formalization.",
+            "relevance": 0,
+            "repository": "TauCetiProject__TauCetiRoadmap"
+          },
           "repository": "TauCetiProject__TauCetiRoadmap",
           "runs": {
             "frontend_lexical_v1": 2,
@@ -990,7 +1070,12 @@
         },
         {
           "file": "v1/Atlas/Buildings/code/Valuation/LatticesValuations.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "v1/Atlas/Buildings/code/Valuation/LatticesValuations.lean",
+            "note": "Direct Hensel theorem in a DVR context: `HenselsLemma` assumes the valuation ring is local and adically complete and proves root lifting via Newton iteration.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 2,
@@ -999,7 +1084,12 @@
         },
         {
           "file": "TauCeti/RingTheory/DedekindDomain/AdicCompletionExtension.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "TauCeti/RingTheory/DedekindDomain/AdicCompletionExtension.lean",
+            "note": "Supporting completion/DVR infrastructure; it points to a Henselian/completeness chain in another module but does not prove Hensel\u2019s lemma in this file.",
+            "relevance": 1,
+            "repository": "TauCetiProject__TauCeti"
+          },
           "repository": "TauCetiProject__TauCeti",
           "runs": {
             "frontend_lexical_v1": 3,
@@ -1010,7 +1100,12 @@
         },
         {
           "file": "v1/Atlas/Buildings/code/Valuation/DiscreteValuationBook.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "v1/Atlas/Buildings/code/Valuation/DiscreteValuationBook.lean",
+            "note": "Direct generalized Hensel theorem `hensel_nonmonic_adic` over an I-adically complete commutative ring, with Newton-sequence proof.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 3,
@@ -1019,7 +1114,12 @@
         },
         {
           "file": "thys/Padic_Ints/Cring_Poly.thy",
-          "judgment": null,
+          "judgment": {
+            "file": "thys/Padic_Ints/Cring_Poly.thy",
+            "note": "Polynomial/Taylor infrastructure explicitly identified as a necessary component of the AFP proof of Hensel\u2019s lemma for p-adic integers; not the Hensel theorem itself.",
+            "relevance": 1,
+            "repository": "isabelle-prover__mirror-afp-devel"
+          },
           "repository": "isabelle-prover__mirror-afp-devel",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 6,
@@ -1028,7 +1128,12 @@
         },
         {
           "file": "v1/Atlas/ArithmeticGeometry/ArithmeticGeometry.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "v1/Atlas/ArithmeticGeometry/ArithmeticGeometry.lean",
+            "note": "Course/module import aggregator; it imports the actual Hensel module but contains no Hensel theorem itself.",
+            "relevance": 0,
+            "repository": "facebookresearch__atlas-lean"
+          },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
             "gemini_multiquery_rrf_v1": 4
@@ -1062,7 +1167,12 @@
         },
         {
           "file": "OddOrder/Algebra/IdempotentLift.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "OddOrder/Algebra/IdempotentLift.lean",
+            "note": "Application of Henselian root lifting to idempotents; relevant supporting use of Hensel machinery, not a complete-DVR Hensel theorem.",
+            "relevance": 1,
+            "repository": "yawara__odd-order"
+          },
           "repository": "yawara__odd-order",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 7
@@ -1070,7 +1180,12 @@
         },
         {
           "file": "HexHenselMathlib/HenselLemmas.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "HexHenselMathlib/HenselLemmas.lean",
+            "note": "Alternate executable Hensel-lifting formalization: correctness and uniqueness for lifting polynomial factorizations modulo p^k.",
+            "relevance": 2,
+            "repository": "kim-em__hex-dev"
+          },
           "repository": "kim-em__hex-dev",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 8
@@ -1078,7 +1193,12 @@
         },
         {
           "file": "OddOrder/Algebra/AlgClosedIdempotentLift.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "OddOrder/Algebra/AlgClosedIdempotentLift.lean",
+            "note": "Supporting Henselian/idempotent-lifting development discussing complete valuation rings; it proves an application rather than Hensel\u2019s lemma itself.",
+            "relevance": 1,
+            "repository": "yawara__odd-order"
+          },
           "repository": "yawara__odd-order",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 9,
@@ -1087,7 +1207,12 @@
         },
         {
           "file": "projects/FltRegularBernoulli/BernoulliRegular/Reflection.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "projects/FltRegularBernoulli/BernoulliRegular/Reflection.lean",
+            "note": "Large reflection-theory import/overview file; Hensel appears only in descriptions of imported local lifting components.",
+            "relevance": 0,
+            "repository": "CBirkbeck__AINTLIB"
+          },
           "repository": "CBirkbeck__AINTLIB",
           "runs": {
             "gemini_multiquery_rrf_v1": 9
@@ -1095,7 +1220,12 @@
         },
         {
           "file": "HexHensel/Linear.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "HexHensel/Linear.lean",
+            "note": "Executable single-step linear Hensel lifting of polynomial factorizations, a closely related algorithmic Hensel form.",
+            "relevance": 2,
+            "repository": "kim-em__hex-dev"
+          },
           "repository": "kim-em__hex-dev",
           "runs": {
             "gemini_multiquery_rrf_cohere_v4_fast_v1": 10
@@ -4457,7 +4587,7 @@
       "query": "existence of enough injectives in a Grothendieck category"
     }
   ],
-  "gold_sha256": "17a32a863d5e8254eeefc2106e561ab8aa7f54ed03a9bce946b850a753c00617",
+  "gold_sha256": "47974b4fa9f75df3ede35db0a913d5577a3bcb524000ab8e72f85a9d58255160",
   "index": {
     "latest_mtime_ns": 1789301804577138257,
     "metadata_sha256": "602c79f8912be9574b8ebf03fcb701bb0de412ef182c4f55e29c73af48b7dc7e",
@@ -4494,9 +4624,11 @@
   ],
   "schema_version": 1,
   "summary": {
-    "already_judged": 45,
+    "already_judged": 71,
     "candidates": 444,
+    "judged_nonrelevant": 6,
+    "judged_relevant": 65,
     "queries": 24,
-    "unjudged": 399
+    "unjudged": 373
   }
 }

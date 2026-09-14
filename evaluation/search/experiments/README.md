@@ -14,11 +14,11 @@ in the JSON reports.
 
 | Variant | owner Hit@10 | owner Hit@20 | Hit@10 | Hit@20 | MRR | nDCG@10 | zero-result rate |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `frontend_lexical_v1` historical baseline | 0.167 | 0.292 | 0.292 | 0.458 | 0.167 | 0.124 | 0.125 |
-| `normalized_content_v1` | 0.250 | 0.417 | 0.375 | 0.583 | 0.193 | 0.152 | 0.042 |
-| `normalized_path_content_v1` / deployed `frontend_lexical_v2` | **0.583** | 0.625 | 0.750 | 0.750 | 0.506 | 0.392 | 0.042 |
-| `gemini_multiquery_rrf_v1` | **0.708** | 0.833 | 0.833 | 0.958 | 0.490 | 0.399 | **0.000** |
-| `gemini_multiquery_rrf_cohere_v4_fast_v1` (30 candidates) | **0.958** | **0.958** | **1.000** | **1.000** | **0.831** | **0.703** | **0.000** |
+| `frontend_lexical_v1` historical baseline | 0.167 | 0.292 | 0.333 | 0.500 | 0.181 | 0.125 | 0.125 |
+| `normalized_content_v1` | 0.250 | 0.417 | 0.417 | 0.625 | 0.207 | 0.153 | 0.042 |
+| `normalized_path_content_v1` / deployed `frontend_lexical_v2` | **0.583** | 0.625 | 0.792 | 0.792 | 0.548 | 0.413 | 0.042 |
+| `gemini_multiquery_rrf_v1` | **0.750** | 0.875 | 0.833 | 0.958 | 0.525 | 0.427 | **0.000** |
+| `gemini_multiquery_rrf_cohere_v4_fast_v1` (30 candidates) | **0.958** | **0.958** | **1.000** | **1.000** | **0.831** | **0.727** | **0.000** |
 
 The first two ablations isolate query normalization from path/filename matching.
 The larger gain comes from restoring path/filename evidence: formal libraries
@@ -28,8 +28,8 @@ encode theorem and construction names heavily in module paths.
 `gemini-3.5-flash-lite` with no access to the gold judgments.  The original
 normalized lexical query and the reformulations are independently searched,
 then fused with Reciprocal Rank Fusion (`k=60`, depth 200).  This improves
-candidate recall and MRR, but it does **not** improve the predeclared primary
-metric beyond `normalized_path_content_v1`: owner Hit@10 rises from 0.583 to 0.708.
+candidate recall and MRR, and improves the predeclared primary metric beyond
+`normalized_path_content_v1`: owner Hit@10 rises from 0.583 to 0.750.
 
 A candidate-depth audit of `normalized_path_content_v1` showed owner Hit@20 =
 owner Hit@50 = owner Hit@100 = owner Hit@150 = 0.625.  Therefore reranking that
