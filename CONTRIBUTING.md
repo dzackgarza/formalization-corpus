@@ -234,6 +234,13 @@ alpha-renaming, pretty-print normalization, AST equality, or semantic
 equivalence.  Each broader equivalence relation can discard useful names,
 documentation, syntax, or provenance and requires its own measured policy.
 
+A whole-file no-content test is different from normalization.  `FD-015` applies
+only to a **nonempty** formal-source byte stream for which `raw.strip()` is empty:
+the file contains byte whitespace and nothing else.  It does not authorize
+removing whitespace from a substantive file, excluding comment-only files, or
+treating a regex-declaration-free file as empty.  Those classes retain searchable
+text and remain governed by the higher evidence bar above.
+
 ### FILTER-007 — Pure import aggregators are navigation data, not owner results
 
 A file that is **prover-aware verified** to contain only imports (plus

@@ -251,14 +251,19 @@ rules: formal prover sources such as `README.lean`, `README.thy`, `README.agda`,
 and `Readme.lsp` remain primary content, as do all 498 `lakefile.lean` files.
 ACL2 `.sys` filtering is now limited to the exact
 `*@useless-runes.lsp` certification-report class.  The final conservative index
-is 9,225,984,895 bytes, still about 11.7% smaller than the
-10,451,699,803-byte raw control.  Restoring the formal README modules changed
-none of the six measured metric sets; restoring `lakefile.lean` likewise leaves
-the deployed lexical metrics unchanged, though the raw multi-query nDCG changes
-slightly.  This is an important reminder that benchmark stability does not prove
-a hard filter is recall-safe.  The immutable before/after/corrected reports and
-superseding deployment decisions are recorded in `ledger.jsonl`; the individual
-file-level decisions and reversions are in `filtering/ledger.jsonl`.
+is 9,225,980,789 bytes with 198,653 primary documents, still about 11.7% smaller
+than the 10,451,699,803-byte raw control.  `FD-015` additionally removes exactly
+12 nonempty formal-source files (19 source bytes total) whose complete byte
+contents are whitespace; it explicitly does not cover comment-only or merely
+declaration-free files.  Restoring the formal README modules changed none of the
+six measured metric sets; restoring `lakefile.lean` likewise leaves the deployed
+lexical metrics unchanged, though the raw multi-query nDCG changes slightly.
+The whitespace-only correction also reproduces all six prior ranking metric
+sets exactly on its new index fingerprint.  This is an important reminder that
+benchmark stability does not prove a hard filter is recall-safe.  The immutable
+before/after/corrected reports and superseding deployment decisions are recorded
+in `ledger.jsonl`; the individual file-level decisions and reversions are in
+`filtering/ledger.jsonl`.
 
 The public webserver also has a measured serving-quality parameter. Zoekt's JSON
 handler derives internal per-shard match limits from `MaxDocDisplayCount` when no

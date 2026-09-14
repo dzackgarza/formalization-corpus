@@ -75,7 +75,8 @@ material discoverable until the class has been studied.
 | Class | Primary mathematical index | Required treatment / reason |
 | --- | --- | --- |
 | Byte-identical formal files | Canonicalize one content record | Preserve every source/path as an alias; do not discard provenance. |
-| Empty/whitespace-only files | Exclude | No searchable mathematical content. Preserve source/path metadata if needed. |
+| Zero-byte formal files | Exclude | No searchable mathematical content. The source/path and exclusion reason remain in the ledger. |
+| Nonempty byte-whitespace-only formal files (`raw.strip() == b""`) | Exclude | No token, identifier, comment, declaration, statement or proof text exists. This is a whole-file no-content test, not whitespace normalization. |
 | Strict build metadata (`lean-toolchain`, manifests, package/build files) | Exclude | Not formal mathematics; keep for hydration/build provenance if needed. |
 | Non-formal README/project documentation | Normally auxiliary only | Useful for terminology/source discovery, but not a formal theorem/definition result. Do not physically discard merely to clean primary search. A README-named file in a prover source language remains primary content. |
 | Prover-aware verified import-only module | Normally auxiliary only | Preserve module identity, comments/docs and import graph. Prefer imported owner files in primary results. |
@@ -110,6 +111,13 @@ Removing comments, normalizing whitespace, parsing/reprinting an AST,
 alpha-renaming, or comparing declarations semantically can erase documentation,
 names or syntax that is useful to a searcher.  Treat each broader equivalence as
 a separate research hypothesis.
+
+The separate whitespace-only exclusion does not weaken this rule.  `FD-015`
+matches only nonempty formal-source files whose entire byte stream is removed by
+`bytes.strip()`.  Such a file has no searchable textual content to normalize in
+the first place.  A file containing even only a comment, TODO, import, hole,
+declaration, or other non-whitespace byte is outside this class and remains
+eligible unless some independent policy applies.
 
 The 2026-09-14 audit found roughly 5,200 Lean files participating in exact-byte
 duplicate groups, including about 2,623 files in groups spanning more than one
