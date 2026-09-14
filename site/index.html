@@ -102,7 +102,7 @@ const API = new URLSearchParams(location.search).get("api")
 				|| "https://formalization-corpus.dzackgarza.com/api/search";
 const MAX = 60;
 
-const FORMAL_FILES = String.raw`\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$`;
+const FORMAL_FILES = String.raw`\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$`;
 
 // Shiki tokenises with the same TextMate grammars Lean's own editors use.
 // Agda is not in the bundle, so .agda files stay plain rather than being

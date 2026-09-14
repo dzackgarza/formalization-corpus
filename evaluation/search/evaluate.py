@@ -36,7 +36,7 @@ DEFAULT_BASELINE = ROOT / "evaluation/search/baselines/frontend_lexical_v1.json"
 QUERY_CONFIG = ROOT / "site/search-query.json"
 ZOEKT = ROOT / "bin/zoekt"
 INDEX_DIR = ROOT / ".zoekt"
-FORMAL_FILES = r"\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$"
+FORMAL_FILES = r"\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$"
 K_VALUES = (1, 5, 10, 20)
 
 
