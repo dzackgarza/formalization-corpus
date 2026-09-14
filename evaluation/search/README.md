@@ -229,7 +229,7 @@ v2 lexical behavior score as follows on the same current index:
 | Hit@20 | 0.500 | **0.792** |
 | source Hit@10 | 0.833 | **0.958** |
 | MRR | 0.181 | **0.548** |
-| nDCG@10 | 0.125 | **0.413** |
+| nDCG@10 | 0.125 | **0.410** |
 | zero-result rate | 0.125 | **0.042** |
 
 The historical conversational slice had zero results for both queries.  The v2

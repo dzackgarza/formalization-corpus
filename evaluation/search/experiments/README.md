@@ -16,9 +16,9 @@ in the JSON reports.
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `frontend_lexical_v1` historical baseline | 0.167 | 0.292 | 0.333 | 0.500 | 0.181 | 0.125 | 0.125 |
 | `normalized_content_v1` | 0.250 | 0.417 | 0.417 | 0.625 | 0.207 | 0.153 | 0.042 |
-| `normalized_path_content_v1` / deployed `frontend_lexical_v2` | **0.583** | 0.625 | 0.792 | 0.792 | 0.548 | 0.413 | 0.042 |
+| `normalized_path_content_v1` / deployed `frontend_lexical_v2` | **0.583** | 0.625 | 0.792 | 0.792 | 0.548 | 0.410 | 0.042 |
 | `gemini_multiquery_rrf_v1` | **0.750** | 0.875 | 0.833 | 0.958 | 0.525 | 0.427 | **0.000** |
-| `gemini_multiquery_rrf_cohere_v4_fast_v1` (30 candidates) | **0.958** | **0.958** | **1.000** | **1.000** | **0.831** | **0.727** | **0.000** |
+| `gemini_multiquery_rrf_cohere_v4_fast_v1` (30 candidates) | **0.958** | **0.958** | **1.000** | **1.000** | **0.831** | **0.723** | **0.000** |
 
 The first two ablations isolate query normalization from path/filename matching.
 The larger gain comes from restoring path/filename evidence: formal libraries
