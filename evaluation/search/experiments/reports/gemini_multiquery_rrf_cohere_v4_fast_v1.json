@@ -2,7 +2,7 @@
   "candidate_pool": 30,
   "cases": [
     {
-      "compiled_query": "\"Serre\" \"duality\" \"coherent\" \"sheaves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"coherent\" \"sheaf\" \"Serre\" \"duality\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Serre\" \"duality\" \"algebraic\" \"geometry\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Serre\" \"duality\" \"coherent\" \"sheaves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"coherent\" \"sheaf\" \"Serre\" \"duality\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Serre\" \"duality\" \"algebraic\" \"geometry\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -47,11 +47,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 2202.935133012943,
+        "elapsed_ms": 2686.838610097766,
         "payload_bytes": 753445,
-        "rerank_ms": 1311.7359899915755,
+        "rerank_ms": 1286.2569560529664,
         "rerank_request_bytes": 219979,
-        "retrieval_ms": 891.1991430213675,
+        "retrieval_ms": 1400.5816540447995,
         "retrieval_queries": 3,
         "returned_files": 30,
         "search_units": 2
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "compiled_query": "\"Bruhat\" \"Tits\" \"tree\" file:\\.lean$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Bruhat-Tits\" \"tree\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Bruhat-Tits\" \"building\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"tree\" \"p-adic\" \"group\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"building\" \"general\" \"linear\" \"group\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Bruhat\" \"Tits\" \"tree\" file:\\.lean$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Bruhat-Tits\" \"tree\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Bruhat-Tits\" \"building\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"tree\" \"p-adic\" \"group\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"building\" \"general\" \"linear\" \"group\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 2,
       "first_relevant_rank": 1,
       "formulations": [
@@ -251,11 +251,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 2906.5330347511917,
+        "elapsed_ms": 3715.4701572144404,
         "payload_bytes": 8593715,
-        "rerank_ms": 971.3415500009432,
+        "rerank_ms": 1554.2895729886368,
         "rerank_request_bytes": 288590,
-        "retrieval_ms": 1935.1914847502485,
+        "retrieval_ms": 2161.1805842258036,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -272,7 +272,7 @@
           "rank": 1,
           "relevance": 1,
           "repository": "Vilin97__lean-pool",
-          "score": 0.9135532
+          "score": 0.9138612
         },
         {
           "file": "LeanPool/BruhatTits/Graph/Tree.lean",
@@ -293,7 +293,7 @@
           "rank": 4,
           "relevance": 0,
           "repository": "Vilin97__lean-pool",
-          "score": 0.8449727
+          "score": 0.84522843
         },
         {
           "file": "LeanPool/BruhatTits/Graph/Orientation.lean",
@@ -328,7 +328,7 @@
           "rank": 9,
           "relevance": 2,
           "repository": "chrisflav__bruhat-tits",
-          "score": 0.82138824
+          "score": 0.82110155
         },
         {
           "file": "BruhatTits/Graph/Regular.lean",
@@ -356,7 +356,7 @@
           "rank": 13,
           "relevance": 0,
           "repository": "Vilin97__lean-pool",
-          "score": 0.8099383
+          "score": 0.80873275
         },
         {
           "file": "BruhatTits/Graph/Edges.lean",
@@ -410,7 +410,7 @@
       ]
     },
     {
-      "compiled_query": "\"Riemann\" \"Roch\" \"theorem\" \"algebraic\" \"curves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"formula\" \"curves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"theorem\" \"surfaces\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"Riemann\" \"inequality\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Riemann\" \"Roch\" \"theorem\" \"algebraic\" \"curves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"formula\" \"curves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"theorem\" \"surfaces\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Riemann\" \"Roch\" \"Riemann\" \"inequality\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -456,11 +456,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3641.1168640479445,
+        "elapsed_ms": 3670.728318975307,
         "payload_bytes": 1407008,
-        "rerank_ms": 1561.504150973633,
+        "rerank_ms": 1466.6721109533682,
         "rerank_request_bytes": 311181,
-        "retrieval_ms": 2079.6127130743116,
+        "retrieval_ms": 2204.056208021939,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -476,7 +476,7 @@
           "rank": 1,
           "relevance": 3,
           "repository": "facebookresearch__atlas-lean",
-          "score": 0.8531681
+          "score": 0.85255533
         },
         {
           "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochGeometric.lean",
@@ -490,35 +490,35 @@
           "rank": 3,
           "relevance": 0,
           "repository": "facebookresearch__atlas-lean",
-          "score": 0.8451006
+          "score": 0.8456112
         },
         {
           "file": "TauCetiRoadmap/AlgebraicCurves/Suggested.lean",
           "rank": 4,
           "relevance": 0,
           "repository": "TauCetiProject__TauCetiRoadmap",
-          "score": 0.82676774
+          "score": 0.82760537
         },
         {
           "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochRiemannForm.lean",
           "rank": 5,
           "relevance": 2,
           "repository": "facebookresearch__atlas-lean",
-          "score": 0.8225315
+          "score": 0.82110155
         },
         {
           "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochApplications.lean",
           "rank": 6,
           "relevance": 0,
           "repository": "facebookresearch__atlas-lean",
-          "score": 0.78106356
+          "score": 0.78039485
         },
         {
           "file": "v1/Atlas/AlgebraicGeometryI/code/CanonicalSheafCurves.lean",
           "rank": 7,
           "relevance": 0,
           "repository": "facebookresearch__atlas-lean",
-          "score": 0.7553483
+          "score": 0.7567892
         },
         {
           "file": "LeanPool/JacobianDiffgeo/RiemannRoch/Basic.lean",
@@ -553,7 +553,7 @@
           "rank": 12,
           "relevance": 0,
           "repository": "facebookresearch__atlas-lean",
-          "score": 0.6650626
+          "score": 0.6633201
         },
         {
           "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityAnnihilator.lean",
@@ -574,7 +574,7 @@
           "rank": 15,
           "relevance": 0,
           "repository": "facebookresearch__atlas-lean",
-          "score": 0.6110107
+          "score": 0.61471784
         },
         {
           "file": "v1/Atlas/ArithmeticGeometry/code/RiemannRoch.lean",
@@ -614,7 +614,7 @@
       ]
     },
     {
-      "compiled_query": "\"mapping\" \"cone\" \"criterion\" \"quasi\" \"isomorphisms\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"mapping\" \"cone\" \"quasi\" \"isomorphism\" \"criterion\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"mapping\" \"cone\" \"exact\" \"sequence\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"homological\" \"quasi\" \"isomorphism\" \"criterion\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"mapping\" \"cone\" \"acyclicity\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"mapping\" \"cone\" \"criterion\" \"quasi\" \"isomorphisms\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"mapping\" \"cone\" \"quasi\" \"isomorphism\" \"criterion\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"mapping\" \"cone\" \"exact\" \"sequence\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"homological\" \"quasi\" \"isomorphism\" \"criterion\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"mapping\" \"cone\" \"acyclicity\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -660,11 +660,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3503.381082904525,
+        "elapsed_ms": 3867.6346230786294,
         "payload_bytes": 1601004,
-        "rerank_ms": 1352.1756319096312,
+        "rerank_ms": 1555.8600660879165,
         "rerank_request_bytes": 344578,
-        "retrieval_ms": 2151.205450994894,
+        "retrieval_ms": 2311.774556990713,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -680,14 +680,14 @@
           "rank": 1,
           "relevance": 3,
           "repository": "leanprover-community__mathlib4",
-          "score": 0.8627164
+          "score": 0.8627814
         },
         {
           "file": "src/for_mathlib/mapping_cone.lean",
           "rank": 2,
           "relevance": 0,
           "repository": "dagurtomas__lean-solid",
-          "score": 0.71111006
+          "score": 0.71191186
         },
         {
           "file": "src/for_mathlib/mapping_cone.lean",
@@ -701,14 +701,14 @@
           "rank": 4,
           "relevance": 0,
           "repository": "UniMath__UniMath",
-          "score": 0.67198735
+          "score": 0.67370707
         },
         {
           "file": "UniMath/HomologicalAlgebra/KATriangulated.v",
           "rank": 5,
           "relevance": 0,
           "repository": "UniMath__UniMath",
-          "score": 0.6685341
+          "score": 0.67198735
         },
         {
           "file": "Mathlib/Algebra/Homology/DerivedCategory/ShortExact.lean",
@@ -729,7 +729,7 @@
           "rank": 8,
           "relevance": 0,
           "repository": "facebookresearch__atlas-lean",
-          "score": 0.46840155
+          "score": 0.4664567
         },
         {
           "file": "Structure/Initial.v",
@@ -743,7 +743,7 @@
           "rank": 10,
           "relevance": 0,
           "repository": "CBirkbeck__AINTLIB",
-          "score": 0.41641688
+          "score": 0.4126248
         },
         {
           "file": "Instance/Lie.v",
@@ -757,20 +757,20 @@
           "rank": 12,
           "relevance": 0,
           "repository": "riccardobrasca__LFTCM2024",
-          "score": 0.39010403
-        },
-        {
-          "file": "Adic spaces/FJP/KoszulFreeExactness.lean",
-          "rank": 13,
-          "relevance": 0,
-          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
-          "score": 0.38639295
+          "score": 0.3938279
         },
         {
           "file": "GQ2/FoxHeisenberg.lean",
-          "rank": 14,
+          "rank": 13,
           "relevance": 0,
           "repository": "roed-math__gq2-lean",
+          "score": 0.38639295
+        },
+        {
+          "file": "Adic spaces/FJP/KoszulFreeExactness.lean",
+          "rank": 14,
+          "relevance": 0,
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
           "score": 0.38269496
         },
         {
@@ -818,7 +818,7 @@
       ]
     },
     {
-      "compiled_query": "\"Jordan\" \"canonical\" \"form\" \"linear\" \"operator\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"canonical\" \"form\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"normal\" \"form\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"matrix\" \"decomposition\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"generalized\" \"eigenspace\" \"decomposition\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Jordan\" \"canonical\" \"form\" \"linear\" \"operator\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"canonical\" \"form\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"normal\" \"form\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"matrix\" \"decomposition\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"generalized\" \"eigenspace\" \"decomposition\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -864,11 +864,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 4593.637685989961,
+        "elapsed_ms": 3302.625766955316,
         "payload_bytes": 6661195,
-        "rerank_ms": 1381.4048419008031,
+        "rerank_ms": 1447.2237629815936,
         "rerank_request_bytes": 332488,
-        "retrieval_ms": 3212.232844089158,
+        "retrieval_ms": 1855.4020039737225,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -898,7 +898,7 @@
           "rank": 3,
           "relevance": 3,
           "repository": "leanprover__lean-eval",
-          "score": 0.6509999
+          "score": 0.64922285
         },
         {
           "file": "generated/jordan_normal_form/ChallengeDeps.lean",
@@ -947,7 +947,7 @@
           "rank": 10,
           "relevance": 0,
           "repository": "LionSR__TNLean",
-          "score": 0.48789302
+          "score": 0.48984516
         },
         {
           "file": "OddOrder/BG/AppA_PStabilityBasic.lean",
@@ -1022,7 +1022,7 @@
       ]
     },
     {
-      "compiled_query": "\"Hensel\" \"lemma\" \"over\" \"complete\" \"discrete\" \"valuation\" \"rings\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hensel\" \"s\" \"lemma\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hensels\" \"lemma\" \"complete\" \"discrete\" \"valuation\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Newton\" \"polygon\" \"Hensel\" \"lemma\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"valuation\" \"ring\" \"root\" \"lifting\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Hensel\" \"lemma\" \"over\" \"complete\" \"discrete\" \"valuation\" \"rings\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hensel\" \"s\" \"lemma\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hensels\" \"lemma\" \"complete\" \"discrete\" \"valuation\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Newton\" \"polygon\" \"Hensel\" \"lemma\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"valuation\" \"ring\" \"root\" \"lifting\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -1068,11 +1068,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 4226.282475981861,
+        "elapsed_ms": 4541.4738421095535,
         "payload_bytes": 72040100,
-        "rerank_ms": 1340.9390320302919,
+        "rerank_ms": 1476.428347057663,
         "rerank_request_bytes": 322365,
-        "retrieval_ms": 2885.3434439515695,
+        "retrieval_ms": 3065.0454950518906,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -1227,7 +1227,7 @@
       ]
     },
     {
-      "compiled_query": "\"fundamental\" \"group\" \"covering\" \"space\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"covering\" \"space\" \"homotopy\" \"lifting\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"monodromy\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"covering\" \"map\" \"fiber\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"fundamental\" \"group\" \"covering\" \"space\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"covering\" \"space\" \"homotopy\" \"lifting\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"monodromy\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"covering\" \"map\" \"fiber\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 8,
       "first_relevant_rank": 3,
       "formulations": [
@@ -1273,11 +1273,11 @@
       "reciprocal_rank": 0.3333333333333333,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 2856.6714480984956,
+        "elapsed_ms": 3214.5216529024765,
         "payload_bytes": 16419811,
-        "rerank_ms": 1520.4616670962423,
+        "rerank_ms": 1436.3649470033124,
         "rerank_request_bytes": 285920,
-        "retrieval_ms": 1336.2097810022533,
+        "retrieval_ms": 1778.156705899164,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -1430,7 +1430,7 @@
       ]
     },
     {
-      "compiled_query": "\"smooth\" \"manifolds\" \"boundary\" \"collars\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"smooth\" \"manifold\" \"boundary\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"collar\" \"neighborhood\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"boundary\" \"collar\" \"smoothing\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"manifold\" \"boundary\" \"collar\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"smooth\" \"manifolds\" \"boundary\" \"collars\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"smooth\" \"manifold\" \"boundary\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"collar\" \"neighborhood\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"boundary\" \"collar\" \"smoothing\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"manifold\" \"boundary\" \"collar\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 4,
       "first_relevant_rank": 4,
       "formulations": [
@@ -1476,11 +1476,11 @@
       "reciprocal_rank": 0.25,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 2889.955542050302,
+        "elapsed_ms": 3877.7040488785133,
         "payload_bytes": 3141190,
-        "rerank_ms": 1426.9399869954214,
+        "rerank_ms": 1450.6224329816177,
         "rerank_request_bytes": 356618,
-        "retrieval_ms": 1463.0155550548807,
+        "retrieval_ms": 2427.0816158968955,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -1633,7 +1633,7 @@
       ]
     },
     {
-      "compiled_query": "\"existence\" \"injective\" \"resolutions\" \"abelian\" \"categories\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"resolution\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"cochain\" \"complex\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"existence\" \"injective\" \"resolutions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"abelian\" \"category\" \"injective\" \"resolution\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"existence\" \"injective\" \"resolutions\" \"abelian\" \"categories\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"resolution\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"cochain\" \"complex\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"existence\" \"injective\" \"resolutions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"abelian\" \"category\" \"injective\" \"resolution\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 2,
       "first_relevant_rank": 2,
       "formulations": [
@@ -1679,11 +1679,11 @@
       "reciprocal_rank": 0.5,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3262.297082110308,
+        "elapsed_ms": 4448.362265015021,
         "payload_bytes": 7397556,
-        "rerank_ms": 1436.7570540634915,
+        "rerank_ms": 1294.4731860188767,
         "rerank_request_bytes": 302571,
-        "retrieval_ms": 1825.5400280468166,
+        "retrieval_ms": 3153.8890789961442,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -1720,7 +1720,7 @@
           "rank": 4,
           "relevance": 0,
           "repository": "leanprover-community__mathlib4",
-          "score": 0.7928494
+          "score": 0.7941296
         },
         {
           "file": "Structure/Abelian.v",
@@ -1748,7 +1748,7 @@
           "rank": 8,
           "relevance": 0,
           "repository": "facebookresearch__atlas-lean",
-          "score": 0.7338145
+          "score": 0.7322856
         },
         {
           "file": "Mathlib/CategoryTheory/Abelian/Injective/Ext.lean",
@@ -1811,7 +1811,7 @@
           "rank": 17,
           "relevance": 0,
           "repository": "leanprover-community__mathlib4",
-          "score": 0.5405358
+          "score": 0.5424755
         },
         {
           "file": "Mathlib/CategoryTheory/Abelian/LeftDerived.lean",
@@ -1837,7 +1837,7 @@
       ]
     },
     {
-      "compiled_query": "\"Hilbert\" \"Nullstellensatz\" \"affine\" \"varieties\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hilbert\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"affine\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"algebraic\" \"geometry\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Nullstellensatz\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Hilbert\" \"Nullstellensatz\" \"affine\" \"varieties\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hilbert\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"affine\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"algebraic\" \"geometry\" \"Nullstellensatz\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Nullstellensatz\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -1883,11 +1883,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3013.8487808872014,
+        "elapsed_ms": 3752.8485561488196,
         "payload_bytes": 2530442,
-        "rerank_ms": 1385.3336159372702,
+        "rerank_ms": 1601.7456660047174,
         "rerank_request_bytes": 319872,
-        "retrieval_ms": 1628.5151649499312,
+        "retrieval_ms": 2151.1028901441023,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -2041,7 +2041,7 @@
       ]
     },
     {
-      "compiled_query": "\"Pontryagin\" \"duality\" \"finite\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Pontryagin\" \"duality\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"character\" \"group\" \"finite\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"dual\" \"group\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Pontryagin\" \"duality\" \"finite\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Pontryagin\" \"duality\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"character\" \"group\" \"finite\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"dual\" \"group\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -2087,11 +2087,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3953.638552920893,
+        "elapsed_ms": 4450.550568988547,
         "payload_bytes": 71165107,
-        "rerank_ms": 1502.9259669827297,
+        "rerank_ms": 1675.180564983748,
         "rerank_request_bytes": 339176,
-        "retrieval_ms": 2450.712585938163,
+        "retrieval_ms": 2775.370004004799,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -2245,7 +2245,7 @@
       ]
     },
     {
-      "compiled_query": "\"Morse\" \"lemma\" \"nondegenerate\" \"critical\" \"point\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Morse\" \"lemma\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"nondegenerate\" \"critical\" \"point\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Morse\" \"theory\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"critical\" \"point\" \"classification\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Morse\" \"lemma\" \"nondegenerate\" \"critical\" \"point\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Morse\" \"lemma\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"nondegenerate\" \"critical\" \"point\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Morse\" \"theory\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"critical\" \"point\" \"classification\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -2291,11 +2291,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3364.000014960766,
+        "elapsed_ms": 4133.486076956615,
         "payload_bytes": 2687229,
-        "rerank_ms": 1614.553411025554,
+        "rerank_ms": 1495.4701459500939,
         "rerank_request_bytes": 317987,
-        "retrieval_ms": 1749.446603935212,
+        "retrieval_ms": 2638.015931006521,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -2449,7 +2449,7 @@
       ]
     },
     {
-      "compiled_query": "\"classification\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"structure\" \"theorem\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"fundamental\" \"theorem\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"classification\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"structure\" \"theorem\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"fundamental\" \"theorem\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -2494,11 +2494,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 2996.8001769157127,
+        "elapsed_ms": 3739.378514001146,
         "payload_bytes": 4893159,
-        "rerank_ms": 1511.6744169499725,
+        "rerank_ms": 2092.2696640482172,
         "rerank_request_bytes": 375010,
-        "retrieval_ms": 1485.1257599657401,
+        "retrieval_ms": 1647.1088499529287,
         "retrieval_queries": 3,
         "returned_files": 30,
         "search_units": 3
@@ -2550,7 +2550,7 @@
           "rank": 6,
           "relevance": 0,
           "repository": "jwiegley__category-theory",
-          "score": 0.56755316
+          "score": 0.56563467
         },
         {
           "file": "ImscribingGrammar/Millennium/BSD.lean",
@@ -2653,7 +2653,7 @@
       ]
     },
     {
-      "compiled_query": "\"Stone\" \"Weierstrass\" \"theorem\" \"continuous\" \"functions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Stone\" \"Weierstrass\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Weierstrass\" \"approximation\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"density\" \"polynomials\" \"continuous\" \"functions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Stone\" \"Weierstrass\" \"theorem\" \"continuous\" \"functions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Stone\" \"Weierstrass\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Weierstrass\" \"approximation\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"density\" \"polynomials\" \"continuous\" \"functions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -2699,11 +2699,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 5496.636156109162,
-        "payload_bytes": 9529103,
-        "rerank_ms": 1439.6643290529028,
+        "elapsed_ms": 5175.267135025933,
+        "payload_bytes": 9544813,
+        "rerank_ms": 3173.2940890360624,
         "rerank_request_bytes": 360062,
-        "retrieval_ms": 4056.971827056259,
+        "retrieval_ms": 2001.973045989871,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -2857,7 +2857,7 @@
       ]
     },
     {
-      "compiled_query": "\"construction\" \"Brownian\" \"motion\" \"Gaussian\" \"processes\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Brownian\" \"motion\" \"construction\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Wiener\" \"process\" \"existence\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Gaussian\" \"process\" \"path\" \"continuity\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Kolmogorov\" \"extension\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"construction\" \"Brownian\" \"motion\" \"Gaussian\" \"processes\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Brownian\" \"motion\" \"construction\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Wiener\" \"process\" \"existence\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Gaussian\" \"process\" \"path\" \"continuity\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Kolmogorov\" \"extension\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 3,
       "first_relevant_rank": 2,
       "formulations": [
@@ -2903,11 +2903,11 @@
       "reciprocal_rank": 0.5,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3273.8695729058236,
+        "elapsed_ms": 3843.0633180541918,
         "payload_bytes": 2741933,
-        "rerank_ms": 1150.6586039904505,
+        "rerank_ms": 1556.0595029965043,
         "rerank_request_bytes": 358969,
-        "retrieval_ms": 2123.210968915373,
+        "retrieval_ms": 2287.0038150576875,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -3061,7 +3061,7 @@
       ]
     },
     {
-      "compiled_query": "\"sphere\" \"eversion\" \"h\" \"principle\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"sphere\" \"eversion\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"h\" \"principle\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"homotopy\" \"principle\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"immersions\" \"spheres\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"sphere\" \"eversion\" \"h\" \"principle\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"sphere\" \"eversion\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"h\" \"principle\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"homotopy\" \"principle\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"immersions\" \"spheres\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -3107,11 +3107,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 6572.673526010476,
-        "payload_bytes": 528732113,
-        "rerank_ms": 1110.2576439734548,
+        "elapsed_ms": 6519.2984089953825,
+        "payload_bytes": 528905921,
+        "rerank_ms": 1264.646969968453,
         "rerank_request_bytes": 244659,
-        "retrieval_ms": 5462.415882037021,
+        "retrieval_ms": 5254.651439026929,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -3265,7 +3265,7 @@
       ]
     },
     {
-      "compiled_query": "\"Carleson\" \"theorem\" \"pointwise\" \"convergence\" \"Fourier\" \"series\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" \"Hunt\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"pointwise\" \"convergence\" \"Fourier\" \"series\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" \"convergence\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Carleson\" \"theorem\" \"pointwise\" \"convergence\" \"Fourier\" \"series\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" \"Hunt\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"pointwise\" \"convergence\" \"Fourier\" \"series\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Carleson\" \"convergence\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -3311,11 +3311,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3742.1241980046034,
+        "elapsed_ms": 3062.1251659467816,
         "payload_bytes": 2132821,
-        "rerank_ms": 1608.340203994885,
+        "rerank_ms": 1324.4538450380787,
         "rerank_request_bytes": 301478,
-        "retrieval_ms": 2133.7839940097183,
+        "retrieval_ms": 1737.671320908703,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -3469,7 +3469,7 @@
       ]
     },
     {
-      "compiled_query": "\"dyadic\" \"Hilbert\" \"symbol\" \"over\" \"Q2\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hilbert\" \"symbol\" \"2-adic\" \"field\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"local\" \"Hilbert\" \"symbol\" \"p-adic\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"quadratic\" \"Hilbert\" \"symbol\" \"Qp\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"dyadic\" \"Hilbert\" \"symbol\" \"over\" \"Q2\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Hilbert\" \"symbol\" \"2-adic\" \"field\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"local\" \"Hilbert\" \"symbol\" \"p-adic\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"quadratic\" \"Hilbert\" \"symbol\" \"Qp\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 6,
       "first_relevant_rank": 6,
       "formulations": [
@@ -3515,11 +3515,11 @@
       "reciprocal_rank": 0.16666666666666666,
       "result_count": 25,
       "runtime": {
-        "elapsed_ms": 2928.3707281574607,
+        "elapsed_ms": 2843.802200164646,
         "payload_bytes": 1067876,
-        "rerank_ms": 1236.8128820089623,
+        "rerank_ms": 1280.2035680506378,
         "rerank_request_bytes": 286527,
-        "retrieval_ms": 1691.5578461484984,
+        "retrieval_ms": 1563.598632114008,
         "retrieval_queries": 4,
         "returned_files": 25,
         "search_units": 2
@@ -3673,7 +3673,7 @@
       ]
     },
     {
-      "compiled_query": "\"Yoneda\" \"lemma\" \"univalent\" \"categories\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Yoneda\" \"embedding\" \"univalent\" \"category\" \"theory\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"representable\" \"presheaves\" \"univalent\" \"categories\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Yoneda\" \"lemma\" \"univalent\" \"categories\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Yoneda\" \"embedding\" \"univalent\" \"category\" \"theory\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"representable\" \"presheaves\" \"univalent\" \"categories\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": null,
       "first_relevant_rank": 1,
       "formulations": [
@@ -3718,11 +3718,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 7797.585128922947,
+        "elapsed_ms": 2574.905348010361,
         "payload_bytes": 1181538,
-        "rerank_ms": 6328.558753943071,
+        "rerank_ms": 1390.118704061024,
         "rerank_request_bytes": 290907,
-        "retrieval_ms": 1469.026374979876,
+        "retrieval_ms": 1184.7866439493373,
         "retrieval_queries": 3,
         "returned_files": 30,
         "search_units": 2
@@ -3876,7 +3876,7 @@
       ]
     },
     {
-      "compiled_query": "\"Grothendieck\" \"construction\" \"indexed\" \"categories\" \"fibrations\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Grothendieck\" \"construction\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"indexed\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"fibration\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"category\" \"elements\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Grothendieck\" \"construction\" \"indexed\" \"categories\" \"fibrations\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Grothendieck\" \"construction\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"indexed\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"fibration\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"category\" \"elements\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -3922,11 +3922,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 4078.152577043511,
+        "elapsed_ms": 3648.774408036843,
         "payload_bytes": 21754781,
-        "rerank_ms": 1308.8062980677933,
+        "rerank_ms": 1356.15260200575,
         "rerank_request_bytes": 324191,
-        "retrieval_ms": 2769.3462789757177,
+        "retrieval_ms": 2292.621806031093,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -4080,7 +4080,7 @@
       ]
     },
     {
-      "compiled_query": "\"Feit\" \"Thompson\" \"odd\" \"order\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Feit\" \"Thompson\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"odd\" \"order\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"solvability\" \"groups\" \"odd\" \"order\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Feit\" \"Thompson\" \"odd\" \"order\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Feit\" \"Thompson\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"odd\" \"order\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"solvability\" \"groups\" \"odd\" \"order\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 10,
       "first_relevant_rank": 10,
       "formulations": [
@@ -4126,11 +4126,11 @@
       "reciprocal_rank": 0.1,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 8604.460293077864,
-        "payload_bytes": 73916879,
-        "rerank_ms": 3444.577052956447,
+        "elapsed_ms": 4252.243470749818,
+        "payload_bytes": 78286806,
+        "rerank_ms": 1631.4190359553322,
         "rerank_request_bytes": 365366,
-        "retrieval_ms": 5159.883240121417,
+        "retrieval_ms": 2620.8244347944856,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -4284,7 +4284,7 @@
       ]
     },
     {
-      "compiled_query": "\"Jordan\" \"curve\" \"theorem\" file:\\.miz$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"curve\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"curve\" \"theorem\" \"topological\" \"plane\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"simple\" \"closed\" \"curve\" \"Jordan\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"Jordan\" \"curve\" \"theorem\" file:\\.miz$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"curve\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Jordan\" \"curve\" \"theorem\" \"topological\" \"plane\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"simple\" \"closed\" \"curve\" \"Jordan\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -4329,11 +4329,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3189.90590586327,
+        "elapsed_ms": 3424.5569590711966,
         "payload_bytes": 24042992,
-        "rerank_ms": 1380.7223219191656,
+        "rerank_ms": 1665.222218958661,
         "rerank_request_bytes": 326777,
-        "retrieval_ms": 1809.1835839441046,
+        "retrieval_ms": 1759.3347401125357,
         "retrieval_queries": 4,
         "returned_files": 30,
         "search_units": 2
@@ -4350,7 +4350,7 @@
           "rank": 1,
           "relevance": 3,
           "repository": "Mizar__MML-current",
-          "score": 0.93186045
+          "score": 0.9311125
         },
         {
           "file": "Jordan/jordan_curve_theorem.ml",
@@ -4364,28 +4364,28 @@
           "rank": 3,
           "relevance": 0,
           "repository": "Mizar__MML-current",
-          "score": 0.86884344
+          "score": 0.8686486
         },
         {
           "file": "jordan17.miz",
           "rank": 4,
           "relevance": 0,
           "repository": "Mizar__MML-current",
-          "score": 0.8667428
+          "score": 0.8667991
         },
         {
           "file": "jordan1c.miz",
           "rank": 5,
           "relevance": 0,
           "repository": "Mizar__MML-current",
-          "score": 0.8632433
+          "score": 0.86295474
         },
         {
           "file": "jordan7.miz",
           "rank": 6,
           "relevance": 0,
           "repository": "Mizar__MML-current",
-          "score": 0.8623328
+          "score": 0.8623038
         },
         {
           "file": "Jordan/jordan_curve_theorem.ml",
@@ -4399,14 +4399,14 @@
           "rank": 8,
           "relevance": 0,
           "repository": "Mizar__MML-current",
-          "score": 0.8533515
+          "score": 0.85249394
         },
         {
           "file": "jordan16.miz",
           "rank": 9,
           "relevance": 0,
           "repository": "Mizar__MML-current",
-          "score": 0.8371412
+          "score": 0.83540297
         },
         {
           "file": "jordan18.miz",
@@ -4420,14 +4420,14 @@
           "rank": 11,
           "relevance": 0,
           "repository": "Mizar__MML-current",
-          "score": 0.8278838
+          "score": 0.82760537
         },
         {
           "file": "jordan_a.miz",
           "rank": 12,
           "relevance": 0,
           "repository": "Mizar__MML-current",
-          "score": 0.8262076
+          "score": 0.825646
         },
         {
           "file": "jordan6.miz",
@@ -4441,14 +4441,14 @@
           "rank": 14,
           "relevance": 0,
           "repository": "Mizar__MML-current",
-          "score": 0.81704956
+          "score": 0.8173413
         },
         {
           "file": "jordan1e.miz",
           "rank": 15,
           "relevance": 0,
           "repository": "Mizar__MML-current",
-          "score": 0.80812776
+          "score": 0.80782473
         },
         {
           "file": "jordan4.miz",
@@ -4462,14 +4462,14 @@
           "rank": 17,
           "relevance": 0,
           "repository": "isabelle-prover__mirror-afp-devel",
-          "score": 0.77905303
+          "score": 0.7783799
         },
         {
           "file": "Matroid/ForMathlib/Topology/JordanCurve.lean",
           "rank": 18,
           "relevance": 0,
           "repository": "apnelson1__Matroid",
-          "score": 0.64922285
+          "score": 0.6509999
         },
         {
           "file": "JordanCurve/Main.lean",
@@ -4488,7 +4488,7 @@
       ]
     },
     {
-      "compiled_query": "\"formal\" \"group\" \"law\" \"over\" \"commutative\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"formal\" \"group\" \"law\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"commutative\" \"formal\" \"group\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"formal\" \"group\" \"over\" \"commutative\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"additive\" \"formal\" \"group\" \"law\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"formal\" \"group\" \"law\" \"over\" \"commutative\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"formal\" \"group\" \"law\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"commutative\" \"formal\" \"group\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"formal\" \"group\" \"over\" \"commutative\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"additive\" \"formal\" \"group\" \"law\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -4534,11 +4534,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 4730.445067863911,
-        "payload_bytes": 63813456,
-        "rerank_ms": 1238.7465289793909,
+        "elapsed_ms": 4129.873482976109,
+        "payload_bytes": 66653137,
+        "rerank_ms": 1368.065482005477,
         "rerank_request_bytes": 331336,
-        "retrieval_ms": 3491.6985388845205,
+        "retrieval_ms": 2761.808000970632,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -4568,14 +4568,14 @@
           "rank": 3,
           "relevance": 0,
           "repository": "CBirkbeck__AINTLIB",
-          "score": 0.92539185
+          "score": 0.92485076
         },
         {
           "file": "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupLawSpec.lean",
           "rank": 4,
           "relevance": 0,
           "repository": "CBirkbeck__AINTLIB",
-          "score": 0.8813496
+          "score": 0.8820626
         },
         {
           "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Basic.lean",
@@ -4589,63 +4589,63 @@
           "rank": 6,
           "relevance": 0,
           "repository": "CBirkbeck__AINTLIB",
-          "score": 0.8653337
+          "score": 0.8661919
         },
         {
           "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Inverse.lean",
           "rank": 7,
           "relevance": 0,
           "repository": "TauCetiProject__TauCeti",
-          "score": 0.8364744
+          "score": 0.8371412
         },
         {
           "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Assoc.lean",
           "rank": 8,
           "relevance": 0,
           "repository": "TauCetiProject__TauCeti",
-          "score": 0.8358054
+          "score": 0.8355372
         },
         {
           "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/WExpansion.lean",
           "rank": 9,
           "relevance": 0,
           "repository": "TauCetiProject__TauCeti",
-          "score": 0.81763273
+          "score": 0.81617206
         },
         {
           "file": "projects/HasseWeil/HasseWeil/FormalGroup/Logarithm.lean",
           "rank": 10,
           "relevance": 0,
           "repository": "CBirkbeck__AINTLIB",
-          "score": 0.80660903
+          "score": 0.80843043
         },
         {
           "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Chord.lean",
           "rank": 11,
           "relevance": 0,
           "repository": "TauCetiProject__TauCeti",
-          "score": 0.7963558
+          "score": 0.79572165
         },
         {
           "file": "projects/HasseWeil/HasseWeil/FormalGroup/Associated.lean",
           "rank": 12,
           "relevance": 0,
           "repository": "CBirkbeck__AINTLIB",
-          "score": 0.7889737
+          "score": 0.79027146
         },
         {
           "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/AdicPoint.lean",
           "rank": 13,
           "relevance": 0,
           "repository": "TauCetiProject__TauCeti",
-          "score": 0.74879336
+          "score": 0.7465827
         },
         {
           "file": "projects/ModularCurves/ModularCurves/EllipticCurve/GroupLaw.lean",
           "rank": 14,
           "relevance": 0,
           "repository": "CBirkbeck__AINTLIB",
-          "score": 0.6856128
+          "score": 0.6839264
         },
         {
           "file": "projects/HasseWeil/HasseWeil/FormalGroup/Height.lean",
@@ -4673,14 +4673,14 @@
           "rank": 18,
           "relevance": 0,
           "repository": "jwiegley__category-theory",
-          "score": 0.5463509
+          "score": 0.54441386
         },
         {
           "file": "src/algebra/construction/groupScript.sml",
           "rank": 19,
           "relevance": 0,
           "repository": "HOL-Theorem-Prover__HOL",
-          "score": 0.53082025
+          "score": 0.5288741
         },
         {
           "file": "OddOrder/Peterfalvi/Appendices/Suzuki2Groups/QuadraticExtensions.lean",
@@ -4692,7 +4692,7 @@
       ]
     },
     {
-      "compiled_query": "\"existence\" \"enough\" \"injectives\" \"Grothendieck\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"enough\" \"injectives\" \"Grothendieck\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"objects\" \"Grothendieck\" \"abelian\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"enough\" \"injectives\" \"abelian\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Grothendieck\" \"category\" \"injective\" \"resolution\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|elf)$ -file:(^|/)\\.sys/ case:no",
+      "compiled_query": "\"existence\" \"enough\" \"injectives\" \"Grothendieck\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"enough\" \"injectives\" \"Grothendieck\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"injective\" \"objects\" \"Grothendieck\" \"abelian\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"enough\" \"injectives\" \"abelian\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no MULTIQUERY_RRF_COHERE_RERANK \"Grothendieck\" \"category\" \"injective\" \"resolution\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ -file:(^|/)\\.sys/ case:no",
       "first_owner_rank": 1,
       "first_relevant_rank": 1,
       "formulations": [
@@ -4738,11 +4738,11 @@
       "reciprocal_rank": 1.0,
       "result_count": 30,
       "runtime": {
-        "elapsed_ms": 3079.9404031131417,
+        "elapsed_ms": 3396.8834939878434,
         "payload_bytes": 4446743,
-        "rerank_ms": 1225.9298890130594,
+        "rerank_ms": 1220.252688974142,
         "rerank_request_bytes": 257196,
-        "retrieval_ms": 1854.0105141000822,
+        "retrieval_ms": 2176.6308050137013,
         "retrieval_queries": 5,
         "returned_files": 30,
         "search_units": 2
@@ -4896,8 +4896,8 @@
       ]
     }
   ],
-  "corpus_git_commit": "b88a8e18b1904e4e34e98d0a433c7478beb1bd7f",
-  "created_at": "2026-09-14T08:11:31.626483+00:00",
+  "corpus_git_commit": "be55e00f5c3606605a4cfaa96fad70bca4f1c281",
+  "created_at": "2026-09-14T08:27:58.958273+00:00",
   "document_projection": {
     "excerpt_chars": 12000,
     "excerpt_lines": 300,
@@ -4932,9 +4932,9 @@
     "hit@10": 1.0,
     "hit@20": 1.0,
     "hit@5": 0.9166666666666666,
-    "latency_ms_mean": 4037.7192263210113,
-    "latency_ms_p50": 3433.6905489326455,
-    "latency_ms_p95": 7613.848388486073,
+    "latency_ms_mean": 3844.684016347552,
+    "latency_ms_p50": 3746.113535074983,
+    "latency_ms_p95": 5080.1981410884755,
     "mrr": 0.8270833333333334,
     "ndcg@1": 0.6904761904761906,
     "ndcg@10": 0.7180833844520128,
@@ -4945,8 +4945,8 @@
     "owner_hit@20": 0.9583333333333334,
     "owner_hit@5": 0.8333333333333334,
     "owner_mrr": 0.7489583333333334,
-    "payload_bytes_mean": 38860466.5,
-    "payload_bytes_p95": 73635362.14999999,
+    "payload_bytes_mean": 39168763.416666664,
+    "payload_bytes_p95": 77349800.09999998,
     "queries": 24,
     "source_hit@1": 0.9583333333333334,
     "source_hit@10": 1.0,
@@ -4964,9 +4964,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3863.622622389812,
-      "latency_ms_p50": 3863.622622389812,
-      "latency_ms_p95": 4643.762823316501,
+      "latency_ms_mean": 3934.6259984886274,
+      "latency_ms_p50": 3934.6259984886274,
+      "latency_ms_p95": 4110.348734527361,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.9419347718414257,
@@ -4977,8 +4977,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 1.0,
-      "payload_bytes_mean": 34353307.5,
-      "payload_bytes_p95": 60867441.15,
+      "payload_bytes_mean": 35773148.0,
+      "payload_bytes_p95": 63565138.1,
       "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -4995,9 +4995,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 2952.633592649363,
-      "latency_ms_p50": 3013.8487808872014,
-      "latency_ms_p95": 3578.3900557318702,
+      "latency_ms_mean": 3370.1384950739644,
+      "latency_ms_p50": 3670.728318975307,
+      "latency_ms_p95": 3744.6365324314684,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.7663135815432881,
@@ -5026,9 +5026,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 2856.6714480984956,
-      "latency_ms_p50": 2856.6714480984956,
-      "latency_ms_p95": 2856.6714480984956,
+      "latency_ms_mean": 3214.5216529024765,
+      "latency_ms_p50": 3214.5216529024765,
+      "latency_ms_p95": 3214.5216529024765,
       "mrr": 0.3333333333333333,
       "ndcg@1": 0.0,
       "ndcg@10": 0.4169956161990744,
@@ -5057,9 +5057,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3905.1927354885265,
-      "latency_ms_p50": 3905.1927354885265,
-      "latency_ms_p95": 4647.919834626373,
+      "latency_ms_mean": 3763.378488481976,
+      "latency_ms_p50": 3763.378488481976,
+      "latency_ms_p95": 4093.2239835266955,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 1.0,
@@ -5070,8 +5070,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 1.0,
-      "payload_bytes_mean": 34130099.5,
-      "payload_bytes_p95": 60845120.349999994,
+      "payload_bytes_mean": 35549940.0,
+      "payload_bytes_p95": 63542817.3,
       "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5088,9 +5088,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 4430.318085534964,
-      "latency_ms_p50": 4430.318085534964,
-      "latency_ms_p95": 5390.004349051742,
+      "latency_ms_mean": 4654.376605991274,
+      "latency_ms_p50": 4654.376605991274,
+      "latency_ms_p95": 5123.1780821224675,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.946788650747743,
@@ -5101,8 +5101,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 1.0,
-      "payload_bytes_mean": 6108166.0,
-      "payload_bytes_p95": 9187009.299999999,
+      "payload_bytes_mean": 6116021.0,
+      "payload_bytes_p95": 9201933.799999999,
       "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5119,9 +5119,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 4554.493797797477,
-      "latency_ms_p50": 3670.2248295769095,
-      "latency_ms_p95": 7239.6702461410305,
+      "latency_ms_mean": 3517.231378762517,
+      "latency_ms_p50": 3522.828951012343,
+      "latency_ms_p95": 4328.424086468294,
       "mrr": 0.875,
       "ndcg@1": 0.6071428571428571,
       "ndcg@10": 0.585511841271872,
@@ -5150,9 +5150,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3620.0656284345314,
-      "latency_ms_p50": 3620.0656284345314,
-      "latency_ms_p95": 4165.660791227128,
+      "latency_ms_mean": 4147.161199129187,
+      "latency_ms_p50": 4147.161199129187,
+      "latency_ms_p95": 4502.042577811517,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.8749480813996413,
@@ -5181,9 +5181,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 2554.7340838820674,
-      "latency_ms_p50": 2554.7340838820674,
-      "latency_ms_p95": 2871.3531396642793,
+      "latency_ms_mean": 3201.154383656103,
+      "latency_ms_p50": 3201.154383656103,
+      "latency_ms_p95": 3664.0385798586067,
       "mrr": 1.0,
       "ndcg@1": 0.5714285714285714,
       "ndcg@10": 0.8008598973379168,
@@ -5212,9 +5212,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 0.75,
-      "latency_ms_mean": 5917.525976226898,
-      "latency_ms_p50": 5937.868852983229,
-      "latency_ms_p95": 8483.429018454626,
+      "latency_ms_mean": 3475.1200464670546,
+      "latency_ms_p50": 3536.66568355402,
+      "latency_ms_p95": 4161.723111342872,
       "mrr": 0.775,
       "ndcg@1": 0.6071428571428571,
       "ndcg@10": 0.48040688367715384,
@@ -5225,8 +5225,8 @@
       "owner_hit@20": 0.75,
       "owner_hit@5": 0.5,
       "owner_mrr": 0.525,
-      "payload_bytes_mean": 30224047.5,
-      "payload_bytes_p95": 66435795.94999999,
+      "payload_bytes_mean": 31316529.25,
+      "payload_bytes_p95": 70150233.89999998,
       "queries": 4,
       "source_hit@1": 0.75,
       "source_hit@10": 1.0,
@@ -5243,9 +5243,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3396.318773025996,
-      "latency_ms_p50": 3268.083327508066,
-      "latency_ms_p95": 4174.437011353439,
+      "latency_ms_mean": 3854.802206507884,
+      "latency_ms_p50": 3855.3489705664106,
+      "latency_ms_p95": 4508.884790126467,
       "mrr": 0.6979166666666666,
       "ndcg@1": 0.5,
       "ndcg@10": 0.6358988213418861,
@@ -5274,9 +5274,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3126.977778505534,
-      "latency_ms_p50": 3126.977778505534,
-      "latency_ms_p95": 3340.2977913152426,
+      "latency_ms_mean": 4005.595062917564,
+      "latency_ms_p50": 4005.595062917564,
+      "latency_ms_p95": 4120.69697555271,
       "mrr": 0.625,
       "ndcg@1": 0.5,
       "ndcg@10": 0.66950451754389,
@@ -5305,9 +5305,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 6572.673526010476,
-      "latency_ms_p50": 6572.673526010476,
-      "latency_ms_p95": 6572.673526010476,
+      "latency_ms_mean": 6519.2984089953825,
+      "latency_ms_p50": 6519.2984089953825,
+      "latency_ms_p95": 6519.2984089953825,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 1.0,
@@ -5318,8 +5318,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 1.0,
-      "payload_bytes_mean": 528732113.0,
-      "payload_bytes_p95": 528732113.0,
+      "payload_bytes_mean": 528905921.0,
+      "payload_bytes_p95": 528905921.0,
       "queries": 1,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5336,9 +5336,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 0.8333333333333334,
-      "latency_ms_mean": 5246.5581933308085,
-      "latency_ms_p50": 5113.5406119865365,
-      "latency_ms_p95": 7491.357228194829,
+      "latency_ms_mean": 4282.282857360163,
+      "latency_ms_p50": 4290.212025982328,
+      "latency_ms_p95": 6183.29059050302,
       "mrr": 0.8611111111111112,
       "ndcg@1": 0.7380952380952381,
       "ndcg@10": 0.7166342737626358,
@@ -5349,8 +5349,8 @@
       "owner_hit@20": 0.8333333333333334,
       "owner_hit@5": 0.6666666666666666,
       "owner_mrr": 0.6944444444444445,
-      "payload_bytes_mean": 112581532.16666667,
-      "payload_bytes_p95": 414340361.5,
+      "payload_bytes_mean": 113086398.66666667,
+      "payload_bytes_p95": 414470717.5,
       "queries": 6,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5367,9 +5367,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 2906.5330347511917,
-      "latency_ms_p50": 2906.5330347511917,
-      "latency_ms_p95": 2906.5330347511917,
+      "latency_ms_mean": 3715.4701572144404,
+      "latency_ms_p50": 3715.4701572144404,
+      "latency_ms_p95": 3715.4701572144404,
       "mrr": 1.0,
       "ndcg@1": 0.14285714285714285,
       "ndcg@10": 0.6943979944203421,
@@ -5398,9 +5398,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 0.6666666666666666,
-      "latency_ms_mean": 5184.966340971489,
-      "latency_ms_p50": 3953.638552920893,
-      "latency_ms_p95": 8139.378119062166,
+      "latency_ms_mean": 4147.390851246503,
+      "latency_ms_p50": 4252.243470749818,
+      "latency_ms_p95": 4430.719859164674,
       "mrr": 0.7000000000000001,
       "ndcg@1": 0.6666666666666666,
       "ndcg@10": 0.653362990997237,
@@ -5411,8 +5411,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 0.6666666666666666,
       "owner_mrr": 0.7000000000000001,
-      "payload_bytes_mean": 49991715.0,
-      "payload_bytes_p95": 73641701.8,
+      "payload_bytes_mean": 51448357.333333336,
+      "payload_bytes_p95": 77574636.1,
       "queries": 3,
       "source_hit@1": 0.6666666666666666,
       "source_hit@10": 1.0,
@@ -5429,9 +5429,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3847.881375462748,
-      "latency_ms_p50": 3847.881375462748,
-      "latency_ms_p95": 3943.0628351750784,
+      "latency_ms_mean": 3756.337867467664,
+      "latency_ms_p50": 3756.337867467664,
+      "latency_ms_p95": 4381.1292988364585,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.893577301495486,
@@ -5460,9 +5460,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3382.8390825074166,
-      "latency_ms_p50": 3382.8390825074166,
-      "latency_ms_p95": 3491.3268828648143,
+      "latency_ms_mean": 4157.998444046825,
+      "latency_ms_p50": 4157.998444046825,
+      "latency_ms_p95": 4419.325882918201,
       "mrr": 0.75,
       "ndcg@1": 0.5,
       "ndcg@10": 0.7019805299716119,
@@ -5491,9 +5491,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 4593.637685989961,
-      "latency_ms_p50": 4593.637685989961,
-      "latency_ms_p95": 4593.637685989961,
+      "latency_ms_mean": 3302.625766955316,
+      "latency_ms_p50": 3302.625766955316,
+      "latency_ms_p95": 3302.625766955316,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 1.0,
@@ -5522,9 +5522,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3641.1168640479445,
-      "latency_ms_p50": 3641.1168640479445,
-      "latency_ms_p95": 3641.1168640479445,
+      "latency_ms_mean": 3670.728318975307,
+      "latency_ms_p50": 3670.728318975307,
+      "latency_ms_p95": 3670.728318975307,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.4698320653781655,
@@ -5553,9 +5553,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 0.6666666666666666,
-      "latency_ms_mean": 3353.728746296838,
-      "latency_ms_p50": 2928.3707281574607,
-      "latency_ms_p95": 4096.491301199421,
+      "latency_ms_mean": 3700.24873316288,
+      "latency_ms_p50": 3715.4701572144404,
+      "latency_ms_p95": 4458.873473620042,
       "mrr": 0.7222222222222222,
       "ndcg@1": 0.38095238095238093,
       "ndcg@10": 0.6009658017246545,
@@ -5584,9 +5584,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3273.8695729058236,
-      "latency_ms_p50": 3273.8695729058236,
-      "latency_ms_p95": 3273.8695729058236,
+      "latency_ms_mean": 3843.0633180541918,
+      "latency_ms_p50": 3843.0633180541918,
+      "latency_ms_p95": 3843.0633180541918,
       "mrr": 0.5,
       "ndcg@1": 0.0,
       "ndcg@10": 0.3795456844319632,
@@ -5615,9 +5615,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3189.90590586327,
-      "latency_ms_p50": 3189.90590586327,
-      "latency_ms_p95": 3189.90590586327,
+      "latency_ms_mean": 3424.5569590711966,
+      "latency_ms_p50": 3424.5569590711966,
+      "latency_ms_p95": 3424.5569590711966,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.7871546029909718,
@@ -5646,9 +5646,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 0.0,
-      "latency_ms_mean": 2928.3707281574607,
-      "latency_ms_p50": 2928.3707281574607,
-      "latency_ms_p95": 2928.3707281574607,
+      "latency_ms_mean": 2843.802200164646,
+      "latency_ms_p50": 2843.802200164646,
+      "latency_ms_p95": 2843.802200164646,
       "mrr": 0.16666666666666666,
       "ndcg@1": 0.0,
       "ndcg@10": 0.280390126950546,
@@ -5677,9 +5677,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 4123.800082918024,
-      "latency_ms_p50": 3507.9968854552135,
-      "latency_ms_p95": 6148.091126809593,
+      "latency_ms_mean": 4284.989262552699,
+      "latency_ms_p50": 3779.266737634316,
+      "latency_ms_p95": 6117.863145354202,
       "mrr": 0.875,
       "ndcg@1": 0.5357142857142857,
       "ndcg@10": 0.7684859197130763,
@@ -5690,8 +5690,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 0.7083333333333334,
-      "payload_bytes_mean": 135550145.5,
-      "payload_bytes_p95": 450711353.29999983,
+      "payload_bytes_mean": 135593597.5,
+      "payload_bytes_p95": 450859090.0999998,
       "queries": 4,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5708,9 +5708,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3795.218931452837,
-      "latency_ms_p50": 3795.218931452837,
-      "latency_ms_p95": 4513.795810536249,
+      "latency_ms_mean": 3521.002140478231,
+      "latency_ms_p50": 3521.002140478231,
+      "latency_ms_p95": 3717.5408766488545,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.9419347718414257,
@@ -5739,9 +5739,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 3503.381082904525,
-      "latency_ms_p50": 3503.381082904525,
-      "latency_ms_p95": 3503.381082904525,
+      "latency_ms_mean": 3867.6346230786294,
+      "latency_ms_p50": 3867.6346230786294,
+      "latency_ms_p95": 3867.6346230786294,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.9073218002554915,
@@ -5770,9 +5770,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 0.9,
-      "latency_ms_mean": 3957.5111528742127,
-      "latency_ms_p50": 3502.558439504355,
-      "latency_ms_p95": 6799.590119888304,
+      "latency_ms_mean": 3656.630528101232,
+      "latency_ms_p50": 3705.0534164882265,
+      "latency_ms_p95": 4411.320174997672,
       "mrr": 0.9099999999999999,
       "ndcg@1": 0.9,
       "ndcg@10": 0.7980716302920137,
@@ -5783,8 +5783,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 0.9,
       "owner_mrr": 0.9099999999999999,
-      "payload_bytes_mean": 19106527.0,
-      "payload_bytes_p95": 73072328.45,
+      "payload_bytes_mean": 19543519.7,
+      "payload_bytes_p95": 75475788.3,
       "queries": 10,
       "source_hit@1": 0.9,
       "source_hit@10": 1.0,
@@ -5801,9 +5801,9 @@
       "hit@10": 1.0,
       "hit@20": 1.0,
       "hit@5": 1.0,
-      "latency_ms_mean": 4343.271030986216,
-      "latency_ms_p50": 4343.271030986216,
-      "latency_ms_p95": 5381.299643596867,
+      "latency_ms_mean": 4299.912047048565,
+      "latency_ms_p50": 4299.912047048565,
+      "latency_ms_p95": 5087.731626228197,
       "mrr": 1.0,
       "ndcg@1": 1.0,
       "ndcg@10": 0.893577301495486,
@@ -5814,8 +5814,8 @@
       "owner_hit@20": 1.0,
       "owner_hit@5": 1.0,
       "owner_mrr": 1.0,
-      "payload_bytes_mean": 16786047.5,
-      "payload_bytes_p95": 23317297.55,
+      "payload_bytes_mean": 16793902.5,
+      "payload_bytes_p95": 23318083.05,
       "queries": 2,
       "source_hit@1": 1.0,
       "source_hit@10": 1.0,
@@ -5825,9 +5825,9 @@
     }
   },
   "provider": "local+cohere",
-  "query_config_sha256": "c154b0491e9955c9adfb3aad9effa19a3c9e188e6b4cd816975c3efd01caa5b9",
+  "query_config_sha256": "dd46941b6f9d819cbac48f335631a8de6120eb3065808632f3a878b7cbc2646c",
   "repository_state": {
-    "commit": "b88a8e18b1904e4e34e98d0a433c7478beb1bd7f",
+    "commit": "be55e00f5c3606605a4cfaa96fad70bca4f1c281",
     "state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "status": [],
     "untracked_files": [],
