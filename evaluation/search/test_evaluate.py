@@ -62,7 +62,7 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
     def test_serving_options_default_to_shared_frontend_config(self) -> None:
         serving = evaluate.serving_options()
         self.assertEqual(serving["max_doc_display_count"], 60)
-        self.assertEqual(serving["shard_max_match_count"], 0)
+        self.assertEqual(serving["shard_max_match_count"], 10000)
         self.assertEqual(serving["total_max_match_count"], 0)
         self.assertTrue(serving["whole"])
 

@@ -260,6 +260,19 @@ a hard filter is recall-safe.  The immutable before/after/corrected reports and
 superseding deployment decisions are recorded in `ledger.jsonl`; the individual
 file-level decisions and reversions are in `filtering/ledger.jsonl`.
 
+The public webserver also has a measured serving-quality parameter. Zoekt's JSON
+handler derives internal per-shard match limits from `MaxDocDisplayCount` when no
+explicit `ShardMaxMatchCount` is supplied; the display count is therefore **not**
+a passive output-truncation knob. On this corpus, the previous display count of
+60 implicitly produced a roughly 300-match shard budget and reduced deployed
+lexical-v2 Hit@10 from 0.792 to 0.542 and Owner Hit@10 from 0.625 to 0.292. A
+controlled sweep at fixed display count 60 found that an explicit shard budget
+of 10,000 is the first tested value that exactly reproduces the unrestricted
+local lexical metrics, both against a local stock webserver and the production
+endpoint. The browser and evaluator therefore read the serving budget from the
+same `site/search-query.json`; query-normalization and serving-budget provenance
+are hashed separately in evaluation reports.
+
 ## Relevance-judgment pooling
 
 The initial qrels are intentionally high-confidence but incomplete.  Absolute

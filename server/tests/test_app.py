@@ -91,7 +91,12 @@ def test_search_is_cached_and_preserves_request_shape() -> None:
         async def run(client: httpx.AsyncClient) -> None:
             payload = {
                 "Q": "content:Hasse file:\\.lean$",
-                "Opts": {"MaxDocDisplayCount": 5, "ChunkMatches": True},
+                "Opts": {
+                    "MaxDocDisplayCount": 5,
+                    "ShardMaxMatchCount": 10000,
+                    "ChunkMatches": True,
+                    "Whole": True,
+                },
             }
             first = await client.post("/api/search", json=payload)
             second = await client.post("/api/search", json=payload)
