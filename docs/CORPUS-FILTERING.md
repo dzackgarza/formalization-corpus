@@ -232,6 +232,11 @@ browser appends those documentation results after formal hits. This one-process
 design also avoids spending the primary host's constrained memory budget on a
 second persistent Zoekt server.
 
+The lexical audit is reproducible with `scripts/audit-readme-searchability.py`;
+its 2026-09-14 result is committed as
+`filtering/audits/readme-searchability-20260914.json`. The audit intentionally
+claims only absence from primary text, not semantic non-existence.
+
 The 2026-09-14 audit initially found over a thousand README-named files
 physically present in the Zoekt index. That observation led to an overly broad
 basename classifier; a subsequent audit found formal `README.*` modules in Lean,

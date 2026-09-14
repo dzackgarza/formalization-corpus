@@ -1,0 +1,523 @@
+{
+  "audit": "fd002-readme-primary-searchability-v1",
+  "corpus_git_commit": "651fe250fbc41484c268feba405b63efda326d01",
+  "counts": {
+    "fd002_documents": 969,
+    "rare_readable_singleton_terms": 24263,
+    "sampled_terms": 3000,
+    "sampled_terms_absent_from_primary_text": 831,
+    "sampled_terms_present_in_primary_text": 2169
+  },
+  "examples_absent_from_primary_text": [
+    {
+      "file": "README.md",
+      "repository": "bkase__verified-gpu",
+      "term": "chapter-39-parallel-prefix-sum-scan-cuda"
+    },
+    {
+      "file": "README.md",
+      "repository": "verified-optimization__CvxLean",
+      "term": "commands-for-user-guided-transformations"
+    },
+    {
+      "file": "README.md",
+      "repository": "ionathanch__MutualInduction",
+      "term": "generalize-variables-and-compute-motives"
+    },
+    {
+      "file": "README.md",
+      "repository": "formalproofs__MDPLib",
+      "term": "MathematicalStatisticsandDataAnalysis3ed"
+    },
+    {
+      "file": "README.md",
+      "repository": "somombo__swaps-perm",
+      "term": "Permutation_is_Product_of_Transpositions"
+    },
+    {
+      "file": "README.md",
+      "repository": "input-output-hk__CardanoLedgerApiBlaster",
+      "term": "preparing-the-validator-for-verification"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "ProofNetIROlderEventTouchSeparationTests"
+    },
+    {
+      "file": "README.md",
+      "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+      "term": "sec-milnor-descent-and-strong-sheafiness"
+    },
+    {
+      "file": "README.md",
+      "repository": "argumentcomputer__ix",
+      "term": "Thompson_1984_ReflectionsonTrustingTrust"
+    },
+    {
+      "file": "README.md",
+      "repository": "opencompl__fp-lean",
+      "term": "ulps-plots-reveal-math-function-accurary"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-035-Non-Trivial-Theorem-Enforcement"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-053-Volunteer-Scale-Claim-Substrate"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-086-Seedkit-Fixture-Generation-Path"
+    },
+    {
+      "file": "README.md",
+      "repository": "metamatematico__Metamatematico---Razonamiento-Formal-con-Lean",
+      "term": "Agentes-19_join--envoltorios-blueviolet"
+    },
+    {
+      "file": "README.md",
+      "repository": "bkase__verified-gpu",
+      "term": "appendix-key-definitions-as-implemented"
+    },
+    {
+      "file": "README.md",
+      "repository": "dappalumbo91__FSOT-2.1-Lean",
+      "term": "build_wetlab_longevity_expansion_bundle"
+    },
+    {
+      "file": "README.md",
+      "repository": "TauCetiProject__TauCeti",
+      "term": "coordinating-work-intentions-and-claims"
+    },
+    {
+      "file": "README.md",
+      "repository": "sunblaze-ucb__verina",
+      "term": "custom_prompt_proof_refinement_baseline"
+    },
+    {
+      "file": "README.md",
+      "repository": "dappalumbo91__FSOT-2.1-Lean",
+      "term": "fresh_clone_corpus_mathlib_repro_report"
+    },
+    {
+      "file": "TauCetiRoadmap/LocalFieldsRamification/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "map_maximalIdeal_eq_pow_ramificationIdx"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "ProofNetIRActiveRegionAvailabilityTests"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "ProofNetIRCommitmentBlockerAdvanceTests"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "ProofNetIRRawMarkReservationAnchorTests"
+    },
+    {
+      "file": "README.md",
+      "repository": "leanprover-community__mathlib4",
+      "term": "running-on-a-project-other-than-mathlib"
+    },
+    {
+      "file": "README.md",
+      "repository": "varosi__Bitmap",
+      "term": "writeDynamicPayload_lz77_decode_correct"
+    },
+    {
+      "file": "README.md",
+      "repository": "dappalumbo91__FSOT-2.1-Lean",
+      "term": "appendix-b--machine-readable-artifacts"
+    },
+    {
+      "file": "README.md",
+      "repository": "Robby955__FormalSLT",
+      "term": "CheckIIDContinuousGaussianGridPACBayes"
+    },
+    {
+      "file": "README.md",
+      "repository": "argumentcomputer__ix",
+      "term": "Deconstructing_Process_Isolation_final"
+    },
+    {
+      "file": "TauCetiRoadmap/Chebotarev/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "hasDirichletDensity_of_symmDiff_finite"
+    },
+    {
+      "file": "README.md",
+      "repository": "leanprover-community__mathlib4",
+      "term": "Lean-4-survival-guide-for-Lean-3-users"
+    },
+    {
+      "file": "README.md",
+      "repository": "Paper-Proof__paperproof",
+      "term": "paperproof-lean-s-explode-Bab05XYMp21q"
+    },
+    {
+      "file": "README.md",
+      "repository": "Paper-Proof__paperproof",
+      "term": "paperproof-s-architecture-P632P44ezDa9"
+    },
+    {
+      "file": "README.md",
+      "repository": "Beneficial-AI-Foundation__PostQuantumeXtendedDiffieHellman-model",
+      "term": "PostQuantumeXtendedDiffieHellman-model"
+    },
+    {
+      "file": "README.md",
+      "repository": "bkase__verified-gpu",
+      "term": "proof-sketch-and-how-the-parts-compose"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "proofnet_ir_fresh_source_blocker_tests"
+    },
+    {
+      "file": "README.md",
+      "repository": "HoTT__Coq-HoTT",
+      "term": "Publications-based-on-the-HoTT-library"
+    },
+    {
+      "file": "README-CI-Nix.md",
+      "repository": "math-comp__math-comp",
+      "term": "testing-coqpackages-updates-in-nixpkgs"
+    },
+    {
+      "file": "README.md",
+      "repository": "umpolungfish__Imscribing_Grammar",
+      "term": "undeciphered_texts_structural_analysis"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-015-Progressive-Effort-Escalation"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-044-Idle-Recovery-Of-Parked-Goals"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-046-Gate-A-Namespace-Cache-Volume"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-055-Repository-Runtime-Reconciler"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-068-Fork-Native-Contribution-Mode"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-079-Deterministic-Solver-Provider"
+    },
+    {
+      "file": "README.md",
+      "repository": "ionathanch__MutualInduction",
+      "term": "check-coverage-over-mutual-inductives"
+    },
+    {
+      "file": "TauCetiRoadmap/NumberFieldArithmetic/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "cubicUnitEliminationCertificate_sound"
+    },
+    {
+      "file": "README.md",
+      "repository": "SAIRcompetition__equational-theories-lean-stage2",
+      "term": "equational-theories-selected-problems"
+    },
+    {
+      "file": "TauCetiRoadmap/NumberFieldArithmetic/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "factorFieldEquivCompletion_algebraMap"
+    },
+    {
+      "file": "TauCetiRoadmap/LocalFieldsRamification/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "intermediateFieldDiscriminantExponent"
+    },
+    {
+      "file": "README.md",
+      "repository": "QudeLeap__Lean-QuantumAlg",
+      "term": "modular-multiplication-eigenstructure"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "ProofNetIRActiveRegionTouchOrderTests"
+    },
+    {
+      "file": "README.md",
+      "repository": "Verilean__lean-tea",
+      "term": "safehtml--xss-that-cant-be-introduced"
+    },
+    {
+      "file": "TauCetiRoadmap/BelyiMaps/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "storedEmbeddingCount_eq_triplesLength"
+    },
+    {
+      "file": "README.md",
+      "repository": "varosi__Bitmap",
+      "term": "writeFixedPayload_lz77_decode_correct"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-016-Infrastructure-Failure-Guard"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-063-Sharded-Gate-A-Kernel-Replay"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-071-Fresh-Dispatch-Dedup-Recheck"
+    },
+    {
+      "file": "README.md",
+      "repository": "dappalumbo91__FSOT-2.1-Lean",
+      "term": "appendix-a--one-command-reproduction"
+    },
+    {
+      "file": "README.md",
+      "repository": "dappalumbo91__FSOT-2.1-Lean",
+      "term": "appendix-d--notation-and-conventions"
+    },
+    {
+      "file": "README.md",
+      "repository": "dappalumbo91__FSOT-2.1-Lean",
+      "term": "circuit_component_emergence_manifest"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "decentralised-ci-runner-architecture"
+    },
+    {
+      "file": "TauCetiRoadmap/RepresentationTheory/ClassicalGroups/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "finrank_irreducible_eq_weylDimension"
+    },
+    {
+      "file": "README.md",
+      "repository": "dappalumbo91__FSOT-2.1-Lean",
+      "term": "lattice_boundary_cold_fusion_channel"
+    },
+    {
+      "file": "README.md",
+      "repository": "input-output-hk__CardanoLedgerApiBlaster",
+      "term": "ledger-rules-as-decidable-predicates"
+    },
+    {
+      "file": "README.md",
+      "repository": "cavargar__SHSLib",
+      "term": "locally-Lipschitz-plus-linear-growth"
+    },
+    {
+      "file": "README.md",
+      "repository": "dappalumbo91__FSOT-2.1-Lean",
+      "term": "mathlib_rederivation_campaign_report"
+    },
+    {
+      "file": "TauCetiRoadmap/BelyiMaps/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "mdifferentiable_iff_analyticAt_chart"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "proofnet_ir_figure7_primitives_tests"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "proofnet_ir_progress_invariant_tests"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "proofnet_ir_reservation_ledger_tests"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "proofnet_ir_touch_completeness_tests"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "ProofNetIRActiveConclusionTouchTests"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "ProofNetIRPriorityEnabledImportTests"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "ProofNetIRStrictOlderSigmaSplitTests"
+    },
+    {
+      "file": "TauCetiRoadmap/RepresentationTheory/LieHighestWeight/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "reducible-but-indecomposable-looking"
+    },
+    {
+      "file": "README.md",
+      "repository": "girving__ray",
+      "term": "s_theorem_on_separate_holomorphicity"
+    },
+    {
+      "file": "README.md",
+      "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+      "term": "sec-a-rational-localisation-which-is"
+    },
+    {
+      "file": "README.md",
+      "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+      "term": "sec-second-example-strong-sheafiness"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "validate_model_publication_redaction"
+    },
+    {
+      "file": "TauCetiRoadmap/StandardDistributions/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "what-every-distribution-must-provide"
+    },
+    {
+      "file": "README.md",
+      "repository": "roed-math__gq2-lean",
+      "term": "A_Profinite_Presentation_for_G__Q_2"
+    },
+    {
+      "file": "README.md",
+      "repository": "lean-dojo__LeanCopilot",
+      "term": "adding-lean-copilot-as-a-dependency"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-018-Goal-Statement-Immutability"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-020-Human-Sponsored-Upstreaming"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-030-Distributed-Workload-Engine"
+    },
+    {
+      "file": "README.md",
+      "repository": "QDU-Math-in-lean__elementary-number-theory",
+      "term": "Ch4_1_Algebraic_Congruence_Equation"
+    },
+    {
+      "file": "TauCetiRoadmap/ProfiniteCohomology/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "inflation-restriction-transgression"
+    },
+    {
+      "file": "README.md",
+      "repository": "martinescardo__TypeTopology",
+      "term": "journal-of-pure-and-applied-algebra"
+    },
+    {
+      "file": "README.md",
+      "repository": "jimscarver__quantum-logical-framework",
+      "term": "Markov-blanket-depth-as-local-clock"
+    },
+    {
+      "file": "TauCetiRoadmap/BelyiMaps/README.md",
+      "repository": "TauCetiProject__TauCetiRoadmap",
+      "term": "mdifferentiable_iff_contMDiff_omega"
+    },
+    {
+      "file": "README.md",
+      "repository": "teorth__pfr",
+      "term": "Polynomial-Freiman-Ruzsa-conjecture"
+    },
+    {
+      "file": "README.md",
+      "repository": "BochaoKong__nullstellensatz",
+      "term": "proof-development-to-public-surface"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "proofnet_ir_region_boundaries_tests"
+    },
+    {
+      "file": "README.md",
+      "repository": "fushanbobfan__proofnet-ir",
+      "term": "proofnet_ir_tag_history_count_tests"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "proving-from-a-fork-no-write-access"
+    },
+    {
+      "file": "README.md",
+      "repository": "dappalumbo91__FSOT-2.1-Lean",
+      "term": "run_publication_verification_bundle"
+    },
+    {
+      "file": "README.md",
+      "repository": "pitmonticone__LeanInVienna2024",
+      "term": "scientific-computing-in-lean-5b89e4"
+    },
+    {
+      "file": "README.md",
+      "repository": "ejgallego__lean-beam",
+      "term": "validated-and-compatible-toolchains"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-019-CI-Supply-Chain-Protection"
+    },
+    {
+      "file": "README.md",
+      "repository": "agenticsnz__unsorry",
+      "term": "ADR-045-Gate-A-Library-Build-Cache"
+    }
+  ],
+  "filter_state_sha256": "1c04154179493d24090f10d2bf71b85f09b19ff8148df5f96d9c52ea97509a63",
+  "generated_at": "2026-09-14T15:28:54.795847+00:00",
+  "method": {
+    "candidate_rule": "terms appearing in exactly one FD-002 document; skip selected generic web/documentation prefixes, tokens longer than 40 characters, all-uppercase tokens, and tokens with more than one third digits",
+    "claim_scope": "lexical searchability only; absence from primary text does not assert semantic nonexistence",
+    "primary_scan": "ripgrep -I -o --no-filename -F -f over .index-primary",
+    "sample_order": "(-length, casefolded token, token), first N",
+    "token_regex": "[A-Za-z][A-Za-z0-9_-]{9,}"
+  },
+  "schema_version": 1
+}
