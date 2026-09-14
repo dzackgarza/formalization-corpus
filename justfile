@@ -143,6 +143,7 @@ ast pattern:
 # Prove that the custom parser supports Lean metavariable queries.
 test-commit:
     printf 'def formedModuleAnswer : Nat := 42\n' | ast-grep run --config sgconfig.yml --lang lean --pattern 'def $NAME : $TYPE := $VALUE' --stdin --json=compact | jq -e 'length == 1 and .[0].text == "def formedModuleAnswer : Nat := 42"' >/dev/null
+    python scripts/check-policy-codes.py
     python evaluation/search/evaluate.py --validate-only
     python -m unittest discover -s evaluation/search -p 'test_*.py'
     python evaluation/search/lablog.py validate

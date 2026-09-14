@@ -142,6 +142,246 @@ Low-level details are appropriate on the API page or in maintainer documentation
 when a caller/contributor can act on them.  They should not leak onto Search,
 Sources, or Topics merely because the implementation needs them.
 
+## Corpus filtering and retrieval-eligibility rules
+
+These rules govern file-level filtering, deduplication, indexing, and ranking.
+They are intentionally conservative.  A false positive in search is visible and
+can later be downranked; a false exclusion removes evidence from discovery and
+can persist unnoticed for a long time.
+
+The detailed decision procedure, examples, current measurements, and known
+footguns live in [`docs/CORPUS-FILTERING.md`](./docs/CORPUS-FILTERING.md).  The
+`FILTER-###` rules below are the review contract and take precedence over an
+ad-hoc cleanup heuristic.
+
+### FILTER-001 — Preserve the project's actual information need
+
+The primary purpose of the corpus is to find prior formal work: definitions,
+structures, constructions, specifications, lemma/theorem statements, proofs,
+and useful formal interfaces across proof assistants.  Filtering must be judged
+against that purpose, not against whether a file looks polished, finished,
+canonical, upstreamed, popular, or production-ready.
+
+An incomplete proof can still be high-value prior art.  A checked theorem
+statement ending in `sorry`, `admit`, an axiom, a hole, or an equivalent
+proof-assistant mechanism may identify the right definitions, names, types,
+interfaces, namespace, or intended statement.  Do not confuse proof completion
+with search value.
+
+### FILTER-002 — Hard exclusion has a much higher evidence bar than downranking
+
+When a file's value is uncertain, retain it and attach role/provenance metadata;
+then test downranking or a secondary result channel.  Hard exclusion from the
+primary mathematical-content index is appropriate only when there is a
+content-level reason to believe no unique searchable formal mathematics is
+being lost.
+
+Path names, repository conventions, model intuition, or a few inspected
+examples are not sufficient evidence for a corpus-wide hard filter.
+
+### FILTER-003 — Keep source membership, storage, index eligibility, and rank separate
+
+Do not solve a file-ranking problem by removing an otherwise valid source from
+`sources.tsv`.  Distinguish at least:
+
+1. **source membership** — whether the upstream source belongs in the corpus;
+2. **retention/hydration** — what is locally preserved from that source;
+3. **primary mathematical index eligibility** — what may occupy mathematical
+   result slots;
+4. **auxiliary metadata/documentation eligibility** — what may help source or
+   module discovery without competing with theorem-bearing files;
+5. **ranking** — how eligible mathematical documents are ordered.
+
+A document can be useful metadata while being a poor primary mathematical
+result.  Filtering work must state which layer it changes.
+
+### FILTER-004 — The unilateral hard-filter boundary is content based
+
+A document may be removed from the **primary mathematical-content index**
+without per-document relevance review only when at least one of these is true:
+
+1. a prover-aware or format-aware check establishes that it contains no formal
+   mathematical declarations/proofs relevant to this corpus, and any useful
+   navigation/documentation is retained in an auxiliary channel; or
+2. its searchable content is exactly represented by another indexed document,
+   and all original source/path occurrences are retained as provenance aliases.
+
+Anything weaker is a candidate for tagging/downranking or an experiment, not an
+automatic exclusion policy.
+
+### FILTER-005 — Filtering must be reversible and provenance preserving
+
+Do not destructively delete upstream material merely to make search cleaner.
+Every hard filter or deduplication mechanism must be reproducible from the
+source checkout and must preserve enough metadata to answer why a document is
+absent from the primary index.
+
+For deduplicated content, retain every original `(source, path)` occurrence as
+an alias.  Search-result canonicalization is an implementation detail; it must
+not erase the fact that identical formal material occurs in several sources.
+
+### FILTER-006 — Exact-content deduplication is safe; normalization is a new experiment
+
+Byte-identical formal-source files contribute no new searchable mathematical
+text.  They may be represented once in a content index if all occurrences are
+retained as aliases/provenance.  Every original source/path/module name must
+remain searchable metadata: two byte-identical files can live under different
+mathematically informative paths, and path terms are themselves a useful
+retrieval signal.
+
+Do not silently broaden this rule to whitespace normalization, comment removal,
+alpha-renaming, pretty-print normalization, AST equality, or semantic
+equivalence.  Each broader equivalence relation can discard useful names,
+documentation, syntax, or provenance and requires its own measured policy.
+
+### FILTER-007 — Pure import aggregators are navigation data, not owner results
+
+A file that is **prover-aware verified** to contain only imports (plus
+whitespace/comments) contains no declaration or proof of its own.  Such a file
+should normally not compete with the imported theorem/definition-bearing file
+for primary mathematical result slots.
+
+Preserve its module identity, import edges, source/path provenance, and useful
+comments/documentation as searchable auxiliary metadata.  The module/path name
+itself may be the phrase a user knows even when the imported declaration has a
+less obvious name.  Do not infer
+"pure import" from a filename or a regex alone.  `open`, notation, attributes,
+options, aliases, namespace commands, declarations, or other executable/formal
+commands take a file outside this unilateral class.
+
+### FILTER-008 — Documentation/build metadata belongs in a separate retrieval role
+
+README files, toolchain pins, manifests, package/build files, and similar
+metadata do not themselves constitute formal theorem/definition/proof content.
+They should not consume primary mathematical result slots merely because they
+are present in a hydrated source.
+
+README and project documentation can still be valuable for source discovery,
+terminology, provenance, or locating an implementation.  Preserve them for an
+auxiliary documentation/source-discovery index rather than assuming they are
+worthless and deleting them.
+
+### FILTER-009 — Never filter on `sorry`, `admit`, holes, or proof incompleteness alone
+
+Proof incompleteness is not a corpus-quality failure for the project's prior-art
+use case.  A declaration with an unfinished proof can be exactly the result a
+mathematician or agent needs.  `sorry`/`admit` status may be recorded as
+provenance, but it is not a primary-index exclusion signal.
+
+### FILTER-010 — `generated/` is provenance, not a relevance class
+
+Do not exclude a file because its path contains `generated`, `autogen`,
+`ChallengeDeps`, or an analogous label.  Generated files may contain unique and
+useful formal definitions, structures, theorem statements, or proofs.
+
+Generated boilerplate may still be removable by a stronger invariant such as
+exact-content deduplication.  Apply the stronger invariant, not the path label.
+
+### FILTER-011 — Tests, fixtures, examples, and benchmarks are not automatically disposable
+
+Test/fixture/example/benchmark files can contain unique declarations, minimal
+reproductions, API examples, theorem statements, or proof patterns.  Their role
+may justify downranking for ordinary mathematical lookup, but path membership
+alone is not a safe hard-exclusion criterion.
+
+### FILTER-012 — Audit, roadmap, and suggested files are not automatically disposable
+
+Audit files may encode declarations or precise formal checks.  Roadmap and
+`Suggested` files may contain elaborated definitions and theorem statements,
+including statements whose proofs remain holes.  These can be valuable prior
+art.  Tag such roles and evaluate ranking behavior; do not hard-filter the class
+without a stronger content invariant.
+
+### FILTER-013 — Vendored/copied material is removable only when redundancy is established
+
+`vendor`, `vendored`, copied, mirrored, or forked paths are not evidence of
+content identity.  A vendored copy may have local fixes, additional declarations,
+different names, or a historically useful version.  Apply exact-content
+deduplication when it is actually identical; otherwise retain it unless a
+separate equivalence study establishes a safe policy.
+
+### FILTER-014 — Regex absence of declarations is diagnostic only
+
+Do not hard-filter a formal-language file because a generic regular expression
+did not find `theorem`, `lemma`, `def`, or similar tokens.  Proof assistants have
+macros, commands, generated declarations, notation, section machinery, examples,
+attributes, and system-specific syntax that a cross-prover regex cannot classify
+soundly.  Hard content classification must be prover/format aware.
+
+### FILTER-015 — Cross-prover filtering requires prover-specific semantics
+
+Do not project Lean assumptions onto Rocq, Isabelle, HOL, Mizar, Metamath, ACL2,
+PVS, Twelf, or Agda.  Generated proof traces, session files, proof scripts,
+theory roots, and caches have different meanings in different systems.
+
+A supposedly generated or auxiliary extension may contain authored proof steps
+or the only useful representation of a proof.  Establish its role for that
+proof assistant before excluding it.
+
+### FILTER-016 — Unjudged is not irrelevant
+
+Sparse qrels cannot certify a filter as safe.  A pooled candidate absent from
+`gold.json` is **unjudged**, not relevance 0.  Do not cite lack of a relevance
+judgment as evidence that a file class is garbage.
+
+When a filtering experiment changes top results, pool and review the affected
+candidates independently of the system that produced them.
+
+### FILTER-017 — Owner relevance means owner content, not merely a convenient module root
+
+An import-only umbrella module can be an excellent navigation result while not
+being the file that owns the requested definition/theorem.  Relevance judgments
+and ranking metrics must distinguish these cases.  Do not give an aggregator
+owner-level credit merely because following its imports eventually reaches the
+formalization.
+
+If an old qrel conflicts with this semantics, record the anomaly and correct the
+qrel in a gold-only change before using it to justify a filtering policy.
+
+### FILTER-018 — Every filtering proposal is a measured data experiment before deployment
+
+Before changing ingestion/index eligibility, record a hypothesis and produce a
+candidate/shadow index or post-hoc simulation against the frozen baseline.  Keep
+qrels, query set, and comparison index state controlled; inspect per-query gains
+and losses, not only aggregate scores.
+
+Archive the measurement in `evaluation/search/ledger.jsonl`/`runs/`, including
+the exact filter policy/version and affected-document counts.  Data filtering is
+part of search-quality research and follows the same scientific protocol as
+ranking changes.
+
+### FILTER-019 — Prefer role metadata and downranking while evidence is incomplete
+
+The default intermediate state for a suspicious class is an explicit file-role
+tag: import aggregator, generated, test/fixture, audit, roadmap, vendored,
+documentation, build metadata, duplicate alias, and so on.  Role tags make
+ranking experiments possible without losing recall.
+
+Only promote a role from "tag/downrank" to "hard exclude" when the stronger
+`FILTER-004` criterion is satisfied.
+
+### FILTER-020 — Record exclusion reasons as durable data
+
+Any production hard filter must have a stable policy identifier, implementation
+version, date/commit, counts by source/proof assistant, and a reversible mapping
+to excluded documents.  A future contributor must be able to audit which policy
+hid a file without reconstructing old shell commands or Git history.
+
+Filtered material must not become an invisible denominator that evaluation can
+never rediscover.  The unfiltered source remains authoritative input; the
+primary index is a derived view.
+
+### FILTER-021 — Do not optimize disk/index size at the expense of recall
+
+Index bloat is worth reducing, but byte savings are not evidence of mathematical
+irrelevance.  Report storage/runtime improvements separately from retrieval
+quality.  A smaller index is a valid win only when the relevant-content and
+provenance invariants remain satisfied.
+
+When an agent or contributor cannot establish the invariant needed for a hard
+filter, the required action is to stop at classification/tagging and record the
+uncertainty.  "Looks like junk" is never a reason to make content undiscoverable.
+
 ## Source-inventory invariant
 
 `sources.tsv` is the canonical corpus inventory.  For a fully hydrated local

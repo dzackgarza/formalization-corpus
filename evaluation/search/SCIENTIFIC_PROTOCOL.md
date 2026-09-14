@@ -11,6 +11,9 @@ Do not attribute poor rankings to a search algorithm until file-role pollution,
 generated material, aggregators, duplication and other corpus-quality effects
 have been measured.  Data-quality role heuristics are diagnostics, not relevance
 judgments; test proposed filters against qrels before changing ingestion.
+Any filtering experiment must also satisfy the stable `FILTER-###` contributor
+policies in `CONTRIBUTING.md`; the detailed losslessness boundary and review
+procedure are in `docs/CORPUS-FILTERING.md`.
 
 ## The permanent record
 

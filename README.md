@@ -62,7 +62,9 @@ just deploy-api         # deploy FastAPI adapter + stock Zoekt backend binary
 ```
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the source-inventory invariant,
-public terminology, and numbered copy/information-design rules.
+public terminology, numbered copy/information-design rules, and the conservative
+`FILTER-###` contract for corpus/index cleanup.  The detailed filtering decision
+guide is [`docs/CORPUS-FILTERING.md`](./docs/CORPUS-FILTERING.md).
 
 ## The hosted search
 
