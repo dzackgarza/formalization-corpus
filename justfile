@@ -38,26 +38,45 @@ build-tools:
     cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt-webserver ./cmd/zoekt-webserver
     cd tools/Julian__tree-sitter-lean && tree-sitter build --output ../../.ast-grep/lean.so
 
-# Incrementally index every formalization source.
-index:
+# Incrementally index the filtered primary mathematical-content view.
+index: filter-views
     #!/usr/bin/env zsh
     mkdir -p .zoekt
+    python scripts/prune-index-shards.py .zoekt
     tail -n +2 sources.tsv | while IFS=$'\t' read -r _ dir _ _ _ _; do
-      [[ -d "$dir" ]] || continue
-      ./bin/zoekt-index -index .zoekt "$dir"
+      repo="${dir:t}"
+      view=".index-primary/$repo"
+      [[ -d "$view" ]] || { echo "missing primary view for $repo" >&2; exit 1; }
+      ./bin/zoekt-index -large_file '**/*.prf' -index .zoekt "$view"
     done
 
-# Incrementally index only the cross-prover sync group.
-index-cross-prover:
+# Incrementally index only the cross-prover portion of the filtered primary view.
+index-cross-prover: filter-views
     #!/usr/bin/env zsh
     mkdir -p .zoekt
+    python scripts/prune-index-shards.py .zoekt
     awk -F'\t' 'NR > 1 && $5 == "cross-prover"' sources.tsv \
       | while IFS=$'\t' read -r _ dir _ _ _ _; do
-          [[ -d "$dir" ]] || continue
-          ./bin/zoekt-index -index .zoekt "$dir"
+          repo="${dir:t}"
+          view=".index-primary/$repo"
+          [[ -d "$view" ]] || { echo "missing primary view for $repo" >&2; exit 1; }
+          ./bin/zoekt-index -large_file '**/*.prf' -index .zoekt "$view"
         done
 
 index-ports: index-cross-prover
+
+# Build the small auxiliary README/import-navigation index separately from the
+# mathematical-content index. It is retained for source/module discovery and is
+# not published as the primary search backend.
+index-metadata: filter-views
+    #!/usr/bin/env zsh
+    rm -rf .zoekt-metadata
+    mkdir -p .zoekt-metadata
+    for view in .index-metadata/*(/N); do
+      files=("$view"/**/*(.N))
+      (( ${#files} )) || continue
+      ./bin/zoekt-index -index .zoekt-metadata "$view"
+    done
 
 # Validate the hydrated corpus and regenerate public source/proof-assistant/topic totals.
 metrics:
@@ -141,7 +160,7 @@ filter-validate:
     python scripts/validate-filter-state.py
 
 # Materialize hard-link views for primary mathematical content and auxiliary navigation/docs.
-filter-views:
+filter-views: filter-validate
     python scripts/materialize-index-views.py
 
 # Search declarations and source text across the corpus.

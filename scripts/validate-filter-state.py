@@ -15,6 +15,7 @@ from filtering_lib import (
     SNAPSHOT,
     load_catalog,
     load_jsonl,
+    source_revision,
     sources,
 )
 
@@ -221,7 +222,8 @@ def main() -> int:
     current = load_jsonl(CURRENT)
     duplicates = json.loads(DUPLICATES.read_text())
     snapshot = json.loads(SNAPSHOT.read_text())
-    registered = {source.repository for source in sources() if source.root.exists()}
+    source_rows = sources()
+    registered = {source.repository for source in source_rows}
     errors = validate_state(
         catalog=catalog,
         ledger=ledger,
@@ -230,6 +232,17 @@ def main() -> int:
         snapshot=snapshot,
         registered_repositories=registered,
     )
+    recorded_revisions = snapshot.get("source_revisions") or {}
+    for source in source_rows:
+        if not source.root.exists():
+            continue
+        actual = source_revision(source)
+        expected = recorded_revisions.get(source.repository)
+        if actual != expected:
+            errors.append(
+                f"{source.repository}: source revision changed since filtering snapshot "
+                f"({expected!r} -> {actual!r}); run `just filter-state` before indexing"
+            )
     if errors:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
@@ -237,7 +250,7 @@ def main() -> int:
     print(
         f"filter state ok: {len(current)} active decisions, "
         f"{len(duplicates.get('groups') or [])} duplicate groups, "
-        f"{len(registered)} registered hydrated sources"
+        f"{len(registered)} registered sources"
     )
     return 0
 
