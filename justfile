@@ -102,7 +102,7 @@ host := "zack@159.223.102.204"
 publish: metrics
     rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
     python scripts/check-published.py
-    ssh {{host}} "pkill -TERM -u zack -f '/home/zack/lean-corpus/api/.venv/bin/uvicorn formalization_api.app:app' || true"
+    if ssh {{host}} 'systemctl is-active --quiet formalization-corpus-api.service'; then ssh {{host}} "pkill -TERM -u zack -f '/home/zack/lean-corpus/api/.venv/bin/uvicorn formalization_api.app:app' || true"; else echo 'FastAPI adapter inactive; filtered index published to the currently active search backend'; fi
     @echo "https://formalization-corpus.dzackgarza.com"
 
 # Deploy the public FastAPI adapter and stock Zoekt backend binary. The first
