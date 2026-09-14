@@ -14,11 +14,11 @@ in the JSON reports.
 
 | Variant | owner Hit@10 | owner Hit@20 | Hit@10 | Hit@20 | MRR | nDCG@10 | zero-result rate |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `frontend_lexical_v1` historical baseline | 0.167 | 0.292 | 0.333 | 0.500 | 0.181 | 0.125 | 0.125 |
-| `normalized_content_v1` | 0.250 | 0.417 | 0.417 | 0.625 | 0.207 | 0.153 | 0.042 |
-| `normalized_path_content_v1` / deployed `frontend_lexical_v2` | **0.583** | 0.625 | 0.792 | 0.792 | 0.548 | 0.410 | 0.042 |
-| `gemini_multiquery_rrf_v1` | **0.750** | 0.875 | 0.833 | 0.958 | 0.525 | 0.427 | **0.000** |
-| `gemini_multiquery_rrf_cohere_v4_fast_v1` (30 candidates) | **0.958** | **0.958** | **1.000** | **1.000** | **0.831** | **0.723** | **0.000** |
+| `frontend_lexical_v1` historical baseline | 0.167 | 0.292 | 0.333 | 0.500 | 0.179 | 0.125 | 0.125 |
+| `normalized_content_v1` | 0.250 | 0.417 | 0.417 | 0.625 | 0.235 | 0.161 | 0.042 |
+| `normalized_path_content_v1` / deployed `frontend_lexical_v2` | **0.625** | 0.625 | 0.792 | 0.792 | 0.548 | 0.419 | 0.042 |
+| `gemini_multiquery_rrf_v1` | **0.750** | 0.875 | 0.833 | 0.958 | 0.495 | 0.421 | **0.000** |
+| `gemini_multiquery_rrf_cohere_v4_fast_v1` (30 candidates) | **0.958** | **0.958** | **1.000** | **1.000** | **0.827** | **0.718** | **0.000** |
 
 The first two ablations isolate query normalization from path/filename matching.
 The larger gain comes from restoring path/filename evidence: formal libraries
@@ -28,16 +28,19 @@ encode theorem and construction names heavily in module paths.
 `gemini-3.5-flash-lite` with no access to the gold judgments.  The original
 normalized lexical query and the reformulations are independently searched,
 then fused with Reciprocal Rank Fusion (`k=60`, depth 200).  This improves
-candidate recall and MRR, and improves the predeclared primary metric beyond
-`normalized_path_content_v1`: owner Hit@10 rises from 0.583 to 0.750.
+candidate recall and the predeclared primary metric beyond
+`normalized_path_content_v1`: owner Hit@10 rises from 0.625 to 0.750.  On the
+filtered index its raw MRR is lower (0.495 versus 0.548), so broader candidate
+recall and top-rank ordering must be treated as separate effects.
 
-A candidate-depth audit of `normalized_path_content_v1` showed owner Hit@20 =
-owner Hit@50 = owner Hit@100 = owner Hit@150 = 0.625.  Therefore reranking that
-lexical candidate pool cannot recover the remaining owner files.  Multi-query
-expansion changes the candidate set: 23 of 24 queries have a judged direct-owner file in the first
+A pre-filter candidate-depth audit of `normalized_path_content_v1` showed owner
+Hit@20 = owner Hit@50 = owner Hit@100 = owner Hit@150 = 0.625.  The current
+filtered-index owner Hit@20 is also 0.625, but the deeper cutoffs have not yet
+been remeasured.  Multi-query expansion changes the candidate set: 23 of 24
+queries have a judged direct-owner file in the first
 30 RRF candidates.  Reranking that expanded pool with Cohere `rerank-v4.0-fast`
 raises the predeclared primary owner Hit@10 metric to 0.958 and reaches owner
-Hit@20 = 0.958; some judged relevant file appears in the top 10 for all 24 queries.  The 24-query run consumed 48 Cohere search units.  Its serial prototype latency is recorded in the report and is not
+Hit@20 = 0.958; some judged relevant file appears in the top 10 for all 24 queries.  The filtered-index 24-query run consumed 49 Cohere search units.  Its serial prototype latency is recorded in the report and is not
 yet a serving target.
 
 The remaining direct-owner miss in the expanded lexical pool still motivates an independent

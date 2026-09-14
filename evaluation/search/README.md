@@ -222,14 +222,14 @@ v2 lexical behavior score as follows on the same current index:
 
 | Metric | v1 historical | v2 deployed |
 | --- | ---: | ---: |
-| owner Hit@10 (primary) | 0.167 | **0.583** |
+| owner Hit@10 (primary) | 0.167 | **0.625** |
 | Hit@1 | 0.083 | **0.417** |
 | Hit@5 | 0.292 | **0.708** |
 | Hit@10 | 0.333 | **0.792** |
 | Hit@20 | 0.500 | **0.792** |
-| source Hit@10 | 0.833 | **0.958** |
-| MRR | 0.181 | **0.548** |
-| nDCG@10 | 0.125 | **0.410** |
+| source Hit@10 | 0.792 | **0.958** |
+| MRR | 0.179 | **0.548** |
+| nDCG@10 | 0.125 | **0.419** |
 | zero-result rate | 0.125 | **0.042** |
 
 The historical conversational slice had zero results for both queries.  The v2
@@ -241,6 +241,15 @@ The absolute scores rose after the first pooled-review pass added 13 source-back
 relevance judgments.  This is expected: previously unjudged direct formalizations
 were not false positives.  The v2-over-v1 ordering remained large after that qrel
 expansion.
+
+The current baseline is measured on the filtered primary-content index introduced
+by the corpus-hygiene experiment.  Against the immediately preceding raw-index
+control on the same 24 queries and qrels, filtering raises deployed lexical-v2
+owner Hit@10 from 0.583 to 0.625 while Hit@10 remains 0.792; nDCG@10 rises from
+0.410 to 0.419.  The index shrank from 10,451,699,803 to 9,221,206,550 bytes
+(about 11.8%).  The immutable before/after reports and the deployment decision
+are recorded in `ledger.jsonl`; the file-level exclusions themselves are in
+`filtering/ledger.jsonl`.
 
 ## Relevance-judgment pooling
 
@@ -262,10 +271,10 @@ unjudged files.  Reviewed nonrelevant files are recorded explicitly as relevance
 0 and reported separately from candidates still awaiting review.  The current
 depth-10 pool combines the frozen frontend baseline, normalized
 path/content lexical retrieval, frozen multi-query RRF, and the measured Cohere
-reranker.  It has 444 unique query/file candidates: 65 judged relevant, 6 judged
-nonrelevant, and 373 explicitly unjudged.  The gold set currently contains 84
-judgments total; the Hensel/DVR and Bruhat--Tits depth-10 pools are fully judged;
-some judged files lie outside this depth-10 pool.  Unjudged does not mean irrelevant.
+reranker.  It has 442 unique query/file candidates: 63 judged relevant, 5 judged
+nonrelevant, and 374 explicitly unjudged.  The gold set currently contains 84
+judgments total; some judged files lie outside this depth-10 pool.  Unjudged does
+not mean irrelevant.
 
 This follows the TREC test-collection model: pool top documents from diverse
 runs, judge the pool, and keep qrels distinct from run output.  It also avoids a
@@ -277,19 +286,21 @@ worse simply because many of its top results were never judged.
 The measured experiments narrow the next branches:
 
 - **Fielded lexical retrieval first.** Module/file paths are unusually valuable
-  in formal libraries.  Restoring path evidence plus conservative query
-  normalization raises owner Hit@10 from 0.167 to 0.583 on the current qrels.
+  in formal libraries.  The current combination of conservative query
+  normalization, path evidence, and the safe primary-content filter raises
+  owner Hit@10 from the historical v1 value 0.167 to 0.625 on the current qrels.
 - **Semantic first-stage retrieval, not reranking alone.** For normalized
-  path/content retrieval, owner Hit is identical at depths 20, 50, 100, and
-  150 (0.625).  The missing owner files are absent from the lexical candidate
-  set, so no reranker can recover them.  Dense retrieval, learned sparse
-  expansion (for example SPLADE), or another independent first-stage signal is
-  required for that residue.
+  path/content retrieval, owner Hit@20 is currently 0.625.  A pre-filter
+  candidate-depth audit also plateaued at 0.625 through depths 50, 100, and 150;
+  that deeper audit should be rerun against the filtered index before treating
+  the exact plateau as current.  The general candidate-recall limitation remains
+  directly testable: no reranker can recover an owner file absent from its
+  candidate pool.
 - **Hybrid fusion.** Exact formal identifiers and semantic paraphrases are
   complementary.  Combine independent lexical/dense runs by a rank-based method
   such as Reciprocal Rank Fusion before learning score calibration.
 - **Hierarchical retrieval.** Normalized lexical retrieval already has source
-  Hit@5 = 0.958 while owner Hit@10 = 0.583.  This supports testing a cheap
+  Hit@5 = 0.958 while owner Hit@10 = 0.625.  This supports testing a cheap
   source-first stage followed by stronger file/chunk retrieval within a handful
   of sources, rather than assuming every request needs a global dense scan.
 - **Deterministic chunk context before generated context.** For file/chunk
