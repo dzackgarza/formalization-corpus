@@ -65,8 +65,9 @@ index-cross-prover: filter-views
 
 index-ports: index-cross-prover
 
-# Build the full auxiliary README/import-navigation index for offline diagnostics.
-# Production does not serve this directory directly.
+# Build the separate auxiliary README/import-navigation index for maintainer and
+# source-discovery work. This index is never published as part of formalization
+# search and is never queried by the public search page/API.
 index-metadata: filter-views
     #!/usr/bin/env zsh
     rm -rf .zoekt-metadata
@@ -75,27 +76,6 @@ index-metadata: filter-views
       files=("$view"/**/*(.N))
       (( ${#files} )) || continue
       ./bin/zoekt-index -index .zoekt-metadata "$view"
-    done
-
-# Add exact FD-002 documentation as namespaced shards in the primary Zoekt
-# directory. Shard names are docs__<repository>, while repository metadata keeps
-# the canonical source identity. Primary formal queries are unaffected because
-# they already require proof-assistant source extensions.
-index-documentation: filter-views
-    #!/usr/bin/env zsh
-    mkdir -p .zoekt
-    rm -f .zoekt/docs__*.zoekt(N)
-    for view in .index-documentation/*(/N); do
-      files=("$view"/**/*(.N))
-      (( ${#files} )) || continue
-      repo="${view:t}"
-      meta="$(mktemp)"
-      trap 'rm -f "$meta"' EXIT
-      jq -nc --arg name "$repo" '{Name:$name}' > "$meta"
-      ./bin/zoekt-index -index .zoekt -meta "$meta" \
-        -shard_prefix_override "docs__$repo" "$view"
-      rm -f "$meta"
-      trap - EXIT
     done
 
 # Validate the hydrated corpus and regenerate public source/proof-assistant/topic totals.
@@ -118,10 +98,9 @@ preview: metrics site
 # Cloudflare, which proxies HTTP and would not carry ssh.
 host := "zack@159.223.102.204"
 
-# Ship the single validated index. FD-002 documentation occupies namespaced
-# docs__ shards in the same Zoekt process and cannot match formal-extension
-# primary queries; the API exposes it only through the documentation endpoint.
-publish: metrics index-documentation
+# Ship only the validated primary formalization index. The separate metadata
+# index is deliberately not published or queried by the public site.
+publish: index metrics
     rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
     python scripts/check-published.py
     if ssh {{host}} 'systemctl is-active --quiet formalization-corpus-api.service'; then ssh {{host}} "pkill -TERM -u zack -f '/home/zack/lean-corpus/api/.venv/bin/uvicorn formalization_api.app:app' || true"; else echo 'FastAPI adapter inactive; filtered index published to the currently active search backend'; fi
@@ -188,6 +167,10 @@ filter-views: filter-validate
 # Search declarations and source text across the corpus.
 search query:
     ./bin/zoekt -index_dir .zoekt -r "{{query}}"
+
+# Search the separate maintainer-only metadata/navigation index.
+search-metadata query:
+    ./bin/zoekt -index_dir .zoekt-metadata -r "{{query}}"
 
 # Run a Lean syntax-tree pattern across the corpus.
 ast pattern:

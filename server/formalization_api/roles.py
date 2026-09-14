@@ -9,9 +9,7 @@ from typing import Any
 
 IMPORT_NAVIGATION_ROLE = "navigation-import-only"
 ACL2_PROOF_METADATA_ROLE = "proof-metadata-useless-runes"
-DOCUMENTATION_ROLE = "documentation-readme"
 ROLE_BY_DECISION_ID = {
-    "FD-002": DOCUMENTATION_ROLE,
     "FD-016": IMPORT_NAVIGATION_ROLE,
     "FD-017": ACL2_PROOF_METADATA_ROLE,
 }
@@ -48,12 +46,7 @@ class FileRoleIndex:
                 role = ROLE_BY_DECISION_ID.get(decision_id)
                 if role is None:
                     continue
-                if decision_id == "FD-002":
-                    if row.get("primary") != "exclude" or row.get("auxiliary") != "include":
-                        raise ValueError(
-                            f"documentation role at {path}:{number} is not auxiliary-only"
-                        )
-                elif row.get("primary") != "retain":
+                if row.get("primary") != "retain":
                     raise ValueError(
                         f"search role at {path}:{number} is not primary-retained"
                     )
@@ -100,44 +93,13 @@ class FileRoleIndex:
                 str(file_match.get("FileName", "")),
             )
             role = self._roles.get(key)
-            if role is None or role == DOCUMENTATION_ROLE:
+            if role is None:
                 ordinary.append(file_match)
                 continue
             enriched = dict(file_match)
             enriched["FileRole"] = role
             by_role[role].append(enriched)
         return ordinary + [item for role in ROLE_ORDER for item in by_role[role]]
-
-    def documentation_files(self, files: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        """Return only durable FD-002 auxiliary documents, preserving backend order."""
-        out: list[dict[str, Any]] = []
-        for file_match in files:
-            key = (
-                str(file_match.get("Repository", "")),
-                str(file_match.get("FileName", "")),
-            )
-            if self._roles.get(key) != DOCUMENTATION_ROLE:
-                continue
-            enriched = dict(file_match)
-            enriched["FileRole"] = DOCUMENTATION_ROLE
-            out.append(enriched)
-        return out
-
-    def documentation_response(self, body: bytes) -> bytes:
-        """Restrict an auxiliary-index response to exact FD-002 documentation rows."""
-        payload: dict[str, Any] = json.loads(body)
-        result = payload.get("Result")
-        if not isinstance(result, dict):
-            return body
-        files = result.get("Files")
-        if not isinstance(files, list):
-            return body
-        documentation = self.documentation_files(files)
-        result["Files"] = documentation
-        result["FileCount"] = len(documentation)
-        result["DocumentationFilesReturned"] = len(documentation)
-        result["AuxiliaryChannel"] = "documentation"
-        return (json.dumps(payload, separators=(",", ":"), ensure_ascii=False) + "\n").encode()
 
     def rerank_response(self, body: bytes) -> bytes:
         if not self._roles:

@@ -291,33 +291,30 @@ six aggregate control families remain at their preceding values.  A targeted
 production query does exercise it: `APPEND-POLYMORPHIC-SIG`, which has no match
 in ordinary retained ACL2 source, now returns
 `books/acl2s/.sys/acl2s-sigs@useless-runes.lsp` with the proof-metadata role.
-The primary/formal view contains 210,723 documents.  A final deployment audit
-then closed the remaining auxiliary-preservation gap for `FD-002`: 969
-non-formal README/source-documentation files had been excluded from primary
-ranking on the promise that they remained searchable elsewhere, while production
-did not actually serve that auxiliary material.  The reproducible audit in
-`filtering/audits/readme-searchability-20260914.json` samples 3,000 rare readable
-FD-002 terms and finds 831 absent from all primary document text.  One concrete
-production acceptance term, `running-on-a-project-other-than-mathlib`, now
-returns `leanprover-community__mathlib4/README.md` with role
-`documentation-readme`.
+The primary/formal view contains 210,723 documents.  A later README experiment
+measured 969 FD-002 non-formal README/source-documentation files separately.  The
+reproducible audit in `filtering/audits/readme-searchability-20260914.json` samples
+3,000 rare readable FD-002 terms and finds 831 absent from all primary document
+text.  That measurement establishes lexical difference only.  It does not show
+that README text improves retrieval of formalized definitions, theorem statements,
+constructions, interfaces, or proofs, and the 24-query mathematical benchmark did
+not improve.
 
-Production serves those 969 documents as namespaced `docs__*` shards in the
-**same** Zoekt process as formal source.  Ordinary mathematical queries retain
-their proof-assistant-extension constraint, so documentation cannot occupy
-primary theorem/definition ranks; `/api/search/documentation` additionally
-enforces durable FD-002 membership, and the browser appends documentation after
-formal results.  A separate persistent Zoekt process was tested and rejected:
-inside the legacy root service cgroup it consumed primary-search memory headroom,
-while a user-service variant was not persistent without login lingering.  The
-single-process shard namespace avoids both defects.
+An intermediate deployment incorrectly put those README files into namespaced
+`docs__*` shards in the same Zoekt corpus and appended a separate README query's
+hits to ordinary browser results.  That is not an auxiliary index in the sense
+used by the filtering policy: it mixes documentation into the same deployed
+search product.  The experiment is rejected.  FD-002 documents are absent from
+the public formalization index and API.  They may be built into the physically
+separate `.zoekt-metadata` index for explicit maintainer/source-discovery work,
+but that index is neither published nor fused with mathematical results.
 
-The final searchable index therefore contains 211,692 documents across 1,771
-shards: 210,723 primary/formal-or-proof-metadata documents plus 969 documentation
-documents.  It is 10,717,188,619 bytes on the production host.  The 24-query
-lexical-v2 metrics are unchanged at Owner Hit@10 0.625, Hit@10 0.792, MRR 0.548,
-and nDCG@10 0.419.  Storage size is intentionally not treated as evidence for or
-against recall safety.
+Removing the documentation shards therefore restores the measured primary view
+without changing the intended retrieval behavior.  The 24-query lexical-v2
+metrics remain Owner Hit@10 0.625, Hit@10 0.792, MRR 0.548, and nDCG@10 0.419;
+the exact current primary shard count, byte fingerprint, and production latency
+are recorded by the immutable run artifacts rather than treated as search-quality
+claims here.
 
 The public webserver also has a measured serving-quality parameter. Zoekt's JSON
 handler derives internal per-shard match limits from `MaxDocDisplayCount` when no

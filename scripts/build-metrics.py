@@ -48,7 +48,6 @@ LABELS = {
 
 ORDER = tuple(LABELS)
 SHARD = re.compile(r"(.+)_v\d+\.\d+\.zoekt$")
-DOCUMENTATION_PREFIX = "docs__"
 SKIP_PARTS = {".git", ".lake", "node_modules"}
 
 
@@ -68,22 +67,12 @@ def source_rows() -> list[tuple[str, pathlib.Path]]:
     return rows
 
 
-def canonical_index_source_name(shard_name: str, registered: set[str]) -> str:
-    if shard_name in registered:
-        return shard_name
-    if shard_name.startswith(DOCUMENTATION_PREFIX):
-        source = shard_name[len(DOCUMENTATION_PREFIX):]
-        if source in registered:
-            return source
-    return shard_name
-
-
-def indexed_source_names(registered: set[str]) -> set[str]:
+def indexed_source_names() -> set[str]:
     out: set[str] = set()
     for path in (ROOT / ".zoekt").glob("*.zoekt"):
         found = SHARD.fullmatch(path.name)
         if found:
-            out.add(canonical_index_source_name(found.group(1), registered))
+            out.add(found.group(1))
     return out
 
 
@@ -100,7 +89,7 @@ def main() -> None:
     rows = source_rows()
     counts = Counter(kind for kind, _ in rows)
     source_names = {relative.name for _, relative in rows}
-    indexed = indexed_source_names(source_names)
+    indexed = indexed_source_names()
     problems: list[str] = []
     for name in sorted(indexed - source_names):
         problems.append(f"{name}: index shard exists for a source absent from sources.tsv")

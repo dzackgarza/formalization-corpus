@@ -158,11 +158,6 @@ class SearchResult(APIModel):
         description="Counts of returned lower-priority file roles when role ranking is applied.",
     )
     RoleRerankingApplied: bool | None = None
-    DocumentationFilesReturned: int | None = Field(
-        default=None,
-        description="Number of FD-002 README/source-documentation files returned by the auxiliary channel.",
-    )
-    AuxiliaryChannel: str | None = None
 
 
 class SearchResponse(APIModel):

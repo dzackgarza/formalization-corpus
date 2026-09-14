@@ -31,9 +31,6 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--primary", type=pathlib.Path, default=ROOT / ".index-primary")
     parser.add_argument("--metadata", type=pathlib.Path, default=ROOT / ".index-metadata")
-    parser.add_argument(
-        "--documentation", type=pathlib.Path, default=ROOT / ".index-documentation"
-    )
     args = parser.parse_args()
 
     decisions = load_jsonl(CURRENT)
@@ -47,24 +44,16 @@ def main() -> int:
         for row in decisions
         if row["auxiliary"] == "include"
     }
-    included_documentation = {
-        (row["repository"], row["file"])
-        for row in decisions
-        if row["decision_id"] == "FD-002"
-    }
-
-    for root in (args.primary, args.metadata, args.documentation):
+    for root in (args.primary, args.metadata):
         if root.exists():
             shutil.rmtree(root)
         root.mkdir(parents=True)
 
     primary_counts: dict[str, int] = {}
     metadata_counts: dict[str, int] = {}
-    documentation_counts: dict[str, int] = {}
     for source in sources():
         primary_count = 0
         metadata_count = 0
-        documentation_count = 0
         if not source.root.exists():
             continue
         for path in iter_files(source):
@@ -80,12 +69,8 @@ def main() -> int:
             if key in included_auxiliary:
                 link(path, args.metadata / source.repository / rel)
                 metadata_count += 1
-            if key in included_documentation:
-                link(path, args.documentation / source.repository / rel)
-                documentation_count += 1
         primary_counts[source.repository] = primary_count
         metadata_counts[source.repository] = metadata_count
-        documentation_counts[source.repository] = documentation_count
 
     empty = sorted(repo for repo, count in primary_counts.items() if count == 0)
     if empty:
@@ -94,8 +79,7 @@ def main() -> int:
         )
     print(
         f"primary view: {sum(primary_counts.values())} documents across {len(primary_counts)} sources; "
-        f"metadata view: {sum(metadata_counts.values())} documents; "
-        f"documentation view: {sum(documentation_counts.values())} documents"
+        f"separate metadata view: {sum(metadata_counts.values())} documents"
     )
     return 0
 

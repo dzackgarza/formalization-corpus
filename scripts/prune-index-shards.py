@@ -11,7 +11,6 @@ from filtering_lib import sources
 
 
 SHARD = re.compile(r"(.+)_v\d+\.\d+\.zoekt$")
-DOCUMENTATION_PREFIX = "docs__"
 
 
 def main() -> int:
@@ -26,12 +25,7 @@ def main() -> int:
             match = SHARD.fullmatch(path.name)
             if not match:
                 continue
-            shard_repo = match.group(1)
-            repository = (
-                shard_repo[len(DOCUMENTATION_PREFIX):]
-                if shard_repo.startswith(DOCUMENTATION_PREFIX)
-                else shard_repo
-            )
+            repository = match.group(1)
             if repository not in registered:
                 path.unlink()
                 removed.append(path)

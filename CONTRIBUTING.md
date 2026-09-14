@@ -303,19 +303,20 @@ remain searchable as proof metadata and may be downranked behind authored
 formal-source hits; neither physical filtering nor a blanket query-time `.sys`
 exclusion is permitted.
 
-Non-formal README and project documentation can still be valuable for source discovery,
-terminology, provenance, or locating an implementation.  Preserve them for an
-auxiliary documentation/source-discovery index rather than assuming they are
-worthless and deleting them.
+Non-formal README and project documentation can still be useful to maintainers for
+source discovery, provenance, or understanding project layout.  If they are made
+searchable, keep them in a genuinely separate documentation/source-discovery index.
+They are not mathematical prior-art results and must not be merged into the public
+formalization search merely because they contain terminology absent from formal
+source.
 
-That auxiliary channel must exist end to end, not merely as a local materialized
-directory. Production indexes exact FD-002 documents into namespaced `docs__*`
-shards in the same Zoekt directory as formal source. The primary query compiler's
-formal-extension constraint makes those shards invisible to theorem/definition
-search, while `/api/search/documentation` explicitly queries README-like paths and
-then enforces durable FD-002 membership. The browser appends those hits only after
-primary formal-source results. Do not run a second persistent Zoekt process merely
-to preserve this role: the production host's memory budget belongs to primary search.
+"Separate" is an index boundary, not a result-ordering convention.  FD-002 files
+must not occupy shards in the public `.zoekt` index, be queried through
+`/api/search`, or be appended to ordinary formalization results.  The repository's
+optional `.zoekt-metadata` index is a maintainer-side auxiliary index built with
+`just index-metadata` and queried explicitly with `just search-metadata`; it is not
+published or queried by the public site.  A future reader-facing documentation
+search, if one is justified independently, must remain a distinct search surface.
 
 ### FILTER-009 — Never filter on `sorry`, `admit`, holes, or proof incompleteness alone
 

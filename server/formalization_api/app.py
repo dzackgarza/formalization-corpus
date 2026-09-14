@@ -249,14 +249,6 @@ class SearchProxy:
             )
         )
 
-    async def search_documentation(self, payload: dict[str, Any]) -> bytes:
-        documentation_payload = dict(payload)
-        documentation_payload["Q"] = (
-            f"({payload['Q']}) file:(^|/)readme"
-        )
-        body = await self._post("/api/search", documentation_payload)
-        return self.file_roles.documentation_response(body)
-
     async def _post(self, path: str, payload: dict[str, Any]) -> bytes:
         try:
             response = await self.client.post(path, json=payload)
@@ -443,34 +435,6 @@ def create_app(
             max_concurrency=request.MaxConcurrency,
         )
         return BatchSearchResponse(Results=results)
-
-    @app.post(
-        "/api/search/documentation",
-        operation_id="searchDocumentation",
-        summary="Search auxiliary source documentation",
-        response_model=None,
-        responses={
-            200: {
-                "model": SearchResponse,
-                "description": "README/source-documentation results from FD-002 documentation shards.",
-            },
-            400: {"model": ErrorResponse, "description": "Invalid search request."},
-            502: {"model": ErrorResponse, "description": "Documentation backend unavailable."},
-        },
-        tags=["Search"],
-    )
-    async def search_documentation(request: SearchRequest, raw_request: Request) -> Response:
-        proxy: SearchProxy = raw_request.app.state.proxy
-        payload = request.model_dump(by_alias=True, exclude_none=True)
-        try:
-            body = await proxy.search_documentation(payload)
-        except BackendError as exc:
-            return Response(
-                content=exc.body,
-                status_code=exc.status_code,
-                media_type="application/json",
-            )
-        return Response(content=body, media_type="application/json")
 
     @app.post(
         "/api/submit/source",

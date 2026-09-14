@@ -27,7 +27,8 @@ The derived local views are gitignored:
 - `.index-primary/` — formal mathematical documents eligible for the public
   search index;
 - `.index-metadata/` — README/documentation and parser-verified import-only
-  navigation modules.
+  navigation modules for a separate maintainer-side auxiliary index.  It is not
+  merged into, published with, or queried by the public formalization search.
 
 See `CONTRIBUTING.md` `FILTER-###` and `docs/CORPUS-FILTERING.md` before changing
 any decision.

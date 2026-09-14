@@ -121,81 +121,6 @@ def test_search_is_cached_and_preserves_request_shape() -> None:
         server.shutdown()
 
 
-def test_documentation_search_uses_shared_backend_and_exact_fd002_membership() -> None:
-    class DocumentationBackendHandler(BackendHandler):
-        last_query = None
-
-        def do_POST(self) -> None:  # noqa: N802
-            size = int(self.headers.get("Content-Length", "0"))
-            body = json.loads(self.rfile.read(size))
-            type(self).last_query = body.get("Q")
-            payload = {
-                "Result": {
-                    "Files": [
-                        {"FileName": "README.md", "Repository": "docs", "Score": 30},
-                        {"FileName": "Index.lean", "Repository": "lean", "Score": 20},
-                        {"FileName": "README.md", "Repository": "not-fd002", "Score": 10},
-                    ],
-                    "FileCount": 3,
-                }
-            }
-            encoded = json.dumps(payload).encode()
-            self.send_response(200)
-            self.send_header("Content-Type", "application/json")
-            self.send_header("Content-Length", str(len(encoded)))
-            self.end_headers()
-            self.wfile.write(encoded)
-
-    primary = ThreadingHTTPServer(("127.0.0.1", 0), DocumentationBackendHandler)
-    threading.Thread(target=primary.serve_forever, daemon=True).start()
-    host, port = primary.server_address
-    primary_url = f"http://{host}:{port}"
-    try:
-        with tempfile.TemporaryDirectory() as directory:
-            roles = pathlib.Path(directory) / "filter-state.jsonl"
-            roles.write_text(
-                "\n".join(
-                    [
-                        json.dumps({
-                            "decision_id": "FD-002", "primary": "exclude", "auxiliary": "include",
-                            "repository": "docs", "file": "README.md",
-                        }),
-                        json.dumps({
-                            "decision_id": "FD-016", "primary": "retain", "auxiliary": "include",
-                            "repository": "lean", "file": "Index.lean",
-                        }),
-                    ]
-                ) + "\n"
-            )
-
-            async def run(client: httpx.AsyncClient) -> None:
-                response = await client.post(
-                    "/api/search/documentation", json={"Q": "topic"}
-                )
-                assert response.status_code == 200
-                result = response.json()["Result"]
-                assert [(f["Repository"], f["FileName"]) for f in result["Files"]] == [
-                    ("docs", "README.md")
-                ]
-                assert result["Files"][0]["FileRole"] == "documentation-readme"
-                assert result["DocumentationFilesReturned"] == 1
-                assert result["AuxiliaryChannel"] == "documentation"
-                assert result["FileCount"] == 1
-                assert DocumentationBackendHandler.last_query == (
-                    "(topic) file:(^|/)readme"
-                )
-
-            asyncio.run(
-                with_client(
-                    primary_url,
-                    run,
-                    file_roles_path=roles,
-                )
-            )
-    finally:
-        primary.shutdown()
-
-
 def test_list_is_proxied_without_search_cache() -> None:
     server, url = backend_server()
     try:
@@ -223,6 +148,7 @@ def test_openapi_is_generated_from_pydantic_models() -> None:
                 document["paths"]["/api/search/batch"]["post"]["operationId"]
                 == "searchCorpusBatch"
             )
+            assert "/api/search/documentation" not in document["paths"]
             assert document["paths"]["/api/list"]["post"]["operationId"] == "listSources"
             assert "SearchRequest" in document["components"]["schemas"]
             assert "SearchResponse" in document["components"]["schemas"]
