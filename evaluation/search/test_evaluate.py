@@ -59,6 +59,11 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         compiled = evaluate.compile_query("is this already formalized?", "frontend_lexical_v2")
         self.assertIn('content:"$a"', compiled)
 
+    def test_query_compiler_does_not_hide_acl2_sys_proof_metadata(self) -> None:
+        for variant in ("frontend_lexical_v1", "frontend_lexical_v2", "normalized_path_content_v1"):
+            compiled = evaluate.compile_query("generated induction scheme", variant)
+            self.assertNotIn(r"-file:(^|/)\.sys/", compiled)
+
     def test_serving_options_default_to_shared_frontend_config(self) -> None:
         serving = evaluate.serving_options()
         self.assertEqual(serving["max_doc_display_count"], 60)

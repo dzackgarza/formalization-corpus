@@ -181,18 +181,17 @@ def main() -> int:
             if source.proof_assistant == "acl2" and is_acl2_useless_runes_report(path):
                 current.append(
                     decision_record(
-                        catalog=catalog, decision_id="FD-014", repository=source.repository,
+                        catalog=catalog, decision_id="FD-017", repository=source.repository,
                         file=rel, proof_assistant=source.proof_assistant,
                         source_revision_value=revision, content_sha256=digest,
                         evidence={
                             "path_component": ".sys",
                             "artifact_suffix": "@useless-runes.lsp",
                             "size_bytes": size,
-                            "prior_query_semantics": "production/evaluator queries already exclude (^|/)\\.sys/",
+                            "content_class": "acl2-certification-proof-metadata",
                         }, observed_at=now, commit=commit,
                     )
                 )
-                continue
 
             if source.proof_assistant == "pvs" and path.suffix.casefold() == ".prf":
                 current.append(

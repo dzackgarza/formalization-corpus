@@ -119,7 +119,9 @@
       "primary": "exclude",
       "auxiliary": "exclude",
       "policies": ["FILTER-004", "FILTER-015", "FILTER-018", "FILTER-020"],
-      "justification": "An ACL2 file is classified here only when it is under a .sys directory and its basename ends exactly in @useless-runes.lsp. These files are certification-generated rune-usage reports rather than authored definition/theorem source, and production/evaluator queries already excluded .sys paths before the physical cleanup. The 2026-09-14 corpus audit found that all 9,359 files previously covered by the broader FD-004 rule belonged to this exact class. Other .sys files are not authorized for exclusion by this decision."
+      "justification": "An ACL2 file is classified here only when it is under a .sys directory and its basename ends exactly in @useless-runes.lsp. These files are certification-generated rune-usage reports rather than authored definition/theorem source, and production/evaluator queries already excluded .sys paths before the physical cleanup. The 2026-09-14 corpus audit found that all 9,359 files previously covered by the broader FD-004 rule belonged to this exact class. Other .sys files are not authorized for exclusion by this decision.",
+      "status": "superseded",
+      "superseded_by": "FD-017"
     },
     {
       "decision_id": "FD-015",
@@ -136,6 +138,14 @@
       "auxiliary": "include",
       "policies": ["FILTER-002", "FILTER-003", "FILTER-004", "FILTER-007", "FILTER-017", "FILTER-020"],
       "justification": "Tree-sitter verification establishes that these Lean files own no declaration or proof, but that fact alone does not make their module names, paths, comments, provenance, or import topology dispensable search signals. FD-005 assumed those signals remained searchable through a deployed auxiliary navigation index. The production search service does not currently publish or query that index, so excluding these files from primary search violated FILTER-007's preservation requirement. Keep them in primary search, while also retaining the auxiliary copy, until an end-to-end searchable auxiliary channel is deployed and measured."
+    },
+    {
+      "decision_id": "FD-017",
+      "title": "ACL2 useless-runes proof metadata retained",
+      "primary": "retain",
+      "auxiliary": "no-change",
+      "policies": ["FILTER-001", "FILTER-002", "FILTER-004", "FILTER-015", "FILTER-019", "FILTER-020"],
+      "justification": "ACL2 *@useless-runes.lsp files are certification-generated proof metadata, but generation does not make their searchable symbols redundant. An exhaustive 2026-09-14 audit of the 9,359 nonempty reports found 589,709 distinct event identifiers that were absent from every retained non-.sys ACL2 source file under a conservative textual token check. These include generated contracts, induction schemes, signatures, accessors, and lemmas. The reports therefore remain primary-searchable as proof metadata; ranking may demote this role behind authored formal-source hits, but the symbols must not be hidden by a physical or query-time .sys exclusion."
     }
   ]
 }

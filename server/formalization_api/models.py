@@ -109,7 +109,7 @@ class FileMatch(APIModel):
     Score: float | None = None
     FileRole: str | None = Field(
         default=None,
-        description="Result-layer role; navigation-import-only hits are retained but demoted.",
+        description="Result-layer role for retained lower-priority navigation or proof metadata.",
     )
     ExactDuplicateAliases: list["FileAlias"] | None = Field(
         default=None,
@@ -148,6 +148,14 @@ class SearchResult(APIModel):
     NavigationFilesDemoted: int | None = Field(
         default=None,
         description="Number of retained import-only navigation hits placed after ordinary hits.",
+    )
+    RoleFilesDemoted: int | None = Field(
+        default=None,
+        description="Number of retained role-bearing hits placed after ordinary formal-content hits.",
+    )
+    RoleCounts: dict[str, int] | None = Field(
+        default=None,
+        description="Counts of returned lower-priority file roles when role ranking is applied.",
     )
     RoleRerankingApplied: bool | None = None
 

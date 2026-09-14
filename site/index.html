@@ -176,11 +176,10 @@ function buildQuery(text) {
 
 	const sourceSets = [];
 	const prover = el("prover-filter").value;
-	// An explicit filter wins over a proof-assistant name inferred from prose.
-	parts.push(`file:${prover ? FORMAL_FILES : (naturalProofFilter || FORMAL_FILES)}`);
-	parts.push(String.raw`-file:(^|/)\.sys/`);
+		// An explicit filter wins over a proof-assistant name inferred from prose.
+		parts.push(`file:${prover ? FORMAL_FILES : (naturalProofFilter || FORMAL_FILES)}`);
 
-	if (prover) {
+		if (prover) {
 		sourceSets.push(corpus.sources
 			.filter(source => source.proof_assistant === prover)
 			.map(source => source.index_id));

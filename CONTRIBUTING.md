@@ -293,11 +293,15 @@ example, and an axiom. Those declarations are often build helpers, but that is
 not a content-level proof of irrelevance. `lakefile.lean` therefore remains in
 the primary formal-source channel unless a stronger per-file invariant applies.
 
-Generated/system directories must be narrowed the same way. For ACL2, the
-current safe `.sys` hard filter is specifically the certification-generated
-`*@useless-runes.lsp` report class. Do not interpret that as permission to
-exclude every formal-source file under `.sys`: a different artifact family may
-carry different information and needs an independent decision.
+Generated/system directories must be narrowed the same way. ACL2's
+`*@useless-runes.lsp` reports are the concrete counterexample to treating
+certification output as disposable: an exhaustive 2026-09-14 audit found
+589,709 distinct generated event identifiers in those reports that were absent
+from every retained non-`.sys` ACL2 source file under a conservative textual
+check. `FD-014` is therefore superseded by retained role `FD-017`. The reports
+remain searchable as proof metadata and may be downranked behind authored
+formal-source hits; neither physical filtering nor a blanket query-time `.sys`
+exclusion is permitted.
 
 Non-formal README and project documentation can still be valuable for source discovery,
 terminology, provenance, or locating an implementation.  Preserve them for an

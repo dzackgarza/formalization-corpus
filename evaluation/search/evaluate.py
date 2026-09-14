@@ -199,7 +199,6 @@ def compile_query(text: str, variant: str) -> str:
         parts.append(f"file:{proof_filter or FORMAL_FILES}")
     else:
         raise ValueError(f"unknown retrieval variant: {variant}")
-    parts.append(r"-file:(^|/)\.sys/")
     parts.append("case:no")
     return " ".join(parts)
 

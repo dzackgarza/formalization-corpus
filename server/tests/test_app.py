@@ -284,8 +284,74 @@ def test_import_only_navigation_hits_are_retained_but_demoted() -> None:
                 ]
                 assert result["Files"][-1]["FileRole"] == "navigation-import-only"
                 assert result["NavigationFilesDemoted"] == 1
+                assert result["RoleFilesDemoted"] == 1
+                assert result["RoleCounts"] == {"navigation-import-only": 1}
                 assert result["RoleRerankingApplied"] is True
                 assert result["FileCount"] == 3
+
+            asyncio.run(with_client(url, run, file_roles_path=roles))
+    finally:
+        server.shutdown()
+
+
+def test_distinct_retained_metadata_roles_are_stably_demoted() -> None:
+    class RoleBackendHandler(BackendHandler):
+        def do_POST(self) -> None:  # noqa: N802
+            size = int(self.headers.get("Content-Length", "0"))
+            self.rfile.read(size)
+            payload = {
+                "Result": {
+                    "Files": [
+                        {"FileName": "report@useless-runes.lsp", "Repository": "acl2", "Score": 40},
+                        {"FileName": "Index.lean", "Repository": "lean", "Score": 30},
+                        {"FileName": "Owner.lisp", "Repository": "acl2", "Score": 20},
+                        {"FileName": "Other.lean", "Repository": "lean", "Score": 10},
+                    ],
+                    "FileCount": 4,
+                }
+            }
+            encoded = json.dumps(payload).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(encoded)))
+            self.end_headers()
+            self.wfile.write(encoded)
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), RoleBackendHandler)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    host, port = server.server_address
+    url = f"http://{host}:{port}"
+    try:
+        with tempfile.TemporaryDirectory() as directory:
+            roles = pathlib.Path(directory) / "filter-state.jsonl"
+            roles.write_text(
+                "\n".join(
+                    json.dumps(row)
+                    for row in (
+                        {"decision_id": "FD-016", "primary": "retain", "repository": "lean", "file": "Index.lean"},
+                        {"decision_id": "FD-017", "primary": "retain", "repository": "acl2", "file": "report@useless-runes.lsp"},
+                    )
+                )
+                + "\n"
+            )
+
+            async def run(client: httpx.AsyncClient) -> None:
+                response = await client.post("/api/search", json={"Q": "topic"})
+                assert response.status_code == 200
+                result = response.json()["Result"]
+                assert [(f["Repository"], f["FileName"]) for f in result["Files"]] == [
+                    ("acl2", "Owner.lisp"),
+                    ("lean", "Other.lean"),
+                    ("lean", "Index.lean"),
+                    ("acl2", "report@useless-runes.lsp"),
+                ]
+                assert result["Files"][-2]["FileRole"] == "navigation-import-only"
+                assert result["Files"][-1]["FileRole"] == "proof-metadata-useless-runes"
+                assert result["RoleFilesDemoted"] == 2
+                assert result["RoleCounts"] == {
+                    "navigation-import-only": 1,
+                    "proof-metadata-useless-runes": 1,
+                }
 
             asyncio.run(with_client(url, run, file_roles_path=roles))
     finally:

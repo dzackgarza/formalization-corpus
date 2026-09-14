@@ -76,6 +76,12 @@ class FilteringTests(unittest.TestCase):
             )
         )
 
+    def test_acl2_useless_runes_reports_are_retained_proof_metadata(self) -> None:
+        catalog = filtering_lib.load_catalog()
+        self.assertEqual(catalog["FD-014"].get("status"), "superseded")
+        self.assertEqual(catalog["FD-014"].get("superseded_by"), "FD-017")
+        self.assertEqual(catalog["FD-017"]["primary"], "retain")
+
     def test_formal_readme_is_not_documentation_filter_candidate(self) -> None:
         self.assertFalse(filtering_lib.is_nonformal_readme("lean", pathlib.Path("README.lean")))
         self.assertFalse(filtering_lib.is_nonformal_readme("agda", pathlib.Path("README.agda")))

@@ -274,12 +274,17 @@ across systems.  Before excluding an extension or path family, determine:
 
 Only then write a prover-specific policy.
 
-For ACL2, this process narrowed the initial broad `.sys` rule. An exhaustive
-2026-09-14 check showed that all 9,359 currently excluded formal-extension files
-were specifically `*@useless-runes.lsp` certification reports. The production
-classifier therefore matches exactly that artifact family. `FD-004` is retained
-only as historical ledger vocabulary and is superseded by `FD-014`; future
-`.sys` artifact families are retained until separately justified.
+For ACL2, narrowing the initial broad `.sys` rule to
+`*@useless-runes.lsp` was still not enough.  Those reports contain certification
+proof metadata whose event names need not occur textually in the authored book.
+An exhaustive 2026-09-14 audit found 589,709 distinct event identifiers in the
+9,359 nonempty reports that were absent from every retained non-`.sys` ACL2
+source file under a conservative token check.  The examples include generated
+contracts, induction schemes, signatures, accessors and lemmas.  `FD-014` is
+therefore superseded by `FD-017`: the reports remain primary-searchable as a
+proof-metadata role.  Ranking may place them behind authored formal source, but
+the query compiler must not blanket-exclude `.sys` paths.  `FD-004` and
+`FD-014` remain only as historical ledger vocabulary.
 
 ## 11. Required workflow for a new hard filter
 
