@@ -223,11 +223,14 @@ preservation requirement operationally: 969 non-formal README-like files were
 materialized into `.index-metadata`, but production neither published nor queried
 that index. A corpus-wide sample of 3,000 rare readable FD-002 terms found 831
 absent from primary document text; `running-on-a-project-other-than-mathlib` is
-one concrete README-only example. Production now serves the auxiliary index from
-a distinct private Zoekt backend and exposes only exact FD-002 members through
-`/api/search/documentation`. The browser appends documentation after formal
-results, preserving discovery terms without making README prose compete for
-theorem/definition ranks.
+one concrete README-only example. Production now indexes exact FD-002 documents
+into `docs__*` shards inside the same Zoekt directory as formal source. Ordinary
+mathematical queries retain their proof-assistant-extension filter, so these
+documentation shards cannot occupy primary ranks; `/api/search/documentation`
+queries README-like paths and then exact-filters durable FD-002 membership. The
+browser appends those documentation results after formal hits. This one-process
+design also avoids spending the primary host's constrained memory budget on a
+second persistent Zoekt server.
 
 The 2026-09-14 audit initially found over a thousand README-named files
 physically present in the Zoekt index. That observation led to an overly broad

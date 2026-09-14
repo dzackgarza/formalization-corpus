@@ -4,9 +4,11 @@
 from __future__ import annotations
 
 import csv
+import http.client
 import json
 import pathlib
 import time
+import urllib.error
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -41,13 +43,32 @@ def published_sources() -> set[str]:
 
 def main() -> None:
     expected = expected_sources()
+    actual: set[str] = set()
+    last_error: Exception | None = None
     for attempt in range(30):
-        actual = published_sources()
+        try:
+            actual = published_sources()
+            last_error = None
+        except (
+            ConnectionResetError,
+            TimeoutError,
+            http.client.HTTPException,
+            json.JSONDecodeError,
+            urllib.error.URLError,
+        ) as exc:
+            last_error = exc
+            if attempt < 29:
+                time.sleep(1)
+                continue
+            break
         if actual == expected:
             print(f"published index matches sources.tsv: {len(expected)} sources")
             return
         if attempt < 29:
             time.sleep(1)
+
+    if last_error is not None and not actual:
+        raise SystemExit(f"could not read published source inventory after retries: {last_error}")
 
     missing = sorted(expected - actual)
     extra = sorted(actual - expected)

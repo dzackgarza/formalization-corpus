@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import pathlib
+import subprocess
 import sys
 import unittest
 import importlib.util
@@ -139,6 +140,27 @@ class FilteringTests(unittest.TestCase):
                     filtering_lib.append_filter_ledger([{"new": True}])
             finally:
                 filtering_lib.LEDGER_DIR, filtering_lib.LEGACY_LEDGER = saved
+
+    def test_index_pruning_preserves_namespaced_documentation_shards(self) -> None:
+        repository = filtering_lib.sources()[0].repository
+        with tempfile.TemporaryDirectory() as directory:
+            index = pathlib.Path(directory)
+            keep_primary = index / f"{repository}_v16.00000.zoekt"
+            keep_docs = index / f"docs__{repository}_v16.00000.zoekt"
+            drop_primary = index / "not-a-source_v16.00000.zoekt"
+            drop_docs = index / "docs__not-a-source_v16.00000.zoekt"
+            for path in (keep_primary, keep_docs, drop_primary, drop_docs):
+                path.touch()
+            subprocess.run(
+                [sys.executable, str(ROOT / "scripts" / "prune-index-shards.py"), str(index)],
+                check=True,
+                stdout=subprocess.PIPE,
+                text=True,
+            )
+            self.assertTrue(keep_primary.exists())
+            self.assertTrue(keep_docs.exists())
+            self.assertFalse(drop_primary.exists())
+            self.assertFalse(drop_docs.exists())
 
     def test_ledger_replay_detects_snapshot_drift(self) -> None:
         validator = load_validator()

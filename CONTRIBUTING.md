@@ -309,11 +309,13 @@ auxiliary documentation/source-discovery index rather than assuming they are
 worthless and deleting them.
 
 That auxiliary channel must exist end to end, not merely as a local materialized
-directory. Production publishes the auxiliary Zoekt index separately and exposes
-exact FD-002 rows through `/api/search/documentation`; the browser appends those
-hits only after primary formal-source results. The auxiliary index also contains
-retained import-navigation material, so the API must use durable FD-002 membership
-as the serving boundary rather than trusting a filename pattern alone.
+directory. Production indexes exact FD-002 documents into namespaced `docs__*`
+shards in the same Zoekt directory as formal source. The primary query compiler's
+formal-extension constraint makes those shards invisible to theorem/definition
+search, while `/api/search/documentation` explicitly queries README-like paths and
+then enforces durable FD-002 membership. The browser appends those hits only after
+primary formal-source results. Do not run a second persistent Zoekt process merely
+to preserve this role: the production host's memory budget belongs to primary search.
 
 ### FILTER-009 — Never filter on `sorry`, `admit`, holes, or proof incompleteness alone
 

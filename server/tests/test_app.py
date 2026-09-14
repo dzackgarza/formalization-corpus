@@ -79,13 +79,11 @@ async def with_client(
     url: str,
     callback,
     *,
-    documentation_url=None,
     duplicate_aliases_path=None,
     file_roles_path=None,
 ) -> None:
     app = create_app(
         backend_url=url,
-        documentation_backend_url=documentation_url,
         duplicate_aliases_path=duplicate_aliases_path,
         file_roles_path=file_roles_path,
     )
@@ -123,11 +121,14 @@ def test_search_is_cached_and_preserves_request_shape() -> None:
         server.shutdown()
 
 
-def test_documentation_search_uses_auxiliary_backend_and_exact_fd002_membership() -> None:
+def test_documentation_search_uses_shared_backend_and_exact_fd002_membership() -> None:
     class DocumentationBackendHandler(BackendHandler):
+        last_query = None
+
         def do_POST(self) -> None:  # noqa: N802
             size = int(self.headers.get("Content-Length", "0"))
-            self.rfile.read(size)
+            body = json.loads(self.rfile.read(size))
+            type(self).last_query = body.get("Q")
             payload = {
                 "Result": {
                     "Files": [
@@ -145,11 +146,10 @@ def test_documentation_search_uses_auxiliary_backend_and_exact_fd002_membership(
             self.end_headers()
             self.wfile.write(encoded)
 
-    primary, primary_url = backend_server()
-    documentation = ThreadingHTTPServer(("127.0.0.1", 0), DocumentationBackendHandler)
-    threading.Thread(target=documentation.serve_forever, daemon=True).start()
-    host, port = documentation.server_address
-    documentation_url = f"http://{host}:{port}"
+    primary = ThreadingHTTPServer(("127.0.0.1", 0), DocumentationBackendHandler)
+    threading.Thread(target=primary.serve_forever, daemon=True).start()
+    host, port = primary.server_address
+    primary_url = f"http://{host}:{port}"
     try:
         with tempfile.TemporaryDirectory() as directory:
             roles = pathlib.Path(directory) / "filter-state.jsonl"
@@ -170,7 +170,7 @@ def test_documentation_search_uses_auxiliary_backend_and_exact_fd002_membership(
 
             async def run(client: httpx.AsyncClient) -> None:
                 response = await client.post(
-                    "/api/search/documentation", json={"Q": "topic file:README case:no"}
+                    "/api/search/documentation", json={"Q": "topic"}
                 )
                 assert response.status_code == 200
                 result = response.json()["Result"]
@@ -181,18 +181,19 @@ def test_documentation_search_uses_auxiliary_backend_and_exact_fd002_membership(
                 assert result["DocumentationFilesReturned"] == 1
                 assert result["AuxiliaryChannel"] == "documentation"
                 assert result["FileCount"] == 1
+                assert DocumentationBackendHandler.last_query == (
+                    "(topic) file:(^|/)readme"
+                )
 
             asyncio.run(
                 with_client(
                     primary_url,
                     run,
-                    documentation_url=documentation_url,
                     file_roles_path=roles,
                 )
             )
     finally:
         primary.shutdown()
-        documentation.shutdown()
 
 
 def test_list_is_proxied_without_search_cache() -> None:

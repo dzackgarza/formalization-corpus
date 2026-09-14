@@ -29,7 +29,6 @@ trap cleanup EXIT INT TERM
 stock_pid=$!
 
 ZOEKT_BACKEND_URL=http://127.0.0.1:6071 \
-ZOEKT_DOCUMENTATION_BACKEND_URL=http://127.0.0.1:6072 \
 DUPLICATE_ALIASES_PATH="$root/api/data/duplicate-aliases.json" \
 PYTHONDONTWRITEBYTECODE=1 \
 "$uvicorn" formalization_api.app:app \

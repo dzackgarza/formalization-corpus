@@ -36,7 +36,6 @@ from .models import (
 )
 
 DEFAULT_BACKEND_URL = "http://127.0.0.1:6071"
-DEFAULT_DOCUMENTATION_BACKEND_URL = "http://127.0.0.1:6072"
 DEFAULT_DUPLICATE_ALIASES_PATH = (
     pathlib.Path(__file__).resolve().parents[1] / "data" / "duplicate-aliases.json"
 )
@@ -144,12 +143,10 @@ class SearchProxy:
     def __init__(
         self,
         client: httpx.AsyncClient,
-        documentation_client: httpx.AsyncClient | None,
         duplicate_aliases: DuplicateAliasIndex,
         file_roles: FileRoleIndex,
     ) -> None:
         self.client = client
-        self.documentation_client = documentation_client
         self.duplicate_aliases = duplicate_aliases
         self.file_roles = file_roles
         self.cache = ByteLRUTTLCache(
@@ -253,15 +250,12 @@ class SearchProxy:
         )
 
     async def search_documentation(self, payload: dict[str, Any]) -> bytes:
-        if self.documentation_client is None:
-            raise BackendError(502, b'{"Error":"documentation search backend unavailable"}')
-        try:
-            response = await self.documentation_client.post("/api/search", json=payload)
-        except httpx.HTTPError as exc:
-            raise BackendError(502, b'{"Error":"documentation search backend unavailable"}') from exc
-        if response.status_code >= 400:
-            raise BackendError(response.status_code, response.content)
-        return self.file_roles.documentation_response(response.content)
+        documentation_payload = dict(payload)
+        documentation_payload["Q"] = (
+            f"({payload['Q']}) file:(^|/)readme"
+        )
+        body = await self._post("/api/search", documentation_payload)
+        return self.file_roles.documentation_response(body)
 
     async def _post(self, path: str, payload: dict[str, Any]) -> bytes:
         try:
@@ -282,16 +276,12 @@ API_DESCRIPTION = (
 def create_app(
     *,
     backend_url: str | None = None,
-    documentation_backend_url: str | None = None,
     duplicate_aliases_path: str | pathlib.Path | None = None,
     file_roles_path: str | pathlib.Path | None = None,
     source_lead_remote: str | None = None,
     source_lead_base_branch: str = DEFAULT_SOURCE_LEAD_BASE_BRANCH,
 ) -> FastAPI:
     backend = backend_url or os.environ.get("ZOEKT_BACKEND_URL", DEFAULT_BACKEND_URL)
-    documentation_backend = documentation_backend_url or os.environ.get(
-        "ZOEKT_DOCUMENTATION_BACKEND_URL"
-    )
     aliases_value = duplicate_aliases_path or os.environ.get("DUPLICATE_ALIASES_PATH")
     aliases_path = pathlib.Path(aliases_value) if aliases_value else DEFAULT_DUPLICATE_ALIASES_PATH
     roles_value = file_roles_path or os.environ.get("FILE_ROLES_PATH")
@@ -304,14 +294,9 @@ def create_app(
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         client = httpx.AsyncClient(base_url=backend, timeout=60.0)
-        documentation_client = (
-            httpx.AsyncClient(base_url=documentation_backend, timeout=30.0)
-            if documentation_backend
-            else None
-        )
         duplicate_aliases = DuplicateAliasIndex.from_path(aliases_path)
         file_roles = FileRoleIndex.from_path(roles_path)
-        app.state.proxy = SearchProxy(client, documentation_client, duplicate_aliases, file_roles)
+        app.state.proxy = SearchProxy(client, duplicate_aliases, file_roles)
         app.state.source_leads = SourceLeadDispatcher(
             lead_remote, base_branch=source_lead_base_branch
         )
@@ -319,8 +304,6 @@ def create_app(
             yield
         finally:
             await client.aclose()
-            if documentation_client is not None:
-                await documentation_client.aclose()
 
     app = FastAPI(
         title="Formalization Corpus API",
@@ -469,7 +452,7 @@ def create_app(
         responses={
             200: {
                 "model": SearchResponse,
-                "description": "README/source-documentation results from the auxiliary index.",
+                "description": "README/source-documentation results from FD-002 documentation shards.",
             },
             400: {"model": ErrorResponse, "description": "Invalid search request."},
             502: {"model": ErrorResponse, "description": "Documentation backend unavailable."},
