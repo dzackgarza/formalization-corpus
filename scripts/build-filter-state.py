@@ -136,7 +136,7 @@ def main() -> int:
                 digest = sha256_file(path) if size else hashlib.sha256(b"").hexdigest()
                 current.append(
                     decision_record(
-                        catalog=catalog, decision_id="FD-003", repository=source.repository,
+                        catalog=catalog, decision_id="FD-013", repository=source.repository,
                         file=rel, proof_assistant=source.proof_assistant,
                         source_revision_value=revision, content_sha256=digest,
                         evidence={"basename": path.name, "size_bytes": size}, observed_at=now, commit=commit,

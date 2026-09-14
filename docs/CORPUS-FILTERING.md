@@ -199,6 +199,23 @@ signals and must not be stripped merely to reduce bytes or make deduplication
 easier.  A statement's prose description may match a mathematician's query much
 better than its internal declaration name.
 
+### Formal-language build scripts are still formal source
+
+Do not infer that a source-language file is safe to exclude merely because its
+conventional role is build configuration. `lakefile.lean` is the concrete
+counterexample: Lake configuration is written in ordinary Lean, and projects
+frequently define helper functions, structures, inductives, instances, examples,
+or other declarations in it. An exhaustive 2026-09-14 audit of the 498
+`lakefile.lean` files then classified as build metadata found declaration syntax
+in 125 files (including 577 `def`s, 13 inductives, 14 structures, 34 abbrevs,
+8 instances, one example, and one axiom).
+
+Most such declarations are likely operational build helpers, but the project
+does not use likelihood as a hard-filter criterion. `lakefile.lean` therefore
+stays in the primary formal-content index. Non-formal Lake metadata such as
+`lakefile.toml`, `lake-manifest.json`, and `lean-toolchain` may still be excluded
+by their format because they cannot contain Lean declarations or proofs.
+
 ## 9. Tests, audits, roadmaps and vendored material
 
 These are role labels, not deletion proofs.

@@ -111,7 +111,11 @@ def is_nonformal_readme(kind: str, path: pathlib.Path) -> bool:
 
 def is_lean_build_metadata(path: pathlib.Path) -> bool:
     low = path.name.casefold()
-    return low in {"lean-toolchain", "lake-manifest.json", "lakefile.lean"} or low.startswith("lakefile.")
+    # Keep formal Lean source such as lakefile.lean in the primary corpus.  Lake
+    # files are ordinary Lean programs and may contain definitions, structures,
+    # examples, axioms, or other reusable formal content.  Only the non-formal
+    # package metadata formats are safe filename-level exclusions.
+    return low in {"lean-toolchain", "lake-manifest.json", "lakefile.toml"}
 
 
 def iter_files(source: Source) -> Iterable[pathlib.Path]:

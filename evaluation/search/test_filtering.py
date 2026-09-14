@@ -48,8 +48,11 @@ class FilteringTests(unittest.TestCase):
     def test_pvs_prf_is_formal_content(self) -> None:
         self.assertTrue(filtering_lib.is_formal_file("pvs", pathlib.Path("proof.prf")))
 
-    def test_lakefile_lean_is_build_metadata(self) -> None:
-        self.assertTrue(filtering_lib.is_lean_build_metadata(pathlib.Path("lakefile.lean")))
+    def test_formal_lakefile_is_not_build_metadata_filter_candidate(self) -> None:
+        self.assertFalse(filtering_lib.is_lean_build_metadata(pathlib.Path("lakefile.lean")))
+        self.assertTrue(filtering_lib.is_lean_build_metadata(pathlib.Path("lakefile.toml")))
+        self.assertTrue(filtering_lib.is_lean_build_metadata(pathlib.Path("lake-manifest.json")))
+        self.assertTrue(filtering_lib.is_lean_build_metadata(pathlib.Path("lean-toolchain")))
 
     def test_formal_readme_is_not_documentation_filter_candidate(self) -> None:
         self.assertFalse(filtering_lib.is_nonformal_readme("lean", pathlib.Path("README.lean")))

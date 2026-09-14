@@ -23,7 +23,9 @@
       "primary": "exclude",
       "auxiliary": "exclude",
       "policies": ["FILTER-003", "FILTER-004", "FILTER-008", "FILTER-020"],
-      "justification": "lean-toolchain, lake-manifest.json, lakefile.*, and the conventional lakefile.lean are package/build configuration rather than mathematical prior art. They remain in the source checkout for reproducibility but are not fed to either mathematical or documentation search. This decision is filename-specific; it does not authorize filtering arbitrary Lean files that happen to configure software."
+      "justification": "lean-toolchain, lake-manifest.json, lakefile.*, and the conventional lakefile.lean are package/build configuration rather than mathematical prior art. They remain in the source checkout for reproducibility but are not fed to either mathematical or documentation search. This decision is filename-specific; it does not authorize filtering arbitrary Lean files that happen to configure software.",
+      "status": "superseded",
+      "superseded_by": "FD-013"
     },
     {
       "decision_id": "FD-004",
@@ -98,6 +100,14 @@
       "auxiliary": "no-change",
       "policies": ["FILTER-001", "FILTER-003", "FILTER-004", "FILTER-005", "FILTER-020"],
       "justification": "After the safe file-level exclusions are applied, a registered source that has no remaining definition, theorem statement, proof, construction, specification, or other primary formal document fails the sources.tsv content invariant. Do not keep an empty/import-only/build-only source merely to preserve counts. Remove it from the corpus inventory; reference-only tooling or documentation may remain in SOURCES.md, and a mathematical project may be re-added if a later upstream revision gains formal content."
+    },
+    {
+      "decision_id": "FD-013",
+      "title": "Non-formal Lean build/toolchain metadata",
+      "primary": "exclude",
+      "auxiliary": "exclude",
+      "policies": ["FILTER-003", "FILTER-004", "FILTER-008", "FILTER-020"],
+      "justification": "lean-toolchain, lake-manifest.json, and lakefile.toml are non-formal package/build metadata rather than proof-assistant source. They remain in the source checkout for reproducibility but are not fed to either mathematical or documentation search. A formal Lean build script such as lakefile.lean is ordinary Lean source and is explicitly outside this decision: corpus audit found many such files containing definitions, structures, inductives, examples, and even axioms, so the filename alone cannot prove absence of useful formal prior art."
     }
   ]
 }

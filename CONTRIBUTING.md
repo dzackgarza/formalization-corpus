@@ -260,6 +260,15 @@ the file itself is in a proof assistant's source language: `README.lean`,
 remain primary mathematical content unless some stronger independent invariant
 applies.
 
+The same rule applies to formal-language build scripts. In particular,
+`lakefile.lean` is an ordinary Lean program, not equivalent to
+`lakefile.toml`/`lake-manifest.json`/`lean-toolchain`. A 2026-09-14 exhaustive
+audit of the then-498 excluded `lakefile.lean` files found declaration syntax in
+125 of them, including hundreds of `def`s plus structures, inductives, an
+example, and an axiom. Those declarations are often build helpers, but that is
+not a content-level proof of irrelevance. `lakefile.lean` therefore remains in
+the primary formal-source channel unless a stronger per-file invariant applies.
+
 Non-formal README and project documentation can still be valuable for source discovery,
 terminology, provenance, or locating an implementation.  Preserve them for an
 auxiliary documentation/source-discovery index rather than assuming they are
