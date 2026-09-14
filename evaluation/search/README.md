@@ -249,11 +249,9 @@ owner Hit@10 from 0.583 to 0.625 while Hit@10 remains 0.792; nDCG@10 rises from
 0.410 to 0.419.  Two subsequent safety audits narrowed overbroad filename/path
 rules: formal prover sources such as `README.lean`, `README.thy`, `README.agda`,
 and `Readme.lsp` remain primary content, as do all 498 `lakefile.lean` files.
-ACL2 `.sys` filtering is now limited to the exact
-`*@useless-runes.lsp` certification-report class.  `FD-015` additionally removes
-exactly 12 nonempty formal-source files (19 source bytes total) whose complete
-byte contents are whitespace; it explicitly does not cover comment-only or
-merely declaration-free files.
+`FD-015` additionally removes exactly 12 nonempty formal-source files (19 source
+bytes total) whose complete byte contents are whitespace; it explicitly does not
+cover comment-only or merely declaration-free files.
 
 A later deployment audit found that the original import-only rule had violated
 its own preservation condition.  `FD-005` moved 2,711 parser-verified Lean import
@@ -261,9 +259,7 @@ modules out of primary search on the premise that their module names, paths,
 comments and imports remained searchable through an auxiliary index, but the
 production service published and queried only the primary index.  `FD-005` is
 therefore superseded by `FD-016`: those 2,711 files are primary-retained and are
-also classified as navigation material.  The current primary index contains
-201,364 documents and is 9,235,224,098 bytes, still about 11.6% smaller than the
-10,451,699,803-byte raw control.
+also classified as navigation material.
 
 Restoring those navigation modules exposes a real ranking effect rather than a
 reason to hide them.  On the restored index, raw normalized path/content search
@@ -278,6 +274,27 @@ recall-safe: the correct repair was to separate retrieval eligibility from
 ranking.  The immutable measurements and superseding decisions are recorded in
 `ledger.jsonl`; individual file-level decisions and reversions are in
 the ordered `filtering/ledger/*.jsonl` shards.
+
+A subsequent ACL2 audit invalidated the remaining `.sys` exclusion as well.
+`FD-014` excluded 9,359 nonempty `*@useless-runes.lsp` certification reports as
+generated artifacts.  Reproducible inspection records 813,987 top-level event
+occurrences in those reports; after first requiring an event name to be absent
+from its corresponding authored book, 589,709 distinct names remain absent from
+all 17,220 ordinary non-`.sys` ACL2 source files under the conservative token
+comparison in `filtering/audits/acl2-useless-runes-20260914.json`.  These include
+macro-generated contracts, induction schemes, signatures, accessors and lemmas.
+`FD-014` is therefore superseded by `FD-017`: the reports remain indexed and are
+ranked as `proof-metadata-useless-runes` behind ordinary formal-content results.
+
+The frozen 24-query benchmark does not exercise this ACL2-specific recall: all
+six aggregate control families remain at their preceding values.  A targeted
+production query does exercise it: `APPEND-POLYMORPHIC-SIG`, which has no match
+in ordinary retained ACL2 source, now returns
+`books/acl2s/.sys/acl2s-sigs@useless-runes.lsp` with the proof-metadata role.
+The current primary index contains 210,723 documents in 10,674,992,710 index
+bytes.  That byte count is larger than the old 10,451,699,803-byte raw control;
+storage size is intentionally not treated as evidence for or against recall
+safety.
 
 The public webserver also has a measured serving-quality parameter. Zoekt's JSON
 handler derives internal per-shard match limits from `MaxDocDisplayCount` when no
