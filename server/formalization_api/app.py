@@ -21,6 +21,7 @@ from fastapi.openapi.utils import get_openapi
 
 from .cache import ByteLRUTTLCache, SingleFlight
 from .duplicates import DuplicateAliasIndex
+from .roles import FileRoleIndex
 from .models import (
     ErrorResponse,
     ListRequest,
@@ -34,6 +35,9 @@ from .models import (
 DEFAULT_BACKEND_URL = "http://127.0.0.1:6071"
 DEFAULT_DUPLICATE_ALIASES_PATH = (
     pathlib.Path(__file__).resolve().parents[1] / "data" / "duplicate-aliases.json"
+)
+DEFAULT_FILE_ROLES_PATH = (
+    pathlib.Path(__file__).resolve().parents[1] / "data" / "filter-state.jsonl"
 )
 CACHE_TTL_SECONDS = 300.0
 CACHE_MAX_BYTES = 64 * 1024 * 1024
@@ -132,9 +136,15 @@ class SourceLeadDispatcher:
 
 
 class SearchProxy:
-    def __init__(self, client: httpx.AsyncClient, duplicate_aliases: DuplicateAliasIndex) -> None:
+    def __init__(
+        self,
+        client: httpx.AsyncClient,
+        duplicate_aliases: DuplicateAliasIndex,
+        file_roles: FileRoleIndex,
+    ) -> None:
         self.client = client
         self.duplicate_aliases = duplicate_aliases
+        self.file_roles = file_roles
         self.cache = ByteLRUTTLCache(
             ttl_seconds=CACHE_TTL_SECONDS,
             max_bytes=CACHE_MAX_BYTES,
@@ -164,6 +174,7 @@ class SearchProxy:
                 return cached_again
             body = await self._post("/api/search", payload)
             body = self.duplicate_aliases.collapse_response(body)
+            body = self.file_roles.rerank_response(body)
             await self.cache.put(key, body)
             return body
 
@@ -193,12 +204,15 @@ def create_app(
     *,
     backend_url: str | None = None,
     duplicate_aliases_path: str | pathlib.Path | None = None,
+    file_roles_path: str | pathlib.Path | None = None,
     source_lead_remote: str | None = None,
     source_lead_base_branch: str = DEFAULT_SOURCE_LEAD_BASE_BRANCH,
 ) -> FastAPI:
     backend = backend_url or os.environ.get("ZOEKT_BACKEND_URL", DEFAULT_BACKEND_URL)
     aliases_value = duplicate_aliases_path or os.environ.get("DUPLICATE_ALIASES_PATH")
     aliases_path = pathlib.Path(aliases_value) if aliases_value else DEFAULT_DUPLICATE_ALIASES_PATH
+    roles_value = file_roles_path or os.environ.get("FILE_ROLES_PATH")
+    roles_path = pathlib.Path(roles_value) if roles_value else DEFAULT_FILE_ROLES_PATH
 
     lead_remote = source_lead_remote or os.environ.get(
         "SOURCE_LEAD_GIT_REMOTE", DEFAULT_SOURCE_LEAD_REMOTE
@@ -208,7 +222,8 @@ def create_app(
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         client = httpx.AsyncClient(base_url=backend, timeout=60.0)
         duplicate_aliases = DuplicateAliasIndex.from_path(aliases_path)
-        app.state.proxy = SearchProxy(client, duplicate_aliases)
+        file_roles = FileRoleIndex.from_path(roles_path)
+        app.state.proxy = SearchProxy(client, duplicate_aliases, file_roles)
         app.state.source_leads = SourceLeadDispatcher(
             lead_remote, base_branch=source_lead_base_branch
         )

@@ -19,6 +19,7 @@ ssh "$host" "mkdir -p '$remote_root/api' '$remote_root/systemd'"
 rsync -a --delete --exclude .venv/ "$root/server/" "$host:$remote_root/api/"
 ssh "$host" "mkdir -p '$remote_root/api/data'"
 rsync -a "$root/filtering/duplicate-aliases.json" "$host:$remote_root/api/data/duplicate-aliases.json"
+rsync -a "$root/filtering/current.jsonl" "$host:$remote_root/api/data/filter-state.jsonl"
 rsync -a "$root/deploy/"*.service "$host:$remote_root/systemd/"
 
 ssh "$host" "cd '$remote_root/api' && ~/.local/bin/uv sync --frozen --no-dev"

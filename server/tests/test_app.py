@@ -75,8 +75,18 @@ def backend_server() -> tuple[ThreadingHTTPServer, str]:
     return server, f"http://{host}:{port}"
 
 
-async def with_client(url: str, callback, *, duplicate_aliases_path=None) -> None:
-    app = create_app(backend_url=url, duplicate_aliases_path=duplicate_aliases_path)
+async def with_client(
+    url: str,
+    callback,
+    *,
+    duplicate_aliases_path=None,
+    file_roles_path=None,
+) -> None:
+    app = create_app(
+        backend_url=url,
+        duplicate_aliases_path=duplicate_aliases_path,
+        file_roles_path=file_roles_path,
+    )
     async with app.router.lifespan_context(app):
         transport = httpx.ASGITransport(app=app)
         async with httpx.AsyncClient(
@@ -217,6 +227,67 @@ def test_exact_duplicate_hits_are_collapsed_with_alias_provenance() -> None:
                 ]
 
             asyncio.run(with_client(url, run, duplicate_aliases_path=aliases))
+    finally:
+        server.shutdown()
+
+
+def test_import_only_navigation_hits_are_retained_but_demoted() -> None:
+    class RoleBackendHandler(BackendHandler):
+        def do_POST(self) -> None:  # noqa: N802
+            size = int(self.headers.get("Content-Length", "0"))
+            self.rfile.read(size)
+            payload = {
+                "Result": {
+                    "Files": [
+                        {"FileName": "Index.lean", "Repository": "repo", "Score": 30},
+                        {"FileName": "Owner.lean", "Repository": "repo", "Score": 20},
+                        {"FileName": "Other.lean", "Repository": "other", "Score": 10},
+                    ],
+                    "FileCount": 3,
+                }
+            }
+            encoded = json.dumps(payload).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(encoded)))
+            self.end_headers()
+            self.wfile.write(encoded)
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), RoleBackendHandler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    host, port = server.server_address
+    url = f"http://{host}:{port}"
+    try:
+        with tempfile.TemporaryDirectory() as directory:
+            roles = pathlib.Path(directory) / "filter-state.jsonl"
+            roles.write_text(
+                json.dumps(
+                    {
+                        "decision_id": "FD-016",
+                        "primary": "retain",
+                        "repository": "repo",
+                        "file": "Index.lean",
+                    }
+                )
+                + "\n"
+            )
+
+            async def run(client: httpx.AsyncClient) -> None:
+                response = await client.post("/api/search", json={"Q": "topic"})
+                assert response.status_code == 200
+                result = response.json()["Result"]
+                assert [(f["Repository"], f["FileName"]) for f in result["Files"]] == [
+                    ("repo", "Owner.lean"),
+                    ("other", "Other.lean"),
+                    ("repo", "Index.lean"),
+                ]
+                assert result["Files"][-1]["FileRole"] == "navigation-import-only"
+                assert result["NavigationFilesDemoted"] == 1
+                assert result["RoleRerankingApplied"] is True
+                assert result["FileCount"] == 3
+
+            asyncio.run(with_client(url, run, file_roles_path=roles))
     finally:
         server.shutdown()
 

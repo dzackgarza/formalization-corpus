@@ -264,6 +264,15 @@ representation.  If that delivery path is absent or disabled, keep the module
 primary-eligible.  This is the reason historical `FD-005` is superseded by
 `FD-016` in the current corpus state.
 
+Primary eligibility does not require giving navigation modules raw Zoekt rank.
+The current result layer uses `FD-016` as an explicit role: verified import-only
+hits remain indexed and returned, but are stably placed after ordinary formal
+content within the retrieved candidate set and labelled
+`navigation-import-only`.  This is ranking, not filtering: it must not remove a
+candidate, reduce the retrieval budget, or make a direct module/path hit
+unqueryable.  Keep the raw lexical control separately measurable so a ranking
+gain cannot be misreported as evidence that the files were safe to exclude.
+
 ### FILTER-008 — Documentation/build metadata belongs in a separate retrieval role
 
 Non-formal README files, toolchain pins, manifests, package/build files, and

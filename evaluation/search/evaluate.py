@@ -39,6 +39,7 @@ INDEX_DIR = ROOT / ".zoekt"
 FORMAL_FILES = r"\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$"
 K_VALUES = (1, 5, 10, 20)
 DEFAULT_API_URL = "https://formalization-corpus.dzackgarza.com/api/search"
+FILTER_STATE = ROOT / "filtering/current.jsonl"
 
 
 def load_gold(path: pathlib.Path) -> dict[str, Any]:
@@ -261,6 +262,27 @@ def local_search(query: str, timeout: float) -> tuple[list[dict[str, Any]], dict
         "payload_bytes": len(proc.stdout),
         "returned_files": len(results),
     }
+
+
+@lru_cache(maxsize=1)
+def file_role_index():
+    server_root = str(ROOT / "server")
+    if server_root not in sys.path:
+        sys.path.insert(0, server_root)
+    from formalization_api.roles import FileRoleIndex
+
+    return FileRoleIndex.from_path(FILTER_STATE)
+
+
+def apply_result_roles(
+    results: list[dict[str, Any]], *, variant: str, provider: str
+) -> list[dict[str, Any]]:
+    # The API applies the same transform server-side.  Only the local provider
+    # needs to reproduce it here.  Keep normalized_path_content_v1 as the raw
+    # Zoekt control even though it compiles the same lexical query as v2.
+    if provider == "local" and variant == "frontend_lexical_v2":
+        return file_role_index().rerank_files(results)
+    return results
 
 
 def serving_options(
@@ -573,6 +595,7 @@ def main() -> int:
                     args.api_url,
                     resolved_serving,
                 )
+            results = apply_result_roles(results, variant=args.variant, provider=args.provider)
         except Exception as exc:
             print(f"ERROR {case['id']}: {exc}", file=sys.stderr)
             return 2
@@ -593,6 +616,7 @@ def main() -> int:
         "serving_options": resolved_serving if args.provider == "api" else None,
         "index": index_fingerprint() if args.provider == "local" else None,
         "retrieval_engine": retrieval_engine_fingerprint() if args.provider == "local" else None,
+        "result_role_state": file_role_index().fingerprint(),
         "metrics": aggregate(scored_cases),
         "metrics_by_tag": by_tag(scored_cases),
         "cases": scored_cases,

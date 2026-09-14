@@ -152,6 +152,17 @@ search (and may also remain in the auxiliary view) until auxiliary retrieval is
 deployed and tested end to end.  Parser correctness by itself is not sufficient
 evidence for exclusion when the preservation channel is absent.
 
+On the restored primary index, raw Zoekt ranking reproduces the original
+import-aggregator crowding: for example, `SphereEversion.lean` enters ahead of
+the judged theorem owner and moves that owner from rank 10 to rank 11.  The
+deployed result policy therefore treats `FD-016` as a navigation role rather
+than an exclusion rule.  It preserves every returned candidate and its Zoekt
+score, stably orders ordinary formal-content hits before verified import-only
+navigation hits, and labels the latter `navigation-import-only`.  This recovers
+the measured owner-ranking benefit of the old hard filter without hiding the
+module/path signal.  The raw `normalized_path_content_v1` control intentionally
+does not apply this role ordering.
+
 Do not use a regex such as "90% of lines begin with import" as the production
 classifier.  The current audit uses such a heuristic only as a diagnostic.
 

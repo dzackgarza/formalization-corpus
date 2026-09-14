@@ -107,6 +107,10 @@ class FileMatch(APIModel):
     )
     Checksum: str | None = None
     Score: float | None = None
+    FileRole: str | None = Field(
+        default=None,
+        description="Result-layer role; navigation-import-only hits are retained but demoted.",
+    )
     ExactDuplicateAliases: list["FileAlias"] | None = Field(
         default=None,
         description=(
@@ -141,6 +145,11 @@ class SearchResult(APIModel):
         default=None,
         description="Number of file hits remaining after exact-duplicate collapse.",
     )
+    NavigationFilesDemoted: int | None = Field(
+        default=None,
+        description="Number of retained import-only navigation hits placed after ordinary hits.",
+    )
+    RoleRerankingApplied: bool | None = None
 
 
 class SearchResponse(APIModel):
