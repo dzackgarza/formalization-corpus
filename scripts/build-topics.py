@@ -127,7 +127,7 @@ def main() -> None:
   <div class="shell masthead">
     <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">FC</span><span class="brand-name">Formalization Corpus</span></a>
     <nav class="site-nav" aria-label="Primary">
-      <a href="./">Search</a><a href="./corpus.html">Sources</a><a href="./topics.html" aria-current="page">Topics</a><a href="./agents.html">Agents</a><a href="./api.html">API</a>
+      <a href="./">Search</a><a href="./corpus.html">Sources</a><a href="./topics.html" aria-current="page">Topics</a><a href="./contribute.html">Contribute</a><a href="./agents.html">Agents</a><a href="./api.html">API</a>
     </nav>
   </div>
 </header>

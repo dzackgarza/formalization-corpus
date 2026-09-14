@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import subprocess
 import threading
 import asyncio
 import tempfile
@@ -216,5 +217,111 @@ def test_exact_duplicate_hits_are_collapsed_with_alias_provenance() -> None:
                 ]
 
             asyncio.run(with_client(url, run, duplicate_aliases_path=aliases))
+    finally:
+        server.shutdown()
+
+
+def git(*args: str, cwd: pathlib.Path | None = None) -> str:
+    return subprocess.run(
+        ["git", *args],
+        cwd=cwd,
+        check=True,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    ).stdout.strip()
+
+
+def source_lead_remote(root: pathlib.Path) -> pathlib.Path:
+    remote = root / "remote.git"
+    seed = root / "seed"
+    git("init", "-q", "--bare", str(remote))
+    git("init", "-q", str(seed))
+    (seed / "README.md").write_text("test repository\n")
+    git("add", "README.md", cwd=seed)
+    git(
+        "-c",
+        "user.name=Test",
+        "-c",
+        "user.email=test@example.com",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "commit",
+        "-q",
+        "-m",
+        "initial",
+        cwd=seed,
+    )
+    git("branch", "-M", "main", cwd=seed)
+    git("remote", "add", "origin", str(remote), cwd=seed)
+    git("push", "-q", "origin", "main", cwd=seed)
+    return remote
+
+
+def test_source_lead_is_transported_without_changing_main() -> None:
+    backend, backend_url = backend_server()
+    try:
+        with tempfile.TemporaryDirectory() as directory:
+            remote = source_lead_remote(pathlib.Path(directory))
+            main_before = git("--git-dir", str(remote), "rev-parse", "refs/heads/main")
+
+            app = create_app(
+                backend_url=backend_url,
+                source_lead_remote=str(remote),
+            )
+
+            async def run() -> None:
+                async with app.router.lifespan_context(app):
+                    transport = httpx.ASGITransport(app=app)
+                    async with httpx.AsyncClient(
+                        transport=transport, base_url="http://testserver"
+                    ) as client:
+                        response = await client.post(
+                            "/submit/source",
+                            json={
+                                "url": "https://github.com/example/formal-proof",
+                                "notes": "May contain a formalization of the main theorem.",
+                            },
+                        )
+                        assert response.status_code == 202
+                        assert "source+lead" in response.json()["queue_url"]
+
+            asyncio.run(run())
+
+            main_after = git("--git-dir", str(remote), "rev-parse", "refs/heads/main")
+            assert main_after == main_before
+            refs = git(
+                "--git-dir",
+                str(remote),
+                "for-each-ref",
+                "--format=%(refname)",
+                "refs/heads/source-lead/",
+            ).splitlines()
+            assert len(refs) == 1
+            payload = json.loads(
+                git("--git-dir", str(remote), "show", f"{refs[0]}:.source-lead.json")
+            )
+            assert payload == {
+                "url": "https://github.com/example/formal-proof",
+                "notes": "May contain a formalization of the main theorem.",
+            }
+    finally:
+        backend.shutdown()
+
+
+def test_source_lead_validation_and_openapi_boundary() -> None:
+    server, url = backend_server()
+    try:
+        async def run(client: httpx.AsyncClient) -> None:
+            invalid = await client.post(
+                "/submit/source", json={"url": "not a URL"}
+            )
+            assert invalid.status_code == 400
+            assert set(invalid.json()) == {"Error"}
+
+            openapi = await client.get("/api/openapi.json")
+            assert "/submit/source" not in openapi.json()["paths"]
+
+        asyncio.run(with_client(url, run))
     finally:
         server.shutdown()

@@ -1,0 +1,23 @@
+name: Suggest a source
+description: Give us a URL to formal mathematics that may belong in the corpus.
+title: "[source lead] "
+labels:
+  - source lead
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A suggestion is a lead for review, not a proposed corpus entry. A URL is enough. Review determines the actual source boundary, canonical upstream, proof assistant, metadata, and whether the material is already represented.
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: A repository, library, project page, source distribution, or other useful starting point.
+      placeholder: https://example.org/formalization
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Optional context about what is there or why it may be useful.

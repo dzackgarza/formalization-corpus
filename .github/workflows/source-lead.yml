@@ -1,0 +1,65 @@
+name: source lead intake
+
+on:
+  push:
+    branches:
+      - "source-lead/**"
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  create-issue:
+    if: github.repository == 'dzackgarza/formalization-corpus'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build issue text
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          from urllib.parse import urlsplit
+
+          lead = json.loads(Path(".source-lead.json").read_text())
+          url = str(lead["url"])
+          notes = str(lead.get("notes", "")).strip().replace("@", "@\u200b")
+          parsed = urlsplit(url)
+          display = f"{parsed.netloc}{parsed.path}".rstrip("/") or parsed.netloc
+          if len(display) > 150:
+              display = display[:147] + "..."
+
+          title = f"[source lead] {display}"
+          body = (
+              "### URL\n\n"
+              f"{url}\n\n"
+              "### Notes\n\n"
+              f"{notes if notes else '_No notes supplied._'}\n\n"
+              "---\n"
+              "Submitted through the anonymous source-lead form. This is an "
+              "unreviewed lead; source identity and corpus metadata are established "
+              "during review."
+          )
+          tmp = Path(os.environ["RUNNER_TEMP"])
+          (tmp / "source-lead-title").write_text(title)
+          (tmp / "source-lead-body").write_text(body)
+          PY
+
+      - name: Create public review issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "$(cat "$RUNNER_TEMP/source-lead-title")" \
+            --body-file "$RUNNER_TEMP/source-lead-body" \
+            --label "source lead" \
+            --label "anonymous submission"
+
+      - name: Delete transient intake branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: git push origin --delete "$GITHUB_REF_NAME"

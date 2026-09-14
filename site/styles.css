@@ -1016,3 +1016,78 @@ tr:last-child > th { border-bottom: 0; }
   .metric-grid { grid-template-columns: 1fr 1fr; }
   .footer-inner { flex-direction: column; }
 }
+
+/* Contributions */
+.contribution-page {
+  max-width: 860px;
+}
+
+.contribution-page section {
+  max-width: 760px;
+  margin-top: 2.4rem;
+}
+
+.contribution-page section > p {
+  line-height: 1.65;
+}
+
+.button.contribution-primary {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.lead-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1.2rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--surface);
+}
+
+.lead-form label {
+  display: grid;
+  gap: 0.38rem;
+  color: var(--ink-strong);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.lead-form .optional {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.lead-form input,
+.lead-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.72rem 0.78rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  background: var(--surface-subtle);
+  color: var(--ink);
+  font: 0.86rem/1.45 var(--sans);
+}
+
+.lead-form input { font-family: var(--mono); }
+.lead-form textarea { resize: vertical; }
+.lead-form input::placeholder,
+.lead-form textarea::placeholder { color: var(--muted); }
+
+.lead-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+}
+
+.form-status {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.form-status.broken { color: var(--danger); }

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contribute — Formalization Corpus</title>
+<meta name="description" content="Suggest formalization sources for review and inclusion in the Formalization Corpus.">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="shell masthead">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">FC</span><span class="brand-name">Formalization Corpus</span></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="./">Search</a>
+      <a href="./corpus.html">Sources</a>
+      <a href="./topics.html">Topics</a>
+      <a href="./contribute.html" aria-current="page">Contribute</a>
+      <a href="./agents.html">Agents</a>
+      <a href="./api.html">API</a>
+    </nav>
+  </div>
+</header>
+
+<main class="shell page-main contribution-page">
+  <header class="page-heading">
+    <h1>Contribute</h1>
+    <p class="lede">Know of formal mathematics that may be missing? Send a URL. Suggestions enter a public review queue; review determines the proper source, upstream location, metadata, and whether it belongs in the corpus.</p>
+  </header>
+
+  <section aria-labelledby="suggest-title">
+    <h2 id="suggest-title">Suggest a source</h2>
+    <p>The preferred route is a GitHub issue. It keeps the lead, investigation, discussion, and eventual disposition together in public.</p>
+    <p><a class="button contribution-primary" href="https://github.com/dzackgarza/formalization-corpus/issues/new?template=source-lead.yml">Suggest on GitHub</a></p>
+  </section>
+
+  <section aria-labelledby="anonymous-title">
+    <h2 id="anonymous-title">Without a GitHub account</h2>
+    <p>Submit the same lead here. Only the URL is required. The submission becomes a public issue in the same review queue; no account or contact information is collected.</p>
+    <form id="source-lead-form" class="lead-form">
+      <label for="lead-url">URL
+        <input id="lead-url" name="url" type="url" required autocomplete="url" placeholder="https://example.org/formalization">
+      </label>
+      <label for="lead-notes">Notes <span class="optional">optional</span>
+        <textarea id="lead-notes" name="notes" rows="6" maxlength="4000" placeholder="Anything useful to know about the project or the formal material."></textarea>
+      </label>
+      <div class="lead-form-actions">
+        <button class="button" id="lead-submit" type="submit">Submit source lead</button>
+        <span class="form-status" id="lead-status" aria-live="polite"></span>
+      </div>
+    </form>
+  </section>
+
+  <section aria-labelledby="other-title">
+    <h2 id="other-title">Other contributions</h2>
+    <p>For corrections, site changes, or corpus-maintenance work, use the <a href="https://github.com/dzackgarza/formalization-corpus">GitHub repository</a>.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-inner"><div></div><div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./api.html">API</a></div></div>
+</footer>
+
+<script>
+const form = document.getElementById("source-lead-form");
+const submit = document.getElementById("lead-submit");
+const status = document.getElementById("lead-status");
+const endpoint = new URLSearchParams(location.search).get("submit_api")
+  || "https://formalization-corpus.dzackgarza.com/submit/source";
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  submit.disabled = true;
+  status.classList.remove("broken");
+  status.textContent = "Submitting…";
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        url: document.getElementById("lead-url").value,
+        notes: document.getElementById("lead-notes").value,
+      }),
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(payload.Error || `HTTP ${response.status}`);
+    form.reset();
+    status.replaceChildren("Submitted. ");
+    const link = document.createElement("a");
+    link.href = payload.queue_url;
+    link.textContent = "View the public source-lead queue";
+    status.append(link);
+  } catch (error) {
+    status.classList.add("broken");
+    status.textContent = `Submission failed: ${error.message}`;
+  } finally {
+    submit.disabled = false;
+  }
+});
+</script>
+</body>
+</html>

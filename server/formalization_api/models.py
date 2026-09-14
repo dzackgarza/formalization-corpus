@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
 
 class APIModel(BaseModel):
@@ -194,3 +194,12 @@ class ListResponse(APIModel):
 
 class ErrorResponse(APIModel):
     Error: str
+
+
+class SourceLeadRequest(BaseModel):
+    url: HttpUrl = Field(description="URL supplied as an unreviewed source lead.")
+    notes: str = Field(default="", max_length=4000)
+
+
+class SourceLeadResponse(BaseModel):
+    queue_url: str

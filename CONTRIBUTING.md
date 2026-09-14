@@ -401,6 +401,25 @@ When an agent or contributor cannot establish the invariant needed for a hard
 filter, the required action is to stop at classification/tagging and record the
 uncertainty.  "Looks like junk" is never a reason to make content undiscoverable.
 
+## Source-lead intake
+
+Source suggestions are unreviewed leads, not proposed `sources.tsv` rows.  The
+submitter is not responsible for identifying the canonical source boundary,
+proof assistant, transport, sync group, topics, or other corpus metadata.  A URL
+is sufficient; free-text notes are optional.
+
+Each suggestion should enter the public GitHub issue queue with the `source lead`
+label.  Review then establishes what the actual source is, whether it is already
+represented, and what metadata belongs in the corpus.  Anonymous web submissions
+must create the same kind of public issue and must not write to `sources.tsv` or
+any parallel intake database directly.
+
+The anonymous transport uses a transient `source-lead/*` Git ref only to invoke
+the issue-creation workflow.  The workflow creates the issue as
+`github-actions[bot]` and deletes the ref.  These refs are transport, not an
+alternate intake queue; if issue creation fails, the undeleted ref is recovery
+state for that failed submission.
+
 ## Source-inventory invariant
 
 `sources.tsv` is the canonical corpus inventory.  For a fully hydrated local
