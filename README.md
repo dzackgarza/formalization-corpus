@@ -17,7 +17,7 @@ not a second inventory.
 
 ## What the corpus contains
 
-The canonical table currently has 893 sources. A source is an independently
+The canonical table currently has 888 sources. A source is an independently
 addressable formalization library, repository, or published source distribution:
 Mathlib is one source, UniMath is one source, and the Mizar Mathematical Library
 is one source. How a source was discovered does not change its identity.
@@ -39,6 +39,9 @@ source repositories; it is not itself a source category.
 Synchronization keeps only the proof-source extensions appropriate to each proof
 assistant plus minimal build metadata where needed. Definitions, structures,
 specifications, theorem statements, constructions, and proofs are all searchable.
+The source checkouts remain authoritative and are never destructively cleaned for
+search. Filtering is recorded separately and materialized as reversible hard-link
+views used only for indexing.
 
 ## Workflow
 
@@ -47,8 +50,12 @@ just build-tools        # build zoekt-index, zoekt, and the Lean ast-grep parser
 just sync               # refresh the routine sync group
 just sync-bulk          # refresh the large secondary sync group
 just sync-cross-prover  # refresh non-Lean proof-assistant sources
+just filter-state       # classify the current source snapshot and append filtering decisions
+just filter-validate    # replay the append-only filtering ledger and verify snapshots
+just filter-views       # materialize primary and auxiliary hard-link index views
 just index-cross-prover # incrementally rebuild only that group's Zoekt shards
-just index              # (re)build the Zoekt index over all sources
+just index              # (re)build the primary mathematical index from the filtered view
+just index-metadata     # build the separate README/import-navigation index
 just metrics            # validate corpus membership and regenerate public totals
 just site               # regenerate committed static source metadata
 just preview            # deploy site/ to formalization-corpus-preview.localhost
@@ -168,6 +175,21 @@ without splitting the inventory into multiple files.
   build metadata; cross-prover repositories keep only the formal source
   extensions appropriate to their prover plus their README. This keeps the
   corpus disk-light without discarding searchable definitions or proofs.
+- **The primary index is a reversible filtered view.** Zero-byte source files,
+  conventional Lean build metadata, ACL2 `.sys` artifacts, and parser-verified
+  Lean import-only modules are excluded under the stable `FILTER-###` policies;
+  source checkouts are unchanged. README/import-navigation material has its own
+  auxiliary index. Every file-level decision and its evidence is recorded in
+  `filtering/ledger.jsonl`.
+- **Exact duplicates keep provenance.** Byte-identical formal files remain
+  individually addressable by source/path, but duplicate returned hits are
+  collapsed by the API and all exact-content aliases are attached to the retained
+  result. Physical content deduplication is not used while it would weaken
+  source/path search semantics.
+- **PVS `.prf` files are primary proof content.** Inspection showed that they
+  contain proof scripts, tactic invocations and obligations, not disposable
+  traces. They are searched alongside `.pvs`, including files above Zoekt's
+  default document-size limit.
 - **No commit pinning.** Git sources are shallow-checked-out at their current
   HEAD; direct distributions such as MML mirror their current published source.
   The corpus is a snapshot as of the last relevant sync.

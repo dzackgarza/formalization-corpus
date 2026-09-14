@@ -27,6 +27,9 @@ from .models import (
 )
 
 DEFAULT_BACKEND_URL = "http://127.0.0.1:6071"
+DEFAULT_DUPLICATE_ALIASES_PATH = (
+    pathlib.Path(__file__).resolve().parents[1] / "data" / "duplicate-aliases.json"
+)
 CACHE_TTL_SECONDS = 300.0
 CACHE_MAX_BYTES = 64 * 1024 * 1024
 CACHE_MAX_ENTRY_BYTES = 8 * 1024 * 1024
@@ -105,7 +108,7 @@ def create_app(
 ) -> FastAPI:
     backend = backend_url or os.environ.get("ZOEKT_BACKEND_URL", DEFAULT_BACKEND_URL)
     aliases_value = duplicate_aliases_path or os.environ.get("DUPLICATE_ALIASES_PATH")
-    aliases_path = pathlib.Path(aliases_value) if aliases_value else None
+    aliases_path = pathlib.Path(aliases_value) if aliases_value else DEFAULT_DUPLICATE_ALIASES_PATH
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
