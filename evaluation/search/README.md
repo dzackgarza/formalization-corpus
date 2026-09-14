@@ -291,10 +291,33 @@ six aggregate control families remain at their preceding values.  A targeted
 production query does exercise it: `APPEND-POLYMORPHIC-SIG`, which has no match
 in ordinary retained ACL2 source, now returns
 `books/acl2s/.sys/acl2s-sigs@useless-runes.lsp` with the proof-metadata role.
-The current primary index contains 210,723 documents in 10,674,992,710 index
-bytes.  That byte count is larger than the old 10,451,699,803-byte raw control;
-storage size is intentionally not treated as evidence for or against recall
-safety.
+The primary/formal view contains 210,723 documents.  A final deployment audit
+then closed the remaining auxiliary-preservation gap for `FD-002`: 969
+non-formal README/source-documentation files had been excluded from primary
+ranking on the promise that they remained searchable elsewhere, while production
+did not actually serve that auxiliary material.  The reproducible audit in
+`filtering/audits/readme-searchability-20260914.json` samples 3,000 rare readable
+FD-002 terms and finds 831 absent from all primary document text.  One concrete
+production acceptance term, `running-on-a-project-other-than-mathlib`, now
+returns `leanprover-community__mathlib4/README.md` with role
+`documentation-readme`.
+
+Production serves those 969 documents as namespaced `docs__*` shards in the
+**same** Zoekt process as formal source.  Ordinary mathematical queries retain
+their proof-assistant-extension constraint, so documentation cannot occupy
+primary theorem/definition ranks; `/api/search/documentation` additionally
+enforces durable FD-002 membership, and the browser appends documentation after
+formal results.  A separate persistent Zoekt process was tested and rejected:
+inside the legacy root service cgroup it consumed primary-search memory headroom,
+while a user-service variant was not persistent without login lingering.  The
+single-process shard namespace avoids both defects.
+
+The final searchable index therefore contains 211,692 documents across 1,771
+shards: 210,723 primary/formal-or-proof-metadata documents plus 969 documentation
+documents.  It is 10,717,188,619 bytes on the production host.  The 24-query
+lexical-v2 metrics are unchanged at Owner Hit@10 0.625, Hit@10 0.792, MRR 0.548,
+and nDCG@10 0.419.  Storage size is intentionally not treated as evidence for or
+against recall safety.
 
 The public webserver also has a measured serving-quality parameter. Zoekt's JSON
 handler derives internal per-shard match limits from `MaxDocDisplayCount` when no
