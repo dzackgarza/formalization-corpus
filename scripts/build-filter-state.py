@@ -18,6 +18,7 @@ from filtering_lib import (
     ROOT,
     SNAPSHOT,
     is_formal_file,
+    is_acl2_useless_runes_report,
     is_lean_build_metadata,
     is_nonformal_readme,
     iter_files,
@@ -160,14 +161,15 @@ def main() -> int:
                 )
                 continue
 
-            if source.proof_assistant == "acl2" and ".sys" in pathlib.PurePosixPath(rel).parts:
+            if source.proof_assistant == "acl2" and is_acl2_useless_runes_report(path):
                 current.append(
                     decision_record(
-                        catalog=catalog, decision_id="FD-004", repository=source.repository,
+                        catalog=catalog, decision_id="FD-014", repository=source.repository,
                         file=rel, proof_assistant=source.proof_assistant,
                         source_revision_value=revision, content_sha256=digest,
                         evidence={
                             "path_component": ".sys",
+                            "artifact_suffix": "@useless-runes.lsp",
                             "size_bytes": size,
                             "prior_query_semantics": "production/evaluator queries already exclude (^|/)\\.sys/",
                         }, observed_at=now, commit=commit,

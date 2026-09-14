@@ -54,6 +54,21 @@ class FilteringTests(unittest.TestCase):
         self.assertTrue(filtering_lib.is_lean_build_metadata(pathlib.Path("lake-manifest.json")))
         self.assertTrue(filtering_lib.is_lean_build_metadata(pathlib.Path("lean-toolchain")))
 
+    def test_acl2_sys_filter_is_exactly_useless_runes_reports(self) -> None:
+        self.assertTrue(
+            filtering_lib.is_acl2_useless_runes_report(
+                pathlib.Path("books/foo/.sys/bar@useless-runes.lsp")
+            )
+        )
+        self.assertFalse(
+            filtering_lib.is_acl2_useless_runes_report(pathlib.Path("books/foo/.sys/bar.lsp"))
+        )
+        self.assertFalse(
+            filtering_lib.is_acl2_useless_runes_report(
+                pathlib.Path("books/foo/bar@useless-runes.lsp")
+            )
+        )
+
     def test_formal_readme_is_not_documentation_filter_candidate(self) -> None:
         self.assertFalse(filtering_lib.is_nonformal_readme("lean", pathlib.Path("README.lean")))
         self.assertFalse(filtering_lib.is_nonformal_readme("agda", pathlib.Path("README.agda")))

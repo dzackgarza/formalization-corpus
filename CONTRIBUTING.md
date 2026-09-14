@@ -269,6 +269,12 @@ example, and an axiom. Those declarations are often build helpers, but that is
 not a content-level proof of irrelevance. `lakefile.lean` therefore remains in
 the primary formal-source channel unless a stronger per-file invariant applies.
 
+Generated/system directories must be narrowed the same way. For ACL2, the
+current safe `.sys` hard filter is specifically the certification-generated
+`*@useless-runes.lsp` report class. Do not interpret that as permission to
+exclude every formal-source file under `.sys`: a different artifact family may
+carry different information and needs an independent decision.
+
 Non-formal README and project documentation can still be valuable for source discovery,
 terminology, provenance, or locating an implementation.  Preserve them for an
 auxiliary documentation/source-discovery index rather than assuming they are

@@ -244,6 +244,13 @@ across systems.  Before excluding an extension or path family, determine:
 
 Only then write a prover-specific policy.
 
+For ACL2, this process narrowed the initial broad `.sys` rule. An exhaustive
+2026-09-14 check showed that all 9,359 currently excluded formal-extension files
+were specifically `*@useless-runes.lsp` certification reports. The production
+classifier therefore matches exactly that artifact family. `FD-004` is retained
+only as historical ledger vocabulary and is superseded by `FD-014`; future
+`.sys` artifact families are retained until separately justified.
+
 ## 11. Required workflow for a new hard filter
 
 1. **Name the role precisely.** Avoid vague classes such as "generated junk".

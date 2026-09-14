@@ -118,6 +118,19 @@ def is_lean_build_metadata(path: pathlib.Path) -> bool:
     return low in {"lean-toolchain", "lake-manifest.json", "lakefile.toml"}
 
 
+def is_acl2_useless_runes_report(path: pathlib.Path) -> bool:
+    """Recognize ACL2 certification-generated useless-runes reports only.
+
+    Do not generalize this to every formal-looking file under ``.sys``.  The
+    current corpus evidence supports the exact ``*@useless-runes.lsp`` class;
+    other ACL2 system artifacts need their own content-level decision.
+    """
+    return (
+        ".sys" in pathlib.PurePosixPath(path.as_posix()).parts
+        and path.name.casefold().endswith("@useless-runes.lsp")
+    )
+
+
 def iter_files(source: Source) -> Iterable[pathlib.Path]:
     if not source.root.exists():
         return
