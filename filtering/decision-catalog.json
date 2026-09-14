@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "decisions": [
+    {
+      "decision_id": "FD-001",
+      "title": "Empty formal-source file",
+      "primary": "exclude",
+      "auxiliary": "exclude",
+      "policies": ["FILTER-001", "FILTER-004", "FILTER-005", "FILTER-020"],
+      "justification": "A zero-byte source-language file contains no declaration, theorem statement, proof, comment, identifier, or other searchable text. Excluding it from derived search indexes cannot remove mathematical content. The path remains present in the authoritative source checkout and in the filtering ledger."
+    },
+    {
+      "decision_id": "FD-002",
+      "title": "README or source documentation",
+      "primary": "exclude",
+      "auxiliary": "include",
+      "policies": ["FILTER-003", "FILTER-004", "FILTER-008", "FILTER-020"],
+      "justification": "README and source-documentation files can contain useful project terminology, provenance, references, and navigation, but they do not themselves constitute proof-assistant declarations or proofs. They are removed only from the primary mathematical-content index and retained in the auxiliary documentation/navigation index."
+    },
+    {
+      "decision_id": "FD-003",
+      "title": "Lean build/toolchain metadata",
+      "primary": "exclude",
+      "auxiliary": "exclude",
+      "policies": ["FILTER-003", "FILTER-004", "FILTER-008", "FILTER-020"],
+      "justification": "lean-toolchain, lake-manifest.json, lakefile.*, and the conventional lakefile.lean are package/build configuration rather than mathematical prior art. They remain in the source checkout for reproducibility but are not fed to either mathematical or documentation search. This decision is filename-specific; it does not authorize filtering arbitrary Lean files that happen to configure software."
+    },
+    {
+      "decision_id": "FD-004",
+      "title": "ACL2 .sys certification artifact",
+      "primary": "exclude",
+      "auxiliary": "exclude",
+      "policies": ["FILTER-004", "FILTER-015", "FILTER-018", "FILTER-020"],
+      "justification": "ACL2 .sys directories are certification-generated system artifacts. The mathematical search compiler and corpus invariant already excluded every .sys path before this physical-index cleanup, so removing them from the primary derived index preserves the established mathematical-search semantics. Source checkouts remain untouched. This decision is ACL2-specific and must not be generalized to generated directories in other provers."
+    },
+    {
+      "decision_id": "FD-005",
+      "title": "Parser-verified Lean import-only module",
+      "primary": "exclude",
+      "auxiliary": "include",
+      "policies": ["FILTER-003", "FILTER-004", "FILTER-007", "FILTER-017", "FILTER-020"],
+      "justification": "A Lean file is classified here only when tree-sitter-lean verifies that every top-level syntax node is an import or a comment and at least one import is present. Such a module owns no declaration or proof. Its module path, comments, source provenance, and import statements remain searchable through the auxiliary navigation index. Regex-only classification is explicitly insufficient."
+    },
+    {
+      "decision_id": "FD-006",
+      "title": "Exact-content duplicate formal source",
+      "primary": "retain",
+      "auxiliary": "no-change",
+      "result_action": "collapse-exact-duplicate-results",
+      "policies": ["FILTER-005", "FILTER-006", "FILTER-020", "FILTER-021"],
+      "justification": "Byte-identical formal-source documents contain the same searchable file body, but their source and module paths are independent provenance and search signals. All occurrences therefore remain physically indexable for source/path queries. The public API collapses exact duplicate hits into one result and returns every occurrence as an alias. Physical content deduplication is deferred until alias paths can themselves participate in retrieval without loss."
+    },
+    {
+      "decision_id": "FD-007",
+      "title": "PVS .prf proof script",
+      "primary": "retain",
+      "auxiliary": "no-change",
+      "policies": ["FILTER-001", "FILTER-002", "FILTER-015", "FILTER-019"],
+      "justification": "Inspection of corpus .prf files shows PVS proof scripts, tactic invocations, generated obligations, and dependency information. These are useful formal prior art and are not disposable proof traces. The earlier candidate filter is rejected: .prf belongs in primary PVS search alongside .pvs."
+    },
+    {
+      "decision_id": "FD-008",
+      "title": "Generated-path formal source",
+      "primary": "retain",
+      "auxiliary": "no-change",
+      "policies": ["FILTER-002", "FILTER-010", "FILTER-019"],
+      "justification": "Generated-path files are retained by default. The measured corpus contains thousands of unique declaration-bearing generated Lean files, including ChallengeDeps files that encode exactly the definitions and theorem interfaces prior-art search is meant to find. Generated provenance is a role tag, never a unilateral exclusion rule."
+    },
+    {
+      "decision_id": "FD-009",
+      "title": "Incomplete proof or sorry/admit-bearing source",
+      "primary": "retain",
+      "auxiliary": "no-change",
+      "policies": ["FILTER-001", "FILTER-009", "FILTER-019"],
+      "justification": "Files containing sorry, admit, holes, axioms, or incomplete proofs remain primary mathematical content. A checked formal statement is itself prior art and can expose the intended definitions, types, names, and interfaces even when its proof is unfinished."
+    },
+    {
+      "decision_id": "FD-010",
+      "title": "Test, fixture, example, benchmark, audit, roadmap, or vendored path",
+      "primary": "retain",
+      "auxiliary": "no-change",
+      "policies": ["FILTER-002", "FILTER-011", "FILTER-012", "FILTER-013", "FILTER-019"],
+      "justification": "These path roles are retained unless a stronger content invariant applies. They can contain unique theorem statements, declarations, proof patterns, local fixes, examples, or incomplete-but-useful formal interfaces. Path role is metadata for later ranking experiments, not a hard filter."
+    },
+    {
+      "decision_id": "FD-011",
+      "title": "Large PVS .prf proof script",
+      "primary": "retain",
+      "auxiliary": "no-change",
+      "policies": ["FILTER-001", "FILTER-015", "FILTER-021"],
+      "justification": "PVS .prf remains valuable when larger than Zoekt's default 2 MiB document limit. The primary index therefore explicitly whitelists **/*.prf as large files rather than silently losing the largest proof scripts."
+    }
+  ]
+}

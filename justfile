@@ -132,6 +132,14 @@ build-search-pool:
 audit-search-data output="/tmp/formalization-corpus-data-audit.json":
     python evaluation/search/audit_corpus_data.py --output "{{output}}"
 
+# Recompute the reversible per-file filtering decisions from clean source snapshots.
+filter-state:
+    python scripts/build-filter-state.py
+
+# Materialize hard-link views for primary mathematical content and auxiliary navigation/docs.
+filter-views:
+    python scripts/materialize-index-views.py
+
 # Search declarations and source text across the corpus.
 search query:
     ./bin/zoekt -index_dir .zoekt -r "{{query}}"
