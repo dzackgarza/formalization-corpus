@@ -246,10 +246,15 @@ The current baseline is measured on the filtered primary-content index introduce
 by the corpus-hygiene experiment.  Against the immediately preceding raw-index
 control on the same 24 queries and qrels, filtering raises deployed lexical-v2
 owner Hit@10 from 0.583 to 0.625 while Hit@10 remains 0.792; nDCG@10 rises from
-0.410 to 0.419.  The index shrank from 10,451,699,803 to 9,221,206,550 bytes
-(about 11.8%).  The immutable before/after reports and the deployment decision
-are recorded in `ledger.jsonl`; the file-level exclusions themselves are in
-`filtering/ledger.jsonl`.
+0.410 to 0.419.  After correcting the README classifier so that formal prover
+sources such as `README.lean`, `README.thy`, `README.agda`, and `Readme.lsp`
+remain primary content, the index is 9,221,772,678 bytes, still about 11.8%
+smaller than the 10,451,699,803-byte raw control.  Restoring those 73 formal
+documents changes none of the six measured retrieval metric sets, which is an
+important reminder that benchmark stability does not prove a hard filter is
+recall-safe.  The immutable before/after/corrected reports and superseding
+deployment decision are recorded in `ledger.jsonl`; the individual file-level
+decisions and reversions are in `filtering/ledger.jsonl`.
 
 ## Relevance-judgment pooling
 
