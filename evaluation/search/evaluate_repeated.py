@@ -22,9 +22,11 @@ import math
 import pathlib
 import random
 import statistics
+from datetime import datetime, timezone
 from typing import Any
 
 import evaluate
+import provenance
 
 
 def pass_at_r(n: int, c: int, r: int) -> float:
@@ -63,7 +65,7 @@ def validate_reports(reports: list[dict[str, Any]]) -> None:
     if not reports:
         raise ValueError("at least one report is required")
     first = reports[0]
-    keys = ("gold_sha256", "query_config_sha256", "index", "variant")
+    keys = ("gold_sha256", "query_config_sha256", "index", "retrieval_engine", "variant")
     first_cases = [(case["id"], case["query"]) for case in first["cases"]]
     for number, report in enumerate(reports[1:], start=2):
         for key in keys:
@@ -156,8 +158,12 @@ def aggregate_repeated(
         }
 
     first = reports[0]
+    repo_state = provenance.repository_state(evaluate.ROOT)
     return {
         "schema_version": 1,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "corpus_git_commit": repo_state["commit"],
+        "repository_state": repo_state,
         "variant": first["variant"],
         "provider": first.get("provider"),
         "runs": n_runs,
@@ -166,6 +172,7 @@ def aggregate_repeated(
         "gold_sha256": first["gold_sha256"],
         "query_config_sha256": first.get("query_config_sha256"),
         "index": first.get("index"),
+        "retrieval_engine": first.get("retrieval_engine"),
         "bootstrap": {"unit": "query", "samples": bootstrap_samples, "seed": bootstrap_seed},
         "summary": summary,
         "queries": query_rows,

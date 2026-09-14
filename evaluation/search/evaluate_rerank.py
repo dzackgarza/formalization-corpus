@@ -24,6 +24,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 import evaluate
+import provenance
 from evaluate_multiquery import (
     DEFAULT_EXPANSIONS,
     load_expansion_queries,
@@ -256,12 +257,12 @@ def main() -> int:
             flush=True,
         )
 
+    repo_state = provenance.repository_state(ROOT)
     report = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
-        "corpus_git_commit": subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
-        ).strip(),
+        "corpus_git_commit": repo_state["commit"],
+        "repository_state": repo_state,
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
         "query_config_sha256": hashlib.sha256(evaluate.QUERY_CONFIG.read_bytes()).hexdigest(),
         "expansions_sha256": hashlib.sha256(args.expansions.read_bytes()).hexdigest(),
@@ -283,6 +284,7 @@ def main() -> int:
             "fields": ["source", "proof_assistant", "file", "path_terms", "content"],
         },
         "index": evaluate.index_fingerprint(),
+        "retrieval_engine": evaluate.retrieval_engine_fingerprint(),
         "search_units": total_units,
         "metrics": evaluate.aggregate(scored_cases),
         "metrics_by_tag": evaluate.by_tag(scored_cases),

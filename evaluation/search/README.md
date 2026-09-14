@@ -4,6 +4,13 @@ This directory is the regression harness for mathematician-facing retrieval.
 Search changes are evaluated here before they are adopted by the public search
 page.
 
+The permanent experimental record is governed by
+[`SCIENTIFIC_PROTOCOL.md`](./SCIENTIFIC_PROTOCOL.md).  Timestamped immutable run
+artifacts live under `runs/`; `ledger.jsonl` is the append-only chronology of
+measurements, observations, hypotheses, decisions and anomalies.  Frozen files
+under `baselines/` are convenient regression inputs, not substitutes for that
+historical record.
+
 ## Gold set
 
 `gold.json` contains natural-language queries and hand-reviewed relevant files.
@@ -93,8 +100,9 @@ python evaluation/search/evaluate_repeated.py run-*.json --rank-cutoff 10 --pass
 
 The default evaluator calls the local Zoekt binary and local `.zoekt` shards,
 not the hosted API.  Every report records a fingerprint of shard names, sizes,
-and mtimes.  Comparisons refuse to attribute score changes to retrieval code if
-the index fingerprint differs.
+and mtimes, the Git commit, and the exact clean/dirty worktree state.  Comparisons
+refuse to attribute score changes to retrieval code if the index fingerprint
+differs.  Canonical ledger archival rejects dirty-tree reports by default.
 
 Run:
 

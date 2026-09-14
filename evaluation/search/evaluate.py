@@ -28,6 +28,8 @@ from datetime import datetime, timezone
 from functools import lru_cache
 from typing import Any
 
+import provenance
+
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 DEFAULT_GOLD = ROOT / "evaluation/search/gold.json"
 DEFAULT_BASELINE = ROOT / "evaluation/search/baselines/frontend_lexical_v1.json"
@@ -192,6 +194,25 @@ def index_fingerprint() -> dict[str, Any]:
         "latest_mtime_ns": latest_ns,
         "metadata_sha256": h.hexdigest(),
     }
+
+
+def retrieval_engine_fingerprint() -> dict[str, Any]:
+    state: dict[str, Any] = {}
+    if ZOEKT.is_file():
+        h = hashlib.sha256()
+        with ZOEKT.open("rb") as handle:
+            for block in iter(lambda: handle.read(1024 * 1024), b""):
+                h.update(block)
+        state["zoekt_binary_sha256"] = h.hexdigest()
+    source = ROOT / "tools" / "sourcegraph__zoekt"
+    if (source / ".git").exists():
+        try:
+            state["zoekt_source_commit"] = subprocess.check_output(
+                ["git", "rev-parse", "HEAD"], cwd=source, text=True
+            ).strip()
+        except (OSError, subprocess.CalledProcessError):
+            pass
+    return state
 
 
 def local_search(query: str, timeout: float) -> tuple[list[dict[str, Any]], dict[str, Any]]:
@@ -463,15 +484,18 @@ def main() -> int:
             return 2
         scored_cases.append(score_case(case, results, compiled, runtime))
 
+    repo_state = provenance.repository_state(ROOT)
     report = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
-        "corpus_git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "corpus_git_commit": repo_state["commit"],
+        "repository_state": repo_state,
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
         "query_config_sha256": hashlib.sha256(QUERY_CONFIG.read_bytes()).hexdigest(),
         "variant": args.variant,
         "provider": args.provider,
         "index": index_fingerprint() if args.provider == "local" else None,
+        "retrieval_engine": retrieval_engine_fingerprint() if args.provider == "local" else None,
         "metrics": aggregate(scored_cases),
         "metrics_by_tag": by_tag(scored_cases),
         "cases": scored_cases,

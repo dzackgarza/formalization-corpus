@@ -140,8 +140,17 @@ ast pattern:
 test-commit:
     printf 'def formedModuleAnswer : Nat := 42\n' | ast-grep run --config sgconfig.yml --lang lean --pattern 'def $NAME : $TYPE := $VALUE' --stdin --json=compact | jq -e 'length == 1 and .[0].text == "def formedModuleAnswer : Nat := 42"' >/dev/null
     python evaluation/search/evaluate.py --validate-only
-    python evaluation/search/test_evaluate.py
+    python -m unittest discover -s evaluation/search -p 'test_*.py'
+    python evaluation/search/lablog.py validate
     cd server && uv run --frozen pytest -q
+
+# Archive a completed clean retrieval report in the immutable scientific record.
+record-search-run report stage="candidate":
+    python evaluation/search/lablog.py run "{{report}}" --stage "{{stage}}"
+
+# Inspect the chronological search-quality laboratory record.
+search-lablog:
+    python evaluation/search/lablog.py show
 
 # A push also refreshes the exact static tree served at *.localhost.
 test-push: test-commit preview

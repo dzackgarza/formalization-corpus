@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 import evaluate
+import provenance
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 DEFAULT_EXPANSIONS = ROOT / "evaluation/search/experiments/gemini_3_5_flash_lite_query_expansions_v1.json"
@@ -119,10 +120,12 @@ def main() -> int:
         scored["formulations"] = formulations
         scored_cases.append(scored)
 
+    repo_state = provenance.repository_state(ROOT)
     report = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
-        "corpus_git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "corpus_git_commit": repo_state["commit"],
+        "repository_state": repo_state,
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
         "query_config_sha256": hashlib.sha256(evaluate.QUERY_CONFIG.read_bytes()).hexdigest(),
         "expansions_sha256": hashlib.sha256(args.expansions.read_bytes()).hexdigest(),
@@ -133,6 +136,7 @@ def main() -> int:
         "rrf_constant": args.rrf_constant,
         "fusion_depth": args.depth,
         "index": evaluate.index_fingerprint(),
+        "retrieval_engine": evaluate.retrieval_engine_fingerprint(),
         "metrics": evaluate.aggregate(scored_cases),
         "metrics_by_tag": evaluate.by_tag(scored_cases),
         "cases": scored_cases,
