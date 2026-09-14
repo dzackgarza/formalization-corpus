@@ -277,7 +277,7 @@ def test_source_lead_is_transported_without_changing_main() -> None:
                         transport=transport, base_url="http://testserver"
                     ) as client:
                         response = await client.post(
-                            "/submit/source",
+                            "/api/submit/source",
                             json={
                                 "url": "https://github.com/example/formal-proof",
                                 "notes": "May contain a formalization of the main theorem.",
@@ -314,13 +314,13 @@ def test_source_lead_validation_and_openapi_boundary() -> None:
     try:
         async def run(client: httpx.AsyncClient) -> None:
             invalid = await client.post(
-                "/submit/source", json={"url": "not a URL"}
+                "/api/submit/source", json={"url": "not a URL"}
             )
             assert invalid.status_code == 400
             assert set(invalid.json()) == {"Error"}
 
             openapi = await client.get("/api/openapi.json")
-            assert "/submit/source" not in openapi.json()["paths"]
+            assert "/api/submit/source" not in openapi.json()["paths"]
 
         asyncio.run(with_client(url, run))
     finally:

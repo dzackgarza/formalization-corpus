@@ -28,6 +28,14 @@ if ssh "$host" 'systemctl is-active --quiet formalization-corpus-api.service'; t
   # for systemd to restart it on the newly deployed code without sudo.
   ssh "$host" "pkill -TERM -u zack -f '$remote_root/api/.venv/bin/uvicorn formalization_api.app:app' || true"
   echo "deployed and restarted formalization-corpus-api.service"
+elif ssh "$host" "systemctl cat zoekt-webserver.service 2>/dev/null | grep -Fq '$remote_root/bin/zoekt-webserver' && systemctl cat zoekt-webserver.service 2>/dev/null | grep -Fq '127.0.0.1:6070'"; then
+  # Compatibility migration for the original root-owned unit. The unit keeps
+  # its existing ExecStart, but that path becomes a supervisor which runs stock
+  # Zoekt on 6071 and FastAPI on 6070. SIGKILL makes Restart=on-failure reload
+  # the replacement executable without requiring root access.
+  rsync -a "$root/deploy/zoekt-api-compat-launcher.sh" "$host:$remote_root/bin/zoekt-webserver"
+  ssh "$host" "pid=\$(systemctl show -p MainPID --value zoekt-webserver.service); test \"\$pid\" -gt 0; kill -KILL \"\$pid\""
+  echo "deployed FastAPI through the existing zoekt-webserver.service compatibility entrypoint"
 else
   cat <<EOF
 staged API code, stock Zoekt binary, and systemd units on $host.

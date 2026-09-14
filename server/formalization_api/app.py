@@ -322,7 +322,7 @@ def create_app(
         )
 
     @app.post(
-        "/submit/source",
+        "/api/submit/source",
         response_model=SourceLeadResponse,
         status_code=202,
         include_in_schema=False,
