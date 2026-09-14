@@ -118,6 +118,14 @@
       "auxiliary": "exclude",
       "policies": ["FILTER-004", "FILTER-015", "FILTER-018", "FILTER-020"],
       "justification": "An ACL2 file is classified here only when it is under a .sys directory and its basename ends exactly in @useless-runes.lsp. These files are certification-generated rune-usage reports rather than authored definition/theorem source, and production/evaluator queries already excluded .sys paths before the physical cleanup. The 2026-09-14 corpus audit found that all 9,359 files previously covered by the broader FD-004 rule belonged to this exact class. Other .sys files are not authorized for exclusion by this decision."
+    },
+    {
+      "decision_id": "FD-015",
+      "title": "Whitespace-only formal-source file",
+      "primary": "exclude",
+      "auxiliary": "exclude",
+      "policies": ["FILTER-001", "FILTER-004", "FILTER-005", "FILTER-020"],
+      "justification": "A nonempty proof-assistant source file whose bytes are entirely whitespace contains no declaration, theorem statement, proof, identifier, comment, docstring, or other searchable signal. It is therefore the lossless nonzero analogue of FD-001. This rule must not be broadened to comment-only or declaration-free files: prose and comments can be valuable prior-art retrieval evidence."
     }
   ]
 }

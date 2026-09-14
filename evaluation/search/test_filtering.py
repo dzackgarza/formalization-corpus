@@ -74,6 +74,13 @@ class FilteringTests(unittest.TestCase):
         self.assertFalse(filtering_lib.is_nonformal_readme("agda", pathlib.Path("README.agda")))
         self.assertFalse(filtering_lib.is_nonformal_readme("isabelle", pathlib.Path("README.thy")))
         self.assertFalse(filtering_lib.is_nonformal_readme("acl2", pathlib.Path("Readme.lsp")))
+
+    def test_whitespace_only_is_lossless_but_comments_are_not_empty(self) -> None:
+        self.assertTrue(filtering_lib.is_whitespace_only_formal_source(b" \n\t\r\n"))
+        self.assertFalse(filtering_lib.is_whitespace_only_formal_source(b""))
+        self.assertFalse(filtering_lib.is_whitespace_only_formal_source(b"-- useful name\n"))
+        self.assertFalse(filtering_lib.is_whitespace_only_formal_source(b"/- useful docs -/\n"))
+        self.assertFalse(filtering_lib.is_whitespace_only_formal_source(b"theorem t : True := by trivial\n"))
         self.assertTrue(filtering_lib.is_nonformal_readme("lean", pathlib.Path("README.md")))
 
     def test_ledger_replay_detects_snapshot_drift(self) -> None:

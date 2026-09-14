@@ -131,6 +131,17 @@ def is_acl2_useless_runes_report(path: pathlib.Path) -> bool:
     )
 
 
+def is_whitespace_only_formal_source(raw: bytes) -> bool:
+    """Recognize a nonempty formal-source file containing only whitespace.
+
+    This deliberately does *not* treat comments as empty.  Comments, docstrings,
+    module headers, or other prose can be useful retrieval signal even when a
+    file owns no declaration.  The lossless class here is only nonempty bytes
+    whose entire contents are whitespace.
+    """
+    return bool(raw) and not raw.strip()
+
+
 def iter_files(source: Source) -> Iterable[pathlib.Path]:
     if not source.root.exists():
         return

@@ -21,6 +21,7 @@ from filtering_lib import (
     is_acl2_useless_runes_report,
     is_lean_build_metadata,
     is_nonformal_readme,
+    is_whitespace_only_formal_source,
     iter_files,
     lean_import_only_candidate,
     load_catalog,
@@ -161,6 +162,22 @@ def main() -> int:
                 )
                 continue
 
+            # This is intentionally narrower than "contains no declaration" or
+            # "comment-only".  Comments and prose are useful search evidence;
+            # a nonempty file consisting solely of whitespace has none.
+            raw_for_whitespace = path.read_bytes()
+            if is_whitespace_only_formal_source(raw_for_whitespace):
+                current.append(
+                    decision_record(
+                        catalog=catalog, decision_id="FD-015", repository=source.repository,
+                        file=rel, proof_assistant=source.proof_assistant,
+                        source_revision_value=revision, content_sha256=digest,
+                        evidence={"size_bytes": size, "content_class": "whitespace-only"},
+                        observed_at=now, commit=commit,
+                    )
+                )
+                continue
+
             if source.proof_assistant == "acl2" and is_acl2_useless_runes_report(path):
                 current.append(
                     decision_record(
@@ -199,7 +216,7 @@ def main() -> int:
 
             raw: bytes | None = None
             if source.proof_assistant == "lean" and path.suffix == ".lean":
-                raw = path.read_bytes()
+                raw = raw_for_whitespace
                 if lean_import_only_candidate(raw):
                     import_candidates.append((source, path, rel, raw, digest))
 
