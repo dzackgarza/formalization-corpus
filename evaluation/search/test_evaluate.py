@@ -59,6 +59,25 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         compiled = evaluate.compile_query("is this already formalized?", "frontend_lexical_v2")
         self.assertIn('content:"$a"', compiled)
 
+    def test_serving_options_default_to_shared_frontend_config(self) -> None:
+        serving = evaluate.serving_options()
+        self.assertEqual(serving["max_doc_display_count"], 60)
+        self.assertEqual(serving["shard_max_match_count"], 0)
+        self.assertEqual(serving["total_max_match_count"], 0)
+        self.assertTrue(serving["whole"])
+
+    def test_serving_options_can_override_internal_candidate_budgets(self) -> None:
+        serving = evaluate.serving_options(
+            top=60,
+            shard_max_match_count=500,
+            total_max_match_count=100000,
+            whole=False,
+        )
+        self.assertEqual(serving["max_doc_display_count"], 60)
+        self.assertEqual(serving["shard_max_match_count"], 500)
+        self.assertEqual(serving["total_max_match_count"], 100000)
+        self.assertFalse(serving["whole"])
+
     def test_normalized_query_removes_intent_words_and_detects_proof_assistant(self) -> None:
         terms, proof_filter = evaluate.normalized_query_terms(
             "does Lean have the Jordan canonical form theorem?"

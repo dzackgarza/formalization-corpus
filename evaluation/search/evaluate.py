@@ -38,6 +38,7 @@ ZOEKT = ROOT / "bin/zoekt"
 INDEX_DIR = ROOT / ".zoekt"
 FORMAL_FILES = r"\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$"
 K_VALUES = (1, 5, 10, 20)
+DEFAULT_API_URL = "https://formalization-corpus.dzackgarza.com/api/search"
 
 
 def load_gold(path: pathlib.Path) -> dict[str, Any]:
@@ -238,13 +239,58 @@ def local_search(query: str, timeout: float) -> tuple[list[dict[str, Any]], dict
     }
 
 
-def api_search(query: str, timeout: float, top: int) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    payload = json.dumps({"Q": query, "Opts": {"MaxDocDisplayCount": top, "ChunkMatches": True}})
+def serving_options(
+    *,
+    top: int | None = None,
+    shard_max_match_count: int | None = None,
+    total_max_match_count: int | None = None,
+    whole: bool | None = None,
+) -> dict[str, Any]:
+    configured = query_config().get("serving") or {}
+    resolved = {
+        "max_doc_display_count": int(
+            configured.get("max_doc_display_count", 60) if top is None else top
+        ),
+        "shard_max_match_count": int(
+            configured.get("shard_max_match_count", 0)
+            if shard_max_match_count is None
+            else shard_max_match_count
+        ),
+        "total_max_match_count": int(
+            configured.get("total_max_match_count", 0)
+            if total_max_match_count is None
+            else total_max_match_count
+        ),
+        "whole": bool(configured.get("whole", True) if whole is None else whole),
+    }
+    if resolved["max_doc_display_count"] <= 0:
+        raise ValueError("max_doc_display_count must be positive")
+    if resolved["shard_max_match_count"] < 0 or resolved["total_max_match_count"] < 0:
+        raise ValueError("search match-count budgets must be nonnegative")
+    return resolved
+
+
+def api_search(
+    query: str,
+    timeout: float,
+    api_url: str,
+    serving: dict[str, Any],
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    opts: dict[str, Any] = {
+        "MaxDocDisplayCount": serving["max_doc_display_count"],
+        "ChunkMatches": True,
+        "Whole": serving["whole"],
+    }
+    if serving["shard_max_match_count"] > 0:
+        opts["ShardMaxMatchCount"] = serving["shard_max_match_count"]
+    if serving["total_max_match_count"] > 0:
+        opts["TotalMaxMatchCount"] = serving["total_max_match_count"]
+    payload = json.dumps({"Q": query, "Opts": opts})
     started = time.perf_counter()
     proc = subprocess.run(
         [
             "curl", "-fsS", "--max-time", str(max(1, int(math.ceil(timeout)))),
-            "https://formalization-corpus.dzackgarza.com/api/search",
+            api_url,
             "-H", "Content-Type: application/json", "-d", payload,
         ],
         stdout=subprocess.PIPE,
@@ -450,7 +496,15 @@ def main() -> int:
     parser.add_argument("--variant", default="frontend_lexical_v1")
     parser.add_argument("--provider", choices=("local", "api"), default="local")
     parser.add_argument("--timeout", type=float, default=30.0)
-    parser.add_argument("--api-top", type=int, default=60)
+    parser.add_argument("--api-url", default=DEFAULT_API_URL)
+    parser.add_argument("--api-top", type=int)
+    parser.add_argument("--api-shard-max-match-count", type=int)
+    parser.add_argument("--api-total-max-match-count", type=int)
+    parser.add_argument(
+        "--api-whole",
+        action=argparse.BooleanOptionalAction,
+        default=None,
+    )
     parser.add_argument("--output", type=pathlib.Path)
     parser.add_argument("--compare", type=pathlib.Path)
     parser.add_argument("--tolerance", type=float, default=1e-12)
@@ -471,6 +525,13 @@ def main() -> int:
         print("ERROR: local .zoekt index is unavailable; build or materialize it before running retrieval evals", file=sys.stderr)
         return 2
 
+    resolved_serving = serving_options(
+        top=args.api_top,
+        shard_max_match_count=args.api_shard_max_match_count,
+        total_max_match_count=args.api_total_max_match_count,
+        whole=args.api_whole,
+    )
+
     scored_cases: list[dict[str, Any]] = []
     for case in gold["cases"]:
         compiled = compile_query(case["query"], args.variant)
@@ -478,7 +539,12 @@ def main() -> int:
             if args.provider == "local":
                 results, runtime = local_search(compiled, args.timeout)
             else:
-                results, runtime = api_search(compiled, args.timeout, args.api_top)
+                results, runtime = api_search(
+                    compiled,
+                    args.timeout,
+                    args.api_url,
+                    resolved_serving,
+                )
         except Exception as exc:
             print(f"ERROR {case['id']}: {exc}", file=sys.stderr)
             return 2
@@ -494,6 +560,8 @@ def main() -> int:
         "query_config_sha256": hashlib.sha256(QUERY_CONFIG.read_bytes()).hexdigest(),
         "variant": args.variant,
         "provider": args.provider,
+        "api_url": args.api_url if args.provider == "api" else None,
+        "serving_options": resolved_serving if args.provider == "api" else None,
         "index": index_fingerprint() if args.provider == "local" else None,
         "retrieval_engine": retrieval_engine_fingerprint() if args.provider == "local" else None,
         "metrics": aggregate(scored_cases),

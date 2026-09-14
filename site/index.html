@@ -100,8 +100,6 @@
 // local zoekt, which is how this file is tested before it is published.
 const API = new URLSearchParams(location.search).get("api")
 				|| "https://formalization-corpus.dzackgarza.com/api/search";
-const MAX = 60;
-
 const FORMAL_FILES = String.raw`\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$`;
 
 // Shiki tokenises with the same TextMate grammars Lean's own editors use.
@@ -419,7 +417,19 @@ async function search(q) {
 	el("browse").hidden = true;
 	let result;
 	try {
-		result = await query(buildQuery(q), {MaxDocDisplayCount: MAX, ChunkMatches: true, Whole: true});
+		const serving = queryConfig.serving || {};
+		const opts = {
+			MaxDocDisplayCount: serving.max_doc_display_count ?? 60,
+			ChunkMatches: true,
+			Whole: serving.whole ?? true,
+		};
+		if ((serving.shard_max_match_count || 0) > 0) {
+			opts.ShardMaxMatchCount = serving.shard_max_match_count;
+		}
+		if ((serving.total_max_match_count || 0) > 0) {
+			opts.TotalMaxMatchCount = serving.total_max_match_count;
+		}
+		result = await query(buildQuery(q), opts);
 	} catch (err) {
 		fail(err);
 		return;

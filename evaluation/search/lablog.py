@@ -168,6 +168,8 @@ def measurement_record(
         "rank_cutoff",
         "pass_trial_counts",
         "bootstrap",
+        "api_url",
+        "serving_options",
     )
     config = {key: report[key] for key in config_keys if key in report}
     return {
