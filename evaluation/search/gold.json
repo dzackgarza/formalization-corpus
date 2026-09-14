@@ -52,6 +52,90 @@
           "file": "v1/Atlas/Buildings/code/BNPair/FurtherBruhatTits.lean",
           "relevance": 2,
           "note": "Atlas Bruhat-Tits/building material."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits/Graph/Tree.lean",
+          "relevance": 3,
+          "note": "Direct proof that the Bruhat–Tits graph is a tree, including acyclicity and the `BTtree` result."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/Building/AffineSLV.lean",
+          "relevance": 2,
+          "note": "Formalizes the Bruhat–Tits affine building of SL(V); for rank two this is the tree, but the file is a more general building development."
+        },
+        {
+          "repository": "chrisflav__bruhat-tits",
+          "file": "BruhatTits/Graph/Tree.lean",
+          "relevance": 3,
+          "note": "Direct owner file proving the Bruhat–Tits graph is a tree."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/Building/AffineSLVStrong.lean",
+          "relevance": 1,
+          "note": "Supporting higher-rank Bruhat–Tits building/action theory for SL(V), not the tree theorem itself."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/Building/AffineIsometry/Contexts.lean",
+          "relevance": 0,
+          "note": "Defines contexts for affine buildings of types C, D, and B; it is not a formalization of the Bruhat–Tits tree."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits/Graph.lean",
+          "relevance": 0,
+          "note": "Import aggregator for Bruhat–Tits graph component modules; the mathematical content lives in the imported files."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits/Graph/Orientation.lean",
+          "relevance": 2,
+          "note": "Formalizes the canonical orientation of the Bruhat–Tits tree, a substantive component of the tree development."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits/Graph/Regular.lean",
+          "relevance": 2,
+          "note": "Proves that the Bruhat–Tits tree is q+1-regular and develops its neighbor structure."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits/Graph/Edges.lean",
+          "relevance": 2,
+          "note": "Defines and proves the edge/neighbor relation used to construct the Bruhat–Tits graph/tree."
+        },
+        {
+          "repository": "chrisflav__bruhat-tits",
+          "file": "BruhatTits/Graph/Vertices.lean",
+          "relevance": 2,
+          "note": "Defines vertices of the Bruhat–Tits tree as homothety classes of lattices and develops the distance used for the graph."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits/Graph/Vertices.lean",
+          "relevance": 2,
+          "note": "Defines vertices of the Bruhat–Tits tree and the distance/intermediate-vertex infrastructure used for connectedness."
+        },
+        {
+          "repository": "chrisflav__bruhat-tits",
+          "file": "BruhatTits/Graph/Orientation.lean",
+          "relevance": 2,
+          "note": "Formalizes the canonical orientation and graph action on the Bruhat–Tits tree."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits/Harmonic/Basic.lean",
+          "relevance": 1,
+          "note": "Generic harmonic/Laplacian theory for trees used by the Bruhat–Tits development; supporting rather than tree-specific."
+        },
+        {
+          "repository": "chrisflav__bruhat-tits",
+          "file": "BruhatTits/Harmonic/Application.lean",
+          "relevance": 2,
+          "note": "Applies the tree structure and regularity to define the Bruhat–Tits Laplacian and prove its surjectivity."
         }
       ]
     },
@@ -187,6 +271,78 @@
           "file": "thys/Padic_Ints/Hensels_Lemma.thy",
           "relevance": 2,
           "note": "AFP proof of Hensel’s lemma over the p-adic integers."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib.lean",
+          "relevance": 0,
+          "note": "Repository-wide Mathlib import aggregator; it only mentions Hensel-related modules indirectly and does not formalize the theorem here."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/LocalFieldsRamification/Suggested.lean",
+          "relevance": 0,
+          "note": "Roadmap/suggested declarations with `sorry`; Hensel appears only as a proposed implementation route for Teichmüller lifts, not as a completed Hensel formalization."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/Valuation/LatticesValuations.lean",
+          "relevance": 3,
+          "note": "Direct Hensel theorem in a DVR context: `HenselsLemma` assumes the valuation ring is local and adically complete and proves root lifting via Newton iteration."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/RingTheory/DedekindDomain/AdicCompletionExtension.lean",
+          "relevance": 1,
+          "note": "Supporting completion/DVR infrastructure; it points to a Henselian/completeness chain in another module but does not prove Hensel’s lemma in this file."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/Valuation/DiscreteValuationBook.lean",
+          "relevance": 3,
+          "note": "Direct generalized Hensel theorem `hensel_nonmonic_adic` over an I-adically complete commutative ring, with Newton-sequence proof."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Padic_Ints/Cring_Poly.thy",
+          "relevance": 1,
+          "note": "Polynomial/Taylor infrastructure explicitly identified as a necessary component of the AFP proof of Hensel’s lemma for p-adic integers; not the Hensel theorem itself."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/ArithmeticGeometry.lean",
+          "relevance": 0,
+          "note": "Course/module import aggregator; it imports the actual Hensel module but contains no Hensel theorem itself."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Algebra/IdempotentLift.lean",
+          "relevance": 1,
+          "note": "Application of Henselian root lifting to idempotents; relevant supporting use of Hensel machinery, not a complete-DVR Hensel theorem."
+        },
+        {
+          "repository": "kim-em__hex-dev",
+          "file": "HexHenselMathlib/HenselLemmas.lean",
+          "relevance": 2,
+          "note": "Alternate executable Hensel-lifting formalization: correctness and uniqueness for lifting polynomial factorizations modulo p^k."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Algebra/AlgClosedIdempotentLift.lean",
+          "relevance": 1,
+          "note": "Supporting Henselian/idempotent-lifting development discussing complete valuation rings; it proves an application rather than Hensel’s lemma itself."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/FltRegularBernoulli/BernoulliRegular/Reflection.lean",
+          "relevance": 0,
+          "note": "Large reflection-theory import/overview file; Hensel appears only in descriptions of imported local lifting components."
+        },
+        {
+          "repository": "kim-em__hex-dev",
+          "file": "HexHensel/Linear.lean",
+          "relevance": 2,
+          "note": "Executable single-step linear Hensel lifting of polynomial factorizations, a closely related algorithmic Hensel form."
         }
       ]
     },
