@@ -51,6 +51,13 @@ class FilteringTests(unittest.TestCase):
     def test_lakefile_lean_is_build_metadata(self) -> None:
         self.assertTrue(filtering_lib.is_lean_build_metadata(pathlib.Path("lakefile.lean")))
 
+    def test_formal_readme_is_not_documentation_filter_candidate(self) -> None:
+        self.assertFalse(filtering_lib.is_nonformal_readme("lean", pathlib.Path("README.lean")))
+        self.assertFalse(filtering_lib.is_nonformal_readme("agda", pathlib.Path("README.agda")))
+        self.assertFalse(filtering_lib.is_nonformal_readme("isabelle", pathlib.Path("README.thy")))
+        self.assertFalse(filtering_lib.is_nonformal_readme("acl2", pathlib.Path("Readme.lsp")))
+        self.assertTrue(filtering_lib.is_nonformal_readme("lean", pathlib.Path("README.md")))
+
     def test_ledger_replay_detects_snapshot_drift(self) -> None:
         validator = load_validator()
         catalog = {

@@ -99,6 +99,16 @@ def is_readme(path: pathlib.Path) -> bool:
     return path.name.casefold().startswith("readme")
 
 
+def is_nonformal_readme(kind: str, path: pathlib.Path) -> bool:
+    """Return true only for README-like files outside the prover source language.
+
+    A formal-source file such as ``README.lean``, ``README.thy``, or
+    ``README.agda`` can contain declarations, theorem statements, examples, or
+    proofs.  Its basename is therefore not an exclusion signal.
+    """
+    return is_readme(path) and not is_formal_file(kind, path)
+
+
 def is_lean_build_metadata(path: pathlib.Path) -> bool:
     low = path.name.casefold()
     return low in {"lean-toolchain", "lake-manifest.json", "lakefile.lean"} or low.startswith("lakefile.")
@@ -246,4 +256,3 @@ def verify_lean_import_only(paths: list[pathlib.Path]) -> tuple[set[pathlib.Path
             "rejected": len(rejected),
             "accepted": len(accepted),
         }
-

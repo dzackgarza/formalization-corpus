@@ -19,7 +19,7 @@ from filtering_lib import (
     SNAPSHOT,
     is_formal_file,
     is_lean_build_metadata,
-    is_readme,
+    is_nonformal_readme,
     iter_files,
     lean_import_only_candidate,
     load_catalog,
@@ -121,7 +121,7 @@ def main() -> int:
                 continue
             formal = is_formal_file(source.proof_assistant, path)
 
-            if is_readme(path):
+            if is_nonformal_readme(source.proof_assistant, path):
                 current.append(
                     decision_record(
                         catalog=catalog, decision_id="FD-002", repository=source.repository,
