@@ -284,7 +284,10 @@ contracts, induction schemes, signatures, accessors and lemmas.  `FD-014` is
 therefore superseded by `FD-017`: the reports remain primary-searchable as a
 proof-metadata role.  Ranking may place them behind authored formal source, but
 the query compiler must not blanket-exclude `.sys` paths.  `FD-004` and
-`FD-014` remain only as historical ledger vocabulary.
+`FD-014` remain only as historical ledger vocabulary.  The exact extraction and
+comparison procedure is reproducible with `scripts/audit-acl2-useless-runes.py`;
+the recorded corpus/source-revision result is
+`filtering/audits/acl2-useless-runes-20260914.json`.
 
 ## 11. Required workflow for a new hard filter
 
