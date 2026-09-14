@@ -11,6 +11,7 @@ import unittest
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import evaluate  # noqa: E402
+import evaluate_repeated  # noqa: E402
 from evaluate_multiquery import rrf_fuse  # noqa: E402
 from evaluate_rerank import bounded_excerpt, humanize_path  # noqa: E402
 
@@ -212,6 +213,51 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         problems = evaluate.compare_reports(current, base, 0)
         self.assertEqual(len(problems), 1)
         self.assertIn("gold-set hash differs", problems[0])
+
+    def test_pass_at_r_uses_unbiased_finite_sample_estimator(self) -> None:
+        self.assertEqual(evaluate_repeated.pass_at_r(4, 0, 2), 0.0)
+        self.assertEqual(evaluate_repeated.pass_at_r(4, 4, 2), 1.0)
+        self.assertAlmostEqual(evaluate_repeated.pass_at_r(4, 2, 2), 5 / 6)
+
+    def test_repeated_evaluation_separates_rank_cutoff_from_trial_count(self) -> None:
+        def report(owner_hits: list[int]) -> dict:
+            cases = []
+            for i, owner_hit in enumerate(owner_hits):
+                cases.append(
+                    {
+                        "id": f"q{i}",
+                        "query": f"query {i}",
+                        "reciprocal_rank": float(owner_hit),
+                        "owner_reciprocal_rank": float(owner_hit),
+                        "per_k": {
+                            "10": {"hit": owner_hit, "owner_hit": owner_hit, "ndcg": float(owner_hit)}
+                        },
+                    }
+                )
+            return {
+                "variant": "stochastic-toy",
+                "provider": "toy",
+                "gold_sha256": "gold",
+                "query_config_sha256": "query",
+                "index": {"metadata_sha256": "same"},
+                "cases": cases,
+            }
+
+        result = evaluate_repeated.aggregate_repeated(
+            [report([1, 0]), report([0, 0]), report([1, 0]), report([0, 1])],
+            rank_cutoff=10,
+            pass_r=(1, 2, 4),
+            bootstrap_samples=0,
+        )
+        self.assertEqual(result["rank_cutoff"], 10)
+        self.assertEqual(result["runs"], 4)
+        self.assertAlmostEqual(result["summary"]["single_run_owner_success"]["mean"], 3 / 8)
+        # q0 succeeds in 2/4 runs, so Pass@2 is 5/6; q1 succeeds in 1/4,
+        # so Pass@2 is 1/2.  Aggregate over the two information needs.
+        self.assertAlmostEqual(
+            result["summary"]["pass_at_r"]["2"]["owner_success"]["mean"],
+            (5 / 6 + 1 / 2) / 2,
+        )
 
 
 if __name__ == "__main__":

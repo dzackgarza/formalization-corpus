@@ -57,6 +57,38 @@ claim that every unjudged result is irrelevant.
 
 All metrics are also sliced by the query tags in `gold.json`.
 
+### Deterministic and stochastic systems
+
+The current lexical baseline is deterministic, but the evaluation protocol is
+not.  Query expansion, generated contextualization, sampling-based retrieval,
+LLM reranking, or future learned components may make repeated executions differ.
+Keep two axes distinct:
+
+- **rank cutoff K** describes one ranked execution: Success/Hit@K,
+  Owner-Success/owner-Hit@K, Recall@K, MRR and nDCG@K;
+- **trial count R** describes repeated stochastic executions.  For a fixed
+  predicate such as Owner-Success@10, report the expected single-run success
+  probability and Pass@R[Owner-Success@10].
+
+For `n` sampled runs of one query, with `c` runs satisfying the success
+predicate, `evaluate_repeated.py` uses the standard finite-sample pass estimator
+`1 - C(n-c, R) / C(n, R)`.  Reports also carry query-level bootstrap confidence
+intervals.  Never report only best-of-R performance: single-run expected quality
+must remain visible, because Pass@R can improve merely by spending R times the
+inference budget.
+
+Repeated runs must use the same qrels, index fingerprint, query configuration,
+and named retrieval variant.  Record model/version, temperature, seed when the
+provider exposes it, candidate depth, and other sampling controls in each run
+report.  A deterministic system is simply the degenerate one-run/no-variance
+case of this protocol.
+
+To aggregate repeated reports:
+
+```sh
+python evaluation/search/evaluate_repeated.py run-*.json --rank-cutoff 10 --pass-r 1,2,5,10
+```
+
 ## Reproducibility
 
 The default evaluator calls the local Zoekt binary and local `.zoekt` shards,
