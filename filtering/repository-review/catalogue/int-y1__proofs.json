@@ -1,0 +1,424 @@
+{
+  "directory": "reservoir-sources/int-y1__proofs",
+  "discovered_via": "reservoir",
+  "proof_assistant": "lean",
+  "repository": "int-y1__proofs",
+  "schema_version": 1,
+  "source_revision": "c24859fbf9d4adf9e50e1a885927d6b59bf1cd72",
+  "source_snapshot_sha256": "9c450ca3ba7b9124fc9b26c9e252b1e596c00739d37b2b016d3b283229ece6a2",
+  "sync_group": "bulk",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 2892,
+    "bytes": 20221412,
+    "current_primary_excluded": 2,
+    "current_primary_retained": 2892,
+    "files": 2897,
+    "formal_source_files": 2892,
+    "unindexed_nonformal": 2
+  },
+  "transport": "git",
+  "url": "https://github.com/int-y1/proofs",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-84560ac6087a.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 6,
+        "value": "./@files/all"
+      },
+      "snapshot_sha256": "a81a7e2401d72e8768851618cd4730f0a4afd6413c932b3261fa8714bcb5fa36",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 1,
+        "bytes": 6872,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 1,
+        "files": 6,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 2
+      },
+      "unit_id": "RRU-84560ac6087a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-b26f7b42caf0.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "1d91dfa7252e161fc77bb65f0c996412006b8db13f29dfb0a00d332d39bf8013",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 19,
+        "bytes": 146062,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 19,
+        "files": 19,
+        "formal_source_files": 19,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b26f7b42caf0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-4d733b27d484.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 7,
+        "value": "BBfLean/@files/all"
+      },
+      "snapshot_sha256": "967155f9be8e4251525bd48d3e4ba0fe20d951cbd45202c5cf22cf56653e0163",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 7,
+        "bytes": 1557289,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 7,
+        "files": 7,
+        "formal_source_files": 7,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4d733b27d484"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-969554358b03.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "BBfLean/@subtrees/all"
+      },
+      "snapshot_sha256": "8552177a47a74141949b65d0c1def03cb3a13650ad64bedd866a5df1bd2e6ffc",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 862,
+        "bytes": 7455617,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 862,
+        "files": 862,
+        "formal_source_files": 862,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-969554358b03"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-07d4cb67a609.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 130,
+        "value": "BBfLean/Size22/@files/0"
+      },
+      "snapshot_sha256": "21137db3203eb227a88f6e0cff44a478ca8f63c64c3f7676b820b37cc73d77bc",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 130,
+        "bytes": 716507,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 130,
+        "files": 130,
+        "formal_source_files": 130,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-07d4cb67a609"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-6eea3fa1ac38.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 106,
+        "value": "BBfLean/Size22/@files/1"
+      },
+      "snapshot_sha256": "92fddc83ad99af9a71e7a392fc12b61778b7f8254f409c8f657ac2371e2a3b91",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 106,
+        "bytes": 582186,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 106,
+        "files": 106,
+        "formal_source_files": 106,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6eea3fa1ac38"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-ab045ce8efaf.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 136,
+        "value": "BBfLean/Size22/@files/2"
+      },
+      "snapshot_sha256": "c8f217f41aaf891e014cb7f459d7416fc04d738c988bab7e6ee3a5d23078a64b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 136,
+        "bytes": 717081,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 136,
+        "files": 136,
+        "formal_source_files": 136,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ab045ce8efaf"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-180282ec1c10.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 121,
+        "value": "BBfLean/Size22/@files/3"
+      },
+      "snapshot_sha256": "c08abee0b4d483cab353ba368177e77c009fa90d105db973faef638f1e3ceb73",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 121,
+        "bytes": 671945,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 121,
+        "files": 121,
+        "formal_source_files": 121,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-180282ec1c10"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-56145344e027.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 121,
+        "value": "BBfLean/Size22/@files/4"
+      },
+      "snapshot_sha256": "ec9828ca4925741018afcd65f26e17f02b7937fabdc9695ddb006f25fba1b123",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 121,
+        "bytes": 701605,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 121,
+        "files": 121,
+        "formal_source_files": 121,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-56145344e027"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-e3b166674032.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 125,
+        "value": "BBfLean/Size22/@files/5"
+      },
+      "snapshot_sha256": "ccd19d6e6f7664452950405fe6fcb41d461db5adee9617977527c6d15a0c4e7b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 125,
+        "bytes": 670864,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 125,
+        "files": 125,
+        "formal_source_files": 125,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e3b166674032"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-6e21d8bb1258.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 133,
+        "value": "BBfLean/Size22/@files/6"
+      },
+      "snapshot_sha256": "6d1095ed3ebb1c45d630feb74e5dfe042d20f396befdebbc954e656c64f2d623",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 133,
+        "bytes": 728355,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 133,
+        "files": 133,
+        "formal_source_files": 133,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6e21d8bb1258"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-f330e378efc0.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 136,
+        "value": "BBfLean/Size22/@files/7"
+      },
+      "snapshot_sha256": "7d2edd11a4352c224e4e56c2c989df2a57c28deba90ef17cd993a4a93262b985",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 136,
+        "bytes": 721225,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 136,
+        "files": 136,
+        "formal_source_files": 136,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f330e378efc0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-6d9e676798b7.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 128,
+        "value": "BBfLean/Size22/@files/8"
+      },
+      "snapshot_sha256": "f104e884052aa3697f0671e9962036b472f5b06e183db5fbc09c5e7b25548b1e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 128,
+        "bytes": 746124,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 128,
+        "files": 128,
+        "formal_source_files": 128,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6d9e676798b7"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-b69fe76060ce.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 118,
+        "value": "BBfLean/Size22/@files/9"
+      },
+      "snapshot_sha256": "9daa787a48fc4c5fd9b06e367722bb90ac2f65abd2855e502a7230292baf7975",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 118,
+        "bytes": 665751,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 118,
+        "files": 118,
+        "formal_source_files": 118,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b69fe76060ce"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-95cb41414251.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 125,
+        "value": "BBfLean/Size22/@files/a"
+      },
+      "snapshot_sha256": "5314365979a55a9e2ef10a52c1377c44bc404ff1343073439d1bf29f7e38371f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 125,
+        "bytes": 694029,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 125,
+        "files": 125,
+        "formal_source_files": 125,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-95cb41414251"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-76c08341a564.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 130,
+        "value": "BBfLean/Size22/@files/b"
+      },
+      "snapshot_sha256": "9f2f08ddacad6fe2144c2e30777b127c511814fff46969403b79670e811e10dc",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 130,
+        "bytes": 720220,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 130,
+        "files": 130,
+        "formal_source_files": 130,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-76c08341a564"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-bf11637e2454.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 118,
+        "value": "BBfLean/Size22/@files/c"
+      },
+      "snapshot_sha256": "f9f7cac866d8709c6e3a863a7de92e2829fb73bfceb8b9d708b86e13b4aa8ee3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 118,
+        "bytes": 645973,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 118,
+        "files": 118,
+        "formal_source_files": 118,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-bf11637e2454"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-9ab5d8330fde.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 124,
+        "value": "BBfLean/Size22/@files/d"
+      },
+      "snapshot_sha256": "1ce5e646434c552abe324a0ab2f8e4408b5caac76c0976c8b45c3fa0cb4f1cb8",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 124,
+        "bytes": 685394,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 124,
+        "files": 124,
+        "formal_source_files": 124,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9ab5d8330fde"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-3472ae0b6606.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 113,
+        "value": "BBfLean/Size22/@files/e"
+      },
+      "snapshot_sha256": "86226a96446331788a7d4e04a8f3befb382e936f13f053b297d1a515f15f523a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 113,
+        "bytes": 628235,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 113,
+        "files": 113,
+        "formal_source_files": 113,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3472ae0b6606"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/int-y1__proofs/RRU-a13b95b69576.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 139,
+        "value": "BBfLean/Size22/@files/f"
+      },
+      "snapshot_sha256": "ed410b8b8f0d0470e0605f520bd02ee379e6170a94a94e1ff4ad2dc2737cf771",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 139,
+        "bytes": 760078,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 139,
+        "files": 139,
+        "formal_source_files": 139,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a13b95b69576"
+    }
+  ]
+}

@@ -18,6 +18,7 @@ from filtering_lib import (
     source_revision,
     sources,
 )
+from repository_review_lib import resolve_review_exclusions
 
 
 EVENT_ONLY = {
@@ -232,6 +233,35 @@ def main() -> int:
         snapshot=snapshot,
         registered_repositories=registered,
     )
+
+    review_exclusions, review_errors = resolve_review_exclusions(require_fresh=True)
+    errors.extend(review_errors)
+    fd018_rows = {
+        (str(row["repository"]), str(row["file"])): row
+        for row in current
+        if row.get("decision_id") == "FD-018"
+    }
+    if set(fd018_rows) != set(review_exclusions):
+        missing = sorted(set(review_exclusions) - set(fd018_rows))[:10]
+        extra = sorted(set(fd018_rows) - set(review_exclusions))[:10]
+        if missing:
+            errors.append(f"accepted repository-review exclusions lack FD-018 materialization: {missing}")
+        if extra:
+            errors.append(f"FD-018 decisions have no fresh repository-review rule: {extra}")
+    for key in sorted(set(fd018_rows) & set(review_exclusions)):
+        row = fd018_rows[key]
+        expected = review_exclusions[key]
+        evidence = row.get("evidence") or {}
+        for field in ("review_id", "unit_id", "rule_id", "selector", "unit_snapshot_sha256", "rationale", "content_invariant"):
+            if evidence.get(field) != expected.get(field):
+                errors.append(f"{key}: FD-018 evidence field {field} disagrees with repository review")
+        if evidence.get("review_evidence") != expected.get("evidence"):
+            errors.append(f"{key}: FD-018 review_evidence disagrees with repository review")
+        if row.get("content_sha256") != expected.get("file_sha256"):
+            errors.append(f"{key}: FD-018 content hash disagrees with repository-review manifest")
+        if evidence.get("size_bytes") != expected.get("file_size_bytes"):
+            errors.append(f"{key}: FD-018 size disagrees with repository-review manifest")
+
     recorded_revisions = snapshot.get("source_revisions") or {}
     for source in source_rows:
         if not source.root.exists():

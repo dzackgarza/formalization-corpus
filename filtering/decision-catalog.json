@@ -146,6 +146,14 @@
       "auxiliary": "no-change",
       "policies": ["FILTER-001", "FILTER-002", "FILTER-004", "FILTER-015", "FILTER-019", "FILTER-020"],
       "justification": "ACL2 *@useless-runes.lsp files are certification-generated proof metadata, but generation does not make their searchable symbols redundant. An exhaustive 2026-09-14 audit of the 9,359 nonempty reports found 589,709 distinct event identifiers that were absent from every retained non-.sys ACL2 source file under a conservative textual token check. These include generated contracts, induction schemes, signatures, accessors, and lemmas. The reports therefore remain primary-searchable as proof metadata; ranking may demote this role behind authored formal-source hits, but the symbols must not be hidden by a physical or query-time .sys exclusion."
+    },
+    {
+      "decision_id": "FD-018",
+      "title": "Repository-local audited exclusion",
+      "primary": "exclude",
+      "auxiliary": "exclude",
+      "policies": ["FILTER-002", "FILTER-004", "FILTER-005", "FILTER-018", "FILTER-020", "FILTER-022", "FILTER-023", "FILTER-024", "FILTER-025"],
+      "justification": "This file is excluded only because an accepted repository-review record targets its exact current content through an exact path, exact path set, or literal subtree prefix. The review record is pinned to the reviewed work-unit snapshot and records the repository-local rationale, content-level losslessness invariant, evidence, selector, and source provenance. FD-018 authorizes no filename, path role, generated directory, or cross-repository class by itself; any changed work-unit snapshot makes the review stale and blocks indexing until it is re-audited."
     }
   ]
 }

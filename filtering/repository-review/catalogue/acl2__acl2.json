@@ -1,0 +1,1924 @@
+{
+  "directory": "port-sources/acl2__acl2",
+  "discovered_via": "registry",
+  "proof_assistant": "acl2",
+  "repository": "acl2__acl2",
+  "schema_version": 1,
+  "source_revision": "cc5b7368fc3e1a4fb33775d8b45220a2795b7eb7",
+  "source_snapshot_sha256": "1e3981c92dda588b239327f22222cf276af669c4a08a6dd271f323ddfefe7064",
+  "sync_group": "cross-prover",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 26576,
+    "bytes": 982366442,
+    "current_primary_excluded": 2090,
+    "current_primary_retained": 26576,
+    "files": 28676,
+    "formal_source_files": 28666,
+    "unindexed_nonformal": 9
+  },
+  "transport": "git",
+  "url": "https://github.com/acl2/acl2",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-31ff14fae639.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 66,
+        "value": "./@files/all"
+      },
+      "snapshot_sha256": "1b89fe1fdece996beb34329370f4cf3414f22d506c7160a8221ee632066a8a3d",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 56,
+        "bytes": 22059893,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 56,
+        "files": 66,
+        "formal_source_files": 56,
+        "unindexed_nonformal": 9
+      },
+      "unit_id": "RRU-31ff14fae639"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-2efa601aa3ab.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "c80959ff375b26670d5d9b741714b6ef5b5c5cfcd1e32f84fa1f1b98252199a8",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 11,
+        "bytes": 23022,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 11,
+        "files": 11,
+        "formal_source_files": 11,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-2efa601aa3ab"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-3a9227e25fb0.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 2,
+        "value": "books/@files/all"
+      },
+      "snapshot_sha256": "b8637a38f017ecdedadd02a00f0ef57c42034e5d90dd8925698a779617997415",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 2,
+        "bytes": 17723,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 2,
+        "files": 2,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3a9227e25fb0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-9ed8d3a90865.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/@subtrees/0"
+      },
+      "snapshot_sha256": "7eadc1ec8d82189b89668be49c3eaad5ff22450a510a6e9bde303e5ef2ba7684",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 131,
+        "bytes": 1505968,
+        "current_primary_excluded": 13,
+        "current_primary_retained": 131,
+        "files": 144,
+        "formal_source_files": 144,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9ed8d3a90865"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-2ccb2f2ab677.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/@subtrees/1"
+      },
+      "snapshot_sha256": "5dfdb49f427125b2397288565943ef89078f28d06bbea0d0e881713d3d0936e8",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 2,
+        "bytes": 22020,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 2,
+        "files": 2,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-2ccb2f2ab677"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-bc05c5b4c5fd.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/@subtrees/23"
+      },
+      "snapshot_sha256": "df9a3f19a1eb6419753a588f44f92ef3a94131873b8ab2d8118f83c7f40a5c7b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1524,
+        "bytes": 8986985,
+        "current_primary_excluded": 193,
+        "current_primary_retained": 1524,
+        "files": 1717,
+        "formal_source_files": 1717,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-bc05c5b4c5fd"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-f15509540a32.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/@subtrees/25"
+      },
+      "snapshot_sha256": "8a51993614af83838e23200a59be367e906e2ae7e8d57045a76f430f5ebfe198",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 20,
+        "bytes": 440310,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 20,
+        "files": 20,
+        "formal_source_files": 20,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f15509540a32"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-04f207c8244d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/@subtrees/26"
+      },
+      "snapshot_sha256": "bb5400b912d5d99182aa8bfcfc6db4ad8016d32b19b361fe1b85703e2587ef81",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 157,
+        "bytes": 2112121,
+        "current_primary_excluded": 5,
+        "current_primary_retained": 157,
+        "files": 162,
+        "formal_source_files": 162,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-04f207c8244d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-9fd1bd902e6b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/@subtrees/2e"
+      },
+      "snapshot_sha256": "4b37a5074d282363b29af24ad7d1d08bb37769e146359d86f83a9cba0ef170b2",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 250,
+        "bytes": 4533065,
+        "current_primary_excluded": 30,
+        "current_primary_retained": 250,
+        "files": 280,
+        "formal_source_files": 280,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9fd1bd902e6b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-f3e7f2827e50.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/@subtrees/3"
+      },
+      "snapshot_sha256": "199f28b36fe2ceaba8f69c3ee8eb031f1b13e843bc04d1cf6c8fb44e1ba4542c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 7,
+        "bytes": 312707,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 7,
+        "files": 7,
+        "formal_source_files": 7,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f3e7f2827e50"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-d1d1dd3928e6.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/@subtrees/4"
+      },
+      "snapshot_sha256": "908a532bea8b36a4b367a2eddd85551439c5c1bb32c37e1513c8b5ab0f8816c1",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 69,
+        "bytes": 962614,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 69,
+        "files": 69,
+        "formal_source_files": 69,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-d1d1dd3928e6"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-18a51b980393.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 7,
+        "value": "books/@subtrees/5"
+      },
+      "snapshot_sha256": "f1049fb649545ccaf9c1b9deab9b4f462391e35e88347e933da63aabb08792bf",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1020,
+        "bytes": 10286089,
+        "current_primary_excluded": 32,
+        "current_primary_retained": 1020,
+        "files": 1052,
+        "formal_source_files": 1052,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-18a51b980393"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-8efcdf990148.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/@subtrees/6"
+      },
+      "snapshot_sha256": "c9b9ee433f677a2c3973a8175568656e9d321ed2397ac188f7e9122696f3a00f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 550,
+        "bytes": 16454643,
+        "current_primary_excluded": 43,
+        "current_primary_retained": 550,
+        "files": 593,
+        "formal_source_files": 593,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-8efcdf990148"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-fd15ccd687ef.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/@subtrees/7"
+      },
+      "snapshot_sha256": "59d187174059adb9919f79301bf6df1cba9dd2bf308079fcd5a36ce8e75798d4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 18,
+        "bytes": 87154,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 18,
+        "files": 18,
+        "formal_source_files": 18,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fd15ccd687ef"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-a883c29307cb.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "books/@subtrees/8"
+      },
+      "snapshot_sha256": "cf07754bae3cef29c413c0ff76228c27b9668a1abc96d2022e32ac58db681783",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 268,
+        "bytes": 4721371,
+        "current_primary_excluded": 21,
+        "current_primary_retained": 268,
+        "files": 289,
+        "formal_source_files": 289,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a883c29307cb"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-9ab51a6bb8e8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/@subtrees/9"
+      },
+      "snapshot_sha256": "5e6e0b073ed4eca316c13adc66b6c918fc24254987549d6bf5e5a15bea4c403f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 13,
+        "bytes": 281450,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 13,
+        "files": 13,
+        "formal_source_files": 13,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9ab51a6bb8e8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-f23cd2c4f66c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/@subtrees/a"
+      },
+      "snapshot_sha256": "61e6746fedcacce3ac833b4bdc7df51ef6ff17c9f0914e0a2443bdf1a1a58769",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 689,
+        "bytes": 13338460,
+        "current_primary_excluded": 69,
+        "current_primary_retained": 689,
+        "files": 758,
+        "formal_source_files": 758,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f23cd2c4f66c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-62b38f6bbaee.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/@subtrees/b"
+      },
+      "snapshot_sha256": "10a05c2c3b20e581a212a7655c73120f97d9001a76a660dd5905489a4dfbea2d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 116,
+        "bytes": 223219,
+        "current_primary_excluded": 20,
+        "current_primary_retained": 116,
+        "files": 136,
+        "formal_source_files": 136,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-62b38f6bbaee"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-549b5e0d26ac.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/@subtrees/c3"
+      },
+      "snapshot_sha256": "f2fac79585b155e3219f40f9115517c6df250127423497ebf5a698337104b659",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 68,
+        "bytes": 239433,
+        "current_primary_excluded": 21,
+        "current_primary_retained": 68,
+        "files": 89,
+        "formal_source_files": 89,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-549b5e0d26ac"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-96bdf6a05c3e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/@subtrees/cb"
+      },
+      "snapshot_sha256": "968fd0c199859df1a77ddb06ff38da88d4005ed69920beea2b5c0a6300692e12",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1053,
+        "bytes": 26561731,
+        "current_primary_excluded": 59,
+        "current_primary_retained": 1053,
+        "files": 1112,
+        "formal_source_files": 1112,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-96bdf6a05c3e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-1af1a989f445.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/@subtrees/ce"
+      },
+      "snapshot_sha256": "53d4cd7142afb44fec4012703d3a29c5d7a5afb4e5a3febf61d166e07d49e9d8",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1417,
+        "bytes": 36911186,
+        "current_primary_excluded": 408,
+        "current_primary_retained": 1417,
+        "files": 1825,
+        "formal_source_files": 1825,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1af1a989f445"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-101f49210cba.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "books/@subtrees/d"
+      },
+      "snapshot_sha256": "befda120a10d305e0f3f36ab910fe422a279546558577422b98aa4075450f61f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 235,
+        "bytes": 4204105,
+        "current_primary_excluded": 21,
+        "current_primary_retained": 235,
+        "files": 256,
+        "formal_source_files": 256,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-101f49210cba"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-90f169b63521.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/@subtrees/e"
+      },
+      "snapshot_sha256": "a104bb91addb84cafeb871a4ed5ead1689c0ad2be75d209fb23d8db389b51fc2",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 462,
+        "bytes": 7218306,
+        "current_primary_excluded": 25,
+        "current_primary_retained": 462,
+        "files": 487,
+        "formal_source_files": 487,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-90f169b63521"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-274269cfa69b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/@subtrees/f"
+      },
+      "snapshot_sha256": "032847102b2557907e87aab2a8dcb1c878ec306957f2ce83facdc11f76b8b39f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 68,
+        "bytes": 605175,
+        "current_primary_excluded": 5,
+        "current_primary_retained": 68,
+        "files": 73,
+        "formal_source_files": 73,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-274269cfa69b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-f3c93f38aec0.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 3,
+        "value": "books/centaur/@files/all"
+      },
+      "snapshot_sha256": "87d4f4aa2c63d6adeef6c48b4babb76565176b841479153d648c9bfc750524cf",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 3,
+        "bytes": 15613,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 3,
+        "files": 3,
+        "formal_source_files": 3,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f3c93f38aec0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-b0f4fed6e245.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/centaur/@subtrees/0"
+      },
+      "snapshot_sha256": "b1d09d3ff17a93764557fb2c1f17a89389c78700856a91fb1136248395e4b018",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 165,
+        "bytes": 21508706,
+        "current_primary_excluded": 18,
+        "current_primary_retained": 165,
+        "files": 183,
+        "formal_source_files": 183,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b0f4fed6e245"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-dc1a3e98c45f.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/centaur/@subtrees/1"
+      },
+      "snapshot_sha256": "fe3ea2690a754b71bf43c1acc7d68674109e2cf71d3e5a585a782c59eb1c4cea",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 143,
+        "bytes": 5806324,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 143,
+        "files": 146,
+        "formal_source_files": 146,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-dc1a3e98c45f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-39a763588d42.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/centaur/@subtrees/2"
+      },
+      "snapshot_sha256": "a5f144ab4e725bfb68aecb08495a1db7eaf502840db4559874f9e5e3875350cf",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 18,
+        "bytes": 531286,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 18,
+        "files": 19,
+        "formal_source_files": 19,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-39a763588d42"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-6972f6106d9a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/centaur/@subtrees/3"
+      },
+      "snapshot_sha256": "41ce0c17ff416be5c5713bf46f14486f62c648bc0ec2347ebce00742a23bea18",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 470,
+        "bytes": 71010535,
+        "current_primary_excluded": 6,
+        "current_primary_retained": 470,
+        "files": 476,
+        "formal_source_files": 476,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6972f6106d9a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-694c65a65b3b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/centaur/@subtrees/4"
+      },
+      "snapshot_sha256": "05cc3a214501c7165d69d5bcc685f60ee8f8352e50cb24fd63bc78d2859d2c1c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 211,
+        "bytes": 8182834,
+        "current_primary_excluded": 5,
+        "current_primary_retained": 211,
+        "files": 216,
+        "formal_source_files": 216,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-694c65a65b3b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-536cc80c626d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/centaur/@subtrees/6"
+      },
+      "snapshot_sha256": "cfe633d09cc249306b85eda01ea4397273fd4c6be5087f927ea5e658b01a4a7b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 58,
+        "bytes": 1466587,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 58,
+        "files": 61,
+        "formal_source_files": 61,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-536cc80c626d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-ab7a66dc44e4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/centaur/@subtrees/7"
+      },
+      "snapshot_sha256": "1a96b2dee6d52a7b8438b08a410573a387f18f324df6e6be297e9501f4d0922d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 11,
+        "bytes": 43326,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 11,
+        "files": 13,
+        "formal_source_files": 13,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ab7a66dc44e4"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-f6f8734b4260.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/centaur/@subtrees/8"
+      },
+      "snapshot_sha256": "d881c3ed0eae6f9e772802d87a0d61b3fdfb7970c1c35cc152cf419e0329b4d4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 143,
+        "bytes": 5745134,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 143,
+        "files": 145,
+        "formal_source_files": 145,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f6f8734b4260"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-9b04e5f92974.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/centaur/@subtrees/9"
+      },
+      "snapshot_sha256": "da39cda6e3f340157a653b64c56d0976b8127af4a323e88134578d678d64dc15",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 15,
+        "bytes": 788730,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 15,
+        "files": 16,
+        "formal_source_files": 16,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9b04e5f92974"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-f20c8d4c2660.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/centaur/@subtrees/a"
+      },
+      "snapshot_sha256": "3a4759a8b7e9ac03398cdd1e3770bfd9b55892ea5ca737501a23bdf09808af9a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 30,
+        "bytes": 353665,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 30,
+        "files": 33,
+        "formal_source_files": 33,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f20c8d4c2660"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-36b7b5434f20.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/centaur/@subtrees/b"
+      },
+      "snapshot_sha256": "b076f456070d87fec22364183402add3436efae02ec037b38aa4169f865d0931",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 274,
+        "bytes": 14653686,
+        "current_primary_excluded": 12,
+        "current_primary_retained": 274,
+        "files": 286,
+        "formal_source_files": 286,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-36b7b5434f20"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-a54654a79c5c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 6,
+        "value": "books/centaur/@subtrees/c"
+      },
+      "snapshot_sha256": "6606c0a6a4ef4fc06900ff88c4ffb117f20df4691c379cb8aea7729ffde3f4c1",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 854,
+        "bytes": 71340122,
+        "current_primary_excluded": 39,
+        "current_primary_retained": 854,
+        "files": 893,
+        "formal_source_files": 893,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a54654a79c5c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-d26abe1e8967.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/centaur/@subtrees/d"
+      },
+      "snapshot_sha256": "b4cb6afd5840ee7051a40acfe496f04bdc6e205999dc96ef22e8d7fc274638e5",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 469,
+        "bytes": 43160710,
+        "current_primary_excluded": 23,
+        "current_primary_retained": 469,
+        "files": 492,
+        "formal_source_files": 492,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-d26abe1e8967"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-891e0972be61.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/centaur/@subtrees/e"
+      },
+      "snapshot_sha256": "0813f62bbf10b4ed3b39e4ef373709a5428bce8fec4e0f33ccf38784a747bfdb",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 37,
+        "bytes": 3652005,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 37,
+        "files": 40,
+        "formal_source_files": 40,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-891e0972be61"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-b7626caae6da.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/centaur/@subtrees/f"
+      },
+      "snapshot_sha256": "b6a834556967154a92897036498478b999aed3ef64b478b83ddbab399df2f949",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 29,
+        "bytes": 312170,
+        "current_primary_excluded": 5,
+        "current_primary_retained": 29,
+        "files": 34,
+        "formal_source_files": 34,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b7626caae6da"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-f31e5285af43.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 4,
+        "value": "books/kestrel/@files/all"
+      },
+      "snapshot_sha256": "915a45edfdb958d53fd50cba1020aa099679344acac7a178f04d1813b1a2df09",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 4,
+        "bytes": 7710,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 4,
+        "files": 4,
+        "formal_source_files": 4,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f31e5285af43"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-487173cb93e2.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 7,
+        "value": "books/kestrel/@subtrees/0"
+      },
+      "snapshot_sha256": "05552a00a8965e1f1219882c35450bd103ee7e1a65bf8394bb1408ec7e824c8b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 513,
+        "bytes": 13125474,
+        "current_primary_excluded": 46,
+        "current_primary_retained": 513,
+        "files": 559,
+        "formal_source_files": 559,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-487173cb93e2"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-80030b48352b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "books/kestrel/@subtrees/1"
+      },
+      "snapshot_sha256": "a948f084c1420a45095a6bf3eb33f9b1bca988c95a78e9589eae1fd0a299a7f2",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 359,
+        "bytes": 4251865,
+        "current_primary_excluded": 98,
+        "current_primary_retained": 359,
+        "files": 457,
+        "formal_source_files": 457,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-80030b48352b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-3b4242ebc8b6.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 6,
+        "value": "books/kestrel/@subtrees/2"
+      },
+      "snapshot_sha256": "6d05301c1c2de7f277af15fac9c47ce49969c0d78c35be614effb33e3f669cb2",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 556,
+        "bytes": 24429414,
+        "current_primary_excluded": 74,
+        "current_primary_retained": 556,
+        "files": 630,
+        "formal_source_files": 630,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3b4242ebc8b6"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-db353a90dacf.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/kestrel/@subtrees/3"
+      },
+      "snapshot_sha256": "0a4f895f12fc34507d401e62b550c919d872315a894afe19a98556a7f8f7624e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 349,
+        "bytes": 10134600,
+        "current_primary_excluded": 10,
+        "current_primary_retained": 349,
+        "files": 359,
+        "formal_source_files": 359,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-db353a90dacf"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-0a27716d53aa.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 8,
+        "value": "books/kestrel/@subtrees/4"
+      },
+      "snapshot_sha256": "3eef86aa3fd05c4c4556123efa87fecb5da13c0627f1009990c99ff4b585abb3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 506,
+        "bytes": 9852593,
+        "current_primary_excluded": 36,
+        "current_primary_retained": 506,
+        "files": 542,
+        "formal_source_files": 542,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0a27716d53aa"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-a0f75185175e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "books/kestrel/@subtrees/5"
+      },
+      "snapshot_sha256": "d209a4657f650a61348703688d9b86d85fd9522fdb24be171a6612c87128ef92",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 812,
+        "bytes": 30792359,
+        "current_primary_excluded": 74,
+        "current_primary_retained": 812,
+        "files": 886,
+        "formal_source_files": 886,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a0f75185175e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-a1cca7aac5b1.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/kestrel/@subtrees/6"
+      },
+      "snapshot_sha256": "c7f98c6c7288d59db427385e9f2e418d81da43eca3cf6cc2cc11f88620eb6384",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 206,
+        "bytes": 1671007,
+        "current_primary_excluded": 8,
+        "current_primary_retained": 206,
+        "files": 214,
+        "formal_source_files": 214,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a1cca7aac5b1"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-55bbce344416.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/kestrel/@subtrees/7"
+      },
+      "snapshot_sha256": "c370894b1211e4daabb2b6385fe2ec35deeb84740ee875d149a11a1ff7c2f229",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 190,
+        "bytes": 3978172,
+        "current_primary_excluded": 11,
+        "current_primary_retained": 190,
+        "files": 201,
+        "formal_source_files": 201,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-55bbce344416"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-79d2c76b2bef.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/kestrel/@subtrees/8"
+      },
+      "snapshot_sha256": "cc1f03290bf6b37114680e8e4f91f1cfc3a2434124e6e243fce34aef1cbfd1bd",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 71,
+        "bytes": 1370184,
+        "current_primary_excluded": 15,
+        "current_primary_retained": 71,
+        "files": 86,
+        "formal_source_files": 86,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-79d2c76b2bef"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-1cf991a1188c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "books/kestrel/@subtrees/9"
+      },
+      "snapshot_sha256": "0e25e2a0747c4f86a72148d74362edcef8cd9cbcd8ae284fa34a5ca57f506949",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 105,
+        "bytes": 620500,
+        "current_primary_excluded": 16,
+        "current_primary_retained": 105,
+        "files": 121,
+        "formal_source_files": 121,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1cf991a1188c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-322f397d4b38.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "books/kestrel/@subtrees/a"
+      },
+      "snapshot_sha256": "d1a9a50ba133bbe01edffc5844a80922c00319b7ed6861773ab710780d3807a5",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 186,
+        "bytes": 3218479,
+        "current_primary_excluded": 11,
+        "current_primary_retained": 186,
+        "files": 197,
+        "formal_source_files": 197,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-322f397d4b38"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-24bbaded4aa2.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "books/kestrel/@subtrees/b"
+      },
+      "snapshot_sha256": "e301650ef068bc08ba9d9aacdbc9a1bef0c642f202f395580cab12919f1d4311",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 471,
+        "bytes": 8993254,
+        "current_primary_excluded": 17,
+        "current_primary_retained": 471,
+        "files": 488,
+        "formal_source_files": 488,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-24bbaded4aa2"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-eb6e2fe06ab4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/kestrel/@subtrees/c"
+      },
+      "snapshot_sha256": "7878a6dbdcfd09337bec043e63d69c0b2ad2d68dc17cd80f8e3c5271fe6188fe",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 261,
+        "bytes": 16939230,
+        "current_primary_excluded": 16,
+        "current_primary_retained": 261,
+        "files": 277,
+        "formal_source_files": 277,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-eb6e2fe06ab4"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-5eed19bdeac9.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "books/kestrel/@subtrees/d"
+      },
+      "snapshot_sha256": "1b742397ad03ee1f0d370857ab9ab0201fb8862afd82d5b7148e358d0cdbf576",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 461,
+        "bytes": 7325889,
+        "current_primary_excluded": 33,
+        "current_primary_retained": 461,
+        "files": 494,
+        "formal_source_files": 494,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-5eed19bdeac9"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-1b58b91dab41.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/kestrel/@subtrees/e0"
+      },
+      "snapshot_sha256": "f27d96d5d831e2627a037695492ffebf48362c8f350943bb8b75a1080c3523bd",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 29,
+        "bytes": 458651,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 29,
+        "files": 31,
+        "formal_source_files": 31,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1b58b91dab41"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-f8fd6e2aadaa.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/kestrel/@subtrees/e1"
+      },
+      "snapshot_sha256": "f1cb58ec298517518b1bb22243acd0ab19a0753a46ea5f693c0544378b2727da",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 146,
+        "bytes": 551268,
+        "current_primary_excluded": 7,
+        "current_primary_retained": 146,
+        "files": 153,
+        "formal_source_files": 153,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f8fd6e2aadaa"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-b9defa7258b4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/kestrel/@subtrees/e4"
+      },
+      "snapshot_sha256": "1831a6fdf7c595c297671c3599c240501f85d6fcc98f81fdfec590b9b1df569e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1378,
+        "bytes": 32936247,
+        "current_primary_excluded": 48,
+        "current_primary_retained": 1378,
+        "files": 1426,
+        "formal_source_files": 1426,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b9defa7258b4"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-0496912ca2bc.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/kestrel/@subtrees/e7"
+      },
+      "snapshot_sha256": "fbb328957a7268329c5409c463da4fd88d7f3793d5875cb19174b7ee25aa1885",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 62,
+        "bytes": 67719,
+        "current_primary_excluded": 16,
+        "current_primary_retained": 62,
+        "files": 78,
+        "formal_source_files": 78,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0496912ca2bc"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-23e2fa0964eb.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/kestrel/@subtrees/e8"
+      },
+      "snapshot_sha256": "1eee0a3881b68d4ed86f0f7529bfe0dcd442ea1f56799c7dd48110eaed05553c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 14,
+        "bytes": 96049,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 14,
+        "files": 17,
+        "formal_source_files": 17,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-23e2fa0964eb"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-da740f86661b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/kestrel/@subtrees/e9"
+      },
+      "snapshot_sha256": "a75fe0445ce71becade37615461674ea8eca26b9aaaddab5d4b57d593cdd671f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 21,
+        "bytes": 96693,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 21,
+        "files": 22,
+        "formal_source_files": 22,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-da740f86661b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-47d31d8e8c14.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/kestrel/@subtrees/eb"
+      },
+      "snapshot_sha256": "3133b7db331cf222f7bf8b8dba798ed6da1b9221d21c3c1c50dac4346fa0edaa",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 53,
+        "bytes": 379187,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 53,
+        "files": 56,
+        "formal_source_files": 56,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-47d31d8e8c14"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-fe43705d24ec.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/kestrel/@subtrees/ed"
+      },
+      "snapshot_sha256": "726835365ebbd2cce7fdb67ae37a1d065e880087b788db7cbe3d3b0f172aa8c1",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 770,
+        "bytes": 4156220,
+        "current_primary_excluded": 57,
+        "current_primary_retained": 770,
+        "files": 827,
+        "formal_source_files": 827,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fe43705d24ec"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-fe53f1d5008d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/kestrel/@subtrees/ee"
+      },
+      "snapshot_sha256": "5cbc35496fd0108bdbc947d493060c66d21d11a9853ca57311e954c9a5ada865",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 4,
+        "bytes": 6015,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 4,
+        "files": 4,
+        "formal_source_files": 4,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fe53f1d5008d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-f327f13d8077.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/kestrel/@subtrees/ef"
+      },
+      "snapshot_sha256": "35fa753f27f8190e629ac3dad0431c0ba643cff179c09df2a9c03b3b452a9ca9",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 142,
+        "bytes": 897881,
+        "current_primary_excluded": 6,
+        "current_primary_retained": 142,
+        "files": 148,
+        "formal_source_files": 148,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f327f13d8077"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-ba48597d6181.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 7,
+        "value": "books/kestrel/@subtrees/f"
+      },
+      "snapshot_sha256": "726c6c64e3dc3d6367fddc796d2841bed22e13c6cda316e692e464a5380eb9a8",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 195,
+        "bytes": 2280539,
+        "current_primary_excluded": 36,
+        "current_primary_retained": 195,
+        "files": 231,
+        "formal_source_files": 231,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ba48597d6181"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-162c4df0577d.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 8,
+        "value": "books/projects/@files/all"
+      },
+      "snapshot_sha256": "5ef88699f27e11c98fe0f2d48723ef030d06dddca894863c632dd2178608a7c1",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 8,
+        "bytes": 35637,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 8,
+        "files": 8,
+        "formal_source_files": 8,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-162c4df0577d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-81cc494f42b9.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/projects/@subtrees/0"
+      },
+      "snapshot_sha256": "7e870b760e370413c69ed83239c45d121f97d32ee1804dab74aaca618ec5af9c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 43,
+        "bytes": 615621,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 43,
+        "files": 44,
+        "formal_source_files": 44,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-81cc494f42b9"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-a79cda7f635e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "books/projects/@subtrees/1"
+      },
+      "snapshot_sha256": "c5a1680a7d76dcedd9f9b221edb442768d16af1e34d5ebf85b7248fc1e7bbf13",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1184,
+        "bytes": 97567945,
+        "current_primary_excluded": 26,
+        "current_primary_retained": 1184,
+        "files": 1210,
+        "formal_source_files": 1210,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a79cda7f635e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-1fa84301c7ab.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/projects/@subtrees/2"
+      },
+      "snapshot_sha256": "655aab164f50f5c6da697aeb50b61795fb79437a7c0ca45a1a10e413fe62ad75",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 38,
+        "bytes": 2328527,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 38,
+        "files": 39,
+        "formal_source_files": 39,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1fa84301c7ab"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-8906bfcdf6ad.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "books/projects/@subtrees/3"
+      },
+      "snapshot_sha256": "557af964ad754afc2cf67289342bd67e4c34138ed128eac954283e742a6cd08e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 219,
+        "bytes": 17288468,
+        "current_primary_excluded": 12,
+        "current_primary_retained": 219,
+        "files": 231,
+        "formal_source_files": 231,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-8906bfcdf6ad"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-a7aa94004aad.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 8,
+        "value": "books/projects/@subtrees/4"
+      },
+      "snapshot_sha256": "c4c8d9d26538e852613112a04f21ccafea753e2bcad6923ad03d337859d9911e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 392,
+        "bytes": 7001827,
+        "current_primary_excluded": 30,
+        "current_primary_retained": 392,
+        "files": 422,
+        "formal_source_files": 422,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a7aa94004aad"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-eeaf41718cfb.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/projects/@subtrees/5"
+      },
+      "snapshot_sha256": "fc34c24d66960df82f4108cb9f8d47bd672bfc865b56c62312e66700647bec44",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 146,
+        "bytes": 5749268,
+        "current_primary_excluded": 9,
+        "current_primary_retained": 146,
+        "files": 155,
+        "formal_source_files": 155,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-eeaf41718cfb"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-f9367317f5cf.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "books/projects/@subtrees/6"
+      },
+      "snapshot_sha256": "37573bc708920b25c7be82a480a92c196bf49efdd5be2862f9ce1c0df4c7a130",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1015,
+        "bytes": 69372512,
+        "current_primary_excluded": 76,
+        "current_primary_retained": 1015,
+        "files": 1091,
+        "formal_source_files": 1091,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f9367317f5cf"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-c336fd3d54e8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 6,
+        "value": "books/projects/@subtrees/7"
+      },
+      "snapshot_sha256": "eb92b43cc9935e38525b1c84f9a43ace755ce3a666e5600e7daa0b7f78baea57",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 267,
+        "bytes": 16153531,
+        "current_primary_excluded": 27,
+        "current_primary_retained": 267,
+        "files": 294,
+        "formal_source_files": 294,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c336fd3d54e8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-445ed0968fa7.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/projects/@subtrees/8"
+      },
+      "snapshot_sha256": "3182f684d088ee4a2529d29ba5624a4bacafc2fcde537c6e680904110fff2181",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 13,
+        "bytes": 272239,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 13,
+        "files": 14,
+        "formal_source_files": 14,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-445ed0968fa7"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-1f4047955090.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "books/projects/@subtrees/9"
+      },
+      "snapshot_sha256": "4ac471d1d4a4cc7b7b08cc488e68bcbfbbd544152b9ab75991c2a1966ad19ea4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 166,
+        "bytes": 4174242,
+        "current_primary_excluded": 11,
+        "current_primary_retained": 166,
+        "files": 177,
+        "formal_source_files": 177,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1f4047955090"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-843fbd1f75f8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "books/projects/@subtrees/a"
+      },
+      "snapshot_sha256": "48b193622e1bface5a6773f7b29e4cc372a262f8de3a5f42baffef5072b603ce",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 328,
+        "bytes": 27109063,
+        "current_primary_excluded": 35,
+        "current_primary_retained": 328,
+        "files": 363,
+        "formal_source_files": 363,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-843fbd1f75f8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-b80c9caba4c0.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/projects/@subtrees/b"
+      },
+      "snapshot_sha256": "a4fd4950d3f4450195c353f9576f1d9d9ec64e71597d85ea7de77ae25454472a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 98,
+        "bytes": 2129482,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 98,
+        "files": 100,
+        "formal_source_files": 100,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b80c9caba4c0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-a513f9116bdd.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "books/projects/@subtrees/c"
+      },
+      "snapshot_sha256": "c1b536eec05b81af7d41c20f83dac948689120d6a3e7a6e8e6e7f2c3d1ed2c20",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 602,
+        "bytes": 36018158,
+        "current_primary_excluded": 22,
+        "current_primary_retained": 602,
+        "files": 624,
+        "formal_source_files": 624,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a513f9116bdd"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-6203f60f91af.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/projects/@subtrees/d"
+      },
+      "snapshot_sha256": "1d5ee0431f127d16e92f8862c1cc971c6928be8018f03f9966965629752c7297",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 57,
+        "bytes": 3207572,
+        "current_primary_excluded": 5,
+        "current_primary_retained": 57,
+        "files": 62,
+        "formal_source_files": 62,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6203f60f91af"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-247d2ee3c950.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/projects/@subtrees/e"
+      },
+      "snapshot_sha256": "449e7305ec69d2bee8fef57472b2b0deab168256dba88f5579e66b91bbaf4876",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 455,
+        "bytes": 29783500,
+        "current_primary_excluded": 16,
+        "current_primary_retained": 455,
+        "files": 471,
+        "formal_source_files": 471,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-247d2ee3c950"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-059f0239de09.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 7,
+        "value": "books/projects/@subtrees/f"
+      },
+      "snapshot_sha256": "044a46fa2aad33231035979f6795a72f05c136adf066b04045c98683e1e830ac",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 87,
+        "bytes": 7051745,
+        "current_primary_excluded": 7,
+        "current_primary_retained": 87,
+        "files": 94,
+        "formal_source_files": 94,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-059f0239de09"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-27a3263c07cc.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/workshops/@subtrees/1"
+      },
+      "snapshot_sha256": "a55063902ac69a95db27b741529e8334f555eca8f2d569781a9dcf6ae76e0480",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 65,
+        "bytes": 1591714,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 65,
+        "files": 65,
+        "formal_source_files": 65,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-27a3263c07cc"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-b733e9f54b8a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/workshops/@subtrees/3"
+      },
+      "snapshot_sha256": "a1adc1b00de7df6e3ee67d40826e64e3557c57d0e743cc31b229a1695600bacb",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 197,
+        "bytes": 2961002,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 197,
+        "files": 199,
+        "formal_source_files": 199,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b733e9f54b8a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-587ae6db0d29.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/workshops/@subtrees/4"
+      },
+      "snapshot_sha256": "cd56dbc617a80ffaeab38c852491746dd7a256301c1d830b356c655f3b11f3d2",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 271,
+        "bytes": 2003337,
+        "current_primary_excluded": 13,
+        "current_primary_retained": 271,
+        "files": 284,
+        "formal_source_files": 284,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-587ae6db0d29"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-076188fd52ab.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "books/workshops/@subtrees/5"
+      },
+      "snapshot_sha256": "fce9a8abaa1a0dc714bf67f5ff349b9ef2679fd20fba12647ef65e33b54dc62c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 490,
+        "bytes": 11829477,
+        "current_primary_excluded": 6,
+        "current_primary_retained": 490,
+        "files": 496,
+        "formal_source_files": 496,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-076188fd52ab"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-b5a78336dd6a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/workshops/@subtrees/6"
+      },
+      "snapshot_sha256": "d118644370c31caae7b3015a12613800d0c4279cd75a8cd07c3baa0fcd63fcfd",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 116,
+        "bytes": 6029742,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 116,
+        "files": 119,
+        "formal_source_files": 119,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b5a78336dd6a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-4c6b1e5231ff.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/workshops/@subtrees/7"
+      },
+      "snapshot_sha256": "b2130ac7a5717f6e4c3ee8b1389c79cd6537e1396faf159d57c847b9e1d5252a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 207,
+        "bytes": 4055094,
+        "current_primary_excluded": 8,
+        "current_primary_retained": 207,
+        "files": 215,
+        "formal_source_files": 215,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4c6b1e5231ff"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-9ffbc5665416.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/workshops/@subtrees/8"
+      },
+      "snapshot_sha256": "3f8abc958f688c26847a3233be687465dfca97968423b3e02fc59f80cdadd156",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 50,
+        "bytes": 3597219,
+        "current_primary_excluded": 9,
+        "current_primary_retained": 50,
+        "files": 59,
+        "formal_source_files": 59,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9ffbc5665416"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-5e98ee35a1dc.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/workshops/@subtrees/a"
+      },
+      "snapshot_sha256": "deed21fb5a7acec1c3043b1610033f524eb203ac129dc68f43f566e6c0603c99",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 66,
+        "bytes": 5708962,
+        "current_primary_excluded": 4,
+        "current_primary_retained": 66,
+        "files": 70,
+        "formal_source_files": 70,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-5e98ee35a1dc"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-08f931faff3a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/workshops/@subtrees/b"
+      },
+      "snapshot_sha256": "f68c6c36d92df86a92c576a7c2f7a1ce08007f4643fc0813f24fee69234d91b3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 123,
+        "bytes": 7122877,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 123,
+        "files": 126,
+        "formal_source_files": 126,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-08f931faff3a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-c2c1383c8e2b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/workshops/@subtrees/c"
+      },
+      "snapshot_sha256": "e905e8a41d105b07a31eab6fe2da80eb41dcb5ceed8191059e2f07ec859ff085",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 373,
+        "bytes": 15149462,
+        "current_primary_excluded": 15,
+        "current_primary_retained": 373,
+        "files": 388,
+        "formal_source_files": 388,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c2c1383c8e2b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-cc6d11e49451.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "books/workshops/@subtrees/d"
+      },
+      "snapshot_sha256": "68aac594b9a3dc207d5196fc5ea36de4497cbfec7780fcf23a97c7b2a60e701d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 373,
+        "bytes": 5428387,
+        "current_primary_excluded": 7,
+        "current_primary_retained": 373,
+        "files": 380,
+        "formal_source_files": 380,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-cc6d11e49451"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-8a79c60ed7c0.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "books/workshops/@subtrees/f"
+      },
+      "snapshot_sha256": "ec911587f9a6eb9e928da361acd6043b637de56ed4b650b1b6d4c4c5f52f5f71",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 127,
+        "bytes": 1712450,
+        "current_primary_excluded": 4,
+        "current_primary_retained": 127,
+        "files": 131,
+        "formal_source_files": 131,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-8a79c60ed7c0"
+    }
+  ]
+}

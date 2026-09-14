@@ -31,6 +31,7 @@ from filtering_lib import (
     sources,
     verify_lean_import_only,
 )
+from repository_review_lib import resolve_review_exclusions
 
 
 def utc_now() -> str:
@@ -99,6 +100,12 @@ def main() -> int:
         raise SystemExit("filter-state generation requires a clean worktree; commit the classifier first")
 
     catalog = load_catalog()
+    review_exclusions, review_errors = resolve_review_exclusions(require_fresh=True)
+    if review_errors:
+        raise SystemExit(
+            "repository review state is invalid; run `just repository-review-validate`:\n  "
+            + "\n  ".join(review_errors[:50])
+        )
     now = utc_now()
     commit = corpus_commit()
     current: list[dict[str, Any]] = []
@@ -218,6 +225,34 @@ def main() -> int:
                 raw = raw_for_whitespace
                 if lean_import_only_candidate(raw):
                     import_candidates.append((source, path, rel, raw, digest))
+
+            review_exclusion = review_exclusions.get((source.repository, rel))
+            if review_exclusion is not None:
+                if digest != review_exclusion["file_sha256"]:
+                    raise SystemExit(
+                        f"repository review hash drift for {source.repository}/{rel}; "
+                        "rebuild and re-audit the review catalogue"
+                    )
+                current.append(
+                    decision_record(
+                        catalog=catalog, decision_id="FD-018", repository=source.repository,
+                        file=rel, proof_assistant=source.proof_assistant,
+                        source_revision_value=revision, content_sha256=digest,
+                        evidence={
+                            "review_id": review_exclusion["review_id"],
+                            "unit_id": review_exclusion["unit_id"],
+                            "rule_id": review_exclusion["rule_id"],
+                            "selector": review_exclusion["selector"],
+                            "unit_snapshot_sha256": review_exclusion["unit_snapshot_sha256"],
+                            "size_bytes": review_exclusion["file_size_bytes"],
+                            "rationale": review_exclusion["rationale"],
+                            "content_invariant": review_exclusion["content_invariant"],
+                            "review_evidence": review_exclusion["evidence"],
+                        },
+                        observed_at=now, commit=commit,
+                    )
+                )
+                continue
 
             # Candidate for exact-content result dedup.  Import-only files are
             # removed after parser verification below; harmless inclusion here

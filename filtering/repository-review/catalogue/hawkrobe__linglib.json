@@ -1,0 +1,264 @@
+{
+  "directory": "reservoir-sources/hawkrobe__linglib",
+  "discovered_via": "reservoir",
+  "proof_assistant": "lean",
+  "repository": "hawkrobe__linglib",
+  "schema_version": 1,
+  "source_revision": "08d0e79264d23aa0d342792926646e3c08aa3e40",
+  "source_snapshot_sha256": "16774b5ee6f77a514e8f3b2ddaf134d88a568e34532e418b84ffb1b9cd713252",
+  "sync_group": "bulk",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 2937,
+    "bytes": 41059548,
+    "current_primary_excluded": 2,
+    "current_primary_retained": 2937,
+    "files": 2944,
+    "formal_source_files": 2937,
+    "unindexed_nonformal": 4
+  },
+  "transport": "git",
+  "url": "https://github.com/hawkrobe/linglib",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-958a7d2ddbe3.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 9,
+        "value": "./@files/all"
+      },
+      "snapshot_sha256": "82bf267368cef35eeeae2586e8bbd0e01a4a12d470c7a4ba08f3a56b267298ab",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 2,
+        "bytes": 155727,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 2,
+        "files": 9,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 4
+      },
+      "unit_id": "RRU-958a7d2ddbe3"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-db7cd7e8423d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "9278f398fb4917d6df01d6151e7412bad11632c32133cf17acf6edb192025e7a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1,
+        "bytes": 30344,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1,
+        "files": 1,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-db7cd7e8423d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-057147e04279.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Linglib/@subtrees/1"
+      },
+      "snapshot_sha256": "80f9aef5b3e8baa42bae513a2cd89939b7e8096e30f5eb269dfeaf2dc6c9683e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 266,
+        "bytes": 3984545,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 266,
+        "files": 266,
+        "formal_source_files": 266,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-057147e04279"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-7b3313d71591.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Linglib/@subtrees/2"
+      },
+      "snapshot_sha256": "d7155643fd415b155059229c6aae24777ef41ad3d3006fc7f9ba6ec481e39b97",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 62,
+        "bytes": 416723,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 62,
+        "files": 62,
+        "formal_source_files": 62,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7b3313d71591"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-32ba8afead09.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Linglib/@subtrees/4"
+      },
+      "snapshot_sha256": "6f59aa28817460e2bf248c4e83285b19808b0726ae66c6ad68bf73078c1acbcf",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 895,
+        "bytes": 17179419,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 895,
+        "files": 895,
+        "formal_source_files": 895,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-32ba8afead09"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-b3e15a6c834e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Linglib/@subtrees/5"
+      },
+      "snapshot_sha256": "fb135223e716149ae7ed4d725b4637ccd1d2a838a43d142a0f386813ac8a602d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 328,
+        "bytes": 7671141,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 328,
+        "files": 328,
+        "formal_source_files": 328,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b3e15a6c834e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-6c9dc5921c1e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Linglib/@subtrees/6"
+      },
+      "snapshot_sha256": "b49f402c2973eae79d4d7fda092d7e8e0b64e1addc722ba6fa75728ed6cd2fd0",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 52,
+        "bytes": 610085,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 52,
+        "files": 52,
+        "formal_source_files": 52,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6c9dc5921c1e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-87dd7f67d42f.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Linglib/@subtrees/7"
+      },
+      "snapshot_sha256": "de30f3cd501bd2340e9fa80c67d5f91c73c11cbbce14ce358d76a0eacfc64f6f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 414,
+        "bytes": 4419220,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 414,
+        "files": 414,
+        "formal_source_files": 414,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-87dd7f67d42f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-4a00e97e0b85.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Linglib/@subtrees/a"
+      },
+      "snapshot_sha256": "42b52987e6363fcd2aafdb7015718f4d6a1ae8e743c3485a1432f74a67c84db1",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 240,
+        "bytes": 2723189,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 240,
+        "files": 240,
+        "formal_source_files": 240,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4a00e97e0b85"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-6a1f3584b13d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Linglib/@subtrees/b"
+      },
+      "snapshot_sha256": "4776c3bfe523a39c68e69f1e53c89dfbd5a95b1f2a91ceb4a06b9e1022821149",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 51,
+        "bytes": 548471,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 51,
+        "files": 51,
+        "formal_source_files": 51,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6a1f3584b13d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-45792a67ef5a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Linglib/@subtrees/d"
+      },
+      "snapshot_sha256": "ee3edf2f9885627e3c961dfe96c5a34071bcba73bb467bed0821c211500c5e7e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 71,
+        "bytes": 748041,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 71,
+        "files": 71,
+        "formal_source_files": 71,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-45792a67ef5a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-f372e8e6f2d3.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Linglib/@subtrees/e"
+      },
+      "snapshot_sha256": "73f302e57c71d5f1d740e8b0e983ebd513110ca506508b9cb55570dc35eebb20",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 555,
+        "bytes": 2572643,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 555,
+        "files": 555,
+        "formal_source_files": 555,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f372e8e6f2d3"
+    }
+  ]
+}

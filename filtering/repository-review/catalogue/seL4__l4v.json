@@ -1,0 +1,44 @@
+{
+  "directory": "port-sources/seL4__l4v",
+  "discovered_via": "registry",
+  "proof_assistant": "isabelle",
+  "repository": "seL4__l4v",
+  "schema_version": 1,
+  "source_revision": "c18eef3c556573e0bfedfeb88bdb7525cda051a1",
+  "source_snapshot_sha256": "cc71d69d2a52a9255d318a934d848c39a0b7881ce927a3437a0e8dc907ae7957",
+  "sync_group": "cross-prover",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 1883,
+    "bytes": 49074089,
+    "current_primary_excluded": 0,
+    "current_primary_retained": 1883,
+    "files": 1894,
+    "formal_source_files": 1883,
+    "unindexed_nonformal": 10
+  },
+  "transport": "git",
+  "url": "https://github.com/seL4/l4v",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/seL4__l4v/RRU-f97c1f39542d.jsonl",
+      "scope": {
+        "kind": "repository",
+        "root_count": 0,
+        "value": "."
+      },
+      "snapshot_sha256": "cc71d69d2a52a9255d318a934d848c39a0b7881ce927a3437a0e8dc907ae7957",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 1883,
+        "bytes": 49074089,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1883,
+        "files": 1894,
+        "formal_source_files": 1883,
+        "unindexed_nonformal": 10
+      },
+      "unit_id": "RRU-f97c1f39542d"
+    }
+  ]
+}

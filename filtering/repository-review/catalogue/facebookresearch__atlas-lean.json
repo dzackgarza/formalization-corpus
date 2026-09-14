@@ -1,0 +1,284 @@
+{
+  "directory": "facebookresearch__atlas-lean",
+  "discovered_via": "registry",
+  "proof_assistant": "lean",
+  "repository": "facebookresearch__atlas-lean",
+  "schema_version": 1,
+  "source_revision": "e8b31c5cb0bec89b487ce33fe525a2c0b0f8b9c6",
+  "source_snapshot_sha256": "b1fb48404c9b9d1f271b56c163f9a912f215e7cf684e248fe973f40aaabda527",
+  "sync_group": "routine",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 2654,
+    "bytes": 28858835,
+    "current_primary_excluded": 0,
+    "current_primary_retained": 2654,
+    "files": 2655,
+    "formal_source_files": 2654,
+    "unindexed_nonformal": 0
+  },
+  "transport": "git",
+  "url": "https://github.com/facebookresearch/atlas-lean",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-b389f1e610b0.jsonl",
+      "scope": {
+        "kind": "direct-files",
+        "root_count": 1,
+        "value": "README.md"
+      },
+      "snapshot_sha256": "81fb8f4a54b871bbfd2b202c35c48fdccfbb4bcc772fe2dc530075baa595976a",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 0,
+        "bytes": 1931,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 0,
+        "files": 1,
+        "formal_source_files": 0,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b389f1e610b0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-4ba8230c6081.jsonl",
+      "scope": {
+        "kind": "direct-files",
+        "root_count": 1,
+        "value": "v1/Atlas.lean"
+      },
+      "snapshot_sha256": "188531d212d9904c9b38a6e32c8cdf5fcf682901fdfab203783e34e59fab989b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1,
+        "bytes": 1590,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1,
+        "files": 1,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4ba8230c6081"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-1f974089dc68.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "v1/Atlas/@subtrees/0"
+      },
+      "snapshot_sha256": "47f5fe8d0286f5388a24222cc03f9452a991515f699c6225ab232751333f359e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 83,
+        "bytes": 1032076,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 83,
+        "files": 83,
+        "formal_source_files": 83,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1f974089dc68"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-e5139da410c2.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "v1/Atlas/@subtrees/3"
+      },
+      "snapshot_sha256": "c6d2da6b859db40a88ce59dbf81e2bd3e1f91ab6f1837e6a6dd3405328733bfb",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 564,
+        "bytes": 5233107,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 564,
+        "files": 564,
+        "formal_source_files": 564,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e5139da410c2"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-71bdb7af28ba.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "v1/Atlas/@subtrees/4"
+      },
+      "snapshot_sha256": "99feb3bbf28e1f1e9e8b4981d8547d78479b2ce48a5ca69ace79a8b4a517fe0c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 704,
+        "bytes": 6509833,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 704,
+        "files": 704,
+        "formal_source_files": 704,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-71bdb7af28ba"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-304659fcbb86.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "v1/Atlas/@subtrees/5"
+      },
+      "snapshot_sha256": "56855de4c29b49c86f9e77c952bae51245802a850d7ef0219d45f4aecb83003a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 190,
+        "bytes": 1980451,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 190,
+        "files": 190,
+        "formal_source_files": 190,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-304659fcbb86"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-a5e695904d29.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "v1/Atlas/@subtrees/6"
+      },
+      "snapshot_sha256": "b779e28889a3eaeee7ecded55722dee0252c6fcc9921075ede6ce10e4c0ca7dc",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 140,
+        "bytes": 1983487,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 140,
+        "files": 140,
+        "formal_source_files": 140,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a5e695904d29"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-4ced66983aa4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "v1/Atlas/@subtrees/7"
+      },
+      "snapshot_sha256": "b116dc938cf403b47003e9f3aaf288e6489dcf898e6b5f8065b9968a492e5b9f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 140,
+        "bytes": 2134709,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 140,
+        "files": 140,
+        "formal_source_files": 140,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4ced66983aa4"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-6ef06a8d56d1.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "v1/Atlas/@subtrees/8"
+      },
+      "snapshot_sha256": "5649ac104c733c1f2d449c196578b493530f59aec81e5fc0555d2385b2cd416e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 15,
+        "bytes": 137454,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 15,
+        "files": 15,
+        "formal_source_files": 15,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6ef06a8d56d1"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-18b412e56ae6.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "v1/Atlas/@subtrees/a"
+      },
+      "snapshot_sha256": "e62a7ce80eaf90f5bb70a70923643c129cfa6431b1b8e10913cd6caa0641e784",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 437,
+        "bytes": 4507551,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 437,
+        "files": 437,
+        "formal_source_files": 437,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-18b412e56ae6"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-0f59d6193cbc.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "v1/Atlas/@subtrees/c"
+      },
+      "snapshot_sha256": "cd1ff9479afd384e68fc020d853319be973b9e48a07cfc1b813760d323e5a64b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 107,
+        "bytes": 1476953,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 107,
+        "files": 107,
+        "formal_source_files": 107,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0f59d6193cbc"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-5896ff4e46ed.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "v1/Atlas/@subtrees/e"
+      },
+      "snapshot_sha256": "73086c93a3c1961fe824232da82ac4e934243a357776f09ece53c37e357ff2c9",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 166,
+        "bytes": 1344716,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 166,
+        "files": 166,
+        "formal_source_files": 166,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-5896ff4e46ed"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-ee252316496f.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "v1/Atlas/@subtrees/f"
+      },
+      "snapshot_sha256": "e9c64a000258857a6414e83dcde33a263aaf76efc6e5b7170eea719b51bdd91f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 107,
+        "bytes": 2514977,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 107,
+        "files": 107,
+        "formal_source_files": 107,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ee252316496f"
+    }
+  ]
+}

@@ -137,3 +137,27 @@ alive). Use `pgrep -x <binary>`, or match on the absolute path.
 one too high; `cp` is `cp -i`, so an overwrite silently aborts on a prompt
 nothing answers; `tr 'A-Z' 'a-z'` dies with an `--icons` error. Use `command
 ls -1`, `command cp -f`, `/usr/bin/tr`.
+
+## Repository-review filtering traps
+
+- **Review the authoritative hydrated source, not `.index-primary`.** The index is
+  already filtered and cannot reveal material that an earlier rule hid. The
+  repository-review catalogue is generated from source checkouts specifically to
+  avoid self-confirming audits.
+- **A source-local pattern is not a global class.** A generated/test/vendor path
+  may be safe to exclude in one repository only because of source-specific
+  evidence. Do not copy that selector to another repository without an
+  independent review or a separately established corpus-wide invariant.
+- **Do not carry blacklists across changed unit snapshots.** Added, removed,
+  renamed, or changed files can invalidate the original losslessness argument.
+  Fresh validation deliberately blocks indexing until the affected unit is
+  re-reviewed; do not weaken that guard to make sync easier.
+- **No regex/glob convenience rules.** Repository-review exclusions use exact
+  paths, explicit path sets, or literal subtree prefixes. Broad pattern syntax
+  makes future matching drift difficult to audit.
+- **No-exclusion is a valid completed result.** A reviewed unit whose material
+  has search value should record `default_action=retain` and `rules=[]`. Do not
+  invent a blacklist merely to make a batch look productive.
+- **Batch completion is review coverage, not bytes/files removed.** A few large
+  exclusions do not dispose the remaining units. Every unit needs a fresh
+  explicit review or remains pending/deferred.

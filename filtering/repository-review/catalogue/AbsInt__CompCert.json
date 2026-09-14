@@ -1,0 +1,44 @@
+{
+  "directory": "port-sources/AbsInt__CompCert",
+  "discovered_via": "registry",
+  "proof_assistant": "rocq",
+  "repository": "AbsInt__CompCert",
+  "schema_version": 1,
+  "source_revision": "1154e1fc9dab1fef0a5cb61e9988ee09872f4e49",
+  "source_snapshot_sha256": "391eb34972dbd647da6188280035dc5febd3d3ff673ae2ab932c9e0a5c6351f6",
+  "sync_group": "cross-prover",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 253,
+    "bytes": 7477575,
+    "current_primary_excluded": 0,
+    "current_primary_retained": 253,
+    "files": 266,
+    "formal_source_files": 253,
+    "unindexed_nonformal": 12
+  },
+  "transport": "git",
+  "url": "https://github.com/AbsInt/CompCert",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/AbsInt__CompCert/RRU-16f2e39de563.jsonl",
+      "scope": {
+        "kind": "repository",
+        "root_count": 0,
+        "value": "."
+      },
+      "snapshot_sha256": "391eb34972dbd647da6188280035dc5febd3d3ff673ae2ab932c9e0a5c6351f6",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 253,
+        "bytes": 7477575,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 253,
+        "files": 266,
+        "formal_source_files": 253,
+        "unindexed_nonformal": 12
+      },
+      "unit_id": "RRU-16f2e39de563"
+    }
+  ]
+}

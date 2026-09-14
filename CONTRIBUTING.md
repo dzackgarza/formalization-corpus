@@ -439,6 +439,55 @@ When an agent or contributor cannot establish the invariant needed for a hard
 filter, the required action is to stop at classification/tagging and record the
 uncertainty.  "Looks like junk" is never a reason to make content undiscoverable.
 
+### FILTER-022 — Repository-local review never becomes a global heuristic by accident
+
+The repository-by-repository review catalogue is a controlled way to make
+source-local decisions, not a shortcut for minting corpus-wide path rules.  A
+selector accepted for one source applies only to the exact review unit and
+snapshot named in its review record.  Similar-looking paths in another source
+remain unaffected unless that source is reviewed independently or a separate
+corpus-wide invariant is established under `FILTER-004`.
+
+A reviewer may explicitly conclude that a unit has no safe exclusions.  That is
+a substantive disposition: record the review and retain the unmatched material
+rather than inventing a weak blacklist merely to reduce the index.
+
+### FILTER-023 — Repository reviews are snapshot-pinned and expire on relevant change
+
+Every completed repository-review record is pinned to the SHA-256 snapshot of
+its work unit.  A changed, added, removed, or renamed file inside that unit makes
+the review stale.  Stale exclusions must not silently carry forward to a new
+upstream revision; indexing must stop until the changed unit is re-audited and a
+new review revision explicitly supersedes the old one.
+
+For very large sources this invalidation is intentionally subtree-local.  A
+change in one review unit does not invalidate an unchanged unit elsewhere in the
+same repository.
+
+### FILTER-024 — A blacklist must materialize to exact files and hashes
+
+Repository-review selectors are deliberately limited to exact paths, explicit
+path sets, and literal subtree prefixes.  Do not use regular expressions,
+unbounded globs, basename rules, or semantic guesses in this layer.  Before an
+accepted blacklist affects the primary index, it must resolve against the
+committed catalogue to a finite nonempty set of files, and the catalogue must
+record every matched file's path, byte size, and SHA-256 digest.
+
+Overlapping blacklist rules are an error.  One excluded file should have one
+repository-local reason at a time so future audits can identify exactly which
+argument hid it.
+
+### FILTER-025 — Review coverage and exclusion are separate facts
+
+A work unit is complete only when its review record states what was inspected,
+pins the exact unit snapshot, and gives an explicit default disposition.  The
+normal completed default is **retain**; targeted exclusions are exceptions to
+that default.  A **deferred** unit is not reviewed and activates no exclusions.
+
+This separation prevents absence of a blacklist from being misread as absence
+of review, and prevents a batch worker from claiming progress merely by adding a
+few exclusion patterns while leaving the rest of the unit unaudited.
+
 ## Source-lead intake
 
 Source suggestions are unreviewed leads, not proposed `sources.tsv` rows.  The

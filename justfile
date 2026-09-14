@@ -152,12 +152,30 @@ build-search-pool:
 audit-search-data output="/tmp/formalization-corpus-data-audit.json":
     python evaluation/search/audit_corpus_data.py --output "{{output}}"
 
+# Rebuild the authoritative per-source/per-subtree review catalogue from hydrated sources.
+repository-review-catalogue:
+    python scripts/repository-review.py build
+    python scripts/repository-review.py validate
+
+# Validate catalogue coverage, review history, snapshot freshness, and selectors.
+repository-review-validate:
+    python scripts/repository-review.py validate
+
+# Show the complete repository-review frontier.
+repository-review-status:
+    python scripts/repository-review.py status
+
+# Show one deterministic review batch.
+repository-review-batch batch:
+    python scripts/repository-review.py status --batch "{{batch}}"
+
 # Recompute the reversible per-file filtering decisions from clean source snapshots.
-filter-state:
+# Fresh accepted repository-local blacklist rules materialize here as FD-018.
+filter-state: repository-review-validate
     python scripts/build-filter-state.py
 
 # Replay and validate the append-only filtering ledger against derived snapshots.
-filter-validate:
+filter-validate: repository-review-validate
     python scripts/validate-filter-state.py
 
 # Materialize hard-link views for primary mathematical content and auxiliary navigation/docs.
@@ -180,6 +198,7 @@ ast pattern:
 test-commit:
     printf 'def formedModuleAnswer : Nat := 42\n' | ast-grep run --config sgconfig.yml --lang lean --pattern 'def $NAME : $TYPE := $VALUE' --stdin --json=compact | jq -e 'length == 1 and .[0].text == "def formedModuleAnswer : Nat := 42"' >/dev/null
     python scripts/check-policy-codes.py
+    python scripts/repository-review.py validate
     python scripts/validate-filter-state.py
     python evaluation/search/evaluate.py --validate-only
     python -m unittest discover -s evaluation/search -p 'test_*.py'

@@ -1,0 +1,384 @@
+{
+  "directory": "leanprover-community__mathlib4",
+  "discovered_via": "registry",
+  "proof_assistant": "lean",
+  "repository": "leanprover-community__mathlib4",
+  "schema_version": 1,
+  "source_revision": "81a5d257c8e410db227a6665ed08f64fea08e997",
+  "source_snapshot_sha256": "d46530fd9af7fe506ee9a848895d7d60a488ac87ec5522b8a7d952bec68a0250",
+  "sync_group": "routine",
+  "totals": {
+    "auxiliary_only": 24,
+    "baseline_primary_retained": 8795,
+    "bytes": 100692056,
+    "current_primary_excluded": 3,
+    "current_primary_retained": 8795,
+    "files": 8972,
+    "formal_source_files": 8795,
+    "unindexed_nonformal": 150
+  },
+  "transport": "git",
+  "url": "https://github.com/leanprover-community/mathlib4",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-64280b03bb78.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 16,
+        "value": "./@files/all"
+      },
+      "snapshot_sha256": "767f57d8dc17db0726196b87f18f204ec36c9ec5b997edebfdf94eabea2e6901",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 5,
+        "bytes": 494315,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 5,
+        "files": 16,
+        "formal_source_files": 5,
+        "unindexed_nonformal": 8
+      },
+      "unit_id": "RRU-64280b03bb78"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-59be611d3d2e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 12,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "e6c43db77031d8ae243ba2ad85cc92ac36242c251376b57b2d7f49e1d6b52f67",
+      "stats": {
+        "auxiliary_only": 13,
+        "baseline_primary_retained": 526,
+        "bytes": 4065534,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 526,
+        "files": 682,
+        "formal_source_files": 526,
+        "unindexed_nonformal": 142
+      },
+      "unit_id": "RRU-59be611d3d2e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-63ba4ade1d61.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 2,
+        "value": "Mathlib/@files/all"
+      },
+      "snapshot_sha256": "26cdb46a00cf98e4cf249f70a639862a47c33fa872e5075538b8763fa8836a24",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 2,
+        "bytes": 23026,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 2,
+        "files": 2,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-63ba4ade1d61"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-95fd5184b260.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Mathlib/@subtrees/0"
+      },
+      "snapshot_sha256": "9137ea3996cb292b5519a7236f460712b819549b8ee3c4358feca480b24d19a0",
+      "stats": {
+        "auxiliary_only": 2,
+        "baseline_primary_retained": 1341,
+        "bytes": 12730391,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1341,
+        "files": 1343,
+        "formal_source_files": 1341,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-95fd5184b260"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-62b1ac93c197.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Mathlib/@subtrees/1"
+      },
+      "snapshot_sha256": "fb58d95e26f92c975d05cea0a8ae3332d4990ac7dc4e85585f5e86704cc5a7d1",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 194,
+        "bytes": 2462127,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 194,
+        "files": 194,
+        "formal_source_files": 194,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-62b1ac93c197"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-773c77ab6116.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "Mathlib/@subtrees/2"
+      },
+      "snapshot_sha256": "2e327a6489d1bda41bd4886ed882534c5bff64eec8cb49d9aedb2d2eedcb3350",
+      "stats": {
+        "auxiliary_only": 4,
+        "baseline_primary_retained": 513,
+        "bytes": 9068355,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 513,
+        "files": 517,
+        "formal_source_files": 513,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-773c77ab6116"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-c565e15b23a2.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "Mathlib/@subtrees/3"
+      },
+      "snapshot_sha256": "cb9a750cd6d22a2b78ba89128ebf168678f80cf9d32758a12f133322d90cc45a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 531,
+        "bytes": 5890197,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 531,
+        "files": 531,
+        "formal_source_files": 531,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c565e15b23a2"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-812717aeb88c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Mathlib/@subtrees/4"
+      },
+      "snapshot_sha256": "b85282bea33e6527dce707051a6590c80e5425bdd4ded04cbb63fcb133e528b6",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 169,
+        "bytes": 2228201,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 169,
+        "files": 169,
+        "formal_source_files": 169,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-812717aeb88c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-4a9c34e4a856.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Mathlib/@subtrees/5"
+      },
+      "snapshot_sha256": "ce13f18337d91f976a8f34760a24c1597552aa7319f420b8eff1f37f2e2b5fc6",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 647,
+        "bytes": 5884287,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 647,
+        "files": 647,
+        "formal_source_files": 647,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4a9c34e4a856"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-9d0288ac4a9e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Mathlib/@subtrees/6"
+      },
+      "snapshot_sha256": "0a4cddb9c182a561bbdd810bf29aee226d79a142bed6e844d9ce484b3ea533ea",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 34,
+        "bytes": 327357,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 34,
+        "files": 34,
+        "formal_source_files": 34,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9d0288ac4a9e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-c27959d159f3.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "Mathlib/@subtrees/7"
+      },
+      "snapshot_sha256": "ea7c59f9b02c3dd47e9657c57bc02e3fc5962bceccb3c10e21494ca7d1d340cf",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 135,
+        "bytes": 1585732,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 135,
+        "files": 135,
+        "formal_source_files": 135,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c27959d159f3"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-f2cc913f9b26.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Mathlib/@subtrees/8"
+      },
+      "snapshot_sha256": "6299d764e8e297c5e19397041ac46167e044f9e80b1ceda0c08a214bc44a3d7d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 956,
+        "bytes": 11347669,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 956,
+        "files": 956,
+        "formal_source_files": 956,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f2cc913f9b26"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-fb7c2379228c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "Mathlib/@subtrees/9"
+      },
+      "snapshot_sha256": "c82111baa7c4808eea44a0a8fd066e7d78eebde134c5743f704581793cf84948",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 225,
+        "bytes": 2741222,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 225,
+        "files": 226,
+        "formal_source_files": 225,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fb7c2379228c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-c218859c9c8b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Mathlib/@subtrees/a"
+      },
+      "snapshot_sha256": "48f2f17142a6fa33eb57ba071ab4f76bd1ef1f14163922f11fc348bacb2b549f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 139,
+        "bytes": 2210704,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 139,
+        "files": 139,
+        "formal_source_files": 139,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c218859c9c8b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-4a2ed3c59c30.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Mathlib/@subtrees/b"
+      },
+      "snapshot_sha256": "779b550977106bd10688c994ed16fb7f943cd9cee022f06df08cba999f225480",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 986,
+        "bytes": 12275672,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 986,
+        "files": 987,
+        "formal_source_files": 986,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4a2ed3c59c30"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-e87368644d7b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Mathlib/@subtrees/c"
+      },
+      "snapshot_sha256": "69cc9d5e930b648be0214f1bd5f1c9c9de5a80194be60fbe6be723195c94776a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1172,
+        "bytes": 12317320,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1172,
+        "files": 1172,
+        "formal_source_files": 1172,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e87368644d7b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-fc2c5a10e77b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Mathlib/@subtrees/e"
+      },
+      "snapshot_sha256": "092d9aed02bc8bc75c746b0362b3faebc9b0cd35bf164b5f84eabd819d53d791",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1,
+        "bytes": 352,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1,
+        "files": 1,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fc2c5a10e77b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-b7d3b182ef9a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "Mathlib/@subtrees/f"
+      },
+      "snapshot_sha256": "2b9b5643f1f9d22b8f2053410ec5db682cc42f6a08e4c74287c5a30dbfa00ab0",
+      "stats": {
+        "auxiliary_only": 2,
+        "baseline_primary_retained": 1219,
+        "bytes": 15039595,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1219,
+        "files": 1221,
+        "formal_source_files": 1219,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b7d3b182ef9a"
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+{
+  "directory": "port-sources/rocq-prover__rocq",
+  "discovered_via": "registry",
+  "proof_assistant": "rocq",
+  "repository": "rocq-prover__rocq",
+  "schema_version": 1,
+  "source_revision": "868b0d9c1538092c7fef9d863857ee08ab4ec4ca",
+  "source_snapshot_sha256": "eec0bfd6f8da1c25d6a4b572e0382aa8d13acb4c6f2463ee631602b35496d177",
+  "sync_group": "cross-prover",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 2877,
+    "bytes": 4182415,
+    "current_primary_excluded": 10,
+    "current_primary_retained": 2877,
+    "files": 2920,
+    "formal_source_files": 2887,
+    "unindexed_nonformal": 32
+  },
+  "transport": "git",
+  "url": "https://github.com/rocq-prover/rocq",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-d0fa713faf5a.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 33,
+        "value": "./@files/all"
+      },
+      "snapshot_sha256": "b664963f273a83f8780708039f621d3e07ab1a5d4f7b65e9d3f5610f7321a9e7",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 0,
+        "bytes": 222898,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 0,
+        "files": 33,
+        "formal_source_files": 0,
+        "unindexed_nonformal": 32
+      },
+      "unit_id": "RRU-d0fa713faf5a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-3d8bed9f4ce7.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "1c462d522874a424efc3cfcdd3b3c9b01d1ad82098516d84ea681f5453b6fb59",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 123,
+        "bytes": 805534,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 123,
+        "files": 123,
+        "formal_source_files": 123,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3d8bed9f4ce7"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-57de092c35bd.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "test-suite/@subtrees/0"
+      },
+      "snapshot_sha256": "232c0a12748ff63025d9a92bc5f23432d74112c61078d7a36aa33dcdc8254c87",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 23,
+        "bytes": 34239,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 23,
+        "files": 23,
+        "formal_source_files": 23,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-57de092c35bd"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-a75b1d5769ee.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "test-suite/@subtrees/1"
+      },
+      "snapshot_sha256": "24ddfe8aa418a124d0c8d30f801db61b3e1649ecdb85a8cced5e1944b7fc589f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 307,
+        "bytes": 760472,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 307,
+        "files": 308,
+        "formal_source_files": 308,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a75b1d5769ee"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-23f6f9e9694a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "test-suite/@subtrees/2"
+      },
+      "snapshot_sha256": "f528a0f1140f4484e6be8942658c07aace47c10ce78bb57d193c5f538926d5f5",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 4,
+        "bytes": 1054,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 4,
+        "files": 4,
+        "formal_source_files": 4,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-23f6f9e9694a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-a967cf882eec.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "test-suite/@subtrees/3"
+      },
+      "snapshot_sha256": "4b7b43db849471e34e9a47f4acdd3755e3ac21f8adeb5cc438b3391ae183562b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1634,
+        "bytes": 1447650,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1634,
+        "files": 1634,
+        "formal_source_files": 1634,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a967cf882eec"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-f29772c8528d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "test-suite/@subtrees/5"
+      },
+      "snapshot_sha256": "9c7d554221f64149af1d3c346c2986becd4ffa47736b4d8b4ca49aaf59a504a4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 33,
+        "bytes": 34177,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 33,
+        "files": 33,
+        "formal_source_files": 33,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f29772c8528d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-37b58af76401.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "test-suite/@subtrees/6"
+      },
+      "snapshot_sha256": "a8720f60d170254d3a3762b1e2e909e80645089c4129199f80e8906b2746fe58",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 127,
+        "bytes": 126753,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 127,
+        "files": 130,
+        "formal_source_files": 130,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-37b58af76401"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-20a3941153ad.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "test-suite/@subtrees/7"
+      },
+      "snapshot_sha256": "9f9aca5cab2534a9a033769fc2f1d619263b7ffb4a1d883773113b2e25bd7272",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 8,
+        "bytes": 1227,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 8,
+        "files": 8,
+        "formal_source_files": 8,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-20a3941153ad"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-b7d5b1ac453f.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "test-suite/@subtrees/8"
+      },
+      "snapshot_sha256": "ae09805c875fe51bbadfdf9410cfa0fe5b43ee8d27fbe794c8d26e01557c9733",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 85,
+        "bytes": 127585,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 85,
+        "files": 85,
+        "formal_source_files": 85,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b7d5b1ac453f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-9f9f2b7280c5.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "test-suite/@subtrees/b"
+      },
+      "snapshot_sha256": "07ff45eff90328c58c2e6cf884d5cb8f0cf505eeebe63a5bb36b2c9d33d5b215",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 34,
+        "bytes": 8507,
+        "current_primary_excluded": 6,
+        "current_primary_retained": 34,
+        "files": 40,
+        "formal_source_files": 40,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9f9f2b7280c5"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-058b62490958.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "test-suite/@subtrees/e"
+      },
+      "snapshot_sha256": "f2e333a079420d9b93ad9ac4b82c3a5dc2d70164d0de55c5ebadb9535917d1e3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 497,
+        "bytes": 611703,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 497,
+        "files": 497,
+        "formal_source_files": 497,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-058b62490958"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/rocq-prover__rocq/RRU-e93acf842617.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "test-suite/@subtrees/f"
+      },
+      "snapshot_sha256": "2e94575c9338fe6c16a64f304426f087720aaef9e7ab8db19550076f63b4d67e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 2,
+        "bytes": 616,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 2,
+        "files": 2,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e93acf842617"
+    }
+  ]
+}

@@ -1,0 +1,404 @@
+{
+  "directory": "reservoir-sources/Vilin97__lean-pool",
+  "discovered_via": "reservoir",
+  "proof_assistant": "lean",
+  "repository": "Vilin97__lean-pool",
+  "schema_version": 1,
+  "source_revision": "3fc79f0a795f19fffcc59eee3efaf5faa52de3c3",
+  "source_snapshot_sha256": "328de3d9429f0262c4458f76fb1e8635cca6240039e3fe972dfc882737310ad3",
+  "sync_group": "bulk",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 3548,
+    "bytes": 53855214,
+    "current_primary_excluded": 3,
+    "current_primary_retained": 3548,
+    "files": 3564,
+    "formal_source_files": 3548,
+    "unindexed_nonformal": 12
+  },
+  "transport": "git",
+  "url": "https://github.com/Vilin97/lean-pool",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-e375f942c144.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 19,
+        "value": "./@files/all"
+      },
+      "snapshot_sha256": "48c4beec1f8cc4b171a998c662e5aa0d829ade534bd0b060369bb564ab438cca",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 3,
+        "bytes": 658450,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 3,
+        "files": 19,
+        "formal_source_files": 3,
+        "unindexed_nonformal": 12
+      },
+      "unit_id": "RRU-e375f942c144"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-7eb519972a2a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "2e3221edb0c3a6f316f11a0da8c6a269b03d79e258038a37cfba60846c51b3dd",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 5,
+        "bytes": 45400,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 5,
+        "files": 5,
+        "formal_source_files": 5,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7eb519972a2a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-12528221ee65.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 149,
+        "value": "LeanPool/@files/all"
+      },
+      "snapshot_sha256": "73dc0fe808279be02e003470fd576bac64098c77c55ee6d08239092adf9ebac4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 149,
+        "bytes": 323035,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 149,
+        "files": 149,
+        "formal_source_files": 149,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-12528221ee65"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-a08bc2c44849.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 14,
+        "value": "LeanPool/@subtrees/0"
+      },
+      "snapshot_sha256": "c149657285dcec1fe16958c4dfe7d6d2b71587d24a8e8a63ea7e1c882726e1b9",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 358,
+        "bytes": 6344082,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 358,
+        "files": 358,
+        "formal_source_files": 358,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a08bc2c44849"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-aa7c061df806.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 8,
+        "value": "LeanPool/@subtrees/1"
+      },
+      "snapshot_sha256": "c5ae2686765ebae34f7ce567af6dbba2d21002d0e4f3b8728e2738eb1850e882",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 398,
+        "bytes": 5199705,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 398,
+        "files": 398,
+        "formal_source_files": 398,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-aa7c061df806"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-8ac63517c10c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 7,
+        "value": "LeanPool/@subtrees/2"
+      },
+      "snapshot_sha256": "ce28b47a9848785d22223fe70c3e80ce900c920b37169247811ece84f8fb8c44",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 196,
+        "bytes": 1780648,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 196,
+        "files": 196,
+        "formal_source_files": 196,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-8ac63517c10c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-e20d11ff61e5.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 7,
+        "value": "LeanPool/@subtrees/3"
+      },
+      "snapshot_sha256": "d62132d5cc80cd966bd8c43185d87c45ba950b3357b867d5ab8345f29daf8e05",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 61,
+        "bytes": 881330,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 61,
+        "files": 61,
+        "formal_source_files": 61,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e20d11ff61e5"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-0210d73abc14.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 7,
+        "value": "LeanPool/@subtrees/4"
+      },
+      "snapshot_sha256": "aa2e20d41f50900d22116ab9ca87fa32f4a73de5006bd4fcfe38ac0fe8edf0f0",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 141,
+        "bytes": 1178019,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 141,
+        "files": 141,
+        "formal_source_files": 141,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0210d73abc14"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-c25594e8a626.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 12,
+        "value": "LeanPool/@subtrees/5"
+      },
+      "snapshot_sha256": "31a3ef890dd857bf4249d9e4d224f3e8e2b8e4b31b2d4c8df641b5b8f63b1755",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 528,
+        "bytes": 8490136,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 528,
+        "files": 528,
+        "formal_source_files": 528,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c25594e8a626"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-0683a823ac84.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 7,
+        "value": "LeanPool/@subtrees/6"
+      },
+      "snapshot_sha256": "d19ea57ebe9fa86d40a0a82456910d04e08bf37f07f8ebd3f0840b3df4efc070",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 124,
+        "bytes": 883150,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 124,
+        "files": 124,
+        "formal_source_files": 124,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0683a823ac84"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-e494f44944de.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 9,
+        "value": "LeanPool/@subtrees/7"
+      },
+      "snapshot_sha256": "8cfacc3e0832298a0d92988bd562da5e58c759d1b535dde59f8b80a9774fd2f0",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 261,
+        "bytes": 4492204,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 261,
+        "files": 261,
+        "formal_source_files": 261,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e494f44944de"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-80069e3d3e53.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 10,
+        "value": "LeanPool/@subtrees/8"
+      },
+      "snapshot_sha256": "fc4bad128c30dc0103f1d481ba8eba244e607ef58f901c7762a7b78896de15d0",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 160,
+        "bytes": 2157587,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 160,
+        "files": 160,
+        "formal_source_files": 160,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-80069e3d3e53"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-cd6c2cb98fdb.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 6,
+        "value": "LeanPool/@subtrees/9"
+      },
+      "snapshot_sha256": "87511b9d563f8b85ca80442acb261b9656c1a97e4f96180fa2a00991f60e169f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 75,
+        "bytes": 983779,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 75,
+        "files": 75,
+        "formal_source_files": 75,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-cd6c2cb98fdb"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-196b034d6309.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "LeanPool/@subtrees/a"
+      },
+      "snapshot_sha256": "138a9ba0a13629a0022ed4ee637a3e5ff8dc79ef9e2c0e3588f45dc31ff12bb1",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 13,
+        "bytes": 569183,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 13,
+        "files": 13,
+        "formal_source_files": 13,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-196b034d6309"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-22fcd13f02fc.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 14,
+        "value": "LeanPool/@subtrees/b"
+      },
+      "snapshot_sha256": "cca7cde1d55d54f0c9ea3e7110f6eea2512bdcb8f5ae984de191ec3bf18c3b7d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 536,
+        "bytes": 8822069,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 536,
+        "files": 536,
+        "formal_source_files": 536,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-22fcd13f02fc"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-51256a8cf9ba.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 11,
+        "value": "LeanPool/@subtrees/c"
+      },
+      "snapshot_sha256": "49d09d007455e6ed3f389222d9319bc36cb4d92ad4869e26adcd11239cd59212",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 125,
+        "bytes": 2051563,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 125,
+        "files": 125,
+        "formal_source_files": 125,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-51256a8cf9ba"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-ddda82e7f875.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 9,
+        "value": "LeanPool/@subtrees/d"
+      },
+      "snapshot_sha256": "3d7a3a61fea24c240a208ae584ae70c77a44cf1c421c7f55fb5b1b33a594df6c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 131,
+        "bytes": 2503975,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 131,
+        "files": 131,
+        "formal_source_files": 131,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ddda82e7f875"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-988bb45c4f62.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 11,
+        "value": "LeanPool/@subtrees/e"
+      },
+      "snapshot_sha256": "6279cf9989792e3dc8103614f74c9fbca321f540ca2f72061bd79b9f08dde928",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 178,
+        "bytes": 2448213,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 178,
+        "files": 178,
+        "formal_source_files": 178,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-988bb45c4f62"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Vilin97__lean-pool/RRU-d3254146cae4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 8,
+        "value": "LeanPool/@subtrees/f"
+      },
+      "snapshot_sha256": "2a55eb02b26727c57a4a2c637ac6bdf9331eede122446025ae9be03f27146058",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 106,
+        "bytes": 4042686,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 106,
+        "files": 106,
+        "formal_source_files": 106,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-d3254146cae4"
+    }
+  ]
+}

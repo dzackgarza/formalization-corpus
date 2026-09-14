@@ -1,0 +1,64 @@
+{
+  "directory": "port-sources/isabelle-prover__mirror-isabelle",
+  "discovered_via": "registry",
+  "proof_assistant": "isabelle",
+  "repository": "isabelle-prover__mirror-isabelle",
+  "schema_version": 1,
+  "source_revision": "d42c517e6847166be2ddbfcfa635e4ecec82f5df",
+  "source_snapshot_sha256": "37aaac18b0e5c18ae175b12a8ef70ca61ed56be7dfaf2a0d0c2799ab8d23dcc9",
+  "sync_group": "cross-prover",
+  "totals": {
+    "auxiliary_only": 2,
+    "baseline_primary_retained": 1997,
+    "bytes": 45654952,
+    "current_primary_excluded": 0,
+    "current_primary_retained": 1997,
+    "files": 2007,
+    "formal_source_files": 1997,
+    "unindexed_nonformal": 8
+  },
+  "transport": "git",
+  "url": "https://github.com/isabelle-prover/mirror-isabelle",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-dbfdcd0d69a6.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 10,
+        "value": "./@files/all"
+      },
+      "snapshot_sha256": "96cc008e3bdec73a58cc88d65c3a44adce46654b409d25ebccb4f0d4a3433a05",
+      "stats": {
+        "auxiliary_only": 2,
+        "baseline_primary_retained": 0,
+        "bytes": 855165,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 0,
+        "files": 10,
+        "formal_source_files": 0,
+        "unindexed_nonformal": 8
+      },
+      "unit_id": "RRU-dbfdcd0d69a6"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-ceb3f596f9cd.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "c58cf4858b7c343d47667d08b4aa398582911912568705ed039701b4dae40055",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1997,
+        "bytes": 44799787,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1997,
+        "files": 1997,
+        "formal_source_files": 1997,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ceb3f596f9cd"
+    }
+  ]
+}

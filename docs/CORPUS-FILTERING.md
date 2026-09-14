@@ -307,7 +307,64 @@ comparison procedure is reproducible with `scripts/audit-acl2-useless-runes.py`;
 the recorded corpus/source-revision result is
 `filtering/audits/acl2-useless-runes-20260914.json`.
 
-## 11. Required workflow for a new hard filter
+## 11. Repository-by-repository review catalogue
+
+The large source-local filtering campaign uses
+`filtering/repository-review/` rather than ad hoc shell exclusions.  The
+catalogue is generated from the authoritative hydrated source trees, not from
+`.index-primary`, so previously filtered material remains visible to later
+audits.  Each imported file is recorded with path, size, SHA-256, formal-source
+status, and the active filtering decisions that currently affect it.
+
+Most repositories are one work unit.  Extremely large sources are partitioned
+recursively by literal subtrees.  When a directory has many small sibling
+subtrees, or too many direct files, those items enter deterministic SHA-256
+buckets rather than order-sensitive sequential chunks.  A new sibling therefore
+changes only its bucket unless that bucket itself must split; it does not shift
+every later work-unit boundary.  Unit IDs are hashes of repository identity plus
+that stable scope/bucket identity.  `batches.jsonl` groups work units for
+execution, but batch identity is scheduling metadata, not filtering authority.
+
+A completed unit review is append-only under `reviews/<repo>/<unit>.jsonl` and
+has an explicit default disposition.  `default_action=retain` means every file
+not named by an exclusion rule stays searchable.  `status=deferred` means the
+unit remains open and activates nothing.  Exclusion rules may use only an exact
+path, an explicit path set, or a literal subtree prefix.  Every rule must record
+both the source-local rationale and the content invariant that establishes why
+no useful definition, statement, proof, interface, or retrieval evidence is
+being hidden.
+
+The review is pinned to the unit's material snapshot.  If any file inside that
+unit changes, appears, disappears, or moves, validation marks the review stale
+and indexing stops until a new review revision supersedes it.  For a partitioned
+large repository, unchanged sibling units remain valid.  This is the mechanism
+that prevents an old blacklist from becoming a lazy permanent omission after an
+upstream update.
+
+Accepted exclusions materialize as `FD-018` per-file decisions in the ordinary
+filter ledger.  `FD-018` is intentionally powerless by itself: it can only be
+created from a fresh accepted review rule, and its evidence carries the review,
+unit, rule, selector, unit snapshot, file hash, rationale, invariant, and
+source-local evidence.  Thus the public index remains reproducible through the
+same per-file filtering machinery while the reasoning stays attached to the
+repository review that justified it.
+
+The operational commands are:
+
+```sh
+just repository-review-catalogue
+just repository-review-validate
+just repository-review-status
+just repository-review-batch RRB-0001
+python scripts/repository-review.py template RRU-... > /tmp/review.json
+python scripts/repository-review.py append /tmp/review.json
+```
+
+Only after the review catalogue validates should `just filter-state` be run to
+materialize accepted blacklist rules into `FD-018` decisions and the append-only
+filtering ledger.
+
+## 12. Required workflow for a new hard filter
 
 1. **Name the role precisely.** Avoid vague classes such as "generated junk".
 2. **State the content invariant.** Explain why the rule cannot remove unique
@@ -330,7 +387,7 @@ the recorded corpus/source-revision result is
 11. **Deploy reversibly.** Keep the unfiltered source authoritative and preserve
     the exclusion manifest so the primary index can be rebuilt without the rule.
 
-## 12. Review questions
+## 13. Review questions
 
 Before approving any filtering PR, reviewers should be able to answer:
 
@@ -350,7 +407,7 @@ Before approving any filtering PR, reviewers should be able to answer:
 If any answer is unclear, prefer retention plus role metadata/downranking over
 hard exclusion.
 
-## 13. Dated measurements are evidence, not permanent classification rules
+## 14. Dated measurements are evidence, not permanent classification rules
 
 Counts in this document and in the search ledger describe a particular corpus
 state.  They justify what to investigate; they do not by themselves authorize a

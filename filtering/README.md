@@ -32,3 +32,10 @@ The derived local views are gitignored:
 
 See `CONTRIBUTING.md` `FILTER-###` and `docs/CORPUS-FILTERING.md` before changing
 any decision.
+
+Repository-local filtering is a second audited layer under
+`filtering/repository-review/`. Its generated catalogue walks the authoritative
+hydrated source trees and records every imported file with a content hash before
+review work begins. Human review records are append-only per work unit; fresh
+accepted exclusions materialize as `FD-018` through `build-filter-state.py`.
+See `filtering/repository-review/README.md` for the batch/review workflow.

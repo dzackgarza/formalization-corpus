@@ -1,0 +1,544 @@
+{
+  "directory": "reservoir-sources/opencompl__lean-mlir",
+  "discovered_via": "reservoir",
+  "proof_assistant": "lean",
+  "repository": "opencompl__lean-mlir",
+  "schema_version": 1,
+  "source_revision": "b8c4a771319a044854a4bbb49b8821381ef86ff8",
+  "source_snapshot_sha256": "d65c510f843964ee88556f73a3e1833b2e049a20b953ca7235830233d5a51f3d",
+  "sync_group": "bulk",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 9445,
+    "bytes": 20405901,
+    "current_primary_excluded": 7,
+    "current_primary_retained": 9445,
+    "files": 9466,
+    "formal_source_files": 9449,
+    "unindexed_nonformal": 13
+  },
+  "transport": "git",
+  "url": "https://github.com/opencompl/lean-mlir",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-87257f730e60.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 18,
+        "value": "./@files/all"
+      },
+      "snapshot_sha256": "29444d6d6bb3c62819888abb44bfb91f13a0c586720e2b14f38147cd2dda9a32",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 1,
+        "bytes": 32810,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 1,
+        "files": 18,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 13
+      },
+      "unit_id": "RRU-87257f730e60"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-be6fdbfb36f0.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "b894aa534c6ce4b29f8bd6822ce359f19f4b8b9212a38e7e33ef6725ca57d419",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 195,
+        "bytes": 4429152,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 195,
+        "files": 195,
+        "formal_source_files": 195,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-be6fdbfb36f0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-e50b649b7417.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 2,
+        "value": "SSA/@files/all"
+      },
+      "snapshot_sha256": "77d46ed00d7ecdd0f17e777ba0c7cd813e6af9d23ec0db1259360412374af6b7",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 2,
+        "bytes": 2716,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 2,
+        "files": 2,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e50b649b7417"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-65b7d1e18306.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "SSA/@subtrees/all"
+      },
+      "snapshot_sha256": "2062735153d9ee6fb4cf9a134839af5bf677ec6444f77bf85eeb67daf56e15c2",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 3,
+        "bytes": 4535,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 3,
+        "files": 3,
+        "formal_source_files": 3,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-65b7d1e18306"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-7eb4ef1becd8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 13,
+        "value": "SSA/Projects/@subtrees/all"
+      },
+      "snapshot_sha256": "3dcc3c2acd4d16b22877ab8c370129fa402252723922ca7178a88d7410519d94",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 138,
+        "bytes": 1327091,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 138,
+        "files": 141,
+        "formal_source_files": 141,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7eb4ef1becd8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-7d31c08cd057.jsonl",
+      "scope": {
+        "kind": "direct-files",
+        "root_count": 1,
+        "value": "SSA/Projects/FullyHomomorphicEncryption.lean"
+      },
+      "snapshot_sha256": "953f24a75c6cd1bcb7b48dadf67f7798f5ea29dc2de5ccd6f3a1fa3871eaa4aa",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1,
+        "bytes": 360,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1,
+        "files": 1,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7d31c08cd057"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-b8f01b5e12b1.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 19,
+        "value": "SSA/Projects/InstCombine/@files/all"
+      },
+      "snapshot_sha256": "56308c4285c73768e264b43d851944cdbfbd15fe74532ff1ae9738118ca262b6",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 19,
+        "bytes": 237143,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 19,
+        "files": 19,
+        "formal_source_files": 19,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b8f01b5e12b1"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-ace503031629.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "SSA/Projects/InstCombine/@subtrees/all"
+      },
+      "snapshot_sha256": "1ef134edca55e941aa79e57033dfc6b824df61fa7679f189390ba503b7768ab2",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 11,
+        "bytes": 36089,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 11,
+        "files": 11,
+        "formal_source_files": 11,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ace503031629"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-613a25c82488.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "SSA/Projects/InstCombine/Tests/@subtrees/all"
+      },
+      "snapshot_sha256": "84e9c32df7742487d4ca47379ccacb0c6268f27b12cf81ec4a6a289676d4afaa",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1097,
+        "bytes": 9816914,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1097,
+        "files": 1097,
+        "formal_source_files": 1097,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-613a25c82488"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-6f6bd8e30274.jsonl",
+      "scope": {
+        "kind": "direct-files",
+        "root_count": 1,
+        "value": "SSA/Projects/InstCombine/Tests/Tests.lean"
+      },
+      "snapshot_sha256": "6665ba53052e109b0c52f2cf907e7fd546156b0b1d2b69cea1c67cd2c4218494",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 0,
+        "bytes": 0,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 0,
+        "files": 1,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6f6bd8e30274"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-9657c39d581b.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 463,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/0"
+      },
+      "snapshot_sha256": "fb5793985e2d28eb0680d22a3bc1862eb14eb8e74e07c0f8f3bb15c4a1517aba",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 463,
+        "bytes": 259890,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 463,
+        "files": 463,
+        "formal_source_files": 463,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9657c39d581b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-83883b92dd91.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 523,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/1"
+      },
+      "snapshot_sha256": "63987970ea6e32e871e139e623372f199059b6e49380f8e32da60233e6bebe2a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 523,
+        "bytes": 294634,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 523,
+        "files": 523,
+        "formal_source_files": 523,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-83883b92dd91"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-b5c8ea8f991b.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 484,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/2"
+      },
+      "snapshot_sha256": "1aa3be025b006c29c3dc573bd3208888b917ff7f40064caf5e7ae1a87a3318b7",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 484,
+        "bytes": 280582,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 484,
+        "files": 484,
+        "formal_source_files": 484,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b5c8ea8f991b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-593c50a99ce1.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 491,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/3"
+      },
+      "snapshot_sha256": "3f72519d7a0fe961c76e64233d2d4b7b4933c49179287b5d4ecad4770f357775",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 491,
+        "bytes": 277202,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 491,
+        "files": 491,
+        "formal_source_files": 491,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-593c50a99ce1"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-c9a2b5455158.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 503,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/4"
+      },
+      "snapshot_sha256": "f95cf3faa8c6a002cd73009f77a6e563b556d4237b8d3bf36ae88afd3c4a7bee",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 503,
+        "bytes": 282258,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 503,
+        "files": 503,
+        "formal_source_files": 503,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c9a2b5455158"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-a755d8bd6771.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 512,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/5"
+      },
+      "snapshot_sha256": "a0c11f502aceb4c512552b2324ce33b892f97dedc1af812448c9274c2ccc049f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 512,
+        "bytes": 287040,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 512,
+        "files": 512,
+        "formal_source_files": 512,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a755d8bd6771"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-a62f06a98bbe.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 472,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/6"
+      },
+      "snapshot_sha256": "90381c782240ec78a9f715b00635be5fd6f3cb4e5f202c20535dac65165358c0",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 472,
+        "bytes": 267997,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 472,
+        "files": 472,
+        "formal_source_files": 472,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a62f06a98bbe"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-ef21ba689880.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 532,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/7"
+      },
+      "snapshot_sha256": "5c90bc24a04804db6dad5edf0e1912220dde4ce35f0100665393356ccea9717f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 532,
+        "bytes": 298423,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 532,
+        "files": 532,
+        "formal_source_files": 532,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ef21ba689880"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-7888bea05b24.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 497,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/8"
+      },
+      "snapshot_sha256": "2d246924de0f821abc0701c3fe0396a56146fb205450d5de3e4fe2ebe5e28f92",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 497,
+        "bytes": 281708,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 497,
+        "files": 497,
+        "formal_source_files": 497,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7888bea05b24"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-256fbeaba96d.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 472,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/9"
+      },
+      "snapshot_sha256": "38ff19515dfab90266b8d8cbe17cc0b381707372e7014ca6d1fab6f8b47b7c83",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 472,
+        "bytes": 267047,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 472,
+        "files": 472,
+        "formal_source_files": 472,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-256fbeaba96d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-0ffc9d62dc3b.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 487,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/a"
+      },
+      "snapshot_sha256": "0f8e3b0defa618ae74fee4a15c6141b32b513ac6cbb5917cf0d26bd8557ce883",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 487,
+        "bytes": 280272,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 487,
+        "files": 487,
+        "formal_source_files": 487,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0ffc9d62dc3b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-16633177a45e.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 479,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/b"
+      },
+      "snapshot_sha256": "60e2df307779898a1ab1c90e923b3f8842ab61356d135d0776ed8494f2ab81ae",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 479,
+        "bytes": 270898,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 479,
+        "files": 479,
+        "formal_source_files": 479,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-16633177a45e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-1b4efc9d824f.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 498,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/c"
+      },
+      "snapshot_sha256": "cc327498b8d85c0a069eea5f43cfb5ff10acd5772f84846cc165d2e01e954981",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 498,
+        "bytes": 282969,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 498,
+        "files": 498,
+        "formal_source_files": 498,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1b4efc9d824f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-c310b57e158f.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 526,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/d"
+      },
+      "snapshot_sha256": "59706f708be9272b9bb30baafcaaf458ba34b5f783b758879e0156a81f04ed11",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 526,
+        "bytes": 296999,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 526,
+        "files": 526,
+        "formal_source_files": 526,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c310b57e158f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-7416b49a5bea.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 500,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/e"
+      },
+      "snapshot_sha256": "961fcd9fbde8ae5280ceb67430f64f4690c90ef943961b4603fa8a35786d9896",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 500,
+        "bytes": 282739,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 500,
+        "files": 500,
+        "formal_source_files": 500,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7416b49a5bea"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/opencompl__lean-mlir/RRU-02442ff4c0ba.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 539,
+        "value": "SSA/Projects/InstCombine/Tests/goals/@files/f"
+      },
+      "snapshot_sha256": "fcf70e1dac5e822fe3f01e574ab55a4a988478d7ea969d93d3d05c420d4f00bb",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 539,
+        "bytes": 308433,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 539,
+        "files": 539,
+        "formal_source_files": 539,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-02442ff4c0ba"
+    }
+  ]
+}

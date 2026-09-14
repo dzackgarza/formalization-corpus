@@ -1,0 +1,44 @@
+{
+  "directory": "port-sources/SRI-CSL__PVS",
+  "discovered_via": "registry",
+  "proof_assistant": "pvs",
+  "repository": "SRI-CSL__PVS",
+  "schema_version": 1,
+  "source_revision": "401a88d67c764748dda0cf1108bd550b14c85f01",
+  "source_snapshot_sha256": "094833d6db17f6f3051f781f075545cb13394a168c746f60f1572f348640b6a8",
+  "sync_group": "cross-prover",
+  "totals": {
+    "auxiliary_only": 2,
+    "baseline_primary_retained": 367,
+    "bytes": 10077568,
+    "current_primary_excluded": 0,
+    "current_primary_retained": 367,
+    "files": 396,
+    "formal_source_files": 367,
+    "unindexed_nonformal": 27
+  },
+  "transport": "git",
+  "url": "https://github.com/SRI-CSL/PVS",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/SRI-CSL__PVS/RRU-f4277904fc24.jsonl",
+      "scope": {
+        "kind": "repository",
+        "root_count": 0,
+        "value": "."
+      },
+      "snapshot_sha256": "094833d6db17f6f3051f781f075545cb13394a168c746f60f1572f348640b6a8",
+      "stats": {
+        "auxiliary_only": 2,
+        "baseline_primary_retained": 367,
+        "bytes": 10077568,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 367,
+        "files": 396,
+        "formal_source_files": 367,
+        "unindexed_nonformal": 27
+      },
+      "unit_id": "RRU-f4277904fc24"
+    }
+  ]
+}

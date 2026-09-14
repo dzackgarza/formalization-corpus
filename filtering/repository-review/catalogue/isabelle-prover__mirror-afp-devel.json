@@ -1,0 +1,364 @@
+{
+  "directory": "port-sources/isabelle-prover__mirror-afp-devel",
+  "discovered_via": "registry",
+  "proof_assistant": "isabelle",
+  "repository": "isabelle-prover__mirror-afp-devel",
+  "schema_version": 1,
+  "source_revision": "004df5e37d6a3a8fbf0815649d2261bf14c9313d",
+  "source_snapshot_sha256": "82769874dede01e5ab6d60c551d15d359ee74cdcf5362da13ea0ccadc9f00d21",
+  "sync_group": "cross-prover",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 10475,
+    "bytes": 300864695,
+    "current_primary_excluded": 0,
+    "current_primary_retained": 10475,
+    "files": 10478,
+    "formal_source_files": 10475,
+    "unindexed_nonformal": 2
+  },
+  "transport": "git",
+  "url": "https://github.com/isabelle-prover/mirror-afp-devel",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-0e1b874b7664.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 3,
+        "value": "./@files/all"
+      },
+      "snapshot_sha256": "739a5c89212d4c1823f42d0585143d6bff488ec15e6329294ad3446693ef21f8",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 0,
+        "bytes": 3668,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 0,
+        "files": 3,
+        "formal_source_files": 0,
+        "unindexed_nonformal": 2
+      },
+      "unit_id": "RRU-0e1b874b7664"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-a04c98e0c630.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 67,
+        "value": "thys/@subtrees/0"
+      },
+      "snapshot_sha256": "898bbf61da6b987323a21916e6ed3dd06de829a26e5bf1375db26106c826e725",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 701,
+        "bytes": 20193645,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 701,
+        "files": 701,
+        "formal_source_files": 701,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a04c98e0c630"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-9664321eb508.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 51,
+        "value": "thys/@subtrees/1"
+      },
+      "snapshot_sha256": "ff8cef6691504afa9060312c99098450ec3b1b140c9b0bbfc9fc6fe220d98d52",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 733,
+        "bytes": 23158936,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 733,
+        "files": 733,
+        "formal_source_files": 733,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9664321eb508"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-2d472f98ee55.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 55,
+        "value": "thys/@subtrees/2"
+      },
+      "snapshot_sha256": "1f41d77018aa24c504869a8725f1e1ca85383d14d46f4047a9df82c177393642",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 556,
+        "bytes": 15053804,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 556,
+        "files": 556,
+        "formal_source_files": 556,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-2d472f98ee55"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-8c995afa868a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 66,
+        "value": "thys/@subtrees/3"
+      },
+      "snapshot_sha256": "5f6c81dc77b806c8a12146ad105f537eaf5555b17aa8fcb3fb5fd7e892709fbe",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 609,
+        "bytes": 22394856,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 609,
+        "files": 609,
+        "formal_source_files": 609,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-8c995afa868a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-3ebfd8417c00.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 75,
+        "value": "thys/@subtrees/4"
+      },
+      "snapshot_sha256": "e48b09643f80ffccbcd3f8030d7ff9fff0fbd07a12782bb3b25e1a7740eaed6c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 641,
+        "bytes": 17096304,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 641,
+        "files": 641,
+        "formal_source_files": 641,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3ebfd8417c00"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-08f6d4583ec9.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 71,
+        "value": "thys/@subtrees/5"
+      },
+      "snapshot_sha256": "df3cc9d1fa5b27a253a2ffcddf20c72e7546d8ca3ade9f9967d240ffd0ad3cee",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 886,
+        "bytes": 26353300,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 886,
+        "files": 886,
+        "formal_source_files": 886,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-08f6d4583ec9"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-62c8248bcc09.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 69,
+        "value": "thys/@subtrees/6"
+      },
+      "snapshot_sha256": "6cbadf6e5f54203e59be09e51ea7f758b74e84ed1887a18253a6f9ceafe35a17",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1096,
+        "bytes": 19632943,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1096,
+        "files": 1096,
+        "formal_source_files": 1096,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-62c8248bcc09"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-069a547626df.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 59,
+        "value": "thys/@subtrees/7"
+      },
+      "snapshot_sha256": "99a147318d444ba41d551e461b8ad830db66628144aa1d05ed8fa1dbd4c737bc",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 490,
+        "bytes": 15725979,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 490,
+        "files": 490,
+        "formal_source_files": 490,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-069a547626df"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-b1c2201037cb.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 63,
+        "value": "thys/@subtrees/8"
+      },
+      "snapshot_sha256": "69120c3b18124ee0a60841e4da943043b52ec3bc52cc8b8276865edb89558d72",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 810,
+        "bytes": 20658670,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 810,
+        "files": 810,
+        "formal_source_files": 810,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b1c2201037cb"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-11a744cda67e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 80,
+        "value": "thys/@subtrees/9"
+      },
+      "snapshot_sha256": "ee7c0d8cb42afad1623283b1255c109bde59fc7eff08239265f633f76300d051",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 890,
+        "bytes": 32822889,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 890,
+        "files": 890,
+        "formal_source_files": 890,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-11a744cda67e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-36e7b63da06d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 58,
+        "value": "thys/@subtrees/a"
+      },
+      "snapshot_sha256": "27b9d72c99567335aafcfd3c012c83efc5bbd20ad44d0dbe81ad65833c9fad67",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 460,
+        "bytes": 12869150,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 460,
+        "files": 460,
+        "formal_source_files": 460,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-36e7b63da06d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-88abeca85382.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 61,
+        "value": "thys/@subtrees/b"
+      },
+      "snapshot_sha256": "7caa7a09388ace21a134f50ddf3bc7e7eb1b37ed8bc4b4124662948246df3816",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 555,
+        "bytes": 16479652,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 555,
+        "files": 555,
+        "formal_source_files": 555,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-88abeca85382"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-56b8f64525a4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 57,
+        "value": "thys/@subtrees/c"
+      },
+      "snapshot_sha256": "b23931b629d37561770135fcf714b10cade244fc6f9aa0e8ac3ddd2b15008d40",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 457,
+        "bytes": 11757496,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 457,
+        "files": 457,
+        "formal_source_files": 457,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-56b8f64525a4"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-121e78c6836a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 55,
+        "value": "thys/@subtrees/d"
+      },
+      "snapshot_sha256": "5d2698464be97b740b0a1a5c664d5d78fc4eadc00e724725a44e4afd03a066e8",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 374,
+        "bytes": 9677687,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 374,
+        "files": 374,
+        "formal_source_files": 374,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-121e78c6836a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-b61c8eb6c0cf.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 72,
+        "value": "thys/@subtrees/e"
+      },
+      "snapshot_sha256": "e1779fd4bad6dcac9de327cb0264f188d49fdaea74d8ccd1d8e5684bfd89efdc",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 537,
+        "bytes": 18402448,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 537,
+        "files": 537,
+        "formal_source_files": 537,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b61c8eb6c0cf"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-afp-devel/RRU-6a8da7ecdef8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 69,
+        "value": "thys/@subtrees/f"
+      },
+      "snapshot_sha256": "eab235fc25695b411b3384aaa24130716699b11bd8d3fdecfbf38db387395602",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 680,
+        "bytes": 18583268,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 680,
+        "files": 680,
+        "formal_source_files": 680,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6a8da7ecdef8"
+    }
+  ]
+}

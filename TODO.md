@@ -38,6 +38,32 @@ search surface is intentionally prover-independent.
   The August completion record below is retained as historical
   provenance, not a description of the current corpus boundary.
 
+## Repository-by-repository filtering review (started 2026-09-15)
+
+The next corpus-hygiene phase is an exhaustive source-local review of imported
+material. The durable work surface is `filtering/repository-review/`; it is
+derived from authoritative hydrated checkouts rather than the already-filtered
+search index. The initial catalogue covers all 888 registered sources and all
+220,364 imported files (5,871,810,131 bytes) in 1,271 stable work units. Very
+large repositories are split into bounded, stable hash-partitioned subtree/file
+buckets so one new sibling does not renumber later work; ordinary units
+are capped at 2,000 files and 256 MiB. The current plan groups the frontier into
+122 deterministic batches, each with at most 12 units and at most 2,997
+baseline-primary files.
+
+The campaign starts with zero reviewed units. For each unit, review must record
+an explicit default disposition (`retain` for a completed review or `defer` for
+an open one) and any targeted blacklist rules with source-local reasoning, a
+content-level losslessness invariant, evidence, and literal selectors. Accepted
+rules are snapshot-pinned, may not silently carry across changed material, and
+materialize as per-file `FD-018` decisions in the ordinary filtering ledger.
+The batch is complete only when every unit has a fresh explicit review record;
+number of exclusions is not a progress metric.
+
+Commands: `just repository-review-status`, `just repository-review-batch
+RRB-0001`, `python scripts/repository-review.py template RRU-...`, and
+`python scripts/repository-review.py append /tmp/review.json`.
+
 Build provenance: the corpus was created in the 2026-08-13 codex session
 (`rollout-2026-08-13T15-07-42-019ff9f2-bc0e-7de0-9bcd-c9630d6a8813.jsonl`,
 ordinals 17652-18838), at the user's direction (ord 18026 "efficiently and

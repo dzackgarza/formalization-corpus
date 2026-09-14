@@ -1,0 +1,364 @@
+{
+  "directory": "port-sources/nasa__pvslib",
+  "discovered_via": "registry",
+  "proof_assistant": "pvs",
+  "repository": "nasa__pvslib",
+  "schema_version": 1,
+  "source_revision": "56dab1977c7889b69698227b7b883a188936597c",
+  "source_snapshot_sha256": "5f1f8edeaaa9dc5140d9389c8f178cf11929f4c1f7bf68fd5da53ad71535481a",
+  "sync_group": "cross-prover",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 4313,
+    "bytes": 477200947,
+    "current_primary_excluded": 0,
+    "current_primary_retained": 4313,
+    "files": 4330,
+    "formal_source_files": 4313,
+    "unindexed_nonformal": 16
+  },
+  "transport": "git",
+  "url": "https://github.com/nasa/pvslib",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-cd06cf6c76f9.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 17,
+        "value": "./@files/all"
+      },
+      "snapshot_sha256": "dc5fbcfaf62c73d0d83a59d2231307899f725c5a651bac439b228c758ae728bc",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 0,
+        "bytes": 95546,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 0,
+        "files": 17,
+        "formal_source_files": 0,
+        "unindexed_nonformal": 16
+      },
+      "unit_id": "RRU-cd06cf6c76f9"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-9d356628fbc8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "./@subtrees/0"
+      },
+      "snapshot_sha256": "41b19b3cbc7dbfa59e5f20362999fef9c3f9b2dd620a656b62c2a64248035aa9",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 250,
+        "bytes": 34782717,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 250,
+        "files": 250,
+        "formal_source_files": 250,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9d356628fbc8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-1c9dcd9e3641.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "./@subtrees/1"
+      },
+      "snapshot_sha256": "5ea794726c908545999b19f963b21743f4840aff3decbaba6a6e74a3dc41aaa4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 519,
+        "bytes": 56532270,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 519,
+        "files": 519,
+        "formal_source_files": 519,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1c9dcd9e3641"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-3245885c5757.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "./@subtrees/2"
+      },
+      "snapshot_sha256": "87c484e81f105d0ea9e9e3574a47bba493913475c2f701f0a7d6ec804e7fa5a3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 247,
+        "bytes": 6461148,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 247,
+        "files": 247,
+        "formal_source_files": 247,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3245885c5757"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-a1394baed4b2.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "./@subtrees/3"
+      },
+      "snapshot_sha256": "4e5a4a814805ddd66c32721fba744da330da3a2830d10ee608dfcc246ead2556",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 165,
+        "bytes": 13993217,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 165,
+        "files": 165,
+        "formal_source_files": 165,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a1394baed4b2"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-9f747b39c1d4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "./@subtrees/4"
+      },
+      "snapshot_sha256": "bffa48fa0af35a8f0827b67b7634de99c719ab9f2d48a3eb758b932a901bcef0",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 160,
+        "bytes": 62426786,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 160,
+        "files": 160,
+        "formal_source_files": 160,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9f747b39c1d4"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-4459d79851df.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "./@subtrees/5"
+      },
+      "snapshot_sha256": "781f04579736457bf4cebe54d2b5e5c2bceb341672b2c50d4aeb8ca3f335b4d2",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 30,
+        "bytes": 7420609,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 30,
+        "files": 30,
+        "formal_source_files": 30,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4459d79851df"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-a19cedfebd79.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "./@subtrees/6"
+      },
+      "snapshot_sha256": "9612e8098952032cb4a9b644515124757fc0a85aee8c2d84fdca6acbfad36ec4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 193,
+        "bytes": 15205016,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 193,
+        "files": 193,
+        "formal_source_files": 193,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a19cedfebd79"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-baccf49fb378.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 8,
+        "value": "./@subtrees/7"
+      },
+      "snapshot_sha256": "19b7e7d026f85ed2fdb7171dd9c7efd8f9f2431016edab1951e529d2a2ded61f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 923,
+        "bytes": 42146362,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 923,
+        "files": 923,
+        "formal_source_files": 923,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-baccf49fb378"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-2c87d0535489.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "./@subtrees/8"
+      },
+      "snapshot_sha256": "cea807841b7bd0f796c52c7dd12735b729fcc02dca6a2a891612cca2aa7085a6",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 171,
+        "bytes": 12386947,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 171,
+        "files": 171,
+        "formal_source_files": 171,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-2c87d0535489"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-2c633f30ed7e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "./@subtrees/9"
+      },
+      "snapshot_sha256": "99c25742958c813451e3024b611072ca73dc5f7246baf7e8e5f4935dd011d5df",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 92,
+        "bytes": 12706614,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 92,
+        "files": 92,
+        "formal_source_files": 92,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-2c633f30ed7e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-cdd1261b6a6c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "./@subtrees/a"
+      },
+      "snapshot_sha256": "0dcfae8b85d9f2bf49e3b1b0b30e0ad4f1e3ec1d127b15a8f368a7b6dc62e12a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 119,
+        "bytes": 20428255,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 119,
+        "files": 119,
+        "formal_source_files": 119,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-cdd1261b6a6c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-ad75a887f792.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "./@subtrees/b"
+      },
+      "snapshot_sha256": "2a70d94e77491dc5203d332551b3850797c0b31fe2580453b7779940f53fcf6e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 119,
+        "bytes": 3980977,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 119,
+        "files": 119,
+        "formal_source_files": 119,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ad75a887f792"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-c245808e2f1c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "./@subtrees/c"
+      },
+      "snapshot_sha256": "5f3f59ca8290ff19a84d509e78c88a3e7d02cad1dd9d81c8577c5c49a76a5894",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 212,
+        "bytes": 30777789,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 212,
+        "files": 212,
+        "formal_source_files": 212,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c245808e2f1c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-3fca3bb61146.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "./@subtrees/d"
+      },
+      "snapshot_sha256": "1f6211ea0568cc4d0de23a541694cf0a5b996766c5a1c8bd10c3f788c98b6a5d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 166,
+        "bytes": 87374990,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 166,
+        "files": 166,
+        "formal_source_files": 166,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3fca3bb61146"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-c3e51d5710b2.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "./@subtrees/e"
+      },
+      "snapshot_sha256": "262d4187f8b0b6bcf17462f8b0347797f511b6fb2228559bfaa35cc6d65237e3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 609,
+        "bytes": 41686578,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 609,
+        "files": 609,
+        "formal_source_files": 609,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c3e51d5710b2"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/nasa__pvslib/RRU-4d69aaf7ff42.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "./@subtrees/f"
+      },
+      "snapshot_sha256": "0e47538df244985d1dc2517335eac858b0628888d972e38498da380f2e1e1c6b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 338,
+        "bytes": 28795126,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 338,
+        "files": 338,
+        "formal_source_files": 338,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4d69aaf7ff42"
+    }
+  ]
+}
