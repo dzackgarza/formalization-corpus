@@ -131,7 +131,6 @@ def build() -> int:
                 "bytes": summary["totals"]["bytes"],
                 "work_units": len(units),
                 "catalogue_file": relative(path),
-                "inventory_status": "active",
             }
         )
         if number % 100 == 0:

@@ -351,6 +351,20 @@ def main() -> int:
             }
         )
 
+    # Do not rewrite provenance fields on decisions whose substantive payload is
+    # unchanged.  The top-level snapshot records the latest scan commit/time; an
+    # unchanged per-file row should keep the provenance of the decision actually
+    # represented by that row.  This also keeps repository-review batches
+    # auditable instead of producing whole-corpus timestamp churn for a handful
+    # of changed decisions.
+    current = [
+        old.get(decision_key(row), row)
+        if old.get(decision_key(row)) is not None
+        and stable_payload(old[decision_key(row)]) == stable_payload(row)
+        else row
+        for row in current
+    ]
+
     FILTER_ROOT.mkdir(parents=True, exist_ok=True)
     append_filter_ledger(events)
     from filtering_lib import dump_jsonl

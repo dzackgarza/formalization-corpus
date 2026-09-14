@@ -44,8 +44,8 @@ def stable_payload(row: dict[str, Any]) -> dict[str, Any]:
 
     ``build-filter-state.py`` intentionally does not append an ``updated`` event
     merely because the same decision was re-observed at a later corpus commit.
-    The current snapshot therefore carries the latest scan timestamp/commit,
-    while the ledger retains the event that actually changed the decision.
+    Unchanged current rows preserve their decision provenance; the top-level
+    filtering snapshot records the latest scan commit and source revisions.
     """
     return {key: value for key, value in row.items() if key not in SCAN_EPHEMERAL}
 
