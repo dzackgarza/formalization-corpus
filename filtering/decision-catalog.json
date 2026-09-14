@@ -89,6 +89,15 @@
       "auxiliary": "no-change",
       "policies": ["FILTER-001", "FILTER-015", "FILTER-021"],
       "justification": "PVS .prf remains valuable when larger than Zoekt's default 2 MiB document limit. The primary index therefore explicitly whitelists **/*.prf as large files rather than silently losing the largest proof scripts."
+    },
+    {
+      "decision_id": "FD-012",
+      "title": "Registered source with no primary formal mathematical content",
+      "scope": "source",
+      "primary": "exclude",
+      "auxiliary": "no-change",
+      "policies": ["FILTER-001", "FILTER-003", "FILTER-004", "FILTER-005", "FILTER-020"],
+      "justification": "After the safe file-level exclusions are applied, a registered source that has no remaining definition, theorem statement, proof, construction, specification, or other primary formal document fails the sources.tsv content invariant. Do not keep an empty/import-only/build-only source merely to preserve counts. Remove it from the corpus inventory; reference-only tooling or documentation may remain in SOURCES.md, and a mathematical project may be re-added if a later upstream revision gains formal content."
     }
   ]
 }

@@ -120,7 +120,6 @@ The subtrees that carry the most relevant material. A search restricted by path 
 | [`loefflerd/ModularFormDimensions`](https://github.com/loefflerd/ModularFormDimensions) | Finite-dimensionality of modular-form spaces. |
 | [`CBirkbeck/ModularForms_Lean4`](https://github.com/CBirkbeck/ModularForms_Lean4) | Modular forms. Much of this material is now incorporated into Mathlib; the repository is inactive. |
 | [`CBirkbeck/DirichletNonvanishing`](https://github.com/CBirkbeck/DirichletNonvanishing) | Nonvanishing of Dirichlet L-functions. The repository is archived. |
-| [`CBirkbeck/WeilConverse`](https://github.com/CBirkbeck/WeilConverse) | Weil converse theorem. |
 | [`AlexKontorovich/PrimeNumberTheoremAnd`](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd) | Prime Number Theorem and related analytic number theory. |
 | [`math-inc/strongpnt`](https://github.com/math-inc/strongpnt) | Strong prime number theorem with the required complex analysis. The formalization is AI-generated and human-reviewed. |
 | [`teorth/expdb`](https://github.com/teorth/expdb) | Exponent-pair database for analytic number theory. |
