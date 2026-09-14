@@ -68,6 +68,20 @@ When you find useful prior work, report the source, proof assistant, file, relev
     </div>
   </section>
 
+  <section aria-labelledby="cli-title">
+    <h2 id="cli-title">CLI from the OpenAPI contract</h2>
+    <p>You do not need a corpus-specific CLI. <a href="https://rest.sh/">Restish</a> reads OpenAPI descriptions at runtime and turns their operations into shell commands, help, completion, profiles, and structured output. Install Restish using its <a href="https://rest.sh/docs/">current installation instructions</a>, then connect it directly to the live contract:</p>
+
+    <div class="copy-panel">
+      <div class="copy-panel-header"><strong>Register the Formalization Corpus API</strong><button class="copy-button" data-copy="restish-command">Copy</button></div>
+      <pre id="restish-command" data-language="bash">restish api connect formalization-corpus https://formalization-corpus.dzackgarza.com \
+  --spec https://formalization-corpus.dzackgarza.com/api/openapi.json
+restish formalization-corpus --help</pre>
+    </div>
+
+    <p>Restish caches the OpenAPI description locally; run <code>restish api sync formalization-corpus</code> after the API contract changes. This gives agents a normal shell interface without generating or maintaining another client. Restish can also expose registered APIs over MCP via its plugin when an MCP transport is preferable.</p>
+  </section>
+
   <section aria-labelledby="mcp-title">
     <h2 id="mcp-title">Optional MCP bridge</h2>
     <p>The API does not require a corpus-specific MCP server. A generic OpenAPI-to-MCP bridge can expose the live contract as local MCP tools. Direct API calls are often simpler; use MCP when you want the operations registered persistently as tools. The example below uses <a href="https://www.npmjs.com/package/@ivotoby/openapi-mcp-server"><code>@ivotoby/openapi-mcp-server</code></a>.</p>
