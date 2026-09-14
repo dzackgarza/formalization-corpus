@@ -142,7 +142,12 @@ def main() -> None:
   </div>
 </main>
 <footer class="site-footer">
-  <div class="shell footer-inner"><div></div><div class="footer-links"><a href="https://github.com/dzackgarza/formalization-corpus">GitHub</a><a href="./corpus.html">Sources</a></div></div>
+  <div class="shell footer-inner"><div></div><div class="footer-links" aria-label="Links">
+    <a class="footer-icon-link" href="https://dzackgarza.com" aria-label="dzackgarza.com" title="dzackgarza.com"><svg aria-hidden="true"><use href="./footer-icons.svg#website"></use></svg></a>
+    <a class="footer-icon-link" href="mailto:dzackgarza@gmail.com" aria-label="Email dzackgarza@gmail.com" title="Email"><svg aria-hidden="true"><use href="./footer-icons.svg#email"></use></svg></a>
+    <a class="footer-icon-link" href="https://github.com/dzackgarza/formalization-corpus" aria-label="Formalization Corpus on GitHub" title="GitHub"><svg aria-hidden="true"><use href="./footer-icons.svg#github"></use></svg></a>
+    <a class="footer-icon-link" href="./api.html" aria-label="Formalization Corpus API" title="API"><svg aria-hidden="true"><use href="./footer-icons.svg#api"></use></svg></a>
+  </div></div>
 </footer>
 </body>
 </html>

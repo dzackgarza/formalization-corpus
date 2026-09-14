@@ -980,8 +980,32 @@ tr:last-child > th { border-bottom: 0; }
 
 .footer-links {
   display: flex;
-  gap: 0.8rem;
+  gap: 0.25rem;
+  align-items: center;
   white-space: nowrap;
+}
+
+.footer-icon-link {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-icon-link:hover {
+  border-color: var(--rule);
+  background: var(--surface-subtle);
+  color: var(--ink-strong);
+}
+
+.footer-icon-link svg {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
 }
 
 @media (max-width: 900px) {
