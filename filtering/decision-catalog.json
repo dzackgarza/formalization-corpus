@@ -43,7 +43,9 @@
       "primary": "exclude",
       "auxiliary": "include",
       "policies": ["FILTER-003", "FILTER-004", "FILTER-007", "FILTER-017", "FILTER-020"],
-      "justification": "A Lean file is classified here only when tree-sitter-lean verifies that every top-level syntax node is an import or a comment and at least one import is present. Such a module owns no declaration or proof. Its module path, comments, source provenance, and import statements remain searchable through the auxiliary navigation index. Regex-only classification is explicitly insufficient."
+      "justification": "A Lean file is classified here only when tree-sitter-lean verifies that every top-level syntax node is an import or a comment and at least one import is present. Such a module owns no declaration or proof. Its module path, comments, source provenance, and import statements remain searchable through the auxiliary navigation index. Regex-only classification is explicitly insufficient.",
+      "status": "superseded",
+      "superseded_by": "FD-016"
     },
     {
       "decision_id": "FD-006",
@@ -126,6 +128,14 @@
       "auxiliary": "exclude",
       "policies": ["FILTER-001", "FILTER-004", "FILTER-005", "FILTER-020"],
       "justification": "A nonempty proof-assistant source file whose bytes are entirely whitespace contains no declaration, theorem statement, proof, identifier, comment, docstring, or other searchable signal. It is therefore the lossless nonzero analogue of FD-001. This rule must not be broadened to comment-only or declaration-free files: prose and comments can be valuable prior-art retrieval evidence."
+    },
+    {
+      "decision_id": "FD-016",
+      "title": "Parser-verified Lean import-only module retained",
+      "primary": "retain",
+      "auxiliary": "include",
+      "policies": ["FILTER-002", "FILTER-003", "FILTER-004", "FILTER-007", "FILTER-017", "FILTER-020"],
+      "justification": "Tree-sitter verification establishes that these Lean files own no declaration or proof, but that fact alone does not make their module names, paths, comments, provenance, or import topology dispensable search signals. FD-005 assumed those signals remained searchable through a deployed auxiliary navigation index. The production search service does not currently publish or query that index, so excluding these files from primary search violated FILTER-007's preservation requirement. Keep them in primary search, while also retaining the auxiliary copy, until an end-to-end searchable auxiliary channel is deployed and measured."
     }
   ]
 }

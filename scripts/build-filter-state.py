@@ -237,14 +237,12 @@ def main() -> int:
     accepted_imports, parser_meta = verify_lean_import_only(
         [path for _source, path, _rel, _raw, _digest in import_candidates]
     )
-    import_keys: set[tuple[str, str]] = set()
     for source, path, rel, _raw, digest in import_candidates:
         if path not in accepted_imports:
             continue
-        import_keys.add((source.repository, rel))
         current.append(
             decision_record(
-                catalog=catalog, decision_id="FD-005", repository=source.repository,
+                catalog=catalog, decision_id="FD-016", repository=source.repository,
                 file=rel, proof_assistant=source.proof_assistant,
                 source_revision_value=source_revisions[source.repository], content_sha256=digest,
                 evidence={
@@ -254,13 +252,14 @@ def main() -> int:
                 }, observed_at=now, commit=commit,
             )
         )
-        primary_counts[source.repository] -= 1
 
     # Exact duplicates among documents that remain primary-eligible.  All paths
     # stay in the physical index; FD-006 controls result-layer canonicalization.
+    # Parser-verified import-only modules also remain primary-eligible under
+    # FD-016 until their auxiliary representation is actually searchable.
     duplicate_groups: list[dict[str, Any]] = []
     for digest, members in sorted(hashes.items()):
-        eligible = [m for m in members if (m["repository"], m["file"]) not in import_keys]
+        eligible = members
         if len(eligible) < 2:
             continue
         eligible.sort(key=lambda m: (m["repository"], m["file"]))

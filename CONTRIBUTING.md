@@ -246,7 +246,8 @@ text and remain governed by the higher evidence bar above.
 A file that is **prover-aware verified** to contain only imports (plus
 whitespace/comments) contains no declaration or proof of its own.  Such a file
 should normally not compete with the imported theorem/definition-bearing file
-for primary mathematical result slots.
+for primary mathematical result slots **once its navigation signal is available
+through the actual search surface**.
 
 Preserve its module identity, import edges, source/path provenance, and useful
 comments/documentation as searchable auxiliary metadata.  The module/path name
@@ -255,6 +256,13 @@ less obvious name.  Do not infer
 "pure import" from a filename or a regex alone.  `open`, notation, attributes,
 options, aliases, namespace commands, declarations, or other executable/formal
 commands take a file outside this unilateral class.
+
+Do not equate “an auxiliary view can be materialized” with “the information is
+searchable.”  Before removing an import-only module from primary search, verify
+end to end that the deployed query path publishes and queries the auxiliary
+representation.  If that delivery path is absent or disabled, keep the module
+primary-eligible.  This is the reason historical `FD-005` is superseded by
+`FD-016` in the current corpus state.
 
 ### FILTER-008 — Documentation/build metadata belongs in a separate retrieval role
 

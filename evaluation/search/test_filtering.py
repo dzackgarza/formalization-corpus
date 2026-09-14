@@ -40,6 +40,13 @@ class FilteringTests(unittest.TestCase):
             filtering_lib.lean_import_only_candidate(b"import Mathlib\nopen scoped BigOperators\n")
         )
 
+    def test_import_only_modules_remain_primary_until_auxiliary_search_is_served(self) -> None:
+        catalog = filtering_lib.load_catalog()
+        self.assertEqual(catalog["FD-005"].get("status"), "superseded")
+        self.assertEqual(catalog["FD-005"].get("superseded_by"), "FD-016")
+        self.assertEqual(catalog["FD-016"]["primary"], "retain")
+        self.assertEqual(catalog["FD-016"]["auxiliary"], "include")
+
     def test_declaration_is_not_import_only_candidate(self) -> None:
         self.assertFalse(
             filtering_lib.lean_import_only_candidate(b"import Mathlib\ntheorem owner : True := by trivial\n")
