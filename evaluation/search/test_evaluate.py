@@ -134,6 +134,26 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         self.assertNotIn("precision@1", metrics)
         self.assertEqual(metrics["hit@5"], 1)
 
+    def test_explicit_negative_judgment_is_not_relevant_or_source_hit(self) -> None:
+        case = {
+            "id": "toy",
+            "query": "toy",
+            "tags": [],
+            "judgments": [
+                {"repository": "good", "file": "owner", "relevance": 3},
+                {"repository": "bad", "file": "reviewed-negative", "relevance": 0},
+            ],
+        }
+        scored = evaluate.score_case(
+            case,
+            [{"Repository": "bad", "FileName": "reviewed-negative", "Score": 10}],
+            "toy",
+            {"elapsed_ms": 1.0, "payload_bytes": 1},
+        )
+        self.assertEqual(scored["per_k"]["1"]["hit"], 0)
+        self.assertEqual(scored["per_k"]["1"]["source_hit"], 0)
+        self.assertEqual(scored["reciprocal_rank"], 0.0)
+
     def test_rerank_projection_humanizes_paths_and_removes_import_boilerplate(self) -> None:
         self.assertIn(
             "Jordan Normal Form",

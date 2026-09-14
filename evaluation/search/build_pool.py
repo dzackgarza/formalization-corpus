@@ -62,7 +62,8 @@ def main() -> int:
                 entry["runs"][run] = result["rank"]
 
     cases = []
-    judged = 0
+    judged_relevant = 0
+    judged_nonrelevant = 0
     unjudged = 0
     for cid, case in gold_cases.items():
         candidates = list(pool[cid].values())
@@ -77,8 +78,10 @@ def main() -> int:
         for item in candidates:
             if item["judgment"] is None:
                 unjudged += 1
+            elif item["judgment"]["relevance"] == 0:
+                judged_nonrelevant += 1
             else:
-                judged += 1
+                judged_relevant += 1
         cases.append(
             {
                 "id": cid,
@@ -95,8 +98,10 @@ def main() -> int:
         "runs": run_meta,
         "summary": {
             "queries": len(cases),
-            "candidates": judged + unjudged,
-            "already_judged": judged,
+            "candidates": judged_relevant + judged_nonrelevant + unjudged,
+            "already_judged": judged_relevant + judged_nonrelevant,
+            "judged_relevant": judged_relevant,
+            "judged_nonrelevant": judged_nonrelevant,
             "unjudged": unjudged,
         },
         "cases": cases,
@@ -104,8 +109,10 @@ def main() -> int:
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(output, indent=2, sort_keys=True) + "\n")
     print(
-        f"{args.output}: {len(cases)} queries, {judged + unjudged} pooled candidates, "
-        f"{judged} already judged, {unjudged} awaiting judgment"
+        f"{args.output}: {len(cases)} queries, "
+        f"{judged_relevant + judged_nonrelevant + unjudged} pooled candidates, "
+        f"{judged_relevant} relevant, {judged_nonrelevant} nonrelevant, "
+        f"{unjudged} awaiting judgment"
     )
     return 0
 

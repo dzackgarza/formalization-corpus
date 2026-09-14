@@ -15,7 +15,13 @@ Zoekt repository identifier and file path:
   independent formalization;
 - relevance 2: closely relevant implementation, specialization, or alternate
   development;
-- relevance 1: supporting material (not currently used in the initial set).
+- relevance 1: supporting material;
+- relevance 0: reviewed and nonrelevant to the mathematical information need.
+
+Absence from the judgment list means **unjudged**, not relevance 0.  This
+distinction matters during pooling: a reviewed negative candidate must not remain
+indistinguishable from a candidate nobody has inspected yet.  Every query still
+requires at least one positive judgment.
 
 The first set is deliberately small and high-confidence.  It includes exact
 names, ordinary mathematical prose, conversational questions, synonym shifts,
@@ -212,7 +218,9 @@ before drawing strong conclusions from a new family of retrievers:
    retrieval-code comparison.
 
 `build_pool.py` produces that review set without assigning relevance to
-unjudged files.  The current depth-10 pool combines the frozen frontend baseline, normalized
+unjudged files.  Reviewed nonrelevant files are recorded explicitly as relevance
+0 and reported separately from candidates still awaiting review.  The current
+depth-10 pool combines the frozen frontend baseline, normalized
 path/content lexical retrieval, frozen multi-query RRF, and the measured Cohere
 reranker.  It has 444 unique query/file candidates: 45 already judged and 399
 explicitly marked unjudged.  The gold set currently contains 58 judgments total;

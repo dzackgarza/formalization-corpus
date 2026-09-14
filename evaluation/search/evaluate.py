@@ -72,6 +72,7 @@ def validate_gold(data: dict[str, Any]) -> list[str]:
             errors.append(f"{case_id}: needs at least one positive judgment")
             continue
         seen_targets: set[tuple[str, str]] = set()
+        positive_judgments = 0
         for judgment in judgments:
             repo = judgment.get("repository")
             file_name = judgment.get("file")
@@ -82,8 +83,10 @@ def validate_gold(data: dict[str, Any]) -> list[str]:
             if not isinstance(file_name, str) or not file_name:
                 errors.append(f"{case_id}: invalid file for {repo}")
                 continue
-            if not isinstance(rel, int) or not 1 <= rel <= 3:
-                errors.append(f"{case_id}: relevance must be an integer 1..3")
+            if not isinstance(rel, int) or not 0 <= rel <= 3:
+                errors.append(f"{case_id}: relevance must be an integer 0..3")
+            elif rel > 0:
+                positive_judgments += 1
             key = (repo, file_name)
             if key in seen_targets:
                 errors.append(f"{case_id}: duplicate judgment {repo}:{file_name}")
@@ -91,6 +94,8 @@ def validate_gold(data: dict[str, Any]) -> list[str]:
             local_path = ROOT / sources[repo]["directory"] / file_name
             if not local_path.is_file():
                 errors.append(f"{case_id}: judged file is missing: {local_path}")
+        if positive_judgments == 0:
+            errors.append(f"{case_id}: needs at least one positive judgment")
     return errors
 
 
@@ -262,7 +267,7 @@ def dcg(relevances: list[int], k: int) -> float:
 
 def score_case(case: dict[str, Any], results: list[dict[str, Any]], compiled_query: str, runtime: dict[str, Any]) -> dict[str, Any]:
     judgments = judgment_map(case)
-    gold_sources = {repo for repo, _ in judgments}
+    gold_sources = {repo for (repo, _), rel in judgments.items() if rel > 0}
     ranked_relevance: list[int] = []
     ranked_keys: list[tuple[str, str]] = []
     for item in results:
@@ -275,7 +280,7 @@ def score_case(case: dict[str, Any], results: list[dict[str, Any]], compiled_que
     first_relevant = next((i + 1 for i, rel in enumerate(ranked_relevance) if rel > 0), None)
     first_owner = next((i + 1 for i, rel in enumerate(ranked_relevance) if rel == 3), None)
     per_k: dict[str, Any] = {}
-    ideal = sorted(judgments.values(), reverse=True)
+    ideal = sorted((rel for rel in judgments.values() if rel > 0), reverse=True)
     for k in K_VALUES:
         top_keys = ranked_keys[:k]
         top_rels = ranked_relevance[:k]
