@@ -64,6 +64,10 @@ class LabLogTests(unittest.TestCase):
                     "corpus_git_commit": "abc123",
                     "variant": "stochastic",
                     "gold_sha256": "gold",
+                    "result_role_state": {
+                        "navigation_count": 2,
+                        "navigation_sha256": "roles",
+                    },
                     "rank_cutoff": 10,
                     "runs": 5,
                     "summary": {
@@ -94,6 +98,7 @@ class LabLogTests(unittest.TestCase):
             lablog.repository_state = original
         self.assertEqual(record["metrics"]["success@10"], 0.6)
         self.assertEqual(record["metrics"]["pass@5[owner_success@10]"], 0.8)
+        self.assertEqual(record["result_role_state"]["navigation_count"], 2)
 
 
 if __name__ == "__main__":

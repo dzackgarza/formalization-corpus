@@ -187,6 +187,7 @@ def measurement_record(
         "gold_sha256": report["gold_sha256"],
         "query_config_sha256": report.get("query_config_sha256"),
         "serving_config_sha256": report.get("serving_config_sha256"),
+        "result_role_state": report.get("result_role_state"),
         "index": report.get("index"),
         "artifact": str(artifact.relative_to(ROOT)),
         "artifact_sha256": report_sha,

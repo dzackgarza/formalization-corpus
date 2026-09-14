@@ -496,6 +496,9 @@ def compare_reports(current: dict[str, Any], baseline: dict[str, Any], tolerance
     if current.get("query_config_sha256") != baseline.get("query_config_sha256"):
         problems.append("query-normalization config differs; regenerate and review the retrieval baseline before comparing scores")
         return problems
+    if current.get("result_role_state") != baseline.get("result_role_state"):
+        problems.append("result-role state differs; regenerate and review the retrieval baseline before comparing scores")
+        return problems
     if current.get("provider") == "api" or baseline.get("provider") == "api":
         if current.get("serving_options") != baseline.get("serving_options"):
             problems.append("API serving options differ; treat serving-budget changes as retrieval experiments")

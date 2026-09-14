@@ -255,6 +255,26 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         self.assertEqual(len(problems), 1)
         self.assertIn("gold-set hash differs", problems[0])
 
+    def test_compare_requires_same_result_role_state(self) -> None:
+        metrics = {
+            "hit@1": 1, "hit@5": 1, "hit@10": 1, "hit@20": 1,
+            "owner_hit@1": 1, "owner_hit@5": 1,
+            "owner_hit@10": 1, "owner_hit@20": 1,
+            "mrr": 1, "owner_mrr": 1, "ndcg@10": 1, "ndcg@20": 1,
+        }
+        base = {
+            "gold_sha256": "gold",
+            "index": {"metadata_sha256": "same"},
+            "query_config_sha256": "query",
+            "result_role_state": {"navigation_count": 1, "navigation_sha256": "a"},
+            "metrics": metrics,
+        }
+        current = copy.deepcopy(base)
+        current["result_role_state"] = {"navigation_count": 2, "navigation_sha256": "b"}
+        problems = evaluate.compare_reports(current, base, 0)
+        self.assertEqual(len(problems), 1)
+        self.assertIn("result-role state differs", problems[0])
+
     def test_pass_at_r_uses_unbiased_finite_sample_estimator(self) -> None:
         self.assertEqual(evaluate_repeated.pass_at_r(4, 0, 2), 0.0)
         self.assertEqual(evaluate_repeated.pass_at_r(4, 4, 2), 1.0)
