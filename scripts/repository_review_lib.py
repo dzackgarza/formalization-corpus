@@ -17,6 +17,7 @@ REVIEW_ROOT = FILTER_ROOT / "repository-review"
 CATALOGUE_ROOT = REVIEW_ROOT / "catalogue"
 FILES_ROOT = REVIEW_ROOT / "files"
 REVIEWS_ROOT = REVIEW_ROOT / "reviews"
+RETIRED_SOURCES = REVIEW_ROOT / "retired-sources.jsonl"
 CATALOGUE_INDEX = REVIEW_ROOT / "catalogue.jsonl"
 BATCHES = REVIEW_ROOT / "batches.jsonl"
 
@@ -336,9 +337,15 @@ def load_catalogue_index() -> list[dict[str, Any]]:
     return load_jsonl(CATALOGUE_INDEX)
 
 
-def load_units() -> dict[str, dict[str, Any]]:
+def load_retired_sources() -> list[dict[str, Any]]:
+    return load_jsonl(RETIRED_SOURCES)
+
+
+def load_units(*, active_only: bool = False) -> dict[str, dict[str, Any]]:
     out: dict[str, dict[str, Any]] = {}
     for source_row in load_catalogue_index():
+        if active_only and source_row.get("inventory_status", "active") != "active":
+            continue
         source_catalogue = load_json(ROOT / source_row["catalogue_file"])
         for unit in source_catalogue.get("work_units", []):
             item = dict(unit)
@@ -347,6 +354,7 @@ def load_units() -> dict[str, dict[str, Any]]:
             item["source_revision"] = source_catalogue.get("source_revision")
             item["source_snapshot_sha256"] = source_catalogue["source_snapshot_sha256"]
             item["catalogue_file"] = source_row["catalogue_file"]
+            item["inventory_status"] = source_row.get("inventory_status", "active")
             out[item["unit_id"]] = item
     return out
 
@@ -386,7 +394,7 @@ def selector_paths(selector: dict[str, Any], paths: set[str]) -> set[str]:
 
 
 def resolve_review_exclusions(*, require_fresh: bool = True) -> tuple[dict[tuple[str, str], dict[str, Any]], list[str]]:
-    units = load_units()
+    units = load_units(active_only=True)
     reviews = latest_reviews(units)
     exclusions: dict[tuple[str, str], dict[str, Any]] = {}
     errors: list[str] = []

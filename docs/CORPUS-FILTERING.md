@@ -349,6 +349,15 @@ source-local evidence.  Thus the public index remains reproducible through the
 same per-file filtering machinery while the reasoning stays attached to the
 repository review that justified it.
 
+A distinct whole-source disposition exists for repositories that fail the
+`COPY-005` corpus-membership invariant.  A whole-repository unit may request
+`source_action=retire-source` under `FD-012`; it may not combine that action with
+file-level blacklist rules.  Applying the action removes the source from the live
+inventory but deliberately preserves its hydrated checkout and freezes its
+catalogue/manifests/review history as a retired campaign source.  Do not emulate
+source retirement by blacklisting every file: that would hide a source-membership
+decision inside file-level filtering and destroy the audit boundary.
+
 The operational commands are:
 
 ```sh

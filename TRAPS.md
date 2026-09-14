@@ -161,3 +161,8 @@ ls -1`, `command cp -f`, `/usr/bin/tr`.
 - **Batch completion is review coverage, not bytes/files removed.** A few large
   exclusions do not dispose the remaining units. Every unit needs a fresh
   explicit review or remains pending/deferred.
+
+- **Do not empty a tooling-only source with per-file blacklists.** If exhaustive
+  repository inspection shows that the source itself violates `COPY-005`, record
+  a whole-source `FD-012` retirement. The campaign catalogue and checkout remain
+  frozen for audit even after the live inventory row is removed.

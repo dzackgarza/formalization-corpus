@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import importlib.util
 import json
 import pathlib
 import sys
@@ -16,6 +17,15 @@ from repository_review_lib import (  # noqa: E402
     selector_paths,
 )
 import filtering_lib  # noqa: E402
+
+
+def load_review_cli():
+    path = ROOT / "scripts" / "repository-review.py"
+    spec = importlib.util.spec_from_file_location("repository_review_cli", path)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def record(path: str, size: int = 10) -> FileRecord:
@@ -189,6 +199,56 @@ class RepositoryReviewTests(unittest.TestCase):
                     review_lib.ROOT, review_lib.REVIEW_ROOT, review_lib.CATALOGUE_ROOT,
                     review_lib.FILES_ROOT, review_lib.REVIEWS_ROOT, review_lib.CATALOGUE_INDEX,
                 ) = saved
+
+    def test_source_retirement_requires_whole_repository_and_explicit_evidence(self) -> None:
+        cli = load_review_cli()
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            saved_root = cli.ROOT
+            saved_lib_root = review_lib.ROOT
+            cli.ROOT = root
+            review_lib.ROOT = root
+            try:
+                manifest = root / "unit.jsonl"
+                review_lib.dump_jsonl(manifest, [{
+                    "path": "Tool.lean", "size_bytes": 1, "sha256": "a" * 64,
+                    "formal_source": True, "active_decisions": [],
+                    "baseline_primary_status": "primary-retained",
+                    "current_primary_status": "primary-retained",
+                }])
+                uid = review_lib.unit_id("owner__tool", "repository", ".")
+                short = uid.split("-", 1)[1]
+                unit = {
+                    "unit_id": uid, "repository": "owner__tool",
+                    "scope": {"kind": "repository", "value": "."},
+                    "snapshot_sha256": "b" * 64, "files_manifest": str(manifest),
+                }
+                review = {
+                    "schema_version": 1, "review_id": f"RRV-{short}-r1",
+                    "unit_id": uid, "repository": "owner__tool", "supersedes": None,
+                    "status": "reviewed", "default_action": "retain",
+                    "summary": "Exhaustive inspection shows this repository is tooling only.",
+                    "review_evidence": ["All source-language files implement tool plumbing."],
+                    "recorded_at": "2026-09-15T00:00:00+00:00", "corpus_git_commit": "deadbeef",
+                    "unit_snapshot_sha256": "b" * 64, "rules": [],
+                    "source_action": {
+                        "action": "retire-source", "decision_id": "FD-012",
+                        "rationale": "The repository implements editor or build tooling and has no mathematical formalization in its complete source snapshot.",
+                        "content_invariant": "Every proof-assistant source file in the reviewed snapshot was inspected and none states or proves mathematical content relevant to prior-art search.",
+                        "evidence": ["README identifies the project as tooling; complete declaration inventory is operational."],
+                        "policies": [
+                            "COPY-005", "FILTER-001", "FILTER-003", "FILTER-004", "FILTER-005",
+                            "FILTER-020", "FILTER-022", "FILTER-023", "FILTER-025",
+                        ],
+                    },
+                }
+                self.assertEqual(cli.validate_review_record(review, unit, 0, None), [])
+                bad_unit = {**unit, "scope": {"kind": "subtree", "value": "Tool"}}
+                errors = cli.validate_review_record(review, bad_unit, 0, None)
+                self.assertTrue(any("whole-repository" in error for error in errors))
+            finally:
+                cli.ROOT = saved_root
+                review_lib.ROOT = saved_lib_root
 
     def test_fd018_has_no_standalone_path_heuristic_authority(self) -> None:
         decision = filtering_lib.load_catalog()["FD-018"]

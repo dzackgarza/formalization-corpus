@@ -20,6 +20,7 @@ from repository_review_lib import (
     FILES_ROOT,
     REVIEW_ID_RE,
     REVIEWS_ROOT,
+    RETIRED_SOURCES,
     RULE_ID_RE,
     SCHEMA_VERSION,
     UNIT_ID_RE,
@@ -30,6 +31,7 @@ from repository_review_lib import (
     latest_reviews,
     load_catalogue_index,
     load_review_history,
+    load_retired_sources,
     load_unit_file_records,
     load_units,
     material_snapshot_sha256,
@@ -94,6 +96,12 @@ def build() -> int:
     decisions = active_decisions_by_file()
     CATALOGUE_ROOT.mkdir(parents=True, exist_ok=True)
     FILES_ROOT.mkdir(parents=True, exist_ok=True)
+    existing_index = {row["repository"]: row for row in load_catalogue_index()}
+    retired = {row["repository"]: row for row in load_retired_sources()}
+    active_repositories = {source.repository for source in sources()}
+    overlap = sorted(active_repositories & set(retired))
+    if overlap:
+        raise SystemExit(f"retired repositories remain in sources.tsv: {overlap[:10]}")
     source_index: list[dict[str, Any]] = []
     live_catalogues: set[pathlib.Path] = set()
     live_manifests: set[pathlib.Path] = set()
@@ -123,10 +131,35 @@ def build() -> int:
                 "bytes": summary["totals"]["bytes"],
                 "work_units": len(units),
                 "catalogue_file": relative(path),
+                "inventory_status": "active",
             }
         )
         if number % 100 == 0:
             print(f"catalogued {number} sources", file=sys.stderr)
+
+    # Retired sources remain frozen in the campaign catalogue so their removal
+    # cannot erase the evidence that justified it.  They no longer participate
+    # in source sync/indexing, but their exact imported snapshot and review unit
+    # remain auditable here.
+    for repository, retirement in sorted(retired.items()):
+        previous = existing_index.get(repository)
+        if previous is None:
+            raise SystemExit(f"retired source {repository} lacks a preserved catalogue row")
+        cat_path = ROOT / previous["catalogue_file"]
+        if not cat_path.is_file():
+            raise SystemExit(f"retired source {repository} lacks catalogue {cat_path}")
+        catalogue = json.loads(cat_path.read_text())
+        live_catalogues.add(cat_path)
+        for unit in catalogue.get("work_units", []):
+            manifest = ROOT / unit["files_manifest"]
+            if not manifest.is_file():
+                raise SystemExit(f"retired source {repository} lacks manifest {manifest}")
+            live_manifests.add(manifest)
+        source_index.append({
+            **previous,
+            "inventory_status": "retired",
+            "retirement_review_id": retirement["review_id"],
+        })
 
     for path in CATALOGUE_ROOT.glob("*.json"):
         if path not in live_catalogues:
@@ -145,7 +178,13 @@ def build() -> int:
     build_batches()
     total_units = sum(row["work_units"] for row in source_index)
     total_files = sum(row["files"] for row in source_index)
-    print(f"repository review catalogue: {len(source_index)} sources, {total_units} units, {total_files} imported files")
+    active_count = sum(row.get("inventory_status", "active") == "active" for row in source_index)
+    retired_count = len(source_index) - active_count
+    print(
+        f"repository review catalogue: {len(source_index)} campaign sources "
+        f"({active_count} active, {retired_count} retired), {total_units} units, "
+        f"{total_files} imported files"
+    )
     return 0
 
 
@@ -211,12 +250,44 @@ def validate_review_record(record: dict[str, Any], unit: dict[str, Any], history
         errors.append(f"{unit_id}: {record.get('status')} review must use default_action={expected_default}")
     if not isinstance(record.get("summary"), str) or len(record["summary"].strip()) < 20:
         errors.append(f"{unit_id}: review summary must explain the disposition")
+    review_evidence = record.get("review_evidence")
+    if not isinstance(review_evidence, list) or not review_evidence or any(
+        not isinstance(item, str) or not item.strip() for item in review_evidence
+    ):
+        errors.append(f"{unit_id}: review_evidence must be a nonempty list of source-local observations")
     if not isinstance(record.get("recorded_at"), str) or "T" not in record["recorded_at"]:
         errors.append(f"{unit_id}: review requires recorded_at timestamp")
     if not isinstance(record.get("corpus_git_commit"), str) or len(record["corpus_git_commit"]) < 7:
         errors.append(f"{unit_id}: review requires corpus_git_commit")
     if not isinstance(record.get("unit_snapshot_sha256"), str) or len(record["unit_snapshot_sha256"]) != 64:
         errors.append(f"{unit_id}: review requires unit_snapshot_sha256")
+
+    source_action = record.get("source_action")
+    if source_action is not None:
+        if not isinstance(source_action, dict) or source_action.get("action") != "retire-source":
+            errors.append(f"{unit_id}: source_action must be null or action=retire-source")
+        else:
+            if unit.get("scope", {}).get("kind") != "repository":
+                errors.append(f"{unit_id}: source retirement is allowed only on a whole-repository unit")
+            if record.get("status") != "reviewed":
+                errors.append(f"{unit_id}: source retirement requires status=reviewed")
+            if record.get("rules"):
+                errors.append(f"{unit_id}: source retirement cannot be combined with file exclusion rules")
+            if source_action.get("decision_id") != "FD-012":
+                errors.append(f"{unit_id}: source retirement must cite FD-012")
+            for field in ("rationale", "content_invariant"):
+                if not isinstance(source_action.get(field), str) or len(source_action[field].strip()) < 40:
+                    errors.append(f"{unit_id}: source_action {field} must state explicit reasoning")
+            evidence = source_action.get("evidence")
+            if not isinstance(evidence, list) or not evidence or any(not isinstance(item, str) or not item.strip() for item in evidence):
+                errors.append(f"{unit_id}: source_action evidence must be a nonempty list of strings")
+            policies = set(source_action.get("policies") or [])
+            required_source = {
+                "COPY-005", "FILTER-001", "FILTER-003", "FILTER-004", "FILTER-005",
+                "FILTER-020", "FILTER-022", "FILTER-023", "FILTER-025",
+            }
+            if not required_source.issubset(policies):
+                errors.append(f"{unit_id}: source_action policies must include source-retirement safety rules")
 
     unit_records = load_unit_file_records(unit)
     paths = {str(item["path"]) for item in unit_records}
@@ -270,11 +341,30 @@ def validate_review_record(record: dict[str, Any], unit: dict[str, Any], history
 def validate() -> int:
     errors: list[str] = []
     source_rows = {source.repository: source for source in sources()}
+    retired_rows = {row["repository"]: row for row in load_retired_sources()}
     index = load_catalogue_index()
-    if len(index) != len(source_rows):
-        errors.append(f"catalogue has {len(index)} sources but sources.tsv has {len(source_rows)}")
     if len({row.get('repository') for row in index}) != len(index):
         errors.append("catalogue index has duplicate repositories")
+    indexed = {row["repository"]: row for row in index}
+    active_indexed = {
+        repository for repository, row in indexed.items()
+        if row.get("inventory_status", "active") == "active"
+    }
+    retired_indexed = {
+        repository for repository, row in indexed.items()
+        if row.get("inventory_status", "active") == "retired"
+    }
+    if active_indexed != set(source_rows):
+        missing = sorted(set(source_rows) - active_indexed)[:10]
+        extra = sorted(active_indexed - set(source_rows))[:10]
+        if missing:
+            errors.append(f"campaign catalogue lacks active sources: {missing}")
+        if extra:
+            errors.append(f"campaign catalogue marks absent sources active: {extra}")
+    if retired_indexed != set(retired_rows):
+        errors.append("retired catalogue rows disagree with retired-sources.jsonl")
+    if set(source_rows) & set(retired_rows):
+        errors.append("retired sources must be absent from sources.tsv")
 
     units = load_units()
     if len(units) != sum(int(row.get("work_units", 0)) for row in index):
@@ -282,9 +372,57 @@ def validate() -> int:
 
     for row in index:
         repository = row["repository"]
+        status = row.get("inventory_status", "active")
         source = source_rows.get(repository)
+        if status == "retired":
+            retirement = retired_rows.get(repository)
+            if retirement is None:
+                errors.append(f"{repository}: retired catalogue row lacks retirement record")
+                continue
+            cat_path = ROOT / row["catalogue_file"]
+            if not cat_path.is_file():
+                errors.append(f"{repository}: retired catalogue file is missing")
+                continue
+            catalogue = json.loads(cat_path.read_text())
+            if retirement.get("source_snapshot_sha256") != catalogue.get("source_snapshot_sha256"):
+                errors.append(f"{repository}: retirement snapshot disagrees with frozen catalogue")
+            matching_review = False
+            for unit in catalogue.get("work_units", []):
+                history = load_review_history(repository, unit["unit_id"])
+                if history and history[-1].get("review_id") == retirement.get("review_id"):
+                    action = history[-1].get("source_action") or {}
+                    if action.get("action") == "retire-source":
+                        matching_review = True
+            if not matching_review:
+                errors.append(f"{repository}: retirement record lacks matching latest source-retirement review")
+            retired_records = []
+            for unit in catalogue.get("work_units", []):
+                manifest = ROOT / unit["files_manifest"]
+                if not manifest.is_file():
+                    errors.append(f"{repository}/{unit.get('unit_id')}: retired files manifest is missing")
+                    continue
+                records = load_unit_file_records(unit)
+                from repository_review_lib import FileRecord, material_snapshot_sha256
+                reconstructed = [
+                    FileRecord(
+                        path=str(item["path"]), size_bytes=int(item["size_bytes"]), sha256=str(item["sha256"]),
+                        formal_source=bool(item["formal_source"]), active_decisions=tuple(item.get("active_decisions", [])),
+                        baseline_primary_status=str(item["baseline_primary_status"]), current_primary_status=str(item["current_primary_status"]),
+                    ) for item in records
+                ]
+                if material_snapshot_sha256(reconstructed) != unit.get("snapshot_sha256"):
+                    errors.append(f"{repository}/{unit.get('unit_id')}: retired manifest digest disagrees with catalogue")
+                retired_records.extend(reconstructed)
+                history = load_review_history(repository, unit["unit_id"])
+                previous = None
+                for review_number, review in enumerate(history):
+                    errors.extend(validate_review_record(review, {**unit, "repository": repository}, review_number, previous))
+                    previous = review
+            if material_snapshot_sha256(retired_records) != catalogue.get("source_snapshot_sha256"):
+                errors.append(f"{repository}: retired source snapshot disagrees with frozen manifests")
+            continue
         if source is None:
-            errors.append(f"catalogue contains unregistered repository {repository}")
+            errors.append(f"catalogue marks unregistered repository active: {repository}")
             continue
         cat_path = ROOT / row["catalogue_file"]
         if not cat_path.is_file():
@@ -401,8 +539,12 @@ def status(batch_id: str | None = None) -> int:
         state = "pending"
         if review:
             state = str(review.get("status"))
+            if (review.get("source_action") or {}).get("action") == "retire-source":
+                state = "retire-source"
             if review.get("unit_snapshot_sha256") != unit.get("snapshot_sha256"):
                 state = "stale"
+        if unit.get("inventory_status") == "retired":
+            state = "retired-source"
         counts[state] += 1
         rows.append((state, uid, unit["repository"], unit["scope"]["value"] or ".", unit["stats"]["files"], unit["stats"]["baseline_primary_retained"]))
     print("state\tunit\trepository\tscope\tfiles\tprimary")
@@ -431,8 +573,10 @@ def template(uid: str) -> int:
         "status": "reviewed",
         "default_action": "retain",
         "summary": "REPLACE: explain what was inspected and why unselected material remains searchable.",
+        "review_evidence": ["REPLACE: concrete unit-wide inspection evidence"],
         "recorded_at": utc_now(),
         "corpus_git_commit": corpus_commit(),
+        "source_action": None,
         "rules": [
             {
                 "rule_id": f"RRX-{short}-1",
@@ -476,6 +620,89 @@ def append_review(path: pathlib.Path) -> int:
     return 0
 
 
+def _filter_tsv_by_repository(path: pathlib.Path, repositories: set[str], *, directory_column: bool = False) -> None:
+    if not path.exists():
+        return
+    lines = path.read_text().splitlines()
+    if not lines:
+        return
+    kept: list[str] = []
+    for number, line in enumerate(lines):
+        if number == 0 and path.name == "sources.tsv":
+            kept.append(line)
+            continue
+        if not line.strip() or line.lstrip().startswith("#"):
+            kept.append(line)
+            continue
+        fields = line.split("\t")
+        key = pathlib.PurePosixPath(fields[1]).name if directory_column and len(fields) > 1 else fields[0]
+        if key not in repositories:
+            kept.append(line)
+    path.write_text("\n".join(kept) + "\n")
+
+
+def retire_source(uid: str) -> int:
+    units = load_units(active_only=True)
+    unit = units.get(uid)
+    if unit is None:
+        raise SystemExit(f"unknown active unit {uid}")
+    history = load_review_history(unit["repository"], uid)
+    if not history:
+        raise SystemExit(f"{uid}: no review exists")
+    review = history[-1]
+    action = review.get("source_action") or {}
+    if review.get("unit_snapshot_sha256") != unit.get("snapshot_sha256"):
+        raise SystemExit(f"{uid}: source-retirement review is stale")
+    if action.get("action") != "retire-source":
+        raise SystemExit(f"{uid}: latest review does not request source retirement")
+    errors = validate_review_record(review, unit, len(history) - 1, history[-2] if len(history) > 1 else None)
+    if errors:
+        raise SystemExit("invalid source-retirement review:\n  " + "\n  ".join(errors))
+
+    repository = unit["repository"]
+    if any(row.get("repository") == repository for row in load_retired_sources()):
+        raise SystemExit(f"{repository}: source is already retired")
+    catalogue_row = next(row for row in load_catalogue_index() if row["repository"] == repository)
+    catalogue = json.loads((ROOT / catalogue_row["catalogue_file"]).read_text())
+    retirement = {
+        "schema_version": SCHEMA_VERSION,
+        "decision_id": "FD-012",
+        "repository": repository,
+        "url": catalogue["url"],
+        "directory": catalogue["directory"],
+        "proof_assistant": catalogue["proof_assistant"],
+        "transport": catalogue["transport"],
+        "sync_group": catalogue["sync_group"],
+        "discovered_via": catalogue["discovered_via"],
+        "source_revision": catalogue.get("source_revision"),
+        "source_snapshot_sha256": catalogue["source_snapshot_sha256"],
+        "catalogue_file": catalogue_row["catalogue_file"],
+        "unit_id": uid,
+        "review_id": review["review_id"],
+        "rationale": action["rationale"],
+        "content_invariant": action["content_invariant"],
+        "evidence": action["evidence"],
+        "policies": action["policies"],
+        "retired_at": utc_now(),
+        "corpus_git_commit": corpus_commit(),
+    }
+    existing_retired = load_retired_sources()
+    dump_jsonl(RETIRED_SOURCES, [*existing_retired, retirement])
+
+    _filter_tsv_by_repository(ROOT / "sources.tsv", {repository}, directory_column=True)
+    _filter_tsv_by_repository(ROOT / "source-topics.tsv", {repository})
+    _filter_tsv_by_repository(ROOT / "descriptions.tsv", {repository})
+
+    index = load_catalogue_index()
+    for row in index:
+        if row["repository"] == repository:
+            row["inventory_status"] = "retired"
+            row["retirement_review_id"] = review["review_id"]
+    dump_jsonl(CATALOGUE_INDEX, index)
+    print(f"retired {repository} from sources.tsv; frozen review catalogue preserved")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build and audit repository-local filtering review work")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -487,6 +714,8 @@ def main() -> int:
     template_parser.add_argument("unit")
     append_parser = sub.add_parser("append")
     append_parser.add_argument("review", type=pathlib.Path)
+    retire_parser = sub.add_parser("retire-source")
+    retire_parser.add_argument("unit")
     args = parser.parse_args()
     if args.command == "build":
         return build()
@@ -496,7 +725,9 @@ def main() -> int:
         return status(args.batch)
     if args.command == "template":
         return template(args.unit)
-    return append_review(args.review)
+    if args.command == "append":
+        return append_review(args.review)
+    return retire_source(args.unit)
 
 
 if __name__ == "__main__":

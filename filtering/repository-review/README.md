@@ -26,8 +26,10 @@ a later line must explicitly supersede the previous review ID.
 
 A completed review normally uses `status=reviewed` and
 `default_action=retain`.  That makes retention of everything not selected by a
-rule explicit rather than implicit.  `status=deferred` means the unit is still
-open and cannot activate exclusions.
+rule explicit rather than implicit.  Every review also carries `review_evidence`
+with concrete unit-wide observations, so a no-blacklist result is auditable rather
+than a bare checkbox.  `status=deferred` means the unit is still open and cannot
+activate exclusions.
 
 Exclusion rules are repository-local and may select only an exact path, an
 explicit path set, or a literal subtree prefix.  Every rule records a rationale,
@@ -57,3 +59,21 @@ supersession chains, unbounded selectors, selectors outside the unit, missing
 reasoning/evidence, and incomplete policy references before history is mutated.
 For a reviewed unit with no blacklist, delete the placeholder rule and leave
 `rules: []`; the explicit default `retain` is then the substantive disposition.
+
+## Source retirement
+
+If a whole-repository unit establishes that the imported repository is tooling,
+review machinery, metadata, or otherwise outside the corpus source invariant, do
+not blacklist all of its files.  Set `source_action.action` to `retire-source`,
+cite `FD-012`/`COPY-005`, and record the source-level rationale, content invariant,
+and evidence.  After the review is committed, apply it explicitly with:
+
+```sh
+python scripts/repository-review.py retire-source RRU-...
+```
+
+Retirement removes the row from the live source/topic/description inventory but
+leaves the hydrated checkout untouched.  Its catalogue, exact file hashes, and
+review history remain frozen in this campaign catalogue with
+`inventory_status=retired`; retirement therefore cannot erase the evidence used
+to justify the source-level decision.
