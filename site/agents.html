@@ -74,7 +74,7 @@ When you find useful prior work, report the source, proof assistant, file, relev
 
     <div class="copy-panel">
       <div class="copy-panel-header"><strong>OpenAPI → MCP</strong><button class="copy-button" data-copy="mcp-command">Copy</button></div>
-      <pre id="mcp-command">npx -y @ivotoby/openapi-mcp-server \
+      <pre id="mcp-command" data-language="bash">npx -y @ivotoby/openapi-mcp-server \
   --api-base-url https://formalization-corpus.dzackgarza.com \
   --openapi-spec https://formalization-corpus.dzackgarza.com/api/openapi.json \
   --verbose false</pre>
@@ -83,13 +83,13 @@ When you find useful prior work, report the source, proof assistant, file, relev
     <h3><a href="https://docs.anthropic.com/en/docs/claude-code/mcp">Claude Code</a></h3>
     <div class="copy-panel">
       <div class="copy-panel-header"><strong>Register the stdio bridge</strong><button class="copy-button" data-copy="claude-command">Copy</button></div>
-      <pre id="claude-command">claude mcp add formalization-corpus -- npx -y @ivotoby/openapi-mcp-server --api-base-url https://formalization-corpus.dzackgarza.com --openapi-spec https://formalization-corpus.dzackgarza.com/api/openapi.json --verbose false</pre>
+      <pre id="claude-command" data-language="bash">claude mcp add formalization-corpus -- npx -y @ivotoby/openapi-mcp-server --api-base-url https://formalization-corpus.dzackgarza.com --openapi-spec https://formalization-corpus.dzackgarza.com/api/openapi.json --verbose false</pre>
     </div>
 
     <h3><a href="https://developers.openai.com/codex/mcp/">Codex</a></h3>
     <div class="copy-panel">
       <div class="copy-panel-header"><strong><code>~/.codex/config.toml</code></strong><button class="copy-button" data-copy="codex-config">Copy</button></div>
-      <pre id="codex-config">[mcp_servers.formalization_corpus]
+      <pre id="codex-config" data-language="toml">[mcp_servers.formalization_corpus]
 command = "npx"
 args = ["-y", "@ivotoby/openapi-mcp-server", "--api-base-url", "https://formalization-corpus.dzackgarza.com", "--openapi-spec", "https://formalization-corpus.dzackgarza.com/api/openapi.json", "--verbose", "false"]</pre>
     </div>
@@ -97,7 +97,7 @@ args = ["-y", "@ivotoby/openapi-mcp-server", "--api-base-url", "https://formaliz
     <h3><a href="https://opencode.ai/v2/docs/mcp-servers">OpenCode v2</a></h3>
     <div class="copy-panel">
       <div class="copy-panel-header"><strong>Register the local MCP server</strong><button class="copy-button" data-copy="opencode-command">Copy</button></div>
-      <pre id="opencode-command">opencode2 mcp add formalization-corpus -- npx -y @ivotoby/openapi-mcp-server --api-base-url https://formalization-corpus.dzackgarza.com --openapi-spec https://formalization-corpus.dzackgarza.com/api/openapi.json --verbose false</pre>
+      <pre id="opencode-command" data-language="bash">opencode2 mcp add formalization-corpus -- npx -y @ivotoby/openapi-mcp-server --api-base-url https://formalization-corpus.dzackgarza.com --openapi-spec https://formalization-corpus.dzackgarza.com/api/openapi.json --verbose false</pre>
     </div>
   </section>
 </main>
@@ -107,11 +107,38 @@ args = ["-y", "@ivotoby/openapi-mcp-server", "--api-base-url", "https://formaliz
 </footer>
 
 <script>
+const rawCode = new Map();
+
+async function highlightCodeBlocks() {
+  const blocks = [...document.querySelectorAll("pre[data-language]")];
+  if (!blocks.length) return;
+
+  const theme = matchMedia("(prefers-color-scheme: dark)").matches
+    ? "github-dark" : "github-light";
+  const {createHighlighter} = await import("https://cdn.jsdelivr.net/npm/shiki@4/+esm");
+  const languages = [...new Set(blocks.map(block => block.dataset.language))];
+  const highlighter = await createHighlighter({themes: [theme], langs: languages});
+
+  for (const block of blocks) {
+    const source = block.textContent;
+    rawCode.set(block.id, source);
+    const rendered = highlighter.codeToHtml(source, {
+      lang: block.dataset.language,
+      theme,
+    });
+    const documentFragment = new DOMParser().parseFromString(rendered, "text/html");
+    const highlighted = documentFragment.querySelector("pre.shiki code");
+    if (highlighted) block.innerHTML = highlighted.innerHTML;
+  }
+}
+
+highlightCodeBlocks().catch(error => console.error("syntax highlighting unavailable:", error));
+
 document.querySelectorAll("[data-copy]").forEach(button => {
   button.addEventListener("click", async () => {
     const target = document.getElementById(button.dataset.copy);
     if (!target) return;
-    const text = target.textContent;
+    const text = rawCode.get(target.id) ?? target.textContent;
     try {
       await navigator.clipboard.writeText(text);
     } catch {
