@@ -127,6 +127,30 @@ def query_config() -> dict[str, Any]:
     return data
 
 
+def canonical_json_sha256(value: Any) -> str:
+    encoded = json.dumps(
+        value,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+    ).encode()
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def query_semantics_config(config: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Configuration that changes query compilation, excluding serving budgets."""
+    source = query_config() if config is None else config
+    return {key: value for key, value in source.items() if key != "serving"}
+
+
+def query_config_sha256() -> str:
+    return canonical_json_sha256(query_semantics_config())
+
+
+def serving_config_sha256() -> str:
+    return canonical_json_sha256(query_config().get("serving") or {})
+
+
 def strip_intent_prefix(text: str, config: dict[str, Any]) -> str:
     trimmed = text.strip()
     lower = trimmed.casefold()
@@ -450,6 +474,10 @@ def compare_reports(current: dict[str, Any], baseline: dict[str, Any], tolerance
     if current.get("query_config_sha256") != baseline.get("query_config_sha256"):
         problems.append("query-normalization config differs; regenerate and review the retrieval baseline before comparing scores")
         return problems
+    if current.get("provider") == "api" or baseline.get("provider") == "api":
+        if current.get("serving_options") != baseline.get("serving_options"):
+            problems.append("API serving options differ; treat serving-budget changes as retrieval experiments")
+            return problems
     keys = [
         "hit@1", "hit@5", "hit@10", "hit@20",
         "owner_hit@1", "owner_hit@5", "owner_hit@10", "owner_hit@20",
@@ -557,7 +585,8 @@ def main() -> int:
         "corpus_git_commit": repo_state["commit"],
         "repository_state": repo_state,
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
-        "query_config_sha256": hashlib.sha256(QUERY_CONFIG.read_bytes()).hexdigest(),
+        "query_config_sha256": query_config_sha256(),
+        "serving_config_sha256": serving_config_sha256(),
         "variant": args.variant,
         "provider": args.provider,
         "api_url": args.api_url if args.provider == "api" else None,

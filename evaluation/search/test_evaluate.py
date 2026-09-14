@@ -78,6 +78,25 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         self.assertEqual(serving["total_max_match_count"], 100000)
         self.assertFalse(serving["whole"])
 
+    def test_query_semantics_hash_excludes_serving_budget(self) -> None:
+        left = {
+            "version": 1,
+            "stopwords": ["the"],
+            "proof_assistant_terms": {"lean": r"\.lean$"},
+            "intent_prefixes": ["find"],
+            "serving": {"max_doc_display_count": 60, "shard_max_match_count": 0},
+        }
+        right = copy.deepcopy(left)
+        right["serving"]["shard_max_match_count"] = 10000
+        self.assertEqual(
+            evaluate.canonical_json_sha256(evaluate.query_semantics_config(left)),
+            evaluate.canonical_json_sha256(evaluate.query_semantics_config(right)),
+        )
+        self.assertNotEqual(
+            evaluate.canonical_json_sha256(left["serving"]),
+            evaluate.canonical_json_sha256(right["serving"]),
+        )
+
     def test_normalized_query_removes_intent_words_and_detects_proof_assistant(self) -> None:
         terms, proof_filter = evaluate.normalized_query_terms(
             "does Lean have the Jordan canonical form theorem?"

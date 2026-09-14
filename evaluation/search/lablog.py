@@ -186,6 +186,7 @@ def measurement_record(
         "provenance_level": "full" if report_state else "legacy-report",
         "gold_sha256": report["gold_sha256"],
         "query_config_sha256": report.get("query_config_sha256"),
+        "serving_config_sha256": report.get("serving_config_sha256"),
         "index": report.get("index"),
         "artifact": str(artifact.relative_to(ROOT)),
         "artifact_sha256": report_sha,
