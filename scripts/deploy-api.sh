@@ -22,6 +22,13 @@ rsync -a "$root/filtering/duplicate-aliases.json" "$host:$remote_root/api/data/d
 rsync -a "$root/filtering/current.jsonl" "$host:$remote_root/api/data/filter-state.jsonl"
 rsync -a "$root/deploy/"*.service "$host:$remote_root/systemd/"
 
+# The compatibility root unit has a tight memory cgroup sized for the primary
+# index. Keep the small documentation backend in its own user cgroup instead of
+# making it compete with primary Zoekt for MemoryHigh/MemoryMax headroom.
+ssh "$host" "mkdir -p ~/.config/systemd/user"
+rsync -a "$root/deploy/zoekt-metadata-webserver.user.service" \
+  "$host:~/.config/systemd/user/zoekt-metadata-webserver.service"
+
 ssh "$host" "cd '$remote_root/api' && ~/.local/bin/uv sync --frozen --no-dev"
 
 if ssh "$host" 'systemctl is-active --quiet formalization-corpus-api.service'; then
@@ -36,12 +43,17 @@ elif ssh "$host" "systemctl cat zoekt-webserver.service 2>/dev/null | grep -Fq '
   # the replacement executable without requiring root access.
   rsync -a "$root/deploy/zoekt-api-compat-launcher.sh" "$host:$remote_root/bin/zoekt-webserver"
   ssh "$host" "pid=\$(systemctl show -p MainPID --value zoekt-webserver.service); test \"\$pid\" -gt 0; kill -KILL \"\$pid\""
+  # The old compatibility launcher may itself own port 6072. Reload the root
+  # unit first so that child exits, then start documentation Zoekt in a separate
+  # user cgroup with independent memory accounting.
+  ssh "$host" "systemctl --user daemon-reload && systemctl --user enable --now zoekt-metadata-webserver.service && systemctl --user restart zoekt-metadata-webserver.service"
   echo "deployed FastAPI through the existing zoekt-webserver.service compatibility entrypoint"
 else
   cat <<EOF
 staged API code, stock Zoekt binary, and systemd units on $host.
 
 First-time activation requires root once:
+  systemctl --user disable --now zoekt-metadata-webserver.service
   sudo install -m 0644 $remote_root/systemd/zoekt-webserver.service /etc/systemd/system/zoekt-webserver.service
   sudo install -m 0644 $remote_root/systemd/zoekt-metadata-webserver.service /etc/systemd/system/zoekt-metadata-webserver.service
   sudo install -m 0644 $remote_root/systemd/formalization-corpus-api.service /etc/systemd/system/formalization-corpus-api.service

@@ -10,16 +10,13 @@ stock="$root/bin/zoekt-webserver.stock"
 uvicorn="$root/api/.venv/bin/uvicorn"
 
 stock_pid=""
-metadata_pid=""
 api_pid=""
 
 cleanup() {
-  trap - EXIT INT TERM
+	trap - EXIT INT TERM
 	[[ -n "$api_pid" ]] && kill "$api_pid" 2>/dev/null || true
-	[[ -n "$metadata_pid" ]] && kill "$metadata_pid" 2>/dev/null || true
 	[[ -n "$stock_pid" ]] && kill "$stock_pid" 2>/dev/null || true
 	[[ -n "$api_pid" ]] && wait "$api_pid" 2>/dev/null || true
-	[[ -n "$metadata_pid" ]] && wait "$metadata_pid" 2>/dev/null || true
 	[[ -n "$stock_pid" ]] && wait "$stock_pid" 2>/dev/null || true
 }
 trap cleanup EXIT INT TERM
@@ -30,13 +27,6 @@ trap cleanup EXIT INT TERM
   -html=false \
   -rpc &
 stock_pid=$!
-
-"$stock" \
-  -index "$root/metadata-index" \
-  -listen 127.0.0.1:6072 \
-  -html=false \
-  -rpc &
-metadata_pid=$!
 
 ZOEKT_BACKEND_URL=http://127.0.0.1:6071 \
 ZOEKT_DOCUMENTATION_BACKEND_URL=http://127.0.0.1:6072 \
@@ -52,7 +42,7 @@ PYTHONDONTWRITEBYTECODE=1 \
 api_pid=$!
 
 set +e
-wait -n "$stock_pid" "$metadata_pid" "$api_pid"
+wait -n "$stock_pid" "$api_pid"
 set -e
 
 # Either child exiting is unexpected while this compatibility unit is running.
