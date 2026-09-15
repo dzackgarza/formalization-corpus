@@ -39,14 +39,45 @@ def source_map() -> dict[str, Source]:
 
 
 @lru_cache(maxsize=1)
-def catalogue_map() -> dict[str, dict[str, Any]]:
+def campaign_catalogue_map() -> dict[str, dict[str, Any]]:
     out: dict[str, dict[str, Any]] = {}
     for row in load_catalogue_index():
-        if row.get("inventory_status", "active") != "active":
-            continue
         data = json.loads((ROOT / row["catalogue_file"]).read_text())
+        data = {**data, "inventory_status": row.get("inventory_status", "active")}
         out[str(data["repository"])] = data
     return out
+
+
+@lru_cache(maxsize=1)
+def catalogue_map() -> dict[str, dict[str, Any]]:
+    return {
+        repository: data
+        for repository, data in campaign_catalogue_map().items()
+        if data.get("inventory_status", "active") == "active"
+    }
+
+
+@lru_cache(maxsize=1)
+def campaign_source_map() -> dict[str, Source]:
+    return {
+        repository: Source(
+            url=str(data["url"]),
+            directory=pathlib.Path(str(data["directory"])),
+            proof_assistant=str(data["proof_assistant"]),
+            transport=str(data["transport"]),
+            sync_group=str(data["sync_group"]),
+            discovered_via=str(data["discovered_via"]),
+        )
+        for repository, data in campaign_catalogue_map().items()
+    }
+
+
+def retired_repository_names() -> set[str]:
+    return {
+        repository
+        for repository, data in campaign_catalogue_map().items()
+        if data.get("inventory_status") == "retired"
+    }
 
 
 def batch_repositories(batch_id: str) -> list[str]:
@@ -57,14 +88,17 @@ def batch_repositories(batch_id: str) -> list[str]:
     return sorted(set(map(str, batch.get("repositories", []))))
 
 
-def select_repositories(repositories: list[str], batch: str | None) -> list[str]:
+def select_repositories(
+    repositories: list[str], batch: str | None, *, allow_retired: bool = False
+) -> list[str]:
     selected = set(repositories)
     if batch:
         selected.update(batch_repositories(batch))
-    registered = source_map()
-    unknown = sorted(selected - set(registered))
+    known = campaign_source_map() if allow_retired else source_map()
+    unknown = sorted(selected - set(known))
     if unknown:
-        raise SystemExit(f"unknown active repositories: {unknown}")
+        kind = "campaign" if allow_retired else "active"
+        raise SystemExit(f"unknown {kind} repositories: {unknown}")
     if not selected:
         raise SystemExit("select at least one --repository or --batch")
     return sorted(selected)
@@ -209,16 +243,23 @@ def verify_web_material(source: Source) -> None:
 
 
 def dehydrate(repository: str) -> None:
-    source = source_map()[repository]
+    source = campaign_source_map()[repository]
+    retired = repository in retired_repository_names()
     if not source.root.exists():
         for root in (PRIMARY_VIEW, METADATA_VIEW):
             shutil.rmtree(root / repository, ignore_errors=True)
         print(f"already dehydrated {repository}")
         return
-    catalogue = catalogue_map().get(repository)
+    catalogue = campaign_catalogue_map().get(repository)
     if catalogue is None:
         raise SystemExit(f"{repository}: no committed campaign catalogue; refusing to discard uncatalogued intake")
-    if not remote_shard_names(repository):
+    remote = remote_shard_names(repository)
+    if retired and remote:
+        raise SystemExit(
+            f"{repository}: retired source still has {len(remote)} remote shard(s); "
+            "remove them via source-cache reindex before dehydration"
+        )
+    if not retired and not remote:
         raise SystemExit(
             f"{repository}: no persistent Zoekt shard exists on {REMOTE_HOST}; "
             "refusing to dehydrate unindexed source"
@@ -239,18 +280,25 @@ def dehydrate(repository: str) -> None:
     for root in (PRIMARY_VIEW, METADATA_VIEW):
         shutil.rmtree(root / repository, ignore_errors=True)
     shutil.rmtree(source.root)
-    print(f"dehydrated {repository}; persistent review records and remote Zoekt shards retained")
+    if retired:
+        print(f"dehydrated retired {repository}; frozen review catalogue retained and remote shard absent")
+    else:
+        print(f"dehydrated {repository}; persistent review records and remote Zoekt shards retained")
 
 
 
 def preflight_dehydrate(repository: str) -> None:
-    source = source_map()[repository]
+    source = campaign_source_map()[repository]
+    retired = repository in retired_repository_names()
     if not source.root.exists():
         return
-    catalogue = catalogue_map().get(repository)
+    catalogue = campaign_catalogue_map().get(repository)
     if catalogue is None:
         raise SystemExit(f"{repository}: no committed campaign catalogue")
-    if not remote_shard_names(repository):
+    remote = remote_shard_names(repository)
+    if retired and remote:
+        raise SystemExit(f"{repository}: retired source still has remote Zoekt shards")
+    if not retired and not remote:
         raise SystemExit(f"{repository}: no persistent Zoekt shard exists on {REMOTE_HOST}")
     if source.transport == "web-dir":
         verify_web_material(source)
@@ -404,8 +452,21 @@ else:
         )
 
 
+def remove_repository_shards(repository: str) -> None:
+    names = remote_shard_names(repository)
+    if not names:
+        print(f"retired {repository}: remote shard already absent")
+        return
+    remote_command(["rm", "-f", *[f"{REMOTE_INDEX}/{name}" for name in names]])
+    remote_shard_inventory.cache_clear()
+    remaining = remote_shard_names(repository)
+    if remaining:
+        raise SystemExit(f"{repository}: remote shard deletion incomplete: {remaining}")
+    print(f"retired {repository}: removed {len(names)} remote shard(s)")
+
+
 def status(repositories: Iterable[str] | None = None) -> None:
-    src = source_map()
+    src = campaign_source_map() if repositories is not None else source_map()
     names = list(repositories) if repositories is not None else sorted(src)
     hydrated = 0
     for repository in names:
@@ -413,9 +474,11 @@ def status(repositories: Iterable[str] | None = None) -> None:
         resident = source.root.exists()
         hydrated += int(resident)
         shards = remote_shard_names(repository)
+        state = "hydrated" if resident else "ghost"
+        if repository in retired_repository_names():
+            state = "retired-" + state
         print(
-            f"{repository}\t{'hydrated' if resident else 'ghost'}\t"
-            f"remote_shards={len(shards)}\tpath={source.directory}"
+            f"{repository}\t{state}\tremote_shards={len(shards)}\tpath={source.directory}"
         )
     print(f"summary hydrated={hydrated} ghost={len(names)-hydrated} selected={len(names)}")
 
@@ -440,15 +503,25 @@ def materialize(repositories: list[str]) -> None:
 
 
 def reindex(repositories: list[str], *, keep_views: bool, validate_published: bool = True) -> None:
-    binary = ensure_zoekt_index()
-    materialize(repositories)
+    active = [repository for repository in repositories if repository in source_map()]
+    retired = [repository for repository in repositories if repository in retired_repository_names()]
+    unknown = sorted(set(repositories) - set(active) - set(retired))
+    if unknown:
+        raise SystemExit(f"unknown campaign repositories: {unknown}")
+
+    if active:
+        binary = ensure_zoekt_index()
+        materialize(active)
+    else:
+        binary = None
     try:
-        for repository in repositories:
+        for repository in active:
             view = PRIMARY_VIEW / repository
             if not view.is_dir():
                 raise SystemExit(f"missing materialized primary view for {repository}")
             staging = pathlib.Path(tempfile.mkdtemp(prefix=f".zoekt-stage-{repository}-", dir=ROOT))
             try:
+                assert binary is not None
                 subprocess.run(
                     [str(binary), "-large_file", "**/*.prf", "-index", str(staging), str(view)],
                     cwd=ROOT,
@@ -464,11 +537,13 @@ def reindex(repositories: list[str], *, keep_views: bool, validate_published: bo
                 )
             finally:
                 shutil.rmtree(staging, ignore_errors=True)
+        for repository in retired:
+            remove_repository_shards(repository)
         if validate_published:
             subprocess.run(["python", str(ROOT / "scripts" / "check-published.py")], cwd=ROOT, check=True)
     finally:
         if not keep_views:
-            for repository in repositories:
+            for repository in active:
                 shutil.rmtree(PRIMARY_VIEW / repository, ignore_errors=True)
                 shutil.rmtree(METADATA_VIEW / repository, ignore_errors=True)
 
@@ -526,7 +601,11 @@ def main() -> int:
     if args.command == "seed":
         seed_all(fresh=args.fresh)
         return 0
-    selected = select_repositories(args.repository, args.batch)
+    selected = select_repositories(
+        args.repository,
+        args.batch,
+        allow_retired=args.command in {"status", "dehydrate", "reindex"},
+    )
     if args.command == "status":
         status(selected)
     elif args.command == "hydrate":

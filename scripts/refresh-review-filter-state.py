@@ -100,15 +100,19 @@ def batch_repositories(batch_id: str) -> set[str]:
 
 
 def selected_repositories(values: list[str], batch: str | None = None) -> set[str]:
-    registered = {source.repository for source in sources()}
+    active = {source.repository for source in sources()}
+    campaign = {str(row["repository"]) for row in load_catalogue_index()}
     requested = set(values)
     if batch:
         requested.update(batch_repositories(batch))
-    unknown = sorted(requested - registered)
+    unknown = sorted(requested - campaign)
     if unknown:
-        raise SystemExit(f"unknown active repositories: {unknown}")
+        raise SystemExit(f"unknown campaign repositories: {unknown}")
     if not requested:
         raise SystemExit("at least one --repository is required")
+    # Batch history is immutable, so a reviewed batch may contain a source that was
+    # retired after its source-level review.  Keep accepting that frozen identity;
+    # the caller will remove its old file decisions instead of trying to rematerialize it.
     return requested
 
 
@@ -143,15 +147,25 @@ def main() -> int:
     old = {decision_key(row): row for row in old_rows}
     now = utc_now()
     commit = corpus_commit()
+    active_repositories = {source.repository for source in sources()}
+    active_selected = selected & active_repositories
+    retired_selected = selected - active_repositories
 
     # Preserve every unrelated decision verbatim. FD-006 is global result-role
-    # metadata and is recomputed below from committed file hashes. FD-018 for the
-    # selected repositories is replaced from the latest accepted review records.
+    # metadata and is recomputed below from committed file hashes. FD-018 for active
+    # selected repositories is replaced from latest accepted review records. A source
+    # retired during this batch loses *all* file-level decisions: the source-level
+    # FD-012 ledger event is now its durable disposition and the old file rows must not
+    # survive as apparently active state for an unregistered repository.
     current: list[dict[str, Any]] = [
         row
         for row in old_rows
         if row.get("decision_id") != "FD-006"
-        and not (row.get("decision_id") == "FD-018" and row.get("repository") in selected)
+        and row.get("repository") not in retired_selected
+        and not (
+            row.get("decision_id") == "FD-018"
+            and row.get("repository") in active_selected
+        )
     ]
 
     repo_meta: dict[str, dict[str, Any]] = {}
@@ -162,7 +176,7 @@ def main() -> int:
         repo_meta[str(data["repository"])] = data
 
     for (repository, path), exclusion in sorted(exclusions.items()):
-        if repository not in selected:
+        if repository not in active_selected:
             continue
         meta = repo_meta[repository]
         definition = catalogue["FD-018"]
@@ -302,7 +316,7 @@ def main() -> int:
         print(
             f"dry-run review filter state: {len(current)} current decisions, "
             f"{len(events)} ledger events, {len(duplicate_groups)} duplicate groups; "
-            f"would refresh {len(selected)} repositories"
+            f"would refresh {len(active_selected)} active and retire-clean {len(retired_selected)} repositories"
         )
         return 0
 
@@ -347,7 +361,8 @@ def main() -> int:
     print(json.dumps(snapshot["decision_counts"], sort_keys=True))
     print(
         f"review filter state: {len(current)} current decisions, {len(events)} ledger events, "
-        f"{len(duplicate_groups)} duplicate groups; refreshed {len(selected)} repositories"
+        f"{len(duplicate_groups)} duplicate groups; refreshed {len(active_selected)} active and "
+        f"retire-cleaned {len(retired_selected)} repositories"
     )
     if snapshot["sources_with_no_primary_documents"]:
         print("ERROR: filtering would leave sources without primary documents:")
