@@ -40,7 +40,15 @@ not a size estimate for the expanded corpus. After indexing all 45 cross-prover
 sources on 2026-09-13, `.zoekt/` measured 9.8 GB while the corresponding
 `port-sources/` sparse checkouts measured 3.2 GB. Check free disk space before
 `just index` or `just index-ports`; ACL2 and AFP alone split across many large
-shards. The index is already too large for static hosting: GitHub Pages caps a
+shards. **Rack-specific update (2026-09-15):** the connector box had only 11 GB
+free on a 144 GB filesystem while this checkout already used 13 GB, including
+about 10 GB of `.zoekt`. A fully hydrated checkout was about 22 GB on the laptop.
+That is enough for selective batch hydration and per-repository reindexing, but
+not enough safety margin for routine all-source hydration or a clean full-index
+rebuild. Keep rack work incremental until at least another 20–30 GB is free;
+30–40 GB free is preferred for routine full-corpus rebuilds. `.index-primary`
+uses hardlinks when possible, so do not double-count its apparent size as physical
+usage. The index is already too large for static hosting: GitHub Pages caps a
 published site at 1 GB.
 
 ## Counting declarations

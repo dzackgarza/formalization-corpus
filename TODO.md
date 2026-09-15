@@ -64,6 +64,27 @@ Commands: `just repository-review-status`, `just repository-review-batch
 RRB-0001`, `python scripts/repository-review.py template RRU-...`, and
 `python scripts/repository-review.py append /tmp/review.json`.
 
+### Connector-box storage constraint (2026-09-15)
+
+The rack/connector checkout at `/home/dzack/gitclones/formalization-corpus` is a
+valid long-horizon worktree, but it is **not currently provisioned for routine full
+hydration plus full-index rebuilds**. On 2026-09-15 the host filesystem was 144 GB
+total / 127 GB used / 11 GB available (93% used). The checkout itself was 13 GB,
+including an existing `.zoekt` primary index of about 10 GB; the fully hydrated
+laptop checkout was about 22 GB. `.index-primary` normally hardlinks source files,
+so its apparent size is not an additional full copy when source and view share a
+filesystem.
+
+Until the rack has materially more free space, repository-review workers should
+hydrate only the source(s) needed for the current batch and reindex only affected
+repositories. Do **not** casually run all-source hydration or a from-scratch full
+Zoekt rebuild on the rack: the remaining margin is too small for source growth,
+temporary shard output, Git fetches, logs, and normal host activity. Treat roughly
+20–30 GB of additional free space as the minimum before full-corpus rebuilds are
+reasonable, with 30–40 GB free preferred for routine long-horizon operation. The
+production droplet remains the canonical full-index deployment target until that
+capacity constraint is removed.
+
 Build provenance: the corpus was created in the 2026-08-13 codex session
 (`rollout-2026-08-13T15-07-42-019ff9f2-bc0e-7de0-9bcd-c9630d6a8813.jsonl`,
 ordinals 17652-18838), at the user's direction (ord 18026 "efficiently and
