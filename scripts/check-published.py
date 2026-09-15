@@ -9,10 +9,9 @@ import json
 import pathlib
 import time
 import urllib.error
-import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-API = "https://formalization-corpus.dzackgarza.com/api/list"
+from published_index import published_sources
 
 
 def expected_sources() -> set[str]:
@@ -22,23 +21,6 @@ def expected_sources() -> set[str]:
             for row in csv.DictReader(handle, delimiter="\t")
         }
 
-
-def published_sources() -> set[str]:
-    request = urllib.request.Request(
-        API,
-        data=b'{"Q":""}',
-        headers={
-            "Content-Type": "application/json",
-            "User-Agent": "formalization-corpus-publish-check/1.0",
-        },
-        method="POST",
-    )
-    with urllib.request.urlopen(request, timeout=30) as response:
-        payload = json.load(response)
-    return {
-        row["Repository"]["Name"]
-        for row in payload.get("List", {}).get("Repos", [])
-    }
 
 
 def main() -> None:

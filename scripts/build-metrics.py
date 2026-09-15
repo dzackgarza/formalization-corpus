@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import pathlib
 import re
+import time
 from collections import Counter
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -68,12 +69,37 @@ def source_rows() -> list[tuple[str, pathlib.Path]]:
 
 
 def indexed_source_names() -> set[str]:
+    """Return the canonical index source identities.
+
+    A fully indexed workstation validates its local ``.zoekt`` shards.  A
+    source-review checkout may intentionally keep the 10+ GiB production index
+    only on the deployment host; in that case validate the published inventory
+    through the same API used by ``check-published.py`` rather than requiring a
+    redundant local copy.
+    """
     out: set[str] = set()
     for path in (ROOT / ".zoekt").glob("*.zoekt"):
         found = SHARD.fullmatch(path.name)
         if found:
             out.add(found.group(1))
-    return out
+    if out:
+        return out
+
+    from published_index import published_sources
+
+    last_error: Exception | None = None
+    for attempt in range(5):
+        try:
+            out = published_sources()
+            if out:
+                print("no local .zoekt shards; validating the published index inventory")
+                return out
+        except Exception as exc:
+            last_error = exc
+        if attempt < 4:
+            time.sleep(1)
+    detail = f": {last_error}" if last_error is not None else ""
+    raise SystemExit(f"no local index shards and published index inventory is unavailable{detail}")
 
 
 def is_proof_file(kind: str, root: pathlib.Path, path: pathlib.Path) -> bool:
