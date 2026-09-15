@@ -99,10 +99,10 @@ blanket path-name cleanup: test/tutorial/generated/deprecated/benchmark/import
 files remain when they contain useful formal content.  Role tagging and
 reversible downranking are preferred when hard exclusion is not lossless.
 
-Current campaign state (2026-09-16): **1,272** stable work units total; **296**
-completed (**273** retained/reviewed units and **23** source-retirement units),
-**976** pending; **2,216** exact repository-local FD-018 exclusions.  The next
-repository-review frontier is `RRB-0028`.
+Current campaign state (2026-09-16): **1,272** stable work units total; **308**
+completed (**285** retained/reviewed units and **23** source-retirement units),
+**964** pending; **2,216** exact repository-local FD-018 exclusions.  The next
+repository-review frontier is `RRB-0029`.
 
 **Gate SQ1:** zero pending repository-review units, accepted per-source filtering
 materialized into the canonical remote index, retained-role metadata preserved,
