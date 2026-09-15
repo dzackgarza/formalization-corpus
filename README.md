@@ -40,9 +40,10 @@ Synchronization keeps only the proof-source extensions appropriate to each proof
 assistant plus minimal build metadata where needed. Definitions, structures,
 specifications, theorem statements, constructions, and proofs are all searchable.
 Local source checkouts are a **disposable hydration cache**, not the durable search
-representation and not Git submodules. The durable local state is the registry,
-committed audit catalogue/manifests/filter ledger, and persistent Zoekt shards.
-A source is normally absent ("ghosted") after its shard is built. Rehydrate only the
+representation and not Git submodules. The connector/workstation keeps only the registry,
+committed audit catalogue/manifests/filter ledger, and transient per-source build state;
+the authoritative persistent Zoekt shards live on the search host. A source is normally
+absent ("ghosted") after its shard is built and installed remotely. Rehydrate only the
 repository or review batch being inspected; filtered hard-link views are likewise
 per-source ephemeral build state.
 
@@ -53,8 +54,8 @@ just build-tools        # build zoekt-index, zoekt, and the Lean ast-grep parser
 just review-batch-hydrate RRB-0008   # hydrate only this batch at pinned source revisions
 # inspect units and append review records
 just review-filter-state RRB-0008    # update FD-018/duplicate state from committed manifests
-just review-batch-reindex RRB-0008   # stage+replace only affected repository shards
-just publish-index                   # publish existing shards; no corpus rebuild
+just review-batch-reindex RRB-0008   # build locally, atomically replace only affected remote shards
+just publish-index                   # verify the already-published remote shard set
 just review-batch-dehydrate RRB-0008 # reclaim the source/object-cache bytes
 just source-cache-status REPO        # inspect one source's hydrated/ghost/index state
 just source-seed-index fresh         # exceptional fresh bootstrap, one source at a time
@@ -103,9 +104,13 @@ what comes back, so nothing but the answer crosses the wire. `site/corpus.json`
 is generated from the manifests by `scripts/build-site.py`, which is how a hit
 in `leanprover__hex-lll` links back to its file on GitHub.
 
-The search host carries the index alone — no source checkouts and no indexing
-work. `just index` builds locally and `just publish` rsyncs `.zoekt/`; Zoekt
-watches its shard directory, so replaced shards load without a restart. The
+The search host carries the durable index alone — no source checkouts and no indexing
+work. Normal repository-review work builds only the affected repository shard(s) in a
+transient local staging directory and atomically installs them on the search host over
+SSH/rsync. The connector does not retain a full `.zoekt` mirror. `just index` plus `just
+publish` remains an explicit whole-corpus maintenance path for a machine intentionally
+holding a complete local index. Zoekt watches its shard directory, so replaced shards load
+without a restart. The
 public HTTP boundary is a small FastAPI/Pydantic adapter on `127.0.0.1:6070`.
 An unmodified `zoekt-webserver` listens privately on `127.0.0.1:6071` and is not
 exposed by nginx.

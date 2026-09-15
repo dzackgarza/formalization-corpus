@@ -69,9 +69,9 @@ RRB-0001`, `python scripts/repository-review.py template RRU-...`, and
 The source directories named by `sources.tsv` are **not Git submodules** of this
 repository. They are disposable shallow/sparse nested checkouts used as intake
 material. Their source text is not the persistent search representation: once a
-repository has been reviewed and indexed, its Zoekt shard plus the committed
-repository-review catalogue/manifests/ledger are sufficient to keep it searchable
-and auditable while the source checkout is absent. Treat an absent source checkout
+repository has been reviewed and indexed, its **remote search-host Zoekt shard** plus the
+committed repository-review catalogue/manifests/ledger are sufficient to keep it searchable
+and auditable while the connector checkout is absent. Treat an absent source checkout
 as a normal **ghost/dehydrated source**, not as corpus loss.
 
 The intended long-horizon lifecycle is source-local and streaming:
@@ -88,22 +88,21 @@ source (or a bounded batch) at a time and immediately dehydrate it before procee
 A from-scratch all-source hydration is therefore an optional convenience, not part
 of the storage model.
 
-On 2026-09-15 the connector host had 144 GB total / 127 GB used / 11 GB available
-(93% used), while the persistent primary `.zoekt` index was about 10 GB. That is
-enough for the intended source-local lifecycle so long as hydration is bounded. It
-is not enough to keep a second full corpus source forest resident beside the index,
-but doing so is unnecessary. `.index-primary` normally hardlinks source files and
-should also be treated as ephemeral per-source build state rather than a persistent
-full-corpus tree.
+The connector host must **not** carry a persistent full `.zoekt` mirror. The roughly
+10 GB primary index lives on the droplet/search host; connector disk usage should return
+to Git/audit/tooling state after each batch. Hydrated source checkouts, `.index-primary`,
+`.index-metadata`, and newly built shard files are all bounded transient state. This keeps
+the long-horizon worker viable even on a disk-constrained connector.
 
 **Implemented source-cache workflow:** the long-horizon path is now first-class.
 `just review-batch-hydrate RRB-NNNN` hydrates only the repositories in that review
 batch at their catalogue-pinned revisions; `just review-filter-state RRB-NNNN`
 materializes accepted FD-018 changes from committed manifests without scanning ghost
-sources; `just review-batch-reindex RRB-NNNN` replaces only those repositories' Zoekt
-shards through a staging directory; and `just review-batch-dehydrate RRB-NNNN`
-removes the source caches and temporary hard-link views again. `just publish-index`
-publishes the already-built persistent shard set without rebuilding it.
+sources; `just review-batch-reindex RRB-NNNN` builds only those repositories' Zoekt shards in a
+transient local staging directory and atomically replaces their shard set on the search
+host; and `just review-batch-dehydrate RRB-NNNN` removes the source caches and temporary
+hard-link views again. `just publish-index` only verifies the already-published remote shard
+set; it must never `rsync --delete` from a connector-local `.zoekt` directory.
 
 The legacy `just index`, `filter-views`, and full `repository-review.py build` remain
 explicit whole-corpus maintenance/reproducibility commands. They are not the normal

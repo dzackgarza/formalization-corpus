@@ -492,14 +492,14 @@ few exclusion patterns while leaving the rest of the unit unaudited.
 
 The directories named by `sources.tsv` are disposable shallow/sparse nested Git
 checkouts, not Git submodules and not the durable corpus representation. Once a source
-has a committed catalogue/review record and a valid Zoekt shard, that source checkout
-may be absent from disk. Rehydrate it only when inspecting or refreshing that source.
+has a committed catalogue/review record and a valid Zoekt shard on the search host, that
+source checkout may be absent from connector/workstation disk. Rehydrate it only when inspecting or refreshing that source.
 Do not require unrelated source checkouts to exist before reviewing or reindexing one
 repository.
 
 Normal filtering maintenance is incremental: a changed review for repository `R`
-materializes `R`'s filtered view and replaces only `R`'s shard(s). A full corpus
-reindex is not required merely because one repository gained or lost indexed files.
+materializes `R`'s filtered view, builds only `R`'s shard(s) locally in temporary staging,
+and atomically replaces only `R`'s shard(s) on the search host. A full corpus reindex is not required merely because one repository gained or lost indexed files.
 Initial seeding may likewise process sources serially and dehydrate each after its shard
 is built. Global full-hydration commands are convenience/legacy tooling and must not be
 interpreted as architectural requirements.
@@ -511,8 +511,8 @@ just review-batch-hydrate RRB-NNNN
 # inspect units; append review records
 just review-filter-state RRB-NNNN
 just review-batch-reindex RRB-NNNN
-# run candidate probes/evaluation as required
-just publish-index
+# run source-local probes/evaluation as required; shard replacement is already remote
+just publish-index  # verify remote published inventory; no local full-index upload
 just review-batch-dehydrate RRB-NNNN
 ```
 
@@ -521,7 +521,7 @@ Hydration defaults to the revision already pinned by the campaign catalogue. Use
 cache can be discarded or indexed as a new snapshot, refresh the source-local catalogue
 with `python scripts/repository-review.py build --repository REPO` and re-audit any stale
 units. Dehydration refuses dirty Git checkouts, revision drift, uncatalogued sources, or
-sources with no persistent Zoekt shard. It deletes the disposable nested checkout rather
+sources with no persistent Zoekt shard on the search host. It deletes the disposable nested checkout rather
 than retaining fetched Git objects, so disk is actually reclaimed.
 
 ## Source-lead intake

@@ -374,13 +374,13 @@ Only after the review catalogue validates should `just filter-state` be run to
 materialize accepted blacklist rules into `FD-018` decisions and the append-only
 filtering ledger.
 
-### Source residency is ephemeral; index shards are persistent
+### Source residency is ephemeral; index shards persist only on the search host
 
 `sources.tsv` is a registry of upstream source identities and local checkout names,
 not a Git-submodule manifest. The nested source repositories are disposable intake
 checkouts. After a source has been catalogued and its filtered content indexed, the
-checkout may be dehydrated/removed without invalidating the existing Zoekt shard or
-the committed audit record. Rehydrate it when its review unit must be inspected, its
+checkout may be dehydrated/removed without invalidating the existing **remote** Zoekt shard
+or the committed audit record. Rehydrate it when its review unit must be inspected, its
 upstream revision changes, or its source-local filtering decisions must be revised.
 
 Do not rebuild the corpus index merely because one source changed. Materialize the
@@ -397,16 +397,17 @@ just review-batch-hydrate RRB-NNNN
 # inspect the hydrated source(s) and append snapshot-pinned review records
 just review-filter-state RRB-NNNN
 just review-batch-reindex RRB-NNNN
-# validate/evaluate the candidate, then publish changed shards
-just publish-index
+# validate source-local probes/evaluation; reindex already installed changed shards remotely
+just publish-index  # verify published remote inventory
 just review-batch-dehydrate RRB-NNNN
 ```
 
 `review-filter-state` reconstructs FD-018 and exact-duplicate result metadata from the
 committed repository-review manifests, so unrelated source trees need not exist.
 `review-batch-reindex` materializes hard-link views only for the selected repositories,
-builds replacement shards in staging, then swaps them into the persistent `.zoekt`
-index and removes the temporary views. `review-batch-dehydrate` verifies the checkout is
+builds replacement shards in transient local staging, then atomically swaps them into the
+persistent Zoekt index on the search host and removes the local staging/views. The connector
+must not retain a complete `.zoekt` mirror. `review-batch-dehydrate` verifies the checkout is
 clean, at the catalogue-pinned revision, catalogued, and already represented by a shard
 before deleting it. This deliberately removes the nested Git object database too; keeping
 a sparse working tree but retaining fetched blobs would not reliably reclaim disk.

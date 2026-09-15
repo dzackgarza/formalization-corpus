@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Manage disposable source hydration around persistent Zoekt shards.
+"""Manage disposable source hydration around the remotely persistent Zoekt index.
 
 `sources.tsv` is the source identity manifest.  Source checkouts are a cache: they may
-be removed after their content has been audited/indexed.  The persistent artifacts are
-the committed review catalogue/ledger and the `.zoekt` shard(s).
+be removed after their content has been audited/indexed.  The connector/workstation does
+not retain a full index: it stages only the repository shard currently being rebuilt and
+atomically installs that shard on the search host.  Persistent artifacts are the committed
+review catalogue/ledger and the search host's Zoekt shard set.
 """
 
 from __future__ import annotations
@@ -14,9 +16,11 @@ import hashlib
 import json
 import os
 import pathlib
+import shlex
 import shutil
 import subprocess
 import tempfile
+import uuid
 from typing import Any, Iterable
 from functools import lru_cache
 
@@ -25,7 +29,8 @@ from repository_review_lib import BATCHES, load_catalogue_index, load_unit_file_
 
 PRIMARY_VIEW = ROOT / ".index-primary"
 METADATA_VIEW = ROOT / ".index-metadata"
-INDEX = ROOT / ".zoekt"
+REMOTE_HOST = os.environ.get("FORMALIZATION_INDEX_HOST", "zack@159.223.102.204")
+REMOTE_INDEX = os.environ.get("FORMALIZATION_INDEX_DIR", "lean-corpus/index")
 
 
 @lru_cache(maxsize=1)
@@ -213,8 +218,11 @@ def dehydrate(repository: str) -> None:
     catalogue = catalogue_map().get(repository)
     if catalogue is None:
         raise SystemExit(f"{repository}: no committed campaign catalogue; refusing to discard uncatalogued intake")
-    if not shard_paths(repository):
-        raise SystemExit(f"{repository}: no persistent Zoekt shard exists; refusing to dehydrate unindexed source")
+    if not remote_shard_names(repository):
+        raise SystemExit(
+            f"{repository}: no persistent Zoekt shard exists on {REMOTE_HOST}; "
+            "refusing to dehydrate unindexed source"
+        )
     if source.transport == "web-dir":
         verify_web_material(source)
     else:
@@ -231,7 +239,7 @@ def dehydrate(repository: str) -> None:
     for root in (PRIMARY_VIEW, METADATA_VIEW):
         shutil.rmtree(root / repository, ignore_errors=True)
     shutil.rmtree(source.root)
-    print(f"dehydrated {repository}; persistent review records and Zoekt shards retained")
+    print(f"dehydrated {repository}; persistent review records and remote Zoekt shards retained")
 
 
 
@@ -242,8 +250,8 @@ def preflight_dehydrate(repository: str) -> None:
     catalogue = catalogue_map().get(repository)
     if catalogue is None:
         raise SystemExit(f"{repository}: no committed campaign catalogue")
-    if not shard_paths(repository):
-        raise SystemExit(f"{repository}: no persistent Zoekt shard exists")
+    if not remote_shard_names(repository):
+        raise SystemExit(f"{repository}: no persistent Zoekt shard exists on {REMOTE_HOST}")
     if source.transport == "web-dir":
         verify_web_material(source)
         return
@@ -288,8 +296,112 @@ def gc_source_cache() -> None:
         print(f"kept {repository}: {reason}")
     print(f"source cache gc: dehydrated={len(safe)} kept={len(kept)}")
 
-def shard_paths(repository: str) -> list[pathlib.Path]:
-    return sorted(INDEX.glob(f"{repository}_v*.zoekt"))
+def remote_command(args: list[str], *, input_text: str | None = None) -> subprocess.CompletedProcess[str]:
+    command = " ".join(shlex.quote(arg) for arg in args)
+    return subprocess.run(
+        ["ssh", "-o", "BatchMode=yes", REMOTE_HOST, command],
+        text=True,
+        input=input_text,
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+
+
+@lru_cache(maxsize=1)
+def remote_shard_inventory() -> tuple[str, ...]:
+    result = remote_command(
+        [
+            "find",
+            REMOTE_INDEX,
+            "-maxdepth",
+            "1",
+            "-type",
+            "f",
+            "-name",
+            "*.zoekt",
+            "-printf",
+            "%f\\n",
+        ]
+    )
+    return tuple(sorted(line for line in result.stdout.splitlines() if line))
+
+
+def remote_shard_names(repository: str) -> list[str]:
+    prefix = f"{repository}_v"
+    return [name for name in remote_shard_inventory() if name.startswith(prefix)]
+
+
+def publish_repository_shards(repository: str, staged: list[pathlib.Path]) -> None:
+    if not staged:
+        raise SystemExit(f"{repository}: refusing to publish an empty shard set")
+    token = uuid.uuid4().hex
+    remote_stage = f"{REMOTE_INDEX}.incoming-{repository}-{token}"
+    remote_command(["mkdir", "-p", remote_stage])
+    try:
+        subprocess.run(
+            ["rsync", "-a", "--partial", *map(str, staged), f"{REMOTE_HOST}:{remote_stage}/"],
+            cwd=ROOT,
+            check=True,
+        )
+        transaction = r"""import os
+import pathlib
+import shutil
+import sys
+
+index = pathlib.Path(sys.argv[1])
+stage = pathlib.Path(sys.argv[2])
+repository = sys.argv[3]
+new = sorted(stage.glob(f"{repository}_v*.zoekt"))
+if not new:
+    raise SystemExit(f"{repository}: remote staging directory contains no shards")
+index.mkdir(parents=True, exist_ok=True)
+backup = stage.parent / f"{stage.name}.backup"
+backup.mkdir(parents=True, exist_ok=False)
+old = sorted(index.glob(f"{repository}_v*.zoekt"))
+old_names = {path.name for path in old}
+new_names = {path.name for path in new}
+try:
+    # Hard-link the old shard set into the backup directory first. Replacing a shard
+    # then becomes one atomic rename while rollback still has the previous inode.
+    for path in old:
+        os.link(path, backup / path.name)
+    for path in new:
+        os.replace(path, index / path.name)
+    # Shard splitting can change the filename set. Remove obsolete old pieces only
+    # after every replacement/new piece is installed.
+    for name in old_names - new_names:
+        (index / name).unlink(missing_ok=True)
+except BaseException:
+    for name in new_names:
+        (index / name).unlink(missing_ok=True)
+    for path in backup.glob(f"{repository}_v*.zoekt"):
+        os.replace(path, index / path.name)
+    raise
+else:
+    shutil.rmtree(backup)
+    shutil.rmtree(stage)
+"""
+        command = " ".join(
+            shlex.quote(arg)
+            for arg in ["python3", "-", REMOTE_INDEX, remote_stage, repository]
+        )
+        subprocess.run(
+            ["ssh", "-o", "BatchMode=yes", REMOTE_HOST, command],
+            text=True,
+            input=transaction,
+            check=True,
+        )
+    except BaseException:
+        remote_command(["rm", "-rf", remote_stage])
+        raise
+    remote_shard_inventory.cache_clear()
+    remote = remote_shard_names(repository)
+    if len(remote) != len(staged):
+        raise SystemExit(
+            f"{repository}: remote shard replacement count mismatch: "
+            f"staged={len(staged)} remote={len(remote)}"
+        )
 
 
 def status(repositories: Iterable[str] | None = None) -> None:
@@ -300,8 +412,11 @@ def status(repositories: Iterable[str] | None = None) -> None:
         source = src[repository]
         resident = source.root.exists()
         hydrated += int(resident)
-        shards = shard_paths(repository)
-        print(f"{repository}\t{'hydrated' if resident else 'ghost'}\tshards={len(shards)}\tpath={source.directory}")
+        shards = remote_shard_names(repository)
+        print(
+            f"{repository}\t{'hydrated' if resident else 'ghost'}\t"
+            f"remote_shards={len(shards)}\tpath={source.directory}"
+        )
     print(f"summary hydrated={hydrated} ghost={len(names)-hydrated} selected={len(names)}")
 
 
@@ -324,9 +439,8 @@ def materialize(repositories: list[str]) -> None:
     subprocess.run(cmd, cwd=ROOT, check=True)
 
 
-def reindex(repositories: list[str], *, keep_views: bool) -> None:
+def reindex(repositories: list[str], *, keep_views: bool, validate_published: bool = True) -> None:
     binary = ensure_zoekt_index()
-    INDEX.mkdir(parents=True, exist_ok=True)
     materialize(repositories)
     try:
         for repository in repositories:
@@ -334,8 +448,6 @@ def reindex(repositories: list[str], *, keep_views: bool) -> None:
             if not view.is_dir():
                 raise SystemExit(f"missing materialized primary view for {repository}")
             staging = pathlib.Path(tempfile.mkdtemp(prefix=f".zoekt-stage-{repository}-", dir=ROOT))
-            backup = pathlib.Path(tempfile.mkdtemp(prefix=f".zoekt-backup-{repository}-", dir=ROOT))
-            old = shard_paths(repository)
             try:
                 subprocess.run(
                     [str(binary), "-large_file", "**/*.prf", "-index", str(staging), str(view)],
@@ -345,21 +457,15 @@ def reindex(repositories: list[str], *, keep_views: bool) -> None:
                 staged = sorted(staging.glob(f"{repository}_v*.zoekt"))
                 if not staged:
                     raise SystemExit(f"staged reindex produced no shard for {repository}")
-                for path in old:
-                    os.replace(path, backup / path.name)
-                try:
-                    for path in staged:
-                        os.replace(path, INDEX / path.name)
-                except BaseException:
-                    for path in INDEX.glob(f"{repository}_v*.zoekt"):
-                        path.unlink()
-                    for path in backup.glob(f"{repository}_v*.zoekt"):
-                        os.replace(path, INDEX / path.name)
-                    raise
-                print(f"reindexed {repository}: {len(shard_paths(repository))} shard(s)")
+                publish_repository_shards(repository, staged)
+                print(
+                    f"reindexed {repository}: {len(staged)} shard(s) published to "
+                    f"{REMOTE_HOST}:{REMOTE_INDEX}"
+                )
             finally:
                 shutil.rmtree(staging, ignore_errors=True)
-                shutil.rmtree(backup, ignore_errors=True)
+        if validate_published:
+            subprocess.run(["python", str(ROOT / "scripts" / "check-published.py")], cwd=ROOT, check=True)
     finally:
         if not keep_views:
             for repository in repositories:
@@ -368,22 +474,26 @@ def reindex(repositories: list[str], *, keep_views: bool) -> None:
 
 
 def seed_all(*, fresh: bool) -> None:
-    if INDEX.exists() and any(INDEX.glob("*.zoekt")):
-        if not fresh:
-            raise SystemExit(".zoekt is not empty; pass --fresh only for an intentional from-scratch seed")
-        shutil.rmtree(INDEX)
-    INDEX.mkdir(parents=True, exist_ok=True)
+    if not fresh:
+        raise SystemExit(
+            "full-corpus seed rewrites the remote production shard set in place; "
+            "pass --fresh only for an intentional complete reseed"
+        )
     names = sorted(source_map())
     for number, repository in enumerate(names, start=1):
         print(f"seed {number}/{len(names)} {repository}")
         hydrate(repository, latest=False)
         try:
-            reindex([repository], keep_views=False)
+            reindex([repository], keep_views=False, validate_published=False)
         except BaseException:
             print(f"seed failed at {repository}; leaving that source hydrated for inspection")
             raise
         dehydrate(repository)
-    print(f"seed complete: {len(names)} repositories; all source caches dehydrated")
+    subprocess.run(["python", str(ROOT / "scripts" / "check-published.py")], cwd=ROOT, check=True)
+    print(
+        f"seed complete: {len(names)} repositories published to {REMOTE_HOST}:{REMOTE_INDEX}; "
+        "all source caches dehydrated"
+    )
 
 
 def main() -> int:

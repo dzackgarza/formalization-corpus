@@ -27,7 +27,7 @@ sync-cross-prover:
 sync-ports: sync-cross-prover
 sync-rocq-agda: sync-cross-prover
 
-# Source checkouts are a bounded disposable cache around the persistent Zoekt index.
+# Source checkouts are a bounded disposable cache around the remotely persistent Zoekt index.
 # Hydration defaults to the campaign-pinned revision, not current upstream.
 source-hydrate repository:
     python scripts/source-cache.py hydrate --repository "{{repository}}"
@@ -74,7 +74,7 @@ review-filter-state batch:
     python scripts/refresh-review-filter-state.py --batch "{{batch}}" --allow-dirty
     python scripts/validate-filter-state.py
 
-# Replace only the affected repositories' shards, then discard hard-link views.
+# Build only affected repositories' shards, atomically install them on the search host, then discard local views.
 review-batch-reindex batch:
     python scripts/source-cache.py reindex --batch "{{batch}}"
 
@@ -161,14 +161,14 @@ preview: metrics site
 # Cloudflare, which proxies HTTP and would not carry ssh.
 host := "zack@159.223.102.204"
 
-# Publish the already-built persistent index without rebuilding it.  This is
-# the normal source-local review deployment path; rsync transfers only changed shards.
+# Repository-local reindexing publishes shards directly to the search host. This target is
+# deliberately verification-only so a connector with no local `.zoekt` mirror can never
+# erase the remote index via `rsync --delete`.
 publish-index:
-    rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
     python scripts/check-published.py
-    if ssh {{host}} 'systemctl is-active --quiet formalization-corpus-api.service'; then ssh {{host}} "pkill -TERM -u zack -f '/home/zack/lean-corpus/api/.venv/bin/uvicorn formalization_api.app:app' || true"; else echo 'FastAPI adapter inactive; filtered index published to the currently active search backend'; fi
-    @echo "https://formalization-corpus.dzackgarza.com"
+    @echo "remote shard set already authoritative: https://formalization-corpus.dzackgarza.com"
 
+# Exceptional whole-corpus maintenance path for a machine intentionally holding a complete local `.zoekt`.
 # Ship only the validated primary formalization index. The separate metadata
 # index is deliberately not published or queried by the public site.
 publish: index metrics
