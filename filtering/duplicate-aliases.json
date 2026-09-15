@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "6400416430abd87a4badbf70bdd0a7c23c0cb17e",
-  "generated_at": "2026-09-15T04:34:45.113700+00:00",
+  "corpus_git_commit": "e0a332bc53b3972915e8bfd616a42a52450618ef",
+  "generated_at": "2026-09-15T10:12:56.825160+00:00",
   "groups": [
     {
       "canonical": {
@@ -3784,6 +3784,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/GreenBox.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/GreenBox.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/GreenBox.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "0d1339dbb73c35914552bcd282a56114bb9412b7af5f384332375ba4bc78e222",
+      "size_bytes": 3258
+    },
+    {
+      "canonical": {
         "file": "src/laurent_measures/aux_lemmas.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -4912,6 +4932,11 @@
           "file": "CSP.lean",
           "proof_assistant": "lean",
           "repository": "leansolving__leancsp"
+        },
+        {
+          "file": "Jacobians/Basic.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
         }
       ],
       "sha256": "1015f8f4676a27ea63780b30cc916712232857097b2bdf635dc61cb949c107fb",
@@ -5476,6 +5501,26 @@
       ],
       "sha256": "12593bed2c65d044a0cd92be55c38d522f10d5d69559c378b6604eed7b7eb264",
       "size_bytes": 7061
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Montel/LocalRep.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Montel/LocalRep.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude/Jacobians/Montel/LocalRep.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "1264fae47004ef438be29c1edf103f573203cb18957369ddfb99020b534d27f1",
+      "size_bytes": 6827
     },
     {
       "canonical": {
@@ -6356,6 +6401,31 @@
       ],
       "sha256": "155d68cb40219176f7c8dbec86e4665ea21f271b600cb5a6cb9c2404d61644ca",
       "size_bytes": 159892
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Montel/Cover.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Montel/Cover.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Montel/Cover.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude/Jacobians/Montel/Cover.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "1565de5d5eeaa17b91a3b1c625e06660f3c4845228ecece00f4401049271228e",
+      "size_bytes": 16022
     },
     {
       "canonical": {
@@ -11004,6 +11074,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Montel/ChartTransition.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Montel/ChartTransition.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude/Jacobians/Montel/ChartTransition.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "2531bde2975e78159eca1d79200757f4477e3db0d252002e244adec4b17a481b",
+      "size_bytes": 19746
+    },
+    {
+      "canonical": {
         "file": "books/kestrel/utilities/.sys/make-executable@useless-runes.lsp",
         "repository": "acl2__acl2"
       },
@@ -12066,6 +12156,26 @@
       ],
       "sha256": "29af8c72a0652a95d3c5f0fc89ad4ad018e428148857400068d8549df79012e3",
       "size_bytes": 537
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/ULiftManifold.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/ULiftManifold.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/ULiftManifold.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "29bfb46ac097c58ec5657b3ebe93fa93dc01c4a07af63535709c3a85e0d31e2b",
+      "size_bytes": 8192
     },
     {
       "canonical": {
@@ -14746,6 +14856,26 @@
       ],
       "sha256": "32a8441ef6ce36e668e460c27d067b2d858b84708660502a204cd244dd89501d",
       "size_bytes": 11852
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/MeromorphicNFRepair.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/MeromorphicNFRepair.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/MeromorphicNFRepair.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "32b737deb07a6ea82d3d54e4c88de01366769bb0faa8bad959ae353812f49802",
+      "size_bytes": 5752
     },
     {
       "canonical": {
@@ -18864,6 +18994,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/ChartedSpaceLocPathConnected.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/ChartedSpaceLocPathConnected.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/ChartedSpaceLocPathConnected.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "4071869caee011359390c528a7a108f1aff07bc74a626e3492861ec50cc8b308",
+      "size_bytes": 1161
+    },
+    {
+      "canonical": {
         "file": "thys/Core_DOM/common/preliminaries/Testing_Utils.thy",
         "repository": "isabelle-prover__mirror-afp-devel"
       },
@@ -19074,6 +19224,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/AnalyticDerivOrder.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/AnalyticDerivOrder.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/AnalyticDerivOrder.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "40f33f5d677cf1538ad4adce56db32ff07915231d9129f58cafb788c277c37e3",
+      "size_bytes": 2483
+    },
+    {
+      "canonical": {
         "file": "GraphLib/Theory/Structures/Cycle.lean",
         "repository": "sorrachai__GraphLib"
       },
@@ -19196,6 +19366,26 @@
       ],
       "sha256": "41706b3d5d0c224b0d9c9146a5314ec707b0f5f7c5b896084a0c398885d7e063",
       "size_bytes": 8414
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/FormTracePrincipalPart.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/FormTracePrincipalPart.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Dolbeault/FormTracePrincipalPart.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "41bd0d00c8057a369648d413764fc42da438384efafefce3b75d4708d3febfcf",
+      "size_bytes": 19670
     },
     {
       "canonical": {
@@ -20484,6 +20674,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/Residue.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/Residue.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Dolbeault/Residue.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "46bba6426fcbee0e8240134560fc17706fcdfdd5281ec4ff3f39cbe0ae561b62",
+      "size_bytes": 11996
+    },
+    {
+      "canonical": {
         "file": "books/projects/acl2-in-hol/tests/inputs/.sys/sets@useless-runes.lsp",
         "repository": "acl2__acl2"
       },
@@ -21194,6 +21404,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/FibreCardLocallyConstantFromNormalForm.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/FibreCardLocallyConstantFromNormalForm.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/FibreCardLocallyConstantFromNormalForm.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "495a9191fadbed0f156583a7102764138ea33ccae31f92958382a9c38b2bb4b7",
+      "size_bytes": 9154
+    },
+    {
+      "canonical": {
         "file": "projects/AdicSpaces/Adic spaces/WedhornLocalSubsetViaFactoredChains.lean",
         "repository": "CBirkbeck__AINTLIB"
       },
@@ -21781,6 +22011,26 @@
       ],
       "sha256": "4b9eebf242768e5c35cbfc2021ea0782ec8c51a3807ec6d8a54b2c2c46a49983",
       "size_bytes": 606
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/RegularSubsetPreconnected.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/RegularSubsetPreconnected.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/RegularSubsetPreconnected.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "4bae4ae1508d60ce4c102dcb4be81bd545408536a579117aed0479188c53a8c2",
+      "size_bytes": 4911
     },
     {
       "canonical": {
@@ -31729,6 +31979,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Primitive.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Primitive.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Primitive.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "6c3886681c99485d90310bbbc7f215ff79f3cd18513bae67ee4c03c9247656d1",
+      "size_bytes": 679
+    },
+    {
+      "canonical": {
         "file": "tutorial/problems/wordfreqProofScript.sml",
         "repository": "CakeML__cakeml"
       },
@@ -35314,6 +35584,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Montel/SupNorm.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Montel/SupNorm.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude/Jacobians/Montel/SupNorm.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "777a86f08501483f904cf8239b2245ce1d61068f07367ecf910feebfa2f2d9e3",
+      "size_bytes": 11173
+    },
+    {
+      "canonical": {
         "file": "books/projects/acl2-in-hol/tests/inputs/total-order.lisp",
         "repository": "acl2__acl2"
       },
@@ -35671,6 +35961,26 @@
       ],
       "sha256": "791cf162dac3b9ef077b4eb0ae4be04c9dd0720946214f5256fc9d376f26ad20",
       "size_bytes": 1386
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/IsPathConnectedBallMinusCountable.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/IsPathConnectedBallMinusCountable.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/IsPathConnectedBallMinusCountable.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "7968922e4cb4c255a360f8f573f1fcfea1d870414b0223c27f8f55407b140b06",
+      "size_bytes": 8452
     },
     {
       "canonical": {
@@ -49159,6 +49469,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/PeriodMatrixIndep.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/PeriodMatrixIndep.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/PeriodMatrixIndep.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "a6e499e84a3dc1ceaaeba332df8c1c6b0c02d6f5f61224675183559a01b81fc4",
+      "size_bytes": 7766
+    },
+    {
+      "canonical": {
         "file": "FormalisingMathematics2024/Solutions/Section15numberTheory/Sheet3.lean",
         "repository": "ImperialCollegeLondon__formalising-mathematics-2024"
       },
@@ -50299,6 +50629,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/ChartLocalDetour.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/ChartLocalDetour.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/ChartLocalDetour.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "aadc595b41620e1c7c33bc09c402527b8b7d6a22b47056254a06d3cfc634c205",
+      "size_bytes": 9306
+    },
+    {
+      "canonical": {
         "file": "src/for_mathlib/Gordan.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -51136,6 +51486,26 @@
       ],
       "sha256": "ad561840669b05b81fc98137ec4bc558796efbeab5640161e69482fe61301a22",
       "size_bytes": 7
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/ChartedSpaceOfLocalHomeomorph.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/ChartedSpaceOfLocalHomeomorph.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude/Jacobians/ChartedSpaceOfLocalHomeomorph.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "ad5cf45eecff7be7f1c78170a1fa1b22880f2a9664d6c6a09e3e27c3766b67cb",
+      "size_bytes": 2164
     },
     {
       "canonical": {
@@ -59749,6 +60119,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/MeromorphicAt.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/MeromorphicAt.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/MeromorphicAt.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "c6ad1080bc25324549d13799310b8677be09b3b700f5b88c7bf07b95bf86726e",
+      "size_bytes": 27970
+    },
+    {
+      "canonical": {
         "file": "src/for_mathlib/complex_extend.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -60409,6 +60799,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/SurfacePositivity.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/SurfacePositivity.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/SurfacePositivity.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "c98ee1fc0f3d635aba6f07b380239101678b3598fbfee60622d869915fca3a06",
+      "size_bytes": 3510
+    },
+    {
+      "canonical": {
         "file": "EC/edwards25519.ml",
         "repository": "CakeML__candle"
       },
@@ -60566,6 +60976,26 @@
       ],
       "sha256": "ca25271575a598552469c696f46cb181ec3e5dd3f34a0e6b0b0dcc36f8b06431",
       "size_bytes": 195
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/ContMDiffOmegaAnalytic.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/ContMDiffOmegaAnalytic.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/ContMDiffOmegaAnalytic.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "ca2d84dca187474b0763164d66ba7ff1f0f781a6885b0197a85a307dedf185e6",
+      "size_bytes": 4796
     },
     {
       "canonical": {
@@ -62684,6 +63114,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/PreconnectedFromFiniteComplement.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/PreconnectedFromFiniteComplement.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/PreconnectedFromFiniteComplement.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "d21cc65cf548ddd3126c9f8109522dee95f30098190a293ba086bb5db03270a8",
+      "size_bytes": 3087
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/putnam-1987-a5.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -62981,6 +63431,26 @@
       ],
       "sha256": "d2ef307d70497cf8179c93d3fd3b981b5e19d95008c2a0967f821ec62c44b4e9",
       "size_bytes": 1040
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/ConnectedManifoldPathConnected.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/ConnectedManifoldPathConnected.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/ConnectedManifoldPathConnected.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "d2f0291e7bf4a1d7cba8c69ccc8e7550946ed4ea711ea11a6804940e0daf8c34",
+      "size_bytes": 808
     },
     {
       "canonical": {
@@ -71779,6 +72249,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/AnalyticLocalFactorization.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/AnalyticLocalFactorization.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/AnalyticLocalFactorization.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "ed19ab2f7bd0fe987b80a11341557fdba9bad144e589911f8dff97576ac36769",
+      "size_bytes": 5226
+    },
+    {
+      "canonical": {
         "file": "Formal_ineqs/informal/informal_atn.hl",
         "repository": "CakeML__candle"
       },
@@ -74254,6 +74744,26 @@
     },
     {
       "canonical": {
+        "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Montel/ChartNorm.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Montel/ChartNorm.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude/Jacobians/Montel/ChartNorm.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "f5c18266a8dfaa3bddc2e0c2746669668ec38b09ea3837f6642310b84527ed6b",
+      "size_bytes": 10093
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/putnam-1998-b4.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -74656,6 +75166,26 @@
       ],
       "sha256": "f723cabb8eba45dc9fac7370cd445206f027ddb8f751af39f5b5ba0a67b3195a",
       "size_bytes": 8318
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/ChartRestrictionToBall.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/ChartRestrictionToBall.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/ChartRestrictionToBall.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "f725eab7f44c3cadc8272287415fa7d61ff52ec2b0e50f12758d48a9cb18200e",
+      "size_bytes": 7192
     },
     {
       "canonical": {
@@ -76101,6 +76631,26 @@
       ],
       "sha256": "fb4e64ec1c0031a12cbcb576214e2c52506f320a793e0341e30e9c28373e9e6b",
       "size_bytes": 531
+    },
+    {
+      "canonical": {
+        "file": "vendor/kirov-dolbeault-port/KirovDolbeault/ContourDeformation.lean",
+        "repository": "mrdouglasny__jacobian-challenge"
+      },
+      "occurrences": [
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/ContourDeformation.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/ContourDeformation.lean",
+          "proof_assistant": "lean",
+          "repository": "mrdouglasny__jacobian-challenge"
+        }
+      ],
+      "sha256": "fb6ac04bd2a5acf116d5820770cb321266fd13a8cc16ade37c2b8162042a77ea",
+      "size_bytes": 8392
     },
     {
       "canonical": {
