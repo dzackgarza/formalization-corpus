@@ -96,12 +96,21 @@ but doing so is unnecessary. `.index-primary` normally hardlinks source files an
 should also be treated as ephemeral per-source build state rather than a persistent
 full-corpus tree.
 
-**Implementation debt:** the legacy `just index`, `filter-views`, and
-`repository-review.py build` paths still assume broad/full hydration in places. The
-long-horizon workstream should make source-local `hydrate -> review -> filter-view ->
-index -> dehydrate` operations first-class and should not use those global commands
-as evidence that full corpus hydration or full corpus reindexing is required. A
-filter change in one source normally requires replacing only that source's shard.
+**Implemented source-cache workflow:** the long-horizon path is now first-class.
+`just review-batch-hydrate RRB-NNNN` hydrates only the repositories in that review
+batch at their catalogue-pinned revisions; `just review-filter-state RRB-NNNN`
+materializes accepted FD-018 changes from committed manifests without scanning ghost
+sources; `just review-batch-reindex RRB-NNNN` replaces only those repositories' Zoekt
+shards through a staging directory; and `just review-batch-dehydrate RRB-NNNN`
+removes the source caches and temporary hard-link views again. `just publish-index`
+publishes the already-built persistent shard set without rebuilding it.
+
+The legacy `just index`, `filter-views`, and full `repository-review.py build` remain
+explicit whole-corpus maintenance/reproducibility commands. They are not the normal
+review path. Repository-local upstream refreshes use
+`python scripts/repository-review.py build --repository REPO`; from-scratch index
+bootstrap uses `just source-seed-index fresh`, which streams one pinned source at a
+time and dehydrates it immediately after its shard is accepted.
 
 Build provenance: the corpus was created in the 2026-08-13 codex session
 (`rollout-2026-08-13T15-07-42-019ff9f2-bc0e-7de0-9bcd-c9630d6a8813.jsonl`,

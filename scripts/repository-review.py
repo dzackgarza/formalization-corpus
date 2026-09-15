@@ -187,6 +187,51 @@ def build() -> int:
     return 0
 
 
+
+def build_selected(repositories: set[str]) -> int:
+    """Refresh catalogue/manifests for explicitly hydrated repositories only."""
+    decisions = active_decisions_by_file()
+    active = {source.repository: source for source in sources()}
+    unknown = sorted(repositories - set(active))
+    if unknown:
+        raise SystemExit(f"unknown active repositories: {unknown}")
+    index = {row["repository"]: dict(row) for row in load_catalogue_index()}
+    for repository in sorted(repositories):
+        source = active[repository]
+        if not source.root.exists():
+            raise SystemExit(f"missing hydrated source: {repository}")
+        records = source_records(source, decisions)
+        units = partition_source(repository, records)
+        summary = source_summary(source, records, units)
+        path = catalogue_path(repository)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n")
+        repository_dir = FILES_ROOT / repository
+        repository_dir.mkdir(parents=True, exist_ok=True)
+        live_manifests: set[pathlib.Path] = set()
+        for unit in units:
+            manifest = unit_files_path(repository, unit.unit_id)
+            dump_jsonl(manifest, (record.as_json() for record in unit.records))
+            live_manifests.add(manifest)
+        for manifest in repository_dir.glob("*.jsonl"):
+            if manifest not in live_manifests:
+                manifest.unlink()
+        index[repository] = {
+            "schema_version": SCHEMA_VERSION,
+            "repository": repository,
+            "proof_assistant": source.proof_assistant,
+            "source_revision": summary["source_revision"],
+            "source_snapshot_sha256": summary["source_snapshot_sha256"],
+            "files": summary["totals"]["files"],
+            "bytes": summary["totals"]["bytes"],
+            "work_units": len(units),
+            "catalogue_file": relative(path),
+        }
+        print(f"catalogued {repository}: {len(records)} files, {len(units)} units")
+    dump_jsonl(CATALOGUE_INDEX, sorted(index.values(), key=lambda row: row["repository"]))
+    build_batches()
+    return 0
+
 def build_batches() -> None:
     units = sorted(load_units().values(), key=lambda unit: (unit["repository"], unit["scope"]["value"], unit["unit_id"]))
     batches: list[dict[str, Any]] = []
@@ -428,20 +473,26 @@ def validate() -> int:
             errors.append(f"{repository}: missing catalogue file")
             continue
         catalogue = json.loads(cat_path.read_text())
-        actual_revision = source_revision(source)
-        if catalogue.get("source_revision") != actual_revision:
-            errors.append(
-                f"{repository}: source revision changed since review catalogue "
-                f"({catalogue.get('source_revision')!r} -> {actual_revision!r}); run `just repository-review-catalogue`"
-            )
-        if source.transport == "web-dir":
-            current_records = source_records(source, active_decisions_by_file())
-            current_digest = material_snapshot_sha256(current_records)
-            if current_digest != catalogue.get("source_snapshot_sha256"):
+        # A ghost/dehydrated source is normal.  Its committed catalogue/manifests
+        # are the audited snapshot.  When the cache is hydrated, verify that the
+        # working source still matches the pinned revision/material before allowing
+        # review/index work to proceed.
+        if source.root.exists():
+            actual_revision = source_revision(source)
+            if catalogue.get("source_revision") != actual_revision:
                 errors.append(
-                    f"{repository}: web-directory material changed since review catalogue; "
-                    "run `just repository-review-catalogue`"
+                    f"{repository}: source revision changed since review catalogue "
+                    f"({catalogue.get('source_revision')!r} -> {actual_revision!r}); "
+                    f"run `python scripts/repository-review.py build --repository {repository}`"
                 )
+            if source.transport == "web-dir":
+                current_records = source_records(source, active_decisions_by_file())
+                current_digest = material_snapshot_sha256(current_records)
+                if current_digest != catalogue.get("source_snapshot_sha256"):
+                    errors.append(
+                        f"{repository}: web-directory material changed since review catalogue; "
+                        f"run `python scripts/repository-review.py build --repository {repository}`"
+                    )
         seen_paths: set[str] = set()
         source_records_for_digest = []
         for unit in catalogue.get("work_units", []):
@@ -742,7 +793,8 @@ def retire_source(uid: str) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build and audit repository-local filtering review work")
     sub = parser.add_subparsers(dest="command", required=True)
-    sub.add_parser("build")
+    build_parser = sub.add_parser("build")
+    build_parser.add_argument("--repository", action="append", default=[])
     sub.add_parser("validate")
     status_parser = sub.add_parser("status")
     status_parser.add_argument("--batch")
@@ -754,7 +806,7 @@ def main() -> int:
     retire_parser.add_argument("unit")
     args = parser.parse_args()
     if args.command == "build":
-        return build()
+        return build_selected(set(args.repository)) if args.repository else build()
     if args.command == "validate":
         return validate()
     if args.command == "status":

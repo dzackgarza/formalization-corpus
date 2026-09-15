@@ -27,6 +27,69 @@ sync-cross-prover:
 sync-ports: sync-cross-prover
 sync-rocq-agda: sync-cross-prover
 
+# Source checkouts are a bounded disposable cache around the persistent Zoekt index.
+# Hydration defaults to the campaign-pinned revision, not current upstream.
+source-hydrate repository:
+    python scripts/source-cache.py hydrate --repository "{{repository}}"
+
+source-hydrate-latest repository:
+    python scripts/source-cache.py hydrate --repository "{{repository}}" --latest
+
+source-dehydrate repository:
+    python scripts/source-cache.py dehydrate --repository "{{repository}}"
+
+source-cache-status repository:
+    python scripts/source-cache.py status --repository "{{repository}}"
+
+source-cache-status-all:
+    python scripts/source-cache.py status-all
+
+source-dehydrate-all:
+    python scripts/source-cache.py dehydrate-all
+
+# Reclaim every safe indexed source cache while leaving active/unindexed intake hydrated.
+source-cache-gc:
+    python scripts/source-cache.py gc
+
+# Exceptional from-scratch bootstrap: stream one pinned source at a time.
+source-seed-index fresh="":
+    #!/usr/bin/env zsh
+    if [[ "{{fresh}}" == "fresh" ]]; then
+      python scripts/source-cache.py seed --all --fresh
+    else
+      python scripts/source-cache.py seed --all
+    fi
+
+review-batch-cache-status batch:
+    python scripts/source-cache.py status --batch "{{batch}}"
+
+review-batch-hydrate batch:
+    python scripts/source-cache.py hydrate --batch "{{batch}}"
+
+review-batch-dehydrate batch:
+    python scripts/source-cache.py dehydrate --batch "{{batch}}"
+
+# Materialize accepted FD-018 review decisions without scanning ghost sources.
+review-filter-state batch:
+    python scripts/refresh-review-filter-state.py --batch "{{batch}}" --allow-dirty
+    python scripts/validate-filter-state.py
+
+# Replace only the affected repositories' shards, then discard hard-link views.
+review-batch-reindex batch:
+    python scripts/source-cache.py reindex --batch "{{batch}}"
+
+# Complete the normal review cycle. Review records must already be written.
+# This never performs a whole-corpus hydration or rebuild.
+review-batch-index batch:
+    python scripts/refresh-review-filter-state.py --batch "{{batch}}" --allow-dirty
+    python scripts/validate-filter-state.py
+    python scripts/source-cache.py reindex --batch "{{batch}}"
+
+# Build just the Zoekt indexer used by source-local shard replacement.
+build-zoekt:
+    mkdir -p bin
+    cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt-index ./cmd/zoekt-index
+
 # Register every nested repository with gita.
 register:
     uvx --from gita gita add --recursive --group formalization-corpus .
@@ -97,6 +160,14 @@ preview: metrics site
 # The origin address, not formalization-corpus.dzackgarza.com: that name resolves to
 # Cloudflare, which proxies HTTP and would not carry ssh.
 host := "zack@159.223.102.204"
+
+# Publish the already-built persistent index without rebuilding it.  This is
+# the normal source-local review deployment path; rsync transfers only changed shards.
+publish-index:
+    rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
+    python scripts/check-published.py
+    if ssh {{host}} 'systemctl is-active --quiet formalization-corpus-api.service'; then ssh {{host}} "pkill -TERM -u zack -f '/home/zack/lean-corpus/api/.venv/bin/uvicorn formalization_api.app:app' || true"; else echo 'FastAPI adapter inactive; filtered index published to the currently active search backend'; fi
+    @echo "https://formalization-corpus.dzackgarza.com"
 
 # Ship only the validated primary formalization index. The separate metadata
 # index is deliberately not published or queried by the public site.

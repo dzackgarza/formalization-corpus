@@ -31,6 +31,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--primary", type=pathlib.Path, default=ROOT / ".index-primary")
     parser.add_argument("--metadata", type=pathlib.Path, default=ROOT / ".index-metadata")
+    parser.add_argument("--repository", action="append", default=[], help="materialize only this repository; may be repeated")
     args = parser.parse_args()
 
     decisions = load_jsonl(CURRENT)
@@ -44,18 +45,37 @@ def main() -> int:
         for row in decisions
         if row["auxiliary"] == "include"
     }
+    source_rows = sources()
+    registered = {source.repository for source in source_rows}
+    selected = set(args.repository)
+    unknown = sorted(selected - registered)
+    if unknown:
+        raise SystemExit(f"unknown repositories: {unknown}")
+    partial = bool(selected)
+    if not partial:
+        selected = registered
+
     for root in (args.primary, args.metadata):
-        if root.exists():
-            shutil.rmtree(root)
-        root.mkdir(parents=True)
+        if partial:
+            root.mkdir(parents=True, exist_ok=True)
+            for repository in selected:
+                target = root / repository
+                if target.exists():
+                    shutil.rmtree(target)
+        else:
+            if root.exists():
+                shutil.rmtree(root)
+            root.mkdir(parents=True)
 
     primary_counts: dict[str, int] = {}
     metadata_counts: dict[str, int] = {}
-    for source in sources():
+    for source in source_rows:
+        if source.repository not in selected:
+            continue
         primary_count = 0
         metadata_count = 0
         if not source.root.exists():
-            continue
+            raise SystemExit(f"source is not hydrated: {source.repository}; run `just source-hydrate {source.repository}`")
         for path in iter_files(source):
             rel = path.relative_to(source.root).as_posix()
             key = (source.repository, rel)
@@ -77,8 +97,9 @@ def main() -> int:
         raise SystemExit(
             "derived primary view would erase registered sources:\n  " + "\n  ".join(empty)
         )
+    mode = "partial" if partial else "full"
     print(
-        f"primary view: {sum(primary_counts.values())} documents across {len(primary_counts)} sources; "
+        f"{mode} primary view: {sum(primary_counts.values())} documents across {len(primary_counts)} sources; "
         f"separate metadata view: {sum(metadata_counts.values())} documents"
     )
     return 0

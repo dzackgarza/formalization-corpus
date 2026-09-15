@@ -111,6 +111,23 @@ def is_proof_file(kind: str, root: pathlib.Path, path: pathlib.Path) -> bool:
     return any(path.name.endswith(suffix) for suffix in FORMAL_SUFFIXES[kind])
 
 
+def catalogue_formal_file_counts() -> dict[str, int]:
+    """Formal-file counts from the committed audit snapshot for ghost sources."""
+    index_path = ROOT / "filtering/repository-review/catalogue.jsonl"
+    if not index_path.is_file():
+        return {}
+    out: dict[str, int] = {}
+    for line in index_path.read_text().splitlines():
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        if row.get("inventory_status", "active") != "active":
+            continue
+        catalogue = json.loads((ROOT / row["catalogue_file"]).read_text())
+        out[str(row["repository"])] = int(catalogue.get("totals", {}).get("formal_source_files", 0))
+    return out
+
+
 def main() -> None:
     rows = source_rows()
     counts = Counter(kind for kind, _ in rows)
@@ -120,18 +137,19 @@ def main() -> None:
     for name in sorted(indexed - source_names):
         problems.append(f"{name}: index shard exists for a source absent from sources.tsv")
     registered_names = source_names
+    audited_formal_counts = catalogue_formal_file_counts()
 
     for kind, relative in rows:
         source = ROOT / relative
         name = relative.name
-        if not source.exists():
-            problems.append(f"{name}: local source is absent")
-            continue
-        if not any(
-            path.is_file() and is_proof_file(kind, source, path)
-            for path in source.rglob("*")
-        ):
-            problems.append(f"{name}: no {kind} source-language files")
+        if source.exists():
+            if not any(
+                path.is_file() and is_proof_file(kind, source, path)
+                for path in source.rglob("*")
+            ):
+                problems.append(f"{name}: no {kind} source-language files")
+        elif audited_formal_counts.get(name, 0) <= 0:
+            problems.append(f"{name}: source is ghosted and committed audit manifest has no formal source files")
         if name not in indexed:
             problems.append(f"{name}: no index shard")
 

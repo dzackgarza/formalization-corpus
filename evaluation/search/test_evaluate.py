@@ -7,6 +7,7 @@ import pathlib
 import subprocess
 import sys
 import unittest
+from unittest import mock
 
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -17,6 +18,31 @@ from evaluate_rerank import bounded_excerpt, humanize_path  # noqa: E402
 
 
 class SearchEvaluationTests(unittest.TestCase):
+
+    def test_gold_validation_accepts_catalogued_file_when_source_cache_is_ghosted(self) -> None:
+        gold = {
+            "version": 1,
+            "cases": [
+                {
+                    "id": "ghost-source",
+                    "query": "flat module",
+                    "judgments": [
+                        {
+                            "repository": "CBirkbeck__AINTLIB",
+                            "file": "Common/Common.lean",
+                            "relevance": 3,
+                        }
+                    ],
+                }
+            ],
+        }
+        with mock.patch.object(
+            evaluate,
+            "source_rows",
+            return_value={"CBirkbeck__AINTLIB": {"directory": "definitely-missing-cache"}},
+        ):
+            self.assertEqual(evaluate.validate_gold(gold), [])
+
     def test_frontend_v1_compiler_preserves_current_strict_behavior(self) -> None:
         compiled = evaluate.compile_query(
             "Is Serre duality formalized?", "frontend_lexical_v1"

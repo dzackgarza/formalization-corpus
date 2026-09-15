@@ -390,9 +390,32 @@ reproducibility/maintenance operation, not the normal repository-review loop.
 Likewise, initial corpus seeding may stream one source at a time: hydrate -> catalogue
 -> filter -> index -> dehydrate. All source trees never need to coexist on disk.
 
-The current global helper commands predate this storage model and still contain
-full-hydration assumptions. Until they are refactored, workers must not infer from
-those implementation details that full hydration is a correctness invariant.
+The source-local storage model is implemented directly. For one review batch:
+
+```sh
+just review-batch-hydrate RRB-NNNN
+# inspect the hydrated source(s) and append snapshot-pinned review records
+just review-filter-state RRB-NNNN
+just review-batch-reindex RRB-NNNN
+# validate/evaluate the candidate, then publish changed shards
+just publish-index
+just review-batch-dehydrate RRB-NNNN
+```
+
+`review-filter-state` reconstructs FD-018 and exact-duplicate result metadata from the
+committed repository-review manifests, so unrelated source trees need not exist.
+`review-batch-reindex` materializes hard-link views only for the selected repositories,
+builds replacement shards in staging, then swaps them into the persistent `.zoekt`
+index and removes the temporary views. `review-batch-dehydrate` verifies the checkout is
+clean, at the catalogue-pinned revision, catalogued, and already represented by a shard
+before deleting it. This deliberately removes the nested Git object database too; keeping
+a sparse working tree but retaining fetched blobs would not reliably reclaim disk.
+
+`just index` and the no-selector `repository-review.py build` are retained only for
+exceptional whole-corpus reproducibility work. A fresh machine can instead run
+`just source-seed-index fresh`: each source is hydrated at its pinned revision, indexed,
+and immediately dehydrated before the next source is fetched. No phase requires all
+source checkouts to coexist.
 
 ## 12. Required workflow for a new hard filter
 

@@ -39,23 +39,34 @@ source repositories; it is not itself a source category.
 Synchronization keeps only the proof-source extensions appropriate to each proof
 assistant plus minimal build metadata where needed. Definitions, structures,
 specifications, theorem statements, constructions, and proofs are all searchable.
-The source checkouts remain authoritative and are never destructively cleaned for
-search. Filtering is recorded separately and materialized as reversible hard-link
-views used only for indexing.
+Local source checkouts are a **disposable hydration cache**, not the durable search
+representation and not Git submodules. The durable local state is the registry,
+committed audit catalogue/manifests/filter ledger, and persistent Zoekt shards.
+A source is normally absent ("ghosted") after its shard is built. Rehydrate only the
+repository or review batch being inspected; filtered hard-link views are likewise
+per-source ephemeral build state.
 
 ## Workflow
 
 ```sh
 just build-tools        # build zoekt-index, zoekt, and the Lean ast-grep parser
+just review-batch-hydrate RRB-0008   # hydrate only this batch at pinned source revisions
+# inspect units and append review records
+just review-filter-state RRB-0008    # update FD-018/duplicate state from committed manifests
+just review-batch-reindex RRB-0008   # stage+replace only affected repository shards
+just publish-index                   # publish existing shards; no corpus rebuild
+just review-batch-dehydrate RRB-0008 # reclaim the source/object-cache bytes
+just source-cache-status REPO        # inspect one source's hydrated/ghost/index state
+just source-seed-index fresh         # exceptional fresh bootstrap, one source at a time
+
+# Whole-corpus maintenance/reproducibility commands (not the normal review loop):
 just sync               # refresh the routine sync group
 just sync-bulk          # refresh the large secondary sync group
 just sync-cross-prover  # refresh non-Lean proof-assistant sources
-just filter-state       # classify the current source snapshot and append filtering decisions
-just filter-validate    # replay the append-only filtering ledger and verify snapshots
-just filter-views       # materialize primary and auxiliary hard-link index views
-just index-cross-prover # incrementally rebuild only that group's Zoekt shards
-just index              # (re)build the primary mathematical index from the filtered view
-just index-metadata     # build the separate README/import-navigation index
+just filter-state       # full hydrated-snapshot classifier
+just filter-views       # full hard-link views
+just index              # full primary-index rebuild
+just index-metadata     # full separate README/import-navigation index
 just metrics            # validate corpus membership and regenerate public totals
 just site               # regenerate committed static source metadata
 just preview            # deploy site/ to formalization-corpus-preview.localhost

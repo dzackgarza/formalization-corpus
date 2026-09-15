@@ -55,6 +55,30 @@ def source_rows() -> dict[str, dict[str, str]]:
         return {pathlib.PurePosixPath(row["directory"]).name: row for row in rows}
 
 
+@lru_cache(maxsize=None)
+def catalogued_files(repository: str) -> frozenset[str]:
+    """Return audited file paths for a source, including when its cache is ghosted."""
+    index_path = ROOT / "filtering/repository-review/catalogue.jsonl"
+    if not index_path.is_file():
+        return frozenset()
+    row = next(
+        (json.loads(line) for line in index_path.read_text().splitlines()
+         if line.strip() and json.loads(line).get("repository") == repository
+         and json.loads(line).get("inventory_status", "active") == "active"),
+        None,
+    )
+    if row is None:
+        return frozenset()
+    catalogue = json.loads((ROOT / row["catalogue_file"]).read_text())
+    paths: set[str] = set()
+    for unit in catalogue.get("work_units", []):
+        manifest = ROOT / unit["files_manifest"]
+        for line in manifest.read_text().splitlines():
+            if line.strip():
+                paths.add(str(json.loads(line)["path"]))
+    return frozenset(paths)
+
+
 def validate_gold(data: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     sources = source_rows()
@@ -96,8 +120,10 @@ def validate_gold(data: dict[str, Any]) -> list[str]:
                 errors.append(f"{case_id}: duplicate judgment {repo}:{file_name}")
             seen_targets.add(key)
             local_path = ROOT / sources[repo]["directory"] / file_name
-            if not local_path.is_file():
-                errors.append(f"{case_id}: judged file is missing: {local_path}")
+            if not local_path.is_file() and file_name not in catalogued_files(str(repo)):
+                errors.append(
+                    f"{case_id}: judged file is neither hydrated nor present in the committed audit manifest: {local_path}"
+                )
         if positive_judgments == 0:
             errors.append(f"{case_id}: needs at least one positive judgment")
     return errors

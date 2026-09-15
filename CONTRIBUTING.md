@@ -504,6 +504,26 @@ Initial seeding may likewise process sources serially and dehydrate each after i
 is built. Global full-hydration commands are convenience/legacy tooling and must not be
 interpreted as architectural requirements.
 
+The supported state machine is:
+
+```
+just review-batch-hydrate RRB-NNNN
+# inspect units; append review records
+just review-filter-state RRB-NNNN
+just review-batch-reindex RRB-NNNN
+# run candidate probes/evaluation as required
+just publish-index
+just review-batch-dehydrate RRB-NNNN
+```
+
+Hydration defaults to the revision already pinned by the campaign catalogue. Use
+`just source-hydrate-latest REPO` only for an intentional upstream refresh; before that
+cache can be discarded or indexed as a new snapshot, refresh the source-local catalogue
+with `python scripts/repository-review.py build --repository REPO` and re-audit any stale
+units. Dehydration refuses dirty Git checkouts, revision drift, uncatalogued sources, or
+sources with no persistent Zoekt shard. It deletes the disposable nested checkout rather
+than retaining fetched Git objects, so disk is actually reclaimed.
+
 ## Source-lead intake
 
 Source suggestions are unreviewed leads, not proposed `sources.tsv` rows.  The
