@@ -353,10 +353,11 @@ A distinct whole-source disposition exists for repositories that fail the
 `COPY-005` corpus-membership invariant.  A whole-repository unit may request
 `source_action=retire-source` under `FD-012`; it may not combine that action with
 file-level blacklist rules.  Applying the action removes the source from the live
-inventory but deliberately preserves its hydrated checkout and freezes its
-catalogue/manifests/review history as a retired campaign source.  Do not emulate
-source retirement by blacklisting every file: that would hide a source-membership
-decision inside file-level filtering and destroy the audit boundary.
+inventory and freezes its catalogue/manifests/review history as a retired campaign
+source. The source checkout may subsequently be dehydrated under the ordinary
+source-residency policy; the committed frozen audit record is what must persist.
+Do not emulate source retirement by blacklisting every file: that would hide a
+source-membership decision inside file-level filtering and destroy the audit boundary.
 
 The operational commands are:
 
@@ -372,6 +373,26 @@ python scripts/repository-review.py append /tmp/review.json
 Only after the review catalogue validates should `just filter-state` be run to
 materialize accepted blacklist rules into `FD-018` decisions and the append-only
 filtering ledger.
+
+### Source residency is ephemeral; index shards are persistent
+
+`sources.tsv` is a registry of upstream source identities and local checkout names,
+not a Git-submodule manifest. The nested source repositories are disposable intake
+checkouts. After a source has been catalogued and its filtered content indexed, the
+checkout may be dehydrated/removed without invalidating the existing Zoekt shard or
+the committed audit record. Rehydrate it when its review unit must be inspected, its
+upstream revision changes, or its source-local filtering decisions must be revised.
+
+Do not rebuild the corpus index merely because one source changed. Materialize the
+filtered view for that source, replace that source's shard(s), validate the resulting
+candidate, and discard the temporary view. A whole-corpus rebuild is an exceptional
+reproducibility/maintenance operation, not the normal repository-review loop.
+Likewise, initial corpus seeding may stream one source at a time: hydrate -> catalogue
+-> filter -> index -> dehydrate. All source trees never need to coexist on disk.
+
+The current global helper commands predate this storage model and still contain
+full-hydration assumptions. Until they are refactored, workers must not infer from
+those implementation details that full hydration is a correctness invariant.
 
 ## 12. Required workflow for a new hard filter
 

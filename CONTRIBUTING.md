@@ -488,6 +488,22 @@ This separation prevents absence of a blacklist from being misread as absence
 of review, and prevents a batch worker from claiming progress merely by adding a
 few exclusion patterns while leaving the rest of the unit unaudited.
 
+### FILTER-026 — Source checkout residency is not a corpus invariant
+
+The directories named by `sources.tsv` are disposable shallow/sparse nested Git
+checkouts, not Git submodules and not the durable corpus representation. Once a source
+has a committed catalogue/review record and a valid Zoekt shard, that source checkout
+may be absent from disk. Rehydrate it only when inspecting or refreshing that source.
+Do not require unrelated source checkouts to exist before reviewing or reindexing one
+repository.
+
+Normal filtering maintenance is incremental: a changed review for repository `R`
+materializes `R`'s filtered view and replaces only `R`'s shard(s). A full corpus
+reindex is not required merely because one repository gained or lost indexed files.
+Initial seeding may likewise process sources serially and dehydrate each after its shard
+is built. Global full-hydration commands are convenience/legacy tooling and must not be
+interpreted as architectural requirements.
+
 ## Source-lead intake
 
 Source suggestions are unreviewed leads, not proposed `sources.tsv` rows.  The

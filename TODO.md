@@ -64,26 +64,44 @@ Commands: `just repository-review-status`, `just repository-review-batch
 RRB-0001`, `python scripts/repository-review.py template RRU-...`, and
 `python scripts/repository-review.py append /tmp/review.json`.
 
-### Connector-box storage constraint (2026-09-15)
+### Sparse source residency and connector-box storage (2026-09-15)
 
-The rack/connector checkout at `/home/dzack/gitclones/formalization-corpus` is a
-valid long-horizon worktree, but it is **not currently provisioned for routine full
-hydration plus full-index rebuilds**. On 2026-09-15 the host filesystem was 144 GB
-total / 127 GB used / 11 GB available (93% used). The checkout itself was 13 GB,
-including an existing `.zoekt` primary index of about 10 GB; the fully hydrated
-laptop checkout was about 22 GB. `.index-primary` normally hardlinks source files,
-so its apparent size is not an additional full copy when source and view share a
-filesystem.
+The source directories named by `sources.tsv` are **not Git submodules** of this
+repository. They are disposable shallow/sparse nested checkouts used as intake
+material. Their source text is not the persistent search representation: once a
+repository has been reviewed and indexed, its Zoekt shard plus the committed
+repository-review catalogue/manifests/ledger are sufficient to keep it searchable
+and auditable while the source checkout is absent. Treat an absent source checkout
+as a normal **ghost/dehydrated source**, not as corpus loss.
 
-Until the rack has materially more free space, repository-review workers should
-hydrate only the source(s) needed for the current batch and reindex only affected
-repositories. Do **not** casually run all-source hydration or a from-scratch full
-Zoekt rebuild on the rack: the remaining margin is too small for source growth,
-temporary shard output, Git fetches, logs, and normal host activity. Treat roughly
-20–30 GB of additional free space as the minimum before full-corpus rebuilds are
-reasonable, with 30–40 GB free preferred for routine long-horizon operation. The
-production droplet remains the canonical full-index deployment target until that
-capacity constraint is removed.
+The intended long-horizon lifecycle is source-local and streaming:
+
+1. hydrate exactly the source/review unit currently being inspected;
+2. inspect it and record snapshot-pinned retain/exclude decisions;
+3. materialize that source's filtered view;
+4. build or replace only that repository's Zoekt shard(s);
+5. remove the temporary filtered view and dehydrate the source checkout again.
+
+The same principle applies to initial seeding: there is no requirement for all 885
+source trees to coexist. A seed pass may hydrate, catalogue, filter, and index one
+source (or a bounded batch) at a time and immediately dehydrate it before proceeding.
+A from-scratch all-source hydration is therefore an optional convenience, not part
+of the storage model.
+
+On 2026-09-15 the connector host had 144 GB total / 127 GB used / 11 GB available
+(93% used), while the persistent primary `.zoekt` index was about 10 GB. That is
+enough for the intended source-local lifecycle so long as hydration is bounded. It
+is not enough to keep a second full corpus source forest resident beside the index,
+but doing so is unnecessary. `.index-primary` normally hardlinks source files and
+should also be treated as ephemeral per-source build state rather than a persistent
+full-corpus tree.
+
+**Implementation debt:** the legacy `just index`, `filter-views`, and
+`repository-review.py build` paths still assume broad/full hydration in places. The
+long-horizon workstream should make source-local `hydrate -> review -> filter-view ->
+index -> dehydrate` operations first-class and should not use those global commands
+as evidence that full corpus hydration or full corpus reindexing is required. A
+filter change in one source normally requires replacing only that source's shard.
 
 Build provenance: the corpus was created in the 2026-08-13 codex session
 (`rollout-2026-08-13T15-07-42-019ff9f2-bc0e-7de0-9bcd-c9630d6a8813.jsonl`,
