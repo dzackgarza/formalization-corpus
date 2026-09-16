@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "7fee5537c0fbcd90f19312f7e1fba7c4464401cb",
-  "generated_at": "2026-09-16T04:53:58.371995+00:00",
+  "corpus_git_commit": "26cf129e5769052cf3c02418531360c4430e4879",
+  "generated_at": "2026-09-16T05:18:46.248644+00:00",
   "groups": [
     {
       "canonical": {
@@ -881,26 +881,6 @@
       ],
       "sha256": "02cdafbfc3d69e43dffe6d6119b3cbfd510a1927b808633e102e62293a99f795",
       "size_bytes": 9323
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/crypto/hmac/portcullis.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/crypto/hmac/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/crypto/sha-2/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "02d72fefa48cc1eeab690d36070a15bb8c84600d4defe0084b45114b7a4e4554",
-      "size_bytes": 293
     },
     {
       "canonical": {
@@ -7579,86 +7559,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/c/transformation/tests/add-section-attr/cert.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/transformation/tests/add-section-attr/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/call-graph/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/constant-propagation/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/copy-fn/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/deftrans/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/rename/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/simpadd0/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/specialize/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/split-all-gso/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/split-fn-when/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/split-fn/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/split-gso/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/struct-type-split/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/wrap-fn/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "1acecc1d02351169d057c20bac955d79bced0ce42444f1b528834bda7dcf7444",
-      "size_bytes": 449
-    },
-    {
-      "canonical": {
         "file": "benchmark-goals/amc12b-2002-p6.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -13519,15 +13419,10 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/crypto/padding/portcullis.acl2",
+        "file": "books/projects/execloader/portcullis.acl2",
         "repository": "acl2__acl2"
       },
       "occurrences": [
-        {
-          "file": "books/kestrel/crypto/padding/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
         {
           "file": "books/projects/execloader/portcullis.acl2",
           "proof_assistant": "acl2",
@@ -13851,41 +13746,6 @@
       ],
       "sha256": "3088374bf4c096d1784713958275f29eeecce011b53703a63a3f711c70aa13e2",
       "size_bytes": 1921
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/risc-v/executable/cert.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/risc-v/executable/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/library-extensions/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/optimized/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/specialized/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/specification/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "308d109ce7228d369e523efd709fd986e230addb978a9febdd42966b69b6e092",
-      "size_bytes": 411
     },
     {
       "canonical": {
@@ -21119,26 +20979,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/rust/portcullis.lisp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/rust/portcullis.lisp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/rust/syntax/portcullis.lisp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "4ad6d84915a81e126066958f08bd0ddd1119fb86086fff1a37816b20ab6246c7",
-      "size_bytes": 499
-    },
-    {
-      "canonical": {
         "file": "src/pseudo_normed_group/category/CompHausFiltPseuNormGrp.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -22496,86 +22336,6 @@
       ],
       "sha256": "5052f91c5f636cd2ad6e05e81e93fcac92a29773b3544ec362e1164501bab184",
       "size_bytes": 223
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/c/transformation/tests/add-section-attr/acl2-customization.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/transformation/tests/add-section-attr/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/call-graph/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/constant-propagation/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/copy-fn/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/deftrans/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/rename/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/simpadd0/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/specialize/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/split-all-gso/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/split-fn-when/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/split-fn/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/split-gso/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/struct-type-split/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/wrap-fn/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "505ed14b3d916ed5f7d3c181634e6d3e6f99b2497b7b3a3417986ab167dbbdce",
-      "size_bytes": 421
     },
     {
       "canonical": {
@@ -37624,31 +37384,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/risc-v/portcullis.lisp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/risc-v/portcullis.lisp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/specialized/rv32im-le/portcullis.lisp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/specialized/rv64im-le/portcullis.lisp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "841d200b2cb53b4fa5d4b0e759224368237131b91d9a8230dacbfbdb0eba31b7",
-      "size_bytes": 400
-    },
-    {
-      "canonical": {
         "file": "src/for_mathlib/bicartesian2.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -39654,15 +39389,10 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/htclient/cert.acl2",
+        "file": "books/workshops/2018/sumners/cert.acl2",
         "repository": "acl2__acl2"
       },
       "occurrences": [
-        {
-          "file": "books/kestrel/htclient/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
         {
           "file": "books/workshops/2018/sumners/cert.acl2",
           "proof_assistant": "acl2",
@@ -40361,26 +40091,6 @@
       ],
       "sha256": "8e0281f0db2bad5893f1a49a3d93cabf2fef647f5a28eb0a989c335c8f2a1655",
       "size_bytes": 892
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/c/syntax/portcullis.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/syntax/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "8e05f0ec66207334b135dcd832ad224bab3f0b9306f438aeabcf5707e42ba4ce",
-      "size_bytes": 319
     },
     {
       "canonical": {
@@ -43109,31 +42819,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/rust/import/cert.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/rust/import/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/rust/mir/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/rust/syntax/tests/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "9793ab803a56fb51ef0cacea29ad6b5f74520afea49c5a43e1e8a8bc33aa78fe",
-      "size_bytes": 49
-    },
-    {
-      "canonical": {
         "file": "FormalisingMathematics2024/Solutions/Section17curvesAndSurfaces/Sheet3.lean",
         "repository": "ImperialCollegeLondon__formalising-mathematics-2024"
       },
@@ -43371,26 +43056,6 @@
       ],
       "sha256": "9868a485071ab9a4cc1352b29bf3e5ccd7d564e00cdc80ba923f9c3ab8987084",
       "size_bytes": 163
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/c/transformation/tests/free-vars/cert.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/transformation/tests/free-vars/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/subst-free/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "987050fa4ddb7addde776b1423c6846757d30ed1e3e6e492334b54ec8886f608",
-      "size_bytes": 439
     },
     {
       "canonical": {
@@ -43976,26 +43641,6 @@
       ],
       "sha256": "9abd8a4ba6f3ba56163c39b9191b06618c99d3c84d65a275c5a6907513ba8cdf",
       "size_bytes": 2537
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/c/syntax/tests/cert.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/syntax/tests/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/utilities/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "9abe04e6b4a7d0b420c355ffbd74e3ef993b5221fc961edbd110af8e2fd7edaa",
-      "size_bytes": 436
     },
     {
       "canonical": {
@@ -45911,31 +45556,6 @@
       ],
       "sha256": "a0d7d76eb7bb2c88631ea4508145c44458a4c60f7ca3f9958f8d29166277421b",
       "size_bytes": 426
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/crypto/blake/cert.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/crypto/blake/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/crypto/hmac/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/crypto/sha-2/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "a0de968d472cbb88c0c0015cfdee7c6c0a570d820bcfc79d0aed0ece2d926dca",
-      "size_bytes": 306
     },
     {
       "canonical": {
@@ -51074,26 +50694,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/rust/cert.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/rust/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/rust/syntax/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "b151f2ea8b0bc917ceca0d20e24cc900a0bba02f0d5f292857986bc0d3f56bf4",
-      "size_bytes": 339
-    },
-    {
-      "canonical": {
         "file": "benchmark-goals/putnam-1972-a6.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -51834,26 +51434,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/c/syntax/cert.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/syntax/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "b409ecb40085e61d7c30e822628bd1a2fb0b2e2d2c9d44dd7ed9414e371f9574",
-      "size_bytes": 443
-    },
-    {
-      "canonical": {
         "file": "QBF/qbfr.ml",
         "repository": "CakeML__candle"
       },
@@ -52016,31 +51596,6 @@
       ],
       "sha256": "b48ecbaa59bce649905ae2329412a445927e3fff9eb86c59fec06a34094a045e",
       "size_bytes": 372
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/risc-v/portcullis.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/risc-v/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/specialized/rv32im-le/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/specialized/rv64im-le/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "b4a1d333d47b9f335a0ebb7b08d5779ee595daed272408dc1e9dad8206b24022",
-      "size_bytes": 399
     },
     {
       "canonical": {
@@ -54291,26 +53846,6 @@
       ],
       "sha256": "b7a606d58e38aa5f34ae44cc367230d3669527e1408d692500d96844c1c9749f",
       "size_bytes": 1633
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/rust/portcullis.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/rust/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/rust/syntax/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "b7acf0d591ad53ff5be5733926c2dde0548fb32cec97835c226ebe9148519f1c",
-      "size_bytes": 311
     },
     {
       "canonical": {
@@ -57724,26 +57259,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/c/transformation/tests/free-vars/acl2-customization.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/transformation/tests/free-vars/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/subst-free/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "c480104fe292aafc28ae018d00abc121d3652d516c7f5fa9f30be80f0d11e149",
-      "size_bytes": 411
-    },
-    {
-      "canonical": {
         "file": "References/Tutorials/Exercises/04Exists.lean",
         "repository": "glams-lean-2024__formal-2024"
       },
@@ -57961,26 +57476,6 @@
       ],
       "sha256": "c599f8faeba06471890cf9abb5867f701b6cc851cddd6ed5ba44a417e67ae011",
       "size_bytes": 242
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/crypto/chacha/portcullis.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/crypto/chacha/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/crypto/salsa/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "c5d387b82e284bb4aeaea7ceaba79f1e03b7efba9d3948c25f829daded8e1fc8",
-      "size_bytes": 298
     },
     {
       "canonical": {
@@ -62016,26 +61511,6 @@
       ],
       "sha256": "d4bfce2e0445ff7e13df8e6a2905b2b8574603dc1c0b12e4248fcec51c09b62f",
       "size_bytes": 1909
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/crypto/padding/cert.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/crypto/padding/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/workshops/2025/manjrekar/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "d4d36934afd70bd000ac61a8ff363520c50973b5d36feb0afa31e53305e75522",
-      "size_bytes": 27
     },
     {
       "canonical": {
@@ -66234,41 +65709,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/risc-v/executable/acl2-customization.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/risc-v/executable/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/library-extensions/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/optimized/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/specialized/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/risc-v/specification/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "dda2b45cf94be748f66e40e8f72bbf8969622082af9f1b1a47ed5d9d35de50fa",
-      "size_bytes": 500
-    },
-    {
-      "canonical": {
         "file": "projects/AdicSpaces/Adic spaces/AdicCompletionTransfer.lean",
         "repository": "CBirkbeck__AINTLIB"
       },
@@ -69069,31 +68509,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/c/atc/acl2-customization.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/atc/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/language/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/representation/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "e8e0616ac442d92aa98a37073715242d5a29268a3ed2a7c9ab17f8482d6cef53",
-      "size_bytes": 491
-    },
-    {
-      "canonical": {
         "file": "SSA/Projects/InstCombine/Tests/goals/gtrunc_proof_test7_thm_extracted_1__1.lean",
         "repository": "opencompl__lean-mlir"
       },
@@ -69881,26 +69296,6 @@
       ],
       "sha256": "ec664f9bd2338153b72c5506fcc28948051afa760db0f3f62ee0d908e1c24eb8",
       "size_bytes": 14080
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/crypto/attachments/cert.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/crypto/attachments/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/crypto/interfaces/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "ec7608132fde8eb6cc042e3e793f622294cee58f937f40f952c1c80bbbe2d8ae",
-      "size_bytes": 336
     },
     {
       "canonical": {
@@ -73149,26 +72544,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/htclient/portcullis.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/htclient/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/workshops/2018/sumners/portcullis.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "f82719b2edcf9da7a97f94b07bac980f2801f53725261a907a73fc0dd1a6957a",
-      "size_bytes": 69
-    },
-    {
-      "canonical": {
         "file": "tests/scenario/docs/SlowClose.lean",
         "repository": "ejgallego__lean-beam"
       },
@@ -73306,31 +72681,6 @@
       ],
       "sha256": "f8bc1e98f53f6ce4fd58f4f346de07b49dfbca250c5cee73833cd981da59cb66",
       "size_bytes": 17366
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/yul/language/acl2-customization.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/yul/language/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/yul/library-extensions/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/yul/transformations/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "f8d9ed54673f036402e0a04fa051bc1b56bd810c7c8476eb65c90cb40eafb0c2",
-      "size_bytes": 413
     },
     {
       "canonical": {
@@ -74434,26 +73784,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/crypto/attachments/acl2-customization.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/crypto/attachments/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/crypto/interfaces/acl2-customization.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "fc28d6944a4b47317a86c533211e499e58b3a110731a89840b77fbf8939cc15a",
-      "size_bytes": 426
-    },
-    {
-      "canonical": {
         "file": "benchmark-goals/putnam-1972-b1.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -74511,31 +73841,6 @@
       ],
       "sha256": "fc905bea575618acaa456d6e49ac14e4329ce4100d387e6bf5cd11614e6edc9b",
       "size_bytes": 290
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/yul/language/cert.acl2",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/yul/language/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/yul/library-extensions/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/yul/transformations/cert.acl2",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "fc90aab0a6fe1d9e4c55d8eb9fe8a447e4875564008332acb788d2b8f468263d",
-      "size_bytes": 326
     },
     {
       "canonical": {
@@ -74676,26 +73981,6 @@
       ],
       "sha256": "fce66c4238c89c12bdfcec3fedd68755304c206c275ffd31aaff6890f5ee8e54",
       "size_bytes": 2375
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/c/syntax/portcullis.lisp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/syntax/portcullis.lisp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/portcullis.lisp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "fcefd147817f3c0ee9544234d7d20fe917963b819bb92f6a3e87008cc2668ab0",
-      "size_bytes": 320
     },
     {
       "canonical": {
