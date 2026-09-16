@@ -10,7 +10,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import httpx
 
-from formalization_api.app import create_app
+from formalization_api.app import _isolated_git_env, create_app
 
 
 class BackendHandler(BaseHTTPRequestHandler):
@@ -526,6 +526,7 @@ def git(*args: str, cwd: pathlib.Path | None = None) -> str:
     return subprocess.run(
         ["git", *args],
         cwd=cwd,
+        env=_isolated_git_env(),
         check=True,
         text=True,
         stdout=subprocess.PIPE,
