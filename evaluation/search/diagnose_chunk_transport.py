@@ -114,12 +114,25 @@ def main() -> int:
     parser.add_argument("--timeout", type=float, default=30.0)
     parser.add_argument("--depth", type=int, default=200)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument(
+        "--batch-first-pass",
+        action="store_true",
+        help="compare the complete unique query population through two API batch requests before bounded per-query repeats",
+    )
+    parser.add_argument("--batch-max-concurrency", type=int, default=4)
     parser.add_argument("--api-retries", type=int, default=2)
     parser.add_argument("--output", type=pathlib.Path, required=True)
     args = parser.parse_args()
 
-    if args.depth <= 0 or args.workers <= 0 or args.api_retries < 0:
-        parser.error("depth/workers must be positive and api-retries nonnegative")
+    if (
+        args.depth <= 0
+        or args.workers <= 0
+        or args.batch_max_concurrency <= 0
+        or args.api_retries < 0
+    ):
+        parser.error(
+            "depth/workers/batch-max-concurrency must be positive and api-retries nonnegative"
+        )
 
     gold = evaluate.load_gold(args.gold)
     expansion_data, expansions = load_expansion_queries(args.expansions, gold)
@@ -153,18 +166,53 @@ def main() -> int:
     index_before = evaluate.api_index_fingerprint(args.api_url, args.timeout)
     started = time.perf_counter()
     rows: list[dict[str, Any]] = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
-        futures = {
-            executor.submit(pair, number, query): number
-            for number, query in enumerate(queries, start=1)
-        }
-        completed = 0
-        for future in concurrent.futures.as_completed(futures):
-            rows.append(future.result())
-            completed += 1
-            if completed % 20 == 0 or completed == len(queries):
-                print(f"paired {completed}/{len(queries)}", flush=True)
-    rows.sort(key=lambda row: row["number"])
+    chunked_batch_runtime: dict[str, Any] | None = None
+    chunkless_batch_runtime: dict[str, Any] | None = None
+    if args.batch_first_pass:
+        chunked_by_query, chunked_batch_runtime = evaluate.api_search_batch(
+            queries,
+            args.timeout,
+            args.api_url,
+            {**serving, "chunk_matches": True},
+            max_concurrency=args.batch_max_concurrency,
+            retries=args.api_retries,
+        )
+        chunkless_by_query, chunkless_batch_runtime = evaluate.api_search_batch(
+            queries,
+            args.timeout,
+            args.api_url,
+            {**serving, "chunk_matches": False},
+            max_concurrency=args.batch_max_concurrency,
+            retries=args.api_retries,
+        )
+        for number, query in enumerate(queries, start=1):
+            chunked = ordered_rows(chunked_by_query[query])
+            chunkless = ordered_rows(chunkless_by_query[query])
+            rows.append(
+                {
+                    "number": number,
+                    "query": query,
+                    "chunked": chunked,
+                    "chunkless": chunkless,
+                    "chunked_runtime": None,
+                    "chunkless_runtime": None,
+                    **compare_rankings(chunked, chunkless),
+                }
+            )
+        print(f"paired {len(rows)}/{len(queries)} through batch endpoint", flush=True)
+    else:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
+            futures = {
+                executor.submit(pair, number, query): number
+                for number, query in enumerate(queries, start=1)
+            }
+            completed = 0
+            for future in concurrent.futures.as_completed(futures):
+                rows.append(future.result())
+                completed += 1
+                if completed % 20 == 0 or completed == len(queries):
+                    print(f"paired {completed}/{len(queries)}", flush=True)
+        rows.sort(key=lambda row: row["number"])
 
     index_after = evaluate.api_index_fingerprint(args.api_url, args.timeout)
     if index_after != index_before:
@@ -201,12 +249,28 @@ def main() -> int:
             }
         )
 
-    chunked_payloads = [float(row["chunked_runtime"]["payload_bytes"]) for row in rows]
-    chunkless_payloads = [float(row["chunkless_runtime"]["payload_bytes"]) for row in rows]
-    chunked_latencies = [float(row["chunked_runtime"]["elapsed_ms"]) for row in rows]
-    chunkless_latencies = [float(row["chunkless_runtime"]["elapsed_ms"]) for row in rows]
-    chunked_payload = sum(chunked_payloads)
-    chunkless_payload = sum(chunkless_payloads)
+    if args.batch_first_pass:
+        assert chunked_batch_runtime is not None
+        assert chunkless_batch_runtime is not None
+        chunked_payload = float(chunked_batch_runtime["payload_bytes"])
+        chunkless_payload = float(chunkless_batch_runtime["payload_bytes"])
+        chunked_latencies: list[float] = []
+        chunkless_latencies: list[float] = []
+    else:
+        chunked_payloads = [
+            float(row["chunked_runtime"]["payload_bytes"]) for row in rows
+        ]
+        chunkless_payloads = [
+            float(row["chunkless_runtime"]["payload_bytes"]) for row in rows
+        ]
+        chunked_latencies = [
+            float(row["chunked_runtime"]["elapsed_ms"]) for row in rows
+        ]
+        chunkless_latencies = [
+            float(row["chunkless_runtime"]["elapsed_ms"]) for row in rows
+        ]
+        chunked_payload = sum(chunked_payloads)
+        chunkless_payload = sum(chunkless_payloads)
     repo_state = provenance.repository_state(evaluate.ROOT)
     report = {
         "schema_version": 1,
@@ -227,11 +291,18 @@ def main() -> int:
         "expansions_sha256": hashlib.sha256(args.expansions.read_bytes()).hexdigest(),
         "diagnostic": {
             "workers": args.workers,
+            "batch_first_pass": args.batch_first_pass,
+            "batch_max_concurrency": args.batch_max_concurrency
+            if args.batch_first_pass
+            else None,
             "api_retries": args.api_retries,
             "unique_queries": len(queries),
-            "paired_requests": 2 * len(queries),
+            "paired_requests": 2 if args.batch_first_pass else 2 * len(queries),
+            "paired_backend_searches": 2 * len(queries),
             "repeat_requests": 4 * len(mismatches),
             "wall_ms": (time.perf_counter() - started) * 1000,
+            "chunked_batch_runtime": chunked_batch_runtime,
+            "chunkless_batch_runtime": chunkless_batch_runtime,
         },
         "metrics": {
             "unique_first_stage_queries": len(queries),
@@ -244,12 +315,30 @@ def main() -> int:
             "payload_reduction_fraction": (
                 0.0 if chunked_payload == 0 else 1.0 - chunkless_payload / chunked_payload
             ),
-            "chunked_latency_ms_mean": statistics.fmean(chunked_latencies),
-            "chunkless_latency_ms_mean": statistics.fmean(chunkless_latencies),
-            "chunked_latency_ms_p50": percentile(chunked_latencies, 0.50),
-            "chunkless_latency_ms_p50": percentile(chunkless_latencies, 0.50),
-            "chunked_latency_ms_p95": percentile(chunked_latencies, 0.95),
-            "chunkless_latency_ms_p95": percentile(chunkless_latencies, 0.95),
+            "chunked_latency_ms_mean": statistics.fmean(chunked_latencies)
+            if chunked_latencies
+            else None,
+            "chunkless_latency_ms_mean": statistics.fmean(chunkless_latencies)
+            if chunkless_latencies
+            else None,
+            "chunked_latency_ms_p50": percentile(chunked_latencies, 0.50)
+            if chunked_latencies
+            else None,
+            "chunkless_latency_ms_p50": percentile(chunkless_latencies, 0.50)
+            if chunkless_latencies
+            else None,
+            "chunked_latency_ms_p95": percentile(chunked_latencies, 0.95)
+            if chunked_latencies
+            else None,
+            "chunkless_latency_ms_p95": percentile(chunkless_latencies, 0.95)
+            if chunkless_latencies
+            else None,
+            "chunked_batch_elapsed_ms": chunked_batch_runtime["elapsed_ms"]
+            if chunked_batch_runtime is not None
+            else None,
+            "chunkless_batch_elapsed_ms": chunkless_batch_runtime["elapsed_ms"]
+            if chunkless_batch_runtime is not None
+            else None,
         },
         "mismatches": mismatches,
     }

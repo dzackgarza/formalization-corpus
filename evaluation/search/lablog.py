@@ -66,6 +66,8 @@ KEY_METRICS = (
     "chunkless_latency_ms_p50",
     "chunked_latency_ms_p95",
     "chunkless_latency_ms_p95",
+    "chunked_batch_elapsed_ms",
+    "chunkless_batch_elapsed_ms",
 )
 
 
