@@ -11,6 +11,7 @@ judgment-independent SQLite FTS5 evidence ranker to that finite candidate set.
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import hashlib
 import json
 import pathlib
@@ -125,6 +126,11 @@ def main() -> int:
         action="store_true",
         help="add fielded and multiquery source ranks as equal-weight RRF evidence channels",
     )
+    parser.add_argument(
+        "--parallel-first-stages",
+        action="store_true",
+        help="run the independent fielded and multiquery first stages concurrently",
+    )
     parser.add_argument("--output", type=pathlib.Path)
     args = parser.parse_args()
 
@@ -168,26 +174,55 @@ def main() -> int:
 
     for number, case in enumerate(gold["cases"], start=1):
         try:
-            fielded, fielded_runtime, field_queries = retrieve_fielded(
-                case["query"],
-                timeout=args.timeout,
-                provider="api",
-                api_url=args.api_url,
-                serving=serving,
-                depth=args.depth,
-                rrf_constant=args.rrf_constant,
-                weights=weights,
-            )
-            multiquery, multiquery_runtime, formulations, compiled = retrieve_multiquery(
-                case,
-                expansion_queries,
-                timeout=args.timeout,
-                rrf_constant=args.rrf_constant,
-                depth=args.depth,
-                provider="api",
-                api_url=args.api_url,
-                serving=serving,
-            )
+            first_stage_started = time.perf_counter()
+            if args.parallel_first_stages:
+                with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+                    fielded_future = executor.submit(
+                        retrieve_fielded,
+                        case["query"],
+                        timeout=args.timeout,
+                        provider="api",
+                        api_url=args.api_url,
+                        serving=serving,
+                        depth=args.depth,
+                        rrf_constant=args.rrf_constant,
+                        weights=weights,
+                    )
+                    multiquery_future = executor.submit(
+                        retrieve_multiquery,
+                        case,
+                        expansion_queries,
+                        timeout=args.timeout,
+                        rrf_constant=args.rrf_constant,
+                        depth=args.depth,
+                        provider="api",
+                        api_url=args.api_url,
+                        serving=serving,
+                    )
+                    fielded, fielded_runtime, field_queries = fielded_future.result()
+                    multiquery, multiquery_runtime, formulations, compiled = multiquery_future.result()
+            else:
+                fielded, fielded_runtime, field_queries = retrieve_fielded(
+                    case["query"],
+                    timeout=args.timeout,
+                    provider="api",
+                    api_url=args.api_url,
+                    serving=serving,
+                    depth=args.depth,
+                    rrf_constant=args.rrf_constant,
+                    weights=weights,
+                )
+                multiquery, multiquery_runtime, formulations, compiled = retrieve_multiquery(
+                    case,
+                    expansion_queries,
+                    timeout=args.timeout,
+                    rrf_constant=args.rrf_constant,
+                    depth=args.depth,
+                    provider="api",
+                    api_url=args.api_url,
+                    serving=serving,
+                )
+            first_stage_wall_ms = (time.perf_counter() - first_stage_started) * 1000
             candidates = balanced_union(
                 fielded,
                 multiquery,
@@ -221,11 +256,11 @@ def main() -> int:
         total_fetch_request_ms += float(fetch_runtime["fetch_request_ms"])
         runtime = {
             "elapsed_ms": (
-                fielded_runtime["elapsed_ms"]
-                + multiquery_runtime["elapsed_ms"]
+                first_stage_wall_ms
                 + fetch_runtime["fetch_wall_ms"]
                 + rerank_ms
             ),
+            "first_stage_wall_ms": first_stage_wall_ms,
             "fielded_retrieval_ms": fielded_runtime["elapsed_ms"],
             "multiquery_retrieval_ms": multiquery_runtime["elapsed_ms"],
             "fetch_wall_ms": fetch_runtime["fetch_wall_ms"],
@@ -279,9 +314,17 @@ def main() -> int:
         "expansion_model": expansion_data.get("model"),
         "expansion_prompt_version": expansion_data.get("prompt_version"),
         "variant": (
-            "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_v1"
+            (
+                "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_parallel_v1"
+                if args.parallel_first_stages
+                else "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_v1"
+            )
             if args.include_first_stage_ranks
-            else "fielded_multiquery_union_fts5_evidence_rrf_v1"
+            else (
+                "fielded_multiquery_union_fts5_evidence_rrf_parallel_v1"
+                if args.parallel_first_stages
+                else "fielded_multiquery_union_fts5_evidence_rrf_v1"
+            )
         ),
         "provider": "api+sqlite-fts5",
         "api_url": args.api_url,
@@ -289,6 +332,7 @@ def main() -> int:
         "first_stage": {
             "retrievers": ["zoekt_fielded_rrf_v1", "gemini_multiquery_rrf_v1"],
             "union": "rank-interleaved deduplicated bounded prefixes",
+            "execution": "parallel" if args.parallel_first_stages else "serial",
             "per_retriever_depth": args.per_retriever_depth,
             "field_weights": weights,
             "rrf_constant": args.rrf_constant,
