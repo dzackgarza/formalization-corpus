@@ -374,6 +374,7 @@ def main() -> int:
     total_first_stage_coalesced_hits = 0
     total_first_stage_backend_searches = 0
     total_first_stage_transport_requests = 0
+    total_first_stage_cache_counts: dict[str, int] = {}
 
     for number, case in enumerate(gold["cases"], start=1):
         shared_api_search = CoalescingApiSearch() if args.coalesce_first_stage_requests else None
@@ -552,6 +553,12 @@ def main() -> int:
         total_first_stage_backend_searches += int(runtime["backend_searches"])
         total_first_stage_transport_requests += int(runtime["physical_api_requests"])
         total_first_stage_coalesced_hits += int(runtime["coalesced_api_hits"])
+        if batch_runtime is not None:
+            for cache_status, count in batch_runtime["cache_counts"].items():
+                total_first_stage_cache_counts[cache_status] = (
+                    total_first_stage_cache_counts.get(cache_status, 0) + int(count)
+                )
+            runtime["first_stage_cache_counts"] = dict(batch_runtime["cache_counts"])
         scored = evaluate.score_case(
             case,
             reranked,
@@ -642,6 +649,9 @@ def main() -> int:
             "transport_requests": total_first_stage_transport_requests,
             "physical_api_requests": total_first_stage_physical_requests,
             "coalesced_api_hits": total_first_stage_coalesced_hits,
+            "cache_counts": total_first_stage_cache_counts
+            if args.batch_first_stage
+            else None,
         },
         "second_stage": {
             "engine": "sqlite-fts5",
