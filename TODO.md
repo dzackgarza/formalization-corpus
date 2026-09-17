@@ -48,10 +48,11 @@ still substantially too noisy, and the deployed lexical retriever still misses
 known direct-owner files.  Work must therefore flow through the following state
 machine rather than stopping after corpus hygiene.
 
-The frozen 24-query benchmark is the current quantitative anchor.  On the
-filtered corpus, deployed `frontend_lexical_v2` has owner Hit@10 = **0.625**,
-Hit@10 = **0.792**, MRR = **0.548**, and nDCG@10 = **0.419**.  Existing measured
-experiments already establish two important facts:
+The frozen 24-query benchmark is the current quantitative anchor.  After the
+complete repository-review campaign, deployed `frontend_lexical_v2` on the
+canonical remote index has owner Hit@10 = **0.583**, Hit@10 = **0.750**, MRR =
+**0.539**, and nDCG@10 = **0.406**.  Existing measured experiments establish two
+important facts:
 
 - frozen Gemini multi-query expansion + reciprocal-rank fusion raises owner
   Hit@10 to **0.750** and removes zero-result queries by increasing candidate
@@ -71,19 +72,20 @@ retrieval experiment must name the corpus/index fingerprint, query/gold version,
 retriever, model/version where applicable, latency, and cost.  Gold/qrel edits
 remain separate from retrieval-code changes.
 
-The current relevance set is too sparse for strong claims about novel retrievers:
-the depth-10 pooled set has 443 unique query/file candidates, of which 375 are
-still explicitly unjudged.  Before selecting a new retrieval family, expand the
-pool from materially different systems and judge it independently of which
-system returned each file.  As real user failures accumulate, add a held-out
-user-query slice so tuning does not optimize only theorem-style benchmark
-paraphrases.
+The current relevance set is too sparse for strong claims about novel retrievers.
+The post-review SQ2 depth-10 pool currently has **336** unique query/file
+candidates across deployed lexical-v2, frozen multi-query RRF, and the first
+BM25 candidate; **286** are explicitly unjudged.  Before selecting a new
+retrieval family, continue expanding the pool from materially different systems
+and judge it independently of which system returned each file.  As real user
+failures accumulate, add a held-out user-query slice so tuning does not optimize
+only theorem-style benchmark paraphrases.
 
 **Gate SQ0:** evaluation can compare new retrieval families without treating
 `unjudged` as `irrelevant`, and every candidate run is reproducible from its
 recorded corpus/index state.
 
-### SQ1 — Corpus hygiene / noise removal — ACTIVE, BENCHMARK FRONTIER
+### SQ1 — Corpus hygiene / noise removal — COMPLETE
 
 Complete the repository-by-repository review below.  This stage removes only
 source-local material that can be excluded with a high-confidence
@@ -99,19 +101,20 @@ blanket path-name cleanup: test/tutorial/generated/deprecated/benchmark/import
 files remain when they contain useful formal content.  Role tagging and
 reversible downranking are preferred when hard exclusion is not lossless.
 
-Current campaign state (2026-09-17): **1,272** stable work units total; **1,272**
+Final campaign state (2026-09-17): **1,272** stable work units total; **1,272**
 completed (**1,145** retained/reviewed units and **127** source-retirement units),
-**0** pending; **6,908** exact repository-local FD-018 exclusions.  The exhaustive
-repository-review frontier is complete; the live SQ1 frontier is the required
-post-filter benchmark/pool rerun against the fully materialized remote index.
+**0** pending; **6,908** exact repository-local FD-018 exclusions.  All accepted
+source-local decisions were materialized into the canonical remote index, the
+source caches were dehydrated after their review batches, and the required
+post-filter production benchmark/pool rerun is recorded in the search ledger.
 
-**Gate SQ1:** zero pending repository-review units, accepted per-source filtering
-materialized into the canonical remote index, retained-role metadata preserved,
-and the post-filter benchmark/pool rerun.  Corpus hygiene is a prerequisite for
-choosing the next production ranking stack, not the completion of search-quality
-work.
+**Gate SQ1 — PASSED:** zero pending repository-review units, accepted per-source
+filtering materialized into the canonical remote index, retained-role metadata
+preserved, and the post-filter benchmark/pool rerun completed.  Corpus hygiene is
+a prerequisite for choosing the next production ranking stack, not the
+completion of search-quality work.
 
-### SQ2 — Strong lexical first-stage retrieval — QUEUED AFTER SQ1
+### SQ2 — Strong lexical first-stage retrieval — ACTIVE, CURRENT FRONTIER
 
 Replace the assumption that raw Zoekt ranking is the best lexical scorer with a
 measured fielded information-retrieval stage.  Evaluate mature implementations
@@ -128,8 +131,15 @@ rather than hand-rolling a scoring engine.  At minimum compare:
   experiment if ordinary BM25/fielding plateaus.
 
 Compare candidate recall at depths 10/20/50/100/200, not only displayed top-10.
-The current lexical baseline plateaus on direct-owner recall; a better reranker
-is irrelevant if the correct file is absent from its pool.
+The current post-review lexical-v2 baseline now has a measured direct-owner
+plateau: Owner Hit@10/20/50/100/200 is **0.583 at every cutoff**.  Zoekt's
+built-in BM25 scorer has also been measured under identical normalized query
+semantics and a depth-200 budget; it lowers Owner Hit@10 to **0.500** and only
+reaches **0.583** by depth 50, so it is rejected as the lexical improvement
+candidate.  The immediate frontier is genuinely fielded lexical retrieval over
+mathematical/source structure, while SQ0 pooling/judgment expansion proceeds so
+a later winner is not selected against sparse qrels.  A better reranker is
+irrelevant if the correct file is absent from its pool.
 
 **Gate SQ2:** materially stronger first-stage owner recall than lexical-v2 on the
 expanded qrels/held-out slice, without unacceptable latency or loss of exact-name

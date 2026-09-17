@@ -316,6 +316,26 @@ the exact current primary shard count, byte fingerprint, and production latency
 are recorded by the immutable run artifacts rather than treated as search-quality
 claims here.
 
+The exhaustive repository-review campaign subsequently changed the canonical
+production corpus again.  After all 1,272 review units were closed and their
+accepted source-local decisions were published, the authoritative remote index
+contains 201,221 documents across 762 registered sources.  On that exact index,
+the post-review `frontend_lexical_v2` run records Owner Hit@10 0.583, Hit@10
+0.750, MRR 0.539, and nDCG@10 0.406.  These values supersede the earlier
+intermediate-filter numbers as the current production reference; the earlier
+measurements above remain historical evidence about the filtering steps that
+produced them.
+
+A depth-200 rerun on the same production index shows that raw lexical-v2 owner
+recall does not increase after the displayed top ten: Owner Hit@10, @20, @50,
+@100, and @200 are all 0.583.  Zoekt's built-in BM25 scorer was then tested as
+the first SQ2 lexical alternative with the same normalized query semantics and
+candidate budget.  It gives Owner Hit@10 0.500 and reaches only 0.583 by depth
+50, while Hit@10 falls from 0.750 to 0.708.  It is therefore retained as a
+negative experimental result rather than a production candidate.  The next
+lexical experiment must use genuinely distinct fielded evidence rather than
+merely switching Zoekt's scorer.
+
 The public webserver also has a measured serving-quality parameter. Zoekt's JSON
 handler derives internal per-shard match limits from `MaxDocDisplayCount` when no
 explicit `ShardMaxMatchCount` is supplied; the display count is therefore **not**
@@ -346,13 +366,15 @@ before drawing strong conclusions from a new family of retrievers:
 
 `build_pool.py` produces that review set without assigning relevance to
 unjudged files.  Reviewed nonrelevant files are recorded explicitly as relevance
-0 and reported separately from candidates still awaiting review.  The current
-depth-10 pool combines the frozen frontend baseline, normalized
+0 and reported separately from candidates still awaiting review.  The historical
+pre-campaign depth-10 pool combined the frozen frontend baseline, normalized
 path/content lexical retrieval, frozen multi-query RRF, and the measured Cohere
-reranker.  It has 443 unique query/file candidates: 63 judged relevant, 5 judged
-nonrelevant, and 375 explicitly unjudged.  The gold set currently contains 84
-judgments total; some judged files lie outside this depth-10 pool.  Unjudged does
-not mean irrelevant.
+reranker; it had 443 unique query/file candidates, 375 of them unjudged.  The
+current post-review SQ2 pool instead combines production lexical-v2, frozen
+multi-query RRF, and the measured Zoekt-BM25 candidate on the canonical remote
+index.  It has 336 unique candidates: 44 judged relevant, 6 judged nonrelevant,
+and 286 explicitly unjudged.  The gold set contains 84 judgments total; some
+judged files lie outside this depth-10 pool.  Unjudged does not mean irrelevant.
 
 This follows the TREC test-collection model: pool top documents from diverse
 runs, judge the pool, and keep qrels distinct from run output.  It also avoids a
@@ -364,21 +386,20 @@ worse simply because many of its top results were never judged.
 The measured experiments narrow the next branches:
 
 - **Fielded lexical retrieval first.** Module/file paths are unusually valuable
-  in formal libraries.  The current combination of conservative query
-  normalization, path evidence, and the safe primary-content filter raises
-  owner Hit@10 from the historical v1 value 0.167 to 0.625 on the current qrels.
+  in formal libraries.  The post-review production reference has Owner Hit@10
+  0.583.  Switching only to Zoekt's built-in BM25 scorer lowers that to 0.500,
+  so the live hypothesis is explicitly weighted source/path/declaration/
+  signature/body fields rather than a scorer toggle over the same representation.
 - **Semantic first-stage retrieval, not reranking alone.** For normalized
-  path/content retrieval, owner Hit@20 is currently 0.625.  A pre-filter
-  candidate-depth audit also plateaued at 0.625 through depths 50, 100, and 150;
-  that deeper audit should be rerun against the filtered index before treating
-  the exact plateau as current.  The general candidate-recall limitation remains
-  directly testable: no reranker can recover an owner file absent from its
-  candidate pool.
+  path/content retrieval, the post-review depth audit now measures Owner Hit
+  0.583 at every cutoff 10/20/50/100/200.  The candidate-recall limitation is
+  therefore current rather than inherited from a pre-filter audit: no reranker
+  can recover an owner file absent from its candidate pool.
 - **Hybrid fusion.** Exact formal identifiers and semantic paraphrases are
   complementary.  Combine independent lexical/dense runs by a rank-based method
   such as Reciprocal Rank Fusion before learning score calibration.
 - **Hierarchical retrieval.** Normalized lexical retrieval already has source
-  Hit@5 = 0.958 while owner Hit@10 = 0.625.  This supports testing a cheap
+  Hit@10 = 0.917 while owner Hit@10 = 0.583.  This supports testing a cheap
   source-first stage followed by stronger file/chunk retrieval within a handful
   of sources, rather than assuming every request needs a global dense scan.
 - **Deterministic chunk context before generated context.** For file/chunk
