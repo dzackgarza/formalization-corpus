@@ -90,10 +90,22 @@ def fts5_rerank(
     contents: dict[tuple[str, str], str],
     *,
     content_mode: str = "full",
+    evidence_rrf_constant: int = 60,
 ) -> list[dict[str, Any]]:
-    """Rank a fixed candidate list with unweighted path/content FTS5 BM25."""
-    if content_mode not in {"full", "matched-windows"}:
+    """Rank a fixed candidate list with deterministic FTS5 evidence channels."""
+    if content_mode not in {"full", "matched-windows", "evidence-rrf"}:
         raise ValueError(f"unsupported FTS5 content mode: {content_mode}")
+    if evidence_rrf_constant <= 0:
+        raise ValueError("evidence RRF constant must be positive")
+
+    if content_mode == "evidence-rrf":
+        return fts5_evidence_rrf_rerank(
+            text,
+            candidates,
+            contents,
+            rrf_constant=evidence_rrf_constant,
+        )
+
     db = sqlite3.connect(":memory:")
     try:
         db.execute("CREATE VIRTUAL TABLE docs USING fts5(path, content, tokenize='unicode61')")
@@ -130,6 +142,84 @@ def fts5_rerank(
         item["Score"] = float("-inf")
         item["SecondStage"] = "sqlite_fts5_unmatched"
         ranked.append(item)
+    return ranked
+
+
+def fts5_evidence_rrf_rerank(
+    text: str,
+    candidates: list[dict[str, Any]],
+    contents: dict[tuple[str, str], str],
+    *,
+    rrf_constant: int = 60,
+) -> list[dict[str, Any]]:
+    """Fuse path/identifier, broad-content, and local-content FTS5 rankings.
+
+    Each channel is independently ranked by SQLite FTS5 BM25 and the resulting
+    ranks are combined with equal-weight reciprocal-rank fusion.  This keeps the
+    broad-file evidence that helped exact-name queries, adds bounded local
+    evidence, and gives path/identifier evidence an explicit channel without
+    calibrating incomparable BM25 scores or tuning field weights against qrels.
+    """
+    if rrf_constant <= 0:
+        raise ValueError("RRF constant must be positive")
+
+    db = sqlite3.connect(":memory:")
+    try:
+        for table in ("path_docs", "full_docs", "local_docs"):
+            db.execute(
+                f"CREATE VIRTUAL TABLE {table} USING fts5(text, tokenize='unicode61')"
+            )
+        for rowid, item in enumerate(candidates, start=1):
+            key = (item.get("Repository", ""), item.get("FileName", ""))
+            content = contents.get(key, "")
+            values = {
+                "path_docs": humanize_path(key[1]),
+                "full_docs": content,
+                "local_docs": query_matched_windows(text, content),
+            }
+            for table, value in values.items():
+                db.execute(
+                    f"INSERT INTO {table}(rowid, text) VALUES (?, ?)",
+                    (rowid, value),
+                )
+
+        match_query = fts5_match_query(text)
+        scores: dict[int, float] = {}
+        evidence: dict[int, list[str]] = {}
+        channel_names = {
+            "path_docs": "path",
+            "full_docs": "full-content",
+            "local_docs": "matched-windows",
+        }
+        for table, channel in channel_names.items():
+            rows = db.execute(
+                f"SELECT rowid, bm25({table}) AS score FROM {table} "
+                f"WHERE {table} MATCH ? ORDER BY score ASC, rowid ASC",
+                (match_query,),
+            ).fetchall()
+            for rank, (rowid, _) in enumerate(rows, start=1):
+                numeric_rowid = int(rowid)
+                scores[numeric_rowid] = scores.get(numeric_rowid, 0.0) + 1.0 / (
+                    rrf_constant + rank
+                )
+                evidence.setdefault(numeric_rowid, []).append(channel)
+    finally:
+        db.close()
+
+    ranked: list[dict[str, Any]] = []
+    for rowid, original in enumerate(candidates, start=1):
+        item = dict(original)
+        item["Score"] = scores.get(rowid, 0.0)
+        item["SecondStage"] = "sqlite_fts5_evidence_rrf"
+        item["SecondStageEvidence"] = evidence.get(rowid, [])
+        item["SecondStageOriginalRank"] = rowid
+        ranked.append(item)
+    ranked.sort(
+        key=lambda item: (
+            -float(item["Score"]),
+            int(item["SecondStageOriginalRank"]),
+        )
+    )
     return ranked
 
 
@@ -235,9 +325,10 @@ def main() -> int:
     parser.add_argument("--fetch-workers", type=int, default=8)
     parser.add_argument(
         "--content-mode",
-        choices=("full", "matched-windows"),
+        choices=("full", "matched-windows", "evidence-rrf"),
         default="full",
     )
+    parser.add_argument("--evidence-rrf-constant", type=int, default=60)
     parser.add_argument("--rrf-constant", type=int, default=60)
     parser.add_argument("--baseline-weight", type=float, default=2.0)
     parser.add_argument("--content-weight", type=float, default=1.0)
@@ -245,8 +336,17 @@ def main() -> int:
     parser.add_argument("--output", type=pathlib.Path)
     args = parser.parse_args()
 
-    if args.depth <= 0 or args.candidate_pool <= 0 or args.fetch_workers <= 0:
-        print("ERROR: depth, candidate-pool, and fetch-workers must be positive", file=sys.stderr)
+    if (
+        args.depth <= 0
+        or args.candidate_pool <= 0
+        or args.fetch_workers <= 0
+        or args.evidence_rrf_constant <= 0
+    ):
+        print(
+            "ERROR: depth, candidate-pool, fetch-workers, and evidence-rrf-constant "
+            "must be positive",
+            file=sys.stderr,
+        )
         return 2
     weights = {
         "baseline": args.baseline_weight,
@@ -294,6 +394,7 @@ def main() -> int:
                 candidates,
                 contents,
                 content_mode=args.content_mode,
+                evidence_rrf_constant=args.evidence_rrf_constant,
             )
             rerank_ms = (time.perf_counter() - rerank_started) * 1000
         except Exception as exc:
@@ -346,7 +447,11 @@ def main() -> int:
         "variant": (
             "zoekt_fielded_rrf_fts5_bm25_v1"
             if args.content_mode == "full"
-            else "zoekt_fielded_rrf_fts5_matched_windows_v1"
+            else (
+                "zoekt_fielded_rrf_fts5_matched_windows_v1"
+                if args.content_mode == "matched-windows"
+                else "zoekt_fielded_rrf_fts5_evidence_rrf_v1"
+            )
         ),
         "provider": "api+sqlite-fts5",
         "api_url": args.api_url,
@@ -360,16 +465,32 @@ def main() -> int:
             "sqlite_version": sqlite3.sqlite_version,
             "tokenizer": "unicode61",
             "fields": [
-                "humanized_path",
-                "full_source_content"
-                if args.content_mode == "full"
-                else "query_matched_source_windows",
+                *(
+                    ["humanized_path", "full_source_content", "query_matched_source_windows"]
+                    if args.content_mode == "evidence-rrf"
+                    else [
+                        "humanized_path",
+                        "full_source_content"
+                        if args.content_mode == "full"
+                        else "query_matched_source_windows",
+                    ]
+                ),
             ],
-            "field_weights": [1.0, 1.0],
+            "field_weights": None if args.content_mode == "evidence-rrf" else [1.0, 1.0],
             "match_semantics": "OR over shared normalized query terms",
             "content_mode": args.content_mode,
-            "matched_window_context_lines": 1 if args.content_mode == "matched-windows" else None,
-            "matched_window_limit": 8 if args.content_mode == "matched-windows" else None,
+            "matched_window_context_lines": 1
+            if args.content_mode in {"matched-windows", "evidence-rrf"}
+            else None,
+            "matched_window_limit": 8
+            if args.content_mode in {"matched-windows", "evidence-rrf"}
+            else None,
+            "fusion": "equal-weight reciprocal-rank fusion"
+            if args.content_mode == "evidence-rrf"
+            else None,
+            "fusion_rrf_constant": args.evidence_rrf_constant
+            if args.content_mode == "evidence-rrf"
+            else None,
         },
         "fetch_workers": args.fetch_workers,
         "fetch_payload_bytes": total_fetch_bytes,

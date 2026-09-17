@@ -191,6 +191,63 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         )
         self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_bm25_matched-windows")
 
+    def test_fts5_evidence_rrf_combines_path_broad_and_local_rankings(self) -> None:
+        candidates = [
+            {
+                "Repository": "r",
+                "FileName": "Linear/JordanAlgebra.lean",
+                "Score": 3.0,
+            },
+            {
+                "Repository": "r",
+                "FileName": "Linear/JordanCanonicalForm.lean",
+                "Score": 2.0,
+            },
+            {
+                "Repository": "r",
+                "FileName": "Linear/CanonicalMaps.lean",
+                "Score": 1.0,
+            },
+        ]
+        contents = {
+            ("r", "Linear/JordanAlgebra.lean"): "Jordan algebra Jordan algebra Jordan algebra",
+            ("r", "Linear/JordanCanonicalForm.lean"): (
+                "theorem jordanCanonicalForm : True := by\n"
+                "  -- Jordan canonical form for a linear operator\n"
+                "  trivial"
+            ),
+            ("r", "Linear/CanonicalMaps.lean"): "canonical linear map theorem",
+        }
+        reranked = fts5_rerank(
+            "Jordan canonical form of a linear operator",
+            candidates,
+            contents,
+            content_mode="evidence-rrf",
+        )
+        self.assertEqual(reranked[0]["FileName"], "Linear/JordanCanonicalForm.lean")
+        self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_evidence_rrf")
+        self.assertEqual(
+            reranked[0]["SecondStageEvidence"],
+            ["path", "full-content", "matched-windows"],
+        )
+
+    def test_fts5_evidence_rrf_preserves_first_stage_order_for_unmatched_candidates(self) -> None:
+        candidates = [
+            {"Repository": "r", "FileName": "A.lean", "Score": 2.0},
+            {"Repository": "r", "FileName": "B.lean", "Score": 1.0},
+        ]
+        contents = {
+            ("r", "A.lean"): "alpha",
+            ("r", "B.lean"): "beta",
+        }
+        reranked = fts5_rerank(
+            "Jordan canonical form",
+            candidates,
+            contents,
+            content_mode="evidence-rrf",
+        )
+        self.assertEqual([item["FileName"] for item in reranked], ["A.lean", "B.lean"])
+
     def test_query_compiler_does_not_hide_acl2_sys_proof_metadata(self) -> None:
         for variant in ("frontend_lexical_v1", "frontend_lexical_v2", "normalized_path_content_v1"):
             compiled = evaluate.compile_query("generated induction scheme", variant)
