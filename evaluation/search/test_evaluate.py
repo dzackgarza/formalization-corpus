@@ -21,7 +21,7 @@ from evaluate_fielded_fts5 import (  # noqa: E402
 )
 from evaluate_multiquery import retrieve_multiquery, rrf_fuse  # noqa: E402
 from evaluate_rerank import bounded_excerpt, humanize_path  # noqa: E402
-from evaluate_union_fts5 import balanced_union  # noqa: E402
+from evaluate_union_fts5 import add_first_stage_rank_evidence, balanced_union  # noqa: E402
 
 
 class SearchEvaluationTests(unittest.TestCase):
@@ -271,6 +271,34 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
             {"fielded": 1, "multiquery": 1},
         )
         self.assertEqual(union[1]["CandidateUnionRank"], 2)
+
+    def test_union_rank_evidence_rewards_independent_first_stage_support(self) -> None:
+        reranked = [
+            {
+                "Repository": "r",
+                "FileName": "content-only.lean",
+                "Score": 0.048,
+                "CandidateUnionRank": 2,
+                "CandidateSourceRanks": {"fielded": 40},
+            },
+            {
+                "Repository": "r",
+                "FileName": "agreed-owner.lean",
+                "Score": 0.047,
+                "CandidateUnionRank": 1,
+                "CandidateSourceRanks": {"fielded": 2, "multiquery": 3},
+            },
+        ]
+        fused = add_first_stage_rank_evidence(reranked, rrf_constant=60)
+        self.assertEqual(fused[0]["FileName"], "agreed-owner.lean")
+        self.assertEqual(
+            fused[0]["SecondStage"],
+            "sqlite_fts5_plus_first_stage_rank_rrf",
+        )
+        self.assertEqual(
+            fused[0]["FirstStageRankEvidence"],
+            {"fielded": 2, "multiquery": 3},
+        )
 
     def test_query_compiler_does_not_hide_acl2_sys_proof_metadata(self) -> None:
         for variant in ("frontend_lexical_v1", "frontend_lexical_v2", "normalized_path_content_v1"):

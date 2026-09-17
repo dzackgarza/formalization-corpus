@@ -67,6 +67,45 @@ def balanced_union(
     return result
 
 
+def add_first_stage_rank_evidence(
+    reranked: list[dict[str, Any]],
+    *,
+    rrf_constant: int = 60,
+) -> list[dict[str, Any]]:
+    """Add fielded/multiquery source ranks as two equal-weight RRF channels.
+
+    ``fts5_rerank(..., content_mode="evidence-rrf")`` already stores in
+    ``Score`` the equal-weight RRF sum from path, full-content, and local-content
+    ranks.  The candidate union records each first-stage rank independently, so
+    adding the corresponding reciprocal-rank terms gives a five-channel fusion
+    without calibrating scores or consulting relevance judgments.
+    """
+    if rrf_constant <= 0:
+        raise ValueError("RRF constant must be positive")
+    fused: list[dict[str, Any]] = []
+    for original in reranked:
+        item = dict(original)
+        source_ranks = item.get("CandidateSourceRanks") or {}
+        retrieval_score = sum(
+            1.0 / (rrf_constant + int(rank))
+            for source, rank in source_ranks.items()
+            if source in {"fielded", "multiquery"}
+        )
+        item["Score"] = float(item.get("Score", 0.0)) + retrieval_score
+        item["SecondStage"] = "sqlite_fts5_plus_first_stage_rank_rrf"
+        item["FirstStageRankEvidence"] = dict(source_ranks)
+        fused.append(item)
+    fused.sort(
+        key=lambda item: (
+            -float(item["Score"]),
+            int(item.get("CandidateUnionRank", 10**9)),
+            item.get("Repository", ""),
+            item.get("FileName", ""),
+        )
+    )
+    return fused
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--gold", type=pathlib.Path, default=evaluate.DEFAULT_GOLD)
@@ -81,6 +120,11 @@ def main() -> int:
     parser.add_argument("--baseline-weight", type=float, default=2.0)
     parser.add_argument("--content-weight", type=float, default=1.0)
     parser.add_argument("--path-weight", type=float, default=1.0)
+    parser.add_argument(
+        "--include-first-stage-ranks",
+        action="store_true",
+        help="add fielded and multiquery source ranks as equal-weight RRF evidence channels",
+    )
     parser.add_argument("--output", type=pathlib.Path)
     args = parser.parse_args()
 
@@ -162,6 +206,11 @@ def main() -> int:
                 content_mode="evidence-rrf",
                 evidence_rrf_constant=args.evidence_rrf_constant,
             )
+            if args.include_first_stage_ranks:
+                reranked = add_first_stage_rank_evidence(
+                    reranked,
+                    rrf_constant=args.evidence_rrf_constant,
+                )
             rerank_ms = (time.perf_counter() - rerank_started) * 1000
         except Exception as exc:
             print(f"ERROR {case['id']}: {exc}", file=sys.stderr)
@@ -229,7 +278,11 @@ def main() -> int:
         "expansions_sha256": hashlib.sha256(args.expansions.read_bytes()).hexdigest(),
         "expansion_model": expansion_data.get("model"),
         "expansion_prompt_version": expansion_data.get("prompt_version"),
-        "variant": "fielded_multiquery_union_fts5_evidence_rrf_v1",
+        "variant": (
+            "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_v1"
+            if args.include_first_stage_ranks
+            else "fielded_multiquery_union_fts5_evidence_rrf_v1"
+        ),
         "provider": "api+sqlite-fts5",
         "api_url": args.api_url,
         "serving_options": serving,
@@ -257,6 +310,9 @@ def main() -> int:
             "matched_window_limit": 8,
             "fusion": "equal-weight reciprocal-rank fusion",
             "fusion_rrf_constant": args.evidence_rrf_constant,
+            "first_stage_rank_channels": ["fielded", "multiquery"]
+            if args.include_first_stage_ranks
+            else [],
         },
         "fetch_workers": args.fetch_workers,
         "fetch_payload_bytes": total_fetch_bytes,
