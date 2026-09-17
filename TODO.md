@@ -73,9 +73,10 @@ retriever, model/version where applicable, latency, and cost.  Gold/qrel edits
 remain separate from retrieval-code changes.
 
 The current relevance set is too sparse for strong claims about novel retrievers.
-The post-review SQ2 depth-10 pool currently has **336** unique query/file
-candidates across deployed lexical-v2, frozen multi-query RRF, and the first
-BM25 candidate; **286** are explicitly unjudged.  Before selecting a new
+The post-review SQ2 depth-10 pool currently has **414** unique query/file
+candidates across deployed lexical-v2, frozen multi-query RRF, the BM25 control,
+and the first field-separated lexical candidate; **362** are explicitly
+unjudged.  Before selecting a new
 retrieval family, continue expanding the pool from materially different systems
 and judge it independently of which system returned each file.  As real user
 failures accumulate, add a held-out user-query slice so tuning does not optimize
@@ -136,10 +137,16 @@ plateau: Owner Hit@10/20/50/100/200 is **0.583 at every cutoff**.  Zoekt's
 built-in BM25 scorer has also been measured under identical normalized query
 semantics and a depth-200 budget; it lowers Owner Hit@10 to **0.500** and only
 reaches **0.583** by depth 50, so it is rejected as the lexical improvement
-candidate.  The immediate frontier is genuinely fielded lexical retrieval over
-mathematical/source structure, while SQ0 pooling/judgment expansion proceeds so
-a later winner is not selected against sparse qrels.  A better reranker is
-irrelevant if the correct file is absent from its pool.
+candidate.  A first field-separated Zoekt candidate now queries the deployed
+path-or-content conjunction, a strict content channel, and a relaxed path
+channel independently and fuses them by weighted reciprocal-rank fusion.  It
+raises Owner Hit@10/20/50 to **0.667/0.792/0.833** and Source Hit@10 to **1.000**,
+but lowers MRR from **0.539** to **0.473** and requires three retrieval calls.
+This is evidence for the fielded candidate-generation direction, not yet a
+production ranker.  The immediate frontier is independent pool judgment plus a
+precision-preserving second-stage/fielded ranking experiment; do not tune fusion
+weights against the sparse qrels.  A better reranker is irrelevant if the
+correct file is absent from its pool.
 
 **Gate SQ2:** materially stronger first-stage owner recall than lexical-v2 on the
 expanded qrels/held-out slice, without unacceptable latency or loss of exact-name

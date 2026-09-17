@@ -336,6 +336,18 @@ negative experimental result rather than a production candidate.  The next
 lexical experiment must use genuinely distinct fielded evidence rather than
 merely switching Zoekt's scorer.
 
+The first such field-separated experiment keeps Zoekt as the mature lexical
+engine but executes the deployed path-or-content conjunction, a strict
+content-only conjunction, and a relaxed path channel independently, then fuses
+their ranked lists with weighted reciprocal-rank fusion.  At depth 200 this
+raises Owner Hit@10/20/50 from 0.583/0.583/0.583 to
+0.667/0.792/0.833 and raises Source Hit@10 from 0.917 to 1.000.  It is not a
+production ranking as measured: MRR falls from 0.539 to 0.473, nDCG@10 from
+0.406 to 0.381, and three search calls materially increase payload and latency.
+The result therefore establishes that field separation recovers useful owner
+candidates which the single lexical query never returns, while leaving the
+precision-preserving ranking problem open.
+
 The public webserver also has a measured serving-quality parameter. Zoekt's JSON
 handler derives internal per-shard match limits from `MaxDocDisplayCount` when no
 explicit `ShardMaxMatchCount` is supplied; the display count is therefore **not**
@@ -371,10 +383,11 @@ pre-campaign depth-10 pool combined the frozen frontend baseline, normalized
 path/content lexical retrieval, frozen multi-query RRF, and the measured Cohere
 reranker; it had 443 unique query/file candidates, 375 of them unjudged.  The
 current post-review SQ2 pool instead combines production lexical-v2, frozen
-multi-query RRF, and the measured Zoekt-BM25 candidate on the canonical remote
-index.  It has 336 unique candidates: 44 judged relevant, 6 judged nonrelevant,
-and 286 explicitly unjudged.  The gold set contains 84 judgments total; some
-judged files lie outside this depth-10 pool.  Unjudged does not mean irrelevant.
+multi-query RRF, the measured Zoekt-BM25 control, and the first field-separated
+lexical candidate on the canonical remote index.  It has 414 unique candidates:
+46 judged relevant, 6 judged nonrelevant, and 362 explicitly unjudged.  The gold
+set contains 84 judgments total; some judged files lie outside this depth-10
+pool.  Unjudged does not mean irrelevant.
 
 This follows the TREC test-collection model: pool top documents from diverse
 runs, judge the pool, and keep qrels distinct from run output.  It also avoids a
@@ -388,8 +401,10 @@ The measured experiments narrow the next branches:
 - **Fielded lexical retrieval first.** Module/file paths are unusually valuable
   in formal libraries.  The post-review production reference has Owner Hit@10
   0.583.  Switching only to Zoekt's built-in BM25 scorer lowers that to 0.500,
-  so the live hypothesis is explicitly weighted source/path/declaration/
-  signature/body fields rather than a scorer toggle over the same representation.
+  while the first path/content-separated RRF candidate raises Owner Hit@10/20/50
+  to 0.667/0.792/0.833.  The live hypothesis is therefore explicit field
+  separation followed by precision-preserving ranking, eventually extending to
+  source/declaration/signature/body fields where structured extraction exists.
 - **Semantic first-stage retrieval, not reranking alone.** For normalized
   path/content retrieval, the post-review depth audit now measures Owner Hit
   0.583 at every cutoff 10/20/50/100/200.  The candidate-recall limitation is
