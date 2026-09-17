@@ -54,6 +54,18 @@ KEY_METRICS = (
     "top10_import_aggregator_slots",
     "top10_roadmap_suggested_slots",
     "top10_vendored_slots",
+    "unique_first_stage_queries",
+    "ordered_identity_mismatches",
+    "ordered_score_mismatches",
+    "chunked_payload_bytes",
+    "chunkless_payload_bytes",
+    "payload_reduction_fraction",
+    "chunked_latency_ms_mean",
+    "chunkless_latency_ms_mean",
+    "chunked_latency_ms_p50",
+    "chunkless_latency_ms_p50",
+    "chunked_latency_ms_p95",
+    "chunkless_latency_ms_p95",
 )
 
 

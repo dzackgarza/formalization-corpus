@@ -26,6 +26,7 @@ from evaluate_union_fts5 import (  # noqa: E402
     add_first_stage_rank_evidence,
     balanced_union,
 )
+from diagnose_chunk_transport import compare_rankings, unique_first_stage_queries  # noqa: E402
 
 
 class SearchEvaluationTests(unittest.TestCase):
@@ -383,6 +384,41 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         self.assertFalse(payload["Opts"]["ChunkMatches"])
         self.assertEqual(results[0]["FileName"], "owner.lean")
         self.assertEqual(runtime["returned_files"], 1)
+
+    def test_chunk_transport_comparison_distinguishes_identity_and_score_changes(self) -> None:
+        base = [("r", "A.lean", 4.0), ("r", "B.lean", 3.0)]
+        score_only = [("r", "A.lean", 5.0), ("r", "B.lean", 3.0)]
+        reordered = [("r", "B.lean", 3.0), ("r", "A.lean", 4.0)]
+        self.assertEqual(
+            compare_rankings(base, base),
+            {
+                "identities_equal": True,
+                "scores_equal": True,
+                "first_difference_rank": None,
+            },
+        )
+        score_comparison = compare_rankings(base, score_only)
+        self.assertTrue(score_comparison["identities_equal"])
+        self.assertFalse(score_comparison["scores_equal"])
+        self.assertEqual(score_comparison["first_difference_rank"], 1)
+        identity_comparison = compare_rankings(base, reordered)
+        self.assertFalse(identity_comparison["identities_equal"])
+        self.assertEqual(identity_comparison["first_difference_rank"], 1)
+
+    def test_chunk_transport_query_population_deduplicates_shared_requests(self) -> None:
+        gold = {
+            "cases": [
+                {"id": "one", "query": "Jordan canonical form"},
+            ]
+        }
+        expansions = {
+            "one": ["Jordan canonical form", "canonical Jordan form"],
+        }
+        queries, origins = unique_first_stage_queries(gold, expansions)
+        baseline = evaluate.compile_query("Jordan canonical form", "normalized_path_content_v1")
+        self.assertIn(baseline, queries)
+        self.assertGreaterEqual(len(origins[baseline]), 2)
+        self.assertEqual(len(queries), len(set(queries)))
 
     def test_api_index_fingerprint_ignores_list_order_but_tracks_index_state(self) -> None:
         def payload(order: list[str], *, documents: int = 10) -> dict:
