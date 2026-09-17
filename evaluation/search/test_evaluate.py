@@ -14,7 +14,11 @@ sys.path.insert(0, str(HERE))
 import evaluate  # noqa: E402
 import evaluate_repeated  # noqa: E402
 from evaluate_fielded_lexical import compile_field_queries, weighted_rrf_fuse  # noqa: E402
-from evaluate_fielded_fts5 import fts5_match_query, fts5_rerank  # noqa: E402
+from evaluate_fielded_fts5 import (  # noqa: E402
+    fts5_match_query,
+    fts5_rerank,
+    query_matched_windows,
+)
 from evaluate_multiquery import retrieve_multiquery, rrf_fuse  # noqa: E402
 from evaluate_rerank import bounded_excerpt, humanize_path  # noqa: E402
 
@@ -154,7 +158,38 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
             "Jordan canonical form of a linear operator", candidates, contents
         )
         self.assertEqual(reranked[0]["FileName"], "Linear/JordanNormalForm.lean")
-        self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_bm25")
+        self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_bm25_full")
+
+    def test_fts5_matched_windows_keep_local_query_evidence(self) -> None:
+        content = "\n".join(
+            [
+                "namespace Example",
+                "supporting material",
+                "theorem unrelated : True := by trivial",
+                "more support",
+                "theorem jordanCanonicalForm : True := by",
+                "  -- Jordan canonical form for a linear operator",
+                "  trivial",
+                "tail material",
+            ]
+        )
+        excerpt = query_matched_windows(
+            "Jordan canonical form of a linear operator", content
+        )
+        self.assertIn("jordanCanonicalForm", excerpt)
+        self.assertIn("Jordan canonical form for a linear operator", excerpt)
+        self.assertIn("trivial", excerpt)
+        self.assertNotIn("namespace Example", excerpt)
+
+    def test_fts5_matched_windows_mode_is_recorded_on_results(self) -> None:
+        candidates = [{"Repository": "r", "FileName": "Jordan.lean", "Score": 1.0}]
+        contents = {
+            ("r", "Jordan.lean"): "theorem jordan : True := by -- Jordan canonical form\ntrivial"
+        }
+        reranked = fts5_rerank(
+            "Jordan canonical form", candidates, contents, content_mode="matched-windows"
+        )
+        self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_bm25_matched-windows")
 
     def test_query_compiler_does_not_hide_acl2_sys_proof_metadata(self) -> None:
         for variant in ("frontend_lexical_v1", "frontend_lexical_v2", "normalized_path_content_v1"):

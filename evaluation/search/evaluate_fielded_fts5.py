@@ -9,7 +9,10 @@ ranker and no weights are tuned; both fields use FTS5's default BM25 weight.
 
 Source caches may be dehydrated, so candidate text is read back from the exact
 canonical public Zoekt shard through the search API.  The API index fingerprint
-is checked before and after the complete evaluation.
+is checked before and after the complete evaluation.  A second experimental
+content mode scores only bounded source windows around normalized query-term
+matches; this tests whether local evidence avoids the broad-file bias observed
+with full-file BM25 without changing candidate generation.
 """
 
 from __future__ import annotations
@@ -46,20 +49,62 @@ def fts5_match_query(text: str) -> str:
     return " OR ".join(f'"{term}"' for term in escaped)
 
 
+def query_matched_windows(
+    text: str,
+    content: str,
+    *,
+    context_lines: int = 1,
+    max_windows: int = 8,
+) -> str:
+    """Return bounded source windows around the strongest normalized-term hits.
+
+    Anchors are ranked only by how many distinct normalized query terms occur on
+    the line, with source order as the deterministic tiebreak.  Overlapping
+    windows are merged implicitly by retaining each source line at most once.
+    No relevance judgments enter this projection.
+    """
+    terms, _ = evaluate.normalized_query_terms(text)
+    if not terms or not content:
+        return ""
+    folded_terms = [term.casefold() for term in terms]
+    lines = content.splitlines()
+    anchors: list[tuple[int, int]] = []
+    for line_number, line in enumerate(lines):
+        folded = line.casefold()
+        matched = sum(term in folded for term in folded_terms)
+        if matched:
+            anchors.append((-matched, line_number))
+    anchors.sort()
+
+    selected: set[int] = set()
+    for _, line_number in anchors[:max_windows]:
+        start = max(0, line_number - context_lines)
+        stop = min(len(lines), line_number + context_lines + 1)
+        selected.update(range(start, stop))
+    return "\n".join(lines[index] for index in sorted(selected))
+
+
 def fts5_rerank(
     text: str,
     candidates: list[dict[str, Any]],
     contents: dict[tuple[str, str], str],
+    *,
+    content_mode: str = "full",
 ) -> list[dict[str, Any]]:
     """Rank a fixed candidate list with unweighted path/content FTS5 BM25."""
+    if content_mode not in {"full", "matched-windows"}:
+        raise ValueError(f"unsupported FTS5 content mode: {content_mode}")
     db = sqlite3.connect(":memory:")
     try:
         db.execute("CREATE VIRTUAL TABLE docs USING fts5(path, content, tokenize='unicode61')")
         for rowid, item in enumerate(candidates, start=1):
             key = (item.get("Repository", ""), item.get("FileName", ""))
+            content = contents.get(key, "")
+            if content_mode == "matched-windows":
+                content = query_matched_windows(text, content)
             db.execute(
                 "INSERT INTO docs(rowid, path, content) VALUES (?, ?, ?)",
-                (rowid, humanize_path(key[1]), contents.get(key, "")),
+                (rowid, humanize_path(key[1]), content),
             )
         ranked_rows = db.execute(
             "SELECT rowid, bm25(docs) AS score FROM docs WHERE docs MATCH ? "
@@ -75,7 +120,7 @@ def fts5_rerank(
         item = dict(candidates[int(rowid) - 1])
         # Evaluator convention is larger-is-better. FTS5 BM25 is smaller-is-better.
         item["Score"] = -float(score)
-        item["SecondStage"] = "sqlite_fts5_bm25"
+        item["SecondStage"] = f"sqlite_fts5_bm25_{content_mode}"
         ranked.append(item)
         seen.add(int(rowid))
     for rowid, original in enumerate(candidates, start=1):
@@ -188,6 +233,11 @@ def main() -> int:
     parser.add_argument("--depth", type=int, default=200)
     parser.add_argument("--candidate-pool", type=int, default=20)
     parser.add_argument("--fetch-workers", type=int, default=8)
+    parser.add_argument(
+        "--content-mode",
+        choices=("full", "matched-windows"),
+        default="full",
+    )
     parser.add_argument("--rrf-constant", type=int, default=60)
     parser.add_argument("--baseline-weight", type=float, default=2.0)
     parser.add_argument("--content-weight", type=float, default=1.0)
@@ -239,7 +289,12 @@ def main() -> int:
                 candidates, cache=cache, workers=args.fetch_workers
             )
             rerank_started = time.perf_counter()
-            reranked = fts5_rerank(case["query"], candidates, contents)
+            reranked = fts5_rerank(
+                case["query"],
+                candidates,
+                contents,
+                content_mode=args.content_mode,
+            )
             rerank_ms = (time.perf_counter() - rerank_started) * 1000
         except Exception as exc:
             print(f"ERROR {case['id']}: {exc}", file=sys.stderr)
@@ -288,7 +343,11 @@ def main() -> int:
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
         "query_config_sha256": evaluate.query_config_sha256(),
         "serving_config_sha256": evaluate.serving_config_sha256(),
-        "variant": "zoekt_fielded_rrf_fts5_bm25_v1",
+        "variant": (
+            "zoekt_fielded_rrf_fts5_bm25_v1"
+            if args.content_mode == "full"
+            else "zoekt_fielded_rrf_fts5_matched_windows_v1"
+        ),
         "provider": "api+sqlite-fts5",
         "api_url": args.api_url,
         "serving_options": serving,
@@ -300,9 +359,17 @@ def main() -> int:
             "engine": "sqlite-fts5",
             "sqlite_version": sqlite3.sqlite_version,
             "tokenizer": "unicode61",
-            "fields": ["humanized_path", "full_source_content"],
+            "fields": [
+                "humanized_path",
+                "full_source_content"
+                if args.content_mode == "full"
+                else "query_matched_source_windows",
+            ],
             "field_weights": [1.0, 1.0],
             "match_semantics": "OR over shared normalized query terms",
+            "content_mode": args.content_mode,
+            "matched_window_context_lines": 1 if args.content_mode == "matched-windows" else None,
+            "matched_window_limit": 8 if args.content_mode == "matched-windows" else None,
         },
         "fetch_workers": args.fetch_workers,
         "fetch_payload_bytes": total_fetch_bytes,
