@@ -23,6 +23,7 @@ import statistics
 import subprocess
 import sys
 import time
+import urllib.parse
 from collections import defaultdict
 from datetime import datetime, timezone
 from functools import lru_cache
@@ -392,6 +393,91 @@ def api_search(
     }
 
 
+def api_index_fingerprint_from_list(payload: dict[str, Any]) -> dict[str, Any]:
+    """Fingerprint the exact public Zoekt state exposed by ``/api/list``."""
+    rows: list[dict[str, Any]] = []
+    repo_list = payload.get("List") or {}
+    for entry in repo_list.get("Repos") or []:
+        repository = entry.get("Repository") or {}
+        metadata = entry.get("IndexMetadata") or {}
+        stats = entry.get("Stats") or {}
+        rows.append(
+            {
+                "repository": repository.get("Name", ""),
+                "index_options": repository.get("IndexOptions"),
+                "index_metadata": {
+                    key: metadata.get(key)
+                    for key in (
+                        "ID",
+                        "IndexFormatVersion",
+                        "IndexFeatureVersion",
+                        "IndexMinReaderVersion",
+                        "IndexTime",
+                        "PlainASCII",
+                        "LanguageMap",
+                        "ZoektVersion",
+                    )
+                },
+                "stats": {
+                    key: stats.get(key)
+                    for key in (
+                        "Shards",
+                        "Documents",
+                        "IndexBytes",
+                        "ContentBytes",
+                        "NewLinesCount",
+                    )
+                },
+            }
+        )
+    rows.sort(key=lambda row: row["repository"])
+    return {
+        "kind": "api-list-v1",
+        "repository_count": len(rows),
+        "shard_count": sum(int(row["stats"].get("Shards") or 0) for row in rows),
+        "document_count": sum(int(row["stats"].get("Documents") or 0) for row in rows),
+        "index_bytes": sum(int(row["stats"].get("IndexBytes") or 0) for row in rows),
+        "metadata_sha256": canonical_json_sha256(rows),
+    }
+
+
+def api_index_fingerprint(api_url: str, timeout: float) -> dict[str, Any]:
+    parsed = urllib.parse.urlsplit(api_url)
+    path = parsed.path
+    if path.endswith("/api/search"):
+        path = path[: -len("/api/search")] + "/api/list"
+    elif path.endswith("/search"):
+        path = path[: -len("/search")] + "/list"
+    else:
+        raise ValueError(f"cannot derive API list endpoint from {api_url!r}")
+    list_url = urllib.parse.urlunsplit(
+        (parsed.scheme, parsed.netloc, path, parsed.query, parsed.fragment)
+    )
+    proc = subprocess.run(
+        [
+            "curl",
+            "-fsS",
+            "--max-time",
+            str(max(1, int(math.ceil(timeout)))),
+            list_url,
+            "-H",
+            "Content-Type: application/json",
+            "-d",
+            '{"Q":""}',
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        timeout=timeout + 2,
+        check=False,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(
+            proc.stderr.decode(errors="replace").strip()
+            or f"curl exited {proc.returncode}"
+        )
+    return api_index_fingerprint_from_list(json.loads(proc.stdout))
+
+
 def judgment_map(case: dict[str, Any]) -> dict[tuple[str, str], int]:
     return {(j["repository"], j["file"]): j["relevance"] for j in case["judgments"]}
 
@@ -609,6 +695,11 @@ def main() -> int:
         total_max_match_count=args.api_total_max_match_count,
         whole=args.api_whole,
     )
+    api_index_before = (
+        api_index_fingerprint(args.api_url, args.timeout)
+        if args.provider == "api"
+        else None
+    )
 
     scored_cases: list[dict[str, Any]] = []
     for case in gold["cases"]:
@@ -630,6 +721,11 @@ def main() -> int:
         scored_cases.append(score_case(case, results, compiled, runtime))
 
     repo_state = provenance.repository_state(ROOT)
+    if args.provider == "api":
+        api_index_after = api_index_fingerprint(args.api_url, args.timeout)
+        if api_index_after != api_index_before:
+            print("ERROR: published API index changed during evaluation", file=sys.stderr)
+            return 2
     report = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -642,7 +738,7 @@ def main() -> int:
         "provider": args.provider,
         "api_url": args.api_url if args.provider == "api" else None,
         "serving_options": resolved_serving if args.provider == "api" else None,
-        "index": index_fingerprint() if args.provider == "local" else None,
+        "index": index_fingerprint() if args.provider == "local" else api_index_before,
         "retrieval_engine": retrieval_engine_fingerprint() if args.provider == "local" else None,
         "result_role_state": file_role_index().fingerprint(),
         "metrics": aggregate(scored_cases),

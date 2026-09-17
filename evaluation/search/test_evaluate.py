@@ -13,7 +13,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import evaluate  # noqa: E402
 import evaluate_repeated  # noqa: E402
-from evaluate_multiquery import rrf_fuse  # noqa: E402
+from evaluate_multiquery import retrieve_multiquery, rrf_fuse  # noqa: E402
 from evaluate_rerank import bounded_excerpt, humanize_path  # noqa: E402
 
 
@@ -108,6 +108,42 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         self.assertEqual(serving["shard_max_match_count"], 500)
         self.assertEqual(serving["total_max_match_count"], 100000)
         self.assertFalse(serving["whole"])
+
+    def test_api_index_fingerprint_ignores_list_order_but_tracks_index_state(self) -> None:
+        def payload(order: list[str], *, documents: int = 10) -> dict:
+            entries = []
+            for name in order:
+                entries.append(
+                    {
+                        "Repository": {"Name": name, "IndexOptions": "opts"},
+                        "IndexMetadata": {
+                            "ID": f"id-{name}",
+                            "IndexFormatVersion": 16,
+                            "IndexFeatureVersion": 12,
+                            "IndexMinReaderVersion": 10,
+                            "IndexTime": "2026-09-17T00:00:00Z",
+                            "PlainASCII": False,
+                            "LanguageMap": {"Lean": 1},
+                            "ZoektVersion": "",
+                        },
+                        "Stats": {
+                            "Shards": 1,
+                            "Documents": documents,
+                            "IndexBytes": 100,
+                            "ContentBytes": 200,
+                            "NewLinesCount": 300,
+                        },
+                    }
+                )
+            return {"List": {"Repos": entries}}
+
+        left = evaluate.api_index_fingerprint_from_list(payload(["b", "a"]))
+        right = evaluate.api_index_fingerprint_from_list(payload(["a", "b"]))
+        changed = evaluate.api_index_fingerprint_from_list(payload(["a", "b"], documents=11))
+        self.assertEqual(left, right)
+        self.assertNotEqual(left["metadata_sha256"], changed["metadata_sha256"])
+        self.assertEqual(left["repository_count"], 2)
+        self.assertEqual(left["document_count"], 20)
 
     def test_query_semantics_hash_excludes_serving_budget(self) -> None:
         left = {
@@ -256,6 +292,33 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         ])
         self.assertEqual(fused[0]["FileName"], "b")
         self.assertEqual(fused[0]["RRFLists"], 2)
+
+    def test_multiquery_can_retrieve_from_public_api_provider(self) -> None:
+        case = {"id": "toy", "query": "toy theorem"}
+        expansions = {"toy": ["toy result"]}
+        calls: list[str] = []
+
+        def api_search(query: str, timeout: float, api_url: str, serving: dict) -> tuple[list[dict], dict]:
+            calls.append(query)
+            result = {
+                "Repository": "r",
+                "FileName": "owner.lean" if "theorem" in query else "alternate.lean",
+                "Score": 1,
+            }
+            return [result], {"elapsed_ms": 1.0, "payload_bytes": 1, "returned_files": 1}
+
+        with mock.patch.object(evaluate, "api_search", side_effect=api_search):
+            fused, runtime, formulations, _ = retrieve_multiquery(
+                case,
+                expansions,
+                provider="api",
+                api_url="https://example.test/api/search",
+                serving=evaluate.serving_options(whole=False),
+            )
+        self.assertEqual(formulations, ["toy theorem", "toy result"])
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(runtime["retrieval_queries"], 2)
+        self.assertEqual({item["FileName"] for item in fused}, {"owner.lean", "alternate.lean"})
 
     def test_compare_requires_same_index_fingerprint(self) -> None:
         base = {

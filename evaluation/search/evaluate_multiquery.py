@@ -8,6 +8,7 @@ import hashlib
 import json
 import pathlib
 import subprocess
+import sys
 from datetime import datetime, timezone
 from typing import Any
 
@@ -58,6 +59,9 @@ def retrieve_multiquery(
     timeout: float = 30.0,
     rrf_constant: int = 60,
     depth: int = 200,
+    provider: str = "local",
+    api_url: str = evaluate.DEFAULT_API_URL,
+    serving: dict[str, Any] | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any], list[str], list[str]]:
     formulations = [case["query"], *expansion_queries[case["id"]]]
     compiled: list[str] = []
@@ -70,7 +74,17 @@ def retrieve_multiquery(
         if query in seen_queries:
             continue
         seen_queries.add(query)
-        results, runtime = evaluate.local_search(query, timeout)
+        if provider == "local":
+            results, runtime = evaluate.local_search(query, timeout)
+        elif provider == "api":
+            results, runtime = evaluate.api_search(
+                query,
+                timeout,
+                api_url,
+                serving or evaluate.serving_options(whole=False),
+            )
+        else:
+            raise ValueError(f"unknown retrieval provider: {provider}")
         compiled.append(query)
         rankings.append(results)
         elapsed_ms += runtime["elapsed_ms"]
@@ -90,10 +104,24 @@ def main() -> int:
     parser.add_argument("--gold", type=pathlib.Path, default=evaluate.DEFAULT_GOLD)
     parser.add_argument("--expansions", type=pathlib.Path, default=DEFAULT_EXPANSIONS)
     parser.add_argument("--timeout", type=float, default=30.0)
+    parser.add_argument("--provider", choices=("local", "api"), default="local")
+    parser.add_argument("--api-url", default=evaluate.DEFAULT_API_URL)
     parser.add_argument("--rrf-constant", type=int, default=60)
     parser.add_argument("--depth", type=int, default=200)
     parser.add_argument("--output", type=pathlib.Path)
     args = parser.parse_args()
+
+    if args.provider == "local" and (
+        not evaluate.INDEX_DIR.is_dir() or not any(evaluate.INDEX_DIR.glob("*.zoekt"))
+    ):
+        print("ERROR: local .zoekt index is unavailable", file=sys.stderr)
+        return 2
+    serving = evaluate.serving_options(whole=False) if args.provider == "api" else None
+    api_index_before = (
+        evaluate.api_index_fingerprint(args.api_url, args.timeout)
+        if args.provider == "api"
+        else None
+    )
 
     gold = evaluate.load_gold(args.gold)
     errors = evaluate.validate_gold(gold)
@@ -115,12 +143,20 @@ def main() -> int:
             timeout=args.timeout,
             rrf_constant=args.rrf_constant,
             depth=args.depth,
+            provider=args.provider,
+            api_url=args.api_url,
+            serving=serving,
         )
         scored = evaluate.score_case(case, fused, " MULTIQUERY ".join(compiled), runtime)
         scored["formulations"] = formulations
         scored_cases.append(scored)
 
     repo_state = provenance.repository_state(ROOT)
+    if args.provider == "api":
+        api_index_after = evaluate.api_index_fingerprint(args.api_url, args.timeout)
+        if api_index_after != api_index_before:
+            print("ERROR: published API index changed during evaluation", file=sys.stderr)
+            return 2
     report = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -133,11 +169,13 @@ def main() -> int:
         "expansion_model": expansion_data.get("model"),
         "expansion_prompt_version": expansion_data.get("prompt_version"),
         "variant": "gemini_multiquery_rrf_v1",
-        "provider": "local",
+        "provider": args.provider,
+        "api_url": args.api_url if args.provider == "api" else None,
+        "serving_options": serving,
         "rrf_constant": args.rrf_constant,
         "fusion_depth": args.depth,
-        "index": evaluate.index_fingerprint(),
-        "retrieval_engine": evaluate.retrieval_engine_fingerprint(),
+        "index": evaluate.index_fingerprint() if args.provider == "local" else api_index_before,
+        "retrieval_engine": evaluate.retrieval_engine_fingerprint() if args.provider == "local" else None,
         "metrics": evaluate.aggregate(scored_cases),
         "metrics_by_tag": evaluate.by_tag(scored_cases),
         "cases": scored_cases,
