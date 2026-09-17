@@ -83,7 +83,7 @@ paraphrases.
 `unjudged` as `irrelevant`, and every candidate run is reproducible from its
 recorded corpus/index state.
 
-### SQ1 — Corpus hygiene / noise removal — ACTIVE, CURRENT FRONTIER
+### SQ1 — Corpus hygiene / noise removal — ACTIVE, BENCHMARK FRONTIER
 
 Complete the repository-by-repository review below.  This stage removes only
 source-local material that can be excluded with a high-confidence
@@ -99,10 +99,11 @@ blanket path-name cleanup: test/tutorial/generated/deprecated/benchmark/import
 files remain when they contain useful formal content.  Role tagging and
 reversible downranking are preferred when hard exclusion is not lossless.
 
-Current campaign state (2026-09-17): **1,272** stable work units total; **1,262**
-completed (**1,135** retained/reviewed units and **127** source-retirement units),
-**10** pending; **6,908** exact repository-local FD-018 exclusions.  The next
-repository-review frontier is `RRB-0122`.
+Current campaign state (2026-09-17): **1,272** stable work units total; **1,272**
+completed (**1,145** retained/reviewed units and **127** source-retirement units),
+**0** pending; **6,908** exact repository-local FD-018 exclusions.  The exhaustive
+repository-review frontier is complete; the live SQ1 frontier is the required
+post-filter benchmark/pool rerun against the fully materialized remote index.
 
 **Gate SQ1:** zero pending repository-review units, accepted per-source filtering
 materialized into the canonical remote index, retained-role metadata preserved,
