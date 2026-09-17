@@ -21,6 +21,7 @@ import hashlib
 import json
 import pathlib
 import statistics
+import subprocess
 import time
 from datetime import datetime, timezone
 from typing import Any
@@ -179,6 +180,7 @@ def main() -> int:
         chunked_by_query: dict[str, list[dict[str, Any]]] = {}
         chunkless_by_query: dict[str, list[dict[str, Any]]] = {}
         batch_pairs: list[dict[str, Any]] = []
+        batch_fallbacks: list[dict[str, Any]] = []
 
         def merge_runtime(
             aggregate: dict[str, Any] | None, runtime: dict[str, Any]
@@ -202,24 +204,68 @@ def main() -> int:
                 )
             return aggregate
 
+        def fetch_batch_resilient(
+            batch: list[str], chunks: bool
+        ) -> tuple[dict[str, list[dict[str, Any]]], dict[str, Any]]:
+            try:
+                return evaluate.api_search_batch(
+                    batch,
+                    args.timeout,
+                    args.api_url,
+                    {**serving, "chunk_matches": chunks},
+                    max_concurrency=args.batch_max_concurrency,
+                    retries=args.api_retries,
+                )
+            except (RuntimeError, subprocess.TimeoutExpired) as exc:
+                if len(batch) == 1:
+                    rows, runtime = run_one(batch[0], chunks)
+                    batch_fallbacks.append(
+                        {
+                            "mode": "single-search",
+                            "chunks": chunks,
+                            "query": batch[0],
+                            "reason": str(exc),
+                        }
+                    )
+                    return {batch[0]: [
+                        {
+                            "Repository": repo,
+                            "FileName": path,
+                            "Score": score,
+                        }
+                        for repo, path, score in rows
+                    ]}, {
+                        **runtime,
+                        "physical_api_requests": 1,
+                        "logical_queries": 1,
+                        "max_concurrency": 1,
+                        "cache_counts": {},
+                    }
+
+                midpoint = len(batch) // 2
+                left = batch[:midpoint]
+                right = batch[midpoint:]
+                batch_fallbacks.append(
+                    {
+                        "mode": "split",
+                        "chunks": chunks,
+                        "batch_size": len(batch),
+                        "left_size": len(left),
+                        "right_size": len(right),
+                        "reason": str(exc),
+                    }
+                )
+                left_rows, left_runtime = fetch_batch_resilient(left, chunks)
+                right_rows, right_runtime = fetch_batch_resilient(right, chunks)
+                merged_rows = {**left_rows, **right_rows}
+                merged_runtime = merge_runtime(None, left_runtime)
+                merged_runtime = merge_runtime(merged_runtime, right_runtime)
+                return merged_rows, merged_runtime
+
         for start in range(0, len(queries), args.batch_size):
             batch = queries[start : start + args.batch_size]
-            chunked_rows, chunked_runtime = evaluate.api_search_batch(
-                batch,
-                args.timeout,
-                args.api_url,
-                {**serving, "chunk_matches": True},
-                max_concurrency=args.batch_max_concurrency,
-                retries=args.api_retries,
-            )
-            chunkless_rows, chunkless_runtime = evaluate.api_search_batch(
-                batch,
-                args.timeout,
-                args.api_url,
-                {**serving, "chunk_matches": False},
-                max_concurrency=args.batch_max_concurrency,
-                retries=args.api_retries,
-            )
+            chunked_rows, chunked_runtime = fetch_batch_resilient(batch, True)
+            chunkless_rows, chunkless_runtime = fetch_batch_resilient(batch, False)
             chunked_by_query.update(chunked_rows)
             chunkless_by_query.update(chunkless_rows)
             chunked_batch_runtime = merge_runtime(chunked_batch_runtime, chunked_runtime)
@@ -360,6 +406,7 @@ def main() -> int:
             "chunked_batch_runtime": chunked_batch_runtime,
             "chunkless_batch_runtime": chunkless_batch_runtime,
             "batch_pairs": batch_pairs if args.batch_first_pass else None,
+            "batch_fallbacks": batch_fallbacks if args.batch_first_pass else None,
         },
         "metrics": {
             "unique_first_stage_queries": len(queries),
