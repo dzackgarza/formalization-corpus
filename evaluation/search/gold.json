@@ -22,6 +22,90 @@
           "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityUnconditional.lean",
           "relevance": 2,
           "note": "Unconditional numerical Serre-duality results."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib.lean",
+          "relevance": 0,
+          "note": "Umbrella import file; it contains no Serre-duality declaration."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/CanonicalSheafCurves.lean",
+          "relevance": 2,
+          "note": "Develops canonical-sheaf numerical Serre duality on smooth complete curves."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/GBSplittingExistence.lean",
+          "relevance": 1,
+          "note": "Uses Serre-duality dimension formulas inside a Grothendieck–Birkhoff splitting development."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/AlgebraicGeometryI.lean",
+          "relevance": 0,
+          "note": "Umbrella import file; it does not own a Serre-duality result."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreCoherentSheavesProjVar.lean",
+          "relevance": 1,
+          "note": "Provides coherent-sheaf/projective-variety infrastructure but not Serre duality."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "Jacobians/RiemannSurface/Cohomology/SheafCohomologySpec.lean",
+          "relevance": 1,
+          "note": "Specification layer mentioning the bundled Serre-duality property rather than proving it."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool.lean",
+          "relevance": 0,
+          "note": "Umbrella import file; it contains no Serre-duality declaration."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "Jacobians/Axioms/SerreDuality.lean",
+          "relevance": 3,
+          "note": "Provides the project Serre-duality theorem/API for divisor line bundles on compact Riemann surfaces."
+        },
+        {
+          "repository": "agda__agda-categories",
+          "file": "src/Categories/Kan/Duality.agda",
+          "relevance": 0,
+          "note": "Concerns Kan-extension/opposite-category duality, not Serre duality."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityTate.lean",
+          "relevance": 2,
+          "note": "Derives curve/P1 Serre-duality statements from Tate-style duality data."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityLinear.lean",
+          "relevance": 2,
+          "note": "Constructs explicit linear Serre-duality equivalences in the P1 specialization."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "Jacobians/RiemannSurface/Cohomology/SerreDualityAPI.lean",
+          "relevance": 2,
+          "note": "Develops consequences and dimension formulas from the project Serre-duality theorem."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ProjectiveSerreTwist.lean",
+          "relevance": 0,
+          "note": "Concerns Serre twists on projective space, not Serre duality."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityCurves.lean",
+          "relevance": 2,
+          "note": "Develops numerical/local-free-sheaf Serre duality for curves, including P1 specializations."
         }
       ]
     },
@@ -136,6 +220,24 @@
           "file": "BruhatTits/Harmonic/Application.lean",
           "relevance": 2,
           "note": "Applies the tree structure and regularity to define the Bruhat–Tits Laplacian and prove its surjectivity."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits/Harmonic/Application.lean",
+          "relevance": 2,
+          "note": "Application layer built on the formalized Bruhat–Tits tree and its regularity."
+        },
+        {
+          "repository": "chrisflav__bruhat-tits",
+          "file": "BruhatTits/Graph/Edges.lean",
+          "relevance": 2,
+          "note": "Defines the edge graph structure for the Bruhat–Tits tree development."
+        },
+        {
+          "repository": "chrisflav__bruhat-tits",
+          "file": "BruhatTits/Graph/Regular.lean",
+          "relevance": 2,
+          "note": "Proves regularity properties of the formalized Bruhat–Tits graph/tree."
         }
       ]
     },
@@ -177,6 +279,138 @@
           "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RiemannRochTheorem/Basic.lean",
           "relevance": 3,
           "note": "Dedicated Riemann–Roch theorem for function fields/curves."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Basic.lean",
+          "relevance": 1,
+          "note": "Basic divisor and Riemann–Roch API used by the vendored function-field development."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/EllipticCurve/ConcreteRegression.lean",
+          "relevance": 1,
+          "note": "Concrete elliptic-curve regression tests for the surrounding Riemann–Roch package."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochEulerCurves.lean",
+          "relevance": 3,
+          "note": "Contains a direct Riemann–Roch theorem for line bundles on smooth complete curves."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/AlgebraicCurves/Suggested.lean",
+          "relevance": 1,
+          "note": "States the function-field Riemann–Roch target and supporting divisor/RR-space API, but the milestone theorem is a sorry-backed roadmap target."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochApplications.lean",
+          "relevance": 2,
+          "note": "Develops curve consequences and specializations of the Riemann–Roch theorem."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RiemannRochTheorem/Corollaries.lean",
+          "relevance": 2,
+          "note": "Proves substantial corollaries from the vendored Riemann–Roch theorem, including canonical-divisor formulas."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/PlaceEquiv.lean",
+          "relevance": 1,
+          "note": "Provides place/valuation equivalences supporting the function-field Riemann–Roch development."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/EllipticCurves/Suggested.lean",
+          "relevance": 0,
+          "note": "Elliptic-curve roadmap whose divisor-class discussion explicitly does not use Riemann–Roch; no RR theorem is formalized here."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Basic.lean",
+          "relevance": 2,
+          "note": "Develops genus, Riemann inequality, and index-of-specialty infrastructure central to the function-field Riemann–Roch proof."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/SerreResidueTheorem.lean",
+          "relevance": 1,
+          "note": "Residue-theorem development that consumes existing Riemann–Roch existence results but does not prove Riemann–Roch."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "Jacobians/Extensions/HyperellipticOdd.lean",
+          "relevance": 1,
+          "note": "Hyperelliptic genus specialization whose documentation/proof route uses the project Riemann–Roch machinery."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Polar.lean",
+          "relevance": 1,
+          "note": "Pole-divisor and genus infrastructure supporting the vendored Riemann–Roch development."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RRApplicationsAudit.lean",
+          "relevance": 1,
+          "note": "Audit/consistency theorems for already-defined Riemann–Roch applications rather than the owner theorem."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Dolbeault/SerreResidueTheorem.lean",
+          "relevance": 1,
+          "note": "Residue-theorem development that consumes Riemann–Roch existence results but does not prove the RR theorem."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/LinearKneser.lean",
+          "relevance": 1,
+          "note": "Linear-Kneser infrastructure used for Riemann–Roch consequences such as Clifford-type bounds."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/GenusConstruction.lean",
+          "relevance": 2,
+          "note": "Constructs curve/genus packages and validates P1/Dedekind instances against the Riemann–Roch map."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "Jacobians/Extensions/HyperellipticEven.lean",
+          "relevance": 1,
+          "note": "Hyperelliptic genus specialization built using the surrounding Riemann–Roch/Liouville machinery."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RRspace/Basic.lean",
+          "relevance": 2,
+          "note": "Defines Riemann–Roch spaces and their finite-dimensional/degree API, central to the function-field theorem."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "Jacobians/Axioms/HyperellipticLiouville.lean",
+          "relevance": 1,
+          "note": "Alternative Liouville-based genus upper-bound infrastructure discussed as replacing a Riemann–Roch step."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochDedekind.lean",
+          "relevance": 3,
+          "note": "Contains a direct Riemann–Roch theorem for Dedekind curves, transported to the smooth-complete-curve package."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/HasseWeil/HasseWeil/HasseBound/PoleDivisorFallback.lean",
+          "relevance": 0,
+          "note": "Pole-divisor Hasse-bound fallback explicitly developed without using Riemann–Roch."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/EllipticCurve/Instances.lean",
+          "relevance": 1,
+          "note": "Elliptic-function-field instances supporting the vendored Riemann–Roch package."
         }
       ]
     },
@@ -200,6 +434,108 @@
           "file": "Mathlib/Algebra/Homology/DerivedCategory/ShortExact.lean",
           "relevance": 2,
           "note": "Uses mapping-cone quasi-isomorphisms in the derived category."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib.lean",
+          "relevance": 0,
+          "note": "Umbrella import file; it does not state the mapping-cone quasi-isomorphism criterion."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool.lean",
+          "relevance": 0,
+          "note": "Umbrella import file; it does not state the mapping-cone quasi-isomorphism criterion."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/LevelStructure/CartierDivisor.lean",
+          "relevance": 0,
+          "note": "Cartier-divisor/flatness development; the mapping terminology is unrelated to mapping cones."
+        },
+        {
+          "repository": "agda__cubical",
+          "file": "Cubical/HITs/MappingCones.agda",
+          "relevance": 1,
+          "note": "Umbrella for homotopy-theoretic HIT mapping cones, not the chain-complex quasi-isomorphism criterion."
+        },
+        {
+          "repository": "leanprover-community__lean-liquid",
+          "file": "src/for_mathlib/mapping_cone.lean",
+          "relevance": 2,
+          "note": "Implements mapping cones and their triangles for cochain complexes, but contains no quasi-isomorphism criterion."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/HomologicalAlgebra/MappingCone.v",
+          "relevance": 2,
+          "note": "Substantial mapping-cone/triangle development for complexes, without a quasi-isomorphism criterion in this file."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/NoethApprox.lean",
+          "relevance": 0,
+          "note": "Noetherian approximation and flatness descent; unrelated to mapping cones."
+        },
+        {
+          "repository": "HoTT__Coq-HoTT",
+          "file": "theories/HoTT.v",
+          "relevance": 0,
+          "note": "General HoTT umbrella file; no chain-complex mapping-cone criterion."
+        },
+        {
+          "repository": "agda__cubical",
+          "file": "Cubical/HITs/MappingCones/Base.agda",
+          "relevance": 1,
+          "note": "Defines homotopy-theoretic mapping-cone HITs, not a quasi-isomorphism criterion."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/FinitePresentationDescent.lean",
+          "relevance": 0,
+          "note": "Finite-presentation descent development; unrelated to mapping cones."
+        },
+        {
+          "repository": "agda__cubical",
+          "file": "Cubical/HITs/MappingCones/Properties.agda",
+          "relevance": 1,
+          "note": "Proves pushout equivalences for homotopy-theoretic mapping cones, not the chain-complex criterion."
+        },
+        {
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "file": "Adic spaces/FJP/KoszulFreeExactness.lean",
+          "relevance": 0,
+          "note": "Koszul exactness file explicitly notes that its proof does not use mapping-cone induction."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/HomotopyCategory/MappingCone.lean",
+          "relevance": 2,
+          "note": "Owns Mathlib’s cochain-complex mapping-cone API, but does not state the quasi-isomorphism criterion."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicTopologyI/code/Section34.lean",
+          "relevance": 1,
+          "note": "Contains a chain-level excision quasi-isomorphism, but no mapping-cone criterion."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/HomotopyCategory/MappingCocone.lean",
+          "relevance": 2,
+          "note": "Closely related rotated mapping-cone construction, without the quasi-isomorphism criterion."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/AdicSpaces/Adic spaces/OpenMapping.lean",
+          "relevance": 0,
+          "note": "Open-mapping/strict-exactness results for Tate modules; unrelated to mapping cones."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AcyclicResolution.lean",
+          "relevance": 1,
+          "note": "Provides quasi-isomorphism transfer machinery for resolutions, but not a mapping-cone criterion."
         }
       ]
     },
