@@ -565,6 +565,84 @@
           "file": "thys/Jordan_Normal_Form/Jordan_Normal_Form_Existence.thy",
           "relevance": 3,
           "note": "AFP development proving existence and computation of Jordan normal forms."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Jordan/Basic.lean",
+          "relevance": 0,
+          "note": "Jordan algebra/ring identities; unrelated to the Jordan canonical form of linear operators."
+        },
+        {
+          "repository": "leanprover-community__physlib",
+          "file": "PhyslibAlpha/AlgebraicFramework/HilbertSpace/Unbounded/UnitaryInfra/SesquilinearForm.lean",
+          "relevance": 0,
+          "note": "Sesquilinear-form infrastructure; the Jordan--von Neumann polarization mention is unrelated to Jordan canonical form."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder.lean",
+          "relevance": 0,
+          "note": "Repository-wide import aggregator; its Jordan occurrence is unrelated representation-theoretic material, not a canonical-form development."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/RepresentationTheory/LieHighestWeight/Suggested.lean",
+          "relevance": 0,
+          "note": "Roadmap/suggested representation-theory material mentioning Jordan decomposition/blocks, not a completed Jordan canonical-form formalization."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib.lean",
+          "relevance": 0,
+          "note": "Repository-wide Mathlib import aggregator; it imports Jordan-related modules but contains no Jordan canonical-form theorem here."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Complex_Bounded_Operators/Cblinfun_Matrix.thy",
+          "relevance": 1,
+          "note": "Supporting consumer of the AFP Jordan_Normal_Form session: matrix/vector representations reuse that development but this file does not prove Jordan normal form."
+        },
+        {
+          "repository": "LionSR__TNLean",
+          "file": "TNLean/Channel/WolfChapter6Index.lean",
+          "relevance": 1,
+          "note": "Index/documentation for a specialized result that peripheral eigenvalues have trivial Jordan blocks; supporting evidence rather than the canonical-form theorem."
+        },
+        {
+          "repository": "VerifiedQC__ForShor",
+          "file": "FastMultiplication/ShorVerification/Implementation/ModularExponentiation/Proofs/Step1QPE.lean",
+          "relevance": 0,
+          "note": "Quantum-algorithm proof file; its Jordan occurrence is a trigonometric Jordan-type inequality, not Jordan normal form."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Jordan_Normal_Form/Schur_Decomposition.thy",
+          "relevance": 2,
+          "note": "Closely relevant prerequisite in the AFP Jordan-normal-form development: proves Schur decomposition explicitly as a key ingredient for Jordan normal-form existence."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/Buildings.lean",
+          "relevance": 0,
+          "note": "Buildings import aggregator; Jordan occurrences are Jordan--Hölder/building material, not Jordan canonical form."
+        },
+        {
+          "repository": "LionSR__TNLean",
+          "file": "TNLean/Channel/Peripheral/JordanBlocks.lean",
+          "relevance": 2,
+          "note": "Closely relevant specialization proving that peripheral generalized eigenspaces have only one-dimensional Jordan blocks."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/LinearAlgebra/Matrix/RationalCanonicalFormFinTwo.lean",
+          "relevance": 1,
+          "note": "Related alternative canonical-form development for 2x2 matrices; it proves rational, not Jordan, canonical form."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/LieGroups/code/GrothendieckGroupO.lean",
+          "relevance": 0,
+          "note": "Category-O block/Grothendieck-group development; its Jordan-Hölder occurrence is unrelated to linear-operator Jordan canonical form."
         }
       ]
     },
@@ -679,6 +757,54 @@
           "file": "HexHensel/Linear.lean",
           "relevance": 2,
           "note": "Executable single-step linear Hensel lifting of polynomial factorizations, a closely related algorithmic Hensel form."
+        },
+        {
+          "repository": "mariainesdff__LocalClassFieldTheory",
+          "file": "LocalClassFieldTheory/DiscreteValuationRing/Complete.lean",
+          "relevance": 1,
+          "note": "Supporting complete-DVR infrastructure: constructs the completed local DVR and compares its valuations, but does not prove Hensel lifting in this file."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/order-theory/coverings-locales.lagda.md",
+          "relevance": 0,
+          "note": "Locale coverings in order theory; unrelated to Hensel lifting or discrete valuation rings."
+        },
+        {
+          "repository": "AlexKontorovich__CoveringSpacesProject",
+          "file": "CoveringSpacesProject/LoopHomotopy.lean",
+          "relevance": 0,
+          "note": "Topological loop-homotopy infrastructure; unrelated to Hensel lifting."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/RingTheory/Cyclotomic/Lift.lean",
+          "relevance": 0,
+          "note": "Vandermonde reconstruction of cyclotomic integers from residues; this is not Hensel lifting."
+        },
+        {
+          "repository": "LionSR__TNLean",
+          "file": "TNLean/MPS/Overlap/CastLemmas.lean",
+          "relevance": 0,
+          "note": "Matrix-product-state cast lemmas; canonical-form terminology is unrelated to Hensel theory."
+        },
+        {
+          "repository": "AlexKontorovich__CoveringSpacesProject",
+          "file": "CoveringSpacesProject/RootsMathlib.lean",
+          "relevance": 0,
+          "note": "Topological winding-number/root infrastructure; unrelated to Hensel lifting."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/FOL_Seq_Calc2/ProverLemmas.thy",
+          "relevance": 0,
+          "note": "First-order sequent-calculus prover lemmas; unrelated to Hensel lifting or valuation rings."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Tactic/Ring/Basic.lean",
+          "relevance": 0,
+          "note": "Implementation of the ring normalization tactic; unrelated to Hensel lifting."
         }
       ]
     },
