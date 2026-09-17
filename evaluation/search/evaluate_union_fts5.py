@@ -17,6 +17,7 @@ import json
 import pathlib
 import sqlite3
 import sys
+import threading
 import time
 from datetime import datetime, timezone
 from typing import Any
@@ -33,6 +34,74 @@ from evaluate_fielded_lexical import retrieve_fielded
 from evaluate_multiquery import DEFAULT_EXPANSIONS, load_expansion_queries, retrieve_multiquery
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
+
+
+class CoalescingApiSearch:
+    """Share identical API requests made by the two first-stage retrievers.
+
+    The fielded baseline channel and the original frozen-multiquery formulation
+    compile to the same Zoekt request.  Coalescing is therefore a transport-only
+    optimization: every logical consumer sees the same ranked response, while
+    network payload and physical-request accounting are charged once.
+    """
+
+    def __init__(self) -> None:
+        self._lock = threading.Lock()
+        self._futures: dict[tuple[str, str, str], concurrent.futures.Future] = {}
+
+    @staticmethod
+    def _key(query: str, api_url: str, serving: dict[str, Any]) -> tuple[str, str, str]:
+        return (
+            query,
+            api_url,
+            json.dumps(serving, sort_keys=True, separators=(",", ":")),
+        )
+
+    def __call__(
+        self,
+        query: str,
+        timeout: float,
+        api_url: str,
+        serving: dict[str, Any],
+        *,
+        retries: int = 0,
+    ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+        key = self._key(query, api_url, serving)
+        started = time.perf_counter()
+        with self._lock:
+            future = self._futures.get(key)
+            owner = future is None
+            if owner:
+                future = concurrent.futures.Future()
+                self._futures[key] = future
+        assert future is not None
+
+        if owner:
+            try:
+                value = evaluate.api_search(
+                    query,
+                    timeout,
+                    api_url,
+                    serving,
+                    retries=retries,
+                )
+            except BaseException as exc:
+                future.set_exception(exc)
+                raise
+            future.set_result(value)
+            results, original_runtime = value
+            runtime = dict(original_runtime)
+            runtime["physical_api_requests"] = 1
+            runtime["coalesced_api_hits"] = 0
+            return results, runtime
+
+        results, original_runtime = future.result()
+        runtime = dict(original_runtime)
+        runtime["elapsed_ms"] = (time.perf_counter() - started) * 1000
+        runtime["payload_bytes"] = 0
+        runtime["physical_api_requests"] = 0
+        runtime["coalesced_api_hits"] = 1
+        return results, runtime
 
 
 def balanced_union(
@@ -143,6 +212,11 @@ def main() -> int:
         action="store_true",
         help="run the independent fielded and multiquery first stages concurrently",
     )
+    parser.add_argument(
+        "--coalesce-first-stage-requests",
+        action="store_true",
+        help="share identical API requests issued by the two first-stage retrievers",
+    )
     parser.add_argument("--output", type=pathlib.Path)
     args = parser.parse_args()
 
@@ -187,8 +261,12 @@ def main() -> int:
     total_fetch_bytes = 0
     total_fetch_wall_ms = 0.0
     total_fetch_request_ms = 0.0
+    total_first_stage_logical_queries = 0
+    total_first_stage_physical_requests = 0
+    total_first_stage_coalesced_hits = 0
 
     for number, case in enumerate(gold["cases"], start=1):
+        shared_api_search = CoalescingApiSearch() if args.coalesce_first_stage_requests else None
         try:
             first_stage_started = time.perf_counter()
             if args.parallel_first_stages:
@@ -205,6 +283,7 @@ def main() -> int:
                         weights=weights,
                         api_retries=args.api_retries,
                         api_workers=args.first_stage_api_workers,
+                        api_search_fn=shared_api_search,
                     )
                     multiquery_future = executor.submit(
                         retrieve_multiquery,
@@ -218,6 +297,7 @@ def main() -> int:
                         serving=serving,
                         api_retries=args.api_retries,
                         api_workers=args.first_stage_api_workers,
+                        api_search_fn=shared_api_search,
                     )
                     fielded, fielded_runtime, field_queries = fielded_future.result()
                     multiquery, multiquery_runtime, formulations, compiled = multiquery_future.result()
@@ -233,6 +313,7 @@ def main() -> int:
                     weights=weights,
                     api_retries=args.api_retries,
                     api_workers=args.first_stage_api_workers,
+                    api_search_fn=shared_api_search,
                 )
                 multiquery, multiquery_runtime, formulations, compiled = retrieve_multiquery(
                     case,
@@ -245,6 +326,7 @@ def main() -> int:
                     serving=serving,
                     api_retries=args.api_retries,
                     api_workers=args.first_stage_api_workers,
+                    api_search_fn=shared_api_search,
                 )
             first_stage_wall_ms = (time.perf_counter() - first_stage_started) * 1000
             candidates = balanced_union(
@@ -300,8 +382,19 @@ def main() -> int:
                 fielded_runtime["retrieval_queries"]
                 + multiquery_runtime["retrieval_queries"]
             ),
+            "physical_api_requests": (
+                fielded_runtime["physical_api_requests"]
+                + multiquery_runtime["physical_api_requests"]
+            ),
+            "coalesced_api_hits": (
+                fielded_runtime["coalesced_api_hits"]
+                + multiquery_runtime["coalesced_api_hits"]
+            ),
             "content_fetches": len(candidates),
         }
+        total_first_stage_logical_queries += int(runtime["retrieval_queries"])
+        total_first_stage_physical_requests += int(runtime["physical_api_requests"])
+        total_first_stage_coalesced_hits += int(runtime["coalesced_api_hits"])
         scored = evaluate.score_case(
             case,
             reranked,
@@ -339,7 +432,9 @@ def main() -> int:
         "expansion_prompt_version": expansion_data.get("prompt_version"),
         "variant": (
             (
-                "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_parallel_v1"
+                "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_coalesced_v1"
+                if args.coalesce_first_stage_requests
+                else "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_parallel_v1"
                 if args.parallel_first_stages
                 else "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_v1"
             )
@@ -358,6 +453,7 @@ def main() -> int:
             "retrievers": ["zoekt_fielded_rrf_v1", "gemini_multiquery_rrf_v1"],
             "union": "rank-interleaved deduplicated bounded prefixes",
             "execution": "parallel" if args.parallel_first_stages else "serial",
+            "coalesce_identical_requests": args.coalesce_first_stage_requests,
             "api_workers_per_retriever": args.first_stage_api_workers,
             "per_retriever_depth": args.per_retriever_depth,
             "field_weights": weights,
@@ -365,6 +461,11 @@ def main() -> int:
             "fusion_depth": args.depth,
         },
         "candidate_pool": 2 * args.per_retriever_depth,
+        "first_stage_request_counts": {
+            "logical_queries": total_first_stage_logical_queries,
+            "physical_api_requests": total_first_stage_physical_requests,
+            "coalesced_api_hits": total_first_stage_coalesced_hits,
+        },
         "second_stage": {
             "engine": "sqlite-fts5",
             "sqlite_version": sqlite3.sqlite_version,

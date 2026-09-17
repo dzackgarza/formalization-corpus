@@ -24,7 +24,7 @@ import pathlib
 import sys
 import time
 from datetime import datetime, timezone
-from typing import Any
+from typing import Any, Callable
 
 import evaluate
 import provenance
@@ -97,6 +97,7 @@ def retrieve_fielded(
     weights: dict[str, float],
     api_retries: int = 0,
     api_workers: int = 1,
+    api_search_fn: Callable[..., tuple[list[dict[str, Any]], dict[str, Any]]] | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any], dict[str, str]]:
     if api_workers <= 0:
         raise ValueError("api_workers must be positive")
@@ -104,6 +105,8 @@ def retrieve_fielded(
     rankings: list[tuple[str, float, list[dict[str, Any]]]] = []
     request_elapsed_ms = 0.0
     payload_bytes = 0
+    physical_api_requests = 0
+    coalesced_api_hits = 0
     fields = ("baseline", "content", "path")
 
     def run_field(field: str) -> tuple[str, list[dict[str, Any]], dict[str, Any]]:
@@ -111,7 +114,8 @@ def retrieve_fielded(
         if provider == "local":
             results, runtime = evaluate.local_search(query, timeout)
         elif provider == "api":
-            results, runtime = evaluate.api_search(
+            search = api_search_fn or evaluate.api_search
+            results, runtime = search(
                 query,
                 timeout,
                 api_url,
@@ -135,6 +139,9 @@ def retrieve_fielded(
         rankings.append((field, weights[field], results))
         request_elapsed_ms += runtime["elapsed_ms"]
         payload_bytes += runtime["payload_bytes"]
+        if provider == "api":
+            physical_api_requests += int(runtime.get("physical_api_requests", 1))
+            coalesced_api_hits += int(runtime.get("coalesced_api_hits", 0))
 
     fused = weighted_rrf_fuse(rankings, constant=rrf_constant, depth=depth)
     return fused, {
@@ -143,6 +150,8 @@ def retrieve_fielded(
         "payload_bytes": payload_bytes,
         "returned_files": len(fused),
         "retrieval_queries": len(rankings),
+        "physical_api_requests": physical_api_requests if provider == "api" else 0,
+        "coalesced_api_hits": coalesced_api_hits if provider == "api" else 0,
         "api_workers": api_workers if provider == "api" else 1,
     }, queries
 

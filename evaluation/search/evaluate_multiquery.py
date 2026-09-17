@@ -12,7 +12,7 @@ import subprocess
 import sys
 import time
 from datetime import datetime, timezone
-from typing import Any
+from typing import Any, Callable
 
 import evaluate
 import provenance
@@ -66,6 +66,7 @@ def retrieve_multiquery(
     serving: dict[str, Any] | None = None,
     api_retries: int = 0,
     api_workers: int = 1,
+    api_search_fn: Callable[..., tuple[list[dict[str, Any]], dict[str, Any]]] | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any], list[str], list[str]]:
     if api_workers <= 0:
         raise ValueError("api_workers must be positive")
@@ -74,6 +75,8 @@ def retrieve_multiquery(
     query_specs: list[str] = []
     payload_bytes = 0
     request_elapsed_ms = 0.0
+    physical_api_requests = 0
+    coalesced_api_hits = 0
     seen_queries: set[str] = set()
     for formulation in formulations:
         query = evaluate.compile_query(formulation, "normalized_path_content_v1")
@@ -87,7 +90,8 @@ def retrieve_multiquery(
         if provider == "local":
             results, runtime = evaluate.local_search(query, timeout)
         elif provider == "api":
-            results, runtime = evaluate.api_search(
+            search = api_search_fn or evaluate.api_search
+            results, runtime = search(
                 query,
                 timeout,
                 api_url,
@@ -112,6 +116,9 @@ def retrieve_multiquery(
         rankings.append(results)
         request_elapsed_ms += runtime["elapsed_ms"]
         payload_bytes += runtime["payload_bytes"]
+        if provider == "api":
+            physical_api_requests += int(runtime.get("physical_api_requests", 1))
+            coalesced_api_hits += int(runtime.get("coalesced_api_hits", 0))
     fused = rrf_fuse(rankings, constant=rrf_constant, depth=depth)
     runtime = {
         "elapsed_ms": elapsed_ms,
@@ -119,6 +126,8 @@ def retrieve_multiquery(
         "payload_bytes": payload_bytes,
         "returned_files": len(fused),
         "retrieval_queries": len(rankings),
+        "physical_api_requests": physical_api_requests if provider == "api" else 0,
+        "coalesced_api_hits": coalesced_api_hits if provider == "api" else 0,
         "api_workers": api_workers if provider == "api" else 1,
     }
     return fused, runtime, formulations, compiled
