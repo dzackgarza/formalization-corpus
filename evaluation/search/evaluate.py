@@ -354,7 +354,11 @@ def api_search(
     timeout: float,
     api_url: str,
     serving: dict[str, Any],
+    *,
+    retries: int = 0,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    if retries < 0:
+        raise ValueError("retries must be nonnegative")
     opts: dict[str, Any] = {
         "MaxDocDisplayCount": serving["max_doc_display_count"],
         "ChunkMatches": True,
@@ -368,12 +372,25 @@ def api_search(
         opts["TotalMaxMatchCount"] = serving["total_max_match_count"]
     payload = json.dumps({"Q": query, "Opts": opts})
     started = time.perf_counter()
-    proc = subprocess.run(
+    command = [
+        "curl", "-fsS", "--max-time", str(max(1, int(math.ceil(timeout)))),
+    ]
+    if retries:
+        command.extend(
+            [
+                "--retry", str(retries),
+                "--retry-all-errors",
+                "--retry-delay", "0",
+            ]
+        )
+    command.extend(
         [
-            "curl", "-fsS", "--max-time", str(max(1, int(math.ceil(timeout)))),
             api_url,
             "-H", "Content-Type: application/json", "-d", payload,
-        ],
+        ]
+    )
+    proc = subprocess.run(
+        command,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         timeout=timeout + 2,

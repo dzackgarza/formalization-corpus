@@ -515,7 +515,15 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         expansions = {"toy": ["toy result"]}
         calls: list[str] = []
 
-        def api_search(query: str, timeout: float, api_url: str, serving: dict) -> tuple[list[dict], dict]:
+        def api_search(
+            query: str,
+            timeout: float,
+            api_url: str,
+            serving: dict,
+            *,
+            retries: int = 0,
+        ) -> tuple[list[dict], dict]:
+            self.assertEqual(retries, 0)
             calls.append(query)
             result = {
                 "Repository": "r",

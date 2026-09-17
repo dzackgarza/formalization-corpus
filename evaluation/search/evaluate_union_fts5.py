@@ -116,6 +116,12 @@ def main() -> int:
     parser.add_argument("--depth", type=int, default=200)
     parser.add_argument("--per-retriever-depth", type=int, default=50)
     parser.add_argument("--fetch-workers", type=int, default=8)
+    parser.add_argument(
+        "--api-retries",
+        type=int,
+        default=0,
+        help="retry transient API transport failures this many times per search request",
+    )
     parser.add_argument("--rrf-constant", type=int, default=60)
     parser.add_argument("--evidence-rrf-constant", type=int, default=60)
     parser.add_argument("--baseline-weight", type=float, default=2.0)
@@ -142,6 +148,9 @@ def main() -> int:
         args.evidence_rrf_constant,
     ) <= 0:
         print("ERROR: depths, workers, and RRF constants must be positive", file=sys.stderr)
+        return 2
+    if args.api_retries < 0:
+        print("ERROR: api retries must be nonnegative", file=sys.stderr)
         return 2
     weights = {
         "baseline": args.baseline_weight,
@@ -187,6 +196,7 @@ def main() -> int:
                         depth=args.depth,
                         rrf_constant=args.rrf_constant,
                         weights=weights,
+                        api_retries=args.api_retries,
                     )
                     multiquery_future = executor.submit(
                         retrieve_multiquery,
@@ -198,6 +208,7 @@ def main() -> int:
                         provider="api",
                         api_url=args.api_url,
                         serving=serving,
+                        api_retries=args.api_retries,
                     )
                     fielded, fielded_runtime, field_queries = fielded_future.result()
                     multiquery, multiquery_runtime, formulations, compiled = multiquery_future.result()
@@ -211,6 +222,7 @@ def main() -> int:
                     depth=args.depth,
                     rrf_constant=args.rrf_constant,
                     weights=weights,
+                    api_retries=args.api_retries,
                 )
                 multiquery, multiquery_runtime, formulations, compiled = retrieve_multiquery(
                     case,
@@ -221,6 +233,7 @@ def main() -> int:
                     provider="api",
                     api_url=args.api_url,
                     serving=serving,
+                    api_retries=args.api_retries,
                 )
             first_stage_wall_ms = (time.perf_counter() - first_stage_started) * 1000
             candidates = balanced_union(
@@ -328,6 +341,7 @@ def main() -> int:
         ),
         "provider": "api+sqlite-fts5",
         "api_url": args.api_url,
+        "api_transport_retries": args.api_retries,
         "serving_options": serving,
         "first_stage": {
             "retrievers": ["zoekt_fielded_rrf_v1", "gemini_multiquery_rrf_v1"],

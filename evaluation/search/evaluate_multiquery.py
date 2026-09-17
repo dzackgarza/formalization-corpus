@@ -62,6 +62,7 @@ def retrieve_multiquery(
     provider: str = "local",
     api_url: str = evaluate.DEFAULT_API_URL,
     serving: dict[str, Any] | None = None,
+    api_retries: int = 0,
 ) -> tuple[list[dict[str, Any]], dict[str, Any], list[str], list[str]]:
     formulations = [case["query"], *expansion_queries[case["id"]]]
     compiled: list[str] = []
@@ -82,6 +83,7 @@ def retrieve_multiquery(
                 timeout,
                 api_url,
                 serving or evaluate.serving_options(whole=False),
+                retries=api_retries,
             )
         else:
             raise ValueError(f"unknown retrieval provider: {provider}")

@@ -93,6 +93,7 @@ def retrieve_fielded(
     depth: int,
     rrf_constant: int,
     weights: dict[str, float],
+    api_retries: int = 0,
 ) -> tuple[list[dict[str, Any]], dict[str, Any], dict[str, str]]:
     queries = compile_field_queries(text)
     rankings: list[tuple[str, float, list[dict[str, Any]]]] = []
@@ -108,6 +109,7 @@ def retrieve_fielded(
                 timeout,
                 api_url,
                 serving or evaluate.serving_options(top=depth, whole=False),
+                retries=api_retries,
             )
         else:
             raise ValueError(f"unknown retrieval provider: {provider}")
