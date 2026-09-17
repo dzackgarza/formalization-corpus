@@ -14,6 +14,7 @@ sys.path.insert(0, str(HERE))
 import evaluate  # noqa: E402
 import evaluate_repeated  # noqa: E402
 from evaluate_fielded_lexical import compile_field_queries, weighted_rrf_fuse  # noqa: E402
+from evaluate_fielded_fts5 import fts5_match_query, fts5_rerank  # noqa: E402
 from evaluate_multiquery import retrieve_multiquery, rrf_fuse  # noqa: E402
 from evaluate_rerank import bounded_excerpt, humanize_path  # noqa: E402
 
@@ -123,6 +124,37 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         fused = weighted_rrf_fuse(rankings, constant=60, depth=200)
         self.assertEqual(fused[0]["FileName"], "a")
         self.assertEqual(fused[0]["RRFFields"], ["baseline", "content"])
+
+    def test_fts5_second_stage_uses_shared_normalized_query_terms(self) -> None:
+        self.assertEqual(
+            fts5_match_query("does Lean have the Jordan canonical form theorem?"),
+            '"Jordan" OR "canonical" OR "form" OR "theorem"',
+        )
+
+    def test_fts5_second_stage_can_promote_direct_owner_from_fixed_pool(self) -> None:
+        candidates = [
+            {
+                "Repository": "r",
+                "FileName": "Linear/JordanAlgebra.lean",
+                "Score": 2.0,
+            },
+            {
+                "Repository": "r",
+                "FileName": "Linear/JordanNormalForm.lean",
+                "Score": 1.0,
+            },
+        ]
+        contents = {
+            ("r", "Linear/JordanAlgebra.lean"): "Jordan algebra multiplication identity",
+            ("r", "Linear/JordanNormalForm.lean"): (
+                "Jordan canonical form theorem for a linear operator"
+            ),
+        }
+        reranked = fts5_rerank(
+            "Jordan canonical form of a linear operator", candidates, contents
+        )
+        self.assertEqual(reranked[0]["FileName"], "Linear/JordanNormalForm.lean")
+        self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_bm25")
 
     def test_query_compiler_does_not_hide_acl2_sys_proof_metadata(self) -> None:
         for variant in ("frontend_lexical_v1", "frontend_lexical_v2", "normalized_path_content_v1"):
