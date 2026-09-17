@@ -419,6 +419,136 @@ def api_search(
     }
 
 
+def _api_batch_url(api_url: str) -> str:
+    parsed = urllib.parse.urlsplit(api_url)
+    path = parsed.path
+    if path.endswith("/api/search") or path.endswith("/search"):
+        path = path + "/batch"
+    else:
+        raise ValueError(f"cannot derive API batch endpoint from {api_url!r}")
+    return urllib.parse.urlunsplit(
+        (parsed.scheme, parsed.netloc, path, parsed.query, parsed.fragment)
+    )
+
+
+def api_search_batch(
+    queries: list[str],
+    timeout: float,
+    api_url: str,
+    serving: dict[str, Any],
+    *,
+    max_concurrency: int = 4,
+    retries: int = 0,
+) -> tuple[dict[str, list[dict[str, Any]]], dict[str, Any]]:
+    """Submit a finite first-stage query set through the public batch endpoint.
+
+    Results are keyed by the exact compiled query string.  The caller is
+    responsible for deduplicating semantically identical consumers before this
+    transport layer; duplicate strings are rejected so request accounting stays
+    explicit.
+    """
+    if not queries:
+        return {}, {
+            "elapsed_ms": 0.0,
+            "payload_bytes": 0,
+            "physical_api_requests": 0,
+            "logical_queries": 0,
+            "max_concurrency": max_concurrency,
+        }
+    if len(set(queries)) != len(queries):
+        raise ValueError("api_search_batch requires unique query strings")
+    if max_concurrency <= 0:
+        raise ValueError("max_concurrency must be positive")
+    if retries < 0:
+        raise ValueError("retries must be nonnegative")
+
+    opts: dict[str, Any] = {
+        "MaxDocDisplayCount": serving["max_doc_display_count"],
+        "ChunkMatches": bool(serving.get("chunk_matches", True)),
+        "Whole": serving["whole"],
+    }
+    if serving.get("use_bm25_scoring"):
+        opts["UseBM25Scoring"] = True
+    if serving["shard_max_match_count"] > 0:
+        opts["ShardMaxMatchCount"] = serving["shard_max_match_count"]
+    if serving["total_max_match_count"] > 0:
+        opts["TotalMaxMatchCount"] = serving["total_max_match_count"]
+
+    items = [
+        {"ID": str(index), "Request": {"Q": query, "Opts": opts}}
+        for index, query in enumerate(queries)
+    ]
+    payload = json.dumps({"Searches": items, "MaxConcurrency": max_concurrency})
+    command = [
+        "curl", "-fsS", "--max-time", str(max(1, int(math.ceil(timeout)))),
+    ]
+    if retries:
+        command.extend(
+            [
+                "--retry", str(retries),
+                "--retry-all-errors",
+                "--retry-delay", "0",
+            ]
+        )
+    command.extend(
+        [
+            _api_batch_url(api_url),
+            "-H", "Content-Type: application/json", "-d", payload,
+        ]
+    )
+    started = time.perf_counter()
+    proc = subprocess.run(
+        command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        timeout=timeout + 2,
+        check=False,
+    )
+    elapsed_ms = (time.perf_counter() - started) * 1000
+    if proc.returncode != 0:
+        raise RuntimeError(
+            proc.stderr.decode(errors="replace").strip()
+            or f"curl exited {proc.returncode}"
+        )
+    response = json.loads(proc.stdout)
+    rows = response.get("Results") or []
+    by_id = {str(row.get("ID", "")): row for row in rows}
+    missing = [str(index) for index in range(len(queries)) if str(index) not in by_id]
+    if missing:
+        raise RuntimeError(f"batch API omitted result IDs: {', '.join(missing)}")
+
+    results: dict[str, list[dict[str, Any]]] = {}
+    cache_counts: dict[str, int] = {}
+    for index, query in enumerate(queries):
+        row = by_id[str(index)]
+        status = int(row.get("StatusCode", 0))
+        if status != 200:
+            raise RuntimeError(
+                f"batch query {index} failed with HTTP {status}: {row.get('Error') or 'unknown error'}"
+            )
+        result = row.get("Result") or {}
+        files = result.get("Files") or []
+        results[query] = [
+            {
+                "Repository": item.get("Repository", ""),
+                "FileName": item.get("FileName", ""),
+                "Score": item.get("Score", 0),
+            }
+            for item in files
+        ]
+        cache_status = str(row.get("Cache") or "UNKNOWN")
+        cache_counts[cache_status] = cache_counts.get(cache_status, 0) + 1
+
+    return results, {
+        "elapsed_ms": elapsed_ms,
+        "payload_bytes": len(proc.stdout),
+        "physical_api_requests": 1,
+        "logical_queries": len(queries),
+        "max_concurrency": max_concurrency,
+        "cache_counts": cache_counts,
+    }
+
+
 def api_index_fingerprint_from_list(payload: dict[str, Any]) -> dict[str, Any]:
     """Fingerprint the exact public Zoekt state exposed by ``/api/list``."""
     rows: list[dict[str, Any]] = []

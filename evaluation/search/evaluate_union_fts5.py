@@ -30,8 +30,8 @@ from evaluate_fielded_fts5 import (
     fts5_match_query,
     fts5_rerank,
 )
-from evaluate_fielded_lexical import retrieve_fielded
-from evaluate_multiquery import DEFAULT_EXPANSIONS, load_expansion_queries, retrieve_multiquery
+from evaluate_fielded_lexical import compile_field_queries, retrieve_fielded, weighted_rrf_fuse
+from evaluate_multiquery import DEFAULT_EXPANSIONS, load_expansion_queries, retrieve_multiquery, rrf_fuse
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 
@@ -102,6 +102,82 @@ class CoalescingApiSearch:
         runtime["physical_api_requests"] = 0
         runtime["coalesced_api_hits"] = 1
         return results, runtime
+
+
+def retrieve_batched_first_stages(
+    case: dict[str, Any],
+    expansion_queries: dict[str, list[str]],
+    *,
+    timeout: float,
+    api_url: str,
+    serving: dict[str, Any],
+    depth: int,
+    rrf_constant: int,
+    weights: dict[str, float],
+    max_concurrency: int,
+    api_retries: int,
+) -> tuple[
+    list[dict[str, Any]],
+    list[dict[str, Any]],
+    dict[str, str],
+    list[str],
+    list[str],
+    dict[str, Any],
+]:
+    """Retrieve both lexical first stages through one public batch request.
+
+    The mathematical retrieval contract is unchanged: fielded weighted RRF and
+    frozen multi-query RRF see the same compiled queries and depth as their
+    ordinary implementations.  Only transport/scheduling changes.
+    """
+
+    field_queries = compile_field_queries(case["query"])
+    formulations = [case["query"], *expansion_queries[case["id"]]]
+    compiled: list[str] = []
+    seen_multiquery: set[str] = set()
+    for formulation in formulations:
+        query = evaluate.compile_query(formulation, "normalized_path_content_v1")
+        if query in seen_multiquery:
+            continue
+        seen_multiquery.add(query)
+        compiled.append(query)
+
+    unique_queries = list(dict.fromkeys([*field_queries.values(), *compiled]))
+    by_query, batch_runtime = evaluate.api_search_batch(
+        unique_queries,
+        timeout,
+        api_url,
+        serving,
+        max_concurrency=max_concurrency,
+        retries=api_retries,
+    )
+    fielded = weighted_rrf_fuse(
+        [
+            (field, weights[field], by_query[query])
+            for field, query in field_queries.items()
+        ],
+        constant=rrf_constant,
+        depth=depth,
+    )
+    multiquery = rrf_fuse(
+        [by_query[query] for query in compiled],
+        constant=rrf_constant,
+        depth=depth,
+    )
+    batch_runtime = {
+        **batch_runtime,
+        "logical_retriever_queries": len(field_queries) + len(compiled),
+        "unique_backend_searches": len(unique_queries),
+        "coalesced_query_consumers": len(field_queries) + len(compiled) - len(unique_queries),
+    }
+    return (
+        fielded,
+        multiquery,
+        field_queries,
+        formulations,
+        compiled,
+        batch_runtime,
+    )
 
 
 def balanced_union(
@@ -218,6 +294,17 @@ def main() -> int:
         help="share identical API requests issued by the two first-stage retrievers",
     )
     parser.add_argument(
+        "--batch-first-stage",
+        action="store_true",
+        help="submit all unique fielded and frozen-multiquery searches for each case through one API batch request",
+    )
+    parser.add_argument(
+        "--batch-max-concurrency",
+        type=int,
+        default=4,
+        help="server-side concurrency bound for --batch-first-stage",
+    )
+    parser.add_argument(
         "--omit-first-stage-chunks",
         action="store_true",
         help="request only ranked file identities from first-stage API calls",
@@ -237,6 +324,20 @@ def main() -> int:
         return 2
     if args.api_retries < 0:
         print("ERROR: api retries must be nonnegative", file=sys.stderr)
+        return 2
+    if args.batch_max_concurrency <= 0:
+        print("ERROR: batch max concurrency must be positive", file=sys.stderr)
+        return 2
+    if args.batch_first_stage and (
+        args.parallel_first_stages
+        or args.coalesce_first_stage_requests
+        or args.first_stage_api_workers != 1
+    ):
+        print(
+            "ERROR: --batch-first-stage owns first-stage scheduling; do not combine it "
+            "with parallel/coalesced/client-worker modes",
+            file=sys.stderr,
+        )
         return 2
     weights = {
         "baseline": args.baseline_weight,
@@ -271,12 +372,49 @@ def main() -> int:
     total_first_stage_logical_queries = 0
     total_first_stage_physical_requests = 0
     total_first_stage_coalesced_hits = 0
+    total_first_stage_backend_searches = 0
+    total_first_stage_transport_requests = 0
 
     for number, case in enumerate(gold["cases"], start=1):
         shared_api_search = CoalescingApiSearch() if args.coalesce_first_stage_requests else None
         try:
             first_stage_started = time.perf_counter()
-            if args.parallel_first_stages:
+            batch_runtime: dict[str, Any] | None = None
+            if args.batch_first_stage:
+                (
+                    fielded,
+                    multiquery,
+                    field_queries,
+                    formulations,
+                    compiled,
+                    batch_runtime,
+                ) = retrieve_batched_first_stages(
+                    case,
+                    expansion_queries,
+                    timeout=args.timeout,
+                    api_url=args.api_url,
+                    serving=serving,
+                    depth=args.depth,
+                    rrf_constant=args.rrf_constant,
+                    weights=weights,
+                    max_concurrency=args.batch_max_concurrency,
+                    api_retries=args.api_retries,
+                )
+                fielded_runtime = {
+                    "elapsed_ms": batch_runtime["elapsed_ms"],
+                    "payload_bytes": batch_runtime["payload_bytes"],
+                    "retrieval_queries": 3,
+                    "physical_api_requests": 0,
+                    "coalesced_api_hits": 0,
+                }
+                multiquery_runtime = {
+                    "elapsed_ms": batch_runtime["elapsed_ms"],
+                    "payload_bytes": 0,
+                    "retrieval_queries": len(compiled),
+                    "physical_api_requests": 0,
+                    "coalesced_api_hits": 0,
+                }
+            elif args.parallel_first_stages:
                 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
                     fielded_future = executor.submit(
                         retrieve_fielded,
@@ -390,17 +528,29 @@ def main() -> int:
                 + multiquery_runtime["retrieval_queries"]
             ),
             "physical_api_requests": (
-                fielded_runtime["physical_api_requests"]
+                int(batch_runtime["physical_api_requests"])
+                if batch_runtime is not None
+                else fielded_runtime["physical_api_requests"]
+                + multiquery_runtime["physical_api_requests"]
+            ),
+            "backend_searches": (
+                int(batch_runtime["unique_backend_searches"])
+                if batch_runtime is not None
+                else fielded_runtime["physical_api_requests"]
                 + multiquery_runtime["physical_api_requests"]
             ),
             "coalesced_api_hits": (
-                fielded_runtime["coalesced_api_hits"]
+                int(batch_runtime["coalesced_query_consumers"])
+                if batch_runtime is not None
+                else fielded_runtime["coalesced_api_hits"]
                 + multiquery_runtime["coalesced_api_hits"]
             ),
             "content_fetches": len(candidates),
         }
         total_first_stage_logical_queries += int(runtime["retrieval_queries"])
         total_first_stage_physical_requests += int(runtime["physical_api_requests"])
+        total_first_stage_backend_searches += int(runtime["backend_searches"])
+        total_first_stage_transport_requests += int(runtime["physical_api_requests"])
         total_first_stage_coalesced_hits += int(runtime["coalesced_api_hits"])
         scored = evaluate.score_case(
             case,
@@ -439,7 +589,11 @@ def main() -> int:
         "expansion_prompt_version": expansion_data.get("prompt_version"),
         "variant": (
             (
-                "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_coalesced_chunkless_v1"
+                "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_batched_chunkless_v1"
+                if args.batch_first_stage and args.omit_first_stage_chunks
+                else "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_batched_v1"
+                if args.batch_first_stage
+                else "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_coalesced_chunkless_v1"
                 if args.coalesce_first_stage_requests and args.omit_first_stage_chunks
                 else "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_coalesced_v1"
                 if args.coalesce_first_stage_requests
@@ -461,10 +615,21 @@ def main() -> int:
         "first_stage": {
             "retrievers": ["zoekt_fielded_rrf_v1", "gemini_multiquery_rrf_v1"],
             "union": "rank-interleaved deduplicated bounded prefixes",
-            "execution": "parallel" if args.parallel_first_stages else "serial",
-            "coalesce_identical_requests": args.coalesce_first_stage_requests,
+            "execution": (
+                "server-batched"
+                if args.batch_first_stage
+                else "parallel"
+                if args.parallel_first_stages
+                else "serial"
+            ),
+            "coalesce_identical_requests": (
+                True if args.batch_first_stage else args.coalesce_first_stage_requests
+            ),
             "chunk_matches": not args.omit_first_stage_chunks,
             "api_workers_per_retriever": args.first_stage_api_workers,
+            "batch_max_concurrency": args.batch_max_concurrency
+            if args.batch_first_stage
+            else None,
             "per_retriever_depth": args.per_retriever_depth,
             "field_weights": weights,
             "rrf_constant": args.rrf_constant,
@@ -473,6 +638,8 @@ def main() -> int:
         "candidate_pool": 2 * args.per_retriever_depth,
         "first_stage_request_counts": {
             "logical_queries": total_first_stage_logical_queries,
+            "backend_searches": total_first_stage_backend_searches,
+            "transport_requests": total_first_stage_transport_requests,
             "physical_api_requests": total_first_stage_physical_requests,
             "coalesced_api_hits": total_first_stage_coalesced_hits,
         },
