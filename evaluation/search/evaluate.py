@@ -393,7 +393,7 @@ def api_search(
         command,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
-        timeout=timeout + 2,
+        timeout=(retries + 1) * max(1, int(math.ceil(timeout))) + 2,
         check=False,
     )
     elapsed_ms = (time.perf_counter() - started) * 1000
@@ -501,7 +501,7 @@ def api_search_batch(
         command,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
-        timeout=timeout + 2,
+        timeout=(retries + 1) * max(1, int(math.ceil(timeout))) + 2,
         check=False,
     )
     elapsed_ms = (time.perf_counter() - started) * 1000

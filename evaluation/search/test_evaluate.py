@@ -95,6 +95,7 @@ class SearchEvaluationTests(unittest.TestCase):
                 "https://example.test/api/search",
                 serving,
                 max_concurrency=4,
+                retries=2,
             )
         self.assertEqual(rows["query a"][0]["FileName"], "A.lean")
         self.assertEqual(rows["query b"], [])
@@ -104,6 +105,7 @@ class SearchEvaluationTests(unittest.TestCase):
         payload = json.loads(run.call_args.args[0][-1])
         self.assertEqual(payload["MaxConcurrency"], 4)
         self.assertFalse(payload["Searches"][0]["Request"]["Opts"]["ChunkMatches"])
+        self.assertEqual(run.call_args.kwargs["timeout"], 92)
 
     def test_batched_first_stage_reconstructs_fielded_and_multiquery_rankings(self) -> None:
         case = {"id": "q", "query": "Jordan canonical form"}
