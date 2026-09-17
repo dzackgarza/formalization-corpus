@@ -117,9 +117,15 @@ def main() -> int:
     parser.add_argument(
         "--batch-first-pass",
         action="store_true",
-        help="compare the complete unique query population through two API batch requests before bounded per-query repeats",
+        help="compare the complete unique query population through bounded API batches before per-query repeats",
     )
     parser.add_argument("--batch-max-concurrency", type=int, default=4)
+    parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=16,
+        help="maximum unique searches submitted in one HTTP batch during --batch-first-pass",
+    )
     parser.add_argument("--api-retries", type=int, default=2)
     parser.add_argument("--output", type=pathlib.Path, required=True)
     args = parser.parse_args()
@@ -128,10 +134,11 @@ def main() -> int:
         args.depth <= 0
         or args.workers <= 0
         or args.batch_max_concurrency <= 0
+        or args.batch_size <= 0
         or args.api_retries < 0
     ):
         parser.error(
-            "depth/workers/batch-max-concurrency must be positive and api-retries nonnegative"
+            "depth/workers/batch-max-concurrency/batch-size must be positive and api-retries nonnegative"
         )
 
     gold = evaluate.load_gold(args.gold)
@@ -169,22 +176,68 @@ def main() -> int:
     chunked_batch_runtime: dict[str, Any] | None = None
     chunkless_batch_runtime: dict[str, Any] | None = None
     if args.batch_first_pass:
-        chunked_by_query, chunked_batch_runtime = evaluate.api_search_batch(
-            queries,
-            args.timeout,
-            args.api_url,
-            {**serving, "chunk_matches": True},
-            max_concurrency=args.batch_max_concurrency,
-            retries=args.api_retries,
-        )
-        chunkless_by_query, chunkless_batch_runtime = evaluate.api_search_batch(
-            queries,
-            args.timeout,
-            args.api_url,
-            {**serving, "chunk_matches": False},
-            max_concurrency=args.batch_max_concurrency,
-            retries=args.api_retries,
-        )
+        chunked_by_query: dict[str, list[dict[str, Any]]] = {}
+        chunkless_by_query: dict[str, list[dict[str, Any]]] = {}
+        batch_pairs: list[dict[str, Any]] = []
+
+        def merge_runtime(
+            aggregate: dict[str, Any] | None, runtime: dict[str, Any]
+        ) -> dict[str, Any]:
+            if aggregate is None:
+                aggregate = {
+                    "elapsed_ms": 0.0,
+                    "payload_bytes": 0,
+                    "physical_api_requests": 0,
+                    "logical_queries": 0,
+                    "max_concurrency": args.batch_max_concurrency,
+                    "cache_counts": {},
+                }
+            aggregate["elapsed_ms"] += float(runtime["elapsed_ms"])
+            aggregate["payload_bytes"] += int(runtime["payload_bytes"])
+            aggregate["physical_api_requests"] += int(runtime["physical_api_requests"])
+            aggregate["logical_queries"] += int(runtime["logical_queries"])
+            for cache_status, count in runtime.get("cache_counts", {}).items():
+                aggregate["cache_counts"][cache_status] = (
+                    aggregate["cache_counts"].get(cache_status, 0) + int(count)
+                )
+            return aggregate
+
+        for start in range(0, len(queries), args.batch_size):
+            batch = queries[start : start + args.batch_size]
+            chunked_rows, chunked_runtime = evaluate.api_search_batch(
+                batch,
+                args.timeout,
+                args.api_url,
+                {**serving, "chunk_matches": True},
+                max_concurrency=args.batch_max_concurrency,
+                retries=args.api_retries,
+            )
+            chunkless_rows, chunkless_runtime = evaluate.api_search_batch(
+                batch,
+                args.timeout,
+                args.api_url,
+                {**serving, "chunk_matches": False},
+                max_concurrency=args.batch_max_concurrency,
+                retries=args.api_retries,
+            )
+            chunked_by_query.update(chunked_rows)
+            chunkless_by_query.update(chunkless_rows)
+            chunked_batch_runtime = merge_runtime(chunked_batch_runtime, chunked_runtime)
+            chunkless_batch_runtime = merge_runtime(
+                chunkless_batch_runtime, chunkless_runtime
+            )
+            batch_pairs.append(
+                {
+                    "start": start + 1,
+                    "end": start + len(batch),
+                    "chunked": chunked_runtime,
+                    "chunkless": chunkless_runtime,
+                }
+            )
+            print(
+                f"batched {start + len(batch)}/{len(queries)} first-stage queries",
+                flush=True,
+            )
         for number, query in enumerate(queries, start=1):
             chunked = ordered_rows(chunked_by_query[query])
             chunkless = ordered_rows(chunkless_by_query[query])
@@ -295,14 +348,18 @@ def main() -> int:
             "batch_max_concurrency": args.batch_max_concurrency
             if args.batch_first_pass
             else None,
+            "batch_size": args.batch_size if args.batch_first_pass else None,
             "api_retries": args.api_retries,
             "unique_queries": len(queries),
-            "paired_requests": 2 if args.batch_first_pass else 2 * len(queries),
+            "paired_requests": (
+                2 * len(batch_pairs) if args.batch_first_pass else 2 * len(queries)
+            ),
             "paired_backend_searches": 2 * len(queries),
             "repeat_requests": 4 * len(mismatches),
             "wall_ms": (time.perf_counter() - started) * 1000,
             "chunked_batch_runtime": chunked_batch_runtime,
             "chunkless_batch_runtime": chunkless_batch_runtime,
+            "batch_pairs": batch_pairs if args.batch_first_pass else None,
         },
         "metrics": {
             "unique_first_stage_queries": len(queries),
