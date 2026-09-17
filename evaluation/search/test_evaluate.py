@@ -21,6 +21,7 @@ from evaluate_fielded_fts5 import (  # noqa: E402
 )
 from evaluate_multiquery import retrieve_multiquery, rrf_fuse  # noqa: E402
 from evaluate_rerank import bounded_excerpt, humanize_path  # noqa: E402
+from evaluate_union_fts5 import balanced_union  # noqa: E402
 
 
 class SearchEvaluationTests(unittest.TestCase):
@@ -247,6 +248,29 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
             content_mode="evidence-rrf",
         )
         self.assertEqual([item["FileName"] for item in reranked], ["A.lean", "B.lean"])
+
+    def test_balanced_union_preserves_bounded_recall_from_both_retrievers(self) -> None:
+        fielded = [
+            {"Repository": "r", "FileName": "shared.lean", "Score": 3.0},
+            {"Repository": "r", "FileName": "fielded-owner.lean", "Score": 2.0},
+            {"Repository": "r", "FileName": "fielded-tail.lean", "Score": 1.0},
+        ]
+        multiquery = [
+            {"Repository": "r", "FileName": "shared.lean", "Score": 4.0},
+            {"Repository": "r", "FileName": "multi-owner.lean", "Score": 2.0},
+            {"Repository": "r", "FileName": "multi-tail.lean", "Score": 1.0},
+        ]
+        union = balanced_union(fielded, multiquery, per_retriever_depth=2)
+        self.assertEqual(
+            [item["FileName"] for item in union],
+            ["shared.lean", "fielded-owner.lean", "multi-owner.lean"],
+        )
+        self.assertEqual(union[0]["CandidateSources"], ["fielded", "multiquery"])
+        self.assertEqual(
+            union[0]["CandidateSourceRanks"],
+            {"fielded": 1, "multiquery": 1},
+        )
+        self.assertEqual(union[1]["CandidateUnionRank"], 2)
 
     def test_query_compiler_does_not_hide_acl2_sys_proof_metadata(self) -> None:
         for variant in ("frontend_lexical_v1", "frontend_lexical_v2", "normalized_path_content_v1"):
