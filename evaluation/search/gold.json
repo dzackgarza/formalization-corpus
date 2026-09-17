@@ -632,16 +632,16 @@
       ],
       "judgments": [
         {
-          "repository": "roed-math__gq2-lean",
-          "file": "GQ2/HilbertSymbolSufficiency.lean",
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/HilbertSymbol2Adic.lean",
           "relevance": 3,
-          "note": "Hilbert-symbol evaluation/sufficiency machinery over Q2."
+          "note": "Direct formalization of the explicit dyadic Hilbert-symbol formula over Q2, including all valuation-parity cases."
         },
         {
-          "repository": "roed-math__gq2-lean",
-          "file": "GQ2/Statement.lean",
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/Hilbert2Adic.lean",
           "relevance": 2,
-          "note": "Project statement involving the dyadic Hilbert symbol."
+          "note": "Supporting 2-adic Hilbert-symbol development proving the primitive-solvability and mod-8 lemmas used by the explicit formula."
         }
       ]
     },
