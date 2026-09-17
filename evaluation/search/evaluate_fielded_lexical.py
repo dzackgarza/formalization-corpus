@@ -17,10 +17,12 @@ query as the dominant signal.
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import hashlib
 import json
 import pathlib
 import sys
+import time
 from datetime import datetime, timezone
 from typing import Any
 
@@ -94,12 +96,17 @@ def retrieve_fielded(
     rrf_constant: int,
     weights: dict[str, float],
     api_retries: int = 0,
+    api_workers: int = 1,
 ) -> tuple[list[dict[str, Any]], dict[str, Any], dict[str, str]]:
+    if api_workers <= 0:
+        raise ValueError("api_workers must be positive")
     queries = compile_field_queries(text)
     rankings: list[tuple[str, float, list[dict[str, Any]]]] = []
-    elapsed_ms = 0.0
+    request_elapsed_ms = 0.0
     payload_bytes = 0
-    for field in ("baseline", "content", "path"):
+    fields = ("baseline", "content", "path")
+
+    def run_field(field: str) -> tuple[str, list[dict[str, Any]], dict[str, Any]]:
         query = queries[field]
         if provider == "local":
             results, runtime = evaluate.local_search(query, timeout)
@@ -113,16 +120,30 @@ def retrieve_fielded(
             )
         else:
             raise ValueError(f"unknown retrieval provider: {provider}")
+        return field, results, runtime
+
+    started = time.perf_counter()
+    if provider == "api" and api_workers > 1:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=min(api_workers, len(fields))) as executor:
+            futures = {field: executor.submit(run_field, field) for field in fields}
+            completed = [futures[field].result() for field in fields]
+    else:
+        completed = [run_field(field) for field in fields]
+    elapsed_ms = (time.perf_counter() - started) * 1000
+
+    for field, results, runtime in completed:
         rankings.append((field, weights[field], results))
-        elapsed_ms += runtime["elapsed_ms"]
+        request_elapsed_ms += runtime["elapsed_ms"]
         payload_bytes += runtime["payload_bytes"]
 
     fused = weighted_rrf_fuse(rankings, constant=rrf_constant, depth=depth)
     return fused, {
         "elapsed_ms": elapsed_ms,
+        "request_elapsed_ms": request_elapsed_ms,
         "payload_bytes": payload_bytes,
         "returned_files": len(fused),
         "retrieval_queries": len(rankings),
+        "api_workers": api_workers if provider == "api" else 1,
     }, queries
 
 
@@ -137,11 +158,15 @@ def main() -> int:
     parser.add_argument("--baseline-weight", type=float, default=2.0)
     parser.add_argument("--content-weight", type=float, default=1.0)
     parser.add_argument("--path-weight", type=float, default=1.0)
+    parser.add_argument("--api-workers", type=int, default=1)
     parser.add_argument("--output", type=pathlib.Path)
     args = parser.parse_args()
 
     if args.depth <= 0:
         print("ERROR: depth must be positive", file=sys.stderr)
+        return 2
+    if args.api_workers <= 0:
+        print("ERROR: api workers must be positive", file=sys.stderr)
         return 2
     weights = {
         "baseline": args.baseline_weight,
@@ -187,6 +212,7 @@ def main() -> int:
                 depth=args.depth,
                 rrf_constant=args.rrf_constant,
                 weights=weights,
+                api_workers=args.api_workers,
             )
         except Exception as exc:
             print(f"ERROR {case['id']}: {exc}", file=sys.stderr)
@@ -220,6 +246,7 @@ def main() -> int:
         "api_url": args.api_url if args.provider == "api" else None,
         "serving_options": serving,
         "field_weights": weights,
+        "api_workers": args.api_workers if args.provider == "api" else 1,
         "rrf_constant": args.rrf_constant,
         "fusion_depth": args.depth,
         "index": evaluate.index_fingerprint() if args.provider == "local" else api_index_before,

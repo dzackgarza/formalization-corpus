@@ -4,11 +4,13 @@
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import hashlib
 import json
 import pathlib
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 from typing import Any
 
@@ -63,18 +65,25 @@ def retrieve_multiquery(
     api_url: str = evaluate.DEFAULT_API_URL,
     serving: dict[str, Any] | None = None,
     api_retries: int = 0,
+    api_workers: int = 1,
 ) -> tuple[list[dict[str, Any]], dict[str, Any], list[str], list[str]]:
+    if api_workers <= 0:
+        raise ValueError("api_workers must be positive")
     formulations = [case["query"], *expansion_queries[case["id"]]]
     compiled: list[str] = []
-    rankings: list[list[dict[str, Any]]] = []
-    elapsed_ms = 0.0
+    query_specs: list[str] = []
     payload_bytes = 0
+    request_elapsed_ms = 0.0
     seen_queries: set[str] = set()
     for formulation in formulations:
         query = evaluate.compile_query(formulation, "normalized_path_content_v1")
         if query in seen_queries:
             continue
         seen_queries.add(query)
+        compiled.append(query)
+        query_specs.append(query)
+
+    def run_query(query: str) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         if provider == "local":
             results, runtime = evaluate.local_search(query, timeout)
         elif provider == "api":
@@ -87,16 +96,30 @@ def retrieve_multiquery(
             )
         else:
             raise ValueError(f"unknown retrieval provider: {provider}")
-        compiled.append(query)
+        return results, runtime
+
+    started = time.perf_counter()
+    if provider == "api" and api_workers > 1:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=min(api_workers, len(query_specs))) as executor:
+            futures = [executor.submit(run_query, query) for query in query_specs]
+            completed = [future.result() for future in futures]
+    else:
+        completed = [run_query(query) for query in query_specs]
+    elapsed_ms = (time.perf_counter() - started) * 1000
+
+    rankings: list[list[dict[str, Any]]] = []
+    for results, runtime in completed:
         rankings.append(results)
-        elapsed_ms += runtime["elapsed_ms"]
+        request_elapsed_ms += runtime["elapsed_ms"]
         payload_bytes += runtime["payload_bytes"]
     fused = rrf_fuse(rankings, constant=rrf_constant, depth=depth)
     runtime = {
         "elapsed_ms": elapsed_ms,
+        "request_elapsed_ms": request_elapsed_ms,
         "payload_bytes": payload_bytes,
         "returned_files": len(fused),
         "retrieval_queries": len(rankings),
+        "api_workers": api_workers if provider == "api" else 1,
     }
     return fused, runtime, formulations, compiled
 
@@ -110,8 +133,13 @@ def main() -> int:
     parser.add_argument("--api-url", default=evaluate.DEFAULT_API_URL)
     parser.add_argument("--rrf-constant", type=int, default=60)
     parser.add_argument("--depth", type=int, default=200)
+    parser.add_argument("--api-workers", type=int, default=1)
     parser.add_argument("--output", type=pathlib.Path)
     args = parser.parse_args()
+
+    if args.api_workers <= 0:
+        print("ERROR: api workers must be positive", file=sys.stderr)
+        return 2
 
     if args.provider == "local" and (
         not evaluate.INDEX_DIR.is_dir() or not any(evaluate.INDEX_DIR.glob("*.zoekt"))
@@ -148,6 +176,7 @@ def main() -> int:
             provider=args.provider,
             api_url=args.api_url,
             serving=serving,
+            api_workers=args.api_workers,
         )
         scored = evaluate.score_case(case, fused, " MULTIQUERY ".join(compiled), runtime)
         scored["formulations"] = formulations
@@ -176,6 +205,7 @@ def main() -> int:
         "serving_options": serving,
         "rrf_constant": args.rrf_constant,
         "fusion_depth": args.depth,
+        "api_workers": args.api_workers if args.provider == "api" else 1,
         "index": evaluate.index_fingerprint() if args.provider == "local" else api_index_before,
         "retrieval_engine": evaluate.retrieval_engine_fingerprint() if args.provider == "local" else None,
         "metrics": evaluate.aggregate(scored_cases),

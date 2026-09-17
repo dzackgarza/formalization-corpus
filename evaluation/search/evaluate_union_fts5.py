@@ -117,6 +117,12 @@ def main() -> int:
     parser.add_argument("--per-retriever-depth", type=int, default=50)
     parser.add_argument("--fetch-workers", type=int, default=8)
     parser.add_argument(
+        "--first-stage-api-workers",
+        type=int,
+        default=1,
+        help="bounded API concurrency inside each fielded/multiquery first stage",
+    )
+    parser.add_argument(
         "--api-retries",
         type=int,
         default=0,
@@ -144,6 +150,7 @@ def main() -> int:
         args.depth,
         args.per_retriever_depth,
         args.fetch_workers,
+        args.first_stage_api_workers,
         args.rrf_constant,
         args.evidence_rrf_constant,
     ) <= 0:
@@ -197,6 +204,7 @@ def main() -> int:
                         rrf_constant=args.rrf_constant,
                         weights=weights,
                         api_retries=args.api_retries,
+                        api_workers=args.first_stage_api_workers,
                     )
                     multiquery_future = executor.submit(
                         retrieve_multiquery,
@@ -209,6 +217,7 @@ def main() -> int:
                         api_url=args.api_url,
                         serving=serving,
                         api_retries=args.api_retries,
+                        api_workers=args.first_stage_api_workers,
                     )
                     fielded, fielded_runtime, field_queries = fielded_future.result()
                     multiquery, multiquery_runtime, formulations, compiled = multiquery_future.result()
@@ -223,6 +232,7 @@ def main() -> int:
                     rrf_constant=args.rrf_constant,
                     weights=weights,
                     api_retries=args.api_retries,
+                    api_workers=args.first_stage_api_workers,
                 )
                 multiquery, multiquery_runtime, formulations, compiled = retrieve_multiquery(
                     case,
@@ -234,6 +244,7 @@ def main() -> int:
                     api_url=args.api_url,
                     serving=serving,
                     api_retries=args.api_retries,
+                    api_workers=args.first_stage_api_workers,
                 )
             first_stage_wall_ms = (time.perf_counter() - first_stage_started) * 1000
             candidates = balanced_union(
@@ -347,6 +358,7 @@ def main() -> int:
             "retrievers": ["zoekt_fielded_rrf_v1", "gemini_multiquery_rrf_v1"],
             "union": "rank-interleaved deduplicated bounded prefixes",
             "execution": "parallel" if args.parallel_first_stages else "serial",
+            "api_workers_per_retriever": args.first_stage_api_workers,
             "per_retriever_depth": args.per_retriever_depth,
             "field_weights": weights,
             "rrf_constant": args.rrf_constant,
