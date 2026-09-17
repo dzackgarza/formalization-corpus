@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "28b5666477eb8b873071a038d73f98b3ada3d66c",
-  "generated_at": "2026-09-17T01:16:57.379811+00:00",
+  "corpus_git_commit": "e855522ee96e56e78e1812891f5b57495ff5d913",
+  "generated_at": "2026-09-17T01:45:33.468385+00:00",
   "groups": [
     {
       "canonical": {
@@ -4309,26 +4309,6 @@
     },
     {
       "canonical": {
-        "file": "tests/lean_exploit_files/ConstructorIntegrity/ManualConstructor.lean",
-        "repository": "oOo0oOo__LeanParanoia"
-      },
-      "occurrences": [
-        {
-          "file": "tests/lean_exploit_files/ConstructorIntegrity/ManualConstructor.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/lean_exploit_files/RecursorIntegrity/MissingRecursor.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        }
-      ],
-      "sha256": "0f0ff18b829c2d3724a8756b3b8a2334d1f818dde39d5d0585a6a766fe65763e",
-      "size_bytes": 205
-    },
-    {
-      "canonical": {
         "file": "Examples/pvs-tables/autopilot/scr.pvs",
         "repository": "SRI-CSL__PVS"
       },
@@ -8441,26 +8421,6 @@
       ],
       "sha256": "1e0d718f07b45511626cb9644735de2bdc6ca20275a15151700ad4f682f68741",
       "size_bytes": 5149
-    },
-    {
-      "canonical": {
-        "file": "tests/benchmark/references/ConstructorIntegrity/ManualConstructor.lean",
-        "repository": "oOo0oOo__LeanParanoia"
-      },
-      "occurrences": [
-        {
-          "file": "tests/benchmark/references/ConstructorIntegrity/ManualConstructor.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/RecursorIntegrity/MissingRecursor.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        }
-      ],
-      "sha256": "1e47a810536aebea8ce7369260d0b134b2a692d4ce8797e33c662a903a520801",
-      "size_bytes": 45
     },
     {
       "canonical": {
@@ -31454,46 +31414,6 @@
     },
     {
       "canonical": {
-        "file": "tests/benchmark/references/CustomAxioms/FakeStdLib.lean",
-        "repository": "oOo0oOo__LeanParanoia"
-      },
-      "occurrences": [
-        {
-          "file": "tests/benchmark/references/CustomAxioms/FakeStdLib.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/CustomAxioms/ProveAnything.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/CustomAxioms/ProveFalse.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Sorry/Admit.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Sorry/TerminalTactics.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Sorry/Underscore.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        }
-      ],
-      "sha256": "73b2f7340e43c1b9a19521077efa0779c430d1fadc83afb9adf2696deea3e55a",
-      "size_bytes": 41
-    },
-    {
-      "canonical": {
         "file": "projects/AdicSpaces/Adic spaces/WedhornCor732DirectUpperBoundResidual.lean",
         "repository": "CBirkbeck__AINTLIB"
       },
@@ -35646,26 +35566,6 @@
       ],
       "sha256": "83ce6195031b469bea18714841659b67a43a87942d8c7aec1997b58369bb3dc0",
       "size_bytes": 41637
-    },
-    {
-      "canonical": {
-        "file": "tests/benchmark/references/Valid/ComplexExample.lean",
-        "repository": "oOo0oOo__LeanParanoia"
-      },
-      "occurrences": [
-        {
-          "file": "tests/benchmark/references/Valid/ComplexExample.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/lean_exploit_files/Valid/ComplexExample.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        }
-      ],
-      "sha256": "840e16c6dc1052c180967f9d6d9b004acad1aafcfeefa381937538ff14e47494",
-      "size_bytes": 3193
     },
     {
       "canonical": {
@@ -42356,76 +42256,6 @@
       ],
       "sha256": "9cd9a40051924757cc94595afd16b79391ebf7dc9df6421dbfd02b2ae21f99c3",
       "size_bytes": 4367
-    },
-    {
-      "canonical": {
-        "file": "tests/benchmark/references/CSimp/WithAxiom.lean",
-        "repository": "oOo0oOo__LeanParanoia"
-      },
-      "occurrences": [
-        {
-          "file": "tests/benchmark/references/CSimp/WithAxiom.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/CSimp/WithUnsafe.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Extern/CoreNamespace.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Extern/ExportC.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Extern/ExternFFI.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Extern/PrivateExtern.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/ImplementedBy/ChainedReplacement.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/ImplementedBy/DirectReplacement.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/ImplementedBy/PrivateImpl.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/SourcePatterns/LocalInstanceArithmetic.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Transitive/UsesBadLib.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Unsafe/UnsafeDefinition.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        }
-      ],
-      "sha256": "9cf542dd9985b177b0e9cf60b6cbc655462f8c63eead546f3ce6a49c2b735705",
-      "size_bytes": 45
     },
     {
       "canonical": {
@@ -51711,36 +51541,6 @@
       ],
       "sha256": "be1066bf94da2159a41ab66f708fa3074eeedb8aa5532729851d91fc57dd512a",
       "size_bytes": 147
-    },
-    {
-      "canonical": {
-        "file": "tests/benchmark/references/NativeComputation/NativeDecide.lean",
-        "repository": "oOo0oOo__LeanParanoia"
-      },
-      "occurrences": [
-        {
-          "file": "tests/benchmark/references/NativeComputation/NativeDecide.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/NativeComputation/OfReduce.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Sorry/ByAsSorry.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Sorry/ProofAsSorry.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        }
-      ],
-      "sha256": "be2324ac8d3954b3dae9e0561495159aa1fdadd39d3b66025b64cf67e9197caa",
-      "size_bytes": 40
     },
     {
       "canonical": {
@@ -67886,31 +67686,6 @@
       ],
       "sha256": "fc088fda23f91fe63f049b0c3d33f946e9e2be78c627f8550efe8bf6cca95501",
       "size_bytes": 229
-    },
-    {
-      "canonical": {
-        "file": "tests/benchmark/references/CustomAxioms/ForgeRunCmd.lean",
-        "repository": "oOo0oOo__LeanParanoia"
-      },
-      "occurrences": [
-        {
-          "file": "tests/benchmark/references/CustomAxioms/ForgeRunCmd.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/CustomAxioms/ForgeRunTac.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        },
-        {
-          "file": "tests/benchmark/references/Sorry/Opaque.lean",
-          "proof_assistant": "lean",
-          "repository": "oOo0oOo__LeanParanoia"
-        }
-      ],
-      "sha256": "fc27970ca089c82cd733d3af8453789e172b8ca57734e52e890a369b62a031f8",
-      "size_bytes": 37
     },
     {
       "canonical": {
