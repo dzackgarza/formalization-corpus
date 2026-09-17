@@ -38,7 +38,7 @@ QUERY_CONFIG = ROOT / "site/search-query.json"
 ZOEKT = ROOT / "bin/zoekt"
 INDEX_DIR = ROOT / ".zoekt"
 FORMAL_FILES = r"\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$"
-K_VALUES = (1, 5, 10, 20)
+K_VALUES = (1, 5, 10, 20, 50, 100, 200)
 DEFAULT_API_URL = "https://formalization-corpus.dzackgarza.com/api/search"
 FILTER_STATE = ROOT / "filtering/current.jsonl"
 
@@ -215,7 +215,12 @@ def compile_query(text: str, variant: str) -> str:
     if variant == "frontend_lexical_v1":
         parts = literal_terms(text)
         parts.append(f"file:{FORMAL_FILES}")
-    elif variant in {"normalized_content_v1", "normalized_path_content_v1", "frontend_lexical_v2"}:
+    elif variant in {
+        "normalized_content_v1",
+        "normalized_path_content_v1",
+        "frontend_lexical_v2",
+        "zoekt_bm25_v1",
+    }:
         terms, proof_filter = normalized_query_terms(text)
         if variant == "normalized_content_v1":
             parts = [f"content:{quoted_pattern(regex_escape(term))}" for term in terms]
@@ -317,6 +322,7 @@ def serving_options(
     shard_max_match_count: int | None = None,
     total_max_match_count: int | None = None,
     whole: bool | None = None,
+    use_bm25_scoring: bool | None = None,
 ) -> dict[str, Any]:
     configured = query_config().get("serving") or {}
     resolved = {
@@ -334,6 +340,7 @@ def serving_options(
             else total_max_match_count
         ),
         "whole": bool(configured.get("whole", True) if whole is None else whole),
+        "use_bm25_scoring": bool(use_bm25_scoring) if use_bm25_scoring is not None else False,
     }
     if resolved["max_doc_display_count"] <= 0:
         raise ValueError("max_doc_display_count must be positive")
@@ -353,6 +360,8 @@ def api_search(
         "ChunkMatches": True,
         "Whole": serving["whole"],
     }
+    if serving.get("use_bm25_scoring"):
+        opts["UseBM25Scoring"] = True
     if serving["shard_max_match_count"] > 0:
         opts["ShardMaxMatchCount"] = serving["shard_max_match_count"]
     if serving["total_max_match_count"] > 0:
@@ -665,6 +674,12 @@ def main() -> int:
     parser.add_argument("--api-shard-max-match-count", type=int)
     parser.add_argument("--api-total-max-match-count", type=int)
     parser.add_argument(
+        "--api-bm25",
+        action=argparse.BooleanOptionalAction,
+        default=None,
+        help="Enable Zoekt's built-in BM25 scorer for API retrieval.",
+    )
+    parser.add_argument(
         "--api-whole",
         action=argparse.BooleanOptionalAction,
         default=None,
@@ -688,12 +703,20 @@ def main() -> int:
     if args.provider == "local" and (not INDEX_DIR.is_dir() or not any(INDEX_DIR.glob("*.zoekt"))):
         print("ERROR: local .zoekt index is unavailable; build or materialize it before running retrieval evals", file=sys.stderr)
         return 2
+    if args.provider == "local" and args.variant == "zoekt_bm25_v1":
+        print("ERROR: zoekt_bm25_v1 currently requires --provider api", file=sys.stderr)
+        return 2
+
+    api_bm25 = args.api_bm25
+    if api_bm25 is None and args.variant == "zoekt_bm25_v1":
+        api_bm25 = True
 
     resolved_serving = serving_options(
         top=args.api_top,
         shard_max_match_count=args.api_shard_max_match_count,
         total_max_match_count=args.api_total_max_match_count,
         whole=args.api_whole,
+        use_bm25_scoring=api_bm25,
     )
     api_index_before = (
         api_index_fingerprint(args.api_url, args.timeout)

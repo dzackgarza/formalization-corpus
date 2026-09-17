@@ -85,6 +85,13 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         compiled = evaluate.compile_query("is this already formalized?", "frontend_lexical_v2")
         self.assertIn('content:"$a"', compiled)
 
+    def test_zoekt_bm25_uses_the_same_query_semantics_as_frontend_v2(self) -> None:
+        text = "does Lean have the Jordan canonical form theorem?"
+        self.assertEqual(
+            evaluate.compile_query(text, "zoekt_bm25_v1"),
+            evaluate.compile_query(text, "frontend_lexical_v2"),
+        )
+
     def test_query_compiler_does_not_hide_acl2_sys_proof_metadata(self) -> None:
         for variant in ("frontend_lexical_v1", "frontend_lexical_v2", "normalized_path_content_v1"):
             compiled = evaluate.compile_query("generated induction scheme", variant)
@@ -103,11 +110,13 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
             shard_max_match_count=500,
             total_max_match_count=100000,
             whole=False,
+            use_bm25_scoring=True,
         )
         self.assertEqual(serving["max_doc_display_count"], 60)
         self.assertEqual(serving["shard_max_match_count"], 500)
         self.assertEqual(serving["total_max_match_count"], 100000)
         self.assertFalse(serving["whole"])
+        self.assertTrue(serving["use_bm25_scoring"])
 
     def test_api_index_fingerprint_ignores_list_order_but_tracks_index_state(self) -> None:
         def payload(order: list[str], *, documents: int = 10) -> dict:
