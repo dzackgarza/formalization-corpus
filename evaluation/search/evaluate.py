@@ -361,7 +361,7 @@ def api_search(
         raise ValueError("retries must be nonnegative")
     opts: dict[str, Any] = {
         "MaxDocDisplayCount": serving["max_doc_display_count"],
-        "ChunkMatches": True,
+        "ChunkMatches": bool(serving.get("chunk_matches", True)),
         "Whole": serving["whole"],
     }
     if serving.get("use_bm25_scoring"):

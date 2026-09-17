@@ -217,6 +217,11 @@ def main() -> int:
         action="store_true",
         help="share identical API requests issued by the two first-stage retrievers",
     )
+    parser.add_argument(
+        "--omit-first-stage-chunks",
+        action="store_true",
+        help="request only ranked file identities from first-stage API calls",
+    )
     parser.add_argument("--output", type=pathlib.Path)
     args = parser.parse_args()
 
@@ -255,6 +260,8 @@ def main() -> int:
         return 2
 
     serving = evaluate.serving_options(top=args.depth, whole=False)
+    if args.omit_first_stage_chunks:
+        serving = {**serving, "chunk_matches": False}
     api_index_before = evaluate.api_index_fingerprint(args.api_url, args.timeout)
     cache = ApiContentCache(api_url=args.api_url, timeout=args.timeout)
     scored_cases: list[dict[str, Any]] = []
@@ -432,7 +439,9 @@ def main() -> int:
         "expansion_prompt_version": expansion_data.get("prompt_version"),
         "variant": (
             (
-                "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_coalesced_v1"
+                "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_coalesced_chunkless_v1"
+                if args.coalesce_first_stage_requests and args.omit_first_stage_chunks
+                else "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_coalesced_v1"
                 if args.coalesce_first_stage_requests
                 else "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_parallel_v1"
                 if args.parallel_first_stages
@@ -454,6 +463,7 @@ def main() -> int:
             "union": "rank-interleaved deduplicated bounded prefixes",
             "execution": "parallel" if args.parallel_first_stages else "serial",
             "coalesce_identical_requests": args.coalesce_first_stage_requests,
+            "chunk_matches": not args.omit_first_stage_chunks,
             "api_workers_per_retriever": args.first_stage_api_workers,
             "per_retriever_depth": args.per_retriever_depth,
             "field_weights": weights,

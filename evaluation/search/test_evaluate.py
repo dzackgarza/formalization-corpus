@@ -358,6 +358,32 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         self.assertFalse(serving["whole"])
         self.assertTrue(serving["use_bm25_scoring"])
 
+    def test_api_search_can_omit_chunk_matches_for_rank_only_requests(self) -> None:
+        serving = evaluate.serving_options(top=10, whole=False)
+        serving["chunk_matches"] = False
+        response = {
+            "Result": {
+                "Files": [
+                    {"Repository": "r", "FileName": "owner.lean", "Score": 7}
+                ]
+            }
+        }
+        completed = subprocess.CompletedProcess(
+            args=[], returncode=0, stdout=json.dumps(response).encode(), stderr=b""
+        )
+        with mock.patch.object(evaluate.subprocess, "run", return_value=completed) as run:
+            results, runtime = evaluate.api_search(
+                "toy theorem",
+                5.0,
+                "https://example.test/api/search",
+                serving,
+            )
+        command = run.call_args.args[0]
+        payload = json.loads(command[command.index("-d") + 1])
+        self.assertFalse(payload["Opts"]["ChunkMatches"])
+        self.assertEqual(results[0]["FileName"], "owner.lean")
+        self.assertEqual(runtime["returned_files"], 1)
+
     def test_api_index_fingerprint_ignores_list_order_but_tracks_index_state(self) -> None:
         def payload(order: list[str], *, documents: int = 10) -> dict:
             entries = []
