@@ -13,6 +13,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import evaluate  # noqa: E402
 import evaluate_repeated  # noqa: E402
+from evaluate_fielded_lexical import compile_field_queries, weighted_rrf_fuse  # noqa: E402
 from evaluate_multiquery import retrieve_multiquery, rrf_fuse  # noqa: E402
 from evaluate_rerank import bounded_excerpt, humanize_path  # noqa: E402
 
@@ -91,6 +92,37 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
             evaluate.compile_query(text, "zoekt_bm25_v1"),
             evaluate.compile_query(text, "frontend_lexical_v2"),
         )
+
+    def test_fielded_query_separates_path_and_content_evidence(self) -> None:
+        queries = compile_field_queries("does Lean have the Jordan canonical form theorem?")
+        self.assertEqual(
+            queries["baseline"],
+            evaluate.compile_query(
+                "does Lean have the Jordan canonical form theorem?",
+                "normalized_path_content_v1",
+            ),
+        )
+        self.assertIn('content:"Jordan"', queries["content"])
+        self.assertIn('content:"canonical"', queries["content"])
+        self.assertIn('file:"Jordan" or file:"canonical"', queries["path"])
+        self.assertIn(r"file:\.lean$", queries["path"])
+
+    def test_weighted_rrf_rewards_cross_field_evidence(self) -> None:
+        rankings = [
+            ("baseline", 2.0, [{"Repository": "r", "FileName": "a"}]),
+            (
+                "content",
+                1.0,
+                [
+                    {"Repository": "r", "FileName": "b"},
+                    {"Repository": "r", "FileName": "a"},
+                ],
+            ),
+            ("path", 1.0, [{"Repository": "r", "FileName": "b"}]),
+        ]
+        fused = weighted_rrf_fuse(rankings, constant=60, depth=200)
+        self.assertEqual(fused[0]["FileName"], "a")
+        self.assertEqual(fused[0]["RRFFields"], ["baseline", "content"])
 
     def test_query_compiler_does_not_hide_acl2_sys_proof_metadata(self) -> None:
         for variant in ("frontend_lexical_v1", "frontend_lexical_v2", "normalized_path_content_v1"):
