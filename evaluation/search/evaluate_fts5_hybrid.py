@@ -333,6 +333,12 @@ def main() -> int:
     parser.add_argument("--api-url", default=evaluate.DEFAULT_API_URL)
     parser.add_argument("--timeout", type=float, default=60.0)
     parser.add_argument("--depth", type=int, default=200)
+    parser.add_argument(
+        "--report-depth",
+        type=int,
+        default=20,
+        help="number of ranked results retained per case for pooling/audit artifacts",
+    )
     parser.add_argument("--per-retriever-depth", type=int, default=100)
     parser.add_argument("--content-rerank-depth", type=int)
     parser.add_argument("--fetch-workers", type=int, default=16)
@@ -390,6 +396,7 @@ def main() -> int:
 
     if min(
         args.depth,
+        args.report_depth,
         args.per_retriever_depth,
         args.fetch_workers,
         args.first_stage_api_workers,
@@ -628,6 +635,7 @@ def main() -> int:
             reranked,
             f"{zoekt_compiled} CORPUS_FTS5_UNION",
             runtime,
+            report_depth=args.report_depth,
         )
         scored["zoekt_first_stage"] = args.zoekt_first_stage
         scored["zoekt_query"] = zoekt_compiled
@@ -707,6 +715,7 @@ def main() -> int:
             ),
         },
         "candidate_pool": 2 * args.per_retriever_depth,
+        "reported_result_depth": args.report_depth,
         "second_stage": {
             "engine": "sqlite-fts5",
             "sqlite_version": sqlite3.sqlite_version,

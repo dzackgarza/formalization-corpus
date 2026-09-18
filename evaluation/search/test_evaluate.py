@@ -875,6 +875,36 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         self.assertGreater(scored["per_k"]["5"]["ndcg"], 0)
         self.assertLess(scored["per_k"]["5"]["ndcg"], 1)
 
+    def test_score_case_report_depth_controls_pooling_payload(self) -> None:
+        case = {
+            "id": "toy",
+            "query": "toy",
+            "tags": [],
+            "judgments": [{"repository": "r", "file": "owner", "relevance": 3}],
+        }
+        results = [
+            {"Repository": "r", "FileName": f"f-{index}", "Score": 100 - index}
+            for index in range(30)
+        ]
+        results[0]["FileName"] = "owner"
+        scored = evaluate.score_case(
+            case,
+            results,
+            "toy",
+            {"elapsed_ms": 1.0, "payload_bytes": 1},
+            report_depth=25,
+        )
+        self.assertEqual(len(scored["top_results"]), 25)
+        self.assertEqual(scored["top_results"][-1]["rank"], 25)
+        with self.assertRaises(ValueError):
+            evaluate.score_case(
+                case,
+                results,
+                "toy",
+                {"elapsed_ms": 1.0, "payload_bytes": 1},
+                report_depth=0,
+            )
+
     def test_aggregate_does_not_use_sparse_judgments_as_precision(self) -> None:
         case = {
             "id": "toy",

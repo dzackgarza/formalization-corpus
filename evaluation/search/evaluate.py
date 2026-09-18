@@ -645,7 +645,16 @@ def dcg(relevances: list[int], k: int) -> float:
     return value
 
 
-def score_case(case: dict[str, Any], results: list[dict[str, Any]], compiled_query: str, runtime: dict[str, Any]) -> dict[str, Any]:
+def score_case(
+    case: dict[str, Any],
+    results: list[dict[str, Any]],
+    compiled_query: str,
+    runtime: dict[str, Any],
+    *,
+    report_depth: int = 20,
+) -> dict[str, Any]:
+    if report_depth <= 0:
+        raise ValueError("report depth must be positive")
     judgments = judgment_map(case)
     gold_sources = {repo for (repo, _), rel in judgments.items() if rel > 0}
     ranked_relevance: list[int] = []
@@ -694,7 +703,7 @@ def score_case(case: dict[str, Any], results: list[dict[str, Any]], compiled_que
                 "score": item.get("Score", 0),
                 "relevance": ranked_relevance[i],
             }
-            for i, item in enumerate(results[:20])
+            for i, item in enumerate(results[:report_depth])
         ],
     }
 
