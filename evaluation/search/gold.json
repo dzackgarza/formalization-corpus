@@ -2089,6 +2089,24 @@
           "file": "projects/AdicSpaces/Adic spaces/StructureSheaf.lean",
           "relevance": 0,
           "note": "Constructs the structure sheaf of an adic spectrum in complete topological rings; it neither states Hensel's lemma nor specializes to complete discrete valuation rings."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits/Utils/ValuationRings.lean",
+          "relevance": 1,
+          "note": "Develops DVR/valuation arithmetic such as uniformizers, valuation units, and unit-times-uniformizer-power decompositions; relevant DVR infrastructure, but no completeness or Hensel root lifting."
+        },
+        {
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "file": "Adic spaces/FJP/Over/LaurentCompat.lean",
+          "relevance": 1,
+          "note": "Works over arbitrary complete discretely valued nonarchimedean fields and proves the Laurent-series valuation ring is a DVR; it supplies the requested ambient setting but contains no Hensel lemma."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits.lean",
+          "relevance": 0,
+          "note": "Umbrella/import file for a Bruhat-Tits tree development over a DVR; it owns no complete-DVR or Hensel lifting result."
         }
       ]
     },
@@ -2339,6 +2357,72 @@
           "file": "TauCetiRoadmap/UniversalCovers/Suggested.lean",
           "relevance": 0,
           "note": "Roadmap/navigation file describing universal-cover work; it contains no theorem implementation of the requested relation."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/MeasureTheory/Group/FundamentalDomain.lean",
+          "relevance": 0,
+          "note": "Defines measure-theoretic fundamental domains for group actions; 'fundamental' and 'covers' here are unrelated to topological fundamental groups of covering spaces."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/Reconstruction.lean",
+          "relevance": 2,
+          "note": "Reconstructs connected covering spaces from fundamental-group actions via stabilizer quotients of the universal cover and identifies their basepoint fibres; substantive covering/pi1 classification machinery."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/Regular.lean",
+          "relevance": 2,
+          "note": "Proves the regular-cover criterion: a connected covering is regular exactly when its recovered subgroup of the base fundamental group is normal; a direct covering-space/fundamental-group theorem."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "site/Site/Brouwer.lean",
+          "relevance": 1,
+          "note": "Uses covering-space path lifting to prove the circle loop is non-nullhomotopic and derive Brouwer consequences; relevant covering/pi1 infrastructure but not a theorem computing a covering space's fundamental group."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Topology/Homotopy/Lifting.lean",
+          "relevance": 1,
+          "note": "Proves path, homotopy, and continuous-map lifting for covering maps, core infrastructure used in fundamental-group arguments but not itself a fundamental-group computation/classification theorem."
+        },
+        {
+          "repository": "CakeML__candle",
+          "file": "Multivariate/complex_database.ml",
+          "relevance": 0,
+          "note": "Generated HOL/Candle theorem-name database listing covering-space and fundamental-group declarations; it is an index/registry rather than the proof-owning source."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/FiberFunctor.lean",
+          "relevance": 2,
+          "note": "Identifies the base fundamental group with automorphisms of the fibre functor on all covering spaces and records the monodromy action on fibres; directly substantive pi1/covering theory."
+        },
+        {
+          "repository": "CakeML__candle",
+          "file": "Multivariate/multivariate_database.ml",
+          "relevance": 0,
+          "note": "Generated theorem-name database containing covering/fundamental-group entries but no theorem proofs; it is metadata rather than a formalization owner."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/SubgroupQuotient.lean",
+          "relevance": 2,
+          "note": "Constructs the quotient of the universal cover by a subgroup of the fundamental group and proves the quotient projection is a covering map; direct subgroup-to-cover classification machinery."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/RealProjective/FundamentalGroup/Zero.lean",
+          "relevance": 1,
+          "note": "Computes the fundamental group of RP^0 from simple connectedness, providing pi1 background but no substantive theorem about a nontrivial covering space."
+        },
+        {
+          "repository": "jrh13__hol-light",
+          "file": "Multivariate/complex_database.ml",
+          "relevance": 0,
+          "note": "HOL Light theorem-name database listing covering-space/fundamental-group declarations; it does not own their formal proofs."
         }
       ]
     },
@@ -2589,6 +2673,36 @@
           "file": "1038/lean/Erdos1038/CircleAbelBoundary.lean",
           "relevance": 0,
           "note": "Studies boundary values of an Abel circle kernel; this analytic boundary is unrelated to manifold boundaries or collars."
+        },
+        {
+          "repository": "fpvandoorn__LeanCourse25",
+          "file": "LeanCourse25/Lectures/Lecture24.lean",
+          "relevance": 1,
+          "note": "Lecture formalizes mathlib smooth-manifold and manifolds-with-corners basics, including interior/boundary discussion, while explicitly noting smooth-boundary theory is not supplied; no collar theorem."
+        },
+        {
+          "repository": "peabrainiac__lean-catdg",
+          "file": "CatDG/Diffeology/Manifolds.lean",
+          "relevance": 1,
+          "note": "Relates smooth manifolds to diffeological manifolds and proves smooth maps are diffeologically smooth; general manifold infrastructure, but no boundary or collar construction."
+        },
+        {
+          "repository": "fpvandoorn__LeanCourse25",
+          "file": "LeanCourse25/Lectures/Lecture24After.lean",
+          "relevance": 1,
+          "note": "Companion manifold lecture covering charts, models with corners, and boundary points; useful boundary background but contains no collar-neighborhood theorem."
+        },
+        {
+          "repository": "cavargar__SHSLib",
+          "file": "SHSLib/FPK/BoundaryGeometry.lean",
+          "relevance": 0,
+          "note": "Studies boundary surface measures and vector-field boundary conditions for a hybrid state-space model; this is not manifold-with-boundary collar geometry."
+        },
+        {
+          "repository": "ShouqiaoW__erdos",
+          "file": "1038/lean/Erdos1038/PlatformAdjointAbelBoundary.lean",
+          "relevance": 0,
+          "note": "Passes an Abel-summation identity to an analytic boundary limit; 'boundary' is asymptotic/analytic, not a manifold boundary or collar."
         }
       ]
     },
@@ -2798,6 +2912,72 @@
           "file": "Mathlib/LinearAlgebra/FreeModule/Basic.lean",
           "relevance": 0,
           "note": "Develops free-module basics and typeclass resolution behavior; it contains no injective-resolution theory."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/LeftResolution/Basic.lean",
+          "relevance": 0,
+          "note": "Constructs left resolutions intended for functorial flat/projective resolutions; this is the dual resolution direction, not injective resolutions."
+        },
+        {
+          "repository": "leanprover-community__physlib",
+          "file": "Physlib/SpaceAndTime/Space/LengthUnit.lean",
+          "relevance": 0,
+          "note": "Defines physical length units and cites IAU resolutions; 'resolution' is bibliographic terminology and unrelated to injective resolutions."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/Categories/AbelianGroup.v",
+          "relevance": 1,
+          "note": "Builds the univalent abelian category of abelian groups with kernels, cokernels, and biproduct structure; ambient abelian-category infrastructure, but no injective objects or resolutions."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Localization/DerivabilityStructure/Basic.lean",
+          "relevance": 1,
+          "note": "Defines abstract right/left derivability structures with resolution hypotheses and explicitly lists injective derivability as future work; relevant resolution framework, not injective-resolution existence."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/TensorCategories/code/ModuleFunctorAbelianDefs.lean",
+          "relevance": 0,
+          "note": "Defines finite module categories using enough projectives and proves a module-functor category abelian only via a `sorry`; it supplies no injective-resolution theory."
+        },
+        {
+          "repository": "agda__cubical",
+          "file": "Cubical/Categories/Abelian/Instances/Terminal.agda",
+          "relevance": 1,
+          "note": "Constructs the terminal abelian category in Cubical Agda; ambient abelian-category infrastructure only, with no injective-resolution construction."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/ColimCoyoneda.lean",
+          "relevance": 1,
+          "note": "Develops colimit/coyoneda results in Grothendieck abelian categories as groundwork explicitly intended to prove enough injectives later; supporting prerequisite, not the existence proof itself."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/Chebotarev/CebotarevDensity/Abelian.lean",
+          "relevance": 0,
+          "note": "Proves the abelian case of Chebotarev density; 'abelian' refers to Galois groups and there are no injective objects or homological resolutions."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Generator/Abelian.lean",
+          "relevance": 1,
+          "note": "Shows that a complete abelian category already assumed to have enough injectives and a separator has an injective coseparator; related injective-object infrastructure, not resolution existence."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Functor/Derived/RightDerived.lean",
+          "relevance": 1,
+          "note": "Develops abstract right derived functors via localization/Kan extension and notes injective derivability structures as future machinery; downstream derived-functor infrastructure rather than injective resolutions."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/Refinements.lean",
+          "relevance": 1,
+          "note": "Provides exactness/refinement lemmas for diagram chasing in arbitrary abelian categories; useful homological ambient theory, but no injective-resolution construction."
         }
       ]
     },
@@ -3025,6 +3205,66 @@
           "file": "LocalComplexGeometry/Nullstellensatz/FiberCancellation.lean",
           "relevance": 1,
           "note": "Provides fiber-cancellation machinery for the local analytic Nullstellensatz project; relevant to that analytic theorem, not a Hilbert affine owner."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/PrimeBase.lean",
+          "relevance": 1,
+          "note": "Proves the zero-dimensional prime base case for Rueckert's local analytic Nullstellensatz on holomorphic germs; mathematically related but distinct from Hilbert's affine-algebraic Nullstellensatz."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/AbelianVarieties.lean",
+          "relevance": 0,
+          "note": "Develops commutativity and morphism facts for abelian varieties; it contains no Hilbert Nullstellensatz or affine zero-set/radical correspondence."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/PrimeInduction.lean",
+          "relevance": 1,
+          "note": "Reduces the prime case of the local analytic Nullstellensatz to a prepared-coordinate successor step; supporting a different analytic Nullstellensatz, not Hilbert's affine theorem."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/MinpolyResultant.lean",
+          "relevance": 1,
+          "note": "Proves nonvanishing resultant/specialization lemmas inside the local analytic Nullstellensatz project; related analytic machinery rather than the affine Hilbert Nullstellensatz."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/QuotientPolynomialSpecialization.lean",
+          "relevance": 1,
+          "note": "Specializes polynomial identities modulo analytic germ ideals on local zero sets, supporting the local analytic Nullstellensatz rather than Hilbert's affine-algebraic theorem."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/DivisibilitySpecialization.lean",
+          "relevance": 1,
+          "note": "Develops divisibility specialization over prime holomorphic-germ ideals for the local analytic Nullstellensatz; related supporting material, not an affine Hilbert owner."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Combinatorial_Nullstellensatz/Combinatorial_Nullstellensatz.thy",
+          "relevance": 0,
+          "note": "Formalizes Alon's combinatorial Nullstellensatz; this is a different theorem from Hilbert's Nullstellensatz for affine varieties."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/Rupert/Affine.lean",
+          "relevance": 0,
+          "note": "Defines Rupert properties of subsets of real affine spaces using affine isometries; 'affine' is geometric terminology unrelated to affine varieties or Nullstellensatz."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/AffineVarietySpec.lean",
+          "relevance": 1,
+          "note": "Proves Spec/global-section characterizations for affine varieties with reduced finite-type coordinate rings; relevant affine-variety setup, but no Nullstellensatz zero-set/radical theorem."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/Coordinates.lean",
+          "relevance": 1,
+          "note": "Proves invariance of local analytic Nullstellensatz predicates under invertible complex-linear coordinate changes; related analytic Nullstellensatz infrastructure, not Hilbert's affine theorem."
         }
       ]
     },
@@ -3282,6 +3522,12 @@
           "file": "Structure/Abelian.v",
           "relevance": 0,
           "note": "Defines and develops abelian categories; it contains no Pontryagin dual or character-group theorem."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/analysis/series-metric-abelian-groups.lagda.md",
+          "relevance": 0,
+          "note": "Develops convergence and partial sums of series in metric abelian groups; there are no characters, Pontryagin duals, or finite-abelian duality results."
         }
       ]
     },
