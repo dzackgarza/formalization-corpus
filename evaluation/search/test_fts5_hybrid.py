@@ -12,6 +12,7 @@ sys.path.insert(0, str(HERE))
 
 from evaluate_fts5_hybrid import (  # noqa: E402
     add_pair_rank_evidence,
+    add_source_hierarchy_rank,
     balanced_pair_union,
     prefilter_by_pair_rank_evidence,
     rank_by_pair_rank_evidence,
@@ -136,6 +137,47 @@ class Fts5HybridTests(unittest.TestCase):
             result[0]["FirstStageRankEvidence"],
             {"fielded": 5, "corpus-fts5": 5},
         )
+
+    def test_source_hierarchy_rank_uses_best_file_from_each_independent_channel(self) -> None:
+        candidates = [
+            {
+                "Repository": "source-a",
+                "FileName": "owner.lean",
+                "CandidateUnionRank": 1,
+                "CandidateSourceRanks": {"fielded": 2},
+            },
+            {
+                "Repository": "source-b",
+                "FileName": "mention.lean",
+                "CandidateUnionRank": 2,
+                "CandidateSourceRanks": {"fielded": 1},
+            },
+            {
+                "Repository": "source-a",
+                "FileName": "alternate.lean",
+                "CandidateUnionRank": 3,
+                "CandidateSourceRanks": {"corpus-fts5": 3},
+            },
+        ]
+        enriched = add_source_hierarchy_rank(
+            candidates,
+            base_channels=("fielded", "corpus-fts5"),
+            rrf_constant=60,
+        )
+        by_file = {item["FileName"]: item for item in enriched}
+        self.assertEqual(by_file["owner.lean"]["SourceHierarchyRank"], 1)
+        self.assertEqual(by_file["alternate.lean"]["SourceHierarchyRank"], 1)
+        self.assertEqual(by_file["mention.lean"]["SourceHierarchyRank"], 2)
+        self.assertEqual(
+            by_file["owner.lean"]["SourceHierarchyBestFileRanks"],
+            {"fielded": 2, "corpus-fts5": 3},
+        )
+        ranked = rank_by_pair_rank_evidence(
+            enriched,
+            channels=("fielded", "corpus-fts5", "source-hierarchy"),
+            rrf_constant=60,
+        )
+        self.assertEqual(ranked[0]["FileName"], "owner.lean")
 
     @patch("evaluate_fts5_hybrid.retrieve_fielded")
     def test_fielded_first_stage_forwards_api_worker_bound(self, retrieve_fielded) -> None:

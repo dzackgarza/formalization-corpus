@@ -82,16 +82,16 @@ def balanced_pair_union(
 def add_pair_rank_evidence(
     reranked: list[dict[str, Any]],
     *,
-    channels: tuple[str, str],
+    channels: tuple[str, ...],
     rrf_constant: int,
 ) -> list[dict[str, Any]]:
-    """Add the two independent first-stage ranks to evidence-RRF scores."""
+    """Add named first-stage rank channels to evidence-RRF scores."""
 
     if rrf_constant <= 0:
         raise ValueError("RRF constant must be positive")
     allowed = set(channels)
-    if len(allowed) != 2:
-        raise ValueError("exactly two distinct first-stage channels are required")
+    if not allowed or len(allowed) != len(channels):
+        raise ValueError("first-stage channels must be nonempty and distinct")
 
     fused: list[dict[str, Any]] = []
     for original in reranked:
@@ -120,7 +120,7 @@ def add_pair_rank_evidence(
 def rank_by_pair_rank_evidence(
     candidates: list[dict[str, Any]],
     *,
-    channels: tuple[str, str],
+    channels: tuple[str, ...],
     rrf_constant: int,
 ) -> list[dict[str, Any]]:
     """Rank a candidate union using only qrel-independent first-stage ranks."""
@@ -128,8 +128,8 @@ def rank_by_pair_rank_evidence(
     if rrf_constant <= 0:
         raise ValueError("RRF constant must be positive")
     allowed = set(channels)
-    if len(allowed) != 2:
-        raise ValueError("exactly two distinct first-stage channels are required")
+    if not allowed or len(allowed) != len(channels):
+        raise ValueError("first-stage channels must be nonempty and distinct")
 
     ranked: list[dict[str, Any]] = []
     for original in candidates:
@@ -153,6 +153,76 @@ def rank_by_pair_rank_evidence(
         )
     )
     return ranked
+
+
+def add_source_hierarchy_rank(
+    candidates: list[dict[str, Any]],
+    *,
+    base_channels: tuple[str, ...],
+    rrf_constant: int,
+    channel_name: str = "source-hierarchy",
+) -> list[dict[str, Any]]:
+    """Add a repository-rank channel derived only from file-level ranks.
+
+    Each repository is represented by its best file rank in every named base
+    channel.  Those ranks are fused with equal-weight reciprocal-rank fusion,
+    repositories are ranked by the resulting score, and that repository rank is
+    attached to every candidate from the source.  No qrels or source contents
+    enter the construction.
+    """
+
+    if rrf_constant <= 0:
+        raise ValueError("RRF constant must be positive")
+    allowed = set(base_channels)
+    if not allowed or len(allowed) != len(base_channels):
+        raise ValueError("base source-rank channels must be nonempty and distinct")
+    if not channel_name or channel_name in allowed:
+        raise ValueError("source-rank channel name must be distinct and nonempty")
+
+    best_ranks: dict[str, dict[str, int]] = {}
+    best_union_rank: dict[str, int] = {}
+    for item in candidates:
+        repository = str(item.get("Repository", ""))
+        source_ranks = item.get("CandidateSourceRanks") or {}
+        repository_ranks = best_ranks.setdefault(repository, {})
+        for source, rank in source_ranks.items():
+            if source not in allowed:
+                continue
+            numeric_rank = int(rank)
+            previous = repository_ranks.get(source)
+            if previous is None or numeric_rank < previous:
+                repository_ranks[source] = numeric_rank
+        union_rank = int(item.get("CandidateUnionRank", 10**9))
+        best_union_rank[repository] = min(
+            best_union_rank.get(repository, union_rank), union_rank
+        )
+
+    scored_sources: list[tuple[float, int, str]] = []
+    for repository, ranks in best_ranks.items():
+        score = sum(1.0 / (rrf_constant + rank) for rank in ranks.values())
+        scored_sources.append((-score, best_union_rank[repository], repository))
+    scored_sources.sort()
+    repository_rank = {
+        repository: rank
+        for rank, (_, _, repository) in enumerate(scored_sources, start=1)
+    }
+    repository_score = {
+        repository: -negative_score
+        for negative_score, _, repository in scored_sources
+    }
+
+    enriched: list[dict[str, Any]] = []
+    for original in candidates:
+        item = dict(original)
+        repository = str(item.get("Repository", ""))
+        source_ranks = dict(item.get("CandidateSourceRanks") or {})
+        source_ranks[channel_name] = repository_rank[repository]
+        item["CandidateSourceRanks"] = source_ranks
+        item["SourceHierarchyRank"] = repository_rank[repository]
+        item["SourceHierarchyScore"] = repository_score[repository]
+        item["SourceHierarchyBestFileRanks"] = dict(best_ranks[repository])
+        enriched.append(item)
+    return enriched
 
 
 def prefilter_by_pair_rank_evidence(
@@ -232,6 +302,14 @@ def main() -> int:
     )
     parser.add_argument("--rrf-constant", type=int, default=60)
     parser.add_argument("--evidence-rrf-constant", type=int, default=60)
+    parser.add_argument(
+        "--include-source-rank-channel",
+        action="store_true",
+        help=(
+            "add one equal-weight repository-rank channel derived from each source's "
+            "best ranks in the two independent first-stage retrievers"
+        ),
+    )
     parser.add_argument(
         "--second-stage-mode",
         choices=("evidence-rrf", "evidence-lines-rrf"),
@@ -371,9 +449,17 @@ def main() -> int:
                 second_name="corpus-fts5",
                 per_retriever_depth=args.per_retriever_depth,
             )
+            rank_channels = (zoekt_channel, "corpus-fts5")
+            if args.include_source_rank_channel:
+                candidates = add_source_hierarchy_rank(
+                    candidates,
+                    base_channels=rank_channels,
+                    rrf_constant=args.evidence_rrf_constant,
+                )
+                rank_channels = (*rank_channels, "source-hierarchy")
             first_stage_ranking = rank_by_pair_rank_evidence(
                 candidates,
-                channels=(zoekt_channel, "corpus-fts5"),
+                channels=rank_channels,
                 rrf_constant=args.evidence_rrf_constant,
             )
             first_stage_runtime = {
@@ -396,7 +482,7 @@ def main() -> int:
             if args.content_rerank_depth is not None:
                 second_stage_candidates = prefilter_by_pair_rank_evidence(
                     candidates,
-                    channels=(zoekt_channel, "corpus-fts5"),
+                    channels=rank_channels,
                     rrf_constant=args.evidence_rrf_constant,
                     limit=args.content_rerank_depth,
                 )
@@ -415,7 +501,7 @@ def main() -> int:
             )
             reranked = add_pair_rank_evidence(
                 reranked,
-                channels=(zoekt_channel, "corpus-fts5"),
+                channels=rank_channels,
                 rrf_constant=args.evidence_rrf_constant,
             )
             rerank_ms = (time.perf_counter() - rerank_started) * 1000
@@ -496,6 +582,7 @@ def main() -> int:
         "query_config_sha256": evaluate.query_config_sha256(),
         "serving_config_sha256": evaluate.serving_config_sha256(),
         "variant": f"{variant_prefix}_corpus_fts5_union_"
+        + ("source_rank_" if args.include_source_rank_channel else "")
         + (
             (
                 "rank_prefilter_evidence_lines_rrf_v1"
@@ -522,6 +609,16 @@ def main() -> int:
             "zoekt_api_workers": args.first_stage_api_workers,
             "rrf_constant": args.rrf_constant,
             "fusion_depth": args.depth,
+            "source_rank_channel": (
+                {
+                    "name": "source-hierarchy",
+                    "method": "repository best-file ranks fused by equal-weight RRF",
+                    "base_channels": [zoekt_channel, "corpus-fts5"],
+                    "rrf_constant": args.evidence_rrf_constant,
+                }
+                if args.include_source_rank_channel
+                else None
+            ),
         },
         "candidate_pool": 2 * args.per_retriever_depth,
         "second_stage": {
@@ -544,7 +641,11 @@ def main() -> int:
             else None,
             "fusion": "equal-weight reciprocal-rank fusion",
             "fusion_rrf_constant": args.evidence_rrf_constant,
-            "first_stage_rank_channels": [zoekt_channel, "corpus-fts5"],
+            "first_stage_rank_channels": [
+                zoekt_channel,
+                "corpus-fts5",
+                *(["source-hierarchy"] if args.include_source_rank_channel else []),
+            ],
             "prefilter": (
                 {
                     "method": "first-stage-rank-rrf",
