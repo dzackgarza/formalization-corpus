@@ -3528,6 +3528,48 @@
           "file": "src/analysis/series-metric-abelian-groups.lagda.md",
           "relevance": 0,
           "note": "Develops convergence and partial sums of series in metric abelian groups; there are no characters, Pontryagin duals, or finite-abelian duality results."
+        },
+        {
+          "repository": "riccardobrasca__KummerCriterion",
+          "file": "KummerCriterion/LehmerVandiver/PlusCoprime/Sinnott/LDerivative/Part4.lean",
+          "relevance": 2,
+          "note": "Explicitly constructs the Pontryagin-duality identification between the character dual of (ZMod p)^×/{±1} and even Dirichlet characters, and uses it for character-product reindexing; a substantive finite-abelian duality application."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/FltRegularBernoulli/BernoulliRegular/FLT37/LehmerVandiver/PlusCoprime/Sinnott/LDerivative/QuotientConvolutionFrobeniusDet.lean",
+          "relevance": 2,
+          "note": "Builds character matrices on the finite quotient, proves its Pontryagin-cardinality statement, and supplies a noncanonical Pontryagin equivalence used in the Frobenius determinant argument; direct finite-character duality machinery."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicGeometry/AbelianVariety/Product.lean",
+          "relevance": 0,
+          "note": "Develops products of algebraic abelian varieties; the mentioned duality/polarization theory is algebro-geometric and not Pontryagin duality of finite abelian groups."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/CategoryTheory/Exact/Abelian.lean",
+          "relevance": 0,
+          "note": "Proves opposite-category duality for exact structures and conflations in abelian categories; this is categorical duality, not finite-abelian character/Pontryagin duality."
+        },
+        {
+          "repository": "riccardobrasca__KummerCriterion",
+          "file": "KummerCriterion/LehmerVandiver/PlusCoprime/Sinnott/LDerivative/Part1.lean",
+          "relevance": 2,
+          "note": "Develops quotient characters, square character matrices, and an explicit Pontryagin equivalence for the finite quotient Delta/{±1}; substantive finite-abelian duality machinery."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/S12_MaximalIII_IV_V_Core/Hypothesis.lean",
+          "relevance": 0,
+          "note": "Develops ordinary irreducible-character conjugation and Peterfalvi hypotheses for odd-order groups; it contains no Pontryagin character dual or finite-abelian biduality theorem."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Finitely_Generated_Abelian_Groups/Finitely_Generated_Abelian_Groups.thy",
+          "relevance": 1,
+          "note": "Proves the structure theorem for finitely generated abelian groups, including finite abelian groups; useful group-structure background for finite duality, but no character/Pontryagin dual is constructed here."
         }
       ]
     },
@@ -3743,6 +3785,66 @@
           "file": "theories/Elements/OriginalProofs/lemma_pointreflectionisometry.v",
           "relevance": 0,
           "note": "A point-reflection isometry lemma in GeoCoq; unrelated to Morse theory."
+        },
+        {
+          "repository": "jcreedcmu__Noperthedron",
+          "file": "Noperthedron/PointSym.lean",
+          "relevance": 0,
+          "note": "Proves point-symmetry properties of Euclidean sets and convex hulls; unrelated to the Morse normal-form lemma at a nondegenerate critical point."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Tactic/Lemma.lean",
+          "relevance": 0,
+          "note": "Implements Lean's `lemma` syntax as a synonym for `theorem`; the lexical word lemma is unrelated to Morse theory."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/OmegaLimit.lean",
+          "relevance": 1,
+          "note": "Develops omega-limit sets specifically for negative-gradient Morse trajectories and critical-point convergence; supporting Morse theory, but not the local normal-form lemma."
+        },
+        {
+          "repository": "carlok__leanfrontier",
+          "file": "LeanFrontier/NumberTheory/ThueMorse.lean",
+          "relevance": 0,
+          "note": "Formalizes the Thue-Morse sequence and Prouhet's theorem; this is unrelated to the differential-topological Morse lemma."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Gromov_Hyperbolicity/Morse_Gromov_Theorem.thy",
+          "relevance": 0,
+          "note": "Proves the Morse-Gromov theorem for hyperbolic spaces and explicitly distinguishes it from the Morse lemma on coordinates near a nondegenerate Hessian; wrong theorem for this query."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "Uniformization/Main.lean",
+          "relevance": 0,
+          "note": "A uniformization roadmap notes a future Morse-theoretic step and explicitly says the needed Morse theory remains a project; it does not formalize the local Morse lemma."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Calculus/Sard/VanishingDerivative.lean",
+          "relevance": 0,
+          "note": "Proves a Morse-Sard critical-value theorem on the vanishing-derivative locus; despite using Morse's stratification argument, it is not the Morse local normal-form lemma."
+        },
+        {
+          "repository": "seL4__l4v",
+          "file": "lib/LemmaBucket.thy",
+          "relevance": 0,
+          "note": "A general seL4 lemma bucket of program-verification facts; unrelated to Morse theory."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Combinatorics/Configuration.lean",
+          "relevance": 0,
+          "note": "Defines nondegenerate incidence configurations in combinatorics; nondegeneracy here has no relation to Hessians or Morse critical points."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Calculus/Sard/FlatStratum.lean",
+          "relevance": 0,
+          "note": "Proves Sard's lemma for a flat critical stratum using Morse's Sard argument; it is critical-value theory, not the local Morse normal form."
         }
       ]
     },
@@ -3989,6 +4091,54 @@
           "file": "Mathlib/GroupTheory/FinitelyPresentedGroup.lean",
           "relevance": 0,
           "note": "Defines finitely presented groups and normal-generation properties; it does not classify finitely generated abelian groups."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Finitely_Generated_Abelian_Groups/DirProds.thy",
+          "relevance": 2,
+          "note": "Develops direct products and proves internal direct products are isomorphic to products inside the AFP finitely-generated-abelian-groups formalization; a substantive component of the classification proof."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/FinitelyGeneratedSubalgebraSystem.lean",
+          "relevance": 0,
+          "note": "Shows rings are filtered colimits of finitely generated Z-subalgebras; finite generation here concerns commutative algebras, not classification of abelian groups."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/group-theory/exponents-abelian-groups.lagda.md",
+          "relevance": 1,
+          "note": "Develops the exponent invariant of abelian groups; relevant general abelian-group structure, but no finite-generation classification or invariant-factor theorem is proved here."
+        },
+        {
+          "repository": "leanprover__lean-eval",
+          "file": "LeanEval/GroupTheory/BrauerFowler.lean",
+          "relevance": 0,
+          "note": "Concerns the Brauer-Fowler theorem for finite nonabelian simple groups; unrelated to classification of finitely generated abelian groups."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Finitely_Generated_Abelian_Groups/Set_Multiplication.thy",
+          "relevance": 1,
+          "note": "Provides set-multiplication infrastructure inside AFP's finitely-generated-abelian-groups development; supporting implementation material rather than a classification theorem."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Finitely_Generated_Abelian_Groups/Finite_Product_Extend.thy",
+          "relevance": 2,
+          "note": "Develops finite products and proves generated abelian subgroups are finite products of powers of generators, including internal-product machinery used by AFP's classification; substantive proof support."
+        },
+        {
+          "repository": "ImperialCollegeLondon__FLT",
+          "file": "FLT/GlobalLanglandsConjectures/GLzero.lean",
+          "relevance": 0,
+          "note": "Discusses arithmetic of extensions with abelian Galois groups in a Langlands context; it does not classify finitely generated abelian groups."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/LeanQuantumAlg/Primitives/QNN/DynamicalLieAlgebra.lean",
+          "relevance": 0,
+          "note": "Classifies the commuting-generator case of a dynamical Lie algebra as abelian; unrelated to the structure theorem for finitely generated abelian groups."
         }
       ]
     },
@@ -4246,6 +4396,54 @@
           "file": "Mathlib/Analysis/CStarAlgebra/GelfandDuality.lean",
           "relevance": 1,
           "note": "Uses Stone-Weierstrass polynomial approximation inside continuous functional-calculus arguments; a downstream application, not theorem ownership."
+        },
+        {
+          "repository": "Timeroot__Lean-QuantumInfo",
+          "file": "QuantumInfo/ForMathlib/HermitianMat/CFC.lean",
+          "relevance": 0,
+          "note": "Adds continuous-functional-calculus operations for Hermitian matrices; the file contains no Stone-Weierstrass density theorem or application of it."
+        },
+        {
+          "repository": "martinescardo__TypeTopology",
+          "file": "source/Locales/StoneImpliesSpectral.lagda",
+          "relevance": 0,
+          "note": "Proves that Stone locales are spectral locales; 'Stone' refers to Stone spaces/locales, not the Stone-Weierstrass approximation theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/CompletelyMonotone/Laplace/Measurability.lean",
+          "relevance": 1,
+          "note": "Uses the classical polynomial Weierstrass approximation theorem to extend moment measurability from polynomials to continuous functions; closely related approximation support, not the general Stone-Weierstrass owner."
+        },
+        {
+          "repository": "jrh13__hol-light",
+          "file": "Multivariate/complex_database.ml",
+          "relevance": 0,
+          "note": "Generated HOL Light theorem-name database; even where approximation theorem names occur it is a registry, not a proof-owning Stone-Weierstrass source."
+        },
+        {
+          "repository": "CakeML__candle",
+          "file": "Multivariate/complex_database.ml",
+          "relevance": 0,
+          "note": "Generated Candle theorem-name database rather than theorem proofs; it is not a Stone-Weierstrass formalization owner."
+        },
+        {
+          "repository": "leanprover-community__physlib",
+          "file": "PhyslibAlpha/AlgebraicFramework/HilbertSpace/Unbounded/Flow/Stone.lean",
+          "relevance": 0,
+          "note": "Formalizes Stone's theorem for one-parameter unitary groups and unbounded generators; this is a different Stone theorem from Stone-Weierstrass."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Semigroups/Group/Stone/Basic.lean",
+          "relevance": 0,
+          "note": "Develops the bounded part of Stone's theorem for strongly continuous unitary groups; unrelated to Stone-Weierstrass approximation."
+        },
+        {
+          "repository": "isabelle-prover__mirror-isabelle",
+          "file": "src/HOL/Complex_Analysis/Weierstrass_Factorization.thy",
+          "relevance": 0,
+          "note": "Formalizes Weierstrass factorization of entire functions via canonical products; this is a different Weierstrass theorem from Stone-Weierstrass approximation."
         }
       ]
     },
@@ -4467,6 +4665,54 @@
           "file": "BrownianMotion/StochasticIntegral/L2M.lean",
           "relevance": 1,
           "note": "Develops predictable L2 spaces for stochastic integration in the Brownian project; downstream Brownian infrastructure, not construction from Gaussian processes."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/StochasticIntegral/Locally.lean",
+          "relevance": 1,
+          "note": "Develops localization and path-regularity properties of stochastic processes in the Brownian-motion project; downstream process infrastructure, not the Gaussian/projective-limit Brownian construction."
+        },
+        {
+          "repository": "formal-applied-math__formal-mathfin",
+          "file": "MathFin/Foundations/BrownianMarkov.lean",
+          "relevance": 1,
+          "note": "Proves the Brownian Markov property for an already constructed pre-Brownian motion imported from the Gaussian package; substantive downstream Brownian theory, not the construction itself."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/StochasticIntegral/StochasticIntegral.lean",
+          "relevance": 1,
+          "note": "Axiomatically characterizes stochastic integrals for stochastic processes; downstream Brownian/stochastic-calculus infrastructure rather than construction of Brownian motion from Gaussian laws."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/Auxiliary/AEEq.lean",
+          "relevance": 1,
+          "note": "Constructs equivalence classes of indistinguishable adapted processes; supporting stochastic-process infrastructure in the Brownian project, not the Gaussian existence construction."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/StochasticIntegral/Predictable.lean",
+          "relevance": 1,
+          "note": "Develops predictable processes and predictable sigma-algebras used by stochastic integration; downstream Brownian-process infrastructure, not the Gaussian construction."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/Gaussian/StochasticProcesses.lean",
+          "relevance": 1,
+          "note": "Proves modification-versus-indistinguishability lemmas for continuous stochastic processes; supporting Gaussian/Brownian process infrastructure, but no Brownian existence construction."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/StochasticIntegral/QuadraticVariation.lean",
+          "relevance": 1,
+          "note": "Constructs predictable quadratic variation for locally square-integrable martingales; downstream stochastic-calculus material assuming processes already exist."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/Choquet/MeasurableSection.lean",
+          "relevance": 1,
+          "note": "Proves measurable-section theorems in the Brownian project's Choquet/debut layer; measure-theoretic process support, not the Gaussian projective-limit Brownian construction."
         }
       ]
     },
