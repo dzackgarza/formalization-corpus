@@ -1757,6 +1757,36 @@
           "file": "Linglib/Studies/Snyder2026.lean",
           "relevance": 0,
           "note": "Formal linguistics; no topological covering-space theory."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/Covering/BalancedProduct.lean",
+          "relevance": 2,
+          "note": "Constructs the covering attached to a discrete group action and explicitly identifies the universal-cover case as the cover attached to a fundamental-group set; direct classification infrastructure."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/EilenbergMacLane/TopologicalVectorSpace.lean",
+          "relevance": 2,
+          "note": "Uses quotient covering maps of contractible topological vector spaces to identify the quotient as K(G,1), including the fundamental group with the deck group; closely relevant covering-space/pi1 theory."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Instance/Top/LoopSpace.v",
+          "relevance": 1,
+          "note": "Develops loops and proves the fundamental group of a topological group/H-space is abelian; relevant fundamental-group infrastructure but no covering-space classification theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/Covering/Monodromy/Transitive.lean",
+          "relevance": 2,
+          "note": "Lifts monodromy of connected covers over a path-connected base to transitive fundamental-groupoid actions, directly on the covering-space classification path."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "Jacobians/RiemannSurface/QuotientCoveringPi1.lean",
+          "relevance": 3,
+          "note": "Directly computes the fundamental group of a quotient by a discrete subgroup through covering-space path lifting, producing an explicit pi1-to-deck-lattice equivalence."
         }
       ]
     },
@@ -1899,6 +1929,30 @@
           "file": "thys/Smooth_Manifolds/Product_Manifold.thy",
           "relevance": 1,
           "note": "Constructs smooth product-manifold charts and atlases; relevant general smooth-manifold infrastructure, but no manifold-with-boundary model or collar construction."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Order/Heyting/Boundary.lean",
+          "relevance": 0,
+          "note": "Defines the boundary operation in co-Heyting algebras; this is unrelated to manifold boundaries or collar neighborhoods."
+        },
+        {
+          "repository": "LionSR__TNLean",
+          "file": "TNLean/MPS/OpenBoundary.lean",
+          "relevance": 0,
+          "note": "Defines open-boundary matrix-product states in tensor networks; boundary here is unrelated to manifolds."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Combinatorics/Brauer/Boundary.lean",
+          "relevance": 0,
+          "note": "Classifies boundary endpoints in Brauer diagrams; unrelated to manifold-with-boundary collars."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Smooth_Manifolds/Sphere.thy",
+          "relevance": 1,
+          "note": "Develops smooth sphere charts in the AFP smooth-manifold library; relevant general manifold infrastructure, but no manifold-with-boundary or collar construction appears here."
         }
       ]
     },
@@ -2024,6 +2078,42 @@
           "file": "Mathlib/CategoryTheory/Localization/Resolution.lean",
           "relevance": 2,
           "note": "Develops left/right resolution structures and the injective-complex derivability machinery for abelian categories with enough injectives; closely relevant resolution infrastructure."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/EnoughInjectives.lean",
+          "relevance": 1,
+          "note": "Proves Grothendieck abelian categories have enough injectives, an important existence prerequisite for injective resolutions but not the resolution construction itself."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/Ext.lean",
+          "relevance": 0,
+          "note": "Defines Ext by left deriving in the projective variable and explicitly notes injective-resolution computation as future work; it does not construct injective resolutions."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/Projective/Resolution.lean",
+          "relevance": 0,
+          "note": "Constructs projective resolutions and their homotopy theory, the dual but distinct construction from injective resolutions."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/TensorCategories/code/AntipodeBijective/Injective.lean",
+          "relevance": 0,
+          "note": "Proves injectivity of the antipode of a finite-dimensional Hopf algebra; injective here is a function property, not an injective object or resolution."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Structure/Projective.v",
+          "relevance": 1,
+          "note": "Defines categorical projective and injective objects and their lifting properties, while explicitly recording that injective resolutions are not delivered; prerequisite infrastructure only."
+        },
+        {
+          "repository": "dagurtomas__LeanCondensed",
+          "file": "LeanCondensed/Projects/DerivedSolid.lean",
+          "relevance": 0,
+          "note": "A derived-solid scaffold centered on projective/K-projective resolutions and left-derived constructions; it does not supply injective resolutions."
         }
       ]
     },
@@ -4413,6 +4503,60 @@
           "file": "books/kestrel/crypto/ecurve/short-weierstrass.lisp",
           "relevance": 0,
           "note": "Short-Weierstrass elliptic-curve library; no Mizar Jordan-curve theorem."
+        },
+        {
+          "repository": "apnelson1__Matroid",
+          "file": "Matroid/ForMathlib/Geometry/Polygon/JordanCurve.lean",
+          "relevance": 1,
+          "note": "Shows simple polygonal paths are Jordan curves and derives side statements from an existing Jordan-curve theorem; relevant Jordan-curve support, but not the Mizar theorem or a general separation proof."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "JordanPick/PicksTheorem/Defs.lean",
+          "relevance": 0,
+          "note": "Defines lattice-polygon and winding-number data for Pick's theorem while describing later Jordan-curve dependencies; it does not prove the Jordan curve theorem here."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "submission/jordan_curve/Submission/Root.lean",
+          "relevance": 2,
+          "note": "Contains a completed Lean Jordan-curve theorem reducing to and discharging Brouwer fixed point, proving the complement has exactly two connected components; a direct independent formalization, though not Mizar."
+        },
+        {
+          "repository": "isabelle-prover__mirror-isabelle",
+          "file": "src/HOL/Analysis/Jordan_Curve.thy",
+          "relevance": 2,
+          "note": "Directly formalizes the Jordan curve theorem and separation consequences in Isabelle/HOL; an independent prover formalization rather than the queried Mizar owner."
+        },
+        {
+          "repository": "CakeML__candle",
+          "file": "Jordan/jordan_curve_theorem.ml",
+          "relevance": 2,
+          "note": "Contains the completed HOL-Light Jordan curve theorem proof, including the explicit JORDAN_CURVE_THEOREM; a direct independent formalization rather than Mizar."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "submission/jordan_curve/Submission.lean",
+          "relevance": 2,
+          "note": "Restates the benchmark Jordan curve theorem and delegates to the completed axiom-clean Lean development; a direct theorem statement/proof in another prover."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/JordanCurve/Path.lean",
+          "relevance": 1,
+          "note": "Builds Jordan curves from injective closed paths and glues arcs; substantive Jordan-curve infrastructure but not the plane separation theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Complex/Conformal/Jordan/Domain.lean",
+          "relevance": 1,
+          "note": "Develops Jordan domains and boundary correspondence consequences using an existing Jordan-curve theory; relevant downstream material rather than the theorem owner."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/JordanCurve/SmallArc.lean",
+          "relevance": 1,
+          "note": "Proves quantitative small-arc properties of Jordan curves from compact parametrizations and separation machinery; relevant Jordan-curve development, not the theorem owner."
         }
       ]
     },
@@ -4574,6 +4718,42 @@
           "file": "src/commutative-algebra/groups-of-units-commutative-rings.lagda.md",
           "relevance": 0,
           "note": "Groups of units of commutative rings; no formal group law."
+        },
+        {
+          "repository": "google-deepmind__formal-conjectures",
+          "file": "FormalConjectures/Mathoverflow/507128.lean",
+          "relevance": 0,
+          "note": "Formalizes an unrelated MathOverflow conjecture about invertible ideals and Picard groups; no formal-group law is developed."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Basic.lean",
+          "relevance": 3,
+          "note": "Directly packages the Weierstrass addition series as Mathlib's one-dimensional FormalGroup, proving commutativity and base-change compatibility."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/HasseWeil/HasseWeil/Isogeny/OmegaCoeffViaFormalGroup.lean",
+          "relevance": 1,
+          "note": "Uses elliptic formal-group laws and formal isogeny series to derive an invariant-differential coefficient identity; relevant downstream formal-group work, with the file recording remaining sorryAx leaves."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Series.lean",
+          "relevance": 2,
+          "note": "Constructs the Weierstrass formal addition series F(z1,z2), proves symmetry/base change, and identifies it as the series underlying the elliptic formal group law."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Instance/Rng/MonoidRing.v",
+          "relevance": 0,
+          "note": "Constructs monoid/group rings and their universal properties; the phrase formal expressions is unrelated to formal group laws."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/commutative-algebra/polynomials-commutative-rings.lagda.md",
+          "relevance": 1,
+          "note": "Develops polynomial/formal-power-series commutative rings, useful substrate for formal group laws but containing no formal-group-law structure itself."
         }
       ]
     },
@@ -4705,6 +4885,48 @@
           "file": "wiki/pages/user-defined-constraint-domain.elf",
           "relevance": 0,
           "note": "Twelf syntactic-category documentation; no Grothendieck abelian/injective theory."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/DerivedCategory/Ext/EnoughProjectives.lean",
+          "relevance": 0,
+          "note": "Derives Ext smallness from enough projectives; this is the projective-side theorem, not enough injectives for Grothendieck categories."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/DerivedCategory/RightDerivedFunctorPlus.lean",
+          "relevance": 1,
+          "note": "Constructs bounded-below right-derived functors assuming EnoughInjectives; a direct downstream consumer, not the Grothendieck-category existence proof."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Preadditive/Injective/Basic.lean",
+          "relevance": 1,
+          "note": "Defines injective objects and the EnoughInjectives class and basic consequences; prerequisite infrastructure for the Grothendieck theorem."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Bicategory/Grothendieck.lean",
+          "relevance": 0,
+          "note": "Formalizes the Grothendieck construction of pseudofunctors; the name Grothendieck is unrelated to Grothendieck abelian categories having enough injectives."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/GrothendieckToposes/Sites.v",
+          "relevance": 0,
+          "note": "Defines Grothendieck sites and topologies; this is unrelated to enough injectives in Grothendieck abelian categories."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Limits/Shapes/Grothendieck.lean",
+          "relevance": 0,
+          "note": "Proves limit and colimit results for Grothendieck constructions of functors; unrelated to Grothendieck abelian categories and injectives."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/Cat/Diagram/Injective.lagda.md",
+          "relevance": 1,
+          "note": "Defines injective objects and enough injectives in a general category, providing relevant prerequisite theory but not Grothendieck's enough-injectives theorem."
         }
       ]
     }
