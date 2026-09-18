@@ -39,10 +39,15 @@ if ssh "$host" 'systemctl is-active --quiet formalization-corpus-api.service'; t
 elif ssh "$host" "systemctl cat zoekt-webserver.service 2>/dev/null | grep -Fq '$remote_root/bin/zoekt-webserver' && systemctl cat zoekt-webserver.service 2>/dev/null | grep -Fq '127.0.0.1:6070'"; then
   # Compatibility migration for the original root-owned unit. The unit keeps
   # its existing ExecStart, but that path becomes a supervisor which runs stock
-  # Zoekt on 6071 and FastAPI on 6070. SIGKILL makes Restart=on-failure reload
-  # the replacement executable without requiring root access.
+  # Zoekt on 6071 and FastAPI on 6070. The first migration replaces a running
+  # stock binary, so SIGKILL is required to make Restart=on-failure reload the
+  # new supervisor. Subsequent deploys are already running that supervisor:
+  # terminate it normally so its trap can reap both children before it exits
+  # nonzero and systemd restarts the pair. Killing the supervisor itself with
+  # SIGKILL leaves uvicorn behind in the service cgroup and can wedge the unit in
+  # deactivating state indefinitely.
   rsync -a "$root/deploy/zoekt-api-compat-launcher.sh" "$host:$remote_root/bin/zoekt-webserver"
-  ssh "$host" "pid=\$(systemctl show -p MainPID --value zoekt-webserver.service); test \"\$pid\" -gt 0; kill -KILL \"\$pid\""
+  ssh "$host" "pid=\$(systemctl show -p MainPID --value zoekt-webserver.service); test \"\$pid\" -gt 0; exe=\$(readlink /proc/\"\$pid\"/exe); case \"\$exe\" in */bash|*/dash|*/sh) kill -TERM \"\$pid\" ;; *) kill -KILL \"\$pid\" ;; esac"
   echo "deployed FastAPI through the existing zoekt-webserver.service compatibility entrypoint"
 else
   cat <<EOF
