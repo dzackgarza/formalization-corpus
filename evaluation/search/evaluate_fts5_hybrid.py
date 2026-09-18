@@ -117,6 +117,44 @@ def add_pair_rank_evidence(
     return fused
 
 
+def rank_by_pair_rank_evidence(
+    candidates: list[dict[str, Any]],
+    *,
+    channels: tuple[str, str],
+    rrf_constant: int,
+) -> list[dict[str, Any]]:
+    """Rank a candidate union using only qrel-independent first-stage ranks."""
+
+    if rrf_constant <= 0:
+        raise ValueError("RRF constant must be positive")
+    allowed = set(channels)
+    if len(allowed) != 2:
+        raise ValueError("exactly two distinct first-stage channels are required")
+
+    ranked: list[dict[str, Any]] = []
+    for original in candidates:
+        item = dict(original)
+        source_ranks = item.get("CandidateSourceRanks") or {}
+        score = sum(
+            1.0 / (rrf_constant + int(rank))
+            for source, rank in source_ranks.items()
+            if source in allowed
+        )
+        item["Score"] = score
+        item["FirstStageRankScore"] = score
+        item["FirstStageRankEvidence"] = dict(source_ranks)
+        ranked.append(item)
+    ranked.sort(
+        key=lambda item: (
+            -float(item["FirstStageRankScore"]),
+            int(item.get("CandidateUnionRank", 10**9)),
+            str(item.get("Repository", "")),
+            str(item.get("FileName", "")),
+        )
+    )
+    return ranked
+
+
 def prefilter_by_pair_rank_evidence(
     candidates: list[dict[str, Any]],
     *,
@@ -126,33 +164,13 @@ def prefilter_by_pair_rank_evidence(
 ) -> list[dict[str, Any]]:
     """Bound second-stage work using only qrel-independent first-stage ranks."""
 
-    if rrf_constant <= 0:
-        raise ValueError("RRF constant must be positive")
     if limit <= 0:
         raise ValueError("prefilter limit must be positive")
-    allowed = set(channels)
-    if len(allowed) != 2:
-        raise ValueError("exactly two distinct first-stage channels are required")
-
-    ranked: list[dict[str, Any]] = []
-    for original in candidates:
-        item = dict(original)
-        source_ranks = item.get("CandidateSourceRanks") or {}
-        item["FirstStagePrefilterScore"] = sum(
-            1.0 / (rrf_constant + int(rank))
-            for source, rank in source_ranks.items()
-            if source in allowed
-        )
-        ranked.append(item)
-    ranked.sort(
-        key=lambda item: (
-            -float(item["FirstStagePrefilterScore"]),
-            int(item.get("CandidateUnionRank", 10**9)),
-            str(item.get("Repository", "")),
-            str(item.get("FileName", "")),
-        )
-    )
-    return ranked[:limit]
+    return rank_by_pair_rank_evidence(
+        candidates,
+        channels=channels,
+        rrf_constant=rrf_constant,
+    )[:limit]
 
 
 def retrieve_zoekt_first_stage(
@@ -309,6 +327,7 @@ def main() -> int:
 
     cache = ApiContentCache(api_url=args.api_url, timeout=args.timeout)
     scored_cases: list[dict[str, Any]] = []
+    first_stage_scored_cases: list[dict[str, Any]] = []
     total_fetch_bytes = 0
     total_fetch_wall_ms = 0.0
     total_fetch_request_ms = 0.0
@@ -335,6 +354,27 @@ def main() -> int:
                 first_name=zoekt_channel,
                 second_name="corpus-fts5",
                 per_retriever_depth=args.per_retriever_depth,
+            )
+            first_stage_ranking = rank_by_pair_rank_evidence(
+                candidates,
+                channels=(zoekt_channel, "corpus-fts5"),
+                rrf_constant=args.evidence_rrf_constant,
+            )
+            first_stage_runtime = {
+                "elapsed_ms": float(zoekt_runtime["elapsed_ms"]) + float(fts_response["elapsed_ms"]),
+                "payload_bytes": int(zoekt_runtime["payload_bytes"]),
+                "returned_files": len(first_stage_ranking),
+                "retrieval_queries": int(zoekt_runtime["retrieval_queries"]) + 1,
+                "zoekt_api_requests": int(zoekt_runtime["physical_api_requests"]),
+                "corpus_fts5_queries": 1,
+            }
+            first_stage_scored_cases.append(
+                evaluate.score_case(
+                    case,
+                    first_stage_ranking,
+                    f"{zoekt_compiled} CORPUS_FTS5_FIRST_STAGE_RRF",
+                    first_stage_runtime,
+                )
             )
             second_stage_candidates = candidates
             if args.content_rerank_depth is not None:
@@ -505,6 +545,9 @@ def main() -> int:
         "result_role_state": evaluate.file_role_index().fingerprint(),
         "metrics": evaluate.aggregate(scored_cases),
         "metrics_by_tag": evaluate.by_tag(scored_cases),
+        "first_stage_metrics": evaluate.aggregate(first_stage_scored_cases),
+        "first_stage_metrics_by_tag": evaluate.by_tag(first_stage_scored_cases),
+        "first_stage_cases": first_stage_scored_cases,
         "cases": scored_cases,
     }
     evaluate.print_summary(report)

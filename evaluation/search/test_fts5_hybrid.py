@@ -13,6 +13,7 @@ from evaluate_fts5_hybrid import (  # noqa: E402
     add_pair_rank_evidence,
     balanced_pair_union,
     prefilter_by_pair_rank_evidence,
+    rank_by_pair_rank_evidence,
 )
 
 
@@ -102,8 +103,36 @@ class Fts5HybridTests(unittest.TestCase):
             ["shared", "fielded-only"],
         )
         self.assertGreater(
-            result[0]["FirstStagePrefilterScore"],
-            result[1]["FirstStagePrefilterScore"],
+            result[0]["FirstStageRankScore"],
+            result[1]["FirstStageRankScore"],
+        )
+
+    def test_first_stage_ranking_is_complete_and_qrel_independent(self) -> None:
+        rows = [
+            {
+                "Repository": "r",
+                "FileName": "single",
+                "CandidateUnionRank": 1,
+                "CandidateSourceRanks": {"fielded": 1},
+            },
+            {
+                "Repository": "r",
+                "FileName": "both",
+                "CandidateUnionRank": 2,
+                "CandidateSourceRanks": {"fielded": 5, "corpus-fts5": 5},
+            },
+        ]
+        result = rank_by_pair_rank_evidence(
+            rows,
+            channels=("fielded", "corpus-fts5"),
+            rrf_constant=60,
+        )
+        self.assertEqual([item["FileName"] for item in result], ["both", "single"])
+        self.assertEqual(len(result), len(rows))
+        self.assertEqual(result[0]["Score"], result[0]["FirstStageRankScore"])
+        self.assertEqual(
+            result[0]["FirstStageRankEvidence"],
+            {"fielded": 5, "corpus-fts5": 5},
         )
 
 
