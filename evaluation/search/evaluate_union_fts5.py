@@ -130,6 +130,7 @@ def retrieve_batched_first_stages(
     batch_size: int,
     api_retries: int,
     compress_multiquery: bool = False,
+    expansion_limit: int | None = None,
 ) -> tuple[
     list[dict[str, Any]],
     list[dict[str, Any]],
@@ -150,7 +151,10 @@ def retrieve_batched_first_stages(
     """
 
     field_queries = compile_field_queries(case["query"])
-    formulations = [case["query"], *expansion_queries[case["id"]]]
+    frozen_expansions = expansion_queries[case["id"]]
+    if expansion_limit is not None:
+        frozen_expansions = frozen_expansions[:expansion_limit]
+    formulations = [case["query"], *frozen_expansions]
     compiled: list[str] = []
     seen_multiquery: set[str] = set()
     for formulation in formulations:
@@ -351,6 +355,11 @@ def main() -> int:
         help="replace frozen multi-query RRF requests with one boolean-OR query per case",
     )
     parser.add_argument(
+        "--multiquery-expansion-limit",
+        type=int,
+        help="use only the first N frozen expansion formulations in batched first-stage retrieval",
+    )
+    parser.add_argument(
         "--batch-max-concurrency",
         type=int,
         default=4,
@@ -386,8 +395,20 @@ def main() -> int:
     if args.batch_max_concurrency <= 0 or args.batch_size <= 0:
         print("ERROR: batch max concurrency and batch size must be positive", file=sys.stderr)
         return 2
+    if args.multiquery_expansion_limit is not None and args.multiquery_expansion_limit < 0:
+        print("ERROR: multiquery expansion limit must be nonnegative", file=sys.stderr)
+        return 2
+    if args.multiquery_expansion_limit is not None and not args.batch_first_stage:
+        print("ERROR: --multiquery-expansion-limit currently requires --batch-first-stage", file=sys.stderr)
+        return 2
     if args.compress_multiquery_or and not args.batch_first_stage:
         print("ERROR: --compress-multiquery-or currently requires --batch-first-stage", file=sys.stderr)
+        return 2
+    if args.compress_multiquery_or and args.multiquery_expansion_limit is not None:
+        print(
+            "ERROR: evaluate compressed expansion OR and prefix truncation separately",
+            file=sys.stderr,
+        )
         return 2
     if args.batch_first_stage and (
         args.parallel_first_stages
@@ -463,6 +484,7 @@ def main() -> int:
                     batch_size=args.batch_size,
                     api_retries=args.api_retries,
                     compress_multiquery=args.compress_multiquery_or,
+                    expansion_limit=args.multiquery_expansion_limit,
                 )
                 fielded_runtime = {
                     "elapsed_ms": batch_runtime["elapsed_ms"],
@@ -661,6 +683,13 @@ def main() -> int:
             if args.include_first_stage_ranks
             else "fielded_expansion_or_union_fts5_evidence_rrf_batched_v1"
         )
+    elif args.multiquery_expansion_limit is not None:
+        suffix = f"prefix{args.multiquery_expansion_limit}"
+        variant = (
+            f"fielded_multiquery_{suffix}_union_fts5_plus_rank_evidence_rrf_batched_v1"
+            if args.include_first_stage_ranks
+            else f"fielded_multiquery_{suffix}_union_fts5_evidence_rrf_batched_v1"
+        )
     else:
         variant = (
             (
@@ -705,6 +734,7 @@ def main() -> int:
                 "frozen_expansion_or_v1" if args.compress_multiquery_or else "gemini_multiquery_rrf_v1",
             ],
             "multiquery_compression": "boolean-or" if args.compress_multiquery_or else None,
+            "multiquery_expansion_limit": args.multiquery_expansion_limit,
             "union": "rank-interleaved deduplicated bounded prefixes",
             "execution": (
                 "server-batched"

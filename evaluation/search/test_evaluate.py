@@ -160,6 +160,47 @@ class SearchEvaluationTests(unittest.TestCase):
         self.assertEqual(runtime["multiquery_backend_queries"], 1)
         self.assertEqual(runtime["unique_backend_searches"], len(by_query))
 
+    def test_batched_first_stage_can_limit_frozen_expansion_prefix(self) -> None:
+        case = {"id": "q", "query": "Jordan canonical form"}
+        expansions = {"q": ["Jordan normal form", "rational canonical form"]}
+        field_queries = compile_field_queries(case["query"])
+        compiled = [
+            evaluate.compile_query(case["query"], "normalized_path_content_v1"),
+            evaluate.compile_query("Jordan normal form", "normalized_path_content_v1"),
+        ]
+        candidate = {"Repository": "r", "FileName": "Jordan.lean", "Score": 1.0}
+        by_query = {
+            query: [candidate]
+            for query in dict.fromkeys([*field_queries.values(), *compiled])
+        }
+        batch_runtime = {
+            "elapsed_ms": 10.0,
+            "payload_bytes": 100,
+            "physical_api_requests": 1,
+            "logical_queries": len(by_query),
+            "max_concurrency": 2,
+            "cache_counts": {"MISS": len(by_query)},
+        }
+        with mock.patch.object(evaluate, "api_search_batch", return_value=(by_query, batch_runtime)):
+            _, _, _, formulations, got_compiled, runtime = retrieve_batched_first_stages(
+                case,
+                expansions,
+                timeout=30.0,
+                api_url="https://example.test/api/search",
+                serving=evaluate.serving_options(top=200, whole=False),
+                depth=200,
+                rrf_constant=60,
+                weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
+                max_concurrency=2,
+                batch_size=4,
+                api_retries=2,
+                expansion_limit=1,
+            )
+        self.assertEqual(formulations, [case["query"], "Jordan normal form"])
+        self.assertEqual(got_compiled, compiled)
+        self.assertEqual(runtime["multiquery_backend_queries"], 2)
+        self.assertEqual(runtime["unique_backend_searches"], len(by_query))
+
     def test_batched_first_stage_reconstructs_fielded_and_multiquery_rankings(self) -> None:
         case = {"id": "q", "query": "Jordan canonical form"}
         expansions = {"q": ["Jordan normal form"]}
