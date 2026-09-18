@@ -524,6 +524,32 @@ units. Dehydration refuses dirty Git checkouts, revision drift, uncatalogued sou
 sources with no persistent Zoekt shard on the search host. It deletes the disposable nested checkout rather
 than retaining fetched Git objects, so disk is actually reclaimed.
 
+## Connector storage and worktree locality
+
+The connector is not a bulk scratch host. Repository workflows must not
+externalize their working set into global `/tmp`, `~/.cache`, or a succession
+of throwaway copies of this repository.
+
+- The review loop hydrates one upstream source at a time. That disposable source
+  checkout is the intended unit; it does not justify another full Formalization
+  Corpus checkout for validation, committing, or pushing.
+- Do not create per-batch `/tmp/fc-*`, `/tmp/formalization-*`, source-scan,
+  clean-validation, or push-only worktrees. Reuse the current checkout or at
+  most one repository-owned auxiliary automation worktree when isolation is
+  genuinely required.
+- Learned-retrieval experiments do not bootstrap heavyweight model stacks on the
+  connector. Do not install or download SPLADE/fastembed/HuggingFace model
+  weights, sentence-transformers, ONNX bundles, or model-specific virtual
+  environments merely to test a search hypothesis. Use the remote
+  search/evaluation host or an already-established project runtime; otherwise
+  record and defer the experiment.
+- Bulk temporary state is project-owned and removed by the workflow that creates
+  it. Global `/tmp` is for small interchange files, not repository copies,
+  package environments, model caches, or search indexes.
+
+When a proposed step would write hundreds of megabytes outside this repository,
+redesign the step before running it. Periodic cleanup is not the storage model.
+
 ## Source-lead intake
 
 Source suggestions are unreviewed leads, not proposed `sources.tsv` rows.  The
