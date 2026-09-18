@@ -117,6 +117,44 @@ def add_pair_rank_evidence(
     return fused
 
 
+def prefilter_by_pair_rank_evidence(
+    candidates: list[dict[str, Any]],
+    *,
+    channels: tuple[str, str],
+    rrf_constant: int,
+    limit: int,
+) -> list[dict[str, Any]]:
+    """Bound second-stage work using only qrel-independent first-stage ranks."""
+
+    if rrf_constant <= 0:
+        raise ValueError("RRF constant must be positive")
+    if limit <= 0:
+        raise ValueError("prefilter limit must be positive")
+    allowed = set(channels)
+    if len(allowed) != 2:
+        raise ValueError("exactly two distinct first-stage channels are required")
+
+    ranked: list[dict[str, Any]] = []
+    for original in candidates:
+        item = dict(original)
+        source_ranks = item.get("CandidateSourceRanks") or {}
+        item["FirstStagePrefilterScore"] = sum(
+            1.0 / (rrf_constant + int(rank))
+            for source, rank in source_ranks.items()
+            if source in allowed
+        )
+        ranked.append(item)
+    ranked.sort(
+        key=lambda item: (
+            -float(item["FirstStagePrefilterScore"]),
+            int(item.get("CandidateUnionRank", 10**9)),
+            str(item.get("Repository", "")),
+            str(item.get("FileName", "")),
+        )
+    )
+    return ranked[:limit]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--gold", type=pathlib.Path, default=evaluate.DEFAULT_GOLD)
@@ -124,6 +162,7 @@ def main() -> int:
     parser.add_argument("--timeout", type=float, default=60.0)
     parser.add_argument("--depth", type=int, default=200)
     parser.add_argument("--per-retriever-depth", type=int, default=100)
+    parser.add_argument("--content-rerank-depth", type=int)
     parser.add_argument("--fetch-workers", type=int, default=8)
     parser.add_argument("--rrf-constant", type=int, default=60)
     parser.add_argument("--evidence-rrf-constant", type=int, default=60)
@@ -151,6 +190,9 @@ def main() -> int:
         int(args.timeout),
     ) <= 0:
         print("ERROR: depths, workers, RRF constants, and timeout must be positive", file=sys.stderr)
+        return 2
+    if args.content_rerank_depth is not None and args.content_rerank_depth <= 0:
+        print("ERROR: content rerank depth must be positive", file=sys.stderr)
         return 2
     weights = {
         "baseline": args.baseline_weight,
@@ -232,15 +274,23 @@ def main() -> int:
                 second_name="corpus-fts5",
                 per_retriever_depth=args.per_retriever_depth,
             )
+            second_stage_candidates = candidates
+            if args.content_rerank_depth is not None:
+                second_stage_candidates = prefilter_by_pair_rank_evidence(
+                    candidates,
+                    channels=("fielded", "corpus-fts5"),
+                    rrf_constant=args.evidence_rrf_constant,
+                    limit=args.content_rerank_depth,
+                )
             contents, fetch_runtime = fetch_candidate_contents(
-                candidates,
+                second_stage_candidates,
                 cache=cache,
                 workers=args.fetch_workers,
             )
             rerank_started = time.perf_counter()
             reranked = fts5_rerank(
                 case["query"],
-                candidates,
+                second_stage_candidates,
                 contents,
                 content_mode="evidence-rrf",
                 evidence_rrf_constant=args.evidence_rrf_constant,
@@ -277,7 +327,7 @@ def main() -> int:
             "retrieval_queries": int(fielded_runtime["retrieval_queries"]) + 1,
             "zoekt_api_requests": int(fielded_runtime["physical_api_requests"]),
             "corpus_fts5_queries": 1,
-            "content_fetches": len(candidates),
+            "content_fetches": len(second_stage_candidates),
         }
         scored = evaluate.score_case(
             case,
@@ -287,12 +337,14 @@ def main() -> int:
         )
         scored["field_queries"] = field_queries
         scored["candidate_union_size"] = len(candidates)
+        scored["content_rerank_size"] = len(second_stage_candidates)
         scored["corpus_fts5_elapsed_ms"] = fts_elapsed_ms
         scored["second_stage_match_query"] = fts5_match_query(case["query"])
         scored_cases.append(scored)
         print(
             f"{number:02d}/{len(gold['cases'])} {case['id']} "
-            f"candidates={len(candidates)} owner={scored['first_owner_rank']} "
+            f"candidates={len(candidates)} rerank={len(second_stage_candidates)} "
+            f"owner={scored['first_owner_rank']} "
             f"relevant={scored['first_relevant_rank']}",
             flush=True,
         )
@@ -311,7 +363,11 @@ def main() -> int:
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
         "query_config_sha256": evaluate.query_config_sha256(),
         "serving_config_sha256": evaluate.serving_config_sha256(),
-        "variant": "fielded_corpus_fts5_union_evidence_rank_rrf_v1",
+        "variant": (
+            "fielded_corpus_fts5_union_rank_prefilter_evidence_rrf_v1"
+            if args.content_rerank_depth is not None
+            else "fielded_corpus_fts5_union_evidence_rank_rrf_v1"
+        ),
         "provider": "api+remote-sqlite-fts5",
         "api_url": args.api_url,
         "serving_options": serving,
@@ -337,6 +393,15 @@ def main() -> int:
             "fusion": "equal-weight reciprocal-rank fusion",
             "fusion_rrf_constant": args.evidence_rrf_constant,
             "first_stage_rank_channels": ["fielded", "corpus-fts5"],
+            "prefilter": (
+                {
+                    "method": "first-stage-rank-rrf",
+                    "limit": args.content_rerank_depth,
+                    "rrf_constant": args.evidence_rrf_constant,
+                }
+                if args.content_rerank_depth is not None
+                else None
+            ),
         },
         "latency_scope": (
             "component sum: public Zoekt API + server-local corpus FTS5 query + "

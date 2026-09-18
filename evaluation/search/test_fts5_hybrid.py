@@ -9,7 +9,11 @@ import unittest
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from evaluate_fts5_hybrid import add_pair_rank_evidence, balanced_pair_union  # noqa: E402
+from evaluate_fts5_hybrid import (  # noqa: E402
+    add_pair_rank_evidence,
+    balanced_pair_union,
+    prefilter_by_pair_rank_evidence,
+)
 
 
 class Fts5HybridTests(unittest.TestCase):
@@ -64,6 +68,42 @@ class Fts5HybridTests(unittest.TestCase):
         self.assertEqual(
             result[0]["FirstStageRankEvidence"],
             {"fielded": 2, "corpus-fts5": 2},
+        )
+
+    def test_prefilter_uses_both_first_stage_ranks_before_truncation(self) -> None:
+        rows = [
+            {
+                "Repository": "r",
+                "FileName": "fielded-only",
+                "CandidateUnionRank": 1,
+                "CandidateSourceRanks": {"fielded": 1},
+            },
+            {
+                "Repository": "r",
+                "FileName": "shared",
+                "CandidateUnionRank": 2,
+                "CandidateSourceRanks": {"fielded": 50, "corpus-fts5": 50},
+            },
+            {
+                "Repository": "r",
+                "FileName": "fts5-only",
+                "CandidateUnionRank": 3,
+                "CandidateSourceRanks": {"corpus-fts5": 10},
+            },
+        ]
+        result = prefilter_by_pair_rank_evidence(
+            rows,
+            channels=("fielded", "corpus-fts5"),
+            rrf_constant=60,
+            limit=2,
+        )
+        self.assertEqual(
+            [item["FileName"] for item in result],
+            ["shared", "fielded-only"],
+        )
+        self.assertGreater(
+            result[0]["FirstStagePrefilterScore"],
+            result[1]["FirstStagePrefilterScore"],
         )
 
 
