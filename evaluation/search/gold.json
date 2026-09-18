@@ -3236,6 +3236,48 @@
           "file": "LeanCourse25/Lectures/Lecture24.lean",
           "relevance": 0,
           "note": "A course lecture states a `sphere_eversion` theorem but leaves its proof as `sorry` (not yet in Mathlib); this is not a checked sphere-eversion formalization."
+        },
+        {
+          "repository": "fpvandoorn__LeanCourse25",
+          "file": "LeanCourse25/Lectures/Lecture24After.lean",
+          "relevance": 2,
+          "note": "States the sphere-eversion theorem in the differential-geometry course, but the proof is explicitly left as `sorry -- not yet in Mathlib`; a direct target statement rather than a completed proof owner."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Unused/LinearAlgebra/Multilinear.lean",
+          "relevance": 0,
+          "note": "The file explicitly says this multilinear helper is unused and no longer intended for the sphere-eversion project; it is not substantive eversion evidence."
+        },
+        {
+          "repository": "fpvandoorn__LeanCourse25",
+          "file": "LeanCourse25/Lectures/Lecture25.lean",
+          "relevance": 2,
+          "note": "States the sphere-eversion theorem in course notes but leaves it as an explicit `sorry`; direct theorem-facing material without the proof."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Partition.lean",
+          "relevance": 1,
+          "note": "Develops smooth-partition-of-unity germ machinery used by the sphere-eversion h-principle development; supporting infrastructure rather than the eversion theorem."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Geometry/Manifold/Metrizable.lean",
+          "relevance": 1,
+          "note": "Constructs a metric on sigma-compact Hausdorff manifolds inside the sphere-eversion support library; relevant project infrastructure, not the theorem owner."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Order/Filter/Basic.lean",
+          "relevance": 0,
+          "note": "Contains a generic eventually-equal filter helper with no sphere-eversion or h-principle content of its own."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/Global/LocalisationData.lean",
+          "relevance": 2,
+          "note": "Defines the global localization data used to pass between local and global h-principle arguments, a substantive component of the formal sphere-eversion proof."
         }
       ]
     },
@@ -3409,6 +3451,60 @@
           "file": "SHSLib.lean",
           "relevance": 0,
           "note": "Umbrella special-functions library; no Carleson theorem."
+        },
+        {
+          "repository": "fpvandoorn__carleson",
+          "file": "Carleson/Classical/Basic.lean",
+          "relevance": 2,
+          "note": "Develops the Fourier-coefficient and partial-sum infrastructure for the classical Carleson theorem; substantive theorem-specific support rather than the final owner."
+        },
+        {
+          "repository": "fpvandoorn__carleson",
+          "file": "Carleson/Classical/Approximation.lean",
+          "relevance": 2,
+          "note": "Proves smooth/Fourier approximation results used in the classical Carleson proof; a substantive proof component."
+        },
+        {
+          "repository": "fpvandoorn__carleson",
+          "file": "Carleson/ToMathlib/IntegralBallContinuity.lean",
+          "relevance": 1,
+          "note": "Provides measure-theoretic continuity lemmas used by the Carleson project; supporting infrastructure and explicitly partly marked for upstreaming."
+        },
+        {
+          "repository": "fpvandoorn__carleson",
+          "file": "Carleson/TwoSidedCarleson/Basic.lean",
+          "relevance": 2,
+          "note": "Develops the two-sided metric-space Carleson operator and its estimates, directly on the major theorem path."
+        },
+        {
+          "repository": "fpvandoorn__carleson",
+          "file": "Carleson/Classical/ControlApproximationEffectContinuous.lean",
+          "relevance": 2,
+          "note": "Proves classical approximation-effect estimates used to transfer the real-line Carleson bound; direct project component, though the file notes a temporary sorryAx dependency upstream."
+        },
+        {
+          "repository": "fpvandoorn__carleson",
+          "file": "Carleson/Classical/ControlApproximationEffect.lean",
+          "relevance": 2,
+          "note": "Proves Lp control of the approximation effect from the Carleson operator bound; a substantive classical-theorem proof component."
+        },
+        {
+          "repository": "nasa__pvslib",
+          "file": "measure_integration/pointwise_convergence.pvs",
+          "relevance": 0,
+          "note": "Defines generic pointwise convergence of function sequences; it contains no Fourier-series or Carleson theorem."
+        },
+        {
+          "repository": "nasa__pvslib",
+          "file": "measure_integration/pointwise_convergence.prf",
+          "relevance": 0,
+          "note": "Proof-certificate data for generic pointwise-convergence lemmas; unrelated to Carleson's Fourier-series theorem."
+        },
+        {
+          "repository": "fpvandoorn__carleson",
+          "file": "Carleson/Classical/DirichletKernel.lean",
+          "relevance": 2,
+          "note": "Formalizes the Dirichlet kernel and the convolution formula for partial Fourier sums used directly in the classical Carleson argument."
         }
       ]
     },
@@ -3540,6 +3636,54 @@
           "file": "backend/Allocproof.v",
           "relevance": 0,
           "note": "Compiler symbol-preservation lemmas; unrelated to Hilbert symbols."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/HilbertBilinear.lean",
+          "relevance": 2,
+          "note": "Imports the 2-adic Hilbert-symbol formula and proves bilinearity for p-adic Hilbert symbols; substantive direct Hilbert-symbol infrastructure including the dyadic case."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Archive/Imo/Imo2001Q2.lean",
+          "relevance": 0,
+          "note": "Formalizes IMO 2001 problem 2; the token Q2 is a problem number, not the 2-adic field."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Archive/Imo/Imo2020Q2.lean",
+          "relevance": 0,
+          "note": "Formalizes IMO 2020 problem 2; unrelated to Hilbert symbols or Q_2."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Archive/Imo/Imo2000Q2.lean",
+          "relevance": 0,
+          "note": "Formalizes IMO 2000 problem 2; unrelated to dyadic Hilbert symbols."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Archive/Imo/Imo1960Q2.lean",
+          "relevance": 0,
+          "note": "Formalizes IMO 1960 problem 2; unrelated to 2-adic Hilbert symbols."
+        },
+        {
+          "repository": "GeoCoq__GeoCoq",
+          "file": "theories/Main/Meta_theory/Models/tarski_to_hilbert.v",
+          "relevance": 0,
+          "note": "Translates Tarski geometry axioms to Hilbert geometry axioms; Hilbert here is geometric, not the norm-residue symbol."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Hilbert_Basis/Hilbert_Basis_Introduction.thy",
+          "relevance": 0,
+          "note": "Formalizes Hilbert basis theorems and formal-power-series extensions; unrelated to Hilbert symbols."
+        },
+        {
+          "repository": "nielstron__langlib",
+          "file": "src/Langlib/Classes/ContextFree/Closure/Substitution/Support.lean",
+          "relevance": 0,
+          "note": "Develops context-free grammar rewrite support; it has no Hilbert-symbol content."
         }
       ]
     },
@@ -3689,6 +3833,54 @@
           "file": "Linglib/Fragments/Mixtec/SMPM/Basic.lean",
           "relevance": 0,
           "note": "Linguistic morpho-aspectual categories; no Yoneda theory."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/RezkCompletions/Construction.v",
+          "relevance": 1,
+          "note": "Uses the Yoneda embedding to construct the univalent Rezk completion and prove its universal property; a directly relevant univalent-category consumer, not the Yoneda-lemma owner."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/EnrichedCats/RezkCompletion/EnrichedRezkCompletion.v",
+          "relevance": 1,
+          "note": "Uses the enriched Yoneda lemma and image factorization to construct an enriched univalent Rezk completion; relevant univalence/Yoneda application."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/GrothendieckToposes/Sheaves.v",
+          "relevance": 1,
+          "note": "Builds sheaf categories using representable Yoneda presheaves and proves the sheaf category univalent; a Yoneda/univalence consumer rather than the lemma owner."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/Bicategories/DisplayedBicats/Examples/CwF.v",
+          "relevance": 1,
+          "note": "Develops categories with families via displayed bicategories and univalence while importing Yoneda; relevant univalent category-theory context but not a Yoneda-lemma proof."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/Bicategories/PseudoFunctors/Yoneda.v",
+          "relevance": 2,
+          "note": "Directly formalizes the bicategorical Yoneda embedding/pseudofunctor, a substantive Yoneda generalization within UniMath's univalent foundations."
+        },
+        {
+          "repository": "agda__agda-categories",
+          "file": "src/Categories/Yoneda/Properties.agda",
+          "relevance": 2,
+          "note": "Directly derives full-faithfulness and other consequences from the Agda-categories Yoneda development; substantive Yoneda formalization, though not specifically a univalent-category owner."
+        },
+        {
+          "repository": "HoTT__Coq-HoTT",
+          "file": "contrib/HoTTBook.v",
+          "relevance": 2,
+          "note": "Exposes the HoTT library's category-level Yoneda lemma and Yoneda embedding as the formalizations of HoTT Book Theorem 9.5.4 and Corollary 9.5.6 in a univalent-foundations development."
+        },
+        {
+          "repository": "agda__agda-categories",
+          "file": "src/Categories/CoYoneda.agda",
+          "relevance": 1,
+          "note": "Formalizes the co-Yoneda lemma, the dual neighboring result to the requested Yoneda lemma; relevant but not the query's theorem."
         }
       ]
     },
@@ -3796,6 +3988,54 @@
           "file": "Construction/Arrow.v",
           "relevance": 0,
           "note": "Arrow/comma-category construction; not the Grothendieck construction for indexed categories/fibrations."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Theory/Displayed.v",
+          "relevance": 2,
+          "note": "Defines displayed categories and explains their total category and bridge to indexed categories and Grothendieck fibrations; direct supporting formalization."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/IndexedCategories/CartesianToIndexedFunctor.v",
+          "relevance": 2,
+          "note": "Directly constructs indexed functors from cartesian functors between fibrations, part of the indexed-category/Grothendieck correspondence."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Theory/Fibration.v",
+          "relevance": 2,
+          "note": "Formalizes Grothendieck fibrations in displayed and functor presentations and the bridge consumed by the indexed-category round trip."
+        },
+        {
+          "repository": "sinhp__LeanFibredCategories",
+          "file": "LeanFibredCategories/GrothendieckFibration.lean",
+          "relevance": 1,
+          "note": "Develops the Grothendieck-construction fibration and fiber equivalence, but core cartesian-lift fields shown in the indexed source remain `sorry`; direct but incomplete evidence."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/IndexedCategories/NatTransToIndexed.v",
+          "relevance": 2,
+          "note": "Constructs indexed natural transformations from displayed/cartesian natural transformations, a direct component of the indexed/fibration correspondence."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/Bicategories/Morphisms/Examples/FibrationsInStrictCats.v",
+          "relevance": 1,
+          "note": "Classifies Street fibrations of strict categories; related fibration theory but not itself the indexed-category Grothendieck-construction owner."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/IndexedCategories/FibrationToIndexedCategory.v",
+          "relevance": 2,
+          "note": "Directly constructs an indexed category from a fibration, one direction of the Grothendieck correspondence."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Construction/Grothendieck/Fiber.v",
+          "relevance": 2,
+          "note": "Proves that each fiber of the Grothendieck construction is equivalent to the indexed fiber, a direct round-trip component."
         }
       ]
     },
@@ -3933,6 +4173,42 @@
           "file": "FormalisingMathematics/Section21galoisTheory/Sheet1.lean",
           "relevance": 0,
           "note": "Galois-theory teaching sheet with an incidental mention of Feit-Thompson; no odd-order proof content."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/BG/AppC_FinalContradiction.lean",
+          "relevance": 2,
+          "note": "Assembles Bender-Glauberman Appendix C's final contradiction and connects its theorem into the Feit-Thompson proof path; substantive theorem-specific component."
+        },
+        {
+          "repository": "google-deepmind__formal-conjectures",
+          "file": "FormalConjectures/Wikipedia/FeitThompsonPrimeConjecture.lean",
+          "relevance": 0,
+          "note": "States the distinct number-theoretic Feit-Thompson conjecture on primes and leaves it as `sorry`; it is not the odd-order theorem."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/S08_GeneralAdjoinWeighted.lean",
+          "relevance": 2,
+          "note": "Formalizes Peterfalvi's norm-weighted coherence adjoin in the general isometry setting, a substantive character-theory component of the odd-order proof."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/BG/AppE_CentralizerDecomposition.lean",
+          "relevance": 2,
+          "note": "Formalizes Bender-Glauberman Appendix E centralizer-decomposition results used in the odd-order theorem development; substantive proof-path material."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/S08_SixTwoThreeFromImageFamilies.lean",
+          "relevance": 2,
+          "note": "Formalizes Peterfalvi (6.2)/(6.3) from the theorem's image-family hypotheses, directly on the Lean Feit-Thompson proof path."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/S08_SixTwoGeneral.lean",
+          "relevance": 2,
+          "note": "Builds the general-kernel Peterfalvi (6.2) induced-family argument, a substantive component used in the Feit-Thompson development."
         }
       ]
     },
