@@ -155,6 +155,39 @@ def prefilter_by_pair_rank_evidence(
     return ranked[:limit]
 
 
+def retrieve_zoekt_first_stage(
+    query: str,
+    *,
+    mode: str,
+    timeout: float,
+    api_url: str,
+    serving: dict[str, Any],
+    depth: int,
+    rrf_constant: int,
+    weights: dict[str, float],
+) -> tuple[list[dict[str, Any]], dict[str, Any], str, dict[str, str]]:
+    if mode == "fielded":
+        results, runtime, field_queries = retrieve_fielded(
+            query,
+            timeout=timeout,
+            provider="api",
+            api_url=api_url,
+            serving=serving,
+            depth=depth,
+            rrf_constant=rrf_constant,
+            weights=weights,
+        )
+        return results, runtime, " FIELDED ".join(field_queries.values()), field_queries
+    if mode == "lexical-v2":
+        compiled = evaluate.compile_query(query, "frontend_lexical_v2")
+        results, runtime = evaluate.api_search(compiled, timeout, api_url, serving)
+        runtime = dict(runtime)
+        runtime["retrieval_queries"] = 1
+        runtime["physical_api_requests"] = 1
+        return results, runtime, compiled, {}
+    raise ValueError(f"unknown Zoekt first stage: {mode}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--gold", type=pathlib.Path, default=evaluate.DEFAULT_GOLD)
@@ -163,7 +196,12 @@ def main() -> int:
     parser.add_argument("--depth", type=int, default=200)
     parser.add_argument("--per-retriever-depth", type=int, default=100)
     parser.add_argument("--content-rerank-depth", type=int)
-    parser.add_argument("--fetch-workers", type=int, default=8)
+    parser.add_argument("--fetch-workers", type=int, default=16)
+    parser.add_argument(
+        "--zoekt-first-stage",
+        choices=("fielded", "lexical-v2"),
+        default="fielded",
+    )
     parser.add_argument("--rrf-constant", type=int, default=60)
     parser.add_argument("--evidence-rrf-constant", type=int, default=60)
     parser.add_argument("--baseline-weight", type=float, default=2.0)
@@ -252,13 +290,14 @@ def main() -> int:
     total_fetch_bytes = 0
     total_fetch_wall_ms = 0.0
     total_fetch_request_ms = 0.0
+    zoekt_channel = "fielded" if args.zoekt_first_stage == "fielded" else "lexical-v2"
 
     for number, case in enumerate(gold["cases"], start=1):
         try:
-            fielded, fielded_runtime, field_queries = retrieve_fielded(
+            zoekt_results, zoekt_runtime, zoekt_compiled, field_queries = retrieve_zoekt_first_stage(
                 case["query"],
+                mode=args.zoekt_first_stage,
                 timeout=args.timeout,
-                provider="api",
                 api_url=args.api_url,
                 serving=serving,
                 depth=args.depth,
@@ -268,9 +307,9 @@ def main() -> int:
             fts_response = fts_by_id[str(case["id"])]
             corpus_fts5 = list(fts_response["results"])
             candidates = balanced_pair_union(
-                fielded,
+                zoekt_results,
                 corpus_fts5,
-                first_name="fielded",
+                first_name=zoekt_channel,
                 second_name="corpus-fts5",
                 per_retriever_depth=args.per_retriever_depth,
             )
@@ -278,7 +317,7 @@ def main() -> int:
             if args.content_rerank_depth is not None:
                 second_stage_candidates = prefilter_by_pair_rank_evidence(
                     candidates,
-                    channels=("fielded", "corpus-fts5"),
+                    channels=(zoekt_channel, "corpus-fts5"),
                     rrf_constant=args.evidence_rrf_constant,
                     limit=args.content_rerank_depth,
                 )
@@ -297,7 +336,7 @@ def main() -> int:
             )
             reranked = add_pair_rank_evidence(
                 reranked,
-                channels=("fielded", "corpus-fts5"),
+                channels=(zoekt_channel, "corpus-fts5"),
                 rrf_constant=args.evidence_rrf_constant,
             )
             rerank_ms = (time.perf_counter() - rerank_started) * 1000
@@ -311,31 +350,34 @@ def main() -> int:
         fts_elapsed_ms = float(fts_response["elapsed_ms"])
         runtime = {
             "elapsed_ms": (
-                float(fielded_runtime["elapsed_ms"])
+                float(zoekt_runtime["elapsed_ms"])
                 + fts_elapsed_ms
                 + float(fetch_runtime["fetch_wall_ms"])
                 + rerank_ms
             ),
-            "fielded_retrieval_ms": float(fielded_runtime["elapsed_ms"]),
+            "zoekt_retrieval_ms": float(zoekt_runtime["elapsed_ms"]),
             "corpus_fts5_retrieval_ms": fts_elapsed_ms,
             "fetch_wall_ms": float(fetch_runtime["fetch_wall_ms"]),
             "fetch_request_ms": float(fetch_runtime["fetch_request_ms"]),
             "rerank_ms": rerank_ms,
-            "payload_bytes": int(fielded_runtime["payload_bytes"])
+            "payload_bytes": int(zoekt_runtime["payload_bytes"])
             + int(fetch_runtime["fetch_payload_bytes"]),
             "returned_files": len(reranked),
-            "retrieval_queries": int(fielded_runtime["retrieval_queries"]) + 1,
-            "zoekt_api_requests": int(fielded_runtime["physical_api_requests"]),
+            "retrieval_queries": int(zoekt_runtime["retrieval_queries"]) + 1,
+            "zoekt_api_requests": int(zoekt_runtime["physical_api_requests"]),
             "corpus_fts5_queries": 1,
             "content_fetches": len(second_stage_candidates),
         }
         scored = evaluate.score_case(
             case,
             reranked,
-            " FIELDED_CORPUS_FTS5_UNION ".join(field_queries.values()),
+            f"{zoekt_compiled} CORPUS_FTS5_UNION",
             runtime,
         )
-        scored["field_queries"] = field_queries
+        scored["zoekt_first_stage"] = args.zoekt_first_stage
+        scored["zoekt_query"] = zoekt_compiled
+        if field_queries:
+            scored["field_queries"] = field_queries
         scored["candidate_union_size"] = len(candidates)
         scored["content_rerank_size"] = len(second_stage_candidates)
         scored["corpus_fts5_elapsed_ms"] = fts_elapsed_ms
@@ -355,6 +397,8 @@ def main() -> int:
         return 2
 
     repo_state = provenance.repository_state(ROOT)
+    zoekt_variant = "zoekt_fielded_rrf_v1" if args.zoekt_first_stage == "fielded" else "frontend_lexical_v2"
+    variant_prefix = "fielded" if args.zoekt_first_stage == "fielded" else "lexical_v2"
     report = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -363,16 +407,18 @@ def main() -> int:
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
         "query_config_sha256": evaluate.query_config_sha256(),
         "serving_config_sha256": evaluate.serving_config_sha256(),
-        "variant": (
-            "fielded_corpus_fts5_union_rank_prefilter_evidence_rrf_v1"
+        "variant": f"{variant_prefix}_corpus_fts5_union_"
+        + (
+            "rank_prefilter_evidence_rrf_v1"
             if args.content_rerank_depth is not None
-            else "fielded_corpus_fts5_union_evidence_rank_rrf_v1"
+            else "evidence_rank_rrf_v1"
         ),
         "provider": "api+remote-sqlite-fts5",
         "api_url": args.api_url,
         "serving_options": serving,
         "first_stage": {
-            "retrievers": ["zoekt_fielded_rrf_v1", "sqlite_fts5_corpus_bm25_v1"],
+            "retrievers": [zoekt_variant, "sqlite_fts5_corpus_bm25_v1"],
+            "zoekt_first_stage": args.zoekt_first_stage,
             "union": "rank-interleaved deduplicated bounded prefixes",
             "per_retriever_depth": args.per_retriever_depth,
             "field_weights": weights,
@@ -392,7 +438,7 @@ def main() -> int:
             "content_mode": "evidence-rrf",
             "fusion": "equal-weight reciprocal-rank fusion",
             "fusion_rrf_constant": args.evidence_rrf_constant,
-            "first_stage_rank_channels": ["fielded", "corpus-fts5"],
+            "first_stage_rank_channels": [zoekt_channel, "corpus-fts5"],
             "prefilter": (
                 {
                     "method": "first-stage-rank-rrf",
