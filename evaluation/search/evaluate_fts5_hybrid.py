@@ -34,6 +34,7 @@ from evaluate_fielded_fts5 import (
     fetch_candidate_contents,
     fts5_match_query,
     fts5_rerank,
+    lean_declaration_signature_texts,
 )
 from evaluate_fielded_lexical import retrieve_fielded
 
@@ -312,7 +313,7 @@ def main() -> int:
     )
     parser.add_argument(
         "--second-stage-mode",
-        choices=("evidence-rrf", "evidence-lines-rrf"),
+        choices=("evidence-rrf", "evidence-lines-rrf", "evidence-declarations-rrf"),
         default="evidence-rrf",
         help="fixed deterministic FTS5 evidence representation used after candidate union",
     )
@@ -491,6 +492,12 @@ def main() -> int:
                 cache=cache,
                 workers=args.fetch_workers,
             )
+            declaration_signatures = None
+            if args.second_stage_mode == "evidence-declarations-rrf":
+                declaration_signatures = lean_declaration_signature_texts(
+                    second_stage_candidates,
+                    contents,
+                )
             rerank_started = time.perf_counter()
             reranked = fts5_rerank(
                 case["query"],
@@ -498,6 +505,7 @@ def main() -> int:
                 contents,
                 content_mode=args.second_stage_mode,
                 evidence_rrf_constant=args.evidence_rrf_constant,
+                declaration_signatures=declaration_signatures,
             )
             reranked = add_pair_rank_evidence(
                 reranked,
@@ -573,6 +581,13 @@ def main() -> int:
     else:
         zoekt_variant = "frontend_lexical_v2"
         variant_prefix = "lexical_v2"
+    mode_suffix = {
+        "evidence-rrf": "evidence_rank_rrf_v1",
+        "evidence-lines-rrf": "evidence_lines_rank_rrf_v1",
+        "evidence-declarations-rrf": "evidence_declarations_rank_rrf_v1",
+    }[args.second_stage_mode]
+    if args.content_rerank_depth is not None:
+        mode_suffix = "rank_prefilter_" + mode_suffix
     report = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -583,19 +598,7 @@ def main() -> int:
         "serving_config_sha256": evaluate.serving_config_sha256(),
         "variant": f"{variant_prefix}_corpus_fts5_union_"
         + ("source_rank_" if args.include_source_rank_channel else "")
-        + (
-            (
-                "rank_prefilter_evidence_lines_rrf_v1"
-                if args.second_stage_mode == "evidence-lines-rrf"
-                else "rank_prefilter_evidence_rrf_v1"
-            )
-            if args.content_rerank_depth is not None
-            else (
-                "evidence_lines_rank_rrf_v1"
-                if args.second_stage_mode == "evidence-lines-rrf"
-                else "evidence_rank_rrf_v1"
-            )
-        ),
+        + mode_suffix,
         "provider": "api+remote-sqlite-fts5",
         "api_url": args.api_url,
         "serving_options": serving,
@@ -632,6 +635,11 @@ def main() -> int:
                 *(
                     ["query_matched_source_lines"]
                     if args.second_stage_mode == "evidence-lines-rrf"
+                    else []
+                ),
+                *(
+                    ["lean_declaration_signatures"]
+                    if args.second_stage_mode == "evidence-declarations-rrf"
                     else []
                 ),
             ],

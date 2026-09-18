@@ -23,6 +23,7 @@ import hashlib
 import json
 import pathlib
 import re
+import shutil
 import sqlite3
 import subprocess
 import sys
@@ -38,6 +39,12 @@ from evaluate_fielded_lexical import retrieve_fielded
 from evaluate_rerank import humanize_path
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
+LEAN_DECLARATION_QUERY = pathlib.Path(__file__).with_name("lean_declaration_signatures.scm")
+LEAN_PARSER_SCRATCH = ROOT / ".lean-parser__scratch"
+LEAN_CAPTURE_RE = re.compile(
+    r"capture:\s+\d+\s+-\s+([a-z_]+), start: \((\d+), (\d+)\), "
+    r"end: \((\d+), (\d+)\), text:"
+)
 
 
 def fts5_match_query(text: str) -> str:
@@ -114,6 +121,126 @@ def query_matched_lines(
     return "\n".join(line for _, _, line in selected)
 
 
+def _tree_sitter_slice(
+    content: str,
+    start_row: int,
+    start_col: int,
+    end_row: int,
+    end_col: int,
+) -> str:
+    """Slice UTF-8 source using tree-sitter's byte-based row/column ranges."""
+
+    lines = content.encode().splitlines(keepends=True)
+    if not lines or start_row >= len(lines) or end_row >= len(lines):
+        return ""
+    if start_row == end_row:
+        return lines[start_row][start_col:end_col].decode(errors="replace")
+    pieces = [lines[start_row][start_col:]]
+    pieces.extend(lines[start_row + 1 : end_row])
+    pieces.append(lines[end_row][:end_col])
+    return b"".join(pieces).decode(errors="replace")
+
+
+def lean_declaration_signature_texts(
+    candidates: list[dict[str, Any]],
+    contents: dict[tuple[str, str], str],
+) -> dict[tuple[str, str], str]:
+    """Extract parser-owned Lean declaration/signature fields.
+
+    The parser scratch is a single ignored project-owned directory, recreated
+    for each call and removed before returning.  Only ``.lean`` candidates are
+    materialized.  Captures contain declaration names, binders, result types,
+    structure fields, and inductive constructors, but never proof bodies.
+    """
+
+    parser = ROOT / ".ast-grep" / "lean.so"
+    if not parser.is_file() or not LEAN_DECLARATION_QUERY.is_file():
+        raise FileNotFoundError("Lean tree-sitter parser/query is unavailable")
+
+    lean_items: list[tuple[tuple[str, str], str]] = []
+    for item in candidates:
+        key = (str(item.get("Repository", "")), str(item.get("FileName", "")))
+        if key[1].endswith(".lean"):
+            lean_items.append((key, contents.get(key, "")))
+    if not lean_items:
+        return {}
+
+    shutil.rmtree(LEAN_PARSER_SCRATCH, ignore_errors=True)
+    LEAN_PARSER_SCRATCH.mkdir(parents=True)
+    try:
+        file_to_key: dict[str, tuple[str, str]] = {}
+        source_by_file: dict[str, str] = {}
+        paths: list[pathlib.Path] = []
+        for index, (key, content) in enumerate(lean_items):
+            name = f"{index:06d}.lean"
+            path = LEAN_PARSER_SCRATCH / name
+            path.write_text(content)
+            file_to_key[name] = key
+            source_by_file[name] = content
+            paths.append(path)
+        paths_file = LEAN_PARSER_SCRATCH / "paths.txt"
+        paths_file.write_text("".join(str(path) + "\n" for path in paths))
+        proc = subprocess.run(
+            [
+                "tree-sitter",
+                "query",
+                "--captures",
+                "--lib-path",
+                str(parser),
+                "--lang-name",
+                "lean",
+                "--paths",
+                str(paths_file),
+                str(LEAN_DECLARATION_QUERY),
+            ],
+            cwd=ROOT,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=False,
+        )
+        if proc.returncode != 0:
+            raise RuntimeError(proc.stderr.strip() or "Lean declaration query failed")
+
+        captures: dict[tuple[str, str], list[str]] = {}
+        current_name: str | None = None
+        for line in proc.stdout.splitlines():
+            if line and not line.startswith(" "):
+                current_name = pathlib.Path(line.strip()).name
+                continue
+            if current_name not in file_to_key:
+                continue
+            match = LEAN_CAPTURE_RE.search(line)
+            if not match:
+                continue
+            capture, sr, sc, er, ec = match.groups()
+            if capture not in {
+                "declaration_name",
+                "declaration_binders",
+                "declaration_type",
+                "member_name",
+                "member_type",
+            }:
+                continue
+            text = _tree_sitter_slice(
+                source_by_file[current_name],
+                int(sr),
+                int(sc),
+                int(er),
+                int(ec),
+            ).strip()
+            if text:
+                captures.setdefault(file_to_key[current_name], []).append(text)
+
+        return {
+            key: "\n".join(dict.fromkeys(parts))
+            for key, parts in captures.items()
+            if parts
+        }
+    finally:
+        shutil.rmtree(LEAN_PARSER_SCRATCH, ignore_errors=True)
+
+
 def fts5_rerank(
     text: str,
     candidates: list[dict[str, Any]],
@@ -121,6 +248,7 @@ def fts5_rerank(
     *,
     content_mode: str = "full",
     evidence_rrf_constant: int = 60,
+    declaration_signatures: dict[tuple[str, str], str] | None = None,
 ) -> list[dict[str, Any]]:
     """Rank a fixed candidate list with deterministic FTS5 evidence channels."""
     if content_mode not in {
@@ -128,18 +256,24 @@ def fts5_rerank(
         "matched-windows",
         "evidence-rrf",
         "evidence-lines-rrf",
+        "evidence-declarations-rrf",
     }:
         raise ValueError(f"unsupported FTS5 content mode: {content_mode}")
     if evidence_rrf_constant <= 0:
         raise ValueError("evidence RRF constant must be positive")
 
-    if content_mode in {"evidence-rrf", "evidence-lines-rrf"}:
+    if content_mode in {"evidence-rrf", "evidence-lines-rrf", "evidence-declarations-rrf"}:
         return fts5_evidence_rrf_rerank(
             text,
             candidates,
             contents,
             rrf_constant=evidence_rrf_constant,
             include_matched_lines=content_mode == "evidence-lines-rrf",
+            declaration_signatures=(
+                declaration_signatures
+                if content_mode == "evidence-declarations-rrf"
+                else None
+            ),
         )
 
     db = sqlite3.connect(":memory:")
@@ -188,6 +322,7 @@ def fts5_evidence_rrf_rerank(
     *,
     rrf_constant: int = 60,
     include_matched_lines: bool = False,
+    declaration_signatures: dict[tuple[str, str], str] | None = None,
 ) -> list[dict[str, Any]]:
     """Fuse path/identifier, broad-content, and local-content FTS5 rankings.
 
@@ -208,6 +343,8 @@ def fts5_evidence_rrf_rerank(
         table_names = ["path_docs", "full_docs", "local_docs"]
         if include_matched_lines:
             table_names.append("line_docs")
+        if declaration_signatures is not None:
+            table_names.append("declaration_docs")
         for table in table_names:
             db.execute(
                 f"CREATE VIRTUAL TABLE {table} USING fts5(text, tokenize='unicode61')"
@@ -222,6 +359,8 @@ def fts5_evidence_rrf_rerank(
             }
             if include_matched_lines:
                 values["line_docs"] = query_matched_lines(text, content)
+            if declaration_signatures is not None:
+                values["declaration_docs"] = declaration_signatures.get(key, "")
             for table, value in values.items():
                 db.execute(
                     f"INSERT INTO {table}(rowid, text) VALUES (?, ?)",
@@ -238,6 +377,8 @@ def fts5_evidence_rrf_rerank(
         }
         if include_matched_lines:
             channel_names["line_docs"] = "matched-lines"
+        if declaration_signatures is not None:
+            channel_names["declaration_docs"] = "lean-declaration-signatures"
         for table, channel in channel_names.items():
             rows = db.execute(
                 f"SELECT rowid, bm25({table}) AS score FROM {table} "
@@ -260,7 +401,11 @@ def fts5_evidence_rrf_rerank(
         item["SecondStage"] = (
             "sqlite_fts5_evidence_lines_rrf"
             if include_matched_lines
-            else "sqlite_fts5_evidence_rrf"
+            else (
+                "sqlite_fts5_evidence_declarations_rrf"
+                if declaration_signatures is not None
+                else "sqlite_fts5_evidence_rrf"
+            )
         )
         item["SecondStageEvidence"] = evidence.get(rowid, [])
         item["SecondStageOriginalRank"] = rowid

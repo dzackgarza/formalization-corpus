@@ -21,6 +21,7 @@ from evaluate_fielded_lexical import (  # noqa: E402
 from evaluate_fielded_fts5 import (  # noqa: E402
     fts5_match_query,
     fts5_rerank,
+    lean_declaration_signature_texts,
     query_matched_lines,
     query_matched_windows,
 )
@@ -534,6 +535,48 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
             reranked[0]["SecondStageEvidence"],
             ["path", "full-content", "matched-windows", "matched-lines"],
         )
+
+    def test_lean_declaration_signature_parser_excludes_proof_bodies(self) -> None:
+        candidates = [{"Repository": "r", "FileName": "Demo.lean"}]
+        contents = {
+            ("r", "Demo.lean"): (
+                "theorem sourceHierarchyWitness (n : Nat) : n = n := by\n"
+                "  exact rfl\n"
+                "structure SignatureCarrier where\n"
+                "  payload : Nat\n"
+            )
+        }
+        signatures = lean_declaration_signature_texts(candidates, contents)
+        text = signatures[("r", "Demo.lean")]
+        self.assertIn("sourceHierarchyWitness", text)
+        self.assertIn("(n : Nat)", text)
+        self.assertIn("n = n", text)
+        self.assertIn("SignatureCarrier", text)
+        self.assertIn("payload", text)
+        self.assertNotIn("exact rfl", text)
+
+    def test_fts5_declaration_evidence_adds_parser_channel(self) -> None:
+        candidates = [
+            {"Repository": "r", "FileName": "Owner.lean"},
+            {"Repository": "r", "FileName": "Mention.lean"},
+        ]
+        contents = {
+            ("r", "Owner.lean"): "irrelevant body text",
+            ("r", "Mention.lean"): "target concept appears broadly",
+        }
+        reranked = fts5_rerank(
+            "target concept",
+            candidates,
+            contents,
+            content_mode="evidence-declarations-rrf",
+            declaration_signatures={
+                ("r", "Owner.lean"): "target concept",
+                ("r", "Mention.lean"): "",
+            },
+        )
+        owner = next(item for item in reranked if item["FileName"] == "Owner.lean")
+        self.assertIn("lean-declaration-signatures", owner["SecondStageEvidence"])
+        self.assertEqual(owner["SecondStage"], "sqlite_fts5_evidence_declarations_rrf")
 
     def test_fts5_evidence_rrf_preserves_first_stage_order_for_unmatched_candidates(self) -> None:
         candidates = [
