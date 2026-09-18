@@ -220,6 +220,12 @@
           "file": "v1/Atlas/AlgebraicGeometryI/code/CoherentLineBundlesProj.lean",
           "relevance": 1,
           "note": "Develops coherent sheaves and Serre twisting sheaves on Proj; related infrastructure, but not a proof of Serre duality."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Sites/Coherent/RegularSheaves.lean",
+          "relevance": 0,
+          "note": "Characterizes sheaves for the regular topology via effective-epimorphism equalizer conditions; no Serre-duality or coherent-sheaf duality theorem."
         }
       ]
     },
@@ -1285,6 +1291,18 @@
           "file": "thys/Jordan_Normal_Form/Jordan_Normal_Form.thy",
           "relevance": 3,
           "note": "Directly defines Jordan blocks and Jordan normal forms and proves matrix results about them; a direct formalization of Jordan normal form."
+        },
+        {
+          "repository": "IBM__FormalML",
+          "file": "rocq/CertRL/LM/continuous_linear_map.v",
+          "relevance": 0,
+          "note": "Develops bounded/continuous linear maps on normed modules; its Canonical declarations are Rocq structure instances, not Jordan canonical form."
+        },
+        {
+          "repository": "isabelle-prover__mirror-isabelle",
+          "file": "src/HOL/Analysis/Analysis.thy",
+          "relevance": 0,
+          "note": "Umbrella Isabelle/HOL analysis theory importing many topics, including Jordan curves, but no Jordan canonical-form development."
         }
       ]
     },
@@ -1591,6 +1609,12 @@
           "file": "Mathlib/RingTheory/Valuation/Discrete/IsDiscreteValuationRing.lean",
           "relevance": 1,
           "note": "Connects DVRs with rank-one discrete valuations; relevant DVR infrastructure, but it does not prove Hensel lifting from completeness."
+        },
+        {
+          "repository": "mariainesdff__LocalClassFieldTheory",
+          "file": "LocalClassFieldTheory/DiscreteValuationRing/DiscreteNorm.lean",
+          "relevance": 1,
+          "note": "Constructs normed structures and the discrete norm on algebraic extensions of a complete discretely valued field; relevant complete-DVR infrastructure, but no Hensel root-lifting theorem."
         }
       ]
     },
@@ -1953,6 +1977,30 @@
           "file": "thys/Smooth_Manifolds/Sphere.thy",
           "relevance": 1,
           "note": "Develops smooth sphere charts in the AFP smooth-manifold library; relevant general manifold infrastructure, but no manifold-with-boundary or collar construction appears here."
+        },
+        {
+          "repository": "lean-dojo__TorchLean",
+          "file": "NN/Runtime/RL/Boundary.lean",
+          "relevance": 0,
+          "note": "Umbrella module for reinforcement-learning runtime trust-boundary contracts and JSON validation; boundary here is unrelated to manifolds or collar neighborhoods."
+        },
+        {
+          "repository": "teorth__sendov",
+          "file": "Sendov/Boundary.lean",
+          "relevance": 0,
+          "note": "Proves a boundary case of Sendov/Rubinstein theory for roots of complex polynomials; unrelated to manifold boundaries or collar neighborhoods."
+        },
+        {
+          "repository": "ShouqiaoW__erdos",
+          "file": "1002/lean/Erdos1002/IteratedBoundaryRestoration.lean",
+          "relevance": 0,
+          "note": "Proves an asymptotic limit lemma for restoring a boundary after contraction; boundary is an error term, not a manifold boundary or collar."
+        },
+        {
+          "repository": "lean-dojo__TorchLean",
+          "file": "NN/Proofs/RL/Boundary.lean",
+          "relevance": 0,
+          "note": "Bridges executable reinforcement-learning trust-boundary checks to Prop-level contracts; unrelated to manifolds or collar neighborhoods."
         }
       ]
     },
@@ -2114,6 +2162,12 @@
           "file": "LeanCondensed/Projects/DerivedSolid.lean",
           "relevance": 0,
           "note": "A derived-solid scaffold centered on projective/K-projective resolutions and left-derived constructions; it does not supply injective resolutions."
+        },
+        {
+          "repository": "dagurtomas__LeanCondensed",
+          "file": "LeanCondensed/Mathlib/Algebra/Homology/DerivedCategory/TwoVariable.lean",
+          "relevance": 1,
+          "note": "Defines K-injective resolutions and right-derived bifunctor machinery, but the lemma deriving enough K-injective resolutions from enough injectives is still sorry-backed; relevant incomplete supporting infrastructure rather than an existence owner."
         }
       ]
     },
@@ -2831,6 +2885,12 @@
           "file": "FLT/Slop/PGL2/FiniteSubgroups/WildClassification.lean",
           "relevance": 0,
           "note": "Classifies the wild finite subgroups of PGL2; it is unrelated to the structure theorem for finitely generated abelian groups."
+        },
+        {
+          "repository": "ImperialCollegeLondon__FLT",
+          "file": "FLT/Slop/PGL2/FiniteSubgroups/TameClassification.lean",
+          "relevance": 0,
+          "note": "Proves Dickson classification of tame finite subgroups of PGL₂ as cyclic, dihedral, A₄, S₄, or A₅; unrelated to the structure theorem for finitely generated abelian groups."
         }
       ]
     },
@@ -3368,6 +3428,12 @@
           "file": "SphereEversion/Global/LocalisationData.lean",
           "relevance": 2,
           "note": "Defines the global localization data used to pass between local and global h-principle arguments, a substantive component of the formal sphere-eversion proof."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Contour/Argument/Principle.lean",
+          "relevance": 0,
+          "note": "Formalizes the complex-analytic argument principle using contour integrals and meromorphic order; unrelated to sphere eversion or regular homotopies of immersions."
         }
       ]
     },
@@ -3595,6 +3661,12 @@
           "file": "Carleson/Classical/DirichletKernel.lean",
           "relevance": 2,
           "note": "Formalizes the Dirichlet kernel and the convolution formula for partial Fourier sums used directly in the classical Carleson argument."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Analysis/LocallyConvex/PointwiseConvergence.lean",
+          "relevance": 0,
+          "note": "Develops the locally convex topology of pointwise convergence on semilinear maps; no Carleson theorem or Fourier-convergence result."
         }
       ]
     },
@@ -3774,6 +3846,12 @@
           "file": "src/Langlib/Classes/ContextFree/Closure/Substitution/Support.lean",
           "relevance": 0,
           "note": "Develops context-free grammar rewrite support; it has no Hilbert-symbol content."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Archive/Imo/Imo1985Q2.lean",
+          "relevance": 0,
+          "note": "Formalizes an olympiad coloring problem using modular arithmetic; unrelated to local fields or the dyadic Hilbert symbol."
         }
       ]
     },
@@ -4557,6 +4635,12 @@
           "file": "TauCeti/Topology/JordanCurve/SmallArc.lean",
           "relevance": 1,
           "note": "Proves quantitative small-arc properties of Jordan curves from compact parametrizations and separation machinery; relevant Jordan-curve development, not the theorem owner."
+        },
+        {
+          "repository": "CakeML__candle",
+          "file": "Jordan/make.ml",
+          "relevance": 0,
+          "note": "HOL Light loader script for the Jordan-curve development; it only loads the actual theorem file and is neither a Mizar formalization nor a theorem owner itself."
         }
       ]
     },
@@ -4754,6 +4838,18 @@
           "file": "src/commutative-algebra/polynomials-commutative-rings.lagda.md",
           "relevance": 1,
           "note": "Develops polynomial/formal-power-series commutative rings, useful substrate for formal group laws but containing no formal-group-law structure itself."
+        },
+        {
+          "repository": "nasa__pvslib",
+          "file": "algebra/commutative_ring.prf",
+          "relevance": 0,
+          "note": "PVS proof trace for generic commutative-ring laws and subtype obligations; it contains no formal power series or formal-group law."
+        },
+        {
+          "repository": "google-deepmind__formal-conjectures",
+          "file": "FormalConjecturesForMathlib/GroupTheory/Torsion.lean",
+          "relevance": 0,
+          "note": "Defines torsion-free monoids and groups and basic consequences; unrelated to formal group laws over commutative rings."
         }
       ]
     },
