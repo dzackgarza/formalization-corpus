@@ -14,9 +14,38 @@ from evaluate_fts5_hybrid import (  # noqa: E402
     balanced_pair_union,
     prefilter_by_pair_rank_evidence,
 )
+from evaluate_fielded_lexical import retrieve_fielded  # noqa: E402
 
 
 class Fts5HybridTests(unittest.TestCase):
+    def test_fielded_retrieval_can_run_a_fixed_channel_subset(self) -> None:
+        seen: list[str] = []
+
+        def fake_search(query, timeout, api_url, serving, retries=0):
+            seen.append(query)
+            return (
+                [{"Repository": "r", "FileName": str(len(seen))}],
+                {"elapsed_ms": 1.0, "payload_bytes": 10},
+            )
+
+        results, runtime, queries = retrieve_fielded(
+            "fundamental group",
+            timeout=1.0,
+            provider="api",
+            api_url="https://example.invalid",
+            serving={"MaxDocDisplayCount": 20},
+            depth=20,
+            rrf_constant=60,
+            weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
+            fields=("baseline", "path"),
+            api_search_fn=fake_search,
+        )
+        self.assertEqual(set(queries), {"baseline", "path"})
+        self.assertEqual(len(seen), 2)
+        self.assertEqual(runtime["retrieval_queries"], 2)
+        self.assertEqual(runtime["physical_api_requests"], 2)
+        self.assertEqual(len(results), 2)
+
     def test_balanced_pair_union_preserves_independent_source_ranks(self) -> None:
         fielded = [
             {"Repository": "r", "FileName": "a"},

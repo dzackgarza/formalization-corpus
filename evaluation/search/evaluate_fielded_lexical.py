@@ -95,6 +95,7 @@ def retrieve_fielded(
     depth: int,
     rrf_constant: int,
     weights: dict[str, float],
+    fields: tuple[str, ...] = ("baseline", "content", "path"),
     api_retries: int = 0,
     api_workers: int = 1,
     api_search_fn: Callable[..., tuple[list[dict[str, Any]], dict[str, Any]]] | None = None,
@@ -102,13 +103,15 @@ def retrieve_fielded(
     if api_workers <= 0:
         raise ValueError("api_workers must be positive")
     queries = compile_field_queries(text)
+    known_fields = {"baseline", "content", "path"}
+    if not fields or len(set(fields)) != len(fields) or any(field not in known_fields for field in fields):
+        raise ValueError("fields must be a nonempty set of baseline/content/path channels")
+    selected_queries = {field: queries[field] for field in fields}
     rankings: list[tuple[str, float, list[dict[str, Any]]]] = []
     request_elapsed_ms = 0.0
     payload_bytes = 0
     physical_api_requests = 0
     coalesced_api_hits = 0
-    fields = ("baseline", "content", "path")
-
     def run_field(field: str) -> tuple[str, list[dict[str, Any]], dict[str, Any]]:
         query = queries[field]
         if provider == "local":
@@ -153,7 +156,7 @@ def retrieve_fielded(
         "physical_api_requests": physical_api_requests if provider == "api" else 0,
         "coalesced_api_hits": coalesced_api_hits if provider == "api" else 0,
         "api_workers": api_workers if provider == "api" else 1,
-    }, queries
+    }, selected_queries
 
 
 def main() -> int:
