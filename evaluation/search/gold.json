@@ -226,6 +226,36 @@
           "file": "Mathlib/CategoryTheory/Sites/Coherent/RegularSheaves.lean",
           "relevance": 0,
           "note": "Characterizes sheaves for the regular topology via effective-epimorphism equalizer conditions; no Serre-duality or coherent-sheaf duality theorem."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/SerreDualityPairing.lean",
+          "relevance": 3,
+          "note": "Completes the Forster §17 residue-pairing construction on compact Riemann surfaces: the source packages a bijective Serre pairing and derives the Serre-duality dimension formula; this is a direct curve/line-bundle specialization."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ProjectiveSerreVanishingResolution.lean",
+          "relevance": 1,
+          "note": "Proves projective Serre vanishing from coherent-module resolutions; this is coherent-sheaf Serre infrastructure, but it contains no Serre-duality pairing or equivalence."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Sites/Coherent/SheafComparison.lean",
+          "relevance": 0,
+          "note": "Compares categories of sheaves for the coherent topology; “coherent sheaves” here is site-theoretic terminology and the file contains no Serre-duality theorem."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Dolbeault/SerreDuality.lean",
+          "relevance": 2,
+          "note": "Formalizes the finite-dimensional injectivity/surjectivity core of a Forster-style Serre-duality proof; the source explicitly leaves the geometric cohomology instantiation to other files."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/RelativeProjectiveSerreInfrastructure.lean",
+          "relevance": 0,
+          "note": "Collects relative projective Serre-twist and pushforward-coherence infrastructure; it contains no Serre-duality pairing or theorem."
         }
       ]
     },
@@ -436,6 +466,54 @@
           "file": "TauCeti/GroupTheory/TitsSystem/Bruhat/Subword.lean",
           "relevance": 0,
           "note": "Formalizes Bruhat-cell subword expansion for Tits systems; unrelated to the Bruhat-Tits tree construction."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/GroupTheory/TitsSystem/Bruhat/Basic.lean",
+          "relevance": 0,
+          "note": "Develops Bruhat decomposition for Tits systems; it does not construct the Bruhat–Tits tree or its lattice vertices."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/BNPair/Basic.lean",
+          "relevance": 0,
+          "note": "Defines BN-pair/building infrastructure; no Bruhat–Tits tree construction or tree metric appears in this file."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/Building/BruhatTitsFixedPoint.lean",
+          "relevance": 0,
+          "note": "Proves the Bruhat–Tits fixed-point theorem for buildings; this is a different theorem from the Bruhat–Tits tree construction."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/Building/CompactSubgroups.lean",
+          "relevance": 0,
+          "note": "Develops compact-subgroup/building results; it does not construct the rank-one Bruhat–Tits tree."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/LinearAlgebra/Matrix/GeneralLinearGroup/Diagonal/TitsSystem.lean",
+          "relevance": 0,
+          "note": "Builds a Tits-system structure for diagonal/GL2 data; the file does not define or prove the Bruhat–Tits tree."
+        },
+        {
+          "repository": "chrisflav__bruhat-tits",
+          "file": "BruhatTits/Lattice/Distance.lean",
+          "relevance": 2,
+          "note": "Defines and proves properties of the distance on homothety classes of lattices in the Bruhat–Tits graph/tree development; this is substantive tree geometry."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/Valuation/LatticesValuations.lean",
+          "relevance": 1,
+          "note": "Develops lattices and valuations used as the vertex model for Bruhat–Tits buildings; relevant supporting geometry, but no tree theorem is proved here."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Module/Lattice.lean",
+          "relevance": 1,
+          "note": "Provides module-lattice/DVR infrastructure and explicitly records the lattice-homothety model underlying Bruhat–Tits tree vertices; supporting rather than owning the tree construction."
         }
       ]
     },
@@ -687,6 +765,30 @@
           "file": "ChipFiringWithLean/RiemannRoch.lean",
           "relevance": 0,
           "note": "Proves the Baker-Norine Riemann-Roch theorem for finite graphs, not Riemann-Roch for algebraic curves."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/TraceResidue.lean",
+          "relevance": 1,
+          "note": "Uses Riemann–Roch as an input to obtain a nonconstant meromorphic map in a compact-Riemann-surface residue argument; it is a downstream consumer, not the Riemann–Roch theorem owner."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "Jacobians/RiemannSurface/Cohomology/Repartitions.lean",
+          "relevance": 1,
+          "note": "Builds repartition/adele and Riemann–Roch-space infrastructure for compact Riemann surfaces; relevant setup, but no Riemann–Roch theorem is proved in this file."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/EllipticCurve/Basic.lean",
+          "relevance": 0,
+          "note": "The elliptic-curve record explicitly treats Riemann–Roch as a black-box input because coherent cohomology is absent; it is not a formal proof of Riemann–Roch."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/AbelSubsetThirdKind.lean",
+          "relevance": 2,
+          "note": "Uses an already proved Riemann–Roch theorem to derive the identity at a canonical divisor and construct third-kind differentials; substantive curve-level consequences, but not the primary theorem owner."
         }
       ]
     },
@@ -986,6 +1088,54 @@
           "file": "thys/Eval_FO/Mapping_Code.thy",
           "relevance": 0,
           "note": "Implements finite-map code operations; mapping here is container terminology, unrelated to chain-complex mapping cones."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/synthetic-category-theory/cone-diagrams-synthetic-categories.lagda.md",
+          "relevance": 0,
+          "note": "Defines cone diagrams in synthetic category theory; these are categorical cones, not mapping cones of chain maps or the quasi-isomorphism criterion."
+        },
+        {
+          "repository": "HOL-Theorem-Prover__HOL",
+          "file": "src/metis/folMapping.sig",
+          "relevance": 0,
+          "note": "Defines mappings between HOL and first-order logic; “mapping” is unrelated to mapping cones or quasi-isomorphisms."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Instance/FinSet/Skeleton.v",
+          "relevance": 0,
+          "note": "Develops the finite-set skeleton and quasi-inverses of equivalences; it contains no mapping-cone quasi-isomorphism criterion."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Containers/Mapping_Impl.thy",
+          "relevance": 0,
+          "note": "Implements finite-map data structures in Isabelle; “Mapping” is a container API, unrelated to homological mapping cones."
+        },
+        {
+          "repository": "dagurtomas__lean-solid",
+          "file": "src/for_mathlib/bicartesian2.lean",
+          "relevance": 1,
+          "note": "Imports the project mapping-cone construction and builds an explicit cochain complex as a cone; relevant mapping-cone infrastructure, but no iff criterion for quasi-isomorphisms is proved here."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/TensorCategories/code/DistinguishedInvertible.lean",
+          "relevance": 0,
+          "note": "Develops quasi-Hopf/tensor-category structures; occurrences of “quasi” are unrelated to quasi-isomorphisms of complexes."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Structure/Equalizer/Coreflexive.v",
+          "relevance": 0,
+          "note": "Develops coreflexive equalizers and categorical cones; it does not concern homological mapping cones or quasi-isomorphisms."
+        },
+        {
+          "repository": "ShouqiaoW__erdos",
+          "file": "1002/lean/Erdos1002/CountVectorMapping.lean",
+          "relevance": 0,
+          "note": "Proves a continuous-mapping theorem for random count vectors; “mapping” is probabilistic, not homological algebra."
         }
       ]
     },
@@ -1303,6 +1453,42 @@
           "file": "src/HOL/Analysis/Analysis.thy",
           "relevance": 0,
           "note": "Umbrella Isabelle/HOL analysis theory importing many topics, including Jordan curves, but no Jordan canonical-form development."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Algebra/AlgebraicGroup/Representation/JordanDecomposition/Basic.lean",
+          "relevance": 2,
+          "note": "Constructs semisimple/unipotent Jordan decompositions of algebraic-group points and identifies the induced linear Jordan factors on finite-dimensional representations; closely related but not a canonical matrix-form theorem."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Complex_Bounded_Operators/Cblinfun_Code.thy",
+          "relevance": 1,
+          "note": "Provides code-generation support for bounded operators by importing the Isabelle Jordan Normal Form matrix implementation; relevant supporting integration, not the normal-form theorem owner."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/LinearAlgebra/JordanChevalley/Commuting.lean",
+          "relevance": 2,
+          "note": "Proves functorial/product properties of the multiplicative Jordan decomposition of commuting linear automorphisms; substantive Jordan theory, but not a Jordan canonical matrix-form theorem."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Registers/Misc.thy",
+          "relevance": 0,
+          "note": "Imports Jordan Normal Form only to reuse notation/code support inside a registers development; it contains no Jordan canonical-form result."
+        },
+        {
+          "repository": "apnelson1__Matroid",
+          "file": "Matroid/ForMathlib/Topology/JordanCurve.lean",
+          "relevance": 0,
+          "note": "Formalizes the Jordan curve theorem; “Jordan” is topological here and unrelated to Jordan canonical form."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/LinearAlgebra/CliffordAlgebra/ParitySwap.lean",
+          "relevance": 0,
+          "note": "Constructs parity-swapping Clifford-algebra operators; it contains no Jordan canonical-form or Jordan-decomposition theorem."
         }
       ]
     },
@@ -1615,6 +1801,48 @@
           "file": "LocalClassFieldTheory/DiscreteValuationRing/DiscreteNorm.lean",
           "relevance": 1,
           "note": "Constructs normed structures and the discrete norm on algebraic extensions of a complete discretely valued field; relevant complete-DVR infrastructure, but no Hensel root-lifting theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/RingTheory/DiscreteValuationRing/FractionRing.lean",
+          "relevance": 1,
+          "note": "Develops fraction fields/localizations of discrete valuation rings; this is relevant DVR infrastructure, but no Hensel lemma is proved."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/NumberTheory/Padics/PadicIntegers.lean",
+          "relevance": 1,
+          "note": "Constructs the p-adic integers as a local discrete valuation ring and records valuation facts; it supplies a standard complete-DVR setting but this file does not prove Hensel’s lemma."
+        },
+        {
+          "repository": "mariainesdff__LocalClassFieldTheory",
+          "file": "LocalClassFieldTheory/DiscreteValuationRing/Basic.lean",
+          "relevance": 1,
+          "note": "Develops discrete valuations, uniformizers, and valuation subrings/DVR structure; relevant Henselian input infrastructure, but no Hensel lemma appears here."
+        },
+        {
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "file": "Adic spaces/FJP/Over/StrongSheafy.lean",
+          "relevance": 0,
+          "note": "Uses completeness and a DVR hypothesis to prove strong sheafiness of a Tate-domain construction; it does not prove or apply Hensel’s lemma."
+        },
+        {
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "file": "Adic spaces/FJP/FiniteJetRings.lean",
+          "relevance": 0,
+          "note": "Constructs finite-jet analytic rings over a complete discretely valued field; the source contains no Hensel lemma."
+        },
+        {
+          "repository": "mariainesdff__HassePrinciple",
+          "file": "HassePrinciple/Padics/Lemmas.lean",
+          "relevance": 2,
+          "note": "Imports the p-adic Hensel theorem, applies `hensels_lemma`, and develops a multivariable Hensel statement over p-adic integers; substantive Hensel formalization in a complete-DVR example."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/NumberTheory/Padics/PadicNumbers.lean",
+          "relevance": 1,
+          "note": "Develops p-adic numbers/valuation completeness and cites Hensel-related references; it is supporting p-adic infrastructure rather than the Hensel theorem owner."
         }
       ]
     },
@@ -1811,6 +2039,60 @@
           "file": "Jacobians/RiemannSurface/QuotientCoveringPi1.lean",
           "relevance": 3,
           "note": "Directly computes the fundamental group of a quotient by a discrete subgroup through covering-space path lifting, producing an explicit pi1-to-deck-lattice equivalence."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/LinearAlgebra/RootSystem/FundamentalDomain.lean",
+          "relevance": 0,
+          "note": "Proves a Weyl-chamber fundamental-domain theorem; “fundamental” refers to a domain, not the fundamental group of a covering space."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/SemilocallySimplyConnected/Covering.lean",
+          "relevance": 2,
+          "note": "Proves covering-map consequences using injectivity on Hom-sets of the fundamental groupoid, including semilocal simple-connectivity transfer; substantive covering/fundamental-group theory."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Seifert-Van-Kampen/Fundamental_Group_Scaffold.thy",
+          "relevance": 1,
+          "note": "Defines the fundamental group and loop-class infrastructure used for Seifert–van Kampen; relevant π1 background, but this file has no covering-space theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/Covering/Monodromy/Full.lean",
+          "relevance": 2,
+          "note": "Proves fullness of covering-space monodromy into fundamental-groupoid actions; a substantive formal relation between covering spaces and fundamental-group data."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/MeasureTheory/Group/FundamentalDomain.lean",
+          "relevance": 0,
+          "note": "Develops measure-theoretic fundamental domains for group actions; unrelated to topological fundamental groups or covering spaces."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/AlgebraicTopology/FundamentalGroupoid/FundamentalGroup.lean",
+          "relevance": 1,
+          "note": "Defines the fundamental group as an automorphism group in the fundamental groupoid and proves basic basepoint results; core π1 infrastructure, but no covering-space theorem."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "Jacobians/RiemannSurface/BranchCutCoveringBridge.lean",
+          "relevance": 1,
+          "note": "Records the π1 injection/image expected from an unbranched covering in a branch-cut application, while the source explicitly leaves part of the topological construction unformalized; supporting evidence only."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/PathComponent.lean",
+          "relevance": 2,
+          "note": "Constructs a path-component universal cover and identifies its deck group with the opposite fundamental group; directly substantive covering-space/fundamental-group theory."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/UniversalCovers/Suggested.lean",
+          "relevance": 0,
+          "note": "Roadmap/navigation file describing universal-cover work; it contains no theorem implementation of the requested relation."
         }
       ]
     },
@@ -2001,6 +2283,66 @@
           "file": "NN/Proofs/RL/Boundary.lean",
           "relevance": 0,
           "note": "Bridges executable reinforcement-learning trust-boundary checks to Prop-level contracts; unrelated to manifolds or collar neighborhoods."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "Uniformization/Surface/Fill/RayBuild.lean",
+          "relevance": 1,
+          "note": "Packages topological half-collar/tube data for a surface-cutting construction; collar-related support, but not a general smooth manifold-with-boundary collar theorem."
+        },
+        {
+          "repository": "ShouqiaoW__erdos",
+          "file": "1038/lean/Erdos1038/SublevelBoundary.lean",
+          "relevance": 0,
+          "note": "Proves finiteness of boundaries of polynomial sublevel sets; this boundary notion is unrelated to smooth manifold boundaries or collars."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Lie_Groups/More_Manifolds.thy",
+          "relevance": 1,
+          "note": "Adds general smooth-manifold analysis results in Isabelle; it is background manifold infrastructure and contains no boundary-collar construction."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "green-tao/Submission/Hypergraph/BoundaryBernoulli.lean",
+          "relevance": 0,
+          "note": "Develops Bernoulli reductions for hypergraph boundary products; “boundary” is combinatorial, not a manifold boundary."
+        },
+        {
+          "repository": "lean-dojo__TorchLean",
+          "file": "NN/Widgets/RL/Boundary.lean",
+          "relevance": 0,
+          "note": "Implements a reinforcement-learning trust-boundary widget; unrelated to manifolds or collar neighborhoods."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Geometry/Manifold/Instances/Real.lean",
+          "relevance": 2,
+          "note": "Defines real manifold models with boundary/corners using Euclidean half-spaces and supplies concrete model-with-corners infrastructure; directly relevant boundary theory, though no collar theorem is proved here."
+        },
+        {
+          "repository": "mccorvie__classification-of-surfaces",
+          "file": "Schoenflies/NestedCollarStages.lean",
+          "relevance": 1,
+          "note": "Constructs nested polygonal collars in a Schoenflies/Jordan-curve development; collar-related topology, but not the smooth manifold-with-boundary theorem."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "Uniformization/Surface/Fill/Collapse.lean",
+          "relevance": 1,
+          "note": "Uses half-collar/tubular-neighborhood data in a surface uniformization construction; relevant topological collar machinery rather than a general smooth collar theorem."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Smooth_Manifolds/Bump_Function.thy",
+          "relevance": 1,
+          "note": "Proves smooth bump-function results in the Isabelle smooth-manifold library; general smooth-manifold support, but no boundary/collar construction."
+        },
+        {
+          "repository": "ShouqiaoW__erdos",
+          "file": "1038/lean/Erdos1038/CircleAbelBoundary.lean",
+          "relevance": 0,
+          "note": "Studies boundary values of an Abel circle kernel; this analytic boundary is unrelated to manifold boundaries or collars."
         }
       ]
     },
@@ -2168,6 +2510,48 @@
           "file": "LeanCondensed/Mathlib/Algebra/Homology/DerivedCategory/TwoVariable.lean",
           "relevance": 1,
           "note": "Defines K-injective resolutions and right-derived bifunctor machinery, but the lemma deriving enough K-injective resolutions from enough injectives is still sorry-backed; relevant incomplete supporting infrastructure rather than an existence owner."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/category-theory/essentially-injective-functors-precategories.lagda.md",
+          "relevance": 0,
+          "note": "Defines essentially injective functors between precategories; “injective” concerns functor object reflection, not injective objects or resolutions in abelian categories."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/Projective/Extend.lean",
+          "relevance": 0,
+          "note": "Extends projective resolutions to integer-indexed cochain complexes; this is the projective dual story, not existence of injective resolutions."
+        },
+        {
+          "repository": "agda__cubical",
+          "file": "Cubical/Categories/Abelian.agda",
+          "relevance": 1,
+          "note": "Umbrella for Cubical Agda abelian-category definitions; supplies the ambient categorical setting but has no injective-object or resolution construction."
+        },
+        {
+          "repository": "agda__cubical",
+          "file": "Cubical/Categories/Abelian/Base.agda",
+          "relevance": 1,
+          "note": "Defines preabelian/abelian category structures in Cubical Agda; relevant categorical background, but no injective resolutions."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/Categories/AbelianMonoid.v",
+          "relevance": 0,
+          "note": "Constructs the univalent category of abelian monoids; it does not develop injective objects or resolutions."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Semantics/Questions/Basic.lean",
+          "relevance": 0,
+          "note": "Proves a “Resolutions Theorem” in inquisitive semantics; the term resolution is unrelated to homological injective resolutions."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/LinearAlgebra/FreeModule/Basic.lean",
+          "relevance": 0,
+          "note": "Develops free-module basics and typeclass resolution behavior; it contains no injective-resolution theory."
         }
       ]
     },
@@ -2341,6 +2725,60 @@
           "file": "v1/Atlas/AlgebraicGeometryI/code/RadicalIdealCorrespondence.lean",
           "relevance": 3,
           "note": "Directly proves the classical Nullstellensatz identity I(V(I)) = radical(I), together with prime and weak specializations over algebraically closed fields."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/PreparedPrime.lean",
+          "relevance": 1,
+          "note": "Develops prime-case machinery for Rückert’s local analytic Nullstellensatz; mathematically related but distinct from Hilbert’s affine-algebraic Nullstellensatz."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/RingTheory/FiniteType/FaithfullyFlatPoints.lean",
+          "relevance": 2,
+          "note": "Uses the affine Nullstellensatz to lift points along faithfully flat finite-type algebra maps; a substantive direct application of the affine theorem, though not its primary statement."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Algebra/AlgebraicGroup/CommHopfAlgCat/FaithfullyFlatPoints.lean",
+          "relevance": 1,
+          "note": "Packages the faithfully-flat point-lifting result for affine group schemes/Hopf algebras; it relies on the affine Nullstellensatz through the finite-type algebra layer rather than proving it here."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Combinatorics/Nullstellensatz.lean",
+          "relevance": 0,
+          "note": "Formalizes Alon’s combinatorial Nullstellensatz; this is a different theorem from Hilbert’s Nullstellensatz for affine varieties."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/RingTheory/FiniteType/PointSeparation.lean",
+          "relevance": 3,
+          "note": "Directly proves the intrinsic affine Hilbert Nullstellensatz for finite-type algebras: radical membership is characterized by vanishing at all algebraically closed points."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/Main.lean",
+          "relevance": 1,
+          "note": "Proves Rückert’s local analytic Nullstellensatz for holomorphic germs; related by name and algebraic pattern, but not Hilbert’s affine-variety theorem."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/PolynomialRepresentativeOperations.lean",
+          "relevance": 1,
+          "note": "Supplies polynomial-representative operations used in the local analytic Nullstellensatz proof; supporting a different analytic theorem rather than the affine Hilbert result."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/ProductVarieties.lean",
+          "relevance": 0,
+          "note": "Develops products and projections of affine varieties but contains no Nullstellensatz theorem or radical/zero-set correspondence."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/FiberCancellation.lean",
+          "relevance": 1,
+          "note": "Provides fiber-cancellation machinery for the local analytic Nullstellensatz project; relevant to that analytic theorem, not a Hilbert affine owner."
         }
       ]
     },
@@ -2538,6 +2976,66 @@
           "file": "TauCeti/MeasureTheory/OptimalTransport/Finite/Duality.lean",
           "relevance": 0,
           "note": "Proves finite Kantorovich optimal-transport duality; unrelated to Pontryagin duality."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Algebra/HopfAlgebra/FiniteDual/CartierDuality/Basic.lean",
+          "relevance": 0,
+          "note": "Proves Cartier duality for finite locally free commutative Hopf algebras/group schemes; this is a different duality from Pontryagin duality of finite abelian groups."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/FiniteSplitHomDuality.lean",
+          "relevance": 0,
+          "note": "Develops Hom-duality for finite split algebras; the duality is algebra-point duality, not Pontryagin duality of groups."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/S05_TICyclic.lean",
+          "relevance": 2,
+          "note": "Uses finite-abelian character duality and proves the Pontryagin self-duality cardinality statement for the cyclic factors in the odd-order development."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/FltRegularBernoulli/BernoulliRegular/FLT37/LehmerVandiver/PlusCoprime/Sinnott/LDerivative/SinnottMatrixEmbeddingIndexBridge.lean",
+          "relevance": 2,
+          "note": "Constructs the Pontryagin-duality identification between the dual of a finite quotient and an even-character subgroup; a substantive finite-abelian duality application."
+        },
+        {
+          "repository": "ImperialCollegeLondon__FLT",
+          "file": "FLT/Patching/Utils/CompactHausdorffRings.lean",
+          "relevance": 1,
+          "note": "Discusses the character-separation consequence of Pontryagin duality for compact Hausdorff abelian groups, but the source does not prove the full finite-abelian duality theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Fourier/AddCircle.lean",
+          "relevance": 1,
+          "note": "Proves the Pontryagin dual of the circle is the integer character group; substantive Pontryagin-duality material, but for a compact infinite group rather than finite abelian groups."
+        },
+        {
+          "repository": "acl2__acl2",
+          "file": "books/projects/groups/abelian.lisp",
+          "relevance": 0,
+          "note": "Proves the structure theorem for finite abelian groups in ACL2; it contains no character/Pontryagin duality result."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/S05_OmegaGrid.lean",
+          "relevance": 2,
+          "note": "Builds an explicit reindexing between a finite subgroup and its character dual using the finite Pontryagin self-duality cardinality theorem; direct substantive use."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AbelianSheafFiniteSubsetCech.lean",
+          "relevance": 0,
+          "note": "Develops Čech complexes of abelian sheaves; “abelian” is unrelated to Pontryagin duality of finite groups."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Structure/Abelian.v",
+          "relevance": 0,
+          "note": "Defines and develops abelian categories; it contains no Pontryagin dual or character-group theorem."
         }
       ]
     },
