@@ -1,0 +1,375 @@
+#!/usr/bin/env python3
+"""Evaluate a fielded-Zoekt + corpus-FTS5 lexical candidate union.
+
+This SQ2 experiment replaces the expensive frozen multi-query complement with
+the independent corpus-wide SQLite FTS5/BM25 first stage.  Candidate generation
+uses no relevance judgments: a bounded prefix from each first-stage ranking is
+interleaved and deduplicated, then the existing candidate-content evidence
+ranker combines path, full-content, local-content, and first-stage rank evidence.
+
+The corpus FTS5 service is still an experimental server-local database, so the
+reported latency is a component sum: public Zoekt API retrieval, server-local
+SQLite query time, candidate-content fetch, and local reranking.  It does not
+claim production network latency for an FTS5 serving endpoint that does not yet
+exist.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import pathlib
+import sqlite3
+import sys
+import time
+from datetime import datetime, timezone
+from typing import Any
+
+import evaluate
+import provenance
+from evaluate_corpus_fts5 import remote_query_batch
+from evaluate_fielded_fts5 import (
+    ApiContentCache,
+    fetch_candidate_contents,
+    fts5_match_query,
+    fts5_rerank,
+)
+from evaluate_fielded_lexical import retrieve_fielded
+
+
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+
+
+def balanced_pair_union(
+    first: list[dict[str, Any]],
+    second: list[dict[str, Any]],
+    *,
+    first_name: str,
+    second_name: str,
+    per_retriever_depth: int,
+) -> list[dict[str, Any]]:
+    """Interleave bounded ranked prefixes and preserve both source ranks."""
+
+    if per_retriever_depth <= 0:
+        raise ValueError("per-retriever depth must be positive")
+    if not first_name or not second_name or first_name == second_name:
+        raise ValueError("candidate source names must be distinct and nonempty")
+
+    result: list[dict[str, Any]] = []
+    positions: dict[tuple[str, str], int] = {}
+    for rank in range(per_retriever_depth):
+        for source, ranking in ((first_name, first), (second_name, second)):
+            if rank >= len(ranking):
+                continue
+            original = ranking[rank]
+            key = (str(original.get("Repository", "")), str(original.get("FileName", "")))
+            existing = positions.get(key)
+            if existing is None:
+                item = dict(original)
+                item["CandidateSources"] = [source]
+                item["CandidateSourceRanks"] = {source: rank + 1}
+                item["CandidateUnionRank"] = len(result) + 1
+                positions[key] = len(result)
+                result.append(item)
+            else:
+                item = result[existing]
+                item["CandidateSources"].append(source)
+                item["CandidateSourceRanks"][source] = rank + 1
+    return result
+
+
+def add_pair_rank_evidence(
+    reranked: list[dict[str, Any]],
+    *,
+    channels: tuple[str, str],
+    rrf_constant: int,
+) -> list[dict[str, Any]]:
+    """Add the two independent first-stage ranks to evidence-RRF scores."""
+
+    if rrf_constant <= 0:
+        raise ValueError("RRF constant must be positive")
+    allowed = set(channels)
+    if len(allowed) != 2:
+        raise ValueError("exactly two distinct first-stage channels are required")
+
+    fused: list[dict[str, Any]] = []
+    for original in reranked:
+        item = dict(original)
+        source_ranks = item.get("CandidateSourceRanks") or {}
+        retrieval_score = sum(
+            1.0 / (rrf_constant + int(rank))
+            for source, rank in source_ranks.items()
+            if source in allowed
+        )
+        item["Score"] = float(item.get("Score", 0.0)) + retrieval_score
+        item["SecondStage"] = "sqlite_fts5_plus_first_stage_rank_rrf"
+        item["FirstStageRankEvidence"] = dict(source_ranks)
+        fused.append(item)
+    fused.sort(
+        key=lambda item: (
+            -float(item["Score"]),
+            int(item.get("CandidateUnionRank", 10**9)),
+            str(item.get("Repository", "")),
+            str(item.get("FileName", "")),
+        )
+    )
+    return fused
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--gold", type=pathlib.Path, default=evaluate.DEFAULT_GOLD)
+    parser.add_argument("--api-url", default=evaluate.DEFAULT_API_URL)
+    parser.add_argument("--timeout", type=float, default=60.0)
+    parser.add_argument("--depth", type=int, default=200)
+    parser.add_argument("--per-retriever-depth", type=int, default=100)
+    parser.add_argument("--fetch-workers", type=int, default=8)
+    parser.add_argument("--rrf-constant", type=int, default=60)
+    parser.add_argument("--evidence-rrf-constant", type=int, default=60)
+    parser.add_argument("--baseline-weight", type=float, default=2.0)
+    parser.add_argument("--content-weight", type=float, default=1.0)
+    parser.add_argument("--path-weight", type=float, default=1.0)
+    parser.add_argument("--fts-host", default="zack@159.223.102.204")
+    parser.add_argument(
+        "--fts-remote-script",
+        default="/home/zack/lean-corpus/experiments/corpus_fts5.py",
+    )
+    parser.add_argument(
+        "--fts-remote-db",
+        default="/home/zack/lean-corpus/experiments/corpus-fts5-v2.sqlite",
+    )
+    parser.add_argument("--output", type=pathlib.Path)
+    args = parser.parse_args()
+
+    if min(
+        args.depth,
+        args.per_retriever_depth,
+        args.fetch_workers,
+        args.rrf_constant,
+        args.evidence_rrf_constant,
+        int(args.timeout),
+    ) <= 0:
+        print("ERROR: depths, workers, RRF constants, and timeout must be positive", file=sys.stderr)
+        return 2
+    weights = {
+        "baseline": args.baseline_weight,
+        "content": args.content_weight,
+        "path": args.path_weight,
+    }
+    if any(weight <= 0 for weight in weights.values()):
+        print("ERROR: first-stage field weights must be positive", file=sys.stderr)
+        return 2
+
+    gold = evaluate.load_gold(args.gold)
+    errors = evaluate.validate_gold(gold)
+    if errors:
+        for error in errors:
+            print(f"ERROR: {error}", file=sys.stderr)
+        return 2
+
+    fts_requests: list[dict[str, Any]] = []
+    for case in gold["cases"]:
+        terms, _ = evaluate.normalized_query_terms(case["query"])
+        fts_requests.append({"id": case["id"], "terms": terms, "top": args.depth})
+    try:
+        fts_batch = remote_query_batch(
+            fts_requests,
+            host=args.fts_host,
+            remote_script=args.fts_remote_script,
+            remote_db=args.fts_remote_db,
+            mode="bm25-all",
+            rrf_constant=args.rrf_constant,
+            timeout=max(args.timeout, 120.0),
+        )
+    except (RuntimeError, json.JSONDecodeError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+    fts_by_id = {str(row["id"]): row for row in fts_batch["responses"]}
+    expected_ids = {str(case["id"]) for case in gold["cases"]}
+    if set(fts_by_id) != expected_ids:
+        print("ERROR: remote FTS5 response IDs do not match gold cases", file=sys.stderr)
+        return 2
+    fts_index = fts_batch["index"]
+    if not fts_index.get("complete"):
+        print("ERROR: remote corpus FTS5 index is incomplete", file=sys.stderr)
+        return 2
+
+    serving = evaluate.serving_options(top=args.depth, whole=False)
+    api_index_before = evaluate.api_index_fingerprint(args.api_url, args.timeout)
+    if int(fts_index.get("document_count", -1)) != int(api_index_before.get("document_count", -2)):
+        print(
+            "ERROR: corpus FTS5 and canonical Zoekt document counts differ: "
+            f"{fts_index.get('document_count')} != {api_index_before.get('document_count')}",
+            file=sys.stderr,
+        )
+        return 2
+
+    cache = ApiContentCache(api_url=args.api_url, timeout=args.timeout)
+    scored_cases: list[dict[str, Any]] = []
+    total_fetch_bytes = 0
+    total_fetch_wall_ms = 0.0
+    total_fetch_request_ms = 0.0
+
+    for number, case in enumerate(gold["cases"], start=1):
+        try:
+            fielded, fielded_runtime, field_queries = retrieve_fielded(
+                case["query"],
+                timeout=args.timeout,
+                provider="api",
+                api_url=args.api_url,
+                serving=serving,
+                depth=args.depth,
+                rrf_constant=args.rrf_constant,
+                weights=weights,
+            )
+            fts_response = fts_by_id[str(case["id"])]
+            corpus_fts5 = list(fts_response["results"])
+            candidates = balanced_pair_union(
+                fielded,
+                corpus_fts5,
+                first_name="fielded",
+                second_name="corpus-fts5",
+                per_retriever_depth=args.per_retriever_depth,
+            )
+            contents, fetch_runtime = fetch_candidate_contents(
+                candidates,
+                cache=cache,
+                workers=args.fetch_workers,
+            )
+            rerank_started = time.perf_counter()
+            reranked = fts5_rerank(
+                case["query"],
+                candidates,
+                contents,
+                content_mode="evidence-rrf",
+                evidence_rrf_constant=args.evidence_rrf_constant,
+            )
+            reranked = add_pair_rank_evidence(
+                reranked,
+                channels=("fielded", "corpus-fts5"),
+                rrf_constant=args.evidence_rrf_constant,
+            )
+            rerank_ms = (time.perf_counter() - rerank_started) * 1000
+        except Exception as exc:
+            print(f"ERROR {case['id']}: {exc}", file=sys.stderr)
+            return 2
+
+        total_fetch_bytes += int(fetch_runtime["fetch_payload_bytes"])
+        total_fetch_wall_ms += float(fetch_runtime["fetch_wall_ms"])
+        total_fetch_request_ms += float(fetch_runtime["fetch_request_ms"])
+        fts_elapsed_ms = float(fts_response["elapsed_ms"])
+        runtime = {
+            "elapsed_ms": (
+                float(fielded_runtime["elapsed_ms"])
+                + fts_elapsed_ms
+                + float(fetch_runtime["fetch_wall_ms"])
+                + rerank_ms
+            ),
+            "fielded_retrieval_ms": float(fielded_runtime["elapsed_ms"]),
+            "corpus_fts5_retrieval_ms": fts_elapsed_ms,
+            "fetch_wall_ms": float(fetch_runtime["fetch_wall_ms"]),
+            "fetch_request_ms": float(fetch_runtime["fetch_request_ms"]),
+            "rerank_ms": rerank_ms,
+            "payload_bytes": int(fielded_runtime["payload_bytes"])
+            + int(fetch_runtime["fetch_payload_bytes"]),
+            "returned_files": len(reranked),
+            "retrieval_queries": int(fielded_runtime["retrieval_queries"]) + 1,
+            "zoekt_api_requests": int(fielded_runtime["physical_api_requests"]),
+            "corpus_fts5_queries": 1,
+            "content_fetches": len(candidates),
+        }
+        scored = evaluate.score_case(
+            case,
+            reranked,
+            " FIELDED_CORPUS_FTS5_UNION ".join(field_queries.values()),
+            runtime,
+        )
+        scored["field_queries"] = field_queries
+        scored["candidate_union_size"] = len(candidates)
+        scored["corpus_fts5_elapsed_ms"] = fts_elapsed_ms
+        scored["second_stage_match_query"] = fts5_match_query(case["query"])
+        scored_cases.append(scored)
+        print(
+            f"{number:02d}/{len(gold['cases'])} {case['id']} "
+            f"candidates={len(candidates)} owner={scored['first_owner_rank']} "
+            f"relevant={scored['first_relevant_rank']}",
+            flush=True,
+        )
+
+    api_index_after = evaluate.api_index_fingerprint(args.api_url, args.timeout)
+    if api_index_after != api_index_before:
+        print("ERROR: published API index changed during evaluation", file=sys.stderr)
+        return 2
+
+    repo_state = provenance.repository_state(ROOT)
+    report = {
+        "schema_version": 1,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "corpus_git_commit": repo_state["commit"],
+        "repository_state": repo_state,
+        "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
+        "query_config_sha256": evaluate.query_config_sha256(),
+        "serving_config_sha256": evaluate.serving_config_sha256(),
+        "variant": "fielded_corpus_fts5_union_evidence_rank_rrf_v1",
+        "provider": "api+remote-sqlite-fts5",
+        "api_url": args.api_url,
+        "serving_options": serving,
+        "first_stage": {
+            "retrievers": ["zoekt_fielded_rrf_v1", "sqlite_fts5_corpus_bm25_v1"],
+            "union": "rank-interleaved deduplicated bounded prefixes",
+            "per_retriever_depth": args.per_retriever_depth,
+            "field_weights": weights,
+            "rrf_constant": args.rrf_constant,
+            "fusion_depth": args.depth,
+        },
+        "candidate_pool": 2 * args.per_retriever_depth,
+        "second_stage": {
+            "engine": "sqlite-fts5",
+            "sqlite_version": sqlite3.sqlite_version,
+            "tokenizer": "unicode61",
+            "fields": [
+                "humanized_path",
+                "full_source_content",
+                "query_matched_source_windows",
+            ],
+            "content_mode": "evidence-rrf",
+            "fusion": "equal-weight reciprocal-rank fusion",
+            "fusion_rrf_constant": args.evidence_rrf_constant,
+            "first_stage_rank_channels": ["fielded", "corpus-fts5"],
+        },
+        "latency_scope": (
+            "component sum: public Zoekt API + server-local corpus FTS5 query + "
+            "candidate fetch + local rerank; excludes an unimplemented FTS5 network serving path"
+        ),
+        "fetch_workers": args.fetch_workers,
+        "fetch_payload_bytes": total_fetch_bytes,
+        "fetch_wall_ms": total_fetch_wall_ms,
+        "fetch_request_ms": total_fetch_request_ms,
+        "index": {
+            "zoekt": api_index_before,
+            "corpus_fts5": fts_index,
+        },
+        "retrieval_engine": {
+            "corpus_fts5": {
+                "name": "SQLite FTS5",
+                "mode": "bm25-all",
+                "tokenizer": fts_index.get("tokenizer"),
+                "sqlite_version": fts_index.get("sqlite_version"),
+            }
+        },
+        "result_role_state": evaluate.file_role_index().fingerprint(),
+        "metrics": evaluate.aggregate(scored_cases),
+        "metrics_by_tag": evaluate.by_tag(scored_cases),
+        "cases": scored_cases,
+    }
+    evaluate.print_summary(report)
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+        print(f"wrote {args.output}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
