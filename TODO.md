@@ -167,11 +167,20 @@ corpus BM25, Owner Hit@10/20 falls from **0.792/0.875** to **0.750/0.833**, the
 exact-name Owner Hit@20 falls from **1.000** to **0.833**, and FTS5 p95 latency
 rises from about **391 ms** to **543 ms**.  The immediate frontier is therefore
 the materially richer deterministic structure-local representation already
-available from source text: declaration/signature-like query-matching lines and
-their bounded context, tested as an additional fixed evidence channel while the
-accepted baseline+path Zoekt plus corpus-BM25 first stage remains the reference.
-A document-side learned-sparse experiment is still admissible only when an
-existing remote service or remote search host can run it without connector-local
+available from source text.  The first syntax-agnostic matched-line probe was
+negative: adding a fourth line-local FTS5 evidence channel to the accepted
+ranker lowers Owner Hit@10 from **0.958** to **0.917**, Owner Hit@1 from
+**0.458** to **0.375**, owner MRR from **0.612** to **0.571**, and nDCG@10
+from **0.675** to **0.647**, while exact-name Owner Hit@10 remains 1.000.
+Do not tune that channel's line limit or fusion weight against the current
+qrels.  The next deterministic retrieval experiment should instead exploit the
+already-measured source hierarchy: the accepted first stage has Source Hit@10 =
+1.000 while direct-owner Hit@10 = 0.875, so test an equal-weight source-rank
+channel derived only from the two independent first-stage rankings before doing
+more source-content reranking.  A parser-backed declaration/signature experiment
+remains appropriate per proof assistant where reliable extraction exists.  A
+document-side learned-sparse/dense experiment is admissible only when an existing
+remote service or remote search host can run it without connector-local
 model/index state.  Do not tune fusion weights against the qrels; a better
 reranker remains irrelevant when the correct file is absent from its pool.
 
