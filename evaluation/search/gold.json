@@ -4964,6 +4964,60 @@
           "file": "SphereEversion/ToMathlib/Unused/IntervalIntegral.lean",
           "relevance": 0,
           "note": "An explicitly unused interval-integral helper file; it is not substantive sphere-eversion evidence."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Analysis/Calculus/AddTorsor/AffineMap.lean",
+          "relevance": 1,
+          "note": "Provides affine-map calculus support inside the sphere-eversion codebase; project infrastructure used by the h-principle development, not an eversion theorem."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/LinearAlgebra/FiniteDimensional.lean",
+          "relevance": 1,
+          "note": "Finite-dimensional linear-algebra support carried by the sphere-eversion project; relevant implementation infrastructure rather than theorem ownership."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/ExistsOfConvex.lean",
+          "relevance": 1,
+          "note": "Proves smooth existence theorems from convex-valued local data and partitions of unity inside the sphere-eversion project; directly useful h-principle support but not the eversion theorem."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Analysis/InnerProductSpace/Rotation.lean",
+          "relevance": 1,
+          "note": "Formalizes smooth rotations about an axis for the sphere-eversion development; geometric construction support, not the h-principle or eversion owner."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Analysis/InnerProductSpace/CrossProduct.lean",
+          "relevance": 1,
+          "note": "Develops cross-product/isometry lemmas used by the sphere-eversion construction; supporting geometry rather than the eversion theorem."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/Loops/Basic.lean",
+          "relevance": 1,
+          "note": "Defines periodic loops and their algebra/reparametrization API, a core substrate for the corrugation machinery in the sphere-eversion project; support rather than theorem ownership."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Analysis/Convex/Basic.lean",
+          "relevance": 1,
+          "note": "Develops generalized convex-hull/ReallyConvex infrastructure used by the sphere-eversion h-principle implementation; supporting machinery rather than the theorem."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Analysis/NormedSpace/OperatorNorm/Prod.lean",
+          "relevance": 1,
+          "note": "Operator-norm lemmas for product spaces maintained inside the sphere-eversion support library; relevant project infrastructure, not an eversion result."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion.lean",
+          "relevance": 1,
+          "note": "Umbrella module importing the complete sphere-eversion and h-principle development, including the direct owners; useful navigation but no declarations of its own."
         }
       ]
     },
@@ -5251,6 +5305,48 @@
           "file": "src/metric-spaces/uniform-limit-theorem-pointwise-continuous-maps-metric-spaces.lagda.md",
           "relevance": 0,
           "note": "Formalizes the uniform-limit theorem for continuous maps in metric spaces; unrelated to Carleson's Fourier-series theorem."
+        },
+        {
+          "repository": "YaelDillies__mean-fourier",
+          "file": "MeanFourier/Mathlib/Algebra/Group/Action/Pointwise/Set/Basic.lean",
+          "relevance": 0,
+          "note": "Adds generic pointwise set-action lemmas in a mean-Fourier project; it contains no Carleson operator, maximal estimate, or Fourier convergence theorem."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Analysis/Fourier/AddCircle.lean",
+          "relevance": 1,
+          "note": "Develops Fourier coefficients, L2 Fourier bases, and Fourier-series convergence on the additive circle; important classical Fourier background, but no Carleson almost-everywhere theorem."
+        },
+        {
+          "repository": "YaelDillies__mean-fourier",
+          "file": "MeanFourier/Mathlib/Analysis/Normed/Module/Ball/Pointwise.lean",
+          "relevance": 0,
+          "note": "Provides generic pointwise norm-ball lemmas; it contains no Carleson-specific harmonic analysis or pointwise Fourier theorem."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Analysis/Fourier/AddCircleMulti.lean",
+          "relevance": 1,
+          "note": "Develops multivariate Fourier series with L2 and conditional uniform convergence results; related Fourier-convergence infrastructure, but not Carleson's almost-everywhere theorem."
+        },
+        {
+          "repository": "ShouqiaoW__erdos",
+          "file": "1002/lean/Erdos1002/NearResonantCarrierSeries.lean",
+          "relevance": 1,
+          "note": "Proves an exact pointwise Fourier-series reconstruction for a smooth Bernoulli mark in an Erdős project; related pointwise Fourier convergence, not Carleson's theorem."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Analysis/Calculus/SmoothSeries.lean",
+          "relevance": 0,
+          "note": "General smoothness and differentiation results for summable function series; no Fourier-specific or Carleson-specific theorem is present."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/PLAcceleratedNesterovLean/Convergence/MainTheoremInternal.lean",
+          "relevance": 0,
+          "note": "Proves pointwise convergence for an accelerated optimization algorithm; 'pointwise convergence' is unrelated to Fourier series or Carleson's theorem."
         }
       ]
     },
@@ -5502,6 +5598,60 @@
           "file": "Series/Series/Dyadic.lean",
           "relevance": 0,
           "note": "Dyadic-rational approximation for power-series computation; unrelated to Hilbert symbols over Q2."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Archive/Imo/Imo1998Q2.lean",
+          "relevance": 0,
+          "note": "Formalizes IMO 1998 problem 2; the 'Q2' filename collision has no relation to the 2-adic field or Hilbert symbols."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/Hilbert2AdicCore.lean",
+          "relevance": 2,
+          "note": "Directly defines the explicit 2-adic Hilbert-symbol formula on units modulo 8 and proves the primitive-solvability cases feeding the full Q2 formula; substantive dyadic-symbol core."
+        },
+        {
+          "repository": "girving__interval",
+          "file": "Interval/Approx/Dyadic.lean",
+          "relevance": 0,
+          "note": "Develops dyadic rational approximation for interval arithmetic; 'dyadic' here means binary rationals, not the Hilbert symbol over Q2."
+        },
+        {
+          "repository": "ShouqiaoW__erdos",
+          "file": "1002/lean/Erdos1002/NearResonantVectorAbel.lean",
+          "relevance": 0,
+          "note": "Uses dyadic Fourier blocks in a Hilbert space for an analytic square-function argument; neither Hilbert symbols nor p-adic fields occur."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Archive/Imo/Imo2019Q2.lean",
+          "relevance": 0,
+          "note": "Formalizes IMO 2019 problem 2; the Q2 filename is an olympiad question number and unrelated to Q2-adic Hilbert symbols."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/ClassFieldTheory/Suggested.lean",
+          "relevance": 1,
+          "note": "Class-field-theory roadmap code defines a cohomological local Hilbert symbol and includes quadratic/Q2-facing integration tests, but it does not give the explicit dyadic Hilbert-symbol evaluation formula."
+        },
+        {
+          "repository": "GeoCoq__GeoCoq",
+          "file": "theories/Axioms/hilbert_axioms.v",
+          "relevance": 0,
+          "note": "Defines Hilbert's axioms for Euclidean geometry; 'Hilbert' is unrelated to the norm-residue Hilbert symbol."
+        },
+        {
+          "repository": "acl2__acl2",
+          "file": "books/kestrel/fty/symbol-set.lisp",
+          "relevance": 0,
+          "note": "Defines a programming-language finite set of Lisp symbols; lexical 'symbol' is unrelated to Hilbert symbols."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/LieGroups/code/HilbertNoether.lean",
+          "relevance": 0,
+          "note": "Proves Hilbert-Noether finite-generation results in invariant theory; this is unrelated to p-adic Hilbert symbols."
         }
       ]
     },
@@ -5753,6 +5903,60 @@
           "file": "src/1Lab/intro.lagda.md",
           "relevance": 1,
           "note": "1Lab introduction explaining univalent categories and consequences of Yoneda; expository/navigation material rather than theorem ownership."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/YonedaExponentials.v",
+          "relevance": 1,
+          "note": "Uses UniMath's Yoneda lemma/full faithfulness to prove the Yoneda embedding preserves exponentials; a substantive Yoneda consumer, not the lemma owner."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/YonedaBinproducts.v",
+          "relevance": 1,
+          "note": "Uses UniMath Yoneda to prove preservation of binary products; relevant Yoneda-embedding theory, but not a Yoneda-lemma proof."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Limits/Preserves/Yoneda.lean",
+          "relevance": 1,
+          "note": "Builds Yoneda/colimit comparison isomorphisms using the existing large curried Yoneda lemma; a downstream Yoneda application rather than the lemma owner."
+        },
+        {
+          "repository": "kim-em__lean-category-theory",
+          "file": "src/category_theory/yoneda_comparisons.lean",
+          "relevance": 2,
+          "note": "Contains an explicit independent `yoneda_lemma'` isomorphism and several equivalent Yoneda embeddings; a direct traditional Yoneda-lemma formalization, though not specifically univalent."
+        },
+        {
+          "repository": "martinescardo__TypeTopology",
+          "file": "source/C-Spaces/UsingFunExt/YonedaLemma.lagda",
+          "relevance": 2,
+          "note": "Proves a specialized Yoneda lemma for the one-object category of C-spaces in a univalent-foundations Agda development; direct Yoneda content, though not the general category-level statement."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Functor/Hom/Yoneda.v",
+          "relevance": 2,
+          "note": "Directly formalizes the Yoneda lemma, covariant dual, and Yoneda embedding for arbitrary categories; closely relevant independent theorem ownership, though not specifically univalent categories."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Preadditive/Yoneda/Basic.lean",
+          "relevance": 1,
+          "note": "Constructs the additive Yoneda embedding for preadditive categories and derives full faithfulness from the ordinary Yoneda embedding; a relevant specialization/consumer, not the lemma owner."
+        },
+        {
+          "repository": "martinescardo__TypeTopology",
+          "file": "source/UF/SIP.lagda",
+          "relevance": 1,
+          "note": "Uses a type-theoretic Yoneda lemma inside the structure-identity principle and univalence arguments; relevant univalent-foundations application, not the category-level Yoneda lemma."
+        },
+        {
+          "repository": "martinescardo__TypeTopology",
+          "file": "source/C-Spaces/UsingNotNotFunExt/YonedaLemma.lagda",
+          "relevance": 2,
+          "note": "Proves the C-spaces Yoneda lemma under double-negated function extensionality; a direct specialized Yoneda formalization in univalent-foundations code."
         }
       ]
     },
@@ -5962,6 +6166,48 @@
           "file": "UniMath/CategoryTheory/IndexedCategories/OpIndexedCategory.v",
           "relevance": 1,
           "note": "Defines fiberwise opposites of indexed categories; relevant indexed-category infrastructure but not the Grothendieck construction itself."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/IndexedCategories/CoreIndexedCategory.v",
+          "relevance": 2,
+          "note": "Defines the fiberwise core of a UniMath indexed category, directly extending the indexed-category infrastructure consumed by the Grothendieck correspondence; close supporting implementation."
+        },
+        {
+          "repository": "agda__agda-categories",
+          "file": "src/Categories/Multi/Category/Indexed.agda",
+          "relevance": 0,
+          "note": "Defines multicategories whose input arities are arbitrary index types; 'indexed' modifies multicategory arity and is unrelated to category-valued indexed categories/Grothendieck fibrations."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/IndexedCategories/IndexedTransformation.v",
+          "relevance": 2,
+          "note": "Formalizes transformations between UniMath indexed categories, part of the pseudofunctorial data used in the indexed-category/fibration Grothendieck correspondence."
+        },
+        {
+          "repository": "agda__agda-categories",
+          "file": "src/Categories/Object/Product/Indexed.agda",
+          "relevance": 0,
+          "note": "Defines products of an I-indexed family of objects in an ordinary category; this is a limit notion, not an indexed category or Grothendieck construction."
+        },
+        {
+          "repository": "HoTT__Coq-HoTT",
+          "file": "theories/Categories/Grothendieck/ToSet.v",
+          "relevance": 2,
+          "note": "Directly packages the Grothendieck construction for Set-valued functors, including its univalent layer; a discrete-fiber specialization of the requested construction."
+        },
+        {
+          "repository": "agda__agda-categories",
+          "file": "src/Categories/Diagram/Equalizer/Indexed.agda",
+          "relevance": 0,
+          "note": "Defines equalizers of indexed families of parallel morphisms; 'indexed' refers to the family of arrows, not category-valued indexed categories or fibrations."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/Cat/Displayed/Instances/Opposite.lagda.md",
+          "relevance": 2,
+          "note": "Constructs the opposite of a cartesian fibration and reasons explicitly about the classified pseudofunctor/fiber categories; substantive fibration/indexed-category theory closely tied to Grothendieck correspondence."
         }
       ]
     },
