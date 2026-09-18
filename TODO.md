@@ -184,15 +184,17 @@ remains **0.958/1.000**, and nDCG@10 rises slightly from **0.675** to **0.677**;
 final owner MRR is essentially flat/slightly lower (**0.6119 -> 0.6113**), so
 this does not settle the second-stage ordering problem.  Accept the source-rank
 channel as the qrel-independent first-stage reference and do not tune its weight.
-The accepted run's displayed depth-20 pool is now independently complete
-(**480/480** candidates judged: **348** relevant and **132** nonrelevant).  On the
-resulting **777-judgment** qrels, the source-hierarchy gain survives a clean
+The accepted run's displayed depth-30 pool is now independently complete
+(**502/502** unique candidates judged: **352** relevant and **150** nonrelevant).  On
+the resulting **793-judgment** qrels, the source-hierarchy gain survives a clean
 same-index rerun: first-stage Owner Hit@10/20 remains **0.917/1.000** versus
 **0.875/0.958** for the otherwise identical two-channel lexical reference, with
 owner MRR **0.6243 versus 0.6204** and exact-name Owner Hit@10/20 unchanged at
 **0.833/1.000**.  After the fixed content reranker, Owner Hit@5 remains improved
 (**0.833 versus 0.792**), Owner Hit@10/20 is **0.958/1.000** for both, and
-nDCG@10 is **0.6495 versus 0.6466**.
+nDCG@10 is **0.6495 versus 0.6466**.  The additional depth-21--30 exposure added
+only **16** previously unjudged files; two were supporting relevance-1 material
+and none was a new direct owner.
 The first parser-backed declaration/signature probe is negative as a global
 equal-weight second-stage channel.  Lean declaration/type/member captures from
 the repository's existing tree-sitter parser lower final Owner Hit@10/20 from
