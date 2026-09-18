@@ -161,13 +161,19 @@ ranking-identity criterion.  A two-worker client-side run of the unchanged
 depth-200 baseline/path requests is ranking-preserving on the recorded top 20
 and all measured owner cutoffs, but does not improve direct Zoekt latency
 (p50 6.51 s versus 6.49 s; empirical 23rd-of-24 latency 13.67 s versus 13.02 s),
-so request scheduling is also rejected as the SQ2 latency lever.  The immediate
-frontier is now a materially richer deterministic retrieval representation
-(declaration/signature/context fields where extraction already exists), or a
-document-side learned-sparse experiment only when an existing remote service or
-remote search host can run it without connector-local model/index state.  Do not
-tune fusion weights against the qrels; a better reranker remains irrelevant when
-the correct file is absent from its pool.
+so request scheduling is also rejected as the SQ2 latency lever.  A subsequent
+deterministic corpus-FTS5 path-prefix channel is also rejected: relative to plain
+corpus BM25, Owner Hit@10/20 falls from **0.792/0.875** to **0.750/0.833**, the
+exact-name Owner Hit@20 falls from **1.000** to **0.833**, and FTS5 p95 latency
+rises from about **391 ms** to **543 ms**.  The immediate frontier is therefore
+the materially richer deterministic structure-local representation already
+available from source text: declaration/signature-like query-matching lines and
+their bounded context, tested as an additional fixed evidence channel while the
+accepted baseline+path Zoekt plus corpus-BM25 first stage remains the reference.
+A document-side learned-sparse experiment is still admissible only when an
+existing remote service or remote search host can run it without connector-local
+model/index state.  Do not tune fusion weights against the qrels; a better
+reranker remains irrelevant when the correct file is absent from its pool.
 
 **Gate SQ2:** materially stronger first-stage owner recall than lexical-v2 on the
 expanded qrels/held-out slice, without unacceptable latency or loss of exact-name
