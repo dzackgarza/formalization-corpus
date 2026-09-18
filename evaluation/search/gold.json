@@ -2161,6 +2161,42 @@
           "file": "v1/Atlas/ArithmeticGeometry/code/RegularFunctions.lean",
           "relevance": 1,
           "note": "Uses the Nullstellensatz at several key points in the regular-functions/affine-varieties development; a substantive consumer rather than the theorem owner."
+        },
+        {
+          "repository": "ShouqiaoW__erdos",
+          "file": "1038/lean/Erdos1038/PlatformAdjointAbelHilbert.lean",
+          "relevance": 0,
+          "note": "Develops Abel-regularized Hilbert transforms of trigonometric modes; Hilbert here is analytic and unrelated to the Nullstellensatz."
+        },
+        {
+          "repository": "jonhanke__quadratic_forms_in_lean",
+          "file": "Lean/QuadraticForms/HilbertSymbol.lean",
+          "relevance": 0,
+          "note": "Develops the Hilbert norm-residue symbol for quadratic forms; unrelated to Hilbert's Nullstellensatz."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraNotes/code/CommutativeAlgebra.lean",
+          "relevance": 3,
+          "note": "Directly proves weak forms of Hilbert's Nullstellensatz for multivariate polynomials over the complex numbers, including the maximal-ideal/point correspondence."
+        },
+        {
+          "repository": "ShouqiaoW__erdos",
+          "file": "1038/lean/Erdos1038/PlatformFiniteHilbert.lean",
+          "relevance": 0,
+          "note": "Formalizes a finite Hilbert-transform kernel; it is analytic harmonic-analysis material, not the Nullstellensatz."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/EllipticCurves/code/HilbertClassPolynomial.lean",
+          "relevance": 0,
+          "note": "Defines Hilbert class polynomials of imaginary quadratic orders; this is unrelated to Hilbert's Nullstellensatz."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RadicalIdealCorrespondence.lean",
+          "relevance": 3,
+          "note": "Directly proves the classical Nullstellensatz identity I(V(I)) = radical(I), together with prime and weak specializations over algebraically closed fields."
         }
       ]
     },
@@ -2310,6 +2346,54 @@
           "file": "TauCetiRoadmap/EllipticCurves/Suggested.lean",
           "relevance": 0,
           "note": "Elliptic-curve roadmap mentioning Cartier duality; this is not Pontryagin duality for finite abelian groups."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/group-theory/sums-of-finite-sequences-of-elements-abelian-groups.lagda.md",
+          "relevance": 0,
+          "note": "Defines finite sums in abelian groups; it contains no character-group or Pontryagin-duality construction."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/group-theory/sums-of-finite-families-of-elements-abelian-groups.lagda.md",
+          "relevance": 0,
+          "note": "Defines sums of finite families in abelian groups; no Pontryagin duality is formalized here."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/LieGroups/code/DualityFunctor.lean",
+          "relevance": 0,
+          "note": "Develops contragredient duality in representation-theoretic category O; this is a different duality from Pontryagin duality."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/GroupTheory/FiniteAbelian/Basic.lean",
+          "relevance": 1,
+          "note": "Proves the structure theorem for finite abelian groups, useful supporting input for finite Pontryagin duality but not the duality theorem itself."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Finitely_Generated_Abelian_Groups/Finite_And_Cyclic_Groups.thy",
+          "relevance": 1,
+          "note": "Develops finite and cyclic abelian-group infrastructure; relevant background for finite Pontryagin duality, but no character duality theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicGeometry/AffineGroupScheme/CartierDuality/BaseChange.lean",
+          "relevance": 0,
+          "note": "Formalizes Cartier duality for finite locally free affine group schemes under base change, not Pontryagin duality of finite abelian groups."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/LieGroups/code/DualityFunctorDefs.lean",
+          "relevance": 0,
+          "note": "Defines representation-theoretic duality functors in category O; unrelated to Pontryagin duality."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/MeasureTheory/OptimalTransport/Finite/Duality.lean",
+          "relevance": 0,
+          "note": "Proves finite Kantorovich optimal-transport duality; unrelated to Pontryagin duality."
         }
       ]
     },
@@ -2411,6 +2495,54 @@
           "file": "TauCeti/Analysis/Calculus/Sard/OutermostStratum.lean",
           "relevance": 0,
           "note": "Morse-Sard/Sard critical-value theory; despite “Morse” in the theorem name, it does not prove the Morse local normal-form lemma."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Calculus/Morse/Convergence.lean",
+          "relevance": 1,
+          "note": "Proves convergence of negative-gradient trajectories under nondegenerate-critical-point hypotheses; substantive Morse-theory infrastructure, but not the local Morse normal-form lemma."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Calculus/Morse/ExponentialDichotomy.lean",
+          "relevance": 1,
+          "note": "Proves exponential contraction estimates for the linearized flow at a nondegenerate Morse critical point; relevant neighboring Morse theory, not the normal-form lemma."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Calculus/Morse/Stable.lean",
+          "relevance": 1,
+          "note": "Develops stable and unstable sets for negative-gradient flows in Morse theory; no local coordinate normal form is proved."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/WeilPairing/Nondegenerate.lean",
+          "relevance": 0,
+          "note": "Proves nondegeneracy of the Weil pairing; nondegenerate here is unrelated to Morse critical points."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Calculus/Morse/FlowExistence.lean",
+          "relevance": 1,
+          "note": "Constructs negative-gradient flows and identifies their rest points with critical points; relevant Morse infrastructure, not the Morse lemma."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ProjectionTheory/code/AuxiliaryLemma.lean",
+          "relevance": 0,
+          "note": "Develops finite-field affine-line combinatorics for projection theory; its nondegeneracy conditions are unrelated to the Morse lemma."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/BG/AppC_LemmaC3_FixedPointFree.lean",
+          "relevance": 0,
+          "note": "A fixed-point-free group-theoretic argument in the odd-order project; unrelated to Morse theory."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/CriticalPortraits/CycleLemma.lean",
+          "relevance": 0,
+          "note": "Proves the combinatorial cycle lemma for periodic integer sequences; the word critical does not refer to Morse critical points."
         }
       ]
     },
@@ -2585,6 +2717,30 @@
           "file": "OddOrder/Higman/Suzuki2Groups/ExponentFour.lean",
           "relevance": 0,
           "note": "Exponent-four result for Suzuki 2-groups; no general finitely generated abelian-group structure theorem."
+        },
+        {
+          "repository": "ImperialCollegeLondon__FLT",
+          "file": "FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean",
+          "relevance": 0,
+          "note": "Classifies finite subgroups of PGL2 over an algebraic closure of a finite field; not the structure theorem for finitely generated abelian groups."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/GrothendieckVanishing/FinitelyGeneratedVanishing.lean",
+          "relevance": 0,
+          "note": "Reduces sheaf-cohomology vanishing to finitely generated subsheaves; finitely generated here concerns sheaves, not abelian-group classification."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "grothendieck-vanishing/Aristotle/GrothendieckVanishing/main/FinitelyGeneratedVanishing.lean",
+          "relevance": 0,
+          "note": "A Grothendieck-vanishing reduction for finitely generated subsheaves; unrelated to classification of finitely generated abelian groups."
+        },
+        {
+          "repository": "ImperialCollegeLondon__FLT",
+          "file": "FLT/Slop/PGL2/FiniteSubgroups/WildClassification.lean",
+          "relevance": 0,
+          "note": "Classifies the wild finite subgroups of PGL2; it is unrelated to the structure theorem for finitely generated abelian groups."
         }
       ]
     },
@@ -2728,6 +2884,48 @@
           "file": "MerelyTrue/Landau/Theorem42.lean",
           "relevance": 0,
           "note": "Landau/VML theorem file; no Stone-Weierstrass theorem."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Basic.lean",
+          "relevance": 1,
+          "note": "Uses Stone-Weierstrass to obtain uniqueness of the continuous functional calculus; a substantive application, but not the theorem's primary owner."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Stone_Cech/Stone_Cech.thy",
+          "relevance": 0,
+          "note": "Formalizes the Stone-Cech compactification and its extension property; this is not the Stone-Weierstrass approximation theorem."
+        },
+        {
+          "repository": "flyspeck__flyspeck",
+          "file": "azure/hol-light-nat/Multivariate/realanalysis.ml",
+          "relevance": 3,
+          "note": "Directly proves real and complex Stone-Weierstrass approximation theorems, including named REAL_STONE_WEIERSTRASS and COMPLEX_STONE_WEIERSTRASS results."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/NonUnital.lean",
+          "relevance": 1,
+          "note": "Uses Stone-Weierstrass in the non-unital continuous-functional-calculus API; relevant application, not a primary theorem statement."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/LeanComplexAnalysis/Harmonic/Positive/HerglotzRieszUnique.lean",
+          "relevance": 1,
+          "note": "Applies Mathlib's Stone-Weierstrass theorem to prove density of moments on the unit circle; relevant application rather than theorem owner."
+        },
+        {
+          "repository": "lean-dojo__TorchLean",
+          "file": "NN/MLTheory/Proofs/ReLU/Approximation/CompactSet.lean",
+          "relevance": 1,
+          "note": "Applies a Stone-Weierstrass coordinate-algebra density theorem in a ReLU approximation proof; relevant application, not the theorem owner."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Elliptic_Functions/Weierstrass_Sigma_Zeta.thy",
+          "relevance": 0,
+          "note": "Develops Weierstrass elliptic sigma and zeta functions; the shared name Weierstrass is unrelated to the Stone-Weierstrass theorem."
         }
       ]
     },
@@ -2859,6 +3057,42 @@
           "file": "v1/Atlas/TheoryOfProbability/code/ExpectationEquivalence.lean",
           "relevance": 1,
           "note": "Defines a Brownian-motion structure and proves a Brownian conditional-expectation theorem; directly relevant Brownian theory, but no Gaussian-process construction is carried out here."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "verso/Manual/Pages/Gaussian.lean",
+          "relevance": 0,
+          "note": "A manual/documentation page for Gaussian measures in the Brownian-motion project; it does not itself construct Brownian motion."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/Gaussian/Gaussian.lean",
+          "relevance": 1,
+          "note": "Formalizes Gaussian-law characteristic-function facts used by the Brownian-motion development; supporting Gaussian infrastructure, not the process construction itself."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/Gaussian/MultivariateGaussian.lean",
+          "relevance": 1,
+          "note": "Develops multivariate Gaussian distributions and coordinate laws; relevant finite-dimensional Gaussian-process infrastructure, but not Brownian motion construction."
+        },
+        {
+          "repository": "mrdouglasny__gaussian-field",
+          "file": "GaussianField/Construction.lean",
+          "relevance": 1,
+          "note": "Constructs centered Gaussian measures from nuclear-space data; relevant Gaussian-process construction technology, but not a Brownian-motion construction."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/Gaussian/CovMatrix.lean",
+          "relevance": 1,
+          "note": "Formalizes covariance bilinear forms and covariance matrices for Gaussian measures; supporting infrastructure for Brownian motion."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/Gaussian/Moment.lean",
+          "relevance": 1,
+          "note": "Proves Gaussian moment formulas used in the Brownian-motion project; supporting Gaussian analysis, not the construction theorem."
         }
       ]
     },
