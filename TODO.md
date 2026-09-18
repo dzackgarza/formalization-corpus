@@ -193,14 +193,22 @@ and increase p50/p95 component latency from about **9.71/24.99 s** to
 cross-prover slice falls from **1.000/1.000** to **0.750/0.750** because a
 Lean-only global channel changes competition against unsupported provers; in
 particular the Mizar Jordan-curve owner moves from rank 9 to 21.  Reject that
-construction without weight tuning.  The immediate deterministic frontier is a
-parser-backed **source-local** file-ordering experiment that may use Lean syntax
-inside supported sources but must preserve the accepted source/cross-prover order
-outside them.  A document-side learned-sparse/dense experiment is admissible only
-when an existing remote service or remote search host can run it without
-connector-local model/index state.  Do not tune fusion weights against the qrels;
-a better reranker remains irrelevant when the correct file is absent from its
-pool.
+construction without weight tuning.  The source-local follow-up also fails its
+predeclared gate.  Projecting the Lean declaration/signature preference only
+within fixed repository slots preserves the cross-prover Owner Hit@10/20 cutoffs
+at **1.000/1.000** and raises final Owner Hit@5 from **0.833** to **0.875**, but
+Owner Hit@20 falls from **1.000** to **0.958** because the mapping-cone owner moves
+from rank 13 to 54; nDCG@10 falls from **0.677** to **0.664**, and p50/p95
+component latency rises to about **11.81/28.08 s**.  Reject parser-backed
+declaration ordering in both global and source-local forms without weight/context
+tuning.  The immediate frontier is now an independent semantic first-stage
+experiment, but only through an existing remote service or the remote search host;
+do not create connector-local learned-sparse/dense model or index state.  If the
+remote surface has no suitable existing runtime, record that branch as
+resource-deferred rather than substituting a local model.  Keep the accepted
+source-hierarchy lexical reference fixed.  Do not tune fusion weights against the
+qrels; a better reranker remains irrelevant when the correct file is absent from
+its pool.
 
 **Gate SQ2:** materially stronger first-stage owner recall than lexical-v2 on the
 expanded qrels/held-out slice, without unacceptable latency or loss of exact-name
