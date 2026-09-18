@@ -6208,6 +6208,24 @@
           "file": "src/Cat/Displayed/Instances/Opposite.lagda.md",
           "relevance": 2,
           "note": "Constructs the opposite of a cartesian fibration and reasons explicitly about the classified pseudofunctor/fiber categories; substantive fibration/indexed-category theory closely tied to Grothendieck correspondence."
+        },
+        {
+          "repository": "agda__agda-categories",
+          "file": "src/Categories/Object/Coproduct/Indexed.agda",
+          "relevance": 0,
+          "note": "Defines coproducts of an I-indexed family in an ordinary category; this is a limit/colimit notion, not an indexed category or Grothendieck construction."
+        },
+        {
+          "repository": "HoTT__Coq-HoTT",
+          "file": "theories/Categories/Grothendieck/ToCat.v",
+          "relevance": 3,
+          "note": "Directly defines the Grothendieck construction of a Cat-valued functor, via the corresponding pseudofunctor and total category; an independent owner of the requested construction."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/Cat/Bi/Diagram/Colimit/IndexedCategory.lagda.md",
+          "relevance": 3,
+          "note": "Shows that the lax colimit of a category-valued indexed category is its Grothendieck construction and works explicitly with the total displayed category; direct theorem-level ownership."
         }
       ]
     },
@@ -6429,6 +6447,60 @@
           "file": "OddOrder/BG/AppC_LemmaC3_Setup.lean",
           "relevance": 1,
           "note": "Develops a Bender-Glauberman local-analysis lemma setup consumed along the Feit-Thompson spine; relevant support rather than the theorem owner."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/S07_CoherenceConstantDegree.lean",
+          "relevance": 2,
+          "note": "Proves Peterfalvi's standalone constant-degree coherence theorem and explicitly records its use for the Feit-Thompson Dade-map route; substantive theorem-path material."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/Appendices/RankOneAffineModel.lean",
+          "relevance": 1,
+          "note": "Formalizes Peterfalvi's affine near-field rank-one appendix model and uses Feit-Thompson solvability as an input; closely related odd-order support, but the file marks the residual appendix route as off the Feit-Thompson critical path."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/S08_YsetInner.lean",
+          "relevance": 2,
+          "note": "Develops Peterfalvi section 8 nilpotent descent, Y-set inner products, and coherence machinery explicitly for the character-theoretic odd-order proof; substantive proof-path material."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/BG/AppE_FiliformCounterexample.lean",
+          "relevance": 1,
+          "note": "Formalizes and analyzes an Appendix-E filiform counterexample/corrective local-analysis issue in Bender-Glauberman; relevant odd-order support rather than the final proof spine."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/BG/AppE_FurtherResults.lean",
+          "relevance": 2,
+          "note": "Formalizes Bender-Glauberman Appendix E's further Feit-Thompson local-analysis results and solvability consequences; substantive theorem-specific material on the odd-order development path."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/S09_NonexistenceCertain/Hypothesis71.lean",
+          "relevance": 2,
+          "note": "Packages Peterfalvi section 9's nonexistence configuration and coherence inequalities leading to the Feit-Thompson final contradiction; a direct major proof component."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/BG/Ch3_MaximalSubgroups/S10_ForwardFromKeystone.lean",
+          "relevance": 2,
+          "note": "Carries Bender-Glauberman section 10 forward from the representation-theory keystone along the section-10-to-16 Feit-Thompson spine; substantive direct proof-path material."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/S07_Coherence/NormInequalities.lean",
+          "relevance": 2,
+          "note": "Proves Peterfalvi coherence norm inequalities, decomposition machinery, and degree-gap results used by the Feit-Thompson Dade-map argument; substantive theorem-path support."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/Appendices/Suzuki/KCyclic.lean",
+          "relevance": 1,
+          "note": "Formalizes a Suzuki/Peterfalvi appendix proposition and explicitly invokes the already proved Feit-Thompson theorem for odd-order solvability; related downstream appendix material rather than the theorem proof owner."
         }
       ]
     },
@@ -6741,6 +6813,66 @@
           "file": "JordanPick/JordanCurve/Arcs.lean",
           "relevance": 1,
           "note": "Proves arc-splitting infrastructure feeding a Lean proof of the continuous Jordan curve theorem; substantive support, not the Mizar owner."
+        },
+        {
+          "repository": "mccorvie__classification-of-surfaces",
+          "file": "Schoenflies/LocalizedJordanAnnularCrosscuts.lean",
+          "relevance": 1,
+          "note": "Builds localized Jordan annular crosscuts for a Lean Schoenflies/Jordan-curve development; substantive Jordan-curve support, but not the queried Mizar theorem or a final separation theorem."
+        },
+        {
+          "repository": "mccorvie__classification-of-surfaces",
+          "file": "Schoenflies/PolygonalJordanNesting.lean",
+          "relevance": 1,
+          "note": "Proves nesting and inside/outside orientation results for polygonal disks inside Jordan domains; relevant Jordan-separation infrastructure, not the primary theorem owner."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Complex/Conformal/Crosscut/Jordan.lean",
+          "relevance": 1,
+          "note": "Proves that the closure of a coincident-end conformal crosscut is a Jordan curve while explicitly leaving the planar separation step to later work; relevant support, not the Jordan curve theorem."
+        },
+        {
+          "repository": "mccorvie__classification-of-surfaces",
+          "file": "LeanEval/jordan_curve/Solution.lean",
+          "relevance": 2,
+          "note": "States and proves the Lean Jordan-curve benchmark theorem by delegating to the completed Submission development; a direct independent theorem-level formalization, though not Mizar."
+        },
+        {
+          "repository": "mccorvie__classification-of-surfaces",
+          "file": "JordanCurve/Arcs.lean",
+          "relevance": 1,
+          "note": "Develops arc-splitting and proper-arc scaffolding explicitly for the continuous Jordan curve theorem; substantive supporting material rather than the separation theorem itself."
+        },
+        {
+          "repository": "leanprover__lean-eval",
+          "file": "LeanEval/Geometry/PicksTheorem.lean",
+          "relevance": 0,
+          "note": "States Pick's theorem for lattice polygons and merely defines its interior using connected components; the file does not formalize the Jordan curve theorem."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "JordanPick/PicksTheorem/EvalBridge.lean",
+          "relevance": 0,
+          "note": "Defines bridge data from an evaluation version of Pick's theorem into a lattice-polygon development; it does not itself prove Jordan separation."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "JordanPick/PicksTheorem/EvalBridgeInside.lean",
+          "relevance": 1,
+          "note": "Proves the hard Pick-theorem bridge identifying polygon interior via complement components/winding and explicitly describes this as a polygonal Jordan-curve theorem; a relevant specialization, not the general theorem owner."
+        },
+        {
+          "repository": "mccorvie__classification-of-surfaces",
+          "file": "Schoenflies/AuxiliaryJordan.lean",
+          "relevance": 1,
+          "note": "Constructs auxiliary Jordan circles from boundary arcs and interior polygonal crosscuts for a Schoenflies proof; substantive Jordan-curve infrastructure, not the final separation theorem."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "JordanPick/JordanCurve/Counting.lean",
+          "relevance": 1,
+          "note": "Develops the component-counting machinery that turns Jordan-curve complement information into the statement that exactly two connected components remain; direct proof support, not the theorem owner."
         }
       ]
     },
@@ -6986,6 +7118,60 @@
           "file": "algebra/euclidean_ring_def.prf",
           "relevance": 0,
           "note": "PVS proof artifact for Euclidean rings; unrelated to formal group laws."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/commutative-algebra/commutative-rings.lagda.md",
+          "relevance": 0,
+          "note": "Defines commutative rings and their elementary operations; this is generic algebraic substrate and contains no formal power series or formal group law structure."
+        },
+        {
+          "repository": "nasa__pvslib",
+          "file": "algebra/ring_with_id_one_generator.prf",
+          "relevance": 0,
+          "note": "PVS proof data about rings generated by one element; 'formal' in the query is absent and there is no formal group law or power-series operation."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Instance/Ab/Tensor.v",
+          "relevance": 0,
+          "note": "Constructs tensor products in the category of abelian groups; unrelated to one-dimensional formal group laws over commutative rings."
+        },
+        {
+          "repository": "google-deepmind__formal-conjectures",
+          "file": "FormalConjecturesUtil/Attributes/AMS.lean",
+          "relevance": 0,
+          "note": "Defines AMS subject-classification metadata/docstrings; no mathematical formal-group-law content is present."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/commutative-algebra/algebras-commutative-rings.lagda.md",
+          "relevance": 0,
+          "note": "Defines general algebras over commutative rings; this is ordinary algebra structure, not a formal group law on power series."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/commutative-algebra/unital-associative-algebras-commutative-rings.lagda.md",
+          "relevance": 0,
+          "note": "Defines unital associative algebras over commutative rings; it contains no formal power series or formal group law identities."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/commutative-algebra/function-commutative-rings.lagda.md",
+          "relevance": 0,
+          "note": "Defines pointwise function rings over a commutative ring; unrelated to formal group laws."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/commutative-algebra/unital-algebras-commutative-rings.lagda.md",
+          "relevance": 0,
+          "note": "Defines unital algebras over commutative rings; no formal-group-law construction or power-series law is present."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/GroupScheme/NIsogeny.lean",
+          "relevance": 0,
+          "note": "Develops finite locally free subgroup schemes and N-isogeny/elliptic-curve quotient machinery; the file contains no formal group law or formal power-series group operation."
         }
       ]
     },
@@ -7225,6 +7411,66 @@
           "file": "v1/Atlas/AlgebraicGeometryI/code/Lec24GrothendieckBirkhoff.lean",
           "relevance": 0,
           "note": "Grothendieck-Birkhoff splitting of vector bundles on P1; unrelated to enough injectives in Grothendieck categories."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/Basic.lean",
+          "relevance": 1,
+          "note": "Defines Grothendieck abelian categories and proves their basic AB5/limits/colimits/well-powered consequences; essential ambient structure, but not the enough-injectives existence theorem."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/Subobject.lean",
+          "relevance": 1,
+          "note": "Develops filtered-colimit and complete-lattice facts for subobjects in Grothendieck abelian categories; close structural infrastructure for later injective arguments, but it proves no injective existence statement itself."
+        },
+        {
+          "repository": "sinhp__HoTTLean",
+          "file": "HoTTLean/ForMathlib/CategoryTheory/Bicategory/Grothendieck.lean",
+          "relevance": 0,
+          "note": "Formalizes the Grothendieck construction of category-valued pseudofunctors; 'Grothendieck' here is the categorical construction, not Grothendieck abelian categories or enough injectives."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Localization/DerivabilityStructure/Basic.lean",
+          "relevance": 1,
+          "note": "Defines abstract derivability structures and explicitly lists the injective derivability structure for categories with enough injectives as future work; relevant downstream framework, not an existence proof."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/DerivedCategory/Ext/Basic.lean",
+          "relevance": 1,
+          "note": "Defines Ext groups via derived categories and records consequences when enough injectives are available; it assumes/uses injective hypotheses rather than proving them for Grothendieck categories."
+        },
+        {
+          "repository": "dagurtomas__LeanCondensed",
+          "file": "LeanCondensed/Mathlib/Algebra/Homology/DerivedCategory/TwoVariable.lean",
+          "relevance": 1,
+          "note": "Develops K-injective replacement interfaces for derived bifunctors, but the lemma from ordinary enough injectives to enough K-injectives is explicitly `sorry`; downstream/incomplete support, not the Grothendieck existence theorem."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/Factorizations/Basic.lean",
+          "relevance": 1,
+          "note": "Defines degreewise epimorphisms with injective kernels for factorization theory in an abelian category already assumed to have enough injectives; downstream resolution machinery, not existence."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Construction/Grothendieck.v",
+          "relevance": 0,
+          "note": "Direct Grothendieck construction for indexed categories/fibrations; the name collision is unrelated to Grothendieck abelian categories and enough injectives."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Sites/Grothendieck.lean",
+          "relevance": 0,
+          "note": "Defines Grothendieck topologies on sites; this is unrelated to Grothendieck abelian categories or the enough-injectives theorem."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Topology/Category/TopCat/GrothendieckTopology.lean",
+          "relevance": 0,
+          "note": "Defines the standard Grothendieck topology on topological spaces; unrelated to injective objects in Grothendieck abelian categories."
         }
       ]
     }
