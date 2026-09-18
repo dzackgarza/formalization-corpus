@@ -72,15 +72,16 @@ retrieval experiment must name the corpus/index fingerprint, query/gold version,
 retriever, model/version where applicable, latency, and cost.  Gold/qrel edits
 remain separate from retrieval-code changes.
 
-The current relevance set is too sparse for strong claims about novel retrievers.
-The post-review SQ2 depth-10 pool currently has **414** unique query/file
-candidates across deployed lexical-v2, frozen multi-query RRF, the BM25 control,
-and the first field-separated lexical candidate; **362** are explicitly
-unjudged.  Before selecting a new
-retrieval family, continue expanding the pool from materially different systems
-and judge it independently of which system returned each file.  As real user
-failures accumulate, add a held-out user-query slice so tuning does not optimize
-only theorem-style benchmark paraphrases.
+The current relevance set is still too small for strong claims about novel
+retrievers, but independent pooling is now materially broader: the 24-query gold
+set contains **614** explicit query/file judgments.  The latest SPLADE++
+query-expansion differential pool added **147** judgments in one source-blind
+review pass: 34 relevant alternatives (17 relevance-1 and 17 relevance-2) and
+113 nonrelevant files, with no new direct-owner judgments.  Before selecting a
+new retrieval family, continue expanding the pool from materially different
+systems and judge it independently of which system returned each file.  As real
+user failures accumulate, add a held-out user-query slice so tuning does not
+optimize only theorem-style benchmark paraphrases.
 
 **Gate SQ0:** evaluation can compare new retrieval families without treating
 `unjudged` as `irrelevant`, and every candidate run is reproducible from its
@@ -132,21 +133,32 @@ rather than hand-rolling a scoring engine.  At minimum compare:
   experiment if ordinary BM25/fielding plateaus.
 
 Compare candidate recall at depths 10/20/50/100/200, not only displayed top-10.
-The current post-review lexical-v2 baseline now has a measured direct-owner
-plateau: Owner Hit@10/20/50/100/200 is **0.583 at every cutoff**.  Zoekt's
-built-in BM25 scorer has also been measured under identical normalized query
-semantics and a depth-200 budget; it lowers Owner Hit@10 to **0.500** and only
-reaches **0.583** by depth 50, so it is rejected as the lexical improvement
-candidate.  A first field-separated Zoekt candidate now queries the deployed
-path-or-content conjunction, a strict content channel, and a relaxed path
-channel independently and fuses them by weighted reciprocal-rank fusion.  It
-raises Owner Hit@10/20/50 to **0.667/0.792/0.833** and Source Hit@10 to **1.000**,
-but lowers MRR from **0.539** to **0.473** and requires three retrieval calls.
-This is evidence for the fielded candidate-generation direction, not yet a
-production ranker.  The immediate frontier is independent pool judgment plus a
-precision-preserving second-stage/fielded ranking experiment; do not tune fusion
-weights against the sparse qrels.  A better reranker is irrelevant if the
-correct file is absent from its pool.
+The current post-review lexical-v2 baseline has a measured direct-owner plateau:
+Owner Hit@10/20/50/100/200 is **0.583 at every cutoff**.  Zoekt's built-in BM25
+scorer is rejected under identical normalized query semantics, and an independent
+corpus-wide SQLite FTS5 BM25 channel established that a genuinely different
+lexical scorer adds useful candidates.  After field-channel ablations and
+independent differential-pool judgment, the provisional lexical reference is the
+two-channel **baseline+path Zoekt** retriever fused with corpus-wide FTS5 by
+qrel-independent pair-RRF.  On the current expanded qrels its direct first stage
+reaches Owner Hit@10/20/50/100/200 =
+**0.875/0.958/1.000/1.000/1.000**, Source Hit@10 = **1.000**, and the exact-name
+slice reaches Owner Hit@10/20 = **0.833/1.000**.  Retrieval-component latency is
+still high at about **6.63 s p50 / 19.89 s p95**, so this is not yet a production
+serving decision.
+
+The first learned-sparse probe used SPLADE++ only as a qrel-independent query
+expansion bridge into corpus FTS5; it is explicitly **not** a document-side
+SPLADE dot-product index.  After judging its 147-candidate differential pool, it
+remains materially weaker at Owner Hit@10/20/50/100/200 =
+**0.625/0.667/0.750/0.833/0.917**, so that bridge is rejected as the SQ2
+replacement.  Do not infer that a full SPLADE index has been tested.  The
+immediate frontier is a qrel-independent response-depth/transport optimization
+of the provisional lexical reference, followed by the remaining richer-field or
+document-side learned-sparse experiments only when they can be run without
+violating the host storage contract.  Do not tune fusion weights against the
+qrels; a better reranker remains irrelevant when the correct file is absent from
+its pool.
 
 **Gate SQ2:** materially stronger first-stage owner recall than lexical-v2 on the
 expanded qrels/held-out slice, without unacceptable latency or loss of exact-name
