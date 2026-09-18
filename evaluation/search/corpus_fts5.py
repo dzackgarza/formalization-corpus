@@ -626,6 +626,23 @@ def _rank_channel(
     return [(int(rowid), -float(score)) for rowid, score in rows]
 
 
+def _rank_path_prefix(
+    db: sqlite3.Connection,
+    *,
+    terms: list[str],
+    top: int,
+) -> list[tuple[int, float]]:
+    if not terms:
+        return []
+    query = " OR ".join(f"path : {_fts_quote(term)}*" for term in terms)
+    rows = db.execute(
+        "SELECT rowid, bm25(docs, 0.0, 1.0, 0.0) AS score "
+        "FROM docs WHERE docs MATCH ? ORDER BY score ASC, rowid ASC LIMIT ?",
+        (query, top),
+    ).fetchall()
+    return [(int(rowid), -float(score)) for rowid, score in rows]
+
+
 def _result_rows(
     db: sqlite3.Connection,
     ranked: list[tuple[int, float, dict[str, int]]],
@@ -673,6 +690,23 @@ def query_index(
             db,
             [(rowid, score, {"all": rank}) for rank, (rowid, score) in enumerate(rows, 1)],
         )
+    if mode == "bm25-path-prefix-rrf":
+        scores: dict[int, float] = {}
+        ranks: dict[int, dict[str, int]] = {}
+        channel_depth = max(top, min(1000, top * 3))
+        channels = (
+            ("all", _rank_channel(db, terms=terms, field=None, top=channel_depth)),
+            ("path-prefix", _rank_path_prefix(db, terms=terms, top=channel_depth)),
+        )
+        for channel, rows in channels:
+            for rank, (rowid, _) in enumerate(rows, start=1):
+                scores[rowid] = scores.get(rowid, 0.0) + 1.0 / (rrf_constant + rank)
+                ranks.setdefault(rowid, {})[channel] = rank
+        fused = sorted(
+            scores,
+            key=lambda rowid: (-scores[rowid], min(ranks[rowid].values()), rowid),
+        )[:top]
+        return _result_rows(db, [(rowid, scores[rowid], ranks[rowid]) for rowid in fused])
     if mode != "fielded-rrf":
         raise ValueError(f"unsupported query mode {mode!r}")
 
@@ -776,7 +810,11 @@ def main() -> int:
 
     query_parser = subparsers.add_parser("query-batch")
     query_parser.add_argument("--db", type=pathlib.Path, required=True)
-    query_parser.add_argument("--mode", choices=("bm25-all", "fielded-rrf"), required=True)
+    query_parser.add_argument(
+        "--mode",
+        choices=("bm25-all", "bm25-path-prefix-rrf", "fielded-rrf"),
+        required=True,
+    )
     query_parser.add_argument("--rrf-constant", type=int, default=60)
 
     args = parser.parse_args()

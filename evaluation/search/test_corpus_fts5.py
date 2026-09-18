@@ -96,6 +96,21 @@ class CorpusFts5Tests(unittest.TestCase):
             db.close()
             temporary.cleanup()
 
+    def test_path_prefix_rrf_recovers_camelcase_module_tokens(self) -> None:
+        temporary, _path, db = self.make_db()
+        try:
+            results = corpus_fts5.query_index(
+                db,
+                terms=["hensel"],
+                top=10,
+                mode="bm25-path-prefix-rrf",
+            )
+            self.assertEqual(results[0]["Repository"], "source_a")
+            self.assertIn("path-prefix", results[0]["FieldRanks"])
+        finally:
+            db.close()
+            temporary.cleanup()
+
     def test_fielded_rrf_preserves_path_and_content_evidence(self) -> None:
         temporary, _path, db = self.make_db()
         try:

@@ -74,7 +74,11 @@ def main() -> int:
     parser.add_argument(
         "--remote-db", default=DEFAULT_REMOTE_DB
     )
-    parser.add_argument("--mode", choices=("bm25-all", "fielded-rrf"), default="bm25-all")
+    parser.add_argument(
+        "--mode",
+        choices=("bm25-all", "bm25-path-prefix-rrf", "fielded-rrf"),
+        default="bm25-all",
+    )
     parser.add_argument("--depth", type=int, default=200)
     parser.add_argument("--rrf-constant", type=int, default=60)
     parser.add_argument("--timeout", type=float, default=120.0)
@@ -122,7 +126,7 @@ def main() -> int:
             "elapsed_ms": float(response["elapsed_ms"]),
             "payload_bytes": 0,
             "returned_files": len(response["results"]),
-            "retrieval_queries": 3 if args.mode == "fielded-rrf" else 1,
+            "retrieval_queries": {"bm25-all": 1, "bm25-path-prefix-rrf": 2, "fielded-rrf": 3}[args.mode],
         }
         scored = evaluate.score_case(
             case,
@@ -138,11 +142,11 @@ def main() -> int:
         )
 
     repo_state = provenance.repository_state(ROOT)
-    variant = (
-        "sqlite_fts5_corpus_fielded_rrf_v1"
-        if args.mode == "fielded-rrf"
-        else "sqlite_fts5_corpus_bm25_v1"
-    )
+    variant = {
+        "bm25-all": "sqlite_fts5_corpus_bm25_v1",
+        "bm25-path-prefix-rrf": "sqlite_fts5_corpus_bm25_path_prefix_rrf_v1",
+        "fielded-rrf": "sqlite_fts5_corpus_fielded_rrf_v1",
+    }[args.mode]
     report = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -157,7 +161,7 @@ def main() -> int:
         "retrieval_engine": {
             "name": "SQLite FTS5",
             "mode": args.mode,
-            "rrf_constant": args.rrf_constant if args.mode == "fielded-rrf" else None,
+            "rrf_constant": args.rrf_constant if args.mode != "bm25-all" else None,
             "fields": ["source", "path", "content"],
             "tokenizer": remote["index"].get("tokenizer"),
             "sqlite_version": remote["index"].get("sqlite_version"),
