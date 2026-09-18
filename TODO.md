@@ -173,16 +173,25 @@ ranker lowers Owner Hit@10 from **0.958** to **0.917**, Owner Hit@1 from
 **0.458** to **0.375**, owner MRR from **0.612** to **0.571**, and nDCG@10
 from **0.675** to **0.647**, while exact-name Owner Hit@10 remains 1.000.
 Do not tune that channel's line limit or fusion weight against the current
-qrels.  The next deterministic retrieval experiment should instead exploit the
-already-measured source hierarchy: the accepted first stage has Source Hit@10 =
-1.000 while direct-owner Hit@10 = 0.875, so test an equal-weight source-rank
-channel derived only from the two independent first-stage rankings before doing
-more source-content reranking.  A parser-backed declaration/signature experiment
-remains appropriate per proof assistant where reliable extraction exists.  A
-document-side learned-sparse/dense experiment is admissible only when an existing
-remote service or remote search host can run it without connector-local
-model/index state.  Do not tune fusion weights against the qrels; a better
-reranker remains irrelevant when the correct file is absent from its pool.
+qrels.  The source-hierarchy follow-up is positive at the first stage.  Adding
+one equal-weight repository-rank channel derived only from each repository's
+best fielded and corpus-BM25 file ranks raises first-stage Owner Hit@10/20 from
+**0.875/0.958** to **0.917/1.000** and owner MRR from **0.6204** to **0.6243**,
+while Source Hit@10 and depth-200 owner coverage remain **1.000**.  The exact-name
+first-stage slice preserves Owner Hit@10/20 = **0.833/1.000**.  After the fixed
+content reranker, Owner Hit@5 rises from **0.792** to **0.833**, Owner Hit@10/20
+remains **0.958/1.000**, and nDCG@10 rises slightly from **0.675** to **0.677**;
+final owner MRR is essentially flat/slightly lower (**0.6119 -> 0.6113**), so
+this does not settle the second-stage ordering problem.  Accept the source-rank
+channel as the qrel-independent first-stage reference and do not tune its weight.
+The immediate deterministic frontier is now parser-backed declaration/signature
+evidence where reliable extraction already exists, beginning with Lean through
+the repository's existing ast-grep/tree-sitter route and leaving unsupported
+proof assistants on the accepted reference unchanged.  A document-side
+learned-sparse/dense experiment is admissible only when an existing remote
+service or remote search host can run it without connector-local model/index
+state.  Do not tune fusion weights against the qrels; a better reranker remains
+irrelevant when the correct file is absent from its pool.
 
 **Gate SQ2:** materially stronger first-stage owner recall than lexical-v2 on the
 expanded qrels/held-out slice, without unacceptable latency or loss of exact-name
