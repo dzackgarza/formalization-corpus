@@ -118,6 +118,52 @@ def add_pair_rank_evidence(
     return fused
 
 
+def project_source_local_order(
+    base_ranked: list[dict[str, Any]],
+    preferred_ranked: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Project a preferred within-source order onto fixed base source slots.
+
+    The repository identity at every global rank is inherited from ``base_ranked``.
+    Only the order of files belonging to the same repository may change.  This
+    makes parser-backed evidence usable inside supported sources without changing
+    competition among sources or unsupported proof assistants.
+    """
+
+    def key(item: dict[str, Any]) -> tuple[str, str]:
+        return str(item.get("Repository", "")), str(item.get("FileName", ""))
+
+    base_keys = [key(item) for item in base_ranked]
+    preferred_keys = [key(item) for item in preferred_ranked]
+    if len(base_keys) != len(set(base_keys)) or len(preferred_keys) != len(set(preferred_keys)):
+        raise ValueError("source-local projection requires unique candidate identities")
+    if set(base_keys) != set(preferred_keys):
+        raise ValueError("source-local projection rankings must contain identical candidates")
+
+    preferred_by_source: dict[str, list[dict[str, Any]]] = {}
+    for original in preferred_ranked:
+        preferred_by_source.setdefault(str(original.get("Repository", "")), []).append(original)
+    source_offsets: dict[str, int] = {}
+    base_item_rank = {candidate: rank for rank, candidate in enumerate(base_keys, start=1)}
+
+    projected: list[dict[str, Any]] = []
+    for slot_rank, base_slot in enumerate(base_ranked, start=1):
+        repository = str(base_slot.get("Repository", ""))
+        offset = source_offsets.get(repository, 0)
+        preferred_item = preferred_by_source[repository][offset]
+        source_offsets[repository] = offset + 1
+        item = dict(preferred_item)
+        item_key = key(item)
+        item["SourceLocalPreferredScore"] = float(item.get("Score", 0.0))
+        item["SourceLocalBaseItemRank"] = base_item_rank[item_key]
+        item["SourceLocalBaseSlotRank"] = slot_rank
+        item["SourceLocalBaseSlotScore"] = float(base_slot.get("Score", 0.0))
+        item["Score"] = float(base_slot.get("Score", 0.0))
+        item["SecondStage"] = "source_local_lean_declaration_order"
+        projected.append(item)
+    return projected
+
+
 def rank_by_pair_rank_evidence(
     candidates: list[dict[str, Any]],
     *,
@@ -313,7 +359,12 @@ def main() -> int:
     )
     parser.add_argument(
         "--second-stage-mode",
-        choices=("evidence-rrf", "evidence-lines-rrf", "evidence-declarations-rrf"),
+        choices=(
+            "evidence-rrf",
+            "evidence-lines-rrf",
+            "evidence-declarations-rrf",
+            "evidence-declarations-source-local",
+        ),
         default="evidence-rrf",
         help="fixed deterministic FTS5 evidence representation used after candidate union",
     )
@@ -493,25 +544,56 @@ def main() -> int:
                 workers=args.fetch_workers,
             )
             declaration_signatures = None
-            if args.second_stage_mode == "evidence-declarations-rrf":
+            if args.second_stage_mode in {
+                "evidence-declarations-rrf",
+                "evidence-declarations-source-local",
+            }:
                 declaration_signatures = lean_declaration_signature_texts(
                     second_stage_candidates,
                     contents,
                 )
             rerank_started = time.perf_counter()
-            reranked = fts5_rerank(
-                case["query"],
-                second_stage_candidates,
-                contents,
-                content_mode=args.second_stage_mode,
-                evidence_rrf_constant=args.evidence_rrf_constant,
-                declaration_signatures=declaration_signatures,
-            )
-            reranked = add_pair_rank_evidence(
-                reranked,
-                channels=rank_channels,
-                rrf_constant=args.evidence_rrf_constant,
-            )
+            if args.second_stage_mode == "evidence-declarations-source-local":
+                base_reranked = fts5_rerank(
+                    case["query"],
+                    second_stage_candidates,
+                    contents,
+                    content_mode="evidence-rrf",
+                    evidence_rrf_constant=args.evidence_rrf_constant,
+                )
+                base_reranked = add_pair_rank_evidence(
+                    base_reranked,
+                    channels=rank_channels,
+                    rrf_constant=args.evidence_rrf_constant,
+                )
+                preferred_reranked = fts5_rerank(
+                    case["query"],
+                    second_stage_candidates,
+                    contents,
+                    content_mode="evidence-declarations-rrf",
+                    evidence_rrf_constant=args.evidence_rrf_constant,
+                    declaration_signatures=declaration_signatures,
+                )
+                preferred_reranked = add_pair_rank_evidence(
+                    preferred_reranked,
+                    channels=rank_channels,
+                    rrf_constant=args.evidence_rrf_constant,
+                )
+                reranked = project_source_local_order(base_reranked, preferred_reranked)
+            else:
+                reranked = fts5_rerank(
+                    case["query"],
+                    second_stage_candidates,
+                    contents,
+                    content_mode=args.second_stage_mode,
+                    evidence_rrf_constant=args.evidence_rrf_constant,
+                    declaration_signatures=declaration_signatures,
+                )
+                reranked = add_pair_rank_evidence(
+                    reranked,
+                    channels=rank_channels,
+                    rrf_constant=args.evidence_rrf_constant,
+                )
             rerank_ms = (time.perf_counter() - rerank_started) * 1000
         except Exception as exc:
             print(f"ERROR {case['id']}: {exc}", file=sys.stderr)
@@ -585,6 +667,7 @@ def main() -> int:
         "evidence-rrf": "evidence_rank_rrf_v1",
         "evidence-lines-rrf": "evidence_lines_rank_rrf_v1",
         "evidence-declarations-rrf": "evidence_declarations_rank_rrf_v1",
+        "evidence-declarations-source-local": "evidence_declarations_source_local_v1",
     }[args.second_stage_mode]
     if args.content_rerank_depth is not None:
         mode_suffix = "rank_prefilter_" + mode_suffix
@@ -639,7 +722,10 @@ def main() -> int:
                 ),
                 *(
                     ["lean_declaration_signatures"]
-                    if args.second_stage_mode == "evidence-declarations-rrf"
+                    if args.second_stage_mode in {
+                        "evidence-declarations-rrf",
+                        "evidence-declarations-source-local",
+                    }
                     else []
                 ),
             ],
@@ -661,6 +747,15 @@ def main() -> int:
                     "rrf_constant": args.evidence_rrf_constant,
                 }
                 if args.content_rerank_depth is not None
+                else None
+            ),
+            "source_local_projection": (
+                {
+                    "slot_basis": "accepted evidence-rrf plus first-stage rank channels",
+                    "preferred_order": "Lean declaration/signature enriched evidence",
+                    "invariant": "repository identity at every global rank is unchanged",
+                }
+                if args.second_stage_mode == "evidence-declarations-source-local"
                 else None
             ),
         },

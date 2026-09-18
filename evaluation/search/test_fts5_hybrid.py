@@ -15,6 +15,7 @@ from evaluate_fts5_hybrid import (  # noqa: E402
     add_source_hierarchy_rank,
     balanced_pair_union,
     prefilter_by_pair_rank_evidence,
+    project_source_local_order,
     rank_by_pair_rank_evidence,
     retrieve_zoekt_first_stage,
 )
@@ -45,6 +46,38 @@ class Fts5HybridTests(unittest.TestCase):
             result[2]["CandidateSourceRanks"],
             {"fielded": 2, "corpus-fts5": 2},
         )
+
+    def test_source_local_projection_preserves_repository_slots(self) -> None:
+        base = [
+            {"Repository": "lean", "FileName": "a.lean", "Score": 10.0},
+            {"Repository": "mizar", "FileName": "a.miz", "Score": 9.0},
+            {"Repository": "lean", "FileName": "b.lean", "Score": 8.0},
+            {"Repository": "mizar", "FileName": "b.miz", "Score": 7.0},
+        ]
+        preferred = [
+            {"Repository": "lean", "FileName": "b.lean", "Score": 12.0},
+            {"Repository": "mizar", "FileName": "a.miz", "Score": 9.0},
+            {"Repository": "lean", "FileName": "a.lean", "Score": 6.0},
+            {"Repository": "mizar", "FileName": "b.miz", "Score": 7.0},
+        ]
+        projected = project_source_local_order(base, preferred)
+        self.assertEqual(
+            [item["Repository"] for item in projected],
+            [item["Repository"] for item in base],
+        )
+        self.assertEqual(
+            [item["FileName"] for item in projected],
+            ["b.lean", "a.miz", "a.lean", "b.miz"],
+        )
+        self.assertEqual([item["Score"] for item in projected], [10.0, 9.0, 8.0, 7.0])
+        self.assertEqual(projected[0]["SourceLocalBaseItemRank"], 3)
+
+    def test_source_local_projection_rejects_candidate_mismatch(self) -> None:
+        with self.assertRaises(ValueError):
+            project_source_local_order(
+                [{"Repository": "r", "FileName": "a"}],
+                [{"Repository": "r", "FileName": "b"}],
+            )
 
     def test_rank_evidence_rewards_support_from_both_first_stages(self) -> None:
         rows = [
