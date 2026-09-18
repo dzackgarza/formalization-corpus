@@ -84,6 +84,36 @@ def query_matched_windows(
     return "\n".join(lines[index] for index in sorted(selected))
 
 
+def query_matched_lines(
+    text: str,
+    content: str,
+    *,
+    max_lines: int = 12,
+) -> str:
+    """Return the source lines with the densest normalized query evidence.
+
+    This is deliberately syntax-agnostic: declaration and signature lines in
+    formal source are often locally concentrated, but the corpus spans many
+    proof assistants and this experiment must not pretend that one language's
+    declaration regex is a cross-prover parser.  Lines are ranked only by the
+    number of distinct normalized query terms they contain, then by source
+    order.  The representation is therefore deterministic and qrel-independent.
+    """
+    terms, _ = evaluate.normalized_query_terms(text)
+    if not terms or not content or max_lines <= 0:
+        return ""
+    folded_terms = [term.casefold() for term in terms]
+    ranked: list[tuple[int, int, str]] = []
+    for line_number, line in enumerate(content.splitlines()):
+        folded = line.casefold()
+        matched = sum(term in folded for term in folded_terms)
+        if matched:
+            ranked.append((-matched, line_number, line))
+    ranked.sort(key=lambda row: (row[0], row[1]))
+    selected = sorted(ranked[:max_lines], key=lambda row: row[1])
+    return "\n".join(line for _, _, line in selected)
+
+
 def fts5_rerank(
     text: str,
     candidates: list[dict[str, Any]],
@@ -93,17 +123,23 @@ def fts5_rerank(
     evidence_rrf_constant: int = 60,
 ) -> list[dict[str, Any]]:
     """Rank a fixed candidate list with deterministic FTS5 evidence channels."""
-    if content_mode not in {"full", "matched-windows", "evidence-rrf"}:
+    if content_mode not in {
+        "full",
+        "matched-windows",
+        "evidence-rrf",
+        "evidence-lines-rrf",
+    }:
         raise ValueError(f"unsupported FTS5 content mode: {content_mode}")
     if evidence_rrf_constant <= 0:
         raise ValueError("evidence RRF constant must be positive")
 
-    if content_mode == "evidence-rrf":
+    if content_mode in {"evidence-rrf", "evidence-lines-rrf"}:
         return fts5_evidence_rrf_rerank(
             text,
             candidates,
             contents,
             rrf_constant=evidence_rrf_constant,
+            include_matched_lines=content_mode == "evidence-lines-rrf",
         )
 
     db = sqlite3.connect(":memory:")
@@ -151,6 +187,7 @@ def fts5_evidence_rrf_rerank(
     contents: dict[tuple[str, str], str],
     *,
     rrf_constant: int = 60,
+    include_matched_lines: bool = False,
 ) -> list[dict[str, Any]]:
     """Fuse path/identifier, broad-content, and local-content FTS5 rankings.
 
@@ -159,13 +196,19 @@ def fts5_evidence_rrf_rerank(
     broad-file evidence that helped exact-name queries, adds bounded local
     evidence, and gives path/identifier evidence an explicit channel without
     calibrating incomparable BM25 scores or tuning field weights against qrels.
+    The optional matched-line channel tests whether term concentration on source
+    lines adds information beyond the surrounding windows; it does not claim to
+    be a parser-level declaration extractor.
     """
     if rrf_constant <= 0:
         raise ValueError("RRF constant must be positive")
 
     db = sqlite3.connect(":memory:")
     try:
-        for table in ("path_docs", "full_docs", "local_docs"):
+        table_names = ["path_docs", "full_docs", "local_docs"]
+        if include_matched_lines:
+            table_names.append("line_docs")
+        for table in table_names:
             db.execute(
                 f"CREATE VIRTUAL TABLE {table} USING fts5(text, tokenize='unicode61')"
             )
@@ -177,6 +220,8 @@ def fts5_evidence_rrf_rerank(
                 "full_docs": content,
                 "local_docs": query_matched_windows(text, content),
             }
+            if include_matched_lines:
+                values["line_docs"] = query_matched_lines(text, content)
             for table, value in values.items():
                 db.execute(
                     f"INSERT INTO {table}(rowid, text) VALUES (?, ?)",
@@ -191,6 +236,8 @@ def fts5_evidence_rrf_rerank(
             "full_docs": "full-content",
             "local_docs": "matched-windows",
         }
+        if include_matched_lines:
+            channel_names["line_docs"] = "matched-lines"
         for table, channel in channel_names.items():
             rows = db.execute(
                 f"SELECT rowid, bm25({table}) AS score FROM {table} "
@@ -210,7 +257,11 @@ def fts5_evidence_rrf_rerank(
     for rowid, original in enumerate(candidates, start=1):
         item = dict(original)
         item["Score"] = scores.get(rowid, 0.0)
-        item["SecondStage"] = "sqlite_fts5_evidence_rrf"
+        item["SecondStage"] = (
+            "sqlite_fts5_evidence_lines_rrf"
+            if include_matched_lines
+            else "sqlite_fts5_evidence_rrf"
+        )
         item["SecondStageEvidence"] = evidence.get(rowid, [])
         item["SecondStageOriginalRank"] = rowid
         ranked.append(item)
@@ -325,7 +376,7 @@ def main() -> int:
     parser.add_argument("--fetch-workers", type=int, default=8)
     parser.add_argument(
         "--content-mode",
-        choices=("full", "matched-windows", "evidence-rrf"),
+        choices=("full", "matched-windows", "evidence-rrf", "evidence-lines-rrf"),
         default="full",
     )
     parser.add_argument("--evidence-rrf-constant", type=int, default=60)
@@ -450,7 +501,11 @@ def main() -> int:
             else (
                 "zoekt_fielded_rrf_fts5_matched_windows_v1"
                 if args.content_mode == "matched-windows"
-                else "zoekt_fielded_rrf_fts5_evidence_rrf_v1"
+                else (
+                    "zoekt_fielded_rrf_fts5_evidence_rrf_v1"
+                    if args.content_mode == "evidence-rrf"
+                    else "zoekt_fielded_rrf_fts5_evidence_lines_rrf_v1"
+                )
             )
         ),
         "provider": "api+sqlite-fts5",
@@ -466,8 +521,17 @@ def main() -> int:
             "tokenizer": "unicode61",
             "fields": [
                 *(
-                    ["humanized_path", "full_source_content", "query_matched_source_windows"]
-                    if args.content_mode == "evidence-rrf"
+                    [
+                        "humanized_path",
+                        "full_source_content",
+                        "query_matched_source_windows",
+                        *(
+                            ["query_matched_source_lines"]
+                            if args.content_mode == "evidence-lines-rrf"
+                            else []
+                        ),
+                    ]
+                    if args.content_mode in {"evidence-rrf", "evidence-lines-rrf"}
                     else [
                         "humanized_path",
                         "full_source_content"
@@ -476,20 +540,25 @@ def main() -> int:
                     ]
                 ),
             ],
-            "field_weights": None if args.content_mode == "evidence-rrf" else [1.0, 1.0],
+            "field_weights": None
+            if args.content_mode in {"evidence-rrf", "evidence-lines-rrf"}
+            else [1.0, 1.0],
             "match_semantics": "OR over shared normalized query terms",
             "content_mode": args.content_mode,
             "matched_window_context_lines": 1
-            if args.content_mode in {"matched-windows", "evidence-rrf"}
+            if args.content_mode in {"matched-windows", "evidence-rrf", "evidence-lines-rrf"}
             else None,
             "matched_window_limit": 8
-            if args.content_mode in {"matched-windows", "evidence-rrf"}
+            if args.content_mode in {"matched-windows", "evidence-rrf", "evidence-lines-rrf"}
+            else None,
+            "matched_line_limit": 12
+            if args.content_mode == "evidence-lines-rrf"
             else None,
             "fusion": "equal-weight reciprocal-rank fusion"
-            if args.content_mode == "evidence-rrf"
+            if args.content_mode in {"evidence-rrf", "evidence-lines-rrf"}
             else None,
             "fusion_rrf_constant": args.evidence_rrf_constant
-            if args.content_mode == "evidence-rrf"
+            if args.content_mode in {"evidence-rrf", "evidence-lines-rrf"}
             else None,
         },
         "fetch_workers": args.fetch_workers,

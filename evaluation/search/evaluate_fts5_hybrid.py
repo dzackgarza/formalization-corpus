@@ -232,6 +232,12 @@ def main() -> int:
     )
     parser.add_argument("--rrf-constant", type=int, default=60)
     parser.add_argument("--evidence-rrf-constant", type=int, default=60)
+    parser.add_argument(
+        "--second-stage-mode",
+        choices=("evidence-rrf", "evidence-lines-rrf"),
+        default="evidence-rrf",
+        help="fixed deterministic FTS5 evidence representation used after candidate union",
+    )
     parser.add_argument("--baseline-weight", type=float, default=2.0)
     parser.add_argument("--content-weight", type=float, default=1.0)
     parser.add_argument("--path-weight", type=float, default=1.0)
@@ -404,7 +410,7 @@ def main() -> int:
                 case["query"],
                 second_stage_candidates,
                 contents,
-                content_mode="evidence-rrf",
+                content_mode=args.second_stage_mode,
                 evidence_rrf_constant=args.evidence_rrf_constant,
             )
             reranked = add_pair_rank_evidence(
@@ -491,9 +497,17 @@ def main() -> int:
         "serving_config_sha256": evaluate.serving_config_sha256(),
         "variant": f"{variant_prefix}_corpus_fts5_union_"
         + (
-            "rank_prefilter_evidence_rrf_v1"
+            (
+                "rank_prefilter_evidence_lines_rrf_v1"
+                if args.second_stage_mode == "evidence-lines-rrf"
+                else "rank_prefilter_evidence_rrf_v1"
+            )
             if args.content_rerank_depth is not None
-            else "evidence_rank_rrf_v1"
+            else (
+                "evidence_lines_rank_rrf_v1"
+                if args.second_stage_mode == "evidence-lines-rrf"
+                else "evidence_rank_rrf_v1"
+            )
         ),
         "provider": "api+remote-sqlite-fts5",
         "api_url": args.api_url,
@@ -518,8 +532,16 @@ def main() -> int:
                 "humanized_path",
                 "full_source_content",
                 "query_matched_source_windows",
+                *(
+                    ["query_matched_source_lines"]
+                    if args.second_stage_mode == "evidence-lines-rrf"
+                    else []
+                ),
             ],
-            "content_mode": "evidence-rrf",
+            "content_mode": args.second_stage_mode,
+            "matched_line_limit": 12
+            if args.second_stage_mode == "evidence-lines-rrf"
+            else None,
             "fusion": "equal-weight reciprocal-rank fusion",
             "fusion_rrf_constant": args.evidence_rrf_constant,
             "first_stage_rank_channels": [zoekt_channel, "corpus-fts5"],

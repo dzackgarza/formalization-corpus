@@ -21,6 +21,7 @@ from evaluate_fielded_lexical import (  # noqa: E402
 from evaluate_fielded_fts5 import (  # noqa: E402
     fts5_match_query,
     fts5_rerank,
+    query_matched_lines,
     query_matched_windows,
 )
 from evaluate_multiquery import retrieve_multiquery, rrf_fuse  # noqa: E402
@@ -449,6 +450,24 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         )
         self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_bm25_matched-windows")
 
+    def test_fts5_matched_lines_keep_dense_source_local_evidence(self) -> None:
+        content = "\n".join(
+            [
+                "namespace Example",
+                "-- Jordan appears here",
+                "theorem jordanCanonicalForm : Matrix n n R → True := by",
+                "  -- canonical form for a linear operator",
+                "theorem canonicalMap : True := by trivial",
+            ]
+        )
+        excerpt = query_matched_lines(
+            "Jordan canonical form of a linear operator", content, max_lines=2
+        )
+        self.assertIn("jordanCanonicalForm", excerpt)
+        self.assertIn("canonical form for a linear operator", excerpt)
+        self.assertNotIn("namespace Example", excerpt)
+        self.assertNotIn("canonicalMap", excerpt)
+
     def test_fts5_evidence_rrf_combines_path_broad_and_local_rankings(self) -> None:
         candidates = [
             {
@@ -487,6 +506,33 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         self.assertEqual(
             reranked[0]["SecondStageEvidence"],
             ["path", "full-content", "matched-windows"],
+        )
+
+    def test_fts5_evidence_lines_rrf_adds_line_local_channel(self) -> None:
+        candidates = [
+            {
+                "Repository": "r",
+                "FileName": "Linear/JordanCanonicalForm.lean",
+                "Score": 1.0,
+            }
+        ]
+        contents = {
+            ("r", "Linear/JordanCanonicalForm.lean"): (
+                "theorem jordanCanonicalForm : True := by\n"
+                "  -- Jordan canonical form for a linear operator\n"
+                "  trivial"
+            )
+        }
+        reranked = fts5_rerank(
+            "Jordan canonical form of a linear operator",
+            candidates,
+            contents,
+            content_mode="evidence-lines-rrf",
+        )
+        self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_evidence_lines_rrf")
+        self.assertEqual(
+            reranked[0]["SecondStageEvidence"],
+            ["path", "full-content", "matched-windows", "matched-lines"],
         )
 
     def test_fts5_evidence_rrf_preserves_first_stage_order_for_unmatched_candidates(self) -> None:
