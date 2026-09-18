@@ -142,6 +142,7 @@ class SearchEvaluationTests(unittest.TestCase):
                     rrf_constant=60,
                     weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
                     max_concurrency=4,
+                    batch_size=2,
                     api_retries=2,
                 )
             )
@@ -150,7 +151,8 @@ class SearchEvaluationTests(unittest.TestCase):
         self.assertEqual(formulations, [case["query"], "Jordan normal form"])
         self.assertEqual(fielded[0]["FileName"], "Jordan.lean")
         self.assertEqual(multiquery[0]["FileName"], "Jordan.lean")
-        self.assertEqual(runtime["physical_api_requests"], 1)
+        self.assertEqual(runtime["physical_api_requests"], 2)
+        self.assertEqual(runtime["batch_count"], 2)
         self.assertEqual(runtime["coalesced_query_consumers"], 1)
         self.assertEqual(runtime["unique_backend_searches"], len(by_query))
         self.assertEqual(search.call_args.kwargs["max_concurrency"], 4)

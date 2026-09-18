@@ -115,6 +115,7 @@ def retrieve_batched_first_stages(
     rrf_constant: int,
     weights: dict[str, float],
     max_concurrency: int,
+    batch_size: int,
     api_retries: int,
 ) -> tuple[
     list[dict[str, Any]],
@@ -124,11 +125,13 @@ def retrieve_batched_first_stages(
     list[str],
     dict[str, Any],
 ]:
-    """Retrieve both lexical first stages through one public batch request.
+    """Retrieve both lexical first stages through bounded public batch requests.
 
     The mathematical retrieval contract is unchanged: fielded weighted RRF and
     frozen multi-query RRF see the same compiled queries and depth as their
-    ordinary implementations.  Only transport/scheduling changes.
+    ordinary implementations.  Only transport/scheduling changes.  Bounded
+    slices keep one expensive query family from forcing every search in a case
+    into the same HTTP request on the memory-constrained search host.
     """
 
     field_queries = compile_field_queries(case["query"])
@@ -143,14 +146,35 @@ def retrieve_batched_first_stages(
         compiled.append(query)
 
     unique_queries = list(dict.fromkeys([*field_queries.values(), *compiled]))
-    by_query, batch_runtime = evaluate.api_search_batch(
-        unique_queries,
-        timeout,
-        api_url,
-        serving,
-        max_concurrency=max_concurrency,
-        retries=api_retries,
-    )
+    by_query: dict[str, list[dict[str, Any]]] = {}
+    batch_runtime: dict[str, Any] = {
+        "elapsed_ms": 0.0,
+        "payload_bytes": 0,
+        "physical_api_requests": 0,
+        "logical_queries": 0,
+        "max_concurrency": max_concurrency,
+        "cache_counts": {},
+        "batch_count": 0,
+    }
+    for start in range(0, len(unique_queries), batch_size):
+        batch = unique_queries[start : start + batch_size]
+        batch_rows, runtime = evaluate.api_search_batch(
+            batch,
+            timeout,
+            api_url,
+            serving,
+            max_concurrency=max_concurrency,
+            retries=api_retries,
+        )
+        by_query.update(batch_rows)
+        batch_runtime["elapsed_ms"] += float(runtime["elapsed_ms"])
+        batch_runtime["payload_bytes"] += int(runtime["payload_bytes"])
+        batch_runtime["physical_api_requests"] += int(runtime["physical_api_requests"])
+        batch_runtime["logical_queries"] += int(runtime["logical_queries"])
+        batch_runtime["batch_count"] += 1
+        for cache_status, count in runtime.get("cache_counts", {}).items():
+            cache_counts = batch_runtime["cache_counts"]
+            cache_counts[cache_status] = cache_counts.get(cache_status, 0) + int(count)
     fielded = weighted_rrf_fuse(
         [
             (field, weights[field], by_query[query])
@@ -305,6 +329,12 @@ def main() -> int:
         help="server-side concurrency bound for --batch-first-stage",
     )
     parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=4,
+        help="maximum unique searches per HTTP request for --batch-first-stage",
+    )
+    parser.add_argument(
         "--omit-first-stage-chunks",
         action="store_true",
         help="request only ranked file identities from first-stage API calls",
@@ -325,8 +355,8 @@ def main() -> int:
     if args.api_retries < 0:
         print("ERROR: api retries must be nonnegative", file=sys.stderr)
         return 2
-    if args.batch_max_concurrency <= 0:
-        print("ERROR: batch max concurrency must be positive", file=sys.stderr)
+    if args.batch_max_concurrency <= 0 or args.batch_size <= 0:
+        print("ERROR: batch max concurrency and batch size must be positive", file=sys.stderr)
         return 2
     if args.batch_first_stage and (
         args.parallel_first_stages
@@ -399,6 +429,7 @@ def main() -> int:
                     rrf_constant=args.rrf_constant,
                     weights=weights,
                     max_concurrency=args.batch_max_concurrency,
+                    batch_size=args.batch_size,
                     api_retries=args.api_retries,
                 )
                 fielded_runtime = {
@@ -637,6 +668,7 @@ def main() -> int:
             "batch_max_concurrency": args.batch_max_concurrency
             if args.batch_first_stage
             else None,
+            "batch_size": args.batch_size if args.batch_first_stage else None,
             "per_retriever_depth": args.per_retriever_depth,
             "field_weights": weights,
             "rrf_constant": args.rrf_constant,
