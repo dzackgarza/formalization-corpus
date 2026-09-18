@@ -264,6 +264,7 @@
           },
           "repository": "Vilin97__Clawristotle",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 19
           }
         },
@@ -277,7 +278,8 @@
           },
           "repository": "Vilin97__lean-pool",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 19
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 19,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
           }
         },
         {
@@ -290,15 +292,121 @@
           },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
         },
         {
           "file": "Mathlib/CategoryTheory/Sites/Coherent/RegularSheaves.lean",
+          "judgment": {
+            "file": "Mathlib/CategoryTheory/Sites/Coherent/RegularSheaves.lean",
+            "note": "Characterizes sheaves for the regular topology via effective-epimorphism equalizer conditions; no Serre-duality or coherent-sheaf duality theorem.",
+            "relevance": 0,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/SerreDualityPairing.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityTate.lean",
+          "judgment": {
+            "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityTate.lean",
+            "note": "Derives curve/P1 Serre-duality statements from Tate-style duality data.",
+            "relevance": 2,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Dolbeault/SerreDualityPairing.lean",
+          "judgment": {
+            "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Dolbeault/SerreDualityPairing.lean",
+            "note": "Substantive Serre-duality pairing development: defines SerreDualityData and proves dimension/duality consequences in the Dolbeault branch; closely relevant, though not the primary coherent-sheaf owner.",
+            "relevance": 2,
+            "repository": "mrdouglasny__jacobian-challenge"
+          },
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ProjectiveSerreVanishingResolution.lean",
+          "judgment": null,
+          "repository": "Vilin97__Clawristotle",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/SerreDuality.lean",
+          "judgment": {
+            "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/SerreDuality.lean",
+            "note": "Formalizes the finite-dimensional surjectivity core of a PDE-free Serre-duality argument; the file explicitly records that the geometric cohomology inputs remain elsewhere.",
+            "relevance": 2,
+            "repository": "mrdouglasny__jacobian-challenge"
+          },
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Sites/Coherent/SheafComparison.lean",
           "judgment": null,
           "repository": "leanprover-community__mathlib4",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/CanonicalSheafCurves.lean",
+          "judgment": {
+            "file": "v1/Atlas/AlgebraicGeometryI/code/CanonicalSheafCurves.lean",
+            "note": "Develops canonical-sheaf numerical Serre duality on smooth complete curves.",
+            "relevance": 2,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Dolbeault/SerreDuality.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/RelativeProjectiveSerreInfrastructure.lean",
+          "judgment": null,
+          "repository": "Vilin97__Clawristotle",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -586,6 +694,118 @@
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
+        },
+        {
+          "file": "TauCeti/GroupTheory/TitsSystem/Bruhat/Basic.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "BruhatTits.lean",
+          "judgment": {
+            "file": "BruhatTits.lean",
+            "note": "Import-only root module for the dedicated Bruhat-Tits formalization; useful navigation, not owner content.",
+            "relevance": 1,
+            "repository": "chrisflav__bruhat-tits"
+          },
+          "repository": "chrisflav__bruhat-tits",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/BNPair/Basic.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/Building/BruhatTitsFixedPoint.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/Building/AffineSLV.lean",
+          "judgment": {
+            "file": "v1/Atlas/Buildings/code/Building/AffineSLV.lean",
+            "note": "Formalizes the Bruhat\u2013Tits affine building of SL(V); for rank two this is the tree, but the file is a more general building development.",
+            "relevance": 2,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/Building/CompactSubgroups.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "TauCeti/LinearAlgebra/Matrix/GeneralLinearGroup/Diagonal/TitsSystem.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "BruhatTits/Lattice/Distance.lean",
+          "judgment": null,
+          "repository": "chrisflav__bruhat-tits",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/Valuation/LatticesValuations.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/Building/AffineIsometry/Contexts.lean",
+          "judgment": {
+            "file": "v1/Atlas/Buildings/code/Building/AffineIsometry/Contexts.lean",
+            "note": "Defines contexts for affine buildings of types C, D, and B; it is not a formalization of the Bruhat\u2013Tits tree.",
+            "relevance": 0,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "Mathlib/Algebra/Module/Lattice.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30
+          }
         }
       ],
       "id": "bruhat-tits-tree",
@@ -872,6 +1092,126 @@
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/TraceResidue.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RiemannRochTheorem/Basic.lean",
+          "judgment": {
+            "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RiemannRochTheorem/Basic.lean",
+            "note": "Dedicated Riemann\u2013Roch theorem for function fields/curves.",
+            "relevance": 3,
+            "repository": "CBirkbeck__AINTLIB"
+          },
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "Jacobians/RiemannSurface/Cohomology/Repartitions.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Basic.lean",
+          "judgment": {
+            "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Basic.lean",
+            "note": "Basic divisor and Riemann\u2013Roch API used by the vendored function-field development.",
+            "relevance": 1,
+            "repository": "CBirkbeck__AINTLIB"
+          },
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/EllipticCurve/Basic.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/EllipticCurves/Suggested.lean",
+          "judgment": {
+            "file": "TauCetiRoadmap/EllipticCurves/Suggested.lean",
+            "note": "Elliptic-curve roadmap whose divisor-class discussion explicitly does not use Riemann\u2013Roch; no RR theorem is formalized here.",
+            "relevance": 0,
+            "repository": "TauCetiProject__TauCetiRoadmap"
+          },
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochApplications.lean",
+          "judgment": {
+            "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochApplications.lean",
+            "note": "Develops curve consequences and specializations of the Riemann\u2013Roch theorem.",
+            "relevance": 2,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityCurves.lean",
+          "judgment": {
+            "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityCurves.lean",
+            "note": "Closely related curve development deriving Riemann\u2013Roch in Serre form and combining it with Serre duality; the primary geometric Riemann\u2013Roch theorem is owned elsewhere.",
+            "relevance": 2,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/AbelSubsetThirdKind.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Polar.lean",
+          "judgment": {
+            "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Polar.lean",
+            "note": "Pole-divisor and genus infrastructure supporting the vendored Riemann\u2013Roch development.",
+            "relevance": 1,
+            "repository": "CBirkbeck__AINTLIB"
+          },
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
         }
       ],
       "id": "riemann-roch-curves",
@@ -1113,7 +1453,8 @@
           },
           "repository": "opencompl__lean-mlir",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 15
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 15,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
           }
         },
         {
@@ -1126,6 +1467,7 @@
           },
           "repository": "Vilin97__lean-pool",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 16
           }
         },
@@ -1153,7 +1495,8 @@
           },
           "repository": "riccardobrasca__KummerCriterion",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 17
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 17,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
           }
         },
         {
@@ -1166,6 +1509,7 @@
           },
           "repository": "leanprover-community__lean-liquid",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 19
           }
         },
@@ -1181,6 +1525,114 @@
           "runs": {
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
+          }
+        },
+        {
+          "file": "src/synthetic-category-theory/cone-diagrams-synthetic-categories.lagda.md",
+          "judgment": null,
+          "repository": "UniMath__agda-unimath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "src/metis/folMapping.sig",
+          "judgment": null,
+          "repository": "HOL-Theorem-Prover__HOL",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "Instance/FinSet/Skeleton.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "thys/Containers/Mapping_Impl.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "src/for_mathlib/bicartesian2.lean",
+          "judgment": null,
+          "repository": "dagurtomas__lean-solid",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "v1/Atlas/TensorCategories/code/DistinguishedInvertible.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "ProvabilityLogic/Kripke/Cone.lean",
+          "judgment": {
+            "file": "ProvabilityLogic/Kripke/Cone.lean",
+            "note": "Defines cones in Kripke frames/models; unrelated to mapping cones of complexes or quasi-isomorphisms.",
+            "relevance": 0,
+            "repository": "FormalizedFormalLogic__ProvabilityLogic"
+          },
+          "repository": "FormalizedFormalLogic__ProvabilityLogic",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "Structure/Equalizer/Coreflexive.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "1002/lean/Erdos1002/CountVectorMapping.lean",
+          "judgment": null,
+          "repository": "ShouqiaoW__erdos",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "Cubical/HITs/MappingCones/Properties.agda",
+          "judgment": {
+            "file": "Cubical/HITs/MappingCones/Properties.agda",
+            "note": "Proves pushout equivalences for homotopy-theoretic mapping cones, not the chain-complex criterion.",
+            "relevance": 1,
+            "repository": "agda__cubical"
+          },
+          "repository": "agda__cubical",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "src/Categories/Diagram/Cone.agda",
+          "judgment": {
+            "file": "src/Categories/Diagram/Cone.agda",
+            "note": "Defines categorical cones over diagrams, not chain-complex mapping cones and not the quasi-isomorphism criterion.",
+            "relevance": 0,
+            "repository": "agda__agda-categories"
+          },
+          "repository": "agda__agda-categories",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -1400,6 +1852,20 @@
           }
         },
         {
+          "file": "rocq/CertRL/LM/continuous_linear_map.v",
+          "judgment": {
+            "file": "rocq/CertRL/LM/continuous_linear_map.v",
+            "note": "Develops bounded/continuous linear maps on normed modules; its Canonical declarations are Rocq structure instances, not Jordan canonical form.",
+            "relevance": 0,
+            "repository": "IBM__FormalML"
+          },
+          "repository": "IBM__FormalML",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 16,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
           "file": "TauCeti/LinearAlgebra/JordanChevalley/Functoriality.lean",
           "judgment": {
             "file": "TauCeti/LinearAlgebra/JordanChevalley/Functoriality.lean",
@@ -1411,14 +1877,6 @@
           "runs": {
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 17,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 16
-          }
-        },
-        {
-          "file": "rocq/CertRL/LM/continuous_linear_map.v",
-          "judgment": null,
-          "repository": "IBM__FormalML",
-          "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 16
           }
         },
         {
@@ -1445,15 +1903,22 @@
           },
           "repository": "TauCetiProject__TauCeti",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 18
           }
         },
         {
           "file": "src/HOL/Analysis/Analysis.thy",
-          "judgment": null,
+          "judgment": {
+            "file": "src/HOL/Analysis/Analysis.thy",
+            "note": "Umbrella Isabelle/HOL analysis theory importing many topics, including Jordan curves, but no Jordan canonical-form development.",
+            "relevance": 0,
+            "repository": "isabelle-prover__mirror-isabelle"
+          },
           "repository": "isabelle-prover__mirror-isabelle",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 18
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 18,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
           }
         },
         {
@@ -1466,6 +1931,7 @@
           },
           "repository": "TauCetiProject__TauCeti",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 19
           }
         },
@@ -1479,7 +1945,8 @@
           },
           "repository": "Project-Navi__cd-formalization",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
           }
         },
         {
@@ -1492,7 +1959,88 @@
           },
           "repository": "isabelle-prover__mirror-afp-devel",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
+          }
+        },
+        {
+          "file": "TauCeti/Algebra/AlgebraicGroup/Representation/JordanDecomposition/Basic.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "TauCeti/LinearAlgebra/Matrix/RationalCanonicalFormFinTwo.lean",
+          "judgment": {
+            "file": "TauCeti/LinearAlgebra/Matrix/RationalCanonicalFormFinTwo.lean",
+            "note": "Related alternative canonical-form development for 2x2 matrices; it proves rational, not Jordan, canonical form.",
+            "relevance": 1,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "thys/Complex_Bounded_Operators/Cblinfun_Code.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "TauCeti/LinearAlgebra/JordanChevalley/Commuting.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "thys/Registers/Misc.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "Matroid/ForMathlib/Topology/JordanCurve.lean",
+          "judgment": null,
+          "repository": "apnelson1__Matroid",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "thys/Linear_Programming/More_Jordan_Normal_Forms.thy",
+          "judgment": {
+            "file": "thys/Linear_Programming/More_Jordan_Normal_Forms.thy",
+            "note": "Direct extension of the AFP Jordan normal-form matrix implementation, used for further Jordan-form calculations.",
+            "relevance": 2,
+            "repository": "isabelle-prover__mirror-afp-devel"
+          },
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "TauCeti/LinearAlgebra/CliffordAlgebra/ParitySwap.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -1777,15 +2325,137 @@
           },
           "repository": "leanprover-community__mathlib4",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
         },
         {
           "file": "LocalClassFieldTheory/DiscreteValuationRing/DiscreteNorm.lean",
+          "judgment": {
+            "file": "LocalClassFieldTheory/DiscreteValuationRing/DiscreteNorm.lean",
+            "note": "Constructs normed structures and the discrete norm on algebraic extensions of a complete discretely valued field; relevant complete-DVR infrastructure, but no Hensel root-lifting theorem.",
+            "relevance": 1,
+            "repository": "mariainesdff__LocalClassFieldTheory"
+          },
+          "repository": "mariainesdff__LocalClassFieldTheory",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "TauCeti/RingTheory/DiscreteValuationRing/FractionRing.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "src/Spa/stalk_valuation.lean",
+          "judgment": {
+            "file": "src/Spa/stalk_valuation.lean",
+            "note": "Perfectoid-space completed valuation-field infrastructure; no Hensel lemma.",
+            "relevance": 0,
+            "repository": "leanprover-community__lean-perfectoid-spaces"
+          },
+          "repository": "leanprover-community__lean-perfectoid-spaces",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "Mathlib/NumberTheory/Padics/PadicIntegers.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "LocalClassFieldTheory/DiscreteValuationRing/Basic.lean",
           "judgment": null,
           "repository": "mariainesdff__LocalClassFieldTheory",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "Mathlib/RingTheory/DiscreteValuationRing/Basic.lean",
+          "judgment": {
+            "file": "Mathlib/RingTheory/DiscreteValuationRing/Basic.lean",
+            "note": "Basic discrete-valuation-ring infrastructure relevant to the ambient setting, but no Hensel lemma or completeness theorem is developed here.",
+            "relevance": 1,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "Adic spaces/FJP/Over/StrongSheafy.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "Adic spaces/FJP/FiniteJetRings.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "HassePrinciple/Padics/Lemmas.lean",
+          "judgment": null,
+          "repository": "mariainesdff__HassePrinciple",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "Adic spaces/Presheaf.lean",
+          "judgment": {
+            "file": "Adic spaces/Presheaf.lean",
+            "note": "Adic-space presheaf/completion development; no Hensel root lifting.",
+            "relevance": 0,
+            "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean"
+          },
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "projects/AdicSpaces/Adic spaces/Presheaf.lean",
+          "judgment": {
+            "file": "projects/AdicSpaces/Adic spaces/Presheaf.lean",
+            "note": "Adic-space presheaf/completion development; despite completeness terminology, it contains no complete-DVR Hensel root-lifting theorem.",
+            "relevance": 0,
+            "repository": "CBirkbeck__AINTLIB"
+          },
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "Mathlib/NumberTheory/Padics/PadicNumbers.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -2073,6 +2743,113 @@
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
+        },
+        {
+          "file": "TauCeti/LinearAlgebra/RootSystem/FundamentalDomain.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/UniversalCover.lean",
+          "judgment": {
+            "file": "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/UniversalCover.lean",
+            "note": "Fundamental group and universal-cover deck transformations.",
+            "relevance": 3,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/EilenbergMacLane.lean",
+          "judgment": {
+            "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/EilenbergMacLane.lean",
+            "note": "Directly studies covering spaces attached to subgroups of the fundamental group in the aspherical/K(G,1) setting; substantive covering/fundamental-group theory.",
+            "relevance": 2,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/SemilocallySimplyConnected/Covering.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "thys/Seifert-Van-Kampen/Fundamental_Group_Scaffold.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "TauCeti/Topology/Covering/Monodromy/Full.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "TauCeti/MeasureTheory/Group/FundamentalDomain.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "Mathlib/AlgebraicTopology/FundamentalGroupoid/FundamentalGroup.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "Jacobians/RiemannSurface/BranchCutCoveringBridge.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/PathComponent.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/UniversalCovers/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30
+          }
         }
       ],
       "id": "fundamental-group-covering-space",
@@ -2314,12 +3091,18 @@
           },
           "repository": "isabelle-prover__mirror-afp-devel",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 17
           }
         },
         {
           "file": "NN/Runtime/RL/Boundary.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "NN/Runtime/RL/Boundary.lean",
+            "note": "Umbrella module for reinforcement-learning runtime trust-boundary contracts and JSON validation; boundary here is unrelated to manifolds or collar neighborhoods.",
+            "relevance": 0,
+            "repository": "lean-dojo__TorchLean"
+          },
           "repository": "lean-dojo__TorchLean",
           "runs": {
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 17
@@ -2335,23 +3118,36 @@
           },
           "repository": "TauCetiProject__TauCeti",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 18
           }
         },
         {
           "file": "Sendov/Boundary.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "Sendov/Boundary.lean",
+            "note": "Proves a boundary case of Sendov/Rubinstein theory for roots of complex polynomials; unrelated to manifold boundaries or collar neighborhoods.",
+            "relevance": 0,
+            "repository": "teorth__sendov"
+          },
           "repository": "teorth__sendov",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 18
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 18,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
           }
         },
         {
           "file": "1002/lean/Erdos1002/IteratedBoundaryRestoration.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "1002/lean/Erdos1002/IteratedBoundaryRestoration.lean",
+            "note": "Proves an asymptotic limit lemma for restoring a boundary after contraction; boundary is an error term, not a manifold boundary or collar.",
+            "relevance": 0,
+            "repository": "ShouqiaoW__erdos"
+          },
           "repository": "ShouqiaoW__erdos",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 19
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 19,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
           }
         },
         {
@@ -2382,10 +3178,137 @@
         },
         {
           "file": "NN/Proofs/RL/Boundary.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "NN/Proofs/RL/Boundary.lean",
+            "note": "Bridges executable reinforcement-learning trust-boundary checks to Prop-level contracts; unrelated to manifolds or collar neighborhoods.",
+            "relevance": 0,
+            "repository": "lean-dojo__TorchLean"
+          },
           "repository": "lean-dojo__TorchLean",
           "runs": {
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20
+          }
+        },
+        {
+          "file": "thys/Smooth_Manifolds/Tangent_Space.thy",
+          "judgment": {
+            "file": "thys/Smooth_Manifolds/Tangent_Space.thy",
+            "note": "General tangent-space theory for smooth manifolds; supporting smooth-manifold infrastructure, but no manifold-with-boundary collar construction.",
+            "relevance": 1,
+            "repository": "isabelle-prover__mirror-afp-devel"
+          },
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "Uniformization/Surface/Fill/RayBuild.lean",
+          "judgment": null,
+          "repository": "rkirov__jordan_pick",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "1038/lean/Erdos1038/SublevelBoundary.lean",
+          "judgment": null,
+          "repository": "ShouqiaoW__erdos",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "thys/Lie_Groups/More_Manifolds.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "green-tao/Submission/Hypergraph/BoundaryBernoulli.lean",
+          "judgment": null,
+          "repository": "Vilin97__Clawristotle",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "TauCeti/Geometry/Manifold/Boundary/Model.lean",
+          "judgment": {
+            "file": "TauCeti/Geometry/Manifold/Boundary/Model.lean",
+            "note": "Boundary model infrastructure.",
+            "relevance": 2,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "NN/Widgets/RL/Boundary.lean",
+          "judgment": null,
+          "repository": "lean-dojo__TorchLean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "projects/LeanModularForms/LeanModularForms/ForMathlib/ValenceFormula/Boundary/Smooth.lean",
+          "judgment": {
+            "file": "projects/LeanModularForms/LeanModularForms/ForMathlib/ValenceFormula/Boundary/Smooth.lean",
+            "note": "Differentiability of a piecewise boundary curve for a modular fundamental domain; unrelated to collars of smooth manifolds with boundary.",
+            "relevance": 0,
+            "repository": "CBirkbeck__AINTLIB"
+          },
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "Mathlib/Geometry/Manifold/Instances/Real.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "Schoenflies/NestedCollarStages.lean",
+          "judgment": null,
+          "repository": "mccorvie__classification-of-surfaces",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "Uniformization/Surface/Fill/Collapse.lean",
+          "judgment": null,
+          "repository": "rkirov__jordan_pick",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "thys/Smooth_Manifolds/Bump_Function.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "1038/lean/Erdos1038/CircleAbelBoundary.lean",
+          "judgment": null,
+          "repository": "ShouqiaoW__erdos",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -2633,6 +3556,20 @@
           }
         },
         {
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AcyclicResolution.lean",
+          "judgment": {
+            "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AcyclicResolution.lean",
+            "note": "Constructs and manipulates injective resolutions, including lifting short exact sequences to degreewise-split resolutions; directly relevant implementation machinery.",
+            "relevance": 2,
+            "repository": "Vilin97__Clawristotle"
+          },
+          "repository": "Vilin97__Clawristotle",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 17,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
           "file": "Mathlib/CategoryTheory/Abelian/EpiWithInjectiveKernel.lean",
           "judgment": {
             "file": "Mathlib/CategoryTheory/Abelian/EpiWithInjectiveKernel.lean",
@@ -2647,19 +3584,6 @@
           }
         },
         {
-          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AcyclicResolution.lean",
-          "judgment": {
-            "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AcyclicResolution.lean",
-            "note": "Constructs and manipulates injective resolutions, including lifting short exact sequences to degreewise-split resolutions; directly relevant implementation machinery.",
-            "relevance": 2,
-            "repository": "Vilin97__Clawristotle"
-          },
-          "repository": "Vilin97__Clawristotle",
-          "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 17
-          }
-        },
-        {
           "file": "v1/Atlas/TensorCategories/code/AntipodeBijective/Injective.lean",
           "judgment": {
             "file": "v1/Atlas/TensorCategories/code/AntipodeBijective/Injective.lean",
@@ -2669,15 +3593,22 @@
           },
           "repository": "facebookresearch__atlas-lean",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 18
           }
         },
         {
           "file": "LeanCondensed/Mathlib/Algebra/Homology/DerivedCategory/TwoVariable.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "LeanCondensed/Mathlib/Algebra/Homology/DerivedCategory/TwoVariable.lean",
+            "note": "Defines K-injective resolutions and right-derived bifunctor machinery, but the lemma deriving enough K-injective resolutions from enough injectives is still sorry-backed; relevant incomplete supporting infrastructure rather than an existence owner.",
+            "relevance": 1,
+            "repository": "dagurtomas__LeanCondensed"
+          },
           "repository": "dagurtomas__LeanCondensed",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 19
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 19,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
           }
         },
         {
@@ -2690,7 +3621,97 @@
           },
           "repository": "jwiegley__category-theory",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 19
+          }
+        },
+        {
+          "file": "src/category-theory/essentially-injective-functors-precategories.lagda.md",
+          "judgment": null,
+          "repository": "UniMath__agda-unimath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/Projective/Extend.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "Cubical/Categories/Abelian.agda",
+          "judgment": null,
+          "repository": "agda__cubical",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Localization/Resolution.lean",
+          "judgment": {
+            "file": "Mathlib/CategoryTheory/Localization/Resolution.lean",
+            "note": "Develops left/right resolution structures and the injective-complex derivability machinery for abelian categories with enough injectives; closely relevant resolution infrastructure.",
+            "relevance": 2,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23DerivedFunctors.lean",
+          "judgment": {
+            "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23DerivedFunctors.lean",
+            "note": "Derived-functor development that assumes HasInjectiveResolutions and repeatedly consumes injective resolutions; relevant downstream machinery, not an existence proof.",
+            "relevance": 1,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "Cubical/Categories/Abelian/Base.agda",
+          "judgment": null,
+          "repository": "agda__cubical",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/Categories/AbelianMonoid.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "Linglib/Semantics/Questions/Basic.lean",
+          "judgment": null,
+          "repository": "hawkrobe__linglib",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "Mathlib/LinearAlgebra/FreeModule/Basic.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -2978,6 +3999,113 @@
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
+        },
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/ProjectiveVarieties.lean",
+          "judgment": {
+            "file": "v1/Atlas/ArithmeticGeometry/code/ProjectiveVarieties.lean",
+            "note": "Projective-variety/affine-patch infrastructure; no Hilbert Nullstellensatz theorem.",
+            "relevance": 0,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "LocalComplexGeometry/Nullstellensatz/PreparedPrime.lean",
+          "judgment": null,
+          "repository": "BochaoKong__nullstellensatz",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "TauCeti/RingTheory/FiniteType/FaithfullyFlatPoints.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "TauCeti/Algebra/AlgebraicGroup/CommHopfAlgCat/FaithfullyFlatPoints.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "Mathlib/Combinatorics/Nullstellensatz.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "TauCeti/RingTheory/FiniteType/PointSeparation.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "LocalComplexGeometry/Nullstellensatz/Main.lean",
+          "judgment": null,
+          "repository": "BochaoKong__nullstellensatz",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "LocalComplexGeometry/Nullstellensatz/PolynomialRepresentativeOperations.lean",
+          "judgment": null,
+          "repository": "BochaoKong__nullstellensatz",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/ProductVarieties.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "NullstellensatzPalomarChallenge.lean",
+          "judgment": {
+            "file": "NullstellensatzPalomarChallenge.lean",
+            "note": "Formalizes a local analytic Nullstellensatz/R\u00fcckert theorem, a related but different analytic result rather than Hilbert\u2019s affine-algebraic Nullstellensatz.",
+            "relevance": 1,
+            "repository": "BochaoKong__nullstellensatz"
+          },
+          "repository": "BochaoKong__nullstellensatz",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "LocalComplexGeometry/Nullstellensatz/FiberCancellation.lean",
+          "judgment": null,
+          "repository": "BochaoKong__nullstellensatz",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30
+          }
         }
       ],
       "id": "nullstellensatz-affine",
@@ -3263,6 +4391,108 @@
           "runs": {
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
+          }
+        },
+        {
+          "file": "TauCeti/Algebra/HopfAlgebra/FiniteDual/CartierDuality/Basic.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/FiniteSplitHomDuality.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S05_TICyclic.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "projects/FltRegularBernoulli/BernoulliRegular/FLT37/LehmerVandiver/PlusCoprime/Sinnott/LDerivative/SinnottMatrixEmbeddingIndexBridge.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "FLT/Patching/Utils/CompactHausdorffRings.lean",
+          "judgment": null,
+          "repository": "ImperialCollegeLondon__FLT",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "TauCeti/Analysis/Fourier/AddCircle.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "books/projects/groups/abelian.lisp",
+          "judgment": null,
+          "repository": "acl2__acl2",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S05_OmegaGrid.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AbelianSheafFiniteSubsetCech.lean",
+          "judgment": null,
+          "repository": "Vilin97__Clawristotle",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "TauCeti/LinearAlgebra/FiniteBilinearModule/Basic.lean",
+          "judgment": {
+            "file": "TauCeti/LinearAlgebra/FiniteBilinearModule/Basic.lean",
+            "note": "Uses finite-abelian character/Pontryagin duality to develop nondegenerate finite bilinear modules; a supporting consumer rather than the duality theorem owner.",
+            "relevance": 1,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "Structure/Abelian.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
           }
         }
       ],
@@ -3550,6 +4780,115 @@
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
+        },
+        {
+          "file": "TauCeti/Analysis/Calculus/Morse/GradientFlow.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "LeanPool/DomainTheory/Neighborhood/Exercise516ThueMorse.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "Mathlib/RingTheory/Polynomial/Morse.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "TauCeti/Analysis/Calculus/SecondDerivative.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "LeanPool/PLAcceleratedNesterovLean/MorseBott/Defs.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "LeanPool/CriticalPortraits/Portraits.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/CriticalSetDiscrete.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "TauCeti/Data/ZMod/OnePoint.lean",
+          "judgment": {
+            "file": "TauCeti/Data/ZMod/OnePoint.lean",
+            "note": "Multiplication on the one-point extension of ZMod; unrelated to Morse critical points or the Morse lemma.",
+            "relevance": 0,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "LeanPool/PLAcceleratedNesterovLean/MorseBott/Bridge.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/CriticalSetDiscrete.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "theories/Elements/OriginalProofs/lemma_midpointunique.v",
+          "judgment": null,
+          "repository": "GeoCoq__GeoCoq",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "theories/Elements/OriginalProofs/lemma_pointreflectionisometry.v",
+          "judgment": null,
+          "repository": "GeoCoq__GeoCoq",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
         }
       ],
       "id": "morse-lemma",
@@ -3825,10 +5164,16 @@
         },
         {
           "file": "FLT/Slop/PGL2/FiniteSubgroups/TameClassification.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "FLT/Slop/PGL2/FiniteSubgroups/TameClassification.lean",
+            "note": "Proves Dickson classification of tame finite subgroups of PGL\u2082 as cyclic, dihedral, A\u2084, S\u2084, or A\u2085; unrelated to the structure theorem for finitely generated abelian groups.",
+            "relevance": 0,
+            "repository": "ImperialCollegeLondon__FLT"
+          },
           "repository": "ImperialCollegeLondon__FLT",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
           }
         },
         {
@@ -3841,7 +5186,111 @@
           },
           "repository": "yawara__odd-order",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
+          }
+        },
+        {
+          "file": "Mathlib/ModelTheory/FinitelyGenerated.lean",
+          "judgment": {
+            "file": "Mathlib/ModelTheory/FinitelyGenerated.lean",
+            "note": "Defines finitely generated first-order structures, not the classification of finitely generated abelian groups.",
+            "relevance": 0,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "FormalConjectures/Wikipedia/BoundedBurnsideProblem.lean",
+          "judgment": null,
+          "repository": "google-deepmind__formal-conjectures",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/GlobalQuadraticForms/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "OddOrder/Higman/Suzuki2Groups/HigmanLemmaTwelve/Classification.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "src/group-theory/abelian-groups.lagda.md",
+          "judgment": null,
+          "repository": "UniMath__agda-unimath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "Mathlib/GroupTheory/FiniteAbelian/Basic.lean",
+          "judgment": {
+            "file": "Mathlib/GroupTheory/FiniteAbelian/Basic.lean",
+            "note": "Contains the structure theorem for finitely generated abelian groups.",
+            "relevance": 3,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "OddOrder/Higman/Suzuki2Groups/HigmanLemmaThirteen/ExponentTwoFactorModels.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "thys/Finitely_Generated_Abelian_Groups/IDirProds.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "Mathlib/GroupTheory/FinitelyPresentedGroup.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "OddOrder/Higman/Suzuki2Groups/HigmanCoverDerivedSeries.lean",
+          "judgment": {
+            "file": "OddOrder/Higman/Suzuki2Groups/HigmanCoverDerivedSeries.lean",
+            "note": "Special Suzuki 2-group derived-series theory; no general finitely generated abelian-group classification.",
+            "relevance": 0,
+            "repository": "yawara__odd-order"
+          },
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -4129,6 +5578,122 @@
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 18,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
+        },
+        {
+          "file": "thys/Elliptic_Functions/Weierstrass_Addition.thy",
+          "judgment": {
+            "file": "thys/Elliptic_Functions/Weierstrass_Addition.thy",
+            "note": "Addition formulas for the Weierstrass elliptic function, not the Stone\u2013Weierstrass approximation theorem.",
+            "relevance": 0,
+            "repository": "isabelle-prover__mirror-afp-devel"
+          },
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "Mathlib/Analysis/SpecialFunctions/Elliptic/Weierstrass.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "thys/Stone_Algebras/Stone_Construction.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "blueprint/TorchLeanBlueprint/Guide/Ch4_Verification/ApproximationTheory.lean",
+          "judgment": null,
+          "repository": "lean-dojo__TorchLean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "Mathlib/Analysis/Fourier/AddCircle.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "Multivariate/realanalysis.ml",
+          "judgment": null,
+          "repository": "jrh13__hol-light",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "Mathlib/Topology/Compactification/StoneCech.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "ErdosStoneSimonovitsKovariSosTuran/Combinatorics/SimpleGraph/Extremal/ErdosStoneSimonovits.lean",
+          "judgment": null,
+          "repository": "mitchell-horner__ErdosStoneSimonovitsKovariSosTuran",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "TauCeti/RepresentationTheory/SU2/Exhaustion.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "TauCeti/RepresentationTheory/Compact/RepresentativeDensity.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "Multivariate/realanalysis.ml",
+          "judgment": null,
+          "repository": "CakeML__candle",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "QuantumInfo/ForMathlib/HermitianMat/CFC.lean",
+          "judgment": null,
+          "repository": "leanprover-community__physlib",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "Mathlib/Analysis/CStarAlgebra/GelfandDuality.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
         }
       ],
       "id": "stone-weierstrass",
@@ -4415,6 +5980,101 @@
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
+        },
+        {
+          "file": "BrownianMotion/Auxiliary/HasGaussianLaw.lean",
+          "judgment": null,
+          "repository": "RemyDegenne__brownian-motion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "thys/Circus/CSP_Processes.thy",
+          "judgment": {
+            "file": "thys/Circus/CSP_Processes.thy",
+            "note": "Develops CSP processes and reactive designs; the word process is unrelated to Gaussian processes or Brownian motion.",
+            "relevance": 0,
+            "repository": "isabelle-prover__mirror-afp-devel"
+          },
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "MathFin/Foundations/GaussianMoments.lean",
+          "judgment": null,
+          "repository": "formal-applied-math__formal-mathfin",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "MathFin/Foundations/WienerIntegralGaussian.lean",
+          "judgment": null,
+          "repository": "formal-applied-math__formal-mathfin",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "Mathlib/Probability/Distributions/Gaussian/IsGaussianProcess/Independence.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "verso/Manual/Pages/Processes.lean",
+          "judgment": null,
+          "repository": "RemyDegenne__brownian-motion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "BrownianMotion/Auxiliary/HasLaw.lean",
+          "judgment": null,
+          "repository": "RemyDegenne__brownian-motion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "BrownianMotion/Auxiliary/Indistinguishable.lean",
+          "judgment": null,
+          "repository": "RemyDegenne__brownian-motion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "lakefile.lean",
+          "judgment": null,
+          "repository": "formal-applied-math__formal-mathfin",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "BrownianMotion/StochasticIntegral/L2M.lean",
+          "judgment": null,
+          "repository": "RemyDegenne__brownian-motion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
         }
       ],
       "id": "brownian-motion-construction",
@@ -4690,10 +6350,16 @@
         },
         {
           "file": "TauCeti/Analysis/Contour/Argument/Principle.lean",
-          "judgment": null,
+          "judgment": {
+            "file": "TauCeti/Analysis/Contour/Argument/Principle.lean",
+            "note": "Formalizes the complex-analytic argument principle using contour integrals and meromorphic order; unrelated to sphere eversion or regular homotopies of immersions.",
+            "relevance": 0,
+            "repository": "TauCetiProject__TauCeti"
+          },
           "repository": "TauCetiProject__TauCeti",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
           }
         },
         {
@@ -4706,7 +6372,96 @@
           },
           "repository": "leanprover-community__sphere-eversion",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
+          }
+        },
+        {
+          "file": "SphereEversion/ToMathlib/LinearAlgebra/Basic.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "SphereEversion/ToMathlib/Analysis/InnerProductSpace/Dual.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "SphereEversion/ToMathlib/SmoothBarycentric.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "SphereEversion/ToMathlib/Topology/Path.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "SphereEversion/ToMathlib/Equivariant.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "HexRootsMathlib/ArgumentPrinciple.lean",
+          "judgment": null,
+          "repository": "kim-em__hex-dev",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "TauCeti/Analysis/Complex/Conformal/Reflection/Circle/Principle.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "SphereEversion/Global/TwistOneJetSec.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "SphereEversion/ToMathlib/Geometry/Manifold/IsManifold/ExtChartAt.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "SphereEversion/ToMathlib/Unused/IntervalIntegral.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -4991,15 +6746,115 @@
           },
           "repository": "fpvandoorn__carleson",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
         },
         {
           "file": "Mathlib/Analysis/LocallyConvex/PointwiseConvergence.lean",
+          "judgment": {
+            "file": "Mathlib/Analysis/LocallyConvex/PointwiseConvergence.lean",
+            "note": "Develops the locally convex topology of pointwise convergence on semilinear maps; no Carleson theorem or Fourier-convergence result.",
+            "relevance": 0,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "Carleson/Classical/HilbertStrongType.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "Carleson/Psi.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "Carleson/ToMathlib/RealInterpolation/LorentzInterpolation.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "Carleson/Forest.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "Mathlib/Topology/Algebra/Module/Spaces/PointwiseConvergenceCLM.lean",
           "judgment": null,
           "repository": "leanprover-community__mathlib4",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "MeanFourier/Mathlib/Analysis/Normed/Group/Pointwise.lean",
+          "judgment": {
+            "file": "MeanFourier/Mathlib/Analysis/Normed/Group/Pointwise.lean",
+            "note": "A small pointwise bounded-function algebra lemma; no Fourier-series or Carleson theorem content.",
+            "relevance": 0,
+            "repository": "YaelDillies__mean-fourier"
+          },
+          "repository": "YaelDillies__mean-fourier",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "Carleson/Classical/SpectralProjectionBound.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "v1/Atlas/IntroductionToPartialDifferentialEquations/code/CM3/FourierSeries.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "MeanFourier/Mathlib/Algebra/Group/Pointwise/Set/Basic.lean",
+          "judgment": null,
+          "repository": "YaelDillies__mean-fourier",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "src/metric-spaces/uniform-limit-theorem-pointwise-continuous-maps-metric-spaces.lagda.md",
+          "judgment": null,
+          "repository": "UniMath__agda-unimath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -5284,15 +7139,129 @@
           },
           "repository": "isabelle-prover__mirror-afp-devel",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 18
           }
         },
         {
           "file": "Archive/Imo/Imo1985Q2.lean",
+          "judgment": {
+            "file": "Archive/Imo/Imo1985Q2.lean",
+            "note": "Formalizes an olympiad coloring problem using modular arithmetic; unrelated to local fields or the dyadic Hilbert symbol.",
+            "relevance": 0,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 19,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "Archive/Imo/Imo1959Q2.lean",
           "judgment": null,
           "repository": "leanprover-community__mathlib4",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 19
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "TRS/positions.pvs",
+          "judgment": null,
+          "repository": "nasa__pvslib",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "v1/Atlas/EllipticCurves/code/RingClassField.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "LeanBridge/Spec/HilbertModularSurface.lean",
+          "judgment": {
+            "file": "LeanBridge/Spec/HilbertModularSurface.lean",
+            "note": "Specification for Hilbert modular surfaces; \u201cHilbert\u201d is unrelated to the local Hilbert symbol over Q\u2082.",
+            "relevance": 0,
+            "repository": "CBirkbeck__LeanBridge"
+          },
+          "repository": "CBirkbeck__LeanBridge",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "Archive/Imo/Imo2024Q2.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "urysohn2.miz",
+          "judgment": null,
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "Archive/Imo/Imo2008Q2.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "books/misc/symbol-btree.lisp",
+          "judgment": null,
+          "repository": "acl2__acl2",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "urysohn1.miz",
+          "judgment": null,
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "1002/lean/Erdos1002/RamanujanVectorDyadic.lean",
+          "judgment": null,
+          "repository": "ShouqiaoW__erdos",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "v1/Atlas/ProbabilisticMethodsInCombinatorics/code/SpaceFillingCurve.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "Series/Series/Dyadic.lean",
+          "judgment": null,
+          "repository": "girving__series",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -5580,6 +7549,113 @@
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 19,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
+        },
+        {
+          "file": "theories/Categories/Yoneda.v",
+          "judgment": null,
+          "repository": "HoTT__Coq-HoTT",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "src/HoTT.lagda.md",
+          "judgment": null,
+          "repository": "the1lab__1lab",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "source/UF/Yoneda.lagda",
+          "judgment": null,
+          "repository": "martinescardo__TypeTopology",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "Cubical/Categories/Presheaf/Representable.agda",
+          "judgment": {
+            "file": "Cubical/Categories/Presheaf/Representable.agda",
+            "note": "Uses the Cubical Yoneda lemma to identify presheaf representations with universal elements and proves a univalent-category consequence; closely relevant Yoneda development.",
+            "relevance": 2,
+            "repository": "agda__cubical"
+          },
+          "repository": "agda__cubical",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "src/Cat/Allegory/Base.lagda.md",
+          "judgment": null,
+          "repository": "the1lab__1lab",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "src/Categories/Yoneda/Continuous.agda",
+          "judgment": null,
+          "repository": "agda__agda-categories",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/RepresentableFunctors/Precategories.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "UniMath/AlgebraicTheories/RepresentationTheoremsRelation.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "thys/CZH_Elementary_Categories/czh_ecategories/CZH_ECAT_Yoneda.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/yoneda.v",
+          "judgment": {
+            "file": "UniMath/CategoryTheory/yoneda.v",
+            "note": "UniMath Yoneda development.",
+            "relevance": 3,
+            "repository": "UniMath__UniMath"
+          },
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "src/1Lab/intro.lagda.md",
+          "judgment": null,
+          "repository": "the1lab__1lab",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
         }
       ],
       "id": "yoneda-univalent-categories",
@@ -5865,6 +7941,101 @@
           "runs": {
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/DisplayedCats/Core.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "src/1Lab/intro.lagda.md",
+          "judgment": {
+            "file": "src/1Lab/intro.lagda.md",
+            "note": "Project introduction that explicitly explains Grothendieck fibrations, indexed categories, and the Grothendieck construction; useful navigation/context rather than the implementation owner.",
+            "relevance": 1,
+            "repository": "the1lab__1lab"
+          },
+          "repository": "the1lab__1lab",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/IndexedCategories/IndexedTransformationToTransformation.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "src/Categories/Category/Construction/Grothendieck.agda",
+          "judgment": null,
+          "repository": "agda__agda-categories",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "Construction/Grothendieck/Strict.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/IndexedCategories/IndexedFunctor.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/IndexedCategories/IndexedCategory.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "theories/Categories/Grothendieck.v",
+          "judgment": null,
+          "repository": "HoTT__Coq-HoTT",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "Construction/Coproduct/Indexed.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/IndexedCategories/OpIndexedCategory.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
           }
         }
       ],
@@ -6152,6 +8323,106 @@
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
+        },
+        {
+          "file": "OddOrder/Isaacs/Ch07_ThompsonSubgroup/Basic.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/Appendices/Huppert.lean",
+          "judgment": {
+            "file": "OddOrder/Peterfalvi/Appendices/Huppert.lean",
+            "note": "Peterfalvi/Huppert appendix group-theoretic results used around the odd-order development; supporting material, not the theorem owner.",
+            "relevance": 1,
+            "repository": "yawara__odd-order"
+          },
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/Appendices/Suzuki/StructureOfH/FeitSibleyInput.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S13_TypeDetermination.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "OddOrder/BG/AppE_FiliformRefutation.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S08_InducedKernelFamily.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "OddOrder/FeitThompsonCharacterData.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/Appendices/FeitSibleyInduction.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "OddOrder/BG/AppC_SL2Example.lean",
+          "judgment": {
+            "file": "OddOrder/BG/AppC_SL2Example.lean",
+            "note": "Peterfalvi SL(2,2^q) example showing Appendix-C hypotheses are nonvacuous; related context rather than the odd-order theorem proof.",
+            "relevance": 1,
+            "repository": "yawara__odd-order"
+          },
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "OddOrder/BG/AppC_LemmaC3_Setup.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
         }
       ],
       "id": "feit-thompson-odd-order",
@@ -6393,7 +8664,8 @@
           },
           "repository": "jrh13__hol-light",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 16
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 16,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
           }
         },
         {
@@ -6434,15 +8706,22 @@
           },
           "repository": "TauCetiProject__TauCeti",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 19
           }
         },
         {
           "file": "Jordan/make.ml",
-          "judgment": null,
+          "judgment": {
+            "file": "Jordan/make.ml",
+            "note": "HOL Light loader script for the Jordan-curve development; it only loads the actual theorem file and is neither a Mizar formalization nor a theorem owner itself.",
+            "relevance": 0,
+            "repository": "CakeML__candle"
+          },
           "repository": "CakeML__candle",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
           }
         },
         {
@@ -6455,7 +8734,92 @@
           },
           "repository": "TauCetiProject__TauCeti",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
+          }
+        },
+        {
+          "file": "site/Site.lean",
+          "judgment": null,
+          "repository": "rkirov__jordan_pick",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "Jordan/make.ml",
+          "judgment": null,
+          "repository": "jrh13__hol-light",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "LeanEval/jordan_curve/Submission.lean",
+          "judgment": null,
+          "repository": "mccorvie__classification-of-surfaces",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "Schoenflies/JordanRegions.lean",
+          "judgment": null,
+          "repository": "mccorvie__classification-of-surfaces",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "submission/jordan_curve/Solution.lean",
+          "judgment": null,
+          "repository": "rkirov__jordan_pick",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "site/Site/PolygonalJordan.lean",
+          "judgment": null,
+          "repository": "rkirov__jordan_pick",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "Schoenflies/LocalizedJordanAnnularOrder.lean",
+          "judgment": null,
+          "repository": "mccorvie__classification-of-surfaces",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "thys/Picks_Theorem/Polygon_Jordan_Curve.thy",
+          "judgment": {
+            "file": "thys/Picks_Theorem/Polygon_Jordan_Curve.thy",
+            "note": "Polygonal Jordan-curve theorem in Isabelle, not Mizar.",
+            "relevance": 0,
+            "repository": "isabelle-prover__mirror-afp-devel"
+          },
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "JordanPick/JordanCurve/Arcs.lean",
+          "judgment": null,
+          "repository": "rkirov__jordan_pick",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -6718,10 +9082,16 @@
         },
         {
           "file": "algebra/commutative_ring.prf",
-          "judgment": null,
+          "judgment": {
+            "file": "algebra/commutative_ring.prf",
+            "note": "PVS proof trace for generic commutative-ring laws and subtype obligations; it contains no formal power series or formal-group law.",
+            "relevance": 0,
+            "repository": "nasa__pvslib"
+          },
           "repository": "nasa__pvslib",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 18
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 18,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
           }
         },
         {
@@ -6734,6 +9104,7 @@
           },
           "repository": "UniMath__agda-unimath",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 19
           }
         },
@@ -6747,15 +9118,116 @@
           },
           "repository": "CBirkbeck__AINTLIB",
           "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 20
           }
         },
         {
           "file": "FormalConjecturesForMathlib/GroupTheory/Torsion.lean",
+          "judgment": {
+            "file": "FormalConjecturesForMathlib/GroupTheory/Torsion.lean",
+            "note": "Defines torsion-free monoids and groups and basic consequences; unrelated to formal group laws over commutative rings.",
+            "relevance": 0,
+            "repository": "google-deepmind__formal-conjectures"
+          },
+          "repository": "google-deepmind__formal-conjectures",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "FormalConjecturesTest/Util/Attributes/Basic.lean",
           "judgment": null,
           "repository": "google-deepmind__formal-conjectures",
           "runs": {
-            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "Mathlib/GroupTheory/FreeGroup/Basic.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "algebra/ring_one_generator.prf",
+          "judgment": null,
+          "repository": "nasa__pvslib",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "Instance/Rng/Free.v",
+          "judgment": {
+            "file": "Instance/Rng/Free.v",
+            "note": "Free-ring expressions; \u201cformal\u201d refers to syntactic ring expressions, not a formal group law.",
+            "relevance": 0,
+            "repository": "jwiegley__category-theory"
+          },
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "algebra/ring_divides.prf",
+          "judgment": null,
+          "repository": "nasa__pvslib",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
+        },
+        {
+          "file": "src/commutative-algebra/groups-of-units-commutative-rings.lagda.md",
+          "judgment": {
+            "file": "src/commutative-algebra/groups-of-units-commutative-rings.lagda.md",
+            "note": "Groups of units of commutative rings; no formal group law.",
+            "relevance": 0,
+            "repository": "UniMath__agda-unimath"
+          },
+          "repository": "UniMath__agda-unimath",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "Structure/Ring.v",
+          "judgment": {
+            "file": "Structure/Ring.v",
+            "note": "Internal ring objects in cartesian categories; unrelated to one-dimensional formal group laws.",
+            "relevance": 0,
+            "repository": "jwiegley__category-theory"
+          },
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "Instance/Mod/Tensor.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "algebra/euclidean_ring_def.prf",
+          "judgment": null,
+          "repository": "nasa__pvslib",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30
           }
         }
       ],
@@ -7043,13 +9515,122 @@
             "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 20,
             "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 19
           }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/EffectiveEpi/Enough.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 21,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 21
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Limits/Preserves/Grothendieck.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 22,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 22
+          }
+        },
+        {
+          "file": "Mathlib/Algebra/Homology/ModelCategory/Injective.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 23,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 23
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckAxioms/Basic.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 25,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "Construction/Grothendieck/Fibration.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 24
+          }
+        },
+        {
+          "file": "Mathlib/Algebra/Homology/DerivedCategory/Ext/MapBijective.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 26,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 25
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/Injective/Resolution.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 30,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 26
+          }
+        },
+        {
+          "file": "src/category_theory/projectives/default.lean",
+          "judgment": null,
+          "repository": "kim-em__lean-category-theory",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Preadditive/Injective/Preserves.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 27
+          }
+        },
+        {
+          "file": "TauCeti/CategoryTheory/GrothendieckGroup/Laurent.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 28,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 30
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec24GrothendieckBirkhoff.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1": 29,
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 28
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/FreydMitchell.lean",
+          "judgment": {
+            "file": "Mathlib/CategoryTheory/Abelian/FreydMitchell.lean",
+            "note": "Freyd-Mitchell development that explicitly depends on the Grothendieck-category enough-injectives result and points to its owner; relevant downstream consumer.",
+            "relevance": 1,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1": 29
+          }
         }
       ],
       "id": "enough-injectives-grothendieck",
       "query": "existence of enough injectives in a Grothendieck category"
     }
   ],
-  "gold_sha256": "80115a4af43b6463357a0227df8c9266a128ecbcd7cfe31f17fa371ca6ccc3e0",
+  "gold_sha256": "9f17268b3ef9cc900a238f77cd42d5d5f1162942c6e9189839c4a5064f80a65e",
   "index": {
     "corpus_fts5": {
       "complete": true,
@@ -7085,22 +9666,22 @@
   "runs": [
     {
       "depth": 30,
-      "path": "evaluation/search/runs/20260918T192534Z__fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1__1a1c1e00__59bcc8aa.json",
+      "path": "evaluation/search/runs/20260918T214833Z__fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1__c37bb1e3__depth50.json",
       "variant": "fielded_baseline_path_corpus_fts5_union_evidence_rank_rrf_v1"
     },
     {
       "depth": 30,
-      "path": "evaluation/search/runs/20260918T195005Z__fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1__164fe491__e2c9f50b.json",
+      "path": "evaluation/search/runs/20260918T214248Z__fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1__c37bb1e3__depth50.json",
       "variant": "fielded_baseline_path_corpus_fts5_union_source_rank_evidence_rank_rrf_v1"
     }
   ],
   "schema_version": 1,
   "summary": {
-    "already_judged": 486,
-    "candidates": 502,
-    "judged_nonrelevant": 136,
-    "judged_relevant": 350,
+    "already_judged": 552,
+    "candidates": 755,
+    "judged_nonrelevant": 170,
+    "judged_relevant": 382,
     "queries": 24,
-    "unjudged": 16
+    "unjudged": 203
   }
 }
