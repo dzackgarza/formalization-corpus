@@ -836,6 +836,18 @@
           "file": "Construction/Elements/Kan.v",
           "relevance": 0,
           "note": "Kan-extension/limit-cone machinery; no chain-complex mapping cone."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Comma/Over/Basic.lean",
+          "relevance": 0,
+          "note": "Defines categorical over/slice/coslice categories; its cone terminology is categorical rather than a mapping cone of complexes, and it contains no quasi-isomorphism criterion."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/AffineCoxeter/AffineCriterion.lean",
+          "relevance": 0,
+          "note": "Develops the affine Coxeter/Tits-cone criterion; the criterion and cone terminology are unrelated to homological mapping cones or quasi-isomorphisms."
         }
       ]
     },
@@ -1357,6 +1369,12 @@
           "file": "TauCetiRoadmap/AlgebraicCurves/Suggested.lean",
           "relevance": 1,
           "note": "Develops the discrete-valuation-ring/place side of the algebraic-curve dictionary; relevant ambient DVR infrastructure, but contains no Hensel lifting theorem."
+        },
+        {
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "file": "Adic spaces/FJP/Over/ExamplePadic.lean",
+          "relevance": 0,
+          "note": "Specializes sheafiness and related finite-jet results over the p-adics and proves its valuation ring is a DVR, but contains no Hensel/Henselian root-lifting theorem."
         }
       ]
     },
@@ -1659,6 +1677,12 @@
           "file": "Mathlib/Geometry/Manifold/Bordism.lean",
           "relevance": 1,
           "note": "Develops smooth bordisms as manifolds with boundary; relevant manifold-boundary infrastructure, but it does not construct collars."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Smooth_Manifolds/Product_Manifold.thy",
+          "relevance": 1,
+          "note": "Constructs smooth product-manifold charts and atlases; relevant general smooth-manifold infrastructure, but no manifold-with-boundary model or collar construction."
         }
       ]
     },
@@ -2756,6 +2780,12 @@
           "file": "Structure/Equalizer/Wide.v",
           "relevance": 0,
           "note": "Wide equalizers in category theory; no sphere eversion."
+        },
+        {
+          "repository": "fpvandoorn__LeanCourse25",
+          "file": "LeanCourse25/Lectures/Lecture24.lean",
+          "relevance": 0,
+          "note": "A course lecture states a `sphere_eversion` theorem but leaves its proof as `sorry` (not yet in Mathlib); this is not a checked sphere-eversion formalization."
         }
       ]
     },
