@@ -154,6 +154,30 @@
           "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ProjectiveModuleSerreTwistEquivalence.lean",
           "relevance": 0,
           "note": "Constructs Serre-twist autoequivalences on projective space, not Serre duality."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Dolbeault/SerreDualityPairing.lean",
+          "relevance": 2,
+          "note": "Substantive Serre-duality pairing development: defines SerreDualityData and proves dimension/duality consequences in the Dolbeault branch; closely relevant, though not the primary coherent-sheaf owner."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec14QCohProjective.lean",
+          "relevance": 1,
+          "note": "Defines quasi-coherent/coherent sheaves on projective schemes and quotient/twist infrastructure; relevant coherent-sheaf setup, but no Serre-duality theorem is proved here."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/CechSheafDataP1.lean",
+          "relevance": 2,
+          "note": "Direct P1 Serre-duality development from Cech sheaf data, including both cohomological dimensions and a full duality chain."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochApplications.lean",
+          "relevance": 2,
+          "note": "Contains direct Serre-duality consequences and P1 verification inside the Riemann-Roch applications development."
         }
       ]
     },
@@ -298,6 +322,48 @@
           "file": "BruhatTits/Graph/Graph.lean",
           "relevance": 2,
           "note": "Defines the Bruhat–Tits graph and proves it connected; the tree theorem itself is owned by Graph/Tree.lean."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Instance/Proset/Monotone.v",
+          "relevance": 0,
+          "note": "A categorical preorder/tree-of-life example; “tree” is taxonomic/order-theoretic here, not the Bruhat-Tits tree."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Studies/KeshetAbney2024.lean",
+          "relevance": 0,
+          "note": "Formal semantics/linguistics study; it contains no Bruhat-Tits mathematics."
+        },
+        {
+          "repository": "acl2__acl2",
+          "file": "books/kestrel/bitcoin/bip39-english-words.lisp",
+          "relevance": 0,
+          "note": "BIP39 word-list formalization whose match is the English word “tree”; unrelated to Bruhat-Tits theory."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Fragments/Shan/Classifiers.lean",
+          "relevance": 0,
+          "note": "Linguistic classifier data mentioning a tree noun; unrelated to Bruhat-Tits theory."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Fragments/Swahili/Basic.lean",
+          "relevance": 0,
+          "note": "Swahili noun-class data mentioning trees; unrelated to Bruhat-Tits theory."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Fragments/Mandarin/Classifiers.lean",
+          "relevance": 0,
+          "note": "Mandarin classifier data; unrelated to Bruhat-Tits theory."
+        },
+        {
+          "repository": "isabelle-prover__mirror-isabelle",
+          "file": "src/HOL/ex/Classical.thy",
+          "relevance": 0,
+          "note": "Classical-logic examples; no Bruhat-Tits construction."
         }
       ]
     },
@@ -501,6 +567,24 @@
           "file": "v1/Atlas/AlgebraicGeometryI/code/CanonicalSheafCurves.lean",
           "relevance": 3,
           "note": "Direct curve Riemann-Roch/canonical-sheaf development with the Riemann-Roch theorem in the requested setting."
+        },
+        {
+          "repository": "umpolungfish__Imscribing_Grammar",
+          "file": "ImscribingGrammar/Millennium/BSD.lean",
+          "relevance": 0,
+          "note": "BSD/elliptic-curve scaffold discussing rank and Weierstrass curves; it contains no Riemann-Roch theorem."
+        },
+        {
+          "repository": "google-deepmind__formal-conjectures",
+          "file": "FormalConjectures/Wikipedia/EllipticCurveRank.lean",
+          "relevance": 0,
+          "note": "Elliptic-curve rank conjectures; no Riemann-Roch theorem."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/HasseWeil/HasseWeil/HasseBound/Infrastructure.lean",
+          "relevance": 1,
+          "note": "Hasse-bound infrastructure that explicitly uses Riemann-Roch dimension-count input for algebraic curves; a downstream application/support file rather than the theorem owner."
         }
       ]
     },
@@ -704,6 +788,54 @@
           "file": "Multivariate/complex_database.ml",
           "relevance": 0,
           "note": "Generated HOL Light theorem database; the cone hits are unrelated simplicial/convex cones, not the requested criterion."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Limits/Cones.lean",
+          "relevance": 0,
+          "note": "Category-theoretic cones and limits; “cone” is a limit cone, not a chain-complex mapping cone."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Limits/Preserves/Basic.lean",
+          "relevance": 0,
+          "note": "Limit-preservation theory for categorical cones; no homological mapping-cone criterion."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Structure/Limit/Creation.v",
+          "relevance": 0,
+          "note": "Creation of categorical limits/cones; no chain-complex mapping cone."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Structure/Terminal.v",
+          "relevance": 0,
+          "note": "Terminal objects/terminal cones; unrelated to homological mapping cones."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Limits/Preserves/Bifunctor.lean",
+          "relevance": 0,
+          "note": "Bifunctor preservation of categorical limits/cones; no mapping-cone criterion."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Structure/UniversalProperty/Limit.v",
+          "relevance": 0,
+          "note": "Universal-property theory of categorical limits/cones; no chain-complex mapping cone."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Theory/Equivalence/Creation.v",
+          "relevance": 0,
+          "note": "Equivalences creating categorical limits; no homological mapping-cone criterion."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Construction/Elements/Kan.v",
+          "relevance": 0,
+          "note": "Kan-extension/limit-cone machinery; no chain-complex mapping cone."
         }
       ]
     },
@@ -901,6 +1033,60 @@
           "file": "TNLean/Channel/OperatorSystemExtensionDirectSum.lean",
           "relevance": 0,
           "note": "Extensions of completely positive maps on operator systems; no Jordan canonical form."
+        },
+        {
+          "repository": "standardml__twelf",
+          "file": "wiki/pages/user-defined-constraint-domain.elf",
+          "relevance": 0,
+          "note": "Twelf canonical-term/constraint-domain documentation; “canonical” is syntactic, not Jordan canonical form."
+        },
+        {
+          "repository": "lean-dojo__TorchLean",
+          "file": "blueprint/TorchLeanBlueprint/Guide/Ch1_Introduction/TorchLeanVsPyTorch.lean",
+          "relevance": 0,
+          "note": "Neural-network/Torch formalization; the linear operators are unrelated to Jordan form."
+        },
+        {
+          "repository": "lean-dojo__LeanMillenniumPrizeProblems",
+          "file": "Problems/YangMills/Quantum.lean",
+          "relevance": 0,
+          "note": "Yang-Mills benchmark infrastructure with generic linear operators; no Jordan canonical form."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/NumberTheory/ModularForms/HeckeSlash/Operators.lean",
+          "relevance": 0,
+          "note": "Hecke operators on modular forms; no Jordan canonical form."
+        },
+        {
+          "repository": "isabelle-prover__mirror-isabelle",
+          "file": "src/Doc/Isar_Ref/HOL_Specific.thy",
+          "relevance": 0,
+          "note": "Isabelle reference documentation whose “canonical order” terminology is unrelated to Jordan form."
+        },
+        {
+          "repository": "acl2__acl2",
+          "file": "books/centaur/sv/mods/alias-norm.lisp",
+          "relevance": 0,
+          "note": "Hardware alias normalization computing canonical wire forms; unrelated to linear-algebra Jordan form."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/BenOr_Kozen_Reif/BKR_Algorithm.thy",
+          "relevance": 0,
+          "note": "Ben-Or–Kozen–Reif algorithm formalization; no Jordan canonical-form theorem."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Instance/InnerProduct/Galois.v",
+          "relevance": 0,
+          "note": "Inner-product/Galois development discussing bilinear forms; no Jordan canonical form."
+        },
+        {
+          "repository": "acl2__acl2",
+          "file": "books/workshops/2004/ruiz-et-al/support/prefix-unification-rules.lisp",
+          "relevance": 0,
+          "note": "Prefix-unification transformation rules; “operators/transformations” are unrelated to Jordan form."
         }
       ]
     },
@@ -1123,6 +1309,54 @@
           "file": "OddOrder/Algebra/CenterGroupAlgebraHenselian.lean",
           "relevance": 1,
           "note": "Uses adic completeness to prove a center of a group algebra Henselian; relevant Henselian infrastructure, not the requested DVR Hensel lemma."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/AdicSpaces/Adic spaces/Presheaf.lean",
+          "relevance": 0,
+          "note": "Adic-space presheaf/completion development; despite completeness terminology, it contains no complete-DVR Hensel root-lifting theorem."
+        },
+        {
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "file": "Adic spaces/Presheaf.lean",
+          "relevance": 0,
+          "note": "Adic-space presheaf/completion development; no Hensel root lifting."
+        },
+        {
+          "repository": "leanprover-community__lean-perfectoid-spaces",
+          "file": "src/Spa/stalk_valuation.lean",
+          "relevance": 0,
+          "note": "Perfectoid-space completed valuation-field infrastructure; no Hensel lemma."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/AdicSpaces/Suggested.lean",
+          "relevance": 0,
+          "note": "Adic-spaces roadmap/prototype definitions; no Hensel root-lifting theorem."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/AdicSpaces/Adic spaces/TateAcyclicity.lean",
+          "relevance": 0,
+          "note": "Tate acyclicity for discrete rings; no Hensel lifting."
+        },
+        {
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "file": "Adic spaces/TateAcyclicity.lean",
+          "relevance": 0,
+          "note": "Tate acyclicity for discrete rings; no Hensel lifting."
+        },
+        {
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "file": "Adic spaces/StructureSheaf.lean",
+          "relevance": 0,
+          "note": "Adic structure-sheaf completeness/covering theory; no Hensel lemma."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/AlgebraicCurves/Suggested.lean",
+          "relevance": 1,
+          "note": "Develops the discrete-valuation-ring/place side of the algebraic-curve dictionary; relevant ambient DVR infrastructure, but contains no Hensel lifting theorem."
         }
       ]
     },
@@ -1241,6 +1475,54 @@
           "file": "Mathlib/GroupTheory/FreeGroup/NielsenSchreier.lean",
           "relevance": 0,
           "note": "Mentions covering spaces only as an analogy for a groupoid proof of Nielsen–Schreier; no topological covering-space theorem is formalized here."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Theory/Sheaf.v",
+          "relevance": 0,
+          "note": "Categorical sheaf/covering-family theory; “covering” is Grothendieck-topology terminology, not topological covering spaces/fundamental groups."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/EilenbergMacLane.lean",
+          "relevance": 2,
+          "note": "Directly studies covering spaces attached to subgroups of the fundamental group in the aspherical/K(G,1) setting; substantive covering/fundamental-group theory."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/AdicSpaces/Adic spaces/LaurentRefinement.lean",
+          "relevance": 0,
+          "note": "Adic-space Laurent refinements; no topological fundamental-group/covering-space theorem."
+        },
+        {
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "file": "Adic spaces/LaurentRefinement.lean",
+          "relevance": 0,
+          "note": "Adic-space Laurent refinements; no topological fundamental-group/covering-space theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/ActionCover.lean",
+          "relevance": 2,
+          "note": "Constructs the covering space attached to a fundamental-group action and develops its fiber/monodromy behavior; direct classification infrastructure."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/MonodromyEquivalence.lean",
+          "relevance": 2,
+          "note": "Proves the monodromy equivalence classifying connected covering spaces by transitive fundamental-groupoid actions; directly relevant covering-space/fundamental-group theory."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Combinatorics/Tiling/Tile.lean",
+          "relevance": 0,
+          "note": "Combinatorial tiling/group-action theory; no covering-space fundamental-group result."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Studies/Snyder2026.lean",
+          "relevance": 0,
+          "note": "Formal linguistics; no topological covering-space theory."
         }
       ]
     },
@@ -1353,6 +1635,30 @@
           "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Chart.lean",
           "relevance": 2,
           "note": "Constructs smooth collar charts/local product coordinates at the boundary; the file explicitly stops short of a global collar."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Basic.lean",
+          "relevance": 2,
+          "note": "Substantive boundary-collar development defining the smooth collar model/diffeomorphism and its characteristic boundary-coordinate properties."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Manifold.lean",
+          "relevance": 2,
+          "note": "Builds the manifold structure of smooth collar coordinates and relates it to the standard smooth-manifold-with-boundary collar theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Geometry/Manifold/LocallyFlat/Bicollar.lean",
+          "relevance": 2,
+          "note": "Proves local bicollar results for locally flat topological manifolds; a substantive collar theorem, though topological rather than the smooth-boundary owner."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Geometry/Manifold/Bordism.lean",
+          "relevance": 1,
+          "note": "Develops smooth bordisms as manifolds with boundary; relevant manifold-boundary infrastructure, but it does not construct collars."
         }
       ]
     },
@@ -1448,6 +1754,36 @@
           "file": "src/Cat/Diagram/Injective.lagda.md",
           "relevance": 1,
           "note": "Formalizes injective objects and their lifting characterization, prerequisite material rather than existence of injective resolutions."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23DerivedFunctors.lean",
+          "relevance": 1,
+          "note": "Derived-functor development that assumes HasInjectiveResolutions and repeatedly consumes injective resolutions; relevant downstream machinery, not an existence proof."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23AdaptedResolution.lean",
+          "relevance": 2,
+          "note": "Substantive adapted/injective-resolution API: proves comparison/isomorphism results and independence of injective resolutions for derived functors."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AcyclicResolution.lean",
+          "relevance": 2,
+          "note": "Constructs and manipulates injective resolutions, including lifting short exact sequences to degreewise-split resolutions; directly relevant implementation machinery."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/CategoryTheory/Exact/Projective.lean",
+          "relevance": 0,
+          "note": "Develops relative/projective objects and projective-resolution-style arguments, the dual notion rather than injective resolutions requested."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Localization/Resolution.lean",
+          "relevance": 2,
+          "note": "Develops left/right resolution structures and the injective-complex derivability machinery for abelian categories with enough injectives; closely relevant resolution infrastructure."
         }
       ]
     },
@@ -1555,6 +1891,36 @@
           "file": "thys/Nullstellensatz/Nullstellensatz_Field.thy",
           "relevance": 2,
           "note": "Proves strong, weak, and field-theoretic Nullstellensatz results while importing the geometric version; closely relevant to the affine-variety query."
+        },
+        {
+          "repository": "ImperialCollegeLondon__FLT",
+          "file": "FLT/KnownIn1980s/EllipticCurves/GoodReduction.lean",
+          "relevance": 0,
+          "note": "Elliptic-curve good-reduction theorem; no affine Hilbert Nullstellensatz."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/ProjectiveVarieties.lean",
+          "relevance": 0,
+          "note": "Projective-variety/affine-patch infrastructure; no Hilbert Nullstellensatz theorem."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SeparatednessDefinition.lean",
+          "relevance": 0,
+          "note": "Separatedness/diagonal-morphism infrastructure; no Nullstellensatz result."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/CompletenessValuationCriterion.lean",
+          "relevance": 2,
+          "note": "Contains direct Hilbert-Nullstellensatz point-existence/recovery theorems for affine-variety arguments; substantive direct application of the affine Nullstellensatz."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/RegularFunctions.lean",
+          "relevance": 1,
+          "note": "Uses the Nullstellensatz at several key points in the regular-functions/affine-varieties development; a substantive consumer rather than the theorem owner."
         }
       ]
     },
@@ -1674,6 +2040,36 @@
           "file": "TauCeti/AlgebraicGeometry/AffineGroupScheme/CartierDuality/FiniteLocallyFree.lean",
           "relevance": 0,
           "note": "Cartier duality for finite locally free affine group schemes is a different duality from Pontryagin duality of finite abelian groups."
+        },
+        {
+          "repository": "umpolungfish__Imscribing_Grammar",
+          "file": "ImscribingGrammar/Millennium/BSD.lean",
+          "relevance": 0,
+          "note": "BSD/elliptic-curve scaffold mentioning finite abelian torsion groups; no Pontryagin duality."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Studies/Kramer2020.lean",
+          "relevance": 0,
+          "note": "Formal semantics/linguistics; no character/Pontryagin duality."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Construction/Opposite.v",
+          "relevance": 0,
+          "note": "Abstract categorical opposite/duality history; no finite-abelian Pontryagin duality."
+        },
+        {
+          "repository": "fpvandoorn__LeanCourse25",
+          "file": "LeanCourse25/Lectures/Lecture11.lean",
+          "relevance": 0,
+          "note": "Introductory finite/group-theory lecture material; no character/Pontryagin duality."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/EllipticCurves/Suggested.lean",
+          "relevance": 0,
+          "note": "Elliptic-curve roadmap mentioning Cartier duality; this is not Pontryagin duality for finite abelian groups."
         }
       ]
     },
@@ -1769,6 +2165,12 @@
           "file": "LeanEval/Geometry/WeakMorseInequality.lean",
           "relevance": 1,
           "note": "Defines Morse critical/nondegenerate data and proves weak Morse inequalities; supporting Morse theory, not the Morse lemma."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Calculus/Sard/OutermostStratum.lean",
+          "relevance": 0,
+          "note": "Morse-Sard/Sard critical-value theory; despite “Morse” in the theorem name, it does not prove the Morse local normal-form lemma."
         }
       ]
     },
@@ -1913,6 +2315,36 @@
           "file": "TauCeti/AlgebraicGeometry/EllipticCurve/MordellWeil/FinitelyGenerated.lean",
           "relevance": 0,
           "note": "Proves Mordell–Weil finite generation; it does not classify finitely generated abelian groups."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Higman/Suzuki2Groups/HigmanCoverDerivedSeries.lean",
+          "relevance": 0,
+          "note": "Special Suzuki 2-group derived-series theory; no general finitely generated abelian-group classification."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Higman/Suzuki2Groups/HigmanMaximalNormalAbelian.lean",
+          "relevance": 0,
+          "note": "Maximal normal abelian subgroups in Suzuki 2-groups; no finitely generated abelian-group structure theorem."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Higman/Suzuki2Groups/HigmanLemmaThirteen/ExponentFourFactors.lean",
+          "relevance": 0,
+          "note": "Exponent-four factors in a finite-group classification argument; no general finitely generated abelian-group classification."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Algebra/Category/ModuleCat/CartanMap.lean",
+          "relevance": 0,
+          "note": "Cartan-map/K-theory of finitely generated modules; no classification of finitely generated abelian groups."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Higman/Suzuki2Groups/ExponentFour.lean",
+          "relevance": 0,
+          "note": "Exponent-four result for Suzuki 2-groups; no general finitely generated abelian-group structure theorem."
         }
       ]
     },
@@ -2014,6 +2446,48 @@
           "file": "TauCeti/Probability/Moments/CompactDeterminacy.lean",
           "relevance": 1,
           "note": "Uses Stone–Weierstrass polynomial density to prove compact moment determinacy; an application rather than the theorem owner."
+        },
+        {
+          "repository": "cavargar__SHSLib",
+          "file": "SHSLib.lean",
+          "relevance": 0,
+          "note": "Umbrella for stochastic/hybrid-systems analysis; no Stone-Weierstrass theorem."
+        },
+        {
+          "repository": "merely-true__merely-true",
+          "file": "MerelyTrue/Landau.lean",
+          "relevance": 0,
+          "note": "Landau-equation/harmonic-analysis development; no Stone-Weierstrass theorem appears in this file."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/EllipticCurves/Suggested.lean",
+          "relevance": 0,
+          "note": "Elliptic-curve roadmap; “Weierstrass” refers to Weierstrass curves, not the Stone-Weierstrass approximation theorem."
+        },
+        {
+          "repository": "JasonShroyer__sgc-lean",
+          "file": "src/SGC/Thermodynamics/EntropyProduction.lean",
+          "relevance": 0,
+          "note": "Thermodynamic entropy-production formalization; no Stone-Weierstrass theorem."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/Clawristotle/VMLStructures.lean",
+          "relevance": 0,
+          "note": "Vlasov-Maxwell-Landau structures; no Stone-Weierstrass theorem."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/Clawristotle/Theorem42.lean",
+          "relevance": 0,
+          "note": "Vlasov-Maxwell-Landau theorem file; no Stone-Weierstrass theorem."
+        },
+        {
+          "repository": "merely-true__merely-true",
+          "file": "MerelyTrue/Landau/Theorem42.lean",
+          "relevance": 0,
+          "note": "Landau/VML theorem file; no Stone-Weierstrass theorem."
         }
       ]
     },
@@ -2109,6 +2583,42 @@
           "file": "upstream/brownian-motion/Martingale.lean",
           "relevance": 1,
           "note": "Develops martingale properties of an already constructed pre-Brownian motion; supporting material, not the Gaussian-process construction."
+        },
+        {
+          "repository": "formal-applied-math__formal-mathfin",
+          "file": "MathFin/Blueprint.lean",
+          "relevance": 1,
+          "note": "Blueprint/navigation layer that explicitly identifies the upstream Degenne Brownian-motion construction as its driving-noise foundation; useful construction provenance, not an owner."
+        },
+        {
+          "repository": "formal-applied-math__formal-mathfin",
+          "file": "MathFin/Foundations/BSCallHypFromBrownian.lean",
+          "relevance": 1,
+          "note": "Builds pricing hypotheses from an already supplied pre-Brownian motion and imports the Gaussian Brownian package; relevant downstream Brownian infrastructure, not the construction itself."
+        },
+        {
+          "repository": "formal-applied-math__formal-mathfin",
+          "file": "MathFin/AxiomAudit.lean",
+          "relevance": 1,
+          "note": "Contains extensive proved Brownian-motion consequences and an audit of the Brownian pipeline; relevant Brownian development, but it assumes rather than constructs the process from Gaussian data."
+        },
+        {
+          "repository": "cavargar__SHSLib",
+          "file": "SHSLib.lean",
+          "relevance": 0,
+          "note": "Stochastic-hybrid-systems umbrella library; no Gaussian-process construction of Brownian motion."
+        },
+        {
+          "repository": "formal-applied-math__formal-mathfin",
+          "file": "MathFin/Foundations/PricingFromBrownian.lean",
+          "relevance": 1,
+          "note": "Pricing entry points whose foundational input is an already supplied pre-Brownian motion; relevant consumer, not a Gaussian-process construction."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/TheoryOfProbability/code/ExpectationEquivalence.lean",
+          "relevance": 1,
+          "note": "Defines a Brownian-motion structure and proves a Brownian conditional-expectation theorem; directly relevant Brownian theory, but no Gaussian-process construction is carried out here."
         }
       ]
     },
@@ -2198,6 +2708,54 @@
           "file": "LeanCourse/Lectures/Lecture10Before.lean",
           "relevance": 0,
           "note": "States sphere_eversion but the proof is `sorry`; this is not a checked formal proof of sphere eversion."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Instance/Sets/Regular.v",
+          "relevance": 0,
+          "note": "Regular arrows in Sets; no sphere eversion or h-principle."
+        },
+        {
+          "repository": "jimscarver__quantum-logical-framework",
+          "file": "lean/QLF_GravityFromDelay.lean",
+          "relevance": 0,
+          "note": "Speculative gravity/holographic sphere model; no sphere eversion."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Studies/Declerck1991.lean",
+          "relevance": 0,
+          "note": "Linguistic time-spheres; no topological sphere eversion."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Studies/AlexandropoulouGotzner2024JoS.lean",
+          "relevance": 0,
+          "note": "Formal semantics study; no sphere eversion."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Studies/Karttunen1973.lean",
+          "relevance": 0,
+          "note": "Formal semantics study; no sphere eversion."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Normed/Module/Ball/Cut.lean",
+          "relevance": 0,
+          "note": "Normed-space sets cut by metric spheres; no sphere eversion/h-principle."
+        },
+        {
+          "repository": "isabelle-prover__mirror-isabelle",
+          "file": "src/Doc/Corec/Corec.thy",
+          "relevance": 0,
+          "note": "Isabelle corecursion documentation; no sphere eversion."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Structure/Equalizer/Wide.v",
+          "relevance": 0,
+          "note": "Wide equalizers in category theory; no sphere eversion."
         }
       ]
     },
@@ -2317,6 +2875,60 @@
           "file": "Carleson.lean",
           "relevance": 1,
           "note": "Umbrella import for the Carleson formalization; useful project navigation but no theorem declaration of its own."
+        },
+        {
+          "repository": "acl2__acl2",
+          "file": "books/doc/100-theorems.lisp",
+          "relevance": 0,
+          "note": "ACL2 “100 theorems” documentation includes a generic Fourier-series entry but no Carleson theorem or almost-everywhere convergence proof."
+        },
+        {
+          "repository": "AlexKontorovich__RealAnalysisGame",
+          "file": "Game/Levels/L22Levels/L02.lean",
+          "relevance": 0,
+          "note": "Real-analysis lesson on pointwise versus uniform convergence; it does not formalize Carleson/Fourier almost-everywhere convergence."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/IntroductionToPartialDifferentialEquations/code/CM2/HeatEquationSetup.lean",
+          "relevance": 1,
+          "note": "Proves uniform convergence for Fourier sine series under regularity assumptions; related pointwise/uniform Fourier convergence, but not Carleson's almost-everywhere theorem."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/DedekindResidue/DedekindResidue/CompletedZeta/ThetaLattice.lean",
+          "relevance": 0,
+          "note": "Gaussian Fourier-transform/theta-lattice development; no Carleson pointwise-convergence theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/NumberTheory/LSeries/WienerIkehara/Limit.lean",
+          "relevance": 0,
+          "note": "Wiener-Ikehara/L-series Fourier testing; no Carleson theorem."
+        },
+        {
+          "repository": "AlexKontorovich__RealAnalysisGame",
+          "file": "Game/Levels/L18Levels/L01.lean",
+          "relevance": 0,
+          "note": "Absolute convergence of numerical series; unrelated to Carleson Fourier convergence."
+        },
+        {
+          "repository": "LionSR__TNLean",
+          "file": "TNLean/MPS/RFP/Convergence.lean",
+          "relevance": 0,
+          "note": "Transfer-map convergence for tensor-network blocks; unrelated to Fourier-series Carleson convergence."
+        },
+        {
+          "repository": "AlexKontorovich__RealAnalysisGame",
+          "file": "Game/Levels/L19Levels/L04.lean",
+          "relevance": 0,
+          "note": "Conditional convergence of numerical series; no Carleson theorem."
+        },
+        {
+          "repository": "cavargar__SHSLib",
+          "file": "SHSLib.lean",
+          "relevance": 0,
+          "note": "Umbrella special-functions library; no Carleson theorem."
         }
       ]
     },
@@ -2412,6 +3024,42 @@
           "file": "thys/Groebner_Macaulay/Hilbert_Function.thy",
           "relevance": 0,
           "note": "Hilbert functions in Gröbner/Macaulay theory, not the dyadic Hilbert symbol."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/ArithmeticGeometry/code/HasseMinkowskiProof.lean",
+          "relevance": 1,
+          "note": "Substantive Hilbert-symbol identities and representation criteria used in Hasse-Minkowski arguments; relevant local-symbol infrastructure, but not an explicit Q2 dyadic formula."
+        },
+        {
+          "repository": "LionSR__TNLean",
+          "file": "TNLean/MPS/RFP/GaugeBlockingCounterexample.lean",
+          "relevance": 0,
+          "note": "Tensor-network gauge-blocking counterexample; “symbol” match is unrelated to Hilbert symbols."
+        },
+        {
+          "repository": "isabelle-prover__mirror-isabelle",
+          "file": "src/Doc/Implementation/ML.thy",
+          "relevance": 0,
+          "note": "Isabelle implementation/reference documentation using “symbol” generically; no Hilbert symbol."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Core/Computability/Mealy.lean",
+          "relevance": 0,
+          "note": "Mealy-machine input/output symbols; unrelated to Hilbert symbols."
+        },
+        {
+          "repository": "AbsInt__CompCert",
+          "file": "MenhirLib/Validator_safe.v",
+          "relevance": 0,
+          "note": "Parser/validator symbol lists; unrelated to Hilbert symbols."
+        },
+        {
+          "repository": "AbsInt__CompCert",
+          "file": "backend/Allocproof.v",
+          "relevance": 0,
+          "note": "Compiler symbol-preservation lemmas; unrelated to Hilbert symbols."
         }
       ]
     },
@@ -2519,6 +3167,48 @@
           "file": "Cubical/Categories/Yoneda.agda",
           "relevance": 2,
           "note": "Formalizes Yoneda in Cubical Agda’s category library; closely relevant in a univalent-foundations setting but not a dedicated univalent-category theorem."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Functor/Hom/Yoneda/Natural.v",
+          "relevance": 2,
+          "note": "Direct traditional Yoneda-lemma/naturality development in a category-theory library; closely relevant Yoneda formalization, though not specifically a univalent-category owner."
+        },
+        {
+          "repository": "compiler64__category-theory-notes",
+          "file": "Main.lean",
+          "relevance": 2,
+          "note": "Contains direct Yoneda and co-Yoneda lemma proofs in an independent category-theory development; closely relevant, but not specifically univalent."
+        },
+        {
+          "repository": "agda__cubical",
+          "file": "Cubical/Data/Containers/ContainerExtensionProofs.agda",
+          "relevance": 1,
+          "note": "Uses the Cubical Agda Yoneda lemma in container-representability proofs; a relevant univalent-foundations consumer rather than the Yoneda owner."
+        },
+        {
+          "repository": "standardml__twelf",
+          "file": "wiki/pages/user-defined-constraint-domain.elf",
+          "relevance": 0,
+          "note": "Twelf documentation about syntactic categories; no categorical Yoneda lemma."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Studies/Cysouw2009.lean",
+          "relevance": 0,
+          "note": "Linguistic person categories; no Yoneda theory."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Theory/Density.v",
+          "relevance": 2,
+          "note": "Substantive co-Yoneda/density development, including Yoneda-derived categorical results; closely related Yoneda theory rather than a univalent-category specialization."
+        },
+        {
+          "repository": "hawkrobe__linglib",
+          "file": "Linglib/Fragments/Mixtec/SMPM/Basic.lean",
+          "relevance": 0,
+          "note": "Linguistic morpho-aspectual categories; no Yoneda theory."
         }
       ]
     },
@@ -2608,6 +3298,24 @@
           "file": "UniMath/Bicategories/Grothendieck/FiberwiseEquiv.v",
           "relevance": 2,
           "note": "Uses the Grothendieck-construction biequivalence to turn fiberwise equivalences of fibrations into equivalences; a close application of the requested construction."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/1Lab/intro.lagda.md",
+          "relevance": 1,
+          "note": "Project introduction that explicitly explains Grothendieck fibrations, indexed categories, and the Grothendieck construction; useful navigation/context rather than the implementation owner."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Structure/Pullback.v",
+          "relevance": 0,
+          "note": "Categorical pullback development mentioning Grothendieck’s terminology historically; no indexed-category Grothendieck construction."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Construction/Arrow.v",
+          "relevance": 0,
+          "note": "Arrow/comma-category construction; not the Grothendieck construction for indexed categories/fibrations."
         }
       ]
     },
@@ -2721,6 +3429,30 @@
           "file": "OddOrder/Peterfalvi/Appendices/FeitSibley.lean",
           "relevance": 1,
           "note": "Feit–Sibley infrastructure and proved auxiliary results in the odd-order formalization; supporting material rather than the final theorem."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/BG/Ch4_FamilyOfMaximal/S16_MainResults/TamelyImbedded.lean",
+          "relevance": 2,
+          "note": "Substantive Bender-Glauberman/Feit-Thompson proof-path file formalizing the tamely-embedded conditions used in the odd-order theorem development."
+        },
+        {
+          "repository": "acl2__acl2",
+          "file": "books/kestrel/crypto/ecurve/secp256k1.lisp",
+          "relevance": 0,
+          "note": "Elliptic-curve cryptography/secp256k1 formalization; “order” means group order, not the odd-order theorem."
+        },
+        {
+          "repository": "ImperialCollegeLondon__formalising-mathematics-2024",
+          "file": "FormalisingMathematics2024/Section21galoisTheory/Sheet1.lean",
+          "relevance": 0,
+          "note": "Galois-theory teaching sheet with an incidental mention of the Feit-Thompson project; no odd-order proof content."
+        },
+        {
+          "repository": "girafe-ai__lean-course",
+          "file": "FormalisingMathematics/Section21galoisTheory/Sheet1.lean",
+          "relevance": 0,
+          "note": "Galois-theory teaching sheet with an incidental mention of Feit-Thompson; no odd-order proof content."
         }
       ]
     },
@@ -2871,6 +3603,60 @@
           "file": "JordanPick/JordanCurve.lean",
           "relevance": 0,
           "note": "Complete Lean Jordan-curve theorem, but the query specifically asks for the Mizar proof."
+        },
+        {
+          "repository": "lamafab__algebra",
+          "file": "Crypto/EllipticCurves.lean",
+          "relevance": 0,
+          "note": "Elliptic-curve cryptography file; no Mizar Jordan-curve topology."
+        },
+        {
+          "repository": "umpolungfish__Imscribing_Grammar",
+          "file": "ImscribingGrammar/Millennium/BSD.lean",
+          "relevance": 0,
+          "note": "BSD/elliptic-curve scaffold; no Mizar Jordan-curve theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/EllipticCurves/Suggested.lean",
+          "relevance": 0,
+          "note": "Elliptic-curve roadmap; no Mizar Jordan-curve theorem."
+        },
+        {
+          "repository": "acl2__acl2",
+          "file": "books/kestrel/crypto/ecurve/secp256k1.lisp",
+          "relevance": 0,
+          "note": "secp256k1 elliptic-curve formalization; no Jordan-curve topology."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/BenOr_Kozen_Reif/BKR_Algorithm.thy",
+          "relevance": 0,
+          "note": "Ben-Or–Kozen–Reif algebraic algorithm formalization; no Mizar Jordan-curve theorem."
+        },
+        {
+          "repository": "acl2__acl2",
+          "file": "books/kestrel/ethereum/semaphore/baby-jubjub.lisp",
+          "relevance": 0,
+          "note": "BabyJubjub elliptic-curve formalization; no Jordan-curve topology."
+        },
+        {
+          "repository": "Beneficial-AI-Foundation__curve25519-dalek-lean-verify",
+          "file": "Curve25519Dalek/Math/Edwards/Curve.lean",
+          "relevance": 0,
+          "note": "Edwards/Curve25519 algebraic-curve development; no Mizar Jordan-curve theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/Affine/Point/VariableChange.lean",
+          "relevance": 0,
+          "note": "Elliptic-curve variable-change theory; no Mizar Jordan-curve topology."
+        },
+        {
+          "repository": "acl2__acl2",
+          "file": "books/kestrel/crypto/ecurve/short-weierstrass.lisp",
+          "relevance": 0,
+          "note": "Short-Weierstrass elliptic-curve library; no Mizar Jordan-curve theorem."
         }
       ]
     },
@@ -2978,6 +3764,60 @@
           "file": "src/commutative-algebra/polynomials-commutative-semirings.lagda.md",
           "relevance": 0,
           "note": "Polynomial algebra over commutative semirings; no formal group law."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/linear-algebra/left-modules-rings.lagda.md",
+          "relevance": 0,
+          "note": "Left modules over rings; no formal-group-law structure."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Instance/Rng/Free.v",
+          "relevance": 0,
+          "note": "Free-ring expressions; “formal” refers to syntactic ring expressions, not a formal group law."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/linear-algebra/tuples-on-rings.lagda.md",
+          "relevance": 0,
+          "note": "Tuples over rings; no formal group law."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/ring-theory/rings.lagda.md",
+          "relevance": 0,
+          "note": "Basic ring theory; no formal group law."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/linear-algebra/tuples-on-commutative-rings.lagda.md",
+          "relevance": 0,
+          "note": "Tuples over commutative rings; no formal group law."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/linear-algebra/finite-sequences-in-commutative-rings.lagda.md",
+          "relevance": 0,
+          "note": "Finite sequences over commutative rings; no formal group law."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/elementary-number-theory/multiplicative-group-of-rational-numbers.lagda.md",
+          "relevance": 0,
+          "note": "Multiplicative group of rational numbers; no formal group law."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Instance/Rng/Mod.v",
+          "relevance": 0,
+          "note": "Category of modules over rings; no formal group law."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/commutative-algebra/groups-of-units-commutative-rings.lagda.md",
+          "relevance": 0,
+          "note": "Groups of units of commutative rings; no formal group law."
         }
       ]
     },
@@ -3067,6 +3907,48 @@
           "file": "Mathlib/Algebra/Homology/DerivedCategory/DerivabilityStructureInjectives.lean",
           "relevance": 1,
           "note": "Constructs injective derived-category machinery assuming EnoughInjectives; it does not prove that Grothendieck categories have enough injectives."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/FreydMitchell.lean",
+          "relevance": 1,
+          "note": "Freyd-Mitchell development that explicitly depends on the Grothendieck-category enough-injectives result and points to its owner; relevant downstream consumer."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Structure/Pullback.v",
+          "relevance": 0,
+          "note": "Categorical pullbacks; the Grothendieck name occurs historically, but there is no enough-injectives theorem."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Generator/Abelian.lean",
+          "relevance": 1,
+          "note": "Proves consequences for complete abelian categories assuming EnoughInjectives and explicitly uses the Grothendieck-category theorem downstream; relevant consumer, not the existence proof."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/1Lab/intro.lagda.md",
+          "relevance": 0,
+          "note": "1Lab introduction to higher category/homotopy theory; no Grothendieck-abelian enough-injectives theorem."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Structure/Topos.v",
+          "relevance": 0,
+          "note": "Grothendieck topos development; “Grothendieck” refers to topoi, not the abelian-category enough-injectives theorem."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Sites/Coherent/Basic.lean",
+          "relevance": 0,
+          "note": "Grothendieck topology definitions; unrelated to existence of enough injectives in Grothendieck abelian categories."
+        },
+        {
+          "repository": "standardml__twelf",
+          "file": "wiki/pages/user-defined-constraint-domain.elf",
+          "relevance": 0,
+          "note": "Twelf syntactic-category documentation; no Grothendieck abelian/injective theory."
         }
       ]
     }
