@@ -184,6 +184,7 @@ def retrieve_zoekt_first_stage(
     rrf_constant: int,
     weights: dict[str, float],
     fields: tuple[str, ...],
+    api_workers: int,
 ) -> tuple[list[dict[str, Any]], dict[str, Any], str, dict[str, str]]:
     if mode == "fielded":
         results, runtime, field_queries = retrieve_fielded(
@@ -196,6 +197,7 @@ def retrieve_zoekt_first_stage(
             rrf_constant=rrf_constant,
             weights=weights,
             fields=fields,
+            api_workers=api_workers,
         )
         return results, runtime, " FIELDED ".join(field_queries.values()), field_queries
     if mode == "lexical-v2":
@@ -217,6 +219,12 @@ def main() -> int:
     parser.add_argument("--per-retriever-depth", type=int, default=100)
     parser.add_argument("--content-rerank-depth", type=int)
     parser.add_argument("--fetch-workers", type=int, default=16)
+    parser.add_argument(
+        "--first-stage-api-workers",
+        type=int,
+        default=1,
+        help="bounded concurrency across fielded Zoekt first-stage queries",
+    )
     parser.add_argument(
         "--zoekt-first-stage",
         choices=("fielded", "lexical-v2"),
@@ -248,6 +256,7 @@ def main() -> int:
         args.depth,
         args.per_retriever_depth,
         args.fetch_workers,
+        args.first_stage_api_workers,
         args.rrf_constant,
         args.evidence_rrf_constant,
         int(args.timeout),
@@ -345,6 +354,7 @@ def main() -> int:
                 rrf_constant=args.rrf_constant,
                 weights=weights,
                 fields=zoekt_fields,
+                api_workers=args.first_stage_api_workers,
             )
             fts_response = fts_by_id[str(case["id"])]
             corpus_fts5 = list(fts_response["results"])
@@ -495,6 +505,7 @@ def main() -> int:
             "union": "rank-interleaved deduplicated bounded prefixes",
             "per_retriever_depth": args.per_retriever_depth,
             "field_weights": weights,
+            "zoekt_api_workers": args.first_stage_api_workers,
             "rrf_constant": args.rrf_constant,
             "fusion_depth": args.depth,
         },

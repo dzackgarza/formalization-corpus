@@ -4,6 +4,7 @@ from __future__ import annotations
 import pathlib
 import sys
 import unittest
+from unittest.mock import patch
 
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -14,6 +15,7 @@ from evaluate_fts5_hybrid import (  # noqa: E402
     balanced_pair_union,
     prefilter_by_pair_rank_evidence,
     rank_by_pair_rank_evidence,
+    retrieve_zoekt_first_stage,
 )
 
 
@@ -134,6 +136,31 @@ class Fts5HybridTests(unittest.TestCase):
             result[0]["FirstStageRankEvidence"],
             {"fielded": 5, "corpus-fts5": 5},
         )
+
+    @patch("evaluate_fts5_hybrid.retrieve_fielded")
+    def test_fielded_first_stage_forwards_api_worker_bound(self, retrieve_fielded) -> None:
+        retrieve_fielded.return_value = (
+            [{"Repository": "r", "FileName": "a"}],
+            {"physical_api_requests": 2},
+            {"baseline": "baseline-query", "path": "path-query"},
+        )
+        results, runtime, compiled, queries = retrieve_zoekt_first_stage(
+            "coherent sheaf",
+            mode="fielded",
+            timeout=60.0,
+            api_url="https://example.invalid/api/search",
+            serving={"max_doc_display_count": 200},
+            depth=200,
+            rrf_constant=60,
+            weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
+            fields=("baseline", "path"),
+            api_workers=2,
+        )
+        self.assertEqual(results[0]["FileName"], "a")
+        self.assertEqual(runtime["physical_api_requests"], 2)
+        self.assertEqual(queries, {"baseline": "baseline-query", "path": "path-query"})
+        self.assertIn("baseline-query", compiled)
+        self.assertEqual(retrieve_fielded.call_args.kwargs["api_workers"], 2)
 
 
 if __name__ == "__main__":
