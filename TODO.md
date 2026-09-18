@@ -74,7 +74,7 @@ remain separate from retrieval-code changes.
 
 The current relevance set is still too small for strong claims about novel
 retrievers, but independent pooling is now materially broader: the 24-query gold
-set contains **614** explicit query/file judgments.  The latest SPLADE++
+set contains **619** explicit query/file judgments.  The latest SPLADE++
 query-expansion differential pool added **147** judgments in one source-blind
 review pass: 34 relevant alternatives (17 relevance-1 and 17 relevance-2) and
 113 nonrelevant files, with no new direct-owner judgments.  Before selecting a
@@ -184,6 +184,14 @@ remains **0.958/1.000**, and nDCG@10 rises slightly from **0.675** to **0.677**;
 final owner MRR is essentially flat/slightly lower (**0.6119 -> 0.6113**), so
 this does not settle the second-stage ordering problem.  Accept the source-rank
 channel as the qrel-independent first-stage reference and do not tune its weight.
+The accepted run's displayed top-10 pool is now independently complete
+(**240/240** candidates judged: **193** relevant and **47** nonrelevant).  On the
+resulting 619-judgment qrels, the source-hierarchy gain survives a clean rerun:
+first-stage Owner Hit@10/20 remains **0.917/1.000** versus **0.875/0.958** for the
+otherwise identical two-channel lexical reference, with owner MRR
+**0.6243 versus 0.6204** and exact-name Owner Hit@10/20 unchanged at
+**0.833/1.000**.  After the fixed content reranker, Owner Hit@5 remains improved
+(**0.833 versus 0.792**) while Owner Hit@10/20 is **0.958/1.000** for both.
 The first parser-backed declaration/signature probe is negative as a global
 equal-weight second-stage channel.  Lean declaration/type/member captures from
 the repository's existing tree-sitter parser lower final Owner Hit@10/20 from
@@ -201,14 +209,18 @@ Owner Hit@20 falls from **1.000** to **0.958** because the mapping-cone owner mo
 from rank 13 to 54; nDCG@10 falls from **0.677** to **0.664**, and p50/p95
 component latency rises to about **11.81/28.08 s**.  Reject parser-backed
 declaration ordering in both global and source-local forms without weight/context
-tuning.  The immediate frontier is now an independent semantic first-stage
-experiment, but only through an existing remote service or the remote search host;
-do not create connector-local learned-sparse/dense model or index state.  If the
-remote surface has no suitable existing runtime, record that branch as
-resource-deferred rather than substituting a local model.  Keep the accepted
-source-hierarchy lexical reference fixed.  Do not tune fusion weights against the
-qrels; a better reranker remains irrelevant when the correct file is absent from
-its pool.
+tuning.  The independent semantic first-stage branch is now **resource-deferred**:
+an inventory of the canonical remote search host found the existing Zoekt/API and
+complete corpus-FTS5 runtime, but no already-present semantic/vector service,
+index, neural retrieval runtime, or provider-backed semantic surface.  Do not
+substitute connector-local model downloads, model caches, throwaway environments,
+or dense/learned-sparse indexes for that missing remote capability.  Resume this
+branch only when an existing remote semantic service/index is connected or an
+explicit remote-runtime deployment is available.  Meanwhile keep the accepted
+source-hierarchy lexical reference fixed, continue independent pooling/evaluation
+work that does not require local neural state, and do not tune fusion weights
+against the qrels; a better reranker remains irrelevant when the correct file is
+absent from its pool.
 
 **Gate SQ2:** materially stronger first-stage owner recall than lexical-v2 on the
 expanded qrels/held-out slice, without unacceptable latency or loss of exact-name
