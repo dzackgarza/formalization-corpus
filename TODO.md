@@ -184,14 +184,23 @@ remains **0.958/1.000**, and nDCG@10 rises slightly from **0.675** to **0.677**;
 final owner MRR is essentially flat/slightly lower (**0.6119 -> 0.6113**), so
 this does not settle the second-stage ordering problem.  Accept the source-rank
 channel as the qrel-independent first-stage reference and do not tune its weight.
-The immediate deterministic frontier is now parser-backed declaration/signature
-evidence where reliable extraction already exists, beginning with Lean through
-the repository's existing ast-grep/tree-sitter route and leaving unsupported
-proof assistants on the accepted reference unchanged.  A document-side
-learned-sparse/dense experiment is admissible only when an existing remote
-service or remote search host can run it without connector-local model/index
-state.  Do not tune fusion weights against the qrels; a better reranker remains
-irrelevant when the correct file is absent from its pool.
+The first parser-backed declaration/signature probe is negative as a global
+equal-weight second-stage channel.  Lean declaration/type/member captures from
+the repository's existing tree-sitter parser lower final Owner Hit@10/20 from
+**0.958/1.000** to **0.917/0.917**, lower nDCG@10 from **0.677** to **0.621**,
+and increase p50/p95 component latency from about **9.71/24.99 s** to
+**11.75/32.79 s**.  Exact-name Owner Hit@10/20 remains **1.000/1.000**, but the
+cross-prover slice falls from **1.000/1.000** to **0.750/0.750** because a
+Lean-only global channel changes competition against unsupported provers; in
+particular the Mizar Jordan-curve owner moves from rank 9 to 21.  Reject that
+construction without weight tuning.  The immediate deterministic frontier is a
+parser-backed **source-local** file-ordering experiment that may use Lean syntax
+inside supported sources but must preserve the accepted source/cross-prover order
+outside them.  A document-side learned-sparse/dense experiment is admissible only
+when an existing remote service or remote search host can run it without
+connector-local model/index state.  Do not tune fusion weights against the qrels;
+a better reranker remains irrelevant when the correct file is absent from its
+pool.
 
 **Gate SQ2:** materially stronger first-stage owner recall than lexical-v2 on the
 expanded qrels/held-out slice, without unacceptable latency or loss of exact-name
