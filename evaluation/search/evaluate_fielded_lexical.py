@@ -98,17 +98,20 @@ def retrieve_fielded(
     api_retries: int = 0,
     api_workers: int = 1,
     api_search_fn: Callable[..., tuple[list[dict[str, Any]], dict[str, Any]]] | None = None,
+    fields: tuple[str, ...] = ("baseline", "content", "path"),
 ) -> tuple[list[dict[str, Any]], dict[str, Any], dict[str, str]]:
     if api_workers <= 0:
         raise ValueError("api_workers must be positive")
-    queries = compile_field_queries(text)
+    allowed_fields = {"baseline", "content", "path"}
+    if not fields or len(set(fields)) != len(fields) or not set(fields) <= allowed_fields:
+        raise ValueError("fields must be a nonempty unique subset of baseline, content, path")
+    all_queries = compile_field_queries(text)
+    queries = {field: all_queries[field] for field in fields}
     rankings: list[tuple[str, float, list[dict[str, Any]]]] = []
     request_elapsed_ms = 0.0
     payload_bytes = 0
     physical_api_requests = 0
     coalesced_api_hits = 0
-    fields = ("baseline", "content", "path")
-
     def run_field(field: str) -> tuple[str, list[dict[str, Any]], dict[str, Any]]:
         query = queries[field]
         if provider == "local":

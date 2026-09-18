@@ -13,7 +13,11 @@ HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import evaluate  # noqa: E402
 import evaluate_repeated  # noqa: E402
-from evaluate_fielded_lexical import compile_field_queries, weighted_rrf_fuse  # noqa: E402
+from evaluate_fielded_lexical import (  # noqa: E402
+    compile_field_queries,
+    retrieve_fielded,
+    weighted_rrf_fuse,
+)
 from evaluate_fielded_fts5 import (  # noqa: E402
     fts5_match_query,
     fts5_rerank,
@@ -330,6 +334,58 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         fused = weighted_rrf_fuse(rankings, constant=60, depth=200)
         self.assertEqual(fused[0]["FileName"], "a")
         self.assertEqual(fused[0]["RRFFields"], ["baseline", "content"])
+
+    def test_fielded_retrieval_can_ablate_a_fixed_channel(self) -> None:
+        calls: list[str] = []
+
+        def api_search(
+            query: str,
+            timeout: float,
+            api_url: str,
+            serving: dict,
+            *,
+            retries: int = 0,
+        ) -> tuple[list[dict], dict]:
+            calls.append(query)
+            return (
+                [{"Repository": "r", "FileName": "owner.lean", "Score": 1.0}],
+                {
+                    "elapsed_ms": 1.0,
+                    "payload_bytes": 1,
+                    "physical_api_requests": 1,
+                },
+            )
+
+        results, runtime, queries = retrieve_fielded(
+            "Jordan canonical form",
+            timeout=5.0,
+            provider="api",
+            api_url="https://example.test/api/search",
+            serving=evaluate.serving_options(top=20, whole=False),
+            depth=20,
+            rrf_constant=60,
+            weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
+            api_search_fn=api_search,
+            fields=("baseline", "path"),
+        )
+        self.assertEqual(set(queries), {"baseline", "path"})
+        self.assertEqual(set(calls), {queries["baseline"], queries["path"]})
+        self.assertEqual(runtime["retrieval_queries"], 2)
+        self.assertEqual(results[0]["RRFFields"], ["baseline", "path"])
+
+        with self.assertRaises(ValueError):
+            retrieve_fielded(
+                "Jordan canonical form",
+                timeout=5.0,
+                provider="api",
+                api_url="https://example.test/api/search",
+                serving=evaluate.serving_options(top=20, whole=False),
+                depth=20,
+                rrf_constant=60,
+                weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
+                api_search_fn=api_search,
+                fields=("baseline", "baseline"),
+            )
 
     def test_fts5_second_stage_uses_shared_normalized_query_terms(self) -> None:
         self.assertEqual(

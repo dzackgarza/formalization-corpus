@@ -165,6 +165,7 @@ def retrieve_zoekt_first_stage(
     depth: int,
     rrf_constant: int,
     weights: dict[str, float],
+    fields: tuple[str, ...],
 ) -> tuple[list[dict[str, Any]], dict[str, Any], str, dict[str, str]]:
     if mode == "fielded":
         results, runtime, field_queries = retrieve_fielded(
@@ -176,6 +177,7 @@ def retrieve_zoekt_first_stage(
             depth=depth,
             rrf_constant=rrf_constant,
             weights=weights,
+            fields=fields,
         )
         return results, runtime, " FIELDED ".join(field_queries.values()), field_queries
     if mode == "lexical-v2":
@@ -207,6 +209,11 @@ def main() -> int:
     parser.add_argument("--baseline-weight", type=float, default=2.0)
     parser.add_argument("--content-weight", type=float, default=1.0)
     parser.add_argument("--path-weight", type=float, default=1.0)
+    parser.add_argument(
+        "--zoekt-fields",
+        default="baseline,content,path",
+        help="comma-separated fielded Zoekt channels (baseline,content,path)",
+    )
     parser.add_argument("--fts-host", default="zack@159.223.102.204")
     parser.add_argument(
         "--fts-remote-script",
@@ -239,6 +246,21 @@ def main() -> int:
     }
     if any(weight <= 0 for weight in weights.values()):
         print("ERROR: first-stage field weights must be positive", file=sys.stderr)
+        return 2
+    zoekt_fields = tuple(field.strip() for field in args.zoekt_fields.split(",") if field.strip())
+    allowed_fields = {"baseline", "content", "path"}
+    if (
+        not zoekt_fields
+        or len(set(zoekt_fields)) != len(zoekt_fields)
+        or not set(zoekt_fields) <= allowed_fields
+    ):
+        print(
+            "ERROR: --zoekt-fields must be a nonempty unique subset of baseline,content,path",
+            file=sys.stderr,
+        )
+        return 2
+    if args.zoekt_first_stage != "fielded" and zoekt_fields != ("baseline", "content", "path"):
+        print("ERROR: --zoekt-fields applies only to --zoekt-first-stage fielded", file=sys.stderr)
         return 2
 
     gold = evaluate.load_gold(args.gold)
@@ -303,6 +325,7 @@ def main() -> int:
                 depth=args.depth,
                 rrf_constant=args.rrf_constant,
                 weights=weights,
+                fields=zoekt_fields,
             )
             fts_response = fts_by_id[str(case["id"])]
             corpus_fts5 = list(fts_response["results"])
@@ -397,8 +420,17 @@ def main() -> int:
         return 2
 
     repo_state = provenance.repository_state(ROOT)
-    zoekt_variant = "zoekt_fielded_rrf_v1" if args.zoekt_first_stage == "fielded" else "frontend_lexical_v2"
-    variant_prefix = "fielded" if args.zoekt_first_stage == "fielded" else "lexical_v2"
+    if args.zoekt_first_stage == "fielded":
+        if zoekt_fields == ("baseline", "content", "path"):
+            zoekt_variant = "zoekt_fielded_rrf_v1"
+            variant_prefix = "fielded"
+        else:
+            field_suffix = "_".join(zoekt_fields)
+            zoekt_variant = f"zoekt_fielded_{field_suffix}_rrf_v1"
+            variant_prefix = f"fielded_{field_suffix}"
+    else:
+        zoekt_variant = "frontend_lexical_v2"
+        variant_prefix = "lexical_v2"
     report = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -419,6 +451,7 @@ def main() -> int:
         "first_stage": {
             "retrievers": [zoekt_variant, "sqlite_fts5_corpus_bm25_v1"],
             "zoekt_first_stage": args.zoekt_first_stage,
+            "zoekt_fields": list(zoekt_fields) if args.zoekt_first_stage == "fielded" else None,
             "union": "rank-interleaved deduplicated bounded prefixes",
             "per_retriever_depth": args.per_retriever_depth,
             "field_weights": weights,
