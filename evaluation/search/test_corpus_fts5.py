@@ -120,6 +120,12 @@ class CorpusFts5Tests(unittest.TestCase):
         with self.assertRaises(ValueError):
             corpus_fts5.fts_match(["foo"], field="unknown")
 
+    def test_exact_zoekt_pattern_anchors_root_level_file(self) -> None:
+        self.assertEqual(
+            corpus_fts5._exact_quoted_pattern("doc.lisp"),
+            '"^doc\\\\.lisp$"',
+        )
+
     def test_decode_file_distinguishes_zoekt_noncontent_sentinel(self) -> None:
         raw = b"NOT-INDEXED: exceeds the maximum size limit"
         item = {

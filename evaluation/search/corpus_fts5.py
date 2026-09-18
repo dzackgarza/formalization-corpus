@@ -49,6 +49,7 @@ TOKENIZER = "unicode61"
 ZOEKT_NONCONTENT_SENTINELS = frozenset(
     {
         b"NOT-INDEXED: exceeds the maximum size limit",
+        b"NOT-INDEXED: contains binary content",
         b"NOT-INDEXED: contains too many trigrams",
     }
 )
@@ -229,6 +230,12 @@ def _quoted_pattern(pattern: str) -> str:
     return '"' + pattern.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
+def _exact_quoted_pattern(text: str) -> str:
+    """Return a quoted Zoekt regex matching exactly one repository/path."""
+
+    return _quoted_pattern("^" + _regex_escape(text) + "$")
+
+
 def _search(
     api_url: str,
     query: str,
@@ -298,8 +305,8 @@ def fetch_file(
     api_url: str,
     timeout: float,
 ) -> FetchedContent:
-    repository = _quoted_pattern(_regex_escape(item.repository))
-    path = _quoted_pattern(_regex_escape(item.path))
+    repository = _exact_quoted_pattern(item.repository)
+    path = _exact_quoted_pattern(item.path)
     rows, _ = _search(
         api_url,
         f"repo:{repository} file:{path}",
@@ -330,7 +337,7 @@ def fetch_repository(
     api_url: str,
     timeout: float,
 ) -> dict[str, FetchedContent]:
-    repo_pattern = _quoted_pattern(_regex_escape(repository))
+    repo_pattern = _exact_quoted_pattern(repository)
     rows, reported = _search(
         api_url,
         f"repo:{repo_pattern}",
