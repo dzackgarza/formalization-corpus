@@ -104,6 +104,18 @@ class CoalescingApiSearch:
         return results, runtime
 
 
+def compressed_multiquery_or(compiled: list[str]) -> str:
+    """Combine frozen formulations into one Zoekt boolean-OR request.
+
+    Each branch remains the exact compiled query used by the frozen multi-query
+    retriever, including its own file and case filters.  Only the backend query
+    count changes; no terms are selected or rewritten from relevance judgments.
+    """
+    if not compiled:
+        raise ValueError("compressed multi-query requires at least one compiled formulation")
+    return " or ".join(f"({query})" for query in compiled)
+
+
 def retrieve_batched_first_stages(
     case: dict[str, Any],
     expansion_queries: dict[str, list[str]],
@@ -117,6 +129,7 @@ def retrieve_batched_first_stages(
     max_concurrency: int,
     batch_size: int,
     api_retries: int,
+    compress_multiquery: bool = False,
 ) -> tuple[
     list[dict[str, Any]],
     list[dict[str, Any]],
@@ -127,11 +140,13 @@ def retrieve_batched_first_stages(
 ]:
     """Retrieve both lexical first stages through bounded public batch requests.
 
-    The mathematical retrieval contract is unchanged: fielded weighted RRF and
-    frozen multi-query RRF see the same compiled queries and depth as their
-    ordinary implementations.  Only transport/scheduling changes.  Bounded
-    slices keep one expensive query family from forcing every search in a case
-    into the same HTTP request on the memory-constrained search host.
+    By default the mathematical retrieval contract is unchanged: fielded weighted
+    RRF and frozen multi-query RRF see the same compiled queries and depth as their
+    ordinary implementations.  ``compress_multiquery`` is an explicit retrieval
+    experiment that replaces the frozen multi-query RRF requests with one Zoekt
+    boolean-OR request over the same compiled formulations.  Bounded slices keep
+    one expensive query family from forcing every search in a case into the same
+    HTTP request on the memory-constrained search host.
     """
 
     field_queries = compile_field_queries(case["query"])
@@ -145,7 +160,10 @@ def retrieve_batched_first_stages(
         seen_multiquery.add(query)
         compiled.append(query)
 
-    unique_queries = list(dict.fromkeys([*field_queries.values(), *compiled]))
+    multiquery_specs = (
+        [compressed_multiquery_or(compiled)] if compress_multiquery else compiled
+    )
+    unique_queries = list(dict.fromkeys([*field_queries.values(), *multiquery_specs]))
     by_query: dict[str, list[dict[str, Any]]] = {}
     batch_runtime: dict[str, Any] = {
         "elapsed_ms": 0.0,
@@ -183,16 +201,21 @@ def retrieve_batched_first_stages(
         constant=rrf_constant,
         depth=depth,
     )
-    multiquery = rrf_fuse(
-        [by_query[query] for query in compiled],
-        constant=rrf_constant,
-        depth=depth,
-    )
+    if compress_multiquery:
+        multiquery = by_query[multiquery_specs[0]]
+    else:
+        multiquery = rrf_fuse(
+            [by_query[query] for query in multiquery_specs],
+            constant=rrf_constant,
+            depth=depth,
+        )
+    logical_retriever_queries = len(field_queries) + len(multiquery_specs)
     batch_runtime = {
         **batch_runtime,
-        "logical_retriever_queries": len(field_queries) + len(compiled),
+        "logical_retriever_queries": logical_retriever_queries,
+        "multiquery_backend_queries": len(multiquery_specs),
         "unique_backend_searches": len(unique_queries),
-        "coalesced_query_consumers": len(field_queries) + len(compiled) - len(unique_queries),
+        "coalesced_query_consumers": logical_retriever_queries - len(unique_queries),
     }
     return (
         fielded,
@@ -323,6 +346,11 @@ def main() -> int:
         help="submit all unique fielded and frozen-multiquery searches for each case through one API batch request",
     )
     parser.add_argument(
+        "--compress-multiquery-or",
+        action="store_true",
+        help="replace frozen multi-query RRF requests with one boolean-OR query per case",
+    )
+    parser.add_argument(
         "--batch-max-concurrency",
         type=int,
         default=4,
@@ -357,6 +385,9 @@ def main() -> int:
         return 2
     if args.batch_max_concurrency <= 0 or args.batch_size <= 0:
         print("ERROR: batch max concurrency and batch size must be positive", file=sys.stderr)
+        return 2
+    if args.compress_multiquery_or and not args.batch_first_stage:
+        print("ERROR: --compress-multiquery-or currently requires --batch-first-stage", file=sys.stderr)
         return 2
     if args.batch_first_stage and (
         args.parallel_first_stages
@@ -431,6 +462,7 @@ def main() -> int:
                     max_concurrency=args.batch_max_concurrency,
                     batch_size=args.batch_size,
                     api_retries=args.api_retries,
+                    compress_multiquery=args.compress_multiquery_or,
                 )
                 fielded_runtime = {
                     "elapsed_ms": batch_runtime["elapsed_ms"],
@@ -442,7 +474,7 @@ def main() -> int:
                 multiquery_runtime = {
                     "elapsed_ms": batch_runtime["elapsed_ms"],
                     "payload_bytes": 0,
-                    "retrieval_queries": len(compiled),
+                    "retrieval_queries": int(batch_runtime["multiquery_backend_queries"]),
                     "physical_api_requests": 0,
                     "coalesced_api_hits": 0,
                 }
@@ -593,7 +625,16 @@ def main() -> int:
         scored = evaluate.score_case(
             case,
             reranked,
-            " FIELDED_MULTIQUERY_UNION ".join([*field_queries.values(), *compiled]),
+            " FIELDED_MULTIQUERY_UNION ".join(
+                [
+                    *field_queries.values(),
+                    *(
+                        [compressed_multiquery_or(compiled)]
+                        if args.compress_multiquery_or
+                        else compiled
+                    ),
+                ]
+            ),
             runtime,
         )
         scored["field_queries"] = field_queries
@@ -614,18 +655,14 @@ def main() -> int:
         return 2
 
     repo_state = provenance.repository_state(ROOT)
-    report = {
-        "schema_version": 1,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "corpus_git_commit": repo_state["commit"],
-        "repository_state": repo_state,
-        "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
-        "query_config_sha256": evaluate.query_config_sha256(),
-        "serving_config_sha256": evaluate.serving_config_sha256(),
-        "expansions_sha256": hashlib.sha256(args.expansions.read_bytes()).hexdigest(),
-        "expansion_model": expansion_data.get("model"),
-        "expansion_prompt_version": expansion_data.get("prompt_version"),
-        "variant": (
+    if args.compress_multiquery_or:
+        variant = (
+            "fielded_expansion_or_union_fts5_plus_rank_evidence_rrf_batched_v1"
+            if args.include_first_stage_ranks
+            else "fielded_expansion_or_union_fts5_evidence_rrf_batched_v1"
+        )
+    else:
+        variant = (
             (
                 "fielded_multiquery_union_fts5_plus_rank_evidence_rrf_batched_chunkless_v1"
                 if args.batch_first_stage and args.omit_first_stage_chunks
@@ -645,13 +682,29 @@ def main() -> int:
                 if args.parallel_first_stages
                 else "fielded_multiquery_union_fts5_evidence_rrf_v1"
             )
-        ),
+        )
+    report = {
+        "schema_version": 1,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "corpus_git_commit": repo_state["commit"],
+        "repository_state": repo_state,
+        "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
+        "query_config_sha256": evaluate.query_config_sha256(),
+        "serving_config_sha256": evaluate.serving_config_sha256(),
+        "expansions_sha256": hashlib.sha256(args.expansions.read_bytes()).hexdigest(),
+        "expansion_model": expansion_data.get("model"),
+        "expansion_prompt_version": expansion_data.get("prompt_version"),
+        "variant": variant,
         "provider": "api+sqlite-fts5",
         "api_url": args.api_url,
         "api_transport_retries": args.api_retries,
         "serving_options": serving,
         "first_stage": {
-            "retrievers": ["zoekt_fielded_rrf_v1", "gemini_multiquery_rrf_v1"],
+            "retrievers": [
+                "zoekt_fielded_rrf_v1",
+                "frozen_expansion_or_v1" if args.compress_multiquery_or else "gemini_multiquery_rrf_v1",
+            ],
+            "multiquery_compression": "boolean-or" if args.compress_multiquery_or else None,
             "union": "rank-interleaved deduplicated bounded prefixes",
             "execution": (
                 "server-batched"

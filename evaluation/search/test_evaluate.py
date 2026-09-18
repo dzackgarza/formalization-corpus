@@ -24,6 +24,7 @@ from evaluate_rerank import bounded_excerpt, humanize_path  # noqa: E402
 from evaluate_union_fts5 import (  # noqa: E402
     CoalescingApiSearch,
     add_first_stage_rank_evidence,
+    compressed_multiquery_or,
     balanced_union,
     retrieve_batched_first_stages,
 )
@@ -106,6 +107,58 @@ class SearchEvaluationTests(unittest.TestCase):
         self.assertEqual(payload["MaxConcurrency"], 4)
         self.assertFalse(payload["Searches"][0]["Request"]["Opts"]["ChunkMatches"])
         self.assertEqual(run.call_args.kwargs["timeout"], 92)
+
+
+    def test_compressed_multiquery_or_preserves_complete_compiled_branches(self) -> None:
+        compiled = [
+            '"Serre" "duality" file:\\.(lean|v)$ case:no',
+            '"Grothendieck" "duality" file:\\.(lean|v)$ case:no',
+        ]
+        self.assertEqual(
+            compressed_multiquery_or(compiled),
+            '({}) or ({})'.format(*compiled),
+        )
+        with self.assertRaises(ValueError):
+            compressed_multiquery_or([])
+
+    def test_batched_first_stage_can_compress_multiquery_to_one_backend_search(self) -> None:
+        case = {"id": "q", "query": "Jordan canonical form"}
+        expansions = {"q": ["Jordan normal form"]}
+        field_queries = compile_field_queries(case["query"])
+        compiled = [
+            evaluate.compile_query(case["query"], "normalized_path_content_v1"),
+            evaluate.compile_query("Jordan normal form", "normalized_path_content_v1"),
+        ]
+        compressed = compressed_multiquery_or(compiled)
+        candidate = {"Repository": "r", "FileName": "Jordan.lean", "Score": 1.0}
+        by_query = {query: [candidate] for query in dict.fromkeys([*field_queries.values(), compressed])}
+        batch_runtime = {
+            "elapsed_ms": 10.0,
+            "payload_bytes": 100,
+            "physical_api_requests": 1,
+            "logical_queries": len(by_query),
+            "max_concurrency": 2,
+            "cache_counts": {"MISS": len(by_query)},
+        }
+        with mock.patch.object(evaluate, "api_search_batch", return_value=(by_query, batch_runtime)):
+            _, multiquery, _, _, got_compiled, runtime = retrieve_batched_first_stages(
+                case,
+                expansions,
+                timeout=30.0,
+                api_url="https://example.test/api/search",
+                serving=evaluate.serving_options(top=200, whole=False),
+                depth=200,
+                rrf_constant=60,
+                weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
+                max_concurrency=2,
+                batch_size=4,
+                api_retries=2,
+                compress_multiquery=True,
+            )
+        self.assertEqual(got_compiled, compiled)
+        self.assertEqual(multiquery[0]["FileName"], "Jordan.lean")
+        self.assertEqual(runtime["multiquery_backend_queries"], 1)
+        self.assertEqual(runtime["unique_backend_searches"], len(by_query))
 
     def test_batched_first_stage_reconstructs_fielded_and_multiquery_rankings(self) -> None:
         case = {"id": "q", "query": "Jordan canonical form"}
