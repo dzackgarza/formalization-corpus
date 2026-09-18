@@ -17,6 +17,7 @@ import provenance
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
+DEFAULT_REMOTE_DB = "/home/zack/lean-corpus/experiments/corpus-fts5-v2.sqlite"
 
 
 def remote_query_batch(
@@ -71,7 +72,7 @@ def main() -> int:
         "--remote-script", default="/home/zack/lean-corpus/experiments/corpus_fts5.py"
     )
     parser.add_argument(
-        "--remote-db", default="/home/zack/lean-corpus/experiments/corpus-fts5.sqlite"
+        "--remote-db", default=DEFAULT_REMOTE_DB
     )
     parser.add_argument("--mode", choices=("bm25-all", "fielded-rrf"), default="bm25-all")
     parser.add_argument("--depth", type=int, default=200)

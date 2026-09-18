@@ -28,7 +28,7 @@ from typing import Any
 
 import evaluate
 import provenance
-from evaluate_corpus_fts5 import remote_query_batch
+from evaluate_corpus_fts5 import DEFAULT_REMOTE_DB, remote_query_batch
 from evaluate_fielded_fts5 import (
     ApiContentCache,
     fetch_candidate_contents,
@@ -221,7 +221,7 @@ def main() -> int:
     )
     parser.add_argument(
         "--fts-remote-db",
-        default="/home/zack/lean-corpus/experiments/corpus-fts5-v2.sqlite",
+        default=DEFAULT_REMOTE_DB,
     )
     parser.add_argument("--output", type=pathlib.Path)
     args = parser.parse_args()
