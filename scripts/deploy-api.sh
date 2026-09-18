@@ -5,16 +5,22 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 host="${FORMALIZATION_CORPUS_HOST:-zack@159.223.102.204}"
 remote_root="${FORMALIZATION_CORPUS_REMOTE_ROOT:-/home/zack/lean-corpus}"
 
-binary="$(mktemp)"
-trap 'rm -f "$binary"' EXIT
-
-(
-  cd "$root/tools/sourcegraph__zoekt"
-  GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
-    go build -o "$binary" ./cmd/zoekt-webserver
-)
-
-rsync -a "$binary" "$host:$remote_root/bin/zoekt-webserver.stock"
+zoekt_source="$root/tools/sourcegraph__zoekt"
+if [[ -f "$zoekt_source/go.mod" ]]; then
+  binary="$(mktemp)"
+  trap 'rm -f "$binary"' EXIT
+  (
+    cd "$zoekt_source"
+    GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
+      go build -o "$binary" ./cmd/zoekt-webserver
+  )
+  rsync -a "$binary" "$host:$remote_root/bin/zoekt-webserver.stock"
+elif ssh "$host" "test -x '$remote_root/bin/zoekt-webserver.stock'"; then
+  echo "Zoekt source checkout is ghosted; retaining the deployed stock binary"
+else
+  echo "Zoekt source checkout is ghosted and no deployed stock binary exists" >&2
+  exit 1
+fi
 ssh "$host" "mkdir -p '$remote_root/api' '$remote_root/systemd'"
 rsync -a --delete --exclude .venv/ "$root/server/" "$host:$remote_root/api/"
 ssh "$host" "mkdir -p '$remote_root/api/data'"
