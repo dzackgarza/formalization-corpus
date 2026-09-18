@@ -178,6 +178,48 @@
           "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochApplications.lean",
           "relevance": 2,
           "note": "Contains direct Serre-duality consequences and P1 verification inside the Riemann-Roch applications development."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityAnnihilator.lean",
+          "relevance": 2,
+          "note": "Proves substantive Serre-duality identities, including both directions on P1, but not the general coherent-sheaf duality theorem."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/RelativeProjectiveSerreTwistEquivalence.lean",
+          "relevance": 1,
+          "note": "Constructs relative Serre twisting equivalences for module sheaves; relevant coherent-sheaf infrastructure, but no Serre duality theorem."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ProperCohomologyFromRelativeSerre.lean",
+          "relevance": 1,
+          "note": "Uses relative Serre inputs to prove finite coherent cohomology on proper schemes; relevant supporting machinery, not duality."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ProjectiveModificationSerreTwist.lean",
+          "relevance": 1,
+          "note": "Formalizes coherent Serre twists on projective modifications; related coherent-sheaf infrastructure, not Serre duality."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Sites/Coherent/ExtensiveSheaves.lean",
+          "relevance": 0,
+          "note": "Characterizes sheaves for the extensive topology; its coherent/sheaf terminology is unrelated to Serre duality for coherent sheaves."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ProjectiveSerreTwistTransition.lean",
+          "relevance": 1,
+          "note": "Constructs transition functions for Serre twisting sheaves on projective space; relevant input, but no duality statement."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/CoherentLineBundlesProj.lean",
+          "relevance": 1,
+          "note": "Develops coherent sheaves and Serre twisting sheaves on Proj; related infrastructure, but not a proof of Serre duality."
         }
       ]
     },
@@ -364,6 +406,30 @@
           "file": "src/HOL/ex/Classical.thy",
           "relevance": 0,
           "note": "Classical-logic examples; no Bruhat-Tits construction."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits/Graph/Graph.lean",
+          "relevance": 3,
+          "note": "Defines the Bruhat-Tits graph from lattice homothety classes and proves it connected; this is direct Bruhat-Tits-tree formalization infrastructure."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BruhatTits/Graph/GroupAction.lean",
+          "relevance": 2,
+          "note": "Builds the GL2 action by graph isomorphisms on the explicitly defined Bruhat-Tits tree and computes stabilizers."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/CoxeterGroup/BruhatSubexpression.lean",
+          "relevance": 0,
+          "note": "Formalizes Bruhat order and the Coxeter subexpression theorem; it does not define the Bruhat-Tits tree."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/GroupTheory/TitsSystem/Bruhat/Subword.lean",
+          "relevance": 0,
+          "note": "Formalizes Bruhat-cell subword expansion for Tits systems; unrelated to the Bruhat-Tits tree construction."
         }
       ]
     },
@@ -585,6 +651,36 @@
           "file": "projects/HasseWeil/HasseWeil/HasseBound/Infrastructure.lean",
           "relevance": 1,
           "note": "Hasse-bound infrastructure that explicitly uses Riemann-Roch dimension-count input for algebraic curves; a downstream application/support file rather than the theorem owner."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Basic.lean",
+          "relevance": 0,
+          "note": "A modular-curves module-root stub; it contains no Riemann-Roch theorem."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/EllipticCurve/AbelSkeleton.lean",
+          "relevance": 1,
+          "note": "Packages degree-one fibre cohomology inputs and explicitly uses genus-one Riemann-Roch, but is not a general curve Riemann-Roch theorem."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/EllipticCurve/FibreConstantField.lean",
+          "relevance": 1,
+          "note": "Discharges a constant-field hypothesis used by vendored genus-one Riemann-Roch endpoints; relevant supporting work for elliptic curves, not the general theorem."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/TraceResidue.lean",
+          "relevance": 1,
+          "note": "Uses Riemann-Roch as an input to obtain meromorphic maps in a residue-theorem development; it does not itself formalize Riemann-Roch for curves."
+        },
+        {
+          "repository": "DhyeyMavani2003__chip-firing-with-lean",
+          "file": "ChipFiringWithLean/RiemannRoch.lean",
+          "relevance": 0,
+          "note": "Proves the Baker-Norine Riemann-Roch theorem for finite graphs, not Riemann-Roch for algebraic curves."
         }
       ]
     },
@@ -848,6 +944,42 @@
           "file": "v1/Atlas/Buildings/code/AffineCoxeter/AffineCriterion.lean",
           "relevance": 0,
           "note": "Develops the affine Coxeter/Tits-cone criterion; the criterion and cone terminology are unrelated to homological mapping cones or quasi-isomorphisms."
+        },
+        {
+          "repository": "CakeML__candle",
+          "file": "Multivariate/multivariate_database.ml",
+          "relevance": 0,
+          "note": "A theorem-name database containing unrelated chain/cone entries; no homological mapping-cone quasi-isomorphism criterion."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/BrauerGroupNew/Examples/ShortComplex/LeftHomologyMapData.lean",
+          "relevance": 1,
+          "note": "Proves a concrete quasi-isomorphism criterion for short complexes of modules; relevant homological infrastructure, but not the mapping-cone criterion."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/CategoryTheory/Exact/Conflation.lean",
+          "relevance": 0,
+          "note": "Develops conflations and componentwise isomorphisms of short complexes; no mapping-cone quasi-isomorphism criterion."
+        },
+        {
+          "repository": "jrh13__hol-light",
+          "file": "Multivariate/multivariate_database.ml",
+          "relevance": 0,
+          "note": "A theorem-name database with simplicial-cone and chain-map entries; no mapping-cone quasi-isomorphism criterion."
+        },
+        {
+          "repository": "leanprover-community__lean-liquid",
+          "file": "src/for_mathlib/bicartesian2.lean",
+          "relevance": 1,
+          "note": "Constructs mapping cones for bicartesian diagrams and computes their terms and differentials; relevant cone infrastructure, but no iff criterion for quasi-isomorphisms."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Eval_FO/Mapping_Code.thy",
+          "relevance": 0,
+          "note": "Implements finite-map code operations; mapping here is container terminology, unrelated to chain-complex mapping cones."
         }
       ]
     },
@@ -1099,6 +1231,60 @@
           "file": "books/workshops/2004/ruiz-et-al/support/prefix-unification-rules.lisp",
           "relevance": 0,
           "note": "Prefix-unification transformation rules; “operators/transformations” are unrelated to Jordan form."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Algebra/Lie/GeneralLinear/RootSpace.lean",
+          "relevance": 0,
+          "note": "Studies root spaces and diagonal adjoint operators in Lie algebras; it does not construct Jordan canonical form."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/LinearAlgebra/JordanChevalley/Multiplicative.lean",
+          "relevance": 1,
+          "note": "Formalizes multiplicative Jordan-Chevalley decomposition into semisimple and unipotent factors; related linear algebra, but not Jordan canonical form."
+        },
+        {
+          "repository": "leanprover-community__physlib",
+          "file": "PhyslibAlpha/AlgebraicFramework/CStarAlgebra/JordanDecomposition.lean",
+          "relevance": 0,
+          "note": "Formalizes the positive/negative Jordan decomposition of self-adjoint C-star algebra elements, a different theorem."
+        },
+        {
+          "repository": "google-deepmind__formal-conjectures",
+          "file": "FormalConjectures/Wikipedia/InvariantSubspaceProblem.lean",
+          "relevance": 0,
+          "note": "Mentions Jordan normal form in commentary on the invariant-subspace problem but does not formalize Jordan canonical form."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/LinearAlgebra/JordanChevalley/Functoriality.lean",
+          "relevance": 1,
+          "note": "Proves functoriality of Jordan-Chevalley factors under conjugation and intertwiners; related, but not canonical-form existence."
+        },
+        {
+          "repository": "LionSR__TNLean",
+          "file": "TNLean/MPS/MPDO/CPSVVerticalCanonicalForm.lean",
+          "relevance": 0,
+          "note": "Proves a tensor-network vertical canonical form; unrelated to Jordan canonical form of a linear operator."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/LinearAlgebra/JordanChevalley/TensorProduct.lean",
+          "relevance": 1,
+          "note": "Proves tensor-product compatibility for Jordan-Chevalley decomposition; relevant neighboring theory, not Jordan canonical form."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/NumberTheory/ModularForms/HeckeSlash/UpperTri/ModularForm.lean",
+          "relevance": 0,
+          "note": "Defines upper-triangular Hecke operators on modular and cusp forms; unrelated to Jordan canonical form."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Jordan_Normal_Form/Jordan_Normal_Form.thy",
+          "relevance": 3,
+          "note": "Directly defines Jordan blocks and Jordan normal forms and proves matrix results about them; a direct formalization of Jordan normal form."
         }
       ]
     },
@@ -1375,6 +1561,36 @@
           "file": "Adic spaces/FJP/Over/ExamplePadic.lean",
           "relevance": 0,
           "note": "Specializes sheafiness and related finite-jet results over the p-adics and proves its valuation ring is a DVR, but contains no Hensel/Henselian root-lifting theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/Category/TopCommRingCat/CompleteSeparated/Limits.lean",
+          "relevance": 0,
+          "note": "Proves categorical limits for complete separated topological rings; no Hensel lifting theorem or DVR-specific result."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Order/CompleteLattice/Lemmas.lean",
+          "relevance": 0,
+          "note": "Contains order-theoretic complete-lattice lemmas; complete here is unrelated to complete discrete valuation rings."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/FltRegularBernoulli/BernoulliRegular/Reflection/Kummer/WildCriterion.lean",
+          "relevance": 1,
+          "note": "Uses a Hensel-style local lift as an explicit input in a cyclotomic wild-ramification criterion; relevant application, but not the general complete-DVR Hensel lemma."
+        },
+        {
+          "repository": "mariainesdff__LocalClassFieldTheory",
+          "file": "LocalClassFieldTheory/DiscreteValuationRing/Extensions.lean",
+          "relevance": 1,
+          "note": "Formalizes extensions of complete discrete valuations and completeness of finite extensions; relevant complete-DVR infrastructure, but no Hensel lemma."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/RingTheory/Valuation/Discrete/IsDiscreteValuationRing.lean",
+          "relevance": 1,
+          "note": "Connects DVRs with rank-one discrete valuations; relevant DVR infrastructure, but it does not prove Hensel lifting from completeness."
         }
       ]
     },
