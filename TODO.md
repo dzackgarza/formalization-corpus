@@ -120,7 +120,7 @@ preserved, and the post-filter benchmark/pool rerun completed.  Corpus hygiene i
 a prerequisite for choosing the next production ranking stack, not the
 completion of search-quality work.
 
-### SQ2 — Strong lexical first-stage retrieval — ACTIVE, CURRENT FRONTIER
+### SQ2 — Strong lexical first-stage retrieval — ACTIVE, RESOURCE-BOUND FRONTIER
 
 Replace the assumption that raw Zoekt ranking is the best lexical scorer with a
 measured fielded information-retrieval stage.  Evaluate mature implementations
@@ -247,7 +247,7 @@ source-hierarchy construction.
 expanded qrels/held-out slice, without unacceptable latency or loss of exact-name
 lookup behavior.
 
-### SQ3 — Semantic, hybrid, hierarchical, and contextual retrieval — QUEUED
+### SQ3 — Semantic, hybrid, hierarchical, and contextual retrieval — RESOURCE-DEFERRED
 
 Build an independent semantic first-stage signal and fuse it with lexical search.
 The experiments must separately measure the choices below rather than bundle
@@ -273,7 +273,7 @@ them into one opaque system:
 beyond the best lexical system and keeps exact identifiers competitive; candidate
 pool size, storage, latency, API/GPU cost, and cross-prover coverage are recorded.
 
-### SQ4 — Reranking — QUEUED AFTER CANDIDATE RECALL IS HIGH
+### SQ4 — Reranking — RESOURCE-DEFERRED AFTER CANDIDATE RECALL
 
 Once SQ2/SQ3 reliably put the correct owner files into a bounded candidate pool,
 compare cross-encoder, late-interaction, and LLM/API rerankers.  The existing
@@ -284,6 +284,17 @@ latency is not a serving target.
 Measure owner Hit@10, MRR, nDCG@10, regressions by query class, latency, payload
 size, API cost, and failure behavior.  Preserve a non-neural/raw lexical route as
 an observable control.
+
+Current execution is resource-deferred here as well.  The canonical search host
+has no reranker/vector service or provider-backed model client, and neither the
+search-host service environment nor the connector workflow currently exposes a
+Cohere or alternative reranker credential.  The historical Cohere evaluator
+therefore cannot be rerun against the current corpus without adding a new remote
+provider/runtime.  There is also no recorded real-user query stream from which to
+form the required held-out user slice.  Do not substitute connector-local model
+downloads, throwaway model environments, stale-index Cohere scores, or invented
+"user" queries for either missing input.  Resume this gate when a permitted
+remote reranker/provider and an authentic held-out query source are available.
 
 **Gate SQ4:** a reranker gives a robust top-k gain on expanded judgments and held-
 out user queries at an operationally acceptable cost/latency envelope.
