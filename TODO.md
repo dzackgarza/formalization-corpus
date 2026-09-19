@@ -232,7 +232,16 @@ explicit remote-runtime deployment is available.  Meanwhile keep the accepted
 source-hierarchy lexical reference fixed, continue independent pooling/evaluation
 work that does not require local neural state, and do not tune fusion weights
 against the qrels; a better reranker remains irrelevant when the correct file is
-absent from its pool.
+absent from its pool.  A low-latency structural fallback also fails its
+predeclared gate.  Applying the same fixed source-hierarchy mechanism to the
+single corpus-FTS5 stream keeps retrieval near the plain FTS5 control
+(p50/p95 **0.134/0.385 s** versus **0.136/0.375 s**) and leaves exact-name Owner
+Hit@10 at **0.667**, but lowers overall Owner Hit@10 from **0.792** to **0.708**
+and owner MRR from **0.5128** to **0.5117**, despite improving Owner Hit@20 from
+**0.875** to **0.958**.  Reject that standalone hierarchy without weight/cutoff
+tuning.  The fast control remains plain corpus FTS5; the stronger lexical
+reference remains the accepted multi-channel baseline+path Zoekt plus corpus-FTS5
+source-hierarchy construction.
 
 **Gate SQ2:** materially stronger first-stage owner recall than lexical-v2 on the
 expanded qrels/held-out slice, without unacceptable latency or loss of exact-name
