@@ -74,14 +74,15 @@ remain separate from retrieval-code changes.
 
 The current relevance set is still too small for strong claims about novel
 retrievers, but independent pooling is now materially broader: the 24-query gold
-set contains **1,668** explicit query/file judgments.  The accepted lexical
-reference and its otherwise identical control have now been independently pooled
-through displayed depth 60: **1,505/1,505** unique candidates are judged (834
-relevant and 671 nonrelevant).  The earlier SPLADE++ query-expansion differential
-pool added 147 judgments in one source-blind review pass: 34 relevant alternatives
-(17 relevance-1 and 17 relevance-2) and 113 nonrelevant files, with no new
-direct-owner judgments.  Before selecting a new retrieval family, continue
-expanding the pool from materially different systems and judge it independently
+set contains **2,608** explicit query/file judgments.  The accepted lexical
+reference and its otherwise identical control have completed the predeclared
+pooling campaign through displayed depth 100: their current union contains
+**2,485/2,485** judged candidates (1,314 relevant and 1,171 nonrelevant).  The
+earlier SPLADE++ query-expansion differential pool added 147 judgments in one
+source-blind review pass: 34 relevant alternatives (17 relevance-1 and 17
+relevance-2) and 113 nonrelevant files, with no new direct-owner judgments.
+Do not deepen the same lexical pool merely to create more qrels; new pooling
+should come from a materially different retrieval family and remain independent
 of which system returned each file.  As real user failures accumulate, add a
 held-out user-query slice so tuning does not optimize only theorem-style benchmark
 paraphrases.
@@ -187,19 +188,22 @@ remains **0.958/1.000**, and nDCG@10 rises slightly from **0.675** to **0.677**;
 final owner MRR is essentially flat/slightly lower (**0.6119 -> 0.6113**), so
 this does not settle the second-stage ordering problem.  Accept the source-rank
 channel as the qrel-independent first-stage reference and do not tune its weight.
-The accepted run and its otherwise identical lexical control are now
-independently pooled through displayed depth 60: **1,505/1,505** unique candidates
-are judged (**834** relevant and **671** nonrelevant).  On the resulting
-**1,668-judgment** qrels, the source-hierarchy gain survives a fresh same-index
-rerun: first-stage Owner Hit@10/20 remains **0.917/1.000** versus **0.875/0.958**
-for the two-channel lexical reference, with owner MRR **0.6243 versus 0.6204**.
+The accepted run and its otherwise identical lexical control have now completed
+the predeclared independent pooling campaign through displayed depth 100.  Their
+current depth-100 union contains **2,485/2,485** judged query/file candidates:
+**1,314** relevant (802 relevance-1, 415 relevance-2, 97 relevance-3) and
+**1,171** nonrelevant, within **2,608 total qrels**.  On a fresh same-index rerun,
+the source-hierarchy first stage still improves Owner Hit@10/20 to
+**0.917/1.000** from **0.875/0.958** and owner MRR to **0.6243** from **0.6204**.
+Its judged gold Recall@10/20/50/100 is
+**0.1819/0.3146/0.5996/0.8285** versus
+**0.1675/0.2971/0.5697/0.8166** for the two-channel lexical control, while the
+exact-name first-stage slice remains Owner Hit@10/20 = **0.833/1.000** for both.
 After the fixed content reranker, Owner Hit@5 remains improved (**0.833 versus
-0.792**), Owner Hit@10/20 is **0.958/1.000** for both, and nDCG@10 is **0.6126
-versus 0.6099**.  The depth-51--60 expansion added **246** previously unjudged
-files (110 relevant: 70 relevance-1, 32 relevance-2, and 8 direct-owner
-relevance-3 files; 136 nonrelevant).  Continue the same independent pooling
-protocol to depth 100 before using deeper-cutoff relevance estimates to settle
-retrieval-family choices.
+0.792**), Owner Hit@10/20 is **0.958/1.000** for both, and nDCG@10 is
+**0.6056 versus 0.6029**.  Retain the fixed source-hierarchy channel and stop
+deepening this same pool or tuning its weights on these qrels; advance from pool
+expansion to the next documented search-quality gate.
 The first parser-backed declaration/signature probe is negative as a global
 equal-weight second-stage channel.  Lean declaration/type/member captures from
 the repository's existing tree-sitter parser lower final Owner Hit@10/20 from
