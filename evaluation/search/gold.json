@@ -358,6 +358,54 @@
           "file": "Mathlib/CategoryTheory/Sites/Coherent/LocallySurjective.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Is Serre duality for coherent sheaves already formalized?”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicGeometry/FinitelyPresentedSheaf/Basic.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Is Serre duality for coherent sheaves already formalized?”, but does not formalize the full target."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ProjectiveSerreTwistIntegerCoherence.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Is Serre duality for coherent sheaves already formalized?”, but does not formalize the full target."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/CoherentSheavesCurves.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Is Serre duality for coherent sheaves already formalized?”, but does not formalize the full target."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ProjectiveSerreTwistIntegerOperations.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Is Serre duality for coherent sheaves already formalized?”, but does not formalize the full target."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/SerreDualityGenus0.lean",
+          "relevance": 2,
+          "note": "Direct genus-zero Serre-duality development; it closes a genuine Serre-duality leg but is not the general coherent-sheaf theorem."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/CanonicalSupportChowPositiveTwist.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Is Serre duality for coherent sheaves already formalized?”, but does not formalize the full target."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/K0GeneratorsOverlay.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Is Serre duality for coherent sheaves already formalized?”, but does not formalize the full target."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ProjectiveSerreVanishing.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Is Serre duality for coherent sheaves already formalized?”, but does not formalize the full target."
         }
       ]
     },
@@ -736,6 +784,54 @@
           "file": "BorelDet/Tree/trees.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “does Lean have the Bruhat Tits tree?”."
+        },
+        {
+          "repository": "Verified-zkEVM__PolyFun",
+          "file": "PolyFun/ITree/Handler.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “does Lean have the Bruhat Tits tree?”."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/Lean4Itree/ITree.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “does Lean have the Bruhat Tits tree?”."
+        },
+        {
+          "repository": "Verified-zkEVM__PolyFun",
+          "file": "PolyFun/ITree/Construct.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “does Lean have the Bruhat Tits tree?”."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/ChamberComplex/GalleryTypes/TitsForwardHelpers.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “does Lean have the Bruhat Tits tree?”, but does not formalize the full target."
+        },
+        {
+          "repository": "Verified-zkEVM__PolyFun",
+          "file": "PolyFun/ITree/Sim/Defs.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “does Lean have the Bruhat Tits tree?”."
+        },
+        {
+          "repository": "chrisflav__bruhat-tits",
+          "file": "BruhatTits/Utils/Misc.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “does Lean have the Bruhat Tits tree?”."
+        },
+        {
+          "repository": "Verified-zkEVM__evm-asm",
+          "file": "EvmAsm/Rv64/SAsm/TreeSep.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “does Lean have the Bruhat Tits tree?”."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/Building/ThicknessHypAssembly.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “does Lean have the Bruhat Tits tree?”, but does not formalize the full target."
         }
       ]
     },
@@ -1107,6 +1203,54 @@
           "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Dolbeault/SerreResiduePairing.lean",
           "relevance": 2,
           "note": "Vendored copy of the Serre residue pairing development, directly supporting the curve Riemann–Roch route."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/FieldTheory/FunctionField/RiemannRoch/DegreeZero.lean",
+          "relevance": 2,
+          "note": "Develops degree-zero Riemann–Roch spaces and their principal-divisor/divisor-class criteria, a substantive part of the curve theory."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/ProperMapDegreeConstruct.lean",
+          "relevance": 2,
+          "note": "Constructs conservation-of-number data specifically to discharge the degree-of-principal-divisor Riemann–Roch keystone."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/HasseWeil/HasseWeil/HasseBound/SepDegreeEqPointCount.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Riemann Roch theorem for algebraic curves”."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/CoordinateFree/RiemannRoch.lean",
+          "relevance": 3,
+          "note": "Direct coordinate-free function-field Riemann–Roch development exposing FunctionField.riemann_roch and its duality infrastructure."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/FormTraceGlobal.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Riemann Roch theorem for algebraic curves”, but does not formalize the full target."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/WeilDifferential/Basic.lean",
+          "relevance": 2,
+          "note": "Formalizes Weil differentials and the duality theorem used by the coordinate-free Riemann–Roch proof."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochGeneral.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Riemann Roch theorem for algebraic curves”, but does not formalize the full target."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Dolbeault/FormTraceGlobal.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Riemann Roch theorem for algebraic curves”, but does not formalize the full target."
         }
       ]
     },
@@ -1554,6 +1698,78 @@
         {
           "repository": "opencompl__lean-mlir",
           "file": "LeanMLIR/LeanMLIR/MLIRSyntax/Transform/NameMapping.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “mapping cone criterion for quasi isomorphisms”."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/DerivedCategory/Basic.lean",
+          "relevance": 2,
+          "note": "Derived-category development records the quasi-isomorphism/acyclic-cone characterization used in the localization construction."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/DomainTheory/Neighborhood/Example24.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “mapping cone criterion for quasi isomorphisms”."
+        },
+        {
+          "repository": "riccardobrasca__KummerCriterion",
+          "file": "KummerCriterion/HMinus/PadicCorollaries.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “mapping cone criterion for quasi isomorphisms”."
+        },
+        {
+          "repository": "HoTT__Coq-HoTT",
+          "file": "theories/Diagrams/Cone.v",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “mapping cone criterion for quasi isomorphisms”."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/QuasiIso.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “mapping cone criterion for quasi isomorphisms”, but does not formalize the full target."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/TensorCategories/code/QuasiTensorFunctor.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “mapping cone criterion for quasi isomorphisms”."
+        },
+        {
+          "repository": "isabelle-prover__mirror-isabelle",
+          "file": "src/HOL/Homology/Simplices.thy",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “mapping cone criterion for quasi isomorphisms”."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/AdicSpaces/Adic spaces/ScottishBook/Stated/Problem026.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “mapping cone criterion for quasi isomorphisms”."
+        },
+        {
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "file": "Adic spaces/SpaCompact.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “mapping cone criterion for quasi isomorphisms”."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/DomainTheory/Neighborhood/Example23.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “mapping cone criterion for quasi isomorphisms”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/Spectral/SpectralMap.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “mapping cone criterion for quasi isomorphisms”."
+        },
+        {
+          "repository": "nikhgarg__EconCSLib",
+          "file": "EconCSLib/Foundations/Math/QuasiConvex.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “mapping cone criterion for quasi isomorphisms”."
         }
@@ -2005,6 +2221,72 @@
           "file": "wiki/pages/canonical-form.elf",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan canonical form of a linear operator”."
+        },
+        {
+          "repository": "LionSR__TNLean",
+          "file": "TNLean/MPS/RFP/CPSVCanonicalForm.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan canonical form of a linear operator”."
+        },
+        {
+          "repository": "flyspeck__flyspeck",
+          "file": "text_formalization/jordan/make.hl",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan canonical form of a linear operator”."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Gauss_Jordan/Gauss_Jordan.thy",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan canonical form of a linear operator”."
+        },
+        {
+          "repository": "Project-Navi__ordvec-formalization",
+          "file": "OrdvecFormalization/CanonicalTilt.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan canonical form of a linear operator”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/InnerProductSpace/Conjugation.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan canonical form of a linear operator”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/LinearAlgebra/QuadraticForm/OfParallelogram.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan canonical form of a linear operator”."
+        },
+        {
+          "repository": "LionSR__TNLean",
+          "file": "TNLean/MPS/CanonicalForm/Reduction.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan canonical form of a linear operator”."
+        },
+        {
+          "repository": "leanprover-community__physlib",
+          "file": "PhyslibAlpha/AlgebraicFramework/StarAlgebra/Jordan.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan canonical form of a linear operator”."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Jordan_Normal_Form/Matrix_Impl.thy",
+          "relevance": 3,
+          "note": "Direct Isabelle/AFP Jordan normal form implementation loading the Jordan-normal-form existence and executable algorithms."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Gauss_Jordan/Gauss_Jordan_PA.thy",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan canonical form of a linear operator”."
+        },
+        {
+          "repository": "LionSR__TNLean",
+          "file": "TNLean/MPS/MPDO/PhysicalClosure.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan canonical form of a linear operator”."
         }
       ]
     },
@@ -2443,6 +2725,48 @@
           "file": "OddOrder/Higman/Suzuki2Groups/HigmanLemmaThirteen/ExponentTwoGraphOverTargetAxisGeometry.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hensel lemma over complete discrete valuation rings”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/RingTheory/Valuation/Discrete/Normalize.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Hensel lemma over complete discrete valuation rings”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/FieldTheory/FunctionField/Place/OfValuationSubring.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Hensel lemma over complete discrete valuation rings”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/Category/TopCommRingCat/Limits.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Hensel lemma over complete discrete valuation rings”, but does not formalize the full target."
+        },
+        {
+          "repository": "leanprover-community__lean-perfectoid-spaces",
+          "file": "src/examples/empty.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hensel lemma over complete discrete valuation rings”."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/DirectedTopologyLean4/CoverLemma.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hensel lemma over complete discrete valuation rings”."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lemma29Completeness.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hensel lemma over complete discrete valuation rings”."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/RingTheory/WittVector/DiscreteValuationRing.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Hensel lemma over complete discrete valuation rings”, but does not formalize the full target."
         }
       ]
     },
@@ -2807,6 +3131,60 @@
           "file": "src/Homotopy/Space/Rose.lagda.md",
           "relevance": 1,
           "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “fundamental group of a covering space”, but does not prove the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/Covering/Sigma.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “fundamental group of a covering space”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/RealProjective/Deck.lean",
+          "relevance": 2,
+          "note": "Direct covering-space development identifying the deck group of the antipodal quotient cover."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/Existence.lean",
+          "relevance": 3,
+          "note": "Direct covering-space classification construction: builds the cover associated to a subgroup of the fundamental group."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/FundamentalGroup/Basic.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “fundamental group of a covering space”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/Algebra/CliffordAlgebra/Spin/Covering.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “fundamental group of a covering space”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/FundamentalGroup/HomotopyEquiv.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “fundamental group of a covering space”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicTopology/FundamentalGroup/Product.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “fundamental group of a covering space”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Topology/Homotopy/Monodromy/Basic.lean",
+          "relevance": 3,
+          "note": "Direct pointed-cover classification bridge: identifies the monodromy stabilizer with the image of the cover fundamental group."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/Buildings/code/Reflection/ReflectionGroupsCoxeter.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “fundamental group of a covering space”."
         }
       ]
     },
@@ -3141,6 +3519,60 @@
           "file": "Schoenflies/MoiseBoundaryDrift.lean",
           "relevance": 1,
           "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “smooth manifolds with boundary and collars”, but does not prove the full target."
+        },
+        {
+          "repository": "LionSR__TNLean",
+          "file": "TNLean/MPS/MPU/SourceUBoundary.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “smooth manifolds with boundary and collars”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Geometry/Manifold/LocallyFlat/Smooth.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “smooth manifolds with boundary and collars”, but does not formalize the full target."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "green-tao/Submission/Hypergraph/OrderedBoundaryPartition.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “smooth manifolds with boundary and collars”."
+        },
+        {
+          "repository": "fpvandoorn__LeanCourse25",
+          "file": "LeanCourse25/Lectures/Lecture25.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “smooth manifolds with boundary and collars”."
+        },
+        {
+          "repository": "mccorvie__classification-of-surfaces",
+          "file": "Schoenflies/BoundaryPartitions.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “smooth manifolds with boundary and collars”."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "Jacobians/RiemannSurface/BilinearRelationsBoundaryWord.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “smooth manifolds with boundary and collars”."
+        },
+        {
+          "repository": "mccorvie__classification-of-surfaces",
+          "file": "Schoenflies/FiniteBoundaryGraph.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “smooth manifolds with boundary and collars”."
+        },
+        {
+          "repository": "pitmonticone__ItaLean2025",
+          "file": "ItaLean/DifferentialGeometry.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “smooth manifolds with boundary and collars”."
+        },
+        {
+          "repository": "fpvandoorn__LeanCourse24",
+          "file": "LeanCourse/DiffGeom.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “smooth manifolds with boundary and collars”, but does not formalize the full target."
         }
       ]
     },
@@ -3468,6 +3900,66 @@
         {
           "repository": "nasa__pvslib",
           "file": "algebra/abelian_group.prf",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of injective resolutions in abelian categories”."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/ExtAcyclicResolution.lean",
+          "relevance": 2,
+          "note": "Direct injective-resolution use: identifies homology of Hom into an injective resolution with Ext and connects it to right-derived functors."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/HomotopyCategory/KProjective.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “existence of injective resolutions in abelian categories”, but does not formalize the full target."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec17AbelJacobi.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of injective resolutions in abelian categories”."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/FreydMitchell.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “existence of injective resolutions in abelian categories”, but does not formalize the full target."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/Cat/Abelian/Base.lagda.md",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of injective resolutions in abelian categories”."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/RepresentationTheory/LieGroups/Suggested.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of injective resolutions in abelian categories”."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/DerivedFunctorsConsolidation.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “existence of injective resolutions in abelian categories”, but does not formalize the full target."
+        },
+        {
+          "repository": "mattrobball__BridgelandStability",
+          "file": "BridgelandStability/QuasiAbelian/Basic.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of injective resolutions in abelian categories”."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Homology/LeftResolution/Transport.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of injective resolutions in abelian categories”."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/Basic.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of injective resolutions in abelian categories”."
         }
@@ -3809,6 +4301,72 @@
         {
           "repository": "mkaratarakis__HopfieldNet",
           "file": "NeuralNetwork/MCNN/NN.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hilbert Nullstellensatz for affine varieties”."
+        },
+        {
+          "repository": "GeoCoq__GeoCoq",
+          "file": "theories/Coinc/CoincR.v",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hilbert Nullstellensatz for affine varieties”."
+        },
+        {
+          "repository": "or4nge19__NeuralNetworks",
+          "file": "NeuralNetworks/NN/NN.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hilbert Nullstellensatz for affine varieties”."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/DivisionRepresentatives.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Hilbert Nullstellensatz for affine varieties”, but does not formalize the full target."
+        },
+        {
+          "repository": "elazarg__GameTheory",
+          "file": "Math/AffineLowerEnvelope.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hilbert Nullstellensatz for affine varieties”."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec2AffineVarietySpec.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Hilbert Nullstellensatz for affine varieties”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/AlgebraicGeometry/AbelianVariety/Hom/Basic.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hilbert Nullstellensatz for affine varieties”."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/IdealRepresentatives.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Hilbert Nullstellensatz for affine varieties”, but does not formalize the full target."
+        },
+        {
+          "repository": "fraware__leanverifier",
+          "file": "LeanVerifier/Model/AffineBinary.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hilbert Nullstellensatz for affine varieties”."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/BG/AppC_AffineLineCondition.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hilbert Nullstellensatz for affine varieties”."
+        },
+        {
+          "repository": "BochaoKong__nullstellensatz",
+          "file": "LocalComplexGeometry/Nullstellensatz/PolynomialFibers.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Hilbert Nullstellensatz for affine varieties”, but does not formalize the full target."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Affine_Arithmetic/Print.thy",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Hilbert Nullstellensatz for affine varieties”."
         }
@@ -4164,6 +4722,66 @@
           "file": "OddOrder/Peterfalvi/S12_MaximalIII_IV_V_Core/MuGridConstruction.lean",
           "relevance": 3,
           "note": "Direct finite-abelian Pontryagin-duality instance: constructs an equivalence between a finite abelian group and its character group."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/finite-group-theory/finite-groups.lagda.md",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Pontryagin duality for finite abelian groups”."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Algebra/Category/Grp/IsFinite.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Pontryagin duality for finite abelian groups”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/GroupTheory/Perm/AlternatingCharacter.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Pontryagin duality for finite abelian groups”, but does not formalize the full target."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/Chebotarev/CebotarevDensity/ForMathlib/CharacterOrthogonality.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Pontryagin duality for finite abelian groups”, but does not formalize the full target."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/CechDerivedInstantiate.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Pontryagin duality for finite abelian groups”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/NumberTheory/Chebotarev/GaloisCharacter/Orthogonality.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Pontryagin duality for finite abelian groups”, but does not formalize the full target."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Finitely_Generated_Abelian_Groups/Miscellaneous_Groups.thy",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Pontryagin duality for finite abelian groups”."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Abelian/FreydMitchell.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Pontryagin duality for finite abelian groups”."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/CohomologyDevissage.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Pontryagin duality for finite abelian groups”."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/GroupTheory/CoprimeAbelianPGroup.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Pontryagin duality for finite abelian groups”."
         }
       ]
     },
@@ -4485,6 +5103,102 @@
         {
           "repository": "yawara__odd-order",
           "file": "OddOrder/GroupTheory/CriticalSubgroup.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Fredholm/SardSmale.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "rocq-community__corn",
+          "file": "ftc/RefLemma.v",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "Beneficial-AI-Foundation__vericoding",
+          "file": "benchmarks/lean/fvapps/files/fvapps_002621.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/PLAcceleratedNesterovLean/MorseBott/Submanifold.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Morse lemma near a nondegenerate critical point”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Calculus/Sard/LowDimension.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "rocq-community__corn",
+          "file": "fta/KeyLemma.v",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/BG/AppC_LemmaC3_Setup.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "Beneficial-AI-Foundation__vericoding",
+          "file": "benchmarks/lean/fvapps/files/fvapps_002895.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/LieGroups/code/DixmierLemma.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/HasseWeil/HasseWeil/HasseBound/WeilPairing/DetDeg.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Discharge/Manifold/CriticalValuesFiniteGeneral.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/HasseWeil/HasseWeil/Foundation/EC/PointMap.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "leanprover-community__physlib",
+          "file": "Physlib/Mathematics/Geometry/Metric/PseudoRiemannian/Defs.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/GeometryOfManifolds/code/LefschetzPencils.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Morse lemma near a nondegenerate critical point”, but does not formalize the full target."
+        },
+        {
+          "repository": "mrdouglasny__jacobian-challenge",
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Discharge/Manifold/CriticalValuesFiniteGeneral.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
+        },
+        {
+          "repository": "ShouqiaoW__erdos",
+          "file": "1038/lean/Erdos1038/OneCutStationaryPoint.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Morse lemma near a nondegenerate critical point”."
         }
@@ -4821,6 +5535,78 @@
         {
           "repository": "yawara__odd-order",
           "file": "OddOrder/Peterfalvi/Appendices/Suzuki/TheoremANonTrivialV.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “classification of finitely generated abelian groups”."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/GroupTheory/FreeAbelianGroup.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “classification of finitely generated abelian groups”, but does not formalize the full target."
+        },
+        {
+          "repository": "HoTT__Coq-HoTT",
+          "file": "theories/Algebra/Groups/Presentation.v",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “classification of finitely generated abelian groups”, but does not formalize the full target."
+        },
+        {
+          "repository": "2540825244__m2r-group-7",
+          "file": "M2rGroup7/Lemmas/GroupTheoryLemmas.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “classification of finitely generated abelian groups”, but does not formalize the full target."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/group-theory/large-abelian-groups.lagda.md",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “classification of finitely generated abelian groups”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Algebra/AlgebraicGroup/DiagonalizableGroup/FiniteType.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “classification of finitely generated abelian groups”, but does not formalize the full target."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicTopologyI/code/Section18.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “classification of finitely generated abelian groups”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/GroupTheory/GroupExtension/FactorSetOfSection.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “classification of finitely generated abelian groups”."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/analysis/metric-abelian-groups.lagda.md",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “classification of finitely generated abelian groups”."
+        },
+        {
+          "repository": "isabelle-prover__mirror-isabelle",
+          "file": "src/HOL/Algebra/Generated_Groups.thy",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “classification of finitely generated abelian groups”, but does not formalize the full target."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraNotes/code/AbelianGroups.lean",
+          "relevance": 2,
+          "note": "Formalizes the fundamental theorem for finite abelian groups, a substantive finite special case of the finitely generated abelian structure theorem."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/GroupTheory/DerivedCentralQuotient.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “classification of finitely generated abelian groups”."
+        },
+        {
+          "repository": "mccorvie__classification-of-surfaces",
+          "file": "ClassificationOfSurfaces/P2DegenerateDisk.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “classification of finitely generated abelian groups”."
         }
@@ -5188,6 +5974,84 @@
           "file": "HilleYosida/SemigroupGroupExtension.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Stone Weierstrass theorem for continuous functions”."
+        },
+        {
+          "repository": "leanprover-community__physlib",
+          "file": "PhyslibAlpha/AlgebraicFramework/HilbertSpace/Unbounded/StoneUnitaryGroup.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Stone Weierstrass theorem for continuous functions”."
+        },
+        {
+          "repository": "riccardobrasca__LFTCM2024",
+          "file": "LFTCM2024/StoneDuality/BooleanDuality.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Stone Weierstrass theorem for continuous functions”."
+        },
+        {
+          "repository": "nasa__pvslib",
+          "file": "analysis/weierstrass_approximation.pvs",
+          "relevance": 2,
+          "note": "Direct formalization of the classical Weierstrass approximation theorem, a close special case of Stone–Weierstrass."
+        },
+        {
+          "repository": "lean-dojo__TorchLean",
+          "file": "NN/MLTheory/Proofs/Approximation/Universal.lean",
+          "relevance": 2,
+          "note": "Universal-approximation development explicitly uses an n-dimensional Stone–Weierstrass bridge through coordinate polynomials."
+        },
+        {
+          "repository": "jrh13__hol-light",
+          "file": "100/fourier.ml",
+          "relevance": 2,
+          "note": "HOL Light Fourier development applies the formal STONE_WEIERSTRASS theorem to obtain polynomial/trigonometric approximation."
+        },
+        {
+          "repository": "AlexKontorovich__PrimeNumberTheoremAnd",
+          "file": "PrimeNumberTheoremAnd/Mathlib/Analysis/Complex/WeierstrassFactor.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Stone Weierstrass theorem for continuous functions”."
+        },
+        {
+          "repository": "CakeML__candle",
+          "file": "100/fourier.ml",
+          "relevance": 2,
+          "note": "Candle copy of the HOL Light Fourier development applies STONE_WEIERSTRASS to the same approximation argument."
+        },
+        {
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "file": "thys/Laplace_Transform/Lerch_Lemma.thy",
+          "relevance": 2,
+          "note": "Isabelle proof directly invokes Stone_Weierstrass_uniform_limit in the Lerch-lemma argument."
+        },
+        {
+          "repository": "acl2__acl2",
+          "file": "books/kestrel/crypto/ecurve/short-weierstrass-closure-simp.lisp",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Stone Weierstrass theorem for continuous functions”."
+        },
+        {
+          "repository": "leanprover-community__physlib",
+          "file": "PhyslibAlpha/AlgebraicFramework/HilbertSpace/Unbounded/Existence/GeneratorInvariance.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Stone Weierstrass theorem for continuous functions”."
+        },
+        {
+          "repository": "martinescardo__TypeTopology",
+          "file": "source/Locales/index.lagda",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Stone Weierstrass theorem for continuous functions”."
+        },
+        {
+          "repository": "Mizar__MML-current",
+          "file": "tsp_2.miz",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Stone Weierstrass theorem for continuous functions”."
+        },
+        {
+          "repository": "isabelle-prover__mirror-isabelle",
+          "file": "src/HOL/Analysis/Further_Topology.thy",
+          "relevance": 2,
+          "note": "Isabelle topology development directly invokes Stone_Weierstrass_polynomial_function_subspace."
         }
       ]
     },
@@ -5523,6 +6387,66 @@
           "file": "Pphi2/Backgrounds/EuclideanPlane.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “construction of Brownian motion from Gaussian processes”."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/TheoryOfProbability/code/StrongMarkovBM.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “construction of Brownian motion from Gaussian processes”, but does not formalize the full target."
+        },
+        {
+          "repository": "formal-applied-math__formal-mathfin",
+          "file": "MathFin/Foundations/ItoIntegralL2.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “construction of Brownian motion from Gaussian processes”, but does not formalize the full target."
+        },
+        {
+          "repository": "formal-applied-math__formal-mathfin",
+          "file": "MathFin/Foundations/BrownianExpMoment.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “construction of Brownian motion from Gaussian processes”, but does not formalize the full target."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/Auxiliary/Nat.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “construction of Brownian motion from Gaussian processes”."
+        },
+        {
+          "repository": "formal-applied-math__formal-mathfin",
+          "file": "MathFin/Foundations/QuadraticVariationL2.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “construction of Brownian motion from Gaussian processes”, but does not formalize the full target."
+        },
+        {
+          "repository": "formal-applied-math__formal-mathfin",
+          "file": "MathFin/BlackScholes/AsianGeometric.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “construction of Brownian motion from Gaussian processes”, but does not formalize the full target."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/TheoryOfProbability/code/MarkovPropertyBM.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “construction of Brownian motion from Gaussian processes”, but does not formalize the full target."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/StochasticIntegral/ClassD.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “construction of Brownian motion from Gaussian processes”, but does not formalize the full target."
+        },
+        {
+          "repository": "RemyDegenne__brownian-motion",
+          "file": "BrownianMotion/Auxiliary/Real.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “construction of Brownian motion from Gaussian processes”."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/TheoryOfProbability/code/Blumenthal01.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “construction of Brownian motion from Gaussian processes”, but does not formalize the full target."
         }
       ]
     },
@@ -5900,6 +6824,66 @@
           "file": "submission/rado_riemannSurface/Submission/Complex/Dirichlet.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “sphere eversion via the h principle”."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/Loops/DeltaMollifier.lean",
+          "relevance": 2,
+          "note": "Sphere-evasion repository component formalizing the delta mollifiers required by the reparametrization lemma."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "Rado/Complex/SubMean.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “sphere eversion via the h principle”."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Unused/Fin.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “sphere eversion via the h principle”."
+        },
+        {
+          "repository": "flyspeck__flyspeck",
+          "file": "formal_lp/glpk/sphere.ml",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “sphere eversion via the h principle”."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/Global/LocalizedConstruction.lean",
+          "relevance": 2,
+          "note": "Sphere-evasion repository component combining localization with the local h-principle, a central construction in the proof."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Analysis/Calculus.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “sphere eversion via the h principle”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Contour/Argument/Divisor.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “sphere eversion via the h principle”."
+        },
+        {
+          "repository": "leanprover-community__sphere-eversion",
+          "file": "SphereEversion/ToMathlib/Algebra/Ring/Periodic.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “sphere eversion via the h principle”, but does not formalize the full target."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/Analysis/Complex/OpenMapping.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “sphere eversion via the h principle”."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "Rado/Surface/Perron.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “sphere eversion via the h principle”."
         }
       ]
     },
@@ -6265,6 +7249,84 @@
           "file": "thys/Fourier/Fourier.thy",
           "relevance": 1,
           "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Carleson theorem on pointwise convergence of Fourier series”, but does not prove the full target."
+        },
+        {
+          "repository": "AlexKontorovich__PrimeNumberTheoremAnd",
+          "file": "PrimeNumberTheoremAnd/Mathlib/Analysis/Complex/DivisorConvergence.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Carleson theorem on pointwise convergence of Fourier series”."
+        },
+        {
+          "repository": "AlexKontorovich__PrimeNumberTheoremAnd",
+          "file": "PrimeNumberTheoremAnd/IEANTN/LiSeries.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Carleson theorem on pointwise convergence of Fourier series”."
+        },
+        {
+          "repository": "AlexKontorovich__PrimeNumberTheoremAnd",
+          "file": "PrimeNumberTheoremAnd/IEANTN/LnFactorialSeries.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Carleson theorem on pointwise convergence of Fourier series”."
+        },
+        {
+          "repository": "Vilin97__Clawristotle",
+          "file": "green-tao/Submission/Sieve/CFZCanonicalEulerCompletion.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Carleson theorem on pointwise convergence of Fourier series”."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/functional-analysis/absolute-convergence-series-real-banach-spaces.lagda.md",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Carleson theorem on pointwise convergence of Fourier series”."
+        },
+        {
+          "repository": "rocq-community__corn",
+          "file": "ftc/FunctSeries.v",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Carleson theorem on pointwise convergence of Fourier series”."
+        },
+        {
+          "repository": "Vilin97__lean-pool",
+          "file": "LeanPool/PentagonalNumberTheorem/PowerSeries.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Carleson theorem on pointwise convergence of Fourier series”."
+        },
+        {
+          "repository": "nasa__pvslib",
+          "file": "measure_integration/measure_contraction_props.prf",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Carleson theorem on pointwise convergence of Fourier series”."
+        },
+        {
+          "repository": "AlexKontorovich__RealAnalysisGame",
+          "file": "Game/Levels/L25Levels/L01.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Carleson theorem on pointwise convergence of Fourier series”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/NumberTheory/LSeries/WienerIkehara/Fourier.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Carleson theorem on pointwise convergence of Fourier series”, but does not formalize the full target."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/NumberTheory/ModularForms/EisensteinSeries/UniformConvergence.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Carleson theorem on pointwise convergence of Fourier series”."
+        },
+        {
+          "repository": "AlexKontorovich__PrimeNumberTheoremAnd",
+          "file": "PrimeNumberTheoremAnd/Mathlib/Analysis/Complex/DivisorQuotientConvergence.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Carleson theorem on pointwise convergence of Fourier series”."
+        },
+        {
+          "repository": "YaelDillies__mean-fourier",
+          "file": "MeanFourier.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Carleson theorem on pointwise convergence of Fourier series”, but does not formalize the full target."
         }
       ]
     },
@@ -6628,6 +7690,72 @@
         {
           "repository": "isabelle-prover__mirror-afp-devel",
           "file": "thys/Kolmogorov_Chentsov/Dyadic_Interval.thy",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
+        },
+        {
+          "repository": "Mizar__MML-current",
+          "file": "goedcpuc.miz",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
+        },
+        {
+          "repository": "DiagonaLean__DiagonaLean",
+          "file": "DiagonaLean/Halt/Encoding.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
+        },
+        {
+          "repository": "alerad__leancert",
+          "file": "LeanCert/Validity/IntegrationDyadic.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
+        },
+        {
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "file": "TauCetiRoadmap/GlobalQuadraticForms/Suggested.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
+        },
+        {
+          "repository": "SamuelSchlesinger__complexitylib",
+          "file": "Complexitylib/Languages/AllSymbol.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/RingTheory/Ideal/LiesOver.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
+        },
+        {
+          "repository": "alerad__leancert",
+          "file": "LeanCert/Core/Dyadic.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
+        },
+        {
+          "repository": "alerad__leancert",
+          "file": "LeanCert/Validity/DyadicBounds.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
+        },
+        {
+          "repository": "ecyrbe__lean-units",
+          "file": "LeanUnits/Framework/Quantities/Basic.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
+        },
+        {
+          "repository": "Timeroot__Lean-QuantumInfo",
+          "file": "QuantumInfo/Finite/ResourceTheory/HypothesisTesting.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
+        },
+        {
+          "repository": "alerad__leancert",
+          "file": "LeanCert/Engine/AD/Dyadic.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “dyadic Hilbert symbol over Q2”."
         }
@@ -7001,6 +8129,60 @@
           "file": "src/Cat/Functor/Hom/Representable.lagda.md",
           "relevance": 2,
           "note": "Direct Yoneda/univalent-category interaction: representability and Yoneda full faithfulness are used under a univalent-category hypothesis."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/Bicategories/DoubleCategories/Core/SymmetricUnivalent.v",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Yoneda lemma for univalent categories”, but does not formalize the full target."
+        },
+        {
+          "repository": "HoTT__Coq-HoTT",
+          "file": "theories/Categories/Category/Univalent.v",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Yoneda lemma for univalent categories”, but does not formalize the full target."
+        },
+        {
+          "repository": "martinescardo__TypeTopology",
+          "file": "source/Categories/Displayed/Notation/Univalent.lagda",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Yoneda lemma for univalent categories”, but does not formalize the full target."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/Cat/Instances/Comma/Univalent.lagda.md",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Yoneda lemma for univalent categories”, but does not formalize the full target."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/Categories/Magma.v",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Yoneda lemma for univalent categories”, but does not formalize the full target."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/Cat/Monoidal/Instances/Day.lagda.md",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Yoneda lemma for univalent categories”, but does not formalize the full target."
+        },
+        {
+          "repository": "HoTT__Coq-HoTT",
+          "file": "theories/Categories/Category/Sigma/Univalent.v",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Yoneda lemma for univalent categories”, but does not formalize the full target."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/Categories/Group.v",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Yoneda lemma for univalent categories”, but does not formalize the full target."
+        },
+        {
+          "repository": "HoTT__Coq-HoTT",
+          "file": "theories/Categories/Grothendieck/ToSet/Univalent.v",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Yoneda lemma for univalent categories”, but does not formalize the full target."
         }
       ]
     },
@@ -7324,6 +8506,72 @@
           "file": "src/Cat/Displayed/Instances/DisplayedFamilies.lagda.md",
           "relevance": 2,
           "note": "Substantive displayed-family fibration construction using total categories and base change; close fibration-side support."
+        },
+        {
+          "repository": "agda__agda-categories",
+          "file": "src/Categories/Object/Product/Indexed/Properties.agda",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Grothendieck construction for indexed categories and fibrations”."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Construction/Slice.v",
+          "relevance": 2,
+          "note": "Slice-category development explicitly identifies the self-indexing Grothendieck construction with the codomain fibration."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Instance/CMon/Grothendieck.v",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Grothendieck construction for indexed categories and fibrations”."
+        },
+        {
+          "repository": "sinhp__HoTTLean",
+          "file": "attic/ForMathlib/GrothendieckEquiv.lean",
+          "relevance": 3,
+          "note": "Direct Lean Grothendieck construction for Cat-valued pseudofunctors, including morphisms and functoriality."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/Cat/Displayed/Cartesian.lagda.md",
+          "relevance": 2,
+          "note": "Displayed-category development formalizing cartesian morphisms and fibrations, the fibration side of the Grothendieck correspondence."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/index.lagda.md",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Grothendieck construction for indexed categories and fibrations”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/RepresentationTheory/GrothendieckGroup/SimpleBasis.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Grothendieck construction for indexed categories and fibrations”."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/Cat/Displayed/Cartesian/Right.lagda.md",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Grothendieck construction for indexed categories and fibrations”, but does not formalize the full target."
+        },
+        {
+          "repository": "HoTT__Coq-HoTT",
+          "file": "theories/Categories/Grothendieck/ToSet/Core.v",
+          "relevance": 3,
+          "note": "Direct Coq Grothendieck construction for a Set-valued indexed category."
+        },
+        {
+          "repository": "HoTT__Coq-HoTT",
+          "file": "theories/Categories/Grothendieck/ToSet/Univalent.v",
+          "relevance": 2,
+          "note": "Direct follow-on proving saturation/univalence properties of the Set-valued Grothendieck construction."
+        },
+        {
+          "repository": "sinhp__HoTTLean",
+          "file": "HoTTLean/ForMathlib/CategoryTheory/Bicategory/Grothendieck.lean",
+          "relevance": 3,
+          "note": "Direct Lean Grothendieck construction for Cat-valued pseudofunctors, including its projection/functorial structure."
         }
       ]
     },
@@ -7653,6 +8901,66 @@
           "file": "OddOrder/Peterfalvi/S14_MaximalI/TypeICovering.lean",
           "relevance": 2,
           "note": "Substantive Odd Order Project component proving Peterfalvi (12.17) and forcing the Feit–Thompson endgame case-(b) data."
+        },
+        {
+          "repository": "math-comp__odd-order",
+          "file": "theories/PFsection4.v",
+          "relevance": 2,
+          "note": "Substantive MathComp Odd Order component formalizing Peterfalvi section 4 / Feit–Thompson character-theory machinery."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/GroupTheory/RepresentationTheory/InertiaAbelianQuotient.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “formal proof of the Feit Thompson odd order theorem”, but does not formalize the full target."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Isaacs/Ch07_ThompsonSubgroup/Main.lean",
+          "relevance": 2,
+          "note": "Substantive Odd Order development of Thompson-subgroup machinery used in the local-analysis route."
+        },
+        {
+          "repository": "math-comp__odd-order",
+          "file": "theories/BGsection15.v",
+          "relevance": 2,
+          "note": "Substantive MathComp Odd Order component formalizing Bender–Glauberman section 15 of the proof."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/GroupTheory/ThompsonSubgroupAbelian.lean",
+          "relevance": 2,
+          "note": "Substantive Odd Order development of the abelian Thompson subgroup used by the local-analysis proof."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Isaacs/Ch07_ThompsonSubgroup/S7A1_JpGL2p.lean",
+          "relevance": 2,
+          "note": "Substantive Odd Order formalization of Isaacs chapter 7 Thompson-subgroup material."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/Appendices/Suzuki/StructureOfH/CoherenceContradiction.lean",
+          "relevance": 2,
+          "note": "Substantive Odd Order Peterfalvi component assembling Theorem C from Feit–Sibley coherence machinery."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Isaacs/Ch07_ThompsonSubgroup/S7C_ThompsonPComplementFinal.lean",
+          "relevance": 2,
+          "note": "Substantive Odd Order formalization closing Thompson’s normal p-complement theorem."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/BG/Ch4_FamilyOfMaximal/S16_MainResults/LocalTaxonomy.lean",
+          "relevance": 2,
+          "note": "Substantive Odd Order Bender–Glauberman local-taxonomy component used by the theorem-level output."
+        },
+        {
+          "repository": "yawara__odd-order",
+          "file": "OddOrder/Peterfalvi/Appendices/FeitSibleyReductionTwo.lean",
+          "relevance": 2,
+          "note": "Substantive Odd Order Peterfalvi/Feit–Sibley reduction machinery."
         }
       ]
     },
@@ -8085,6 +9393,54 @@
           "file": "theories/proof/jordan.v",
           "relevance": 2,
           "note": "Verified Coq analogue: proves the combinatorial Jordan property equivalent to planarity in the Four Color formalization."
+        },
+        {
+          "repository": "mccorvie__classification-of-surfaces",
+          "file": "Schoenflies/JordanAnnularTheta.lean",
+          "relevance": 2,
+          "note": "Direct Jordan-curve/Schoenflies development proving a mixed Jordan-annulus crosscut theorem."
+        },
+        {
+          "repository": "flyspeck__flyspeck",
+          "file": "text_formalization/jordan/make.hl",
+          "relevance": 3,
+          "note": "Direct HOL Light Jordan curve theorem development."
+        },
+        {
+          "repository": "leanprover__lean-eval",
+          "file": "LeanEval/Topology/Schoenflies.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “Jordan curve theorem in Mizar”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Complex/Conformal/Caratheodory.lean",
+          "relevance": 2,
+          "note": "Carathéodory development directly depends on the formal Jordan-curve separation theorem and uses it in the boundary-extension proof."
+        },
+        {
+          "repository": "rkirov__jordan_pick",
+          "file": "Uniformization/Complex/AreaTheorem.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Jordan curve theorem in Mizar”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Complex/Conformal/Crosscut/Arc.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Jordan curve theorem in Mizar”, but does not formalize the full target."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Analysis/Complex/Conformal/ClusterSet.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “Jordan curve theorem in Mizar”, but does not formalize the full target."
+        },
+        {
+          "repository": "mccorvie__classification-of-surfaces",
+          "file": "Schoenflies/Accessibility.lean",
+          "relevance": 2,
+          "note": "Direct Jordan-curve/Schoenflies development proving accessibility results for complementary regions."
         }
       ]
     },
@@ -8438,6 +9794,72 @@
           "file": "Structure/Group/Representable.v",
           "relevance": 1,
           "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “formal group law over a commutative ring”, but does not prove the full target."
+        },
+        {
+          "repository": "google-deepmind__formal-conjectures",
+          "file": "FormalConjecturesForMathlib/FieldTheory/MvRatFunc/Defs.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “formal group law over a commutative ring”."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/HasseWeil/HasseWeil/Foundation/ChordExpansion.lean",
+          "relevance": 2,
+          "note": "Formal-group-law development specializing the Weierstrass formal group law to isogeny pullbacks and proving the associated power-series identities."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/commutative-algebra/dependent-products-commutative-rings.lagda.md",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “formal group law over a commutative ring”."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/ring-theory/semirings.lagda.md",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “formal group law over a commutative ring”."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Monoidal/Ring.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “formal group law over a commutative ring”."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/commutative-algebra/integral-domains.lagda.md",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “formal group law over a commutative ring”."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/finite-algebra/commutative-finite-rings.lagda.md",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “formal group law over a commutative ring”."
+        },
+        {
+          "repository": "UniMath__agda-unimath",
+          "file": "src/commutative-algebra/convolution-sequences-commutative-rings.lagda.md",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “formal group law over a commutative ring”."
+        },
+        {
+          "repository": "the1lab__1lab",
+          "file": "src/Algebra/Ring/Module/Multilinear.lagda.md",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “formal group law over a commutative ring”."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/ModularCurves/ModularCurves/GroupScheme/MuN.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “formal group law over a commutative ring”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/Algebra/AlgebraicGroup/Symplectic/Smooth.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “formal group law over a commutative ring”."
         }
       ]
     },
@@ -8795,6 +10217,60 @@
         {
           "repository": "sinhp__HoTTLean",
           "file": "attic/ForMathlib/GrothendieckEquiv.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of enough injectives in a Grothendieck category”."
+        },
+        {
+          "repository": "jwiegley__category-theory",
+          "file": "Construction/Grothendieck/Strict.v",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of enough injectives in a Grothendieck category”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/CategoryTheory/GrothendieckGroup/EulerCharacteristic.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of enough injectives in a Grothendieck category”."
+        },
+        {
+          "repository": "UniMath__UniMath",
+          "file": "UniMath/CategoryTheory/GrothendieckToposes/Examples/IndiscreteTopology.v",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of enough injectives in a Grothendieck category”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/CategoryTheory/GrothendieckGroup/Graded.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of enough injectives in a Grothendieck category”."
+        },
+        {
+          "repository": "leanprover-community__mathlib4",
+          "file": "Mathlib/CategoryTheory/Localization/Resolution.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of enough injectives in a Grothendieck category”."
+        },
+        {
+          "repository": "martinescardo__TypeTopology",
+          "file": "source/gist/2-injective-types.lagda",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of enough injectives in a Grothendieck category”."
+        },
+        {
+          "repository": "TauCetiProject__TauCeti",
+          "file": "TauCeti/CategoryTheory/GrothendieckGroup/Abelian.lean",
+          "relevance": 0,
+          "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of enough injectives in a Grothendieck category”."
+        },
+        {
+          "repository": "facebookresearch__atlas-lean",
+          "file": "v1/Atlas/AlgebraicGeometryI/code/CechDerivedInstantiate.lean",
+          "relevance": 1,
+          "note": "Reviewed source supplies adjacent/supporting formal infrastructure for “existence of enough injectives in a Grothendieck category”, but does not formalize the full target."
+        },
+        {
+          "repository": "CBirkbeck__AINTLIB",
+          "file": "projects/AdicSpaces/Adic spaces/IntegralStructureSheaf.lean",
           "relevance": 0,
           "note": "Reviewed source is a lexical or adjacent-topic collision and does not formalize “existence of enough injectives in a Grothendieck category”."
         }
