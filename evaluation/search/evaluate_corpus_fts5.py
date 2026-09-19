@@ -20,6 +20,61 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 DEFAULT_REMOTE_DB = "/home/zack/lean-corpus/experiments/corpus-fts5-v2.sqlite"
 
 
+def add_fts5_source_hierarchy(
+    results: list[dict[str, Any]], *, rrf_constant: int
+) -> list[dict[str, Any]]:
+    """Fuse one FTS5 file-rank channel with its qrel-independent source rank.
+
+    The construction is the same fixed source-hierarchy mechanism used by the
+    accepted hybrid lexical reference, but it is applied only to the single
+    corpus-wide FTS5 stream.  It therefore adds no retrieval request and reads
+    neither qrels nor source contents.
+    """
+
+    if rrf_constant <= 0:
+        raise ValueError("RRF constant must be positive")
+
+    best_file_rank: dict[str, int] = {}
+    for file_rank, item in enumerate(results, start=1):
+        repository = str(item.get("Repository", ""))
+        best_file_rank[repository] = min(
+            best_file_rank.get(repository, file_rank), file_rank
+        )
+    source_order = sorted(best_file_rank, key=lambda repo: (best_file_rank[repo], repo))
+    source_rank = {repository: rank for rank, repository in enumerate(source_order, start=1)}
+
+    ranked: list[dict[str, Any]] = []
+    for file_rank, original in enumerate(results, start=1):
+        item = dict(original)
+        repository = str(item.get("Repository", ""))
+        repository_rank = source_rank[repository]
+        score = (1.0 / (rrf_constant + file_rank)) + (
+            1.0 / (rrf_constant + repository_rank)
+        )
+        item["Score"] = score
+        item["CandidateSources"] = ["corpus-fts5"]
+        item["CandidateSourceRanks"] = {
+            "corpus-fts5": file_rank,
+            "source-hierarchy": repository_rank,
+        }
+        item["CandidateUnionRank"] = file_rank
+        item["FirstStageRankScore"] = score
+        item["FirstStageRankEvidence"] = dict(item["CandidateSourceRanks"])
+        item["SourceHierarchyRank"] = repository_rank
+        item["SourceHierarchyScore"] = 1.0 / (rrf_constant + repository_rank)
+        item["SourceHierarchyBestFileRanks"] = {"corpus-fts5": best_file_rank[repository]}
+        ranked.append(item)
+    ranked.sort(
+        key=lambda item: (
+            -float(item["FirstStageRankScore"]),
+            int(item["CandidateUnionRank"]),
+            str(item.get("Repository", "")),
+            str(item.get("FileName", "")),
+        )
+    )
+    return ranked
+
+
 def remote_query_batch(
     requests: list[dict[str, Any]],
     *,
@@ -81,6 +136,14 @@ def main() -> int:
     )
     parser.add_argument("--depth", type=int, default=200)
     parser.add_argument("--rrf-constant", type=int, default=60)
+    parser.add_argument(
+        "--source-hierarchy",
+        action="store_true",
+        help=(
+            "add the fixed repository-rank channel derived from the returned "
+            "FTS5 file ranks before scoring"
+        ),
+    )
     parser.add_argument("--timeout", type=float, default=120.0)
     parser.add_argument("--output", type=pathlib.Path)
     args = parser.parse_args()
@@ -122,15 +185,21 @@ def main() -> int:
     for case in gold["cases"]:
         response = by_id[case["id"]]
         terms, _ = evaluate.normalized_query_terms(case["query"])
+        results = list(response["results"])
+        if args.source_hierarchy:
+            results = add_fts5_source_hierarchy(
+                results,
+                rrf_constant=args.rrf_constant,
+            )
         runtime = {
             "elapsed_ms": float(response["elapsed_ms"]),
             "payload_bytes": 0,
-            "returned_files": len(response["results"]),
+            "returned_files": len(results),
             "retrieval_queries": {"bm25-all": 1, "bm25-path-prefix-rrf": 2, "fielded-rrf": 3}[args.mode],
         }
         scored = evaluate.score_case(
             case,
-            list(response["results"]),
+            results,
             " SQLITE_FTS5 ".join(terms),
             runtime,
         )
@@ -147,6 +216,8 @@ def main() -> int:
         "bm25-path-prefix-rrf": "sqlite_fts5_corpus_bm25_path_prefix_rrf_v1",
         "fielded-rrf": "sqlite_fts5_corpus_fielded_rrf_v1",
     }[args.mode]
+    if args.source_hierarchy:
+        variant = variant.removesuffix("_v1") + "_source_hierarchy_rrf_v1"
     report = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -165,6 +236,16 @@ def main() -> int:
             "fields": ["source", "path", "content"],
             "tokenizer": remote["index"].get("tokenizer"),
             "sqlite_version": remote["index"].get("sqlite_version"),
+            "source_rank_channel": (
+                {
+                    "name": "source-hierarchy",
+                    "method": "repository best-file rank fused by equal-weight RRF",
+                    "base_channels": ["corpus-fts5"],
+                    "rrf_constant": args.rrf_constant,
+                }
+                if args.source_hierarchy
+                else None
+            ),
         },
         "result_role_state": evaluate.file_role_index().fingerprint(),
         "metrics": evaluate.aggregate(scored_cases),

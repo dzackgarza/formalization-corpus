@@ -12,6 +12,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 import corpus_fts5  # noqa: E402
+import evaluate_corpus_fts5  # noqa: E402
 
 
 class CorpusFts5Tests(unittest.TestCase):
@@ -126,6 +127,31 @@ class CorpusFts5Tests(unittest.TestCase):
         finally:
             db.close()
             temporary.cleanup()
+
+    def test_source_hierarchy_promotes_owner_inside_best_matching_repository(self) -> None:
+        results = [
+            {"Repository": "source_a", "FileName": "mention.lean", "Score": 9.0},
+            {"Repository": "source_b", "FileName": "other.lean", "Score": 8.0},
+            {"Repository": "source_a", "FileName": "owner.lean", "Score": 7.0},
+        ]
+        ranked = evaluate_corpus_fts5.add_fts5_source_hierarchy(
+            results,
+            rrf_constant=60,
+        )
+        self.assertEqual(
+            [(item["Repository"], item["FileName"]) for item in ranked],
+            [
+                ("source_a", "mention.lean"),
+                ("source_a", "owner.lean"),
+                ("source_b", "other.lean"),
+            ],
+        )
+        owner = ranked[1]
+        self.assertEqual(owner["SourceHierarchyRank"], 1)
+        self.assertEqual(
+            owner["FirstStageRankEvidence"],
+            {"corpus-fts5": 3, "source-hierarchy": 1},
+        )
 
     def test_fts_match_quotes_terms_and_rejects_unknown_fields(self) -> None:
         self.assertEqual(
