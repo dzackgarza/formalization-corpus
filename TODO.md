@@ -74,14 +74,17 @@ remain separate from retrieval-code changes.
 
 The current relevance set is still too small for strong claims about novel
 retrievers, but independent pooling is now materially broader: the 24-query gold
-set contains **619** explicit query/file judgments.  The latest SPLADE++
-query-expansion differential pool added **147** judgments in one source-blind
-review pass: 34 relevant alternatives (17 relevance-1 and 17 relevance-2) and
-113 nonrelevant files, with no new direct-owner judgments.  Before selecting a
-new retrieval family, continue expanding the pool from materially different
-systems and judge it independently of which system returned each file.  As real
-user failures accumulate, add a held-out user-query slice so tuning does not
-optimize only theorem-style benchmark paraphrases.
+set contains **1,422** explicit query/file judgments.  The accepted lexical
+reference and its otherwise identical control have now been independently pooled
+through displayed depth 50: **1,240/1,240** unique candidates are judged (718
+relevant and 522 nonrelevant).  The earlier SPLADE++ query-expansion differential
+pool added 147 judgments in one source-blind review pass: 34 relevant alternatives
+(17 relevance-1 and 17 relevance-2) and 113 nonrelevant files, with no new
+direct-owner judgments.  Before selecting a new retrieval family, continue
+expanding the pool from materially different systems and judge it independently
+of which system returned each file.  As real user failures accumulate, add a
+held-out user-query slice so tuning does not optimize only theorem-style benchmark
+paraphrases.
 
 **Gate SQ0:** evaluation can compare new retrieval families without treating
 `unjudged` as `irrelevant`, and every candidate run is reproducible from its
@@ -184,17 +187,18 @@ remains **0.958/1.000**, and nDCG@10 rises slightly from **0.675** to **0.677**;
 final owner MRR is essentially flat/slightly lower (**0.6119 -> 0.6113**), so
 this does not settle the second-stage ordering problem.  Accept the source-rank
 channel as the qrel-independent first-stage reference and do not tune its weight.
-The accepted run's displayed depth-30 pool is now independently complete
-(**502/502** unique candidates judged: **352** relevant and **150** nonrelevant).  On
-the resulting **793-judgment** qrels, the source-hierarchy gain survives a clean
-same-index rerun: first-stage Owner Hit@10/20 remains **0.917/1.000** versus
-**0.875/0.958** for the otherwise identical two-channel lexical reference, with
-owner MRR **0.6243 versus 0.6204** and exact-name Owner Hit@10/20 unchanged at
-**0.833/1.000**.  After the fixed content reranker, Owner Hit@5 remains improved
-(**0.833 versus 0.792**), Owner Hit@10/20 is **0.958/1.000** for both, and
-nDCG@10 is **0.6495 versus 0.6466**.  The additional depth-21--30 exposure added
-only **16** previously unjudged files; two were supporting relevance-1 material
-and none was a new direct owner.
+The accepted run and its otherwise identical lexical control are now
+independently pooled through displayed depth 50: **1,240/1,240** unique candidates
+are judged (**718** relevant and **522** nonrelevant).  On the resulting
+**1,422-judgment** qrels, the source-hierarchy gain survives a fresh same-index
+rerun: first-stage Owner Hit@10/20 remains **0.917/1.000** versus **0.875/0.958**
+for the two-channel lexical reference, with owner MRR **0.6243 versus 0.6204**.
+After the fixed content reranker, Owner Hit@5 remains improved (**0.833 versus
+0.792**), Owner Hit@10/20 is **0.958/1.000** for both, and nDCG@10 is **0.6203
+versus 0.6175**.  The depth-41--50 expansion added **221** previously unjudged
+files (84 relevant, including 5 direct-owner relevance-3 files, and 137
+nonrelevant).  Continue the same independent pooling protocol to depth 100 before
+using deeper-cutoff relevance estimates to settle retrieval-family choices.
 The first parser-backed declaration/signature probe is negative as a global
 equal-weight second-stage channel.  Lean declaration/type/member captures from
 the repository's existing tree-sitter parser lower final Owner Hit@10/20 from
