@@ -6,6 +6,23 @@ not formalized anywhere in the registry" claims exhaustively checkable, per the
 lean-categories reuse gate. Lean remains the largest indexed ecosystem, but the
 search surface is intentionally prover-independent.
 
+## Build the index with bounded local source storage
+
+Change ingestion and indexing to process one source at a time: hydrate a source,
+validate its repository-review snapshot and filtering decisions, build its
+primary and auxiliary Zoekt shards, verify that the shards represent the source,
+then release that source checkout. Keep the source inventory, source revision,
+filtering evidence, and shard provenance so a later run can refresh only sources
+that changed. Resume after interruption without rebuilding completed sources.
+
+The current `just index` dependency on `filter-views` materializes views across
+the hydrated corpus. `filter-state`, `filter-validate`, and repository-review
+validation also use corpus-wide state. Make these stages work per source while
+preserving cross-source duplicate aliases and the existing review freshness
+rules. Update sync, metrics, and publish so routine operation does not require
+all source checkouts at once. Verify a full index against the registered source
+inventory and its retained provenance before releasing existing checkouts.
+
 ## Current expansion (2026-09-13)
 
 - `sources.tsv` is now the single canonical source inventory: 909 independent
