@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "712b0c1d582a8833f86730c5709754e095da8409",
-  "generated_at": "2026-09-28T18:05:50.382250+00:00",
+  "corpus_git_commit": "ef01cda6dc40b97bc789304e7c2b69b0df9530fc",
+  "generated_at": "2026-09-28T18:07:44.203634+00:00",
   "groups": [
     {
       "canonical": {
@@ -8487,6 +8487,31 @@
           "file": "books/projects/top.acl2",
           "proof_assistant": "acl2",
           "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/system/tests/cert-data/redef.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/system/tests/cert-data/top.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/system/tests/integer-length-bad-optimization-2.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/system/tests/integer-length-bad-optimization.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/system/tests/stobj-issues.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
         }
       ],
       "sha256": "1c0887189f88cda9588fbe299d724ec85d6aebcb49e4c336ddf2f9eb95332be7",
@@ -11479,26 +11504,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/logand@useless-runes.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/logand@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/logor@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "25e2e677662e769dc5ad718154e7e8cd701282252d1f131e260d5967034c9f97",
-      "size_bytes": 9458
-    },
-    {
-      "canonical": {
         "file": "benchmark-goals/mathd-algebra-11.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -13561,6 +13566,26 @@
       ],
       "sha256": "2dae180e235400f00cf333fd1664806fe4b415a476b891ad21778bebf163896e",
       "size_bytes": 48746
+    },
+    {
+      "canonical": {
+        "file": "books/kestrel/axe/x86/examples/switch/.sys/switch-complex-elf64@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/axe/x86/examples/switch/.sys/switch-complex-elf64@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/axe/x86/examples/switch/.sys/switch-complex-elf64staticO2@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "2dd1c2d69a2c9bd08c63a81bc44c0ab42e5becc355fe823f1f4db1f8c577cda8",
+      "size_bytes": 11504
     },
     {
       "canonical": {
@@ -20024,6 +20049,26 @@
     },
     {
       "canonical": {
+        "file": "books/kestrel/axe/.sys/defthm-stp-tests@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/axe/.sys/defthm-stp-tests@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/axe/.sys/prove-with-stp-tests@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "43d84de66c9dbb5f4d92d91f15e6c9610a513689b22cb337154c2bb02e4995ff",
+      "size_bytes": 12
+    },
+    {
+      "canonical": {
         "file": "src/system_of_complexes/shift_sub_id.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -21131,6 +21176,26 @@
       ],
       "sha256": "48609583bef54f468e685864a3e7f6074f0eaacd1c602cc4819c0586fb3691ff",
       "size_bytes": 4571
+    },
+    {
+      "canonical": {
+        "file": "books/kestrel/crypto/blake/.sys/blake-common-32@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/crypto/blake/.sys/blake-common-32@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/crypto/blake/.sys/blake-common-64@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "486358a8aafc9a3e0b3822f0d5b05ecbd41dfc2d2cbec03b961fa48aedb2695d",
+      "size_bytes": 6410
     },
     {
       "canonical": {
@@ -26335,6 +26400,11 @@
         },
         {
           "file": "books/kestrel/utilities/osets.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/system/origin.acl2",
           "proof_assistant": "acl2",
           "repository": "acl2__acl2"
         }
@@ -35004,26 +35074,6 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/constant@useless-runes.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/constant@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/global@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "76932d90a7c080f20c0209e6dc6f502a91cc98d0c6e0b6b78e76f5febef5ea63",
-      "size_bytes": 3181
-    },
-    {
-      "canonical": {
         "file": "References/Tutorials/Solutions/00FirstProofs.lean",
         "repository": "glams-lean-2024__formal-2024"
       },
@@ -39344,6 +39394,26 @@
     },
     {
       "canonical": {
+        "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/logand@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/logand@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/logor@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "871ff6ab37106c8cd266104f3100de919e17b6054f67c38b67bcb26a7031ff09",
+      "size_bytes": 12286
+    },
+    {
+      "canonical": {
         "file": "src/Radon/png_reflects_limits.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -39646,6 +39716,31 @@
       ],
       "sha256": "884421db55129412bb1e75fc678c720dab1d9ec85986ae75561a919f296e3b4a",
       "size_bytes": 1551
+    },
+    {
+      "canonical": {
+        "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/constant@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/constant@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/global@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/void-params@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "884a7ef7fa41b2dbabd1b3fc448825e7094081a7229a37053a85e2f03615ab40",
+      "size_bytes": 4595
     },
     {
       "canonical": {
@@ -40369,6 +40464,31 @@
     },
     {
       "canonical": {
+        "file": "books/kestrel/axe/x86/tests/kestrel/.sys/add-elf64-full@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/axe/x86/tests/kestrel/.sys/add-elf64-full@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/axe/x86/tests/kestrel/.sys/add-elf64@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/axe/x86/tests/kestrel/.sys/add-pe64@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "8a9b613068310cf5728338f67de7fc04872860f2705a93d0900cfec3fd949a4d",
+      "size_bytes": 9
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/mathd-numbertheory-629.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -40426,26 +40546,6 @@
       ],
       "sha256": "8ae3e496e3007f4cc6334a02bde9ef445f399331c521bd74b80b1fde02a42a89",
       "size_bytes": 4996
-    },
-    {
-      "canonical": {
-        "file": "books/models/y86-old/y86-two-level-abs/common/.sys/arithmetic-5++@useless-runes.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/models/y86-old/y86-two-level-abs/common/.sys/arithmetic-5++@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/models/y86-old/y86-two-level/common/.sys/arithmetic-5++@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "8ae55020cf957ee5df118dafc7f8a53e261493161a9c1505e956cde90507b162",
-      "size_bytes": 283952
     },
     {
       "canonical": {
@@ -43726,6 +43826,26 @@
       ],
       "sha256": "95d198e6eec7619fe4185ff6c6711e965b7dada9455f1763172750f264674e54",
       "size_bytes": 2736
+    },
+    {
+      "canonical": {
+        "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/stmt-null@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/stmt-null@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/variable@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "95d940c844e81ca09924883b94888105e5c215366510f0bd9116b41b4e2e6838",
+      "size_bytes": 6010
     },
     {
       "canonical": {
@@ -49491,26 +49611,6 @@
       ],
       "sha256": "a9420796f17bc3f74c902e2890fd456c8398449af69296bf0fdeecd07df8487c",
       "size_bytes": 1217
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/crypto/blake/.sys/blake-common-32@useless-runes.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/crypto/blake/.sys/blake-common-32@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/crypto/blake/.sys/blake-common-64@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "a963cef9a42af1754e5b68240d21c98226b9b0f1021ff6f74ba892389f25eb46",
-      "size_bytes": 6411
     },
     {
       "canonical": {
@@ -62904,26 +63004,6 @@
     },
     {
       "canonical": {
-        "file": "books/projects/aleo/vm/circuits/axe/.sys/poseidon-rate2-1@useless-runes.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/projects/aleo/vm/circuits/axe/.sys/poseidon-rate2-1@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/projects/aleo/vm/circuits/axe/.sys/poseidon-rate4-1@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "d813c1433eb067fc6b46d07cbe293e90d35edc5b72d12535f3a4fc0e31aa2d2e",
-      "size_bytes": 3255
-    },
-    {
-      "canonical": {
         "file": "src/Conmutatividad_del_maximo.lean",
         "repository": "jaalonso__Calculemus2"
       },
@@ -63859,11 +63939,6 @@
           "repository": "acl2__acl2"
         },
         {
-          "file": "books/kestrel/axe/.sys/prove-with-stp-tests@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
           "file": "books/kestrel/axe/.sys/unroll-spec-tests@useless-runes.lsp",
           "proof_assistant": "acl2",
           "repository": "acl2__acl2"
@@ -64186,6 +64261,26 @@
       ],
       "sha256": "dbe1aa249a80524d50d4ae99b141678255ed8ef007c477d2fa042c7577d9298f",
       "size_bytes": 290
+    },
+    {
+      "canonical": {
+        "file": "books/projects/aleo/vm/circuits/axe/.sys/poseidon-rate2-1@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/projects/aleo/vm/circuits/axe/.sys/poseidon-rate2-1@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/aleo/vm/circuits/axe/.sys/poseidon-rate4-1@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "dc013662a63d6194c3ffa455fb96cbe218c5a2a7af1ec7ec6de10c2875ef1582",
+      "size_bytes": 3194
     },
     {
       "canonical": {
@@ -64650,6 +64745,11 @@
         },
         {
           "file": "books/projects/vwsim/sra-vw-flat-sim.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/system/remove-guard-holders-future.acl2",
           "proof_assistant": "acl2",
           "repository": "acl2__acl2"
         }
@@ -65806,26 +65906,6 @@
       ],
       "sha256": "e13306273e9c244b045ab967423e0758d1925d7b73af862873f717c13b1d1019",
       "size_bytes": 13961
-    },
-    {
-      "canonical": {
-        "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/stmt-null@useless-runes.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/stmt-null@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/variable@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "e15bcbf80b7bda56eab2918f52fb89614b643c79667f043865a7a7e6c0b365af",
-      "size_bytes": 4596
     },
     {
       "canonical": {
@@ -72871,6 +72951,26 @@
       ],
       "sha256": "fb2993cad47d3ee4dea0880637dd94cfd56447a3788aed6f47f43392f543bd63",
       "size_bytes": 3203
+    },
+    {
+      "canonical": {
+        "file": "books/models/y86-old/y86-two-level-abs/common/.sys/arithmetic-5++@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/models/y86-old/y86-two-level-abs/common/.sys/arithmetic-5++@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/models/y86-old/y86-two-level/common/.sys/arithmetic-5++@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "fb4e4ff0eaa0b64427d2a5dea3129dab17660a3594452a9bdd28b2854d1f4564",
+      "size_bytes": 284052
     },
     {
       "canonical": {
