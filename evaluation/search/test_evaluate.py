@@ -6,6 +6,7 @@ import json
 import pathlib
 import subprocess
 import sys
+import tempfile
 import unittest
 from unittest import mock
 
@@ -62,6 +63,38 @@ class SearchEvaluationTests(unittest.TestCase):
             return_value={"CBirkbeck__AINTLIB": {"directory": "definitely-missing-cache"}},
         ):
             self.assertEqual(evaluate.validate_gold(gold), [])
+
+    def test_judgments_of_files_removed_upstream_lapse_out_of_scoring(self) -> None:
+        def judgment(file_name: str, relevance: int) -> dict[str, object]:
+            return {"repository": "CBirkbeck__AINTLIB", "file": file_name, "relevance": relevance}
+
+        gold = {
+            "version": 1,
+            "cases": [
+                {"id": "kept", "query": "flat module",
+                 "judgments": [judgment("Common/Common.lean", 3), judgment("Gone/A.lean", 2)]},
+                {"id": "gone", "query": "removed theorem",
+                 "judgments": [judgment("Gone/B.lean", 3), judgment("Common/Common.lean", 0)]},
+            ],
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            path = pathlib.Path(tmp) / "gold.json"
+            path.write_text(json.dumps(gold))
+            with mock.patch.object(
+                evaluate,
+                "source_rows",
+                return_value={"CBirkbeck__AINTLIB": {"directory": "definitely-missing-cache"}},
+            ):
+                loaded = evaluate.load_gold(path)
+                self.assertEqual(evaluate.validate_gold(loaded), [])
+
+        self.assertEqual([case["id"] for case in loaded["cases"]], ["kept"])
+        self.assertEqual(loaded["cases"][0]["judgments"], [judgment("Common/Common.lean", 3)])
+        self.assertEqual(loaded["lapsed_cases"], ["gone"])
+        self.assertEqual(
+            [(item["case"], item["file"]) for item in loaded["lapsed_judgments"]],
+            [("kept", "Gone/A.lean"), ("gone", "Gone/B.lean")],
+        )
 
     def test_api_search_batch_preserves_query_identity_and_normalizes_files(self) -> None:
         response = {

@@ -47,7 +47,59 @@ def load_gold(path: pathlib.Path) -> dict[str, Any]:
     data = json.loads(path.read_text())
     if data.get("version") != 1 or not isinstance(data.get("cases"), list):
         raise ValueError(f"unsupported gold schema in {path}")
+    lapse_absent_judgments(data)
+    lapsed = data["lapsed_judgments"]
+    if lapsed:
+        print(
+            f"gold: {len(lapsed)} judgments lapsed because their files left the source; "
+            f"{len(data['lapsed_cases'])} cases lapsed with no live positive judgment",
+            file=sys.stderr,
+        )
     return data
+
+
+def judged_file_present(repository: str, file_name: str, directory: str) -> bool:
+    return (ROOT / directory / file_name).is_file() or file_name in catalogued_files(repository)
+
+
+def lapse_absent_judgments(data: dict[str, Any]) -> None:
+    """Move judgments of files that upstream tracking removed out of scoring.
+
+    Sources follow their upstream HEAD, so a judged file can disappear. Such a
+    judgment lapses: it is recorded in ``lapsed_judgments`` for re-judging, and a
+    case with no live positive judgment moves to ``lapsed_cases``.
+    """
+    sources = source_rows()
+    live_cases: list[dict[str, Any]] = []
+    lapsed_judgments: list[dict[str, Any]] = []
+    lapsed_cases: list[str] = []
+    for case in data["cases"]:
+        judgments = case.get("judgments")
+        if not isinstance(judgments, list):
+            live_cases.append(case)
+            continue
+        live: list[dict[str, Any]] = []
+        for judgment in judgments:
+            repo = judgment.get("repository")
+            file_name = judgment.get("file")
+            if (
+                repo in sources
+                and isinstance(file_name, str)
+                and file_name
+                and not judged_file_present(str(repo), file_name, sources[repo]["directory"])
+            ):
+                lapsed_judgments.append({"case": case.get("id"), **judgment})
+            else:
+                live.append(judgment)
+        if len(live) == len(judgments):
+            live_cases.append(case)
+        elif any(isinstance(j.get("relevance"), int) and j["relevance"] > 0 for j in live):
+            live_cases.append({**case, "judgments": live})
+        else:
+            lapsed_cases.append(str(case.get("id")))
+    data["cases"] = live_cases
+    data["lapsed_judgments"] = lapsed_judgments
+    data["lapsed_cases"] = lapsed_cases
 
 
 def source_rows() -> dict[str, dict[str, str]]:
@@ -120,11 +172,6 @@ def validate_gold(data: dict[str, Any]) -> list[str]:
             if key in seen_targets:
                 errors.append(f"{case_id}: duplicate judgment {repo}:{file_name}")
             seen_targets.add(key)
-            local_path = ROOT / sources[repo]["directory"] / file_name
-            if not local_path.is_file() and file_name not in catalogued_files(str(repo)):
-                errors.append(
-                    f"{case_id}: judged file is neither hydrated nor present in the committed audit manifest: {local_path}"
-                )
         if positive_judgments == 0:
             errors.append(f"{case_id}: needs at least one positive judgment")
     return errors
@@ -766,6 +813,9 @@ def compare_reports(current: dict[str, Any], baseline: dict[str, Any], tolerance
     if current.get("gold_sha256") != baseline.get("gold_sha256"):
         problems.append("gold-set hash differs; regenerate both runs against the same relevance judgments before comparing")
         return problems
+    if current.get("lapsed_judgments") != baseline.get("lapsed_judgments"):
+        problems.append("lapsed gold judgments differ; regenerate both runs against the same live judgments before comparing")
+        return problems
     if current.get("index") != baseline.get("index"):
         problems.append("index fingerprint differs; do not attribute score changes to retrieval code until the index change is reviewed")
         return problems
@@ -853,7 +903,10 @@ def main() -> int:
             print(f"ERROR: {error}", file=sys.stderr)
         return 2
     if args.validate_only:
-        print(f"gold ok: {len(gold['cases'])} cases, {sum(len(c['judgments']) for c in gold['cases'])} judgments")
+        print(
+            f"gold ok: {len(gold['cases'])} cases, {sum(len(c['judgments']) for c in gold['cases'])} judgments; "
+            f"lapsed: {len(gold['lapsed_cases'])} cases, {len(gold['lapsed_judgments'])} judgments"
+        )
         return 0
 
     if args.provider == "local" and (not INDEX_DIR.is_dir() or not any(INDEX_DIR.glob("*.zoekt"))):
@@ -911,6 +964,7 @@ def main() -> int:
         "corpus_git_commit": repo_state["commit"],
         "repository_state": repo_state,
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
+        "lapsed_judgments": gold["lapsed_judgments"],
         "query_config_sha256": query_config_sha256(),
         "serving_config_sha256": serving_config_sha256(),
         "variant": args.variant,

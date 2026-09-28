@@ -35,6 +35,14 @@ names, ordinary mathematical prose, conversational questions, synonym shifts,
 and cross-proof-assistant queries.  Probable negative queries are not included
 in aggregate retrieval scores until absence has been independently established.
 
+Sources follow their upstream HEAD, so a judged file can leave its source.  A
+judgment whose file is neither hydrated nor in the committed audit manifest
+lapses: `load_gold` removes it from scoring, records it in `lapsed_judgments`
+(copied into each `evaluate.py` report), and prints the count.  A case with no
+live positive judgment lapses as a whole.  Two reports compare only when their
+lapsed judgments are equal.  Re-judge or remap lapsed judgments in a gold-only
+commit.
+
 Gold edits and retrieval changes should be separate commits.  Do not repair a
 retrieval regression by weakening or replacing its gold judgment.
 
