@@ -20,17 +20,19 @@ import shlex
 import shutil
 import subprocess
 import tempfile
+import time
 import uuid
 from typing import Any, Iterable
 from functools import lru_cache
 
-from filtering_lib import ROOT, Source, iter_files, sha256_file, sources
+from filtering_lib import CURRENT, ROOT, Source, iter_files, load_jsonl, sha256_file, sources
 from repository_review_lib import BATCHES, load_catalogue_index, load_unit_file_records, load_units
 
 PRIMARY_VIEW = ROOT / ".index-primary"
 METADATA_VIEW = ROOT / ".index-metadata"
 REMOTE_HOST = os.environ.get("FORMALIZATION_INDEX_HOST", "zack@159.223.102.204")
 REMOTE_INDEX = os.environ.get("FORMALIZATION_INDEX_DIR", "lean-corpus/index")
+REMOTE_PROVENANCE = f"{REMOTE_INDEX}-provenance"
 
 
 @lru_cache(maxsize=1)
@@ -380,6 +382,35 @@ def remote_shard_names(repository: str) -> list[str]:
     return [name for name in remote_shard_inventory() if name.startswith(prefix)]
 
 
+@lru_cache(maxsize=1)
+def filter_rows_by_repository() -> dict[str, list[dict[str, Any]]]:
+    out: dict[str, list[dict[str, Any]]] = {}
+    for row in load_jsonl(CURRENT):
+        out.setdefault(str(row["repository"]), []).append(row)
+    return out
+
+
+def index_key(repository: str) -> str:
+    """Digest of every committed input that decides a repository's primary shard."""
+    inputs = {
+        "catalogue": campaign_catalogue_map()[repository],
+        "filter": sorted(
+            filter_rows_by_repository().get(repository, []),
+            key=lambda row: str(row["file"]),
+        ),
+    }
+    return hashlib.sha256(json.dumps(inputs, sort_keys=True).encode()).hexdigest()
+
+
+def remote_provenance() -> dict[str, dict[str, Any]]:
+    remote_command(["mkdir", "-p", REMOTE_PROVENANCE])
+    result = remote_command(
+        ["find", REMOTE_PROVENANCE, "-maxdepth", "1", "-name", "*.json", "-exec", "cat", "{}", "+"]
+    )
+    records = [json.loads(line) for line in result.stdout.splitlines() if line.strip()]
+    return {str(record["repository"]): record for record in records}
+
+
 def publish_repository_shards(repository: str, staged: list[pathlib.Path]) -> None:
     if not staged:
         raise SystemExit(f"{repository}: refusing to publish an empty shard set")
@@ -392,7 +423,8 @@ def publish_repository_shards(repository: str, staged: list[pathlib.Path]) -> No
             cwd=ROOT,
             check=True,
         )
-        transaction = r"""import os
+        transaction = r"""import json
+import os
 import pathlib
 import shutil
 import sys
@@ -420,6 +452,13 @@ try:
     # after every replacement/new piece is installed.
     for name in old_names - new_names:
         (index / name).unlink(missing_ok=True)
+    provenance = pathlib.Path(sys.argv[4])
+    provenance.mkdir(parents=True, exist_ok=True)
+    record = json.loads(sys.argv[5])
+    record["shards"] = sorted(new_names)
+    partial = provenance / f".{repository}.json.part"
+    partial.write_text(json.dumps(record, sort_keys=True) + "\n")
+    os.replace(partial, provenance / f"{repository}.json")
 except BaseException:
     for name in new_names:
         (index / name).unlink(missing_ok=True)
@@ -432,7 +471,21 @@ else:
 """
         command = " ".join(
             shlex.quote(arg)
-            for arg in ["python3", "-", REMOTE_INDEX, remote_stage, repository]
+            for arg in [
+                "python3",
+                "-",
+                REMOTE_INDEX,
+                remote_stage,
+                repository,
+                REMOTE_PROVENANCE,
+                json.dumps(
+                    {
+                        "repository": repository,
+                        "index_key": index_key(repository),
+                        "source_revision": campaign_catalogue_map()[repository].get("source_revision"),
+                    }
+                ),
+            ]
         )
         subprocess.run(
             ["ssh", "-o", "BatchMode=yes", REMOTE_HOST, command],
@@ -457,7 +510,14 @@ def remove_repository_shards(repository: str) -> None:
     if not names:
         print(f"retired {repository}: remote shard already absent")
         return
-    remote_command(["rm", "-f", *[f"{REMOTE_INDEX}/{name}" for name in names]])
+    remote_command(
+        [
+            "rm",
+            "-f",
+            *[f"{REMOTE_INDEX}/{name}" for name in names],
+            f"{REMOTE_PROVENANCE}/{repository}.json",
+        ]
+    )
     remote_shard_inventory.cache_clear()
     remaining = remote_shard_names(repository)
     if remaining:
@@ -571,6 +631,42 @@ def seed_all(*, fresh: bool) -> None:
     )
 
 
+def refresh(*, stop_after: float | None) -> int:
+    """Rebuild only sources whose remote provenance differs from the committed inputs."""
+    deadline = None if stop_after is None else time.monotonic() + stop_after * 60
+    recorded = remote_provenance()
+    for repository in sorted(retired_repository_names()):
+        if remote_shard_names(repository):
+            remove_repository_shards(repository)
+    stale = [
+        repository
+        for repository in sorted(source_map())
+        if not remote_shard_names(repository)
+        or recorded.get(repository, {}).get("index_key") != index_key(repository)
+    ]
+    print(f"refresh: {len(stale)} of {len(source_map())} sources need a rebuild")
+    failed: list[str] = []
+    for number, repository in enumerate(stale, start=1):
+        if deadline is not None and time.monotonic() >= deadline:
+            print(f"stopped after {stop_after:g} minutes: {len(stale) - number + 1} sources remain")
+            break
+        print(f"refresh {number}/{len(stale)} {repository}")
+        try:
+            hydrate(repository, latest=False)
+            reindex([repository], keep_views=False, validate_published=False)
+            dehydrate(repository)
+        except (SystemExit, subprocess.CalledProcessError) as exc:
+            print(f"refresh failed at {repository}; source left hydrated for inspection: {exc}")
+            failed.append(repository)
+    else:
+        if not failed:
+            subprocess.run(["python", str(ROOT / "scripts" / "check-published.py")], cwd=ROOT, check=True)
+    if failed:
+        print("refresh failures:\n  " + "\n  ".join(failed))
+        return 1
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Hydrate/dehydrate disposable corpus source mirrors")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -585,6 +681,13 @@ def main() -> int:
     status_all = sub.add_parser("status-all")
     sub.add_parser("dehydrate-all")
     sub.add_parser("gc")
+    refresh_parser = sub.add_parser("refresh")
+    refresh_parser.add_argument(
+        "--stop-after",
+        type=float,
+        metavar="MINUTES",
+        help="start no new source after this many minutes; the next run resumes",
+    )
     seed = sub.add_parser("seed")
     seed.add_argument("--all", action="store_true", required=True)
     seed.add_argument("--fresh", action="store_true")
@@ -598,6 +701,8 @@ def main() -> int:
     if args.command == "gc":
         gc_source_cache()
         return 0
+    if args.command == "refresh":
+        return refresh(stop_after=args.stop_after)
     if args.command == "seed":
         seed_all(fresh=args.fresh)
         return 0

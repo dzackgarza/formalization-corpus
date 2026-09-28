@@ -1,0 +1,46 @@
+# Rebuild the search-host shards whose committed catalogue or filter decisions changed.
+# Each source is hydrated at its catalogued revision, indexed, installed on the host
+# with its provenance record, and released. A run that reaches its deadline stops
+# between sources; the next run resumes from the recorded provenance.
+name: index
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+    inputs:
+      stop-after:
+        description: minutes after which the refresh starts no new source
+        default: "300"
+permissions:
+  contents: read
+concurrency:
+  group: index
+jobs:
+  refresh:
+    if: github.repository == 'dzackgarza/formalization-corpus'
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install zsh
+        run: sudo apt-get update && sudo apt-get install -y zsh
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache: false
+      - name: Install the Zoekt indexer
+        run: GOBIN="$PWD/bin" go install github.com/sourcegraph/zoekt/cmd/zoekt-index@153817f643cde8b229ee388c1dddbcf07f4798af
+      - name: Configure ssh to the search host
+        env:
+          SSH_KEY: ${{ secrets.SEARCH_HOST_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.SEARCH_HOST_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+      - name: Refresh the stale sources
+        run: python scripts/source-cache.py refresh --stop-after "${{ inputs.stop-after || '300' }}"

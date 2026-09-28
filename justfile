@@ -60,6 +60,11 @@ source-seed-index fresh="":
       python scripts/source-cache.py seed --all
     fi
 
+# Rebuild only the sources whose remote provenance differs from the committed catalogue
+# and filter decisions. The scheduled `index` GitHub workflow runs this with a deadline.
+source-refresh-index:
+    python scripts/source-cache.py refresh
+
 review-batch-cache-status batch:
     python scripts/source-cache.py status --batch "{{batch}}"
 

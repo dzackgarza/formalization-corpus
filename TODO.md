@@ -8,12 +8,12 @@ search surface is intentionally prover-independent.
 
 ## Build the index with bounded local source storage
 
-Change ingestion and indexing to process one source at a time: hydrate a source,
-validate its repository-review snapshot and filtering decisions, build its
-primary and auxiliary Zoekt shards, verify that the shards represent the source,
-then release that source checkout. Keep the source inventory, source revision,
-filtering evidence, and shard provenance so a later run can refresh only sources
-that changed. Resume after interruption without rebuilding completed sources.
+`just source-refresh-index` and the scheduled `index` GitHub workflow rebuild one
+source at a time: each source whose catalogue entry or filter decisions differ from
+its provenance record in `lean-corpus/index-provenance/` on the search host is
+hydrated at its catalogued revision, indexed, installed, and released. A run that
+stops resumes from the recorded provenance. The auxiliary metadata shards are not
+yet built per source.
 
 The current `just index` dependency on `filter-views` materializes views across
 the hydrated corpus. `filter-state`, `filter-validate`, and repository-review

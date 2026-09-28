@@ -416,7 +416,11 @@ a sparse working tree but retaining fetched blobs would not reliably reclaim dis
 exceptional whole-corpus reproducibility work. A fresh machine can instead run
 `just source-seed-index fresh`: each source is hydrated at its pinned revision, indexed,
 and immediately dehydrated before the next source is fetched. No phase requires all
-source checkouts to coexist.
+source checkouts to coexist. Every shard installation also writes
+`lean-corpus/index-provenance/REPO.json` on the search host: a digest of the
+repository's catalogue entry and filter decisions, its source revision, and its shard
+names. `just source-refresh-index`, which the scheduled `index` GitHub workflow runs,
+rebuilds only the sources whose digest differs or whose shard is absent.
 
 ## 12. Required workflow for a new hard filter
 

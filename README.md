@@ -58,6 +58,7 @@ just review-batch-reindex RRB-0008   # build locally, atomically replace only af
 just publish-index                   # verify the already-published remote shard set
 just review-batch-dehydrate RRB-0008 # reclaim the source/object-cache bytes
 just source-cache-status REPO        # inspect one source's hydrated/ghost/index state
+just source-refresh-index            # rebuild only sources whose committed inputs changed
 just source-seed-index fresh         # exceptional fresh bootstrap, one source at a time
 
 # Whole-corpus maintenance/reproducibility commands (not the normal review loop):
