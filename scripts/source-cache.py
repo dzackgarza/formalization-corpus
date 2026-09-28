@@ -706,7 +706,8 @@ def refresh(*, stop_after: float | None, commit: bool) -> int:
         if not remote_shard_names(repository)
         or recorded.get(repository, {}).get("index_key") != index_key(repository)
     }
-    work = sorted(stale | set(moved))
+    # An unreachable upstream cannot be hydrated; it stays a failure and keeps its shard.
+    work = sorted((stale | set(moved)) - set(unreachable))
     print(f"refresh: {len(moved)} upstream moved, {len(stale)} index stale, {len(work)} of {len(source_map())} to rebuild")
     failed = list(unreachable)
     for number, repository in enumerate(work, start=1):
