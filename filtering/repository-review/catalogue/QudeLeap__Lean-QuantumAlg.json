@@ -4,41 +4,161 @@
   "proof_assistant": "lean",
   "repository": "QudeLeap__Lean-QuantumAlg",
   "schema_version": 1,
-  "source_revision": "7e80846034b9e76fdeded711775a513a7d5ba917",
-  "source_snapshot_sha256": "cb1addd0d9b288409b3c5754ab7cc2defefd3f5f6d82a6ca39fdc5ace4fe1136",
+  "source_revision": "a4d21db569af9a8a5c7a5bfd4cf46adecb75247a",
+  "source_snapshot_sha256": "a31981b10b72edc7e5dbb547e65f353ebbc76bc2d7eeeb2fc6927012f7607753",
   "sync_group": "bulk",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 231,
-    "bytes": 8670008,
+    "baseline_primary_retained": 3273,
+    "bytes": 36421771,
     "current_primary_excluded": 3,
-    "current_primary_retained": 231,
-    "files": 238,
-    "formal_source_files": 231,
+    "current_primary_retained": 3273,
+    "files": 3280,
+    "formal_source_files": 3273,
     "unindexed_nonformal": 3
   },
   "transport": "git",
   "url": "https://github.com/QudeLeap/Lean-QuantumAlg",
   "work_units": [
     {
-      "files_manifest": "filtering/repository-review/files/QudeLeap__Lean-QuantumAlg/RRU-5b1ab5573775.jsonl",
+      "files_manifest": "filtering/repository-review/files/QudeLeap__Lean-QuantumAlg/RRU-d9036ac6d05d.jsonl",
       "scope": {
-        "kind": "repository",
-        "root_count": 0,
-        "value": "."
+        "kind": "file-bucket",
+        "root_count": 8,
+        "value": "./@files/all"
       },
-      "snapshot_sha256": "cb1addd0d9b288409b3c5754ab7cc2defefd3f5f6d82a6ca39fdc5ace4fe1136",
+      "snapshot_sha256": "612bb6dc7eef9ce6c2b8890e7acb4b7943ead0332193c79ad0611d1d8658812c",
       "stats": {
         "auxiliary_only": 1,
-        "baseline_primary_retained": 231,
-        "bytes": 8670008,
+        "baseline_primary_retained": 1,
+        "bytes": 50780,
         "current_primary_excluded": 3,
-        "current_primary_retained": 231,
-        "files": 238,
-        "formal_source_files": 231,
+        "current_primary_retained": 1,
+        "files": 8,
+        "formal_source_files": 1,
         "unindexed_nonformal": 3
       },
-      "unit_id": "RRU-5b1ab5573775"
+      "unit_id": "RRU-d9036ac6d05d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/QudeLeap__Lean-QuantumAlg/RRU-a3299d64fc3b.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 7,
+        "value": "QuantumAlg/@files/all"
+      },
+      "snapshot_sha256": "eae6e16409c55de027f4d0ff0bb42901294186b06dccd24d7da1c2e373f6c620",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 7,
+        "bytes": 8476,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 7,
+        "files": 7,
+        "formal_source_files": 7,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a3299d64fc3b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/QudeLeap__Lean-QuantumAlg/RRU-fdffb3b51c1b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "QuantumAlg/@subtrees/0"
+      },
+      "snapshot_sha256": "f4e55891965415638ffc4d8402178fce643f6b1cabd213250965c2fb78193e44",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1212,
+        "bytes": 9257626,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1212,
+        "files": 1212,
+        "formal_source_files": 1212,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fdffb3b51c1b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/QudeLeap__Lean-QuantumAlg/RRU-fa75d034c9ed.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "QuantumAlg/@subtrees/4"
+      },
+      "snapshot_sha256": "5a52756e149e895b1a2a8341e9a346fcf123c2fe73c1838846693eb849fe1c08",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 317,
+        "bytes": 2030130,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 317,
+        "files": 317,
+        "formal_source_files": 317,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fa75d034c9ed"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/QudeLeap__Lean-QuantumAlg/RRU-56e5c4603f44.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "QuantumAlg/@subtrees/6"
+      },
+      "snapshot_sha256": "a535e43003439fdee93c7972b75b911c193b72237082d985705b00801125d3ec",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 628,
+        "bytes": 5057880,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 628,
+        "files": 628,
+        "formal_source_files": 628,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-56e5c4603f44"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/QudeLeap__Lean-QuantumAlg/RRU-b4c67e19c479.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "QuantumAlg/@subtrees/7"
+      },
+      "snapshot_sha256": "ef33d3a378f3c311f1d3062d43933eb0e016cacd0b58f49f5bf36983ccfdd70d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 774,
+        "bytes": 15145567,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 774,
+        "files": 774,
+        "formal_source_files": 774,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b4c67e19c479"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/QudeLeap__Lean-QuantumAlg/RRU-4fd261f89d7a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "QuantumAlg/@subtrees/9"
+      },
+      "snapshot_sha256": "1ae41e276fb0e5a14ce8997ab6068660e8ac0856b46c7c43f8a0e902d125495b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 334,
+        "bytes": 4871312,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 334,
+        "files": 334,
+        "formal_source_files": 334,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4fd261f89d7a"
     }
   ]
 }
