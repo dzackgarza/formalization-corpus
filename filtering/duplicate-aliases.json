@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "186dfe695b40d205bc44c9c1a19f8de356e75b83",
-  "generated_at": "2026-09-28T18:51:04.066723+00:00",
+  "corpus_git_commit": "647680f4775842b2215c90c07a2ba804621cda07",
+  "generated_at": "2026-09-28T18:51:41.883164+00:00",
   "groups": [
     {
       "canonical": {
@@ -531,6 +531,46 @@
       ],
       "sha256": "018a33de4c25712e4b574069fa462264813c30d7e21b1beea2d782052b3b5d52",
       "size_bytes": 34
+    },
+    {
+      "canonical": {
+        "file": "HexRowReduce/RowEchelon/Contracts.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexRowReduce/RowEchelon/Contracts.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexRowReduce/RowEchelon/Contracts.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-row-reduce"
+        }
+      ],
+      "sha256": "01a161bbd8e64f8820f26e444942b98b90e0e3934894fbb925dc425809dfab50",
+      "size_bytes": 15210
+    },
+    {
+      "canonical": {
+        "file": "HexBasic.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexBasic.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexBasic.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-basic"
+        }
+      ],
+      "sha256": "01a3583d9c351051ace352ee61bea8c42afd6d56488a84b94b7127642296c4fb",
+      "size_bytes": 1515
     },
     {
       "canonical": {
@@ -3214,6 +3254,31 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK6D2GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK6D2GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK6D2KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK6D2RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "0a7d9f776cf44bad38cdaecb86ca2432b5a2a4b184aa2d43de5708ac9c9ce468",
+      "size_bytes": 348
+    },
+    {
+      "canonical": {
         "file": "src/rescale/CLC.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -3576,6 +3641,26 @@
       ],
       "sha256": "0bcaf61cc568219d471ff8f70ccd304b80796c0c958f0edc5dbbd388f7bd6f90",
       "size_bytes": 5197
+    },
+    {
+      "canonical": {
+        "file": "HexDeterminant/ColumnLinear.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexDeterminant/ColumnLinear.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexDeterminant/ColumnLinear.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-determinant"
+        }
+      ],
+      "sha256": "0bcaf662d3df8f88b73edd9704f10ce3a6a49e07510321c8dc3597f43470e4f6",
+      "size_bytes": 24048
     },
     {
       "canonical": {
@@ -4809,6 +4894,26 @@
     },
     {
       "canonical": {
+        "file": "HexGramSchmidt/Int/Canonical.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidt/Int/Canonical.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidt/Int/Canonical.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt"
+        }
+      ],
+      "sha256": "0f5a9680c5540739da9535e1e0da31f519717a3cbfc28cb8b557ecf691f2f9a5",
+      "size_bytes": 48947
+    },
+    {
+      "canonical": {
         "file": "src/thm95/polyhedral_iso.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -4826,6 +4931,26 @@
       ],
       "sha256": "0f5b2fb1c1e22157de1dee2bd328e43652021eac401dc30fb73557a964279205",
       "size_bytes": 10473
+    },
+    {
+      "canonical": {
+        "file": "HexGramSchmidt/Int/Invariant.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidt/Int/Invariant.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidt/Int/Invariant.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt"
+        }
+      ],
+      "sha256": "0f6f8205a674db74fc8081d19c36fd52923cf05bc0e83f572a94a768f61f80ac",
+      "size_bytes": 54173
     },
     {
       "canonical": {
@@ -4866,6 +4991,26 @@
       ],
       "sha256": "0f739919a5a4aa9ae30fb4630be5d702497ceb3469b706ec979fd9330ff69eb1",
       "size_bytes": 4598
+    },
+    {
+      "canonical": {
+        "file": "HexMatrix/Pad.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/Pad.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/Pad.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "0f8f79aea0f8fc46ddbaf0f9c362f30875200dbe9a2391ef83bbb9210a4741d2",
+      "size_bytes": 5157
     },
     {
       "canonical": {
@@ -7804,6 +7949,26 @@
     },
     {
       "canonical": {
+        "file": "HexDeterminant/Adjugate.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexDeterminant/Adjugate.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexDeterminant/Adjugate.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-determinant"
+        }
+      ],
+      "sha256": "1a2bffada16e9a0ec57a58ed41e974562761ab43eb71c307cabb624d8b14e231",
+      "size_bytes": 32015
+    },
+    {
+      "canonical": {
         "file": "Library/modmul_group.ml",
         "repository": "CakeML__candle"
       },
@@ -9024,6 +9189,26 @@
     },
     {
       "canonical": {
+        "file": "HexDeterminantMathlib.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexDeterminantMathlib.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexDeterminantMathlib.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-determinant-mathlib"
+        }
+      ],
+      "sha256": "1d08500d4f5db4e7be719afb4d1f82c020fad3ff8a6b65a2e553bd84b88fae5d",
+      "size_bytes": 656
+    },
+    {
+      "canonical": {
         "file": "src/Multiplicacion_por_cero_izquierda.lean",
         "repository": "jaalonso__Calculemus2"
       },
@@ -9631,6 +9816,26 @@
       ],
       "sha256": "1fd2280f2bdfc42fc676e3e269ba885c6289fea67f0b5f0e9e45a502a1459c48",
       "size_bytes": 431
+    },
+    {
+      "canonical": {
+        "file": "HexLLLMathlib/ShortVector.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexLLLMathlib/ShortVector.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexLLLMathlib/ShortVector.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-lll-mathlib"
+        }
+      ],
+      "sha256": "1ff193e152456be6de98a6b213252a0700fc923809616f7d36c8495e1202e444",
+      "size_bytes": 5009
     },
     {
       "canonical": {
@@ -10799,6 +11004,36 @@
     },
     {
       "canonical": {
+        "file": "bench/HexPolyDetMathlib/ProofProbe/ResultTridiagonal4HexBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/ResultTridiagonal4HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/ResultTridiagonal4MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Tridiagonal4HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Tridiagonal4MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "23707f84f98c91c71547e8deeb1cf2191ad02d792287d74c3e12a02d27e62781",
+      "size_bytes": 298
+    },
+    {
+      "canonical": {
         "file": "EC/exprojective.ml",
         "repository": "CakeML__candle"
       },
@@ -11184,6 +11419,31 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D2GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D2GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D2KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D2RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "24abb581a2ecddb70021db6c04da43df2a58c076e6b3df5c5dc43d84b3a96f09",
+      "size_bytes": 348
+    },
+    {
+      "canonical": {
         "file": "FormalisingMathematics2024/Solutions/Section15numberTheory/Sheet2.lean",
         "repository": "ImperialCollegeLondon__formalising-mathematics-2024"
       },
@@ -11424,6 +11684,31 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D4GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D4GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D4KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D4RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "2593d5605ec8689d7a829b0b5e4a91c04fe913bce1c723c4c4eaa4da0fdddfac",
+      "size_bytes": 348
+    },
+    {
+      "canonical": {
         "file": "Rqe/dedmatrix.ml",
         "repository": "CakeML__candle"
       },
@@ -11441,6 +11726,26 @@
       ],
       "sha256": "25952ad57c96493cc07487f5688cfcebf3e4cecda3a611a1def3678cdb2a59b4",
       "size_bytes": 9467
+    },
+    {
+      "canonical": {
+        "file": "HexRowReduce/RowEchelon/Elementary.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexRowReduce/RowEchelon/Elementary.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexRowReduce/RowEchelon/Elementary.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-row-reduce"
+        }
+      ],
+      "sha256": "259be162fce1b0a82765f4cd01edd339e7866d7a398dcc71a994f1fac4bdf090",
+      "size_bytes": 300
     },
     {
       "canonical": {
@@ -11481,26 +11786,6 @@
       ],
       "sha256": "25b8ae554ee8734931c44f2d99194066ab7befb593ffa4bdc3a9340279373d91",
       "size_bytes": 392
-    },
-    {
-      "canonical": {
-        "file": "HexBareiss.lean",
-        "repository": "kim-em__hex-dev"
-      },
-      "occurrences": [
-        {
-          "file": "HexBareiss.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        },
-        {
-          "file": "HexBareiss.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__hex-bareiss"
-        }
-      ],
-      "sha256": "25c1555fb5f7ec5b6a78d74821bb4a54f659ed20aaffe76d0ca6753eb5a74732",
-      "size_bytes": 544
     },
     {
       "canonical": {
@@ -11581,6 +11866,26 @@
       ],
       "sha256": "2606761057aeff6659c525b9e726a059951d5abbb4efa8c650697d9cf4032bac",
       "size_bytes": 3964
+    },
+    {
+      "canonical": {
+        "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits8Basis.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits8Basis.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/RankDeficientHermiteN2M2Bits32Basis.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "26068e0726ce1396b224779ec732a74e451945c7b10e194cea1704e6b419a93e",
+      "size_bytes": 463
     },
     {
       "canonical": {
@@ -14109,6 +14414,26 @@
     },
     {
       "canonical": {
+        "file": "HexMatrix/DotProduct.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/DotProduct.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/DotProduct.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "2f4bcc12e01f3a2707d6b7f2e4ca7f597fdeb459611647a54adbeac0340f97fa",
+      "size_bytes": 11367
+    },
+    {
+      "canonical": {
         "file": "thys/Word_Lib/Bit_Comprehension_Int.thy",
         "repository": "isabelle-prover__mirror-afp-devel"
       },
@@ -14666,6 +14991,26 @@
       ],
       "sha256": "315e836fc1cc0fbe0cdd74b68a97c16e4cf68fdea895c31bcda46488d283c6ab",
       "size_bytes": 74136
+    },
+    {
+      "canonical": {
+        "file": "HexGramSchmidtMathlib/Int/Swap.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidtMathlib/Int/Swap.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidtMathlib/Int/Swap.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt-mathlib"
+        }
+      ],
+      "sha256": "31696ac17fb161edc1d55562903bc9b7f8898db9ed8ba63b1ac99b646abcbd0d",
+      "size_bytes": 35454
     },
     {
       "canonical": {
@@ -16571,26 +16916,6 @@
       ],
       "sha256": "37e315bbdbb087c78f90b48697ba2b78e081ddcaa18c54b927ac1ec0d5830a4f",
       "size_bytes": 9607
-    },
-    {
-      "canonical": {
-        "file": "HexBareissMathlib.lean",
-        "repository": "kim-em__hex-dev"
-      },
-      "occurrences": [
-        {
-          "file": "HexBareissMathlib.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        },
-        {
-          "file": "HexBareissMathlib.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__hex-bareiss-mathlib"
-        }
-      ],
-      "sha256": "37e400e7d0cb2e9d88fdf58cacfc54d533535fefcd8697fdd9400d9b37c7fa3c",
-      "size_bytes": 1384
     },
     {
       "canonical": {
@@ -19209,6 +19534,26 @@
     },
     {
       "canonical": {
+        "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits128Nonmember.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits128Nonmember.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits32Nonmember.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "4094fb33221e9002eea42cabd5a93fab3db52c51cc213db878bd1fd4194a14a0",
+      "size_bytes": 485
+    },
+    {
+      "canonical": {
         "file": "books/models/jvm/guard-verified-m1/.sys/defsys@useless-runes.lsp",
         "repository": "acl2__acl2"
       },
@@ -20309,6 +20654,316 @@
     },
     {
       "canonical": {
+        "file": "bench/HexPrimality/ProofProbe/PMinusOne/Balanced0Imports.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Balanced0Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Balanced1Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Balanced2Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Curve448Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/P384Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/P521Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent128Q1021Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent128Q127Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent128Q16381Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent128Q2039Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent128Q257Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent128Q32749Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent128Q4093Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent128Q509Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent128Q67Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent128Q8191Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent256Q1021Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent256Q127Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent256Q16381Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent256Q2039Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent256Q257Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent256Q32749Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent256Q4093Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent256Q509Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent256Q67Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent256Q8191Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent512Q1021Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent512Q127Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent512Q16381Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent512Q2039Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent512Q257Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent512Q32749Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent512Q4093Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent512Q509Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent512Q67Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent512Q8191Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent64Q1021Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent64Q127Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent64Q16381Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent64Q2039Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent64Q257Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent64Q32749Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent64Q4093Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent64Q509Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent64Q67Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Parent64Q8191Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Secp256k1Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Smooth123Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Smooth256Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Smooth31Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Smooth511Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Smooth512Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Smooth61Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Table23Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Table2Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Table3Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Table65521Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Table7Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Table97Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPrimality/ProofProbe/PMinusOne/Table997Imports.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "44de6427a53754ff4f321b74da23e96301266e2669b36fc5a4c3abde13178771",
+      "size_bytes": 201
+    },
+    {
+      "canonical": {
         "file": "Library/Theory/ParityModular.lean",
         "repository": "hrmacbeth__math2001"
       },
@@ -21199,6 +21854,26 @@
     },
     {
       "canonical": {
+        "file": "HexMatrix/Region.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/Region.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/Region.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "484915f4a0eeb13e541cef289292f5ef57040a65d6c06ca8cd75119ae65de529",
+      "size_bytes": 36573
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/imo-1967-p3.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -21816,6 +22491,51 @@
       ],
       "sha256": "4a3fe2c63ad6a8b18a7c59f34efff97c8f67876b2275f4a9380beaab87811ec8",
       "size_bytes": 20191
+    },
+    {
+      "canonical": {
+        "file": "HexBareiss/Bareiss.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexBareiss/Bareiss.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexBareiss/Bareiss.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-bareiss"
+        }
+      ],
+      "sha256": "4a5e021df694cce75ec41301144ddd6851fe1fe8e79efb44e3aa2bb4b11cbd16",
+      "size_bytes": 79887
+    },
+    {
+      "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D16GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D16GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D16KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D16RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "4a957c033a8cd6eb3ba32a8ad03b2e8503be9a5d2ea39665b41dbe40ee5b5b89",
+      "size_bytes": 350
     },
     {
       "canonical": {
@@ -23974,6 +24694,31 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D8GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D8GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D8KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D8RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "529676b3099ede7dbf0aaafcab7f3b4ed4b6d02b8eaac8f7eab58b1b04f4721b",
+      "size_bytes": 348
+    },
+    {
+      "canonical": {
         "file": "PoincareConjecture/Contributions/ClosedSurfaceArea/Definitions/Def_ClosedSurface_DifferentialGeometry_Tensor_RSTensor_Derivation_Contract.lean",
         "repository": "MathNetwork__OpenGA"
       },
@@ -24274,6 +25019,26 @@
     },
     {
       "canonical": {
+        "file": "HexGramSchmidtMathlib/Int/GramDet.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidtMathlib/Int/GramDet.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidtMathlib/Int/GramDet.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt-mathlib"
+        }
+      ],
+      "sha256": "53c087a11c85ede246f54acfe062f78390185370d47605719621ef391e624ca0",
+      "size_bytes": 58599
+    },
+    {
+      "canonical": {
         "file": "src/Convergencia_de_la_sucesion_constante.lean",
         "repository": "jaalonso__Calculemus2"
       },
@@ -24544,6 +25309,31 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/DetN3K3D2GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN3K3D2GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN3K3D2KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN3K3D2RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "550bc862732e9639e7ff1a66acff89945e6598d8623933431b7635367cb7d10d",
+      "size_bytes": 350
+    },
+    {
+      "canonical": {
         "file": "books/rtl/rel4/support/.sys/bits@useless-runes.lsp",
         "repository": "acl2__acl2"
       },
@@ -24754,6 +25544,26 @@
     },
     {
       "canonical": {
+        "file": "bench/HexRowReduceMathlib/ProofProbe/Inverse/SingularKernelN2Bits32AlmostFullSingular.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexRowReduceMathlib/ProofProbe/Inverse/SingularKernelN2Bits32AlmostFullSingular.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexRowReduceMathlib/ProofProbe/Inverse/SingularKernelN2Bits32HalfSingular.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "55ceba2ad15b9090b45d451fc45815b3b9144b74ca9e6b50a539a0679d1ce037",
+      "size_bytes": 493
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/mathd-numbertheory-709.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -24791,6 +25601,26 @@
       ],
       "sha256": "55ddad378b97cbe872ec825f1b42495035c7666e6faf45ac2e640f3308b4c28e",
       "size_bytes": 9053
+    },
+    {
+      "canonical": {
+        "file": "HexLLLMathlib/ReductionInvariant.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexLLLMathlib/ReductionInvariant.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexLLLMathlib/ReductionInvariant.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-lll-mathlib"
+        }
+      ],
+      "sha256": "560f3fdfb6d8723d3ca298a901ed5cec09ce4cb894a508ced4a24caf55530fdc",
+      "size_bytes": 113650
     },
     {
       "canonical": {
@@ -25861,6 +26691,26 @@
       ],
       "sha256": "592f86b3247c70c3d45395c5dee3385c83753c36f68d31ee93690162469ee804",
       "size_bytes": 463847
+    },
+    {
+      "canonical": {
+        "file": "HexGramSchmidt/Int/Scaled.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidt/Int/Scaled.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidt/Int/Scaled.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt"
+        }
+      ],
+      "sha256": "5937066a40014b8d87a3e3fa6776f7a16dee3d9a263ca37ae9664a72dc74981a",
+      "size_bytes": 71261
     },
     {
       "canonical": {
@@ -28064,6 +28914,26 @@
     },
     {
       "canonical": {
+        "file": "HexMatrix/Certificate.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/Certificate.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/Certificate.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "6068533fde70aa1c7e35760319972b3ace0a8f90a678cf518abcc9fc939818c2",
+      "size_bytes": 15114
+    },
+    {
+      "canonical": {
         "file": "src/thm95/homotopy.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -28854,6 +29724,26 @@
     },
     {
       "canonical": {
+        "file": "HexGramSchmidt/Int/Core.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidt/Int/Core.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidt/Int/Core.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt"
+        }
+      ],
+      "sha256": "62d24ec4e483b41dcbffaa62bad2bfd0f429e55d35877f1319392f81aec27c01",
+      "size_bytes": 62376
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/putnam-1993-b5.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -29179,6 +30069,26 @@
     },
     {
       "canonical": {
+        "file": "HexMatrix/Submatrix.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/Submatrix.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/Submatrix.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "63fcb59c82fe5affeb9482e681324803a54ba68965e79bbd77a66e06c1aafbaf",
+      "size_bytes": 14387
+    },
+    {
+      "canonical": {
         "file": "examples/compile/cls/debruijn.elf",
         "repository": "standardml__twelf"
       },
@@ -29196,6 +30106,26 @@
       ],
       "sha256": "63fd958be37ed7839bb34a7c6e7a4f578457e3ea246a1bc509dd6d7e4c3a5dd4",
       "size_bytes": 785
+    },
+    {
+      "canonical": {
+        "file": "HexBasic/ExtTreeMap.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexBasic/ExtTreeMap.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexBasic/ExtTreeMap.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-basic"
+        }
+      ],
+      "sha256": "64007c2b6a28ea63f228f04f417e6e0b0239ba781164f37e2ff99bf287f695eb",
+      "size_bytes": 9841
     },
     {
       "canonical": {
@@ -29561,26 +30491,6 @@
       ],
       "sha256": "653268b14090834ba6e4088f0725557501ecb9c8b529df197e992aee37bbd774",
       "size_bytes": 1077
-    },
-    {
-      "canonical": {
-        "file": "HexMatrixMathlib/Submatrix.lean",
-        "repository": "kim-em__hex-dev"
-      },
-      "occurrences": [
-        {
-          "file": "HexMatrixMathlib/Submatrix.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        },
-        {
-          "file": "HexMatrixMathlib/Submatrix.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__hex-matrix-mathlib"
-        }
-      ],
-      "sha256": "655997b33d77aa742b6d2520d10638021e867b0dad695b1dce8c54ce1b9a460e",
-      "size_bytes": 1345
     },
     {
       "canonical": {
@@ -34709,6 +35619,26 @@
     },
     {
       "canonical": {
+        "file": "HexMatrixMathlib/Vector.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrixMathlib/Vector.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrixMathlib/Vector.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix-mathlib"
+        }
+      ],
+      "sha256": "75374355a485bd88420e372d19a5d3a17282823a377061b4d8d9059b075974d0",
+      "size_bytes": 3655
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/putnam-1982-b3.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -35191,6 +36121,156 @@
       ],
       "sha256": "7677274488fc43d0ac9bcf4a51d1bf8825e4eb24aa1609592512bcb304ad2fd5",
       "size_bytes": 3854
+    },
+    {
+      "canonical": {
+        "file": "bench/HexPolyDetMathlib/ProofProbe/DegreeEight4HexBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/DegreeEight4HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/DegreeEight4MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/DenseGeneric4HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/DenseGeneric4MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Identity5HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Identity5MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Independent6HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Independent6MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Numeric2HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Numeric2MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Products5HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Products5MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Quotient2HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Quotient2MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/RankOne10HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/RankOne10MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/ResultIdentity4HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/ResultIdentity4MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/ResultNumeric2HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/ResultNumeric2MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/ResultSymbolic2HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/ResultSymbolic2MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/ResultSymbolic3HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/ResultSymbolic3MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Symbolic2HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/Symbolic2MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/TwoTerm4HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/TwoTerm4MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "767c4b58e498d0233e4c06bd0fc8f475dd86a355d073b13262a9de0c65e13be3",
+      "size_bytes": 247
     },
     {
       "canonical": {
@@ -36359,6 +37439,31 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D4GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D4GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D4KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D4RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "7b40955190461a8d89bdb1454295d7e7f9b337492a0753f28dbaa11d1bb3ef96",
+      "size_bytes": 348
+    },
+    {
+      "canonical": {
         "file": "SSA/Projects/InstCombine/Tests/goals/gtrunc_proof_test6_thm_extracted_1__2.lean",
         "repository": "opencompl__lean-mlir"
       },
@@ -36686,6 +37791,31 @@
       ],
       "sha256": "7c6571d36c06c3d6c0e2c9f01e41839c3c464251c3a9da639165a2a8802f00bf",
       "size_bytes": 236
+    },
+    {
+      "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D2GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D2GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D2KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK4D2RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "7c9575783db9765fee991a25974eb3531b00ff4955feb07b66be029e1dfb96ce",
+      "size_bytes": 348
     },
     {
       "canonical": {
@@ -37136,6 +38266,26 @@
       ],
       "sha256": "7d92b16ca9fd813c62d9217e50e51adf0c170c7e5967c0dbb245fe0d9af70cd0",
       "size_bytes": 495
+    },
+    {
+      "canonical": {
+        "file": "HexMatrix/Strassen.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/Strassen.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/Strassen.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "7d957ca56a34da95bbb390fc9957ffdfa2997f4453352ef32cd6a7654b1d3a1f",
+      "size_bytes": 38615
     },
     {
       "canonical": {
@@ -38834,6 +39984,26 @@
     },
     {
       "canonical": {
+        "file": "HexDeterminant/Permutation.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexDeterminant/Permutation.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexDeterminant/Permutation.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-determinant"
+        }
+      ],
+      "sha256": "84231ee35889e3681a2737b83a2679cc81108425a8231a09cb11615dc24c4d01",
+      "size_bytes": 70971
+    },
+    {
+      "canonical": {
         "file": "Library/frag.ml",
         "repository": "CakeML__candle"
       },
@@ -40234,6 +41404,26 @@
     },
     {
       "canonical": {
+        "file": "HexGramSchmidt/Basic/Linearity.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidt/Basic/Linearity.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidt/Basic/Linearity.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt"
+        }
+      ],
+      "sha256": "89805da3c106ec522bf21535a4d3ee92b0bb0c7de1c7c2ec61675ff29c5042f4",
+      "size_bytes": 89641
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/putnam-1986-b3.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -40484,6 +41674,51 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D4GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D4GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D4KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D4RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "8a4d765b2d56b7dd062c5ef151de2dcb73e26fc050e5b76946320a814d8e5fa3",
+      "size_bytes": 348
+    },
+    {
+      "canonical": {
+        "file": "HexBasic/List.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexBasic/List.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexBasic/List.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-basic"
+        }
+      ],
+      "sha256": "8a58906b3a24dc8d7a643ab63f7cefd2f0d482b88a7cc7767e151d9df19e54b7",
+      "size_bytes": 3149
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/putnam-1999-b2.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -40586,6 +41821,26 @@
       ],
       "sha256": "8a9b613068310cf5728338f67de7fc04872860f2705a93d0900cfec3fd949a4d",
       "size_bytes": 9
+    },
+    {
+      "canonical": {
+        "file": "HexLLLMathlib/IntegerLattice.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexLLLMathlib/IntegerLattice.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexLLLMathlib/IntegerLattice.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-lll-mathlib"
+        }
+      ],
+      "sha256": "8ab1d0ef5625764f206294bb883678309f798e558dc6afd42366682502631f22",
+      "size_bytes": 8390
     },
     {
       "canonical": {
@@ -42254,6 +43509,31 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D2GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D2GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D2KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D2RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "906af1aef79dd03b0ce9511dab154e94427198a434a5af8c3e4f1f2415799cc6",
+      "size_bytes": 348
+    },
+    {
+      "canonical": {
         "file": "HexGramSchmidt/Basic/Rat.lean",
         "repository": "kim-em__hex-dev"
       },
@@ -42844,6 +44124,26 @@
     },
     {
       "canonical": {
+        "file": "HexMatrixMathlib/Algebra.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrixMathlib/Algebra.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrixMathlib/Algebra.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix-mathlib"
+        }
+      ],
+      "sha256": "91e2f740df36fe75ec6c740f50c88ec220e5d3be146602111f776c4b7714de23",
+      "size_bytes": 9571
+    },
+    {
+      "canonical": {
         "file": "goals/putnam-1964-a3.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -42989,26 +44289,6 @@
     },
     {
       "canonical": {
-        "file": "HexBasic/ArrayDecEq.lean",
-        "repository": "kim-em__hex-dev"
-      },
-      "occurrences": [
-        {
-          "file": "HexBasic/ArrayDecEq.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        },
-        {
-          "file": "HexBasic/ArrayDecEq.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__hex-basic"
-        }
-      ],
-      "sha256": "925444c6180dc50b05365bd6ee570bcd0849070d71cb50cdc9635532c4cb8e49",
-      "size_bytes": 3254
-    },
-    {
-      "canonical": {
         "file": "books/projects/async/.sys/unbound@useless-runes.lsp",
         "repository": "acl2__acl2"
       },
@@ -43046,6 +44326,31 @@
       ],
       "sha256": "928ff169b0b6f16b5f951d11ee337fccd9b59a487cd2b0add4b0f614f4d1bd1c",
       "size_bytes": 360
+    },
+    {
+      "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/DetN4K2D2GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN4K2D2GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN4K2D2KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN4K2D2RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "9299da9d22fb4674e1e8a07b4995ecba3d9bb165c07f04a7a1421cf68e2e5054",
+      "size_bytes": 350
     },
     {
       "canonical": {
@@ -43406,6 +44711,26 @@
       ],
       "sha256": "94047790cac9bfb00f6ce57d34a9427c57455b4998fa4215b9abf6796f487038",
       "size_bytes": 1115
+    },
+    {
+      "canonical": {
+        "file": "bench/HexSmithMathlib/ProofProbe/ChainConjugateN2M2Bits8Quotient.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexSmithMathlib/ProofProbe/ChainConjugateN2M2Bits8Quotient.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexSmithMathlib/ProofProbe/LargeCoefficientsN2M2Bits8Quotient.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "940f3813571215a5d5754d73804a127774456eea618c76339206a9b061d90d61",
+      "size_bytes": 467
     },
     {
       "canonical": {
@@ -46454,6 +47779,26 @@
     },
     {
       "canonical": {
+        "file": "reports/bench-results/hex-primality-compact-primecert/Curve25519.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "reports/bench-results/hex-primality-compact-primecert/Curve25519.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "scripts/bench/certificate_language/Curve25519.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "9e8a7e678e82ee7a03e063936bb9df91198b4cc089aeb4ab13d8b8151b02df11",
+      "size_bytes": 803
+    },
+    {
+      "canonical": {
         "file": "src/condensed/adjunctions2.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -46491,6 +47836,26 @@
       ],
       "sha256": "9e9c7b7f92815224b8c68dd4e68cff9c2d4b8d5d83051eb29b47e4169a62e7ba",
       "size_bytes": 1915
+    },
+    {
+      "canonical": {
+        "file": "bench/HexPolyDetMathlib/ProofProbe/OriginalQuadratic4HexBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/OriginalQuadratic4HexBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexPolyDetMathlib/ProofProbe/OriginalQuadratic4MathlibBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "9e9df3efc81271fb72553f5f9fab528081239694240a824139f446f2b83ab35b",
+      "size_bytes": 233
     },
     {
       "canonical": {
@@ -46851,6 +48216,26 @@
       ],
       "sha256": "9fd0c2d17f6feec9a866764aed18d94afadff7c9a8cfcab266b0787f7c595699",
       "size_bytes": 69312
+    },
+    {
+      "canonical": {
+        "file": "HexRowReduce/Loop.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexRowReduce/Loop.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexRowReduce/Loop.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-row-reduce"
+        }
+      ],
+      "sha256": "9fd6163b40b840447302553bc6d9bfaca010a69a9245fc484f83bae8c47802c0",
+      "size_bytes": 45258
     },
     {
       "canonical": {
@@ -48699,6 +50084,26 @@
     },
     {
       "canonical": {
+        "file": "HexLLLMathlib/Checker.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexLLLMathlib/Checker.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexLLLMathlib/Checker.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-lll-mathlib"
+        }
+      ],
+      "sha256": "a60740af6ffde05ae49dc887480e8d97be82f5a571e62cb2ec7b4443588f807c",
+      "size_bytes": 21789
+    },
+    {
+      "canonical": {
         "file": "100/ptolemy.ml",
         "repository": "CakeML__candle"
       },
@@ -48901,26 +50306,6 @@
       ],
       "sha256": "a68fc99291a1f965cbbf8aa1009af8db29526588cb1c54de7bc6e45441466769",
       "size_bytes": 13554
-    },
-    {
-      "canonical": {
-        "file": "HexRowReduce.lean",
-        "repository": "kim-em__hex-dev"
-      },
-      "occurrences": [
-        {
-          "file": "HexRowReduce.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        },
-        {
-          "file": "HexRowReduce.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__hex-row-reduce"
-        }
-      ],
-      "sha256": "a6a4eaa2d8731676e23788a2beb5af9df00dac966e1ab0b8dee6ecc9f9bce836",
-      "size_bytes": 732
     },
     {
       "canonical": {
@@ -49334,6 +50719,26 @@
     },
     {
       "canonical": {
+        "file": "HexRowReduce/Span.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexRowReduce/Span.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexRowReduce/Span.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-row-reduce"
+        }
+      ],
+      "sha256": "a7eb4ed673fff9c62df21a4ea64bd8b46473d3fbf780855ab6a406e0ae8f00a6",
+      "size_bytes": 15484
+    },
+    {
+      "canonical": {
         "file": "PrimeNumberTheoremAnd/Mathlib/Analysis/Complex/BorelCaratheodory.lean",
         "repository": "AlexKontorovich__PrimeNumberTheoremAnd"
       },
@@ -49471,6 +50876,26 @@
       ],
       "sha256": "a8228ccf1321af80c613c43ffa5868e7cd487f0e5d142c2ed5bc8b355af9ec05",
       "size_bytes": 1824
+    },
+    {
+      "canonical": {
+        "file": "HexGramSchmidt/Int/Correspondence.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidt/Int/Correspondence.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidt/Int/Correspondence.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt"
+        }
+      ],
+      "sha256": "a8297878a4e5ab89a1d19f49204247881098668a83215e24c602bacc8dd5d80d",
+      "size_bytes": 59272
     },
     {
       "canonical": {
@@ -49931,6 +51356,26 @@
       ],
       "sha256": "a9bf844ff773dbf8e26725a6110b48530f3cda54d9d1d4e8edfe58d6957e1830",
       "size_bytes": 145
+    },
+    {
+      "canonical": {
+        "file": "bench/HexSturm/Bench.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexSturm/Bench.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "reports/bench-results/dyadic-cancellation/Sturm.Bench.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "a9ca523bde5f3a80d1087867f7b7e76b98243c105a63c2f6d06bf915fa7ec503",
+      "size_bytes": 23792
     },
     {
       "canonical": {
@@ -50759,6 +52204,26 @@
     },
     {
       "canonical": {
+        "file": "HexLLL/Native.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexLLL/Native.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexLLL/Native.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-lll"
+        }
+      ],
+      "sha256": "ac8e2a4e742e12fc5dae71e46e4394ce46fc33c7fa0ba2e8204beb6ae72102d0",
+      "size_bytes": 23859
+    },
+    {
+      "canonical": {
         "file": "SSA/Projects/InstCombine/Tests/goals/gtrunc_proof_trunc_shl_nuw_31_i32_i64_thm_extracted_1__1.lean",
         "repository": "opencompl__lean-mlir"
       },
@@ -51464,6 +52929,26 @@
     },
     {
       "canonical": {
+        "file": "HexMatrix/ElementaryAlgebra.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/ElementaryAlgebra.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/ElementaryAlgebra.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "ae90a41a0663b895a28e9225e569df137cafded9335a7e84e6a6d51cca9d9c7d",
+      "size_bytes": 24426
+    },
+    {
+      "canonical": {
         "file": "FormalisingMathematics2024/Section11vectorSpaces/Sheet4.lean",
         "repository": "ImperialCollegeLondon__formalising-mathematics-2024"
       },
@@ -51894,6 +53379,26 @@
     },
     {
       "canonical": {
+        "file": "bench/HexRowReduceMathlib/ProofProbe/Inverse/SingularKernelN2Bits8AlmostFullSingular.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexRowReduceMathlib/ProofProbe/Inverse/SingularKernelN2Bits8AlmostFullSingular.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexRowReduceMathlib/ProofProbe/Inverse/SingularKernelN2Bits8HalfSingular.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "afbf75a21de034f35366601c58491779daae200e8953dc50363af0bb26856976",
+      "size_bytes": 463
+    },
+    {
+      "canonical": {
         "file": "thys/Word_Lib/Least_significant_bit.thy",
         "repository": "isabelle-prover__mirror-afp-devel"
       },
@@ -52101,6 +53606,31 @@
       ],
       "sha256": "b079e178e1a8f29e8273f8238c1d37aada336c39f75e46f894f0f73835f00dfd",
       "size_bytes": 2025
+    },
+    {
+      "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D16GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D16GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D16KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D16RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "b07bb62d9b8257bba48b668864bdad9d42076e2ee3544e15a6a3575f89747fc7",
+      "size_bytes": 350
     },
     {
       "canonical": {
@@ -53029,6 +54559,26 @@
     },
     {
       "canonical": {
+        "file": "bench/HexRealRoots/Bench.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexRealRoots/Bench.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "reports/bench-results/dyadic-cancellation/RealRoots.Bench.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "b3eec1620472202c46b892bf5724faf4bc0b6377c68e30f645b5d8799d4190e9",
+      "size_bytes": 20552
+    },
+    {
+      "canonical": {
         "file": "books/projects/arm/fadd/lza.lisp",
         "repository": "acl2__acl2"
       },
@@ -53669,6 +55219,26 @@
     },
     {
       "canonical": {
+        "file": "HexMatrix/Gram.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/Gram.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/Gram.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "b5ff954525f555a62e7ee153bee777da875c89b9039bc7d7e9c7610303043e30",
+      "size_bytes": 6807
+    },
+    {
+      "canonical": {
         "file": "books/projects/async/acl2-customization.lsp",
         "repository": "acl2__acl2"
       },
@@ -54064,6 +55634,31 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D8GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D8GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D8KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D8RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "b700439c6aab019d357530bc1e6c35d5433fbb03ade9a359ab9e300b0a5669c7",
+      "size_bytes": 348
+    },
+    {
+      "canonical": {
         "file": "src/for_mathlib/homotopy_category_op.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -54364,6 +55959,26 @@
     },
     {
       "canonical": {
+        "file": "HexMatrixMathlib/Lemmas.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrixMathlib/Lemmas.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrixMathlib/Lemmas.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix-mathlib"
+        }
+      ],
+      "sha256": "b848588ea5bf262f9a48fa436125905ffe52b7f62312ad1211e527ea868c234a",
+      "size_bytes": 1835
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/putnam-1980-a6.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -54481,6 +56096,31 @@
       ],
       "sha256": "b8dafb879f3ace920ede02659ab86b6c341dae52a61fb45fd95cca2da8836303",
       "size_bytes": 19022
+    },
+    {
+      "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D8GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D8GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D8KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK1D8RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "b8e712b561811430df1fb30699b27031592647df20438111cd46e8073fbe2794",
+      "size_bytes": 348
     },
     {
       "canonical": {
@@ -55164,6 +56804,26 @@
     },
     {
       "canonical": {
+        "file": "HexRowReduce/Pivot.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexRowReduce/Pivot.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexRowReduce/Pivot.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-row-reduce"
+        }
+      ],
+      "sha256": "bc0e6b4b6ad04e4e0495ba5787406737afe42e99f7196c7a0a44b51cf1c355e3",
+      "size_bytes": 36177
+    },
+    {
+      "canonical": {
         "file": "Unity/mk_gen_induct.ml",
         "repository": "CakeML__candle"
       },
@@ -55281,6 +56941,31 @@
       ],
       "sha256": "bc74b0bd61cc4eabafee28ce7600f2f1b5ee4dc6605e350e151e51cef621098a",
       "size_bytes": 347
+    },
+    {
+      "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D16GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D16GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D16KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D16RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "bc789411f21d7b73174879149a39e7cfe62b2694c6260f63a779958d58c40fed",
+      "size_bytes": 350
     },
     {
       "canonical": {
@@ -56029,6 +57714,26 @@
     },
     {
       "canonical": {
+        "file": "HexLLL/Lattice.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexLLL/Lattice.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexLLL/Lattice.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-lll"
+        }
+      ],
+      "sha256": "becbcbd73f7d5e434baf50451e6787852dcbab6c0f31d2186d2d402a0058aed3",
+      "size_bytes": 4337
+    },
+    {
+      "canonical": {
         "file": "PoincareConjecture/Contributions/ClosedSurfaceArea/Theorems/Thm_OpenGA_hasDerivAt_totalRiemannianVolume.lean",
         "repository": "MathNetwork__OpenGA"
       },
@@ -56349,6 +58054,26 @@
     },
     {
       "canonical": {
+        "file": "HexGramSchmidtMathlib/Int/Augmented.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidtMathlib/Int/Augmented.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidtMathlib/Int/Augmented.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt-mathlib"
+        }
+      ],
+      "sha256": "c04d56d129d480b8d6fab87f02c082e1c1b16cb5b2537b2a2ff99d07625b4038",
+      "size_bytes": 61433
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/imo-2018-p3.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -56406,6 +58131,31 @@
       ],
       "sha256": "c07a6d4b56d0d91a5bd8d30df005071328fd7e971d49ad96fbff6d68598fd1bc",
       "size_bytes": 19042
+    },
+    {
+      "canonical": {
+        "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits128Member.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits128Member.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits32Member.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/RankDeficientHermiteN2M2Bits8Member.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "c0b92c082f97e6649ade2309700d650204067204e05ce16d1f03c98597b3fe6d",
+      "size_bytes": 485
     },
     {
       "canonical": {
@@ -56671,6 +58421,26 @@
       ],
       "sha256": "c1bddba7aa00917973855d54bdf87cd7bbc5a8cd9a4f2330da6b06370e4a5ee6",
       "size_bytes": 288
+    },
+    {
+      "canonical": {
+        "file": "HexMatrix/Lattice.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/Lattice.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/Lattice.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "c1bf513604e7b537282d54fcc0dfbea9a8f81e3726d23c9d1fe0a32f4ea39b1e",
+      "size_bytes": 4493
     },
     {
       "canonical": {
@@ -57569,6 +59339,26 @@
     },
     {
       "canonical": {
+        "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits8Member.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits8Member.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/RankDeficientHermiteN2M2Bits32Member.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "c45ec9010b47919bc84beb065bbe92d6aa4fbba880fa475b7f0b3db7a17c8014",
+      "size_bytes": 486
+    },
+    {
+      "canonical": {
         "file": "dataset/_prooftests/S0.lean",
         "repository": "Shilun-Allan-Li__tcslib"
       },
@@ -57831,6 +59621,31 @@
       ],
       "sha256": "c54c6d1f2fb2a64b2a7f69b6986fae0bf0c91ada885449530cb3869406823ce7",
       "size_bytes": 10361
+    },
+    {
+      "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK8D2GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK8D2GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK8D2KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK8D2RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "c550c086feade98a8f2476fc6baf366c047a9b9a2abe7448402d87dea9f445e6",
+      "size_bytes": 348
     },
     {
       "canonical": {
@@ -58541,6 +60356,26 @@
       ],
       "sha256": "c74a095a19671de6c4b54fda65538a94531e7369af565184ea2801a6f97ee739",
       "size_bytes": 2198
+    },
+    {
+      "canonical": {
+        "file": "HexGramSchmidt/Basic/IntCast.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidt/Basic/IntCast.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidt/Basic/IntCast.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt"
+        }
+      ],
+      "sha256": "c7599b8013cf874aea20b9944c98e5c54f80423cfa344a9b7c58e0f2093f408d",
+      "size_bytes": 17485
     },
     {
       "canonical": {
@@ -59934,6 +61769,31 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/DetN5K3D1GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN5K3D1GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN5K3D1KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN5K3D1RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "cd5fea4022db5c113ff6df95f97f43165a9b2b1afbb5ac1fe185fd9fe47075fc",
+      "size_bytes": 350
+    },
+    {
+      "canonical": {
         "file": "SSA/Projects/InstCombine/Tests/goals/gtrunc_proof_trunc_shl_1_i32_i64_thm_extracted_1__2.lean",
         "repository": "opencompl__lean-mlir"
       },
@@ -60036,6 +61896,31 @@
       ],
       "sha256": "cdb4dfef590f1a39b58a1a64f64e84f42f657dcda9ad91343ff2b091be72d634",
       "size_bytes": 2233
+    },
+    {
+      "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D2GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D2GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D2KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK2D2RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "cdd3f0ae5a3c7ada47c4ee108cee39e446fb07171e7ccd3b6c9510268172831f",
+      "size_bytes": 348
     },
     {
       "canonical": {
@@ -60824,26 +62709,6 @@
     },
     {
       "canonical": {
-        "file": "HexDeterminant/Enumeration.lean",
-        "repository": "kim-em__hex-dev"
-      },
-      "occurrences": [
-        {
-          "file": "HexDeterminant/Enumeration.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        },
-        {
-          "file": "HexDeterminant/Enumeration.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__hex-determinant"
-        }
-      ],
-      "sha256": "d03c239fe7341cac2ffb44b451229837031f4d657f3f3de475b7fd29f315d2b4",
-      "size_bytes": 40170
-    },
-    {
-      "canonical": {
         "file": "Quaternions/qisom.hl",
         "repository": "CakeML__candle"
       },
@@ -61396,6 +63261,26 @@
       ],
       "sha256": "d2427608ee59a3a4c6ffbea5efabab9fb36b808d0baa4c8fe65e0f879910b362",
       "size_bytes": 1020
+    },
+    {
+      "canonical": {
+        "file": "HexGramSchmidtMathlib/Int/RowAdd.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidtMathlib/Int/RowAdd.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidtMathlib/Int/RowAdd.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt-mathlib"
+        }
+      ],
+      "sha256": "d2487531e6df5f2fa7d7936db641bea8bab868ffc4ff0e78543c2237f8eeab77",
+      "size_bytes": 51281
     },
     {
       "canonical": {
@@ -62214,23 +64099,23 @@
     },
     {
       "canonical": {
-        "file": "HexMatrixMathlib.lean",
+        "file": "HexLLLMathlib/Reduction.lean",
         "repository": "kim-em__hex-dev"
       },
       "occurrences": [
         {
-          "file": "HexMatrixMathlib.lean",
+          "file": "HexLLLMathlib/Reduction.lean",
           "proof_assistant": "lean",
           "repository": "kim-em__hex-dev"
         },
         {
-          "file": "HexMatrixMathlib.lean",
+          "file": "HexLLLMathlib/Reduction.lean",
           "proof_assistant": "lean",
-          "repository": "leanprover__hex-matrix-mathlib"
+          "repository": "leanprover__hex-lll-mathlib"
         }
       ],
-      "sha256": "d4e1cb5dbf261824c4a1b009c03c80fa97cd037c074ec82439cb95dc8e02c716",
-      "size_bytes": 1640
+      "sha256": "d4e390a9610bbbf645c44207560a2d159508be655ff88082c89b97971870c090",
+      "size_bytes": 8568
     },
     {
       "canonical": {
@@ -63474,26 +65359,6 @@
     },
     {
       "canonical": {
-        "file": "HexDeterminant/Laplace.lean",
-        "repository": "kim-em__hex-dev"
-      },
-      "occurrences": [
-        {
-          "file": "HexDeterminant/Laplace.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        },
-        {
-          "file": "HexDeterminant/Laplace.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__hex-determinant"
-        }
-      ],
-      "sha256": "d8f442887d13e5cf4111a7efda591c0031fe9ea69315f9fa72d25d73d7c478b0",
-      "size_bytes": 15838
-    },
-    {
-      "canonical": {
         "file": "PoincareConjecture/Contributions/ExtinctionEndgame/Upload/Theorems/Thm_PoincareFormalization_ExtinctionEndgame_nonempty_homeomorph_sphere_of_connected_sum_spheres.lean",
         "repository": "MathNetwork__OpenGA"
       },
@@ -63511,6 +65376,31 @@
       ],
       "sha256": "d8fd0cdbf946bb3ca12e4e84fdae04bb781de174a3e7c299778e273a8701362c",
       "size_bytes": 1097
+    },
+    {
+      "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/DetN4K3D1GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN4K3D1GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN4K3D1KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN4K3D1RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "d8fe113e11b6874f584a449fae3747598b9e44f1f3aa38ca7a0c98e5bd5a4b1c",
+      "size_bytes": 350
     },
     {
       "canonical": {
@@ -63909,6 +65799,31 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK6D4GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK6D4GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK6D4KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK6D4RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "da1e524f90504c0448cf98ddfada9149f318eb7bf031c1f6092209ae46dfcf64",
+      "size_bytes": 348
+    },
+    {
+      "canonical": {
         "file": "Lean/QuadraticForms/Experiments/x_squared_attempts/E7_ZZ.lean",
         "repository": "jonhanke__quadratic_forms_in_lean"
       },
@@ -63946,6 +65861,26 @@
       ],
       "sha256": "da519f93eb44b040d3344e725bf33343c6373681ff8d99b114779f50a04ce18f",
       "size_bytes": 3144
+    },
+    {
+      "canonical": {
+        "file": "HexLLL/Certificate.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexLLL/Certificate.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexLLL/Certificate.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-lll"
+        }
+      ],
+      "sha256": "da613319fc444e00886b39ac543ffaed49e168aa4d6eb6b942a5a121ef08d2a4",
+      "size_bytes": 371
     },
     {
       "canonical": {
@@ -64384,6 +66319,26 @@
     },
     {
       "canonical": {
+        "file": "HexMatrix/Elementary.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/Elementary.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/Elementary.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "dbca8fb4fa217d539121c1004e64d21d59aede229787a679df88582b020881d9",
+      "size_bytes": 23440
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/putnam-1970-b4.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -64561,6 +66516,26 @@
       ],
       "sha256": "dc42078bcc694f725f41ec6dc76239b3525a58ad7b21d9db8c51826953ad7ef2",
       "size_bytes": 2890
+    },
+    {
+      "canonical": {
+        "file": "HexDeterminant/Plucker.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexDeterminant/Plucker.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexDeterminant/Plucker.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-determinant"
+        }
+      ],
+      "sha256": "dc466f45565336af09ce582e07369f12180e2fb69bb9174069cec9f02cc4e5e7",
+      "size_bytes": 86751
     },
     {
       "canonical": {
@@ -65056,6 +67031,26 @@
       ],
       "sha256": "ddf8c9f68a4798d4064fc9eaeaf987bb77c059e528f4e2ef43b502cb784d16f2",
       "size_bytes": 1632
+    },
+    {
+      "canonical": {
+        "file": "HexGramSchmidtMathlib/Update.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidtMathlib/Update.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidtMathlib/Update.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt-mathlib"
+        }
+      ],
+      "sha256": "de0368dafacb8822e4b98b091f2c498232d71adef63ecaef35fb6f3697d39dd9",
+      "size_bytes": 61111
     },
     {
       "canonical": {
@@ -67879,6 +69874,31 @@
     },
     {
       "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D8GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D8GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D8KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D8RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "e82cf114a3ecd809b98f33b13c4dcd4b1f622ee2217c42e8f097e2e91445397d",
+      "size_bytes": 348
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/putnam-1983-a3.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -68461,6 +70481,31 @@
       ],
       "sha256": "eae82a3d0f81efbb9de9ee9bf0c71cc404d342844162abe26d673ad997c208c7",
       "size_bytes": 3282
+    },
+    {
+      "canonical": {
+        "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits128Basis.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits128Basis.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/MembershipResidualN2M2Bits32Basis.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexHermiteMathlib/ProofProbe/RankDeficientHermiteN2M2Bits8Basis.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "eaf582390895ff4407ef3c95ffc63a79d1f89da6b334635ab8ea9735f0013b8c",
+      "size_bytes": 463
     },
     {
       "canonical": {
@@ -69324,6 +71369,26 @@
     },
     {
       "canonical": {
+        "file": "HexLLLMathlib/Interval.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexLLLMathlib/Interval.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexLLLMathlib/Interval.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-lll-mathlib"
+        }
+      ],
+      "sha256": "ee973c376efaee0080ab355c450d5ca67e1f83e57e26bd31563100c5a1b8f155",
+      "size_bytes": 45249
+    },
+    {
+      "canonical": {
         "file": "src/for_mathlib/AddCommGroup/tensor.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -69849,6 +71914,26 @@
     },
     {
       "canonical": {
+        "file": "HexBasic/Vector/Modify.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexBasic/Vector/Modify.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexBasic/Vector/Modify.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-basic"
+        }
+      ],
+      "sha256": "f0131e4ac7f097328fca0cc2df3b3aa66289d51836f7544caf104dee0a7f5db4",
+      "size_bytes": 4720
+    },
+    {
+      "canonical": {
         "file": "Formal_ineqs/tests/float_data.hl",
         "repository": "CakeML__candle"
       },
@@ -69866,6 +71951,26 @@
       ],
       "sha256": "f01620e1d12e4e2a609c8ae8f0c5ae5d817850de30ef95808defd285a0d771b3",
       "size_bytes": 569
+    },
+    {
+      "canonical": {
+        "file": "HexMatrix/Diagonal.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/Diagonal.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/Diagonal.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "f019bb42e85e2d3b722ab3e189764ee549ad541daf5c79e94ef3463873ec5293",
+      "size_bytes": 4969
     },
     {
       "canonical": {
@@ -70374,6 +72479,26 @@
     },
     {
       "canonical": {
+        "file": "HexBasic/Rand.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexBasic/Rand.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexBasic/Rand.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-basic"
+        }
+      ],
+      "sha256": "f248f72b683384ebd8fa08898883c70928d96060eb821163243158785be54b0e",
+      "size_bytes": 5678
+    },
+    {
+      "canonical": {
         "file": "Library/Theory/GCD.lean",
         "repository": "hrmacbeth__math2001"
       },
@@ -70531,6 +72656,26 @@
       ],
       "sha256": "f2cb173f31882abd65cf5b245f001e0dd3d3ea869d3e70d85ae976dc3a359e9d",
       "size_bytes": 38430
+    },
+    {
+      "canonical": {
+        "file": "HexBareissMathlib/Bareiss.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexBareissMathlib/Bareiss.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexBareissMathlib/Bareiss.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-bareiss-mathlib"
+        }
+      ],
+      "sha256": "f2ef2d73d290f66b3d1a4918a6dc6f8da943bb189c112fd47e3e72ee436f12d9",
+      "size_bytes": 89049
     },
     {
       "canonical": {
@@ -70934,6 +73079,26 @@
     },
     {
       "canonical": {
+        "file": "HexGramSchmidt/Int/Combination.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexGramSchmidt/Int/Combination.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexGramSchmidt/Int/Combination.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-gram-schmidt"
+        }
+      ],
+      "sha256": "f3eafb126112e36a779ec19a69434d4c36934dbec66cc534ecbd1b9e0b16cfa4",
+      "size_bytes": 105888
+    },
+    {
+      "canonical": {
         "file": "src/free_pfpng/setup.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -70991,6 +73156,31 @@
       ],
       "sha256": "f406e0466eb1efaac3e204856c013d0136bddaef3c9189fdc8bb2b678224c1eb",
       "size_bytes": 157
+    },
+    {
+      "canonical": {
+        "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D4GrobnerBaseline.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D4GrobnerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D4KroneckerBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/GridK3D4RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "f40a587bcf82045f06e8402c2fa42e548c010d81274206c4d6f03419e4088233",
+      "size_bytes": 348
     },
     {
       "canonical": {
@@ -71351,6 +73541,26 @@
       ],
       "sha256": "f56ed1e6456547c61daaeb151b9a58b4e0a3efe93c8907160b2f6a991d6c2236",
       "size_bytes": 168
+    },
+    {
+      "canonical": {
+        "file": "HexBasic/Sort.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexBasic/Sort.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexBasic/Sort.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-basic"
+        }
+      ],
+      "sha256": "f572d565e4791b6810731c56b74ca3489b80bf64d7c7b139c7c815594e347709",
+      "size_bytes": 2645
     },
     {
       "canonical": {
@@ -72124,23 +74334,28 @@
     },
     {
       "canonical": {
-        "file": "HexRowReduceMathlib.lean",
+        "file": "bench/HexKroneckerMathlib/ProofProbe/DetN3K2D1GrobnerBaseline.lean",
         "repository": "kim-em__hex-dev"
       },
       "occurrences": [
         {
-          "file": "HexRowReduceMathlib.lean",
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN3K2D1GrobnerBaseline.lean",
           "proof_assistant": "lean",
           "repository": "kim-em__hex-dev"
         },
         {
-          "file": "HexRowReduceMathlib.lean",
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN3K2D1KroneckerBaseline.lean",
           "proof_assistant": "lean",
-          "repository": "leanprover__hex-row-reduce-mathlib"
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "bench/HexKroneckerMathlib/ProofProbe/DetN3K2D1RingBaseline.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
         }
       ],
-      "sha256": "f863a90cd3e01efebc1cd9f74cc7a05412046518c60188df7cf166eff3a03c88",
-      "size_bytes": 511
+      "sha256": "f85d2583d2c7b0cf61301b6091a94d048ef933008877685532fd67fb6295c8a2",
+      "size_bytes": 350
     },
     {
       "canonical": {
@@ -73594,6 +75809,26 @@
     },
     {
       "canonical": {
+        "file": "HexMatrix/MatrixAlgebra.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexMatrix/MatrixAlgebra.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexMatrix/MatrixAlgebra.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-matrix"
+        }
+      ],
+      "sha256": "fd22838a18c560e1becb14f04e534c8471a8dfe2e3a127c84510e0961a90201f",
+      "size_bytes": 20422
+    },
+    {
+      "canonical": {
         "file": "SciLean/Geometry/Shape/Simplex.lean",
         "repository": "lecopivo__SciLean"
       },
@@ -74174,6 +76409,26 @@
     },
     {
       "canonical": {
+        "file": "HexDeterminantMathlib/CorePlucker.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexDeterminantMathlib/CorePlucker.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexDeterminantMathlib/CorePlucker.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-determinant-mathlib"
+        }
+      ],
+      "sha256": "fe89468dfee1ed339738063f60ff68da019db97e7cb8f37eec5e106f66692f7a",
+      "size_bytes": 75310
+    },
+    {
+      "canonical": {
         "file": "src/for_mathlib/derived/les.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -74311,6 +76566,26 @@
       ],
       "sha256": "fef70bb7ab3c31090dcd6581e8015613f263b4a906d3710a1600d71f4dc0ec54",
       "size_bytes": 6724
+    },
+    {
+      "canonical": {
+        "file": "HexDeterminant/CauchyBinet.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "HexDeterminant/CauchyBinet.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "HexDeterminant/CauchyBinet.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__hex-determinant"
+        }
+      ],
+      "sha256": "ff00e4c17e71cf1568e5c0218933719366771204ee294127ed95768f97d5e775",
+      "size_bytes": 39020
     },
     {
       "canonical": {
