@@ -42,20 +42,23 @@ specifications, theorem statements, constructions, and proofs are all searchable
 A checkout is a working copy, not a permanent store. The committed review
 catalogue and filter state record each source's revision and per-file hashes;
 `scripts/index-source.py` hydrates one batch of sources at a time, builds and
-verifies their shards from temporary hard-link views, records the shard
-provenance in `.index-provenance/`, and releases the checkouts. Filtering never
-edits a checkout.
+verifies their shards from temporary hard-link views, uploads the changed shards
+and their provenance to the index store on the search host, and releases the
+checkouts. Filtering never edits a checkout. The scheduled `index` GitHub Actions
+workflow runs this refresh, commits the new evidence under `filtering/` to `main`,
+and publishes.
 
 ## Workflow
 
 ```sh
 just build-tools        # build zoekt-index, zoekt, and the Lean ast-grep parser
-just sync-tools         # update the tool repositories; run build-tools afterwards
-just sync               # refresh, index and release every stale source, one batch at a time
+just sync-tools         # check out the tool revisions pinned in tools.tsv; run build-tools afterwards
+just sync               # refresh, index, upload and release every stale source, one batch at a time
 just sync-group bulk    # the same for one sync group (routine, bulk, cross-prover)
 just index-source agda__agda-categories  # the same for one source
-just index-verify       # check every shard against sources.tsv, the evidence and the provenance
+just index-verify       # check every stored shard against sources.tsv, the evidence and the provenance
 just release-checkouts  # verify, then remove the checkouts sync can hydrate again
+just index-pull         # copy the stored shards to .zoekt/ and .zoekt-metadata/ for local search
 just filter-validate    # replay the append-only filtering ledger and verify snapshots
 just metrics            # regenerate public totals from sources.tsv and source-topics.tsv
 just site               # regenerate committed static source metadata
@@ -65,7 +68,7 @@ just eval-search        # measure the frozen mathematician-facing retrieval benc
 just test-search-quality # compare retrieval scores with the committed same-index baseline
 just search "Nat.Prime"                  # Zoekt text search
 just ast "def $NAME : $TYPE := $VALUE"   # Lean syntax-tree pattern search
-just publish            # ship the index to the search host
+just publish            # send the API the filter state and restart it
 just deploy-api         # deploy FastAPI adapter + stock Zoekt backend binary
 ```
 
@@ -94,8 +97,11 @@ is generated from the manifests by `scripts/build-site.py`, which is how a hit
 in `leanprover__hex-lll` links back to its file on GitHub.
 
 The search host carries the index alone — no source checkouts and no indexing
-work. `just sync` builds locally and `just publish` verifies and rsyncs `.zoekt/`; Zoekt
-watches its shard directory, so replaced shards load without a restart. The
+work. The host directory `lean-corpus/` is the index store: `index/` holds the
+served primary shards, `index-metadata/` the maintainer-only metadata shards, and
+`index-provenance/` one record per source. A refresh, local or in CI, uploads only
+the shards of the sources it rebuilds. Zoekt watches its shard directory, so
+replaced shards load without a restart. The
 public HTTP boundary is a small FastAPI/Pydantic adapter on `127.0.0.1:6070`.
 An unmodified `zoekt-webserver` listens privately on `127.0.0.1:6071` and is not
 exposed by nginx.

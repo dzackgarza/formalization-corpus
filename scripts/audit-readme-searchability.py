@@ -55,7 +55,8 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--sample-size", type=int, default=3000)
     parser.add_argument(
-        "--primary", type=pathlib.Path, default=ROOT / ".index-primary"
+        "--primary", type=pathlib.Path, required=True,
+        help="a directory that holds the primary view of every source",
     )
     parser.add_argument(
         "--output",

@@ -122,25 +122,31 @@ class FilteringTests(unittest.TestCase):
         repository = filtering_lib.sources()[0].repository
         with tempfile.TemporaryDirectory() as directory:
             root = pathlib.Path(directory)
-            driver.INDEX_DIRS = {driver.PRIMARY: root / "primary", driver.METADATA: root / "metadata"}
-            driver.VIEW_DIRS = {driver.PRIMARY: root / "view-primary", driver.METADATA: root / "view-metadata"}
-            driver.PROVENANCE_ROOT = root / "provenance"
+            store_root = root / "store"
             driver.ROOT = root
-            for path in (*driver.INDEX_DIRS.values(), *driver.VIEW_DIRS.values(), driver.PROVENANCE_ROOT):
-                path.mkdir()
-            index = driver.INDEX_DIRS[driver.PRIMARY]
-            kept = [index / f"{repository}_v16.00000.zoekt", driver.PROVENANCE_ROOT / f"{repository}.json"]
-            dropped = [
-                index / f"docs__{repository}_v16.00000.zoekt",
-                driver.INDEX_DIRS[driver.METADATA] / "not-a-source_v16.00000.zoekt",
-                driver.PROVENANCE_ROOT / "not-a-source.json",
+            build = root / f"{driver.BUILD_PREFIX}stopped"
+            build.mkdir()
+            kept = [
+                f"index/{repository}_v16.00000.zoekt",
+                f"index-metadata/{repository}_v16.00000.zoekt",
+                f"index-provenance/{repository}.json",
             ]
-            for path in (*kept, *dropped):
-                path.touch()
-            driver.prune({repository})
-            self.assertTrue(all(path.exists() for path in kept))
-            self.assertFalse(any(path.exists() for path in dropped))
-            self.assertFalse(any(path.exists() for path in driver.VIEW_DIRS.values()))
+            dropped = [
+                f"index/docs__{repository}_v16.00000.zoekt",
+                "index-metadata/not-a-source_v16.00000.zoekt",
+                "index-provenance/not-a-source.json",
+            ]
+            for name in (*kept, *dropped):
+                path = store_root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("{}" if name.endswith(".json") else name)
+            store = driver.Store.open(str(store_root))
+            driver.prune(store, {repository})
+            self.assertTrue(all((store_root / name).exists() for name in kept))
+            self.assertFalse(any((store_root / name).exists() for name in dropped))
+            self.assertEqual(set(store.files), set(kept))
+            self.assertEqual(set(store.records), {repository})
+            self.assertFalse(build.exists())
 
     def test_ledger_replay_detects_snapshot_drift(self) -> None:
         validator = load_script("validate-filter-state.py", "validate_filter_state")

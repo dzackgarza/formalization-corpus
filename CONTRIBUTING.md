@@ -313,8 +313,9 @@ source.
 "Separate" is an index boundary, not a result-ordering convention.  FD-002 files
 must not occupy shards in the public `.zoekt` index, be queried through
 `/api/search`, or be appended to ordinary formalization results.  The repository's
-optional `.zoekt-metadata` index is a maintainer-side auxiliary index built with
-`just sync` beside the primary shards and queried explicitly with `just search-metadata`; it is not
+optional metadata index is a maintainer-side auxiliary index built with
+`just sync` beside the primary shards, copied to `.zoekt-metadata` with `just index-pull`,
+and queried explicitly with `just search-metadata`; it is not
 published or queried by the public site.  A future reader-facing documentation
 search, if one is justified independently, must remain a distinct search surface.
 

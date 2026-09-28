@@ -1,0 +1,73 @@
+name: index
+# Refresh the index store on the search host: rebuild the stale sources, upload
+# their changed shards, commit the new evidence under filtering/ to main, and
+# publish. A run that stops at its deadline leaves the store consistent; the next
+# run resumes from the committed evidence and the stored provenance.
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+    inputs:
+      stop-after:
+        description: minutes after which the refresh starts no new batch
+        default: "240"
+permissions:
+  contents: write
+concurrency:
+  group: index
+jobs:
+  refresh:
+    if: github.repository == 'dzackgarza/formalization-corpus'
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: just
+      - name: Install zsh
+        run: sudo apt-get update && sudo apt-get install -y zsh
+      - name: Check out the pinned tools
+        run: just sync-tools
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: tools/sourcegraph__zoekt/go.mod
+          cache-dependency-path: tools/sourcegraph__zoekt/go.sum
+      - name: Build Zoekt
+        working-directory: tools/sourcegraph__zoekt
+        run: |
+          go build -o ../../bin/zoekt-index ./cmd/zoekt-index
+          go build -o ../../bin/zoekt ./cmd/zoekt
+      - name: Configure ssh to the search host
+        env:
+          SSH_KEY: ${{ secrets.SEARCH_HOST_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.SEARCH_HOST_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+      - name: Refresh the stale sources
+        id: refresh
+        run: |
+          python scripts/index-source.py --store "zack@159.223.102.204:lean-corpus" refresh --stop-after "${{ inputs.stop-after || '240' }}" | tee "$RUNNER_TEMP/refresh.log"
+          grep -q '^stopped after' "$RUNNER_TEMP/refresh.log" || echo complete=true >> "$GITHUB_OUTPUT"
+      # A refresh that stopped at its deadline leaves stale sources, which index-verify rejects.
+      - name: Publish
+        if: steps.refresh.outputs.complete == 'true'
+        run: just publish
+      - name: Commit the evidence
+        if: ${{ !cancelled() && steps.refresh.outcome != 'skipped' }}
+        run: |
+          git add filtering site/metrics.json
+          git diff --cached --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(filtering): Refresh the evidence of the reindexed sources" -m "Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          git pull --rebase origin main
+          git push origin HEAD:main

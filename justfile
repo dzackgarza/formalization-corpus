@@ -1,37 +1,50 @@
 set shell := ["zsh", "-eu", "-o", "pipefail", "-c"]
 
+# The origin address, not formalization-corpus.dzackgarza.com: that name resolves to
+# Cloudflare, which proxies HTTP and would not carry ssh.
+host := "zack@159.223.102.204"
+
+# The index store: served primary shards in index/, maintainer-only metadata shards in
+# index-metadata/, and one provenance record per source in index-provenance/.
+store := host + ":lean-corpus"
+
 # Refresh every stale source: hydrate it, rebuild its review and filtering evidence
-# when its revision changed, rebuild and verify its shards, then release the checkout.
-# Commit the regenerated evidence under filtering/ afterwards.
+# when its revision changed, rebuild and verify its shards, upload the changed shards
+# to the store, then release the checkout. Commit the regenerated evidence under
+# filtering/ afterwards. The scheduled index workflow runs this in CI.
 sync:
-    python scripts/index-source.py refresh
+    python scripts/index-source.py --store "{{store}}" refresh
 
 # Refresh only the sources of one sync group (routine, bulk or cross-prover).
 sync-group group:
-    python scripts/index-source.py refresh --group "{{group}}"
+    python scripts/index-source.py --store "{{store}}" refresh --group "{{group}}"
 
 # Refresh one source.
 index-source repository:
-    python scripts/index-source.py refresh --source "{{repository}}"
+    python scripts/index-source.py --store "{{store}}" refresh --source "{{repository}}"
 
-# Check every shard against sources.tsv, the committed evidence and the index provenance.
+# Check every stored shard against sources.tsv, the committed evidence and the provenance.
 index-verify:
-    python scripts/index-source.py verify
+    python scripts/index-source.py --store "{{store}}" verify
 
-# Verify the index, then remove the checkouts that sources.tsv can hydrate again.
+# Verify the store, then remove the checkouts that sources.tsv can hydrate again.
 release-checkouts:
-    python scripts/index-source.py release
+    python scripts/index-source.py --store "{{store}}" release
 
-# Update the tool repositories. Run build-tools afterwards; a new Zoekt revision
-# makes the next sync rebuild every shard.
+# Copy the stored shards to .zoekt/ and .zoekt-metadata/ for local search and evaluation.
+index-pull:
+    rsync -a --delete --info=stats1 "{{store}}/index/" .zoekt/
+    rsync -a --delete --info=stats1 "{{store}}/index-metadata/" .zoekt-metadata/
+
+# Check out each tool repository at its revision in tools.tsv. Run build-tools
+# afterwards; a new Zoekt revision makes the next sync rebuild every shard.
 sync-tools:
     #!/usr/bin/env zsh
-    while IFS=$'\t' read -r url dir; do
-      if [[ -d "$dir/.git" ]]; then
-        git -C "$dir" pull --ff-only
-      else
-        git clone --depth 1 --filter=blob:none "$url" "$dir"
-      fi
+    set -eu
+    while IFS=$'\t' read -r url dir revision; do
+      [[ -d "$dir/.git" ]] || git clone --filter=blob:none --no-checkout "$url" "$dir"
+      git -C "$dir" fetch --quiet origin "$revision"
+      git -C "$dir" -c advice.detachedHead=false checkout --quiet "$revision"
     done < tools.tsv
 
 # Register every nested repository with gita.
@@ -61,16 +74,13 @@ preview: metrics site
     rsync -a --delete site/ /var/www/static-sites/formalization-corpus-preview/
     @echo "http://formalization-corpus-preview.localhost/"
 
-# The origin address, not formalization-corpus.dzackgarza.com: that name resolves to
-# Cloudflare, which proxies HTTP and would not carry ssh.
-host := "zack@159.223.102.204"
-
-# Ship only the validated primary formalization index. The separate metadata
-# index is deliberately not published or queried by the public site.
+# Serve the stored index: send the API the filtering state that matches the shards,
+# then restart it. The metadata index stays on the host but is never served.
 publish: filter-validate index-verify metrics
-    rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
+    rsync -a filtering/duplicate-aliases.json {{host}}:lean-corpus/api/data/duplicate-aliases.json
+    rsync -a filtering/current.jsonl {{host}}:lean-corpus/api/data/filter-state.jsonl
+    if ssh {{host}} 'systemctl is-active --quiet formalization-corpus-api.service'; then ssh {{host}} "pkill -TERM -u zack -f '/home/zack/lean-corpus/api/.venv/bin/uvicorn formalization_api.app:app' || true"; else echo 'FastAPI adapter inactive; the store is served by the active search backend'; fi
     python scripts/check-published.py
-    if ssh {{host}} 'systemctl is-active --quiet formalization-corpus-api.service'; then ssh {{host}} "pkill -TERM -u zack -f '/home/zack/lean-corpus/api/.venv/bin/uvicorn formalization_api.app:app' || true"; else echo 'FastAPI adapter inactive; filtered index published to the currently active search backend'; fi
     @echo "https://formalization-corpus.dzackgarza.com"
 
 # Deploy the public FastAPI adapter and stock Zoekt backend binary. The first

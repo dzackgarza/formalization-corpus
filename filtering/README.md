@@ -26,12 +26,11 @@ classifier/decision catalog and regenerate them.
 catalogue and `current.jsonl`, links them from the checkout for the time of one
 Zoekt build, and removes them afterwards:
 
-- `.index-primary/<repository>` — formal mathematical documents eligible for the
-  public search index;
-- `.index-metadata/<repository>` — README/documentation and parser-verified
-  import-only navigation modules for a separate maintainer-side auxiliary index.
-  It is not merged into, published with, or queried by the public formalization
-  search.
+- the primary view — formal mathematical documents eligible for the public
+  search index;
+- the metadata view — README/documentation and parser-verified import-only
+  navigation modules for a separate maintainer-side auxiliary index. It is not
+  merged into, served with, or queried by the public formalization search.
 
 See `CONTRIBUTING.md` `FILTER-###` and `docs/CORPUS-FILTERING.md` before changing
 any decision.

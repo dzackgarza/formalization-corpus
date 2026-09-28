@@ -6,16 +6,16 @@ not formalized anywhere in the registry" claims exhaustively checkable, per the
 lean-categories reuse gate. Lean remains the largest indexed ecosystem, but the
 search surface is intentionally prover-independent.
 
-## Build the index with bounded local source storage
+## Rebuild the index store in CI
 
-`scripts/index-source.py` processes one batch of sources at a time and records
-shard provenance in `.index-provenance/`. Remaining work:
+The scheduled `index` workflow refreshes the index store on the search host. The
+store's shards predate provenance schema 2, so every source is stale until the
+workflow has rebuilt it. Each run stops starting batches after four hours and the
+next run resumes. Remaining work:
 
-- Build the full local index from the hydrated checkouts with
-  `python scripts/index-source.py refresh --offline --keep-checkouts`, and pass
-  `just index-verify`.
-- Run `just release-checkouts`. It keeps detached and modified checkouts, such as
-  the Mathlib checkout pinned outside `sources.tsv`.
+- Run the workflow until `just index-verify` passes and `just publish` succeeds.
+- Release the local checkouts with `just release-checkouts`. It keeps detached and
+  modified checkouts, such as the Mathlib checkout pinned outside `sources.tsv`.
 
 ## Current expansion (2026-09-13)
 

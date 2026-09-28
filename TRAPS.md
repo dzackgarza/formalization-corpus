@@ -38,9 +38,10 @@ cross-prover expansion, 45k Lean files plus 8.9k Rocq and Agda files produced
 about 4.6 GB of shards across 864 shard files. That is a historical measurement,
 not a size estimate for the expanded corpus. After indexing all 45 cross-prover
 sources on 2026-09-13, `.zoekt/` measured 9.8 GB while the corresponding
-`port-sources/` sparse checkouts measured 3.2 GB. Check free disk space before
-a full `just sync` or `refresh --offline`; ACL2 and AFP alone split across many
-large shards. The index is already too large for static hosting: GitHub Pages caps a
+`port-sources/` sparse checkouts measured 3.2 GB. Check free disk space on the
+search host before a refresh that rebuilds many sources: a rebuilt source's new
+shards are uploaded before its old shards are deleted. ACL2 and AFP alone split
+across many large shards. The index is already too large for static hosting: GitHub Pages caps a
 published site at 1 GB.
 
 ## Counting declarations
@@ -140,7 +141,7 @@ ls -1`, `command cp -f`, `/usr/bin/tr`.
 
 ## Repository-review filtering traps
 
-- **Review the authoritative hydrated source, not `.index-primary`.** The index is
+- **Review the authoritative hydrated source, not the primary index.** The index is
   already filtered and cannot reveal material that an earlier rule hid. The
   repository-review catalogue is generated from source checkouts specifically to
   avoid self-confirming audits.

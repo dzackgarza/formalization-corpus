@@ -213,8 +213,9 @@ formal-content channel unless a stronger independent invariant applies.
 Non-formal README material can still help maintainers identify a source or
 understand project layout.  That is a different information need from the site's
 formalization search.  The repository may therefore retain such files in the
-separate `.index-metadata` / `.zoekt-metadata` view for explicit maintainer-side
-source-discovery queries.  That index is not published by `just publish`, is not
+separate metadata view for explicit maintainer-side source-discovery queries.
+Its shards live in the store's `index-metadata/` directory and in a local
+`.zoekt-metadata` copy.  That index is not served by the search host, is not
 queried by the public API, and is never fused or appended into ordinary search
 results.
 
@@ -312,7 +313,7 @@ the recorded corpus/source-revision result is
 The large source-local filtering campaign uses
 `filtering/repository-review/` rather than ad hoc shell exclusions.  The
 catalogue is generated from the authoritative hydrated source trees, not from
-`.index-primary`, so previously filtered material remains visible to later
+the primary index, so previously filtered material remains visible to later
 audits.  Each imported file is recorded with path, size, SHA-256, formal-source
 status, and the active filtering decisions that currently affect it.
 
