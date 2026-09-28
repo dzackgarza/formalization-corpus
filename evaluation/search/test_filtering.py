@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import pathlib
-import subprocess
 import sys
 import unittest
 import importlib.util
@@ -13,11 +12,11 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import filtering_lib  # noqa: E402
 
 
-def load_validator():
-    path = ROOT / "scripts" / "validate-filter-state.py"
-    spec = importlib.util.spec_from_file_location("validate_filter_state", path)
+def load_script(filename: str, module_name: str):
+    spec = importlib.util.spec_from_file_location(module_name, ROOT / "scripts" / filename)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
     spec.loader.exec_module(module)
     return module
 
@@ -118,29 +117,33 @@ class FilteringTests(unittest.TestCase):
             finally:
                 filtering_lib.LEDGER_DIR, filtering_lib.LEDGER_SHARD_MAX_BYTES = saved
 
-    def test_index_pruning_removes_documentation_shards_from_primary_index(self) -> None:
+    def test_index_pruning_keeps_only_registered_sources(self) -> None:
+        driver = load_script("index-source.py", "index_source")
         repository = filtering_lib.sources()[0].repository
         with tempfile.TemporaryDirectory() as directory:
-            index = pathlib.Path(directory)
-            keep_primary = index / f"{repository}_v16.00000.zoekt"
-            reject_docs = index / f"docs__{repository}_v16.00000.zoekt"
-            drop_primary = index / "not-a-source_v16.00000.zoekt"
-            drop_docs = index / "docs__not-a-source_v16.00000.zoekt"
-            for path in (keep_primary, reject_docs, drop_primary, drop_docs):
+            root = pathlib.Path(directory)
+            driver.INDEX_DIRS = {driver.PRIMARY: root / "primary", driver.METADATA: root / "metadata"}
+            driver.VIEW_DIRS = {driver.PRIMARY: root / "view-primary", driver.METADATA: root / "view-metadata"}
+            driver.PROVENANCE_ROOT = root / "provenance"
+            driver.ROOT = root
+            for path in (*driver.INDEX_DIRS.values(), *driver.VIEW_DIRS.values(), driver.PROVENANCE_ROOT):
+                path.mkdir()
+            index = driver.INDEX_DIRS[driver.PRIMARY]
+            kept = [index / f"{repository}_v16.00000.zoekt", driver.PROVENANCE_ROOT / f"{repository}.json"]
+            dropped = [
+                index / f"docs__{repository}_v16.00000.zoekt",
+                driver.INDEX_DIRS[driver.METADATA] / "not-a-source_v16.00000.zoekt",
+                driver.PROVENANCE_ROOT / "not-a-source.json",
+            ]
+            for path in (*kept, *dropped):
                 path.touch()
-            subprocess.run(
-                ["python", str(ROOT / "scripts" / "prune-index-shards.py"), str(index)],
-                check=True,
-                stdout=subprocess.PIPE,
-                text=True,
-            )
-            self.assertTrue(keep_primary.exists())
-            self.assertFalse(reject_docs.exists())
-            self.assertFalse(drop_primary.exists())
-            self.assertFalse(drop_docs.exists())
+            driver.prune({repository})
+            self.assertTrue(all(path.exists() for path in kept))
+            self.assertFalse(any(path.exists() for path in dropped))
+            self.assertFalse(any(path.exists() for path in driver.VIEW_DIRS.values()))
 
     def test_ledger_replay_detects_snapshot_drift(self) -> None:
-        validator = load_validator()
+        validator = load_script("validate-filter-state.py", "validate_filter_state")
         catalog = {
             "FD-001": {
                 "title": "empty",

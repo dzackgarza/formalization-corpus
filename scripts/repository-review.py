@@ -5,8 +5,6 @@ import argparse
 import collections
 import json
 import pathlib
-import shutil
-import subprocess
 import sys
 from typing import Any
 
@@ -446,20 +444,6 @@ def validate() -> int:
             errors.append(f"{repository}: missing catalogue file")
             continue
         catalogue = json.loads(cat_path.read_text())
-        actual_revision = source_revision(source) if source.root.exists() else catalogue.get("source_revision")
-        if catalogue.get("source_revision") != actual_revision:
-            errors.append(
-                f"{repository}: source revision changed since review catalogue "
-                f"({catalogue.get('source_revision')!r} -> {actual_revision!r}); run `just repository-review-catalogue`"
-            )
-        if source.transport == "web-dir" and source.root.exists():
-            current_records = source_records(source, active_decisions_by_file())
-            current_digest = material_snapshot_sha256(current_records)
-            if current_digest != catalogue.get("source_snapshot_sha256"):
-                errors.append(
-                    f"{repository}: web-directory material changed since review catalogue; "
-                    "run `just repository-review-catalogue`"
-                )
         seen_paths: set[str] = set()
         source_records_for_digest = []
         for unit in catalogue.get("work_units", []):

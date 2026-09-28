@@ -13,7 +13,6 @@ from __future__ import annotations
 import argparse
 import collections
 import datetime as dt
-import hashlib
 import json
 import pathlib
 import subprocess

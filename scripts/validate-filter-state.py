@@ -15,7 +15,6 @@ from filtering_lib import (
     load_filter_ledger,
     load_catalog,
     load_jsonl,
-    source_revision,
     sources,
 )
 from repository_review_lib import resolve_review_exclusions
@@ -262,17 +261,6 @@ def main() -> int:
         if evidence.get("size_bytes") != expected.get("file_size_bytes"):
             errors.append(f"{key}: FD-018 size disagrees with repository-review manifest")
 
-    recorded_revisions = snapshot.get("source_revisions") or {}
-    for source in source_rows:
-        if not source.root.exists():
-            continue
-        actual = source_revision(source)
-        expected = recorded_revisions.get(source.repository)
-        if actual != expected:
-            errors.append(
-                f"{source.repository}: source revision changed since filtering snapshot "
-                f"({expected!r} -> {actual!r}); run `just filter-state` before indexing"
-            )
     if errors:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)

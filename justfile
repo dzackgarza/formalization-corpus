@@ -1,9 +1,31 @@
 set shell := ["zsh", "-eu", "-o", "pipefail", "-c"]
 
-# Update the routine formalization-source set and tool repositories.
+# Refresh every stale source: hydrate it, rebuild its review and filtering evidence
+# when its revision changed, rebuild and verify its shards, then release the checkout.
+# Commit the regenerated evidence under filtering/ afterwards.
 sync:
+    python scripts/index-source.py refresh
+
+# Refresh only the sources of one sync group (routine, bulk or cross-prover).
+sync-group group:
+    python scripts/index-source.py refresh --group "{{group}}"
+
+# Refresh one source.
+index-source repository:
+    python scripts/index-source.py refresh --source "{{repository}}"
+
+# Check every shard against sources.tsv, the committed evidence and the index provenance.
+index-verify:
+    python scripts/index-source.py verify
+
+# Verify the index, then remove the checkouts that sources.tsv can hydrate again.
+release-checkouts:
+    python scripts/index-source.py release
+
+# Update the tool repositories. Run build-tools afterwards; a new Zoekt revision
+# makes the next sync rebuild every shard.
+sync-tools:
     #!/usr/bin/env zsh
-    SYNC_GROUP=routine ./sync-manifest.zsh sources.tsv
     while IFS=$'\t' read -r url dir; do
       if [[ -d "$dir/.git" ]]; then
         git -C "$dir" pull --ff-only
@@ -11,21 +33,6 @@ sync:
         git clone --depth 1 --filter=blob:none "$url" "$dir"
       fi
     done < tools.tsv
-
-# Refresh the large secondary source set without making it part of routine sync.
-sync-bulk:
-    SYNC_GROUP=bulk ./sync-manifest.zsh sources.tsv
-
-# Compatibility spelling for the historical ingestion source.
-sync-reservoir: sync-bulk
-
-# Refresh sources maintained in proof assistants other than Lean.
-sync-cross-prover:
-    SYNC_GROUP=cross-prover ./sync-manifest.zsh sources.tsv
-
-# Compatibility spellings kept for old local commands.
-sync-ports: sync-cross-prover
-sync-rocq-agda: sync-cross-prover
 
 # Register every nested repository with gita.
 register:
@@ -38,47 +45,7 @@ build-tools:
     cd tools/sourcegraph__zoekt && go build -o ../../bin/zoekt-webserver ./cmd/zoekt-webserver
     cd tools/Julian__tree-sitter-lean && tree-sitter build --output ../../.ast-grep/lean.so
 
-# Incrementally index the filtered primary mathematical-content view.
-index: filter-views
-    #!/usr/bin/env zsh
-    mkdir -p .zoekt
-    python scripts/prune-index-shards.py .zoekt
-    tail -n +2 sources.tsv | while IFS=$'\t' read -r _ dir _ _ _ _; do
-      repo="${dir:t}"
-      view=".index-primary/$repo"
-      [[ -d "$view" ]] || { echo "missing primary view for $repo" >&2; exit 1; }
-      ./bin/zoekt-index -large_file '**/*.prf' -index .zoekt "$view"
-    done
-
-# Incrementally index only the cross-prover portion of the filtered primary view.
-index-cross-prover: filter-views
-    #!/usr/bin/env zsh
-    mkdir -p .zoekt
-    python scripts/prune-index-shards.py .zoekt
-    awk -F'\t' 'NR > 1 && $5 == "cross-prover"' sources.tsv \
-      | while IFS=$'\t' read -r _ dir _ _ _ _; do
-          repo="${dir:t}"
-          view=".index-primary/$repo"
-          [[ -d "$view" ]] || { echo "missing primary view for $repo" >&2; exit 1; }
-          ./bin/zoekt-index -large_file '**/*.prf' -index .zoekt "$view"
-        done
-
-index-ports: index-cross-prover
-
-# Build the separate auxiliary README/import-navigation index for maintainer and
-# source-discovery work. This index is never published as part of formalization
-# search and is never queried by the public search page/API.
-index-metadata: filter-views
-    #!/usr/bin/env zsh
-    rm -rf .zoekt-metadata
-    mkdir -p .zoekt-metadata
-    for view in .index-metadata/*(/N); do
-      files=("$view"/**/*(.N))
-      (( ${#files} )) || continue
-      ./bin/zoekt-index -index .zoekt-metadata "$view"
-    done
-
-# Validate the hydrated corpus and regenerate public source/proof-assistant/topic totals.
+# Regenerate the public source, proof-assistant and topic totals from sources.tsv.
 metrics:
     python scripts/build-metrics.py
 
@@ -100,7 +67,7 @@ host := "zack@159.223.102.204"
 
 # Ship only the validated primary formalization index. The separate metadata
 # index is deliberately not published or queried by the public site.
-publish: index metrics
+publish: filter-validate index-verify metrics
     rsync -a --delete --partial --info=stats1 .zoekt/ {{host}}:lean-corpus/index/
     python scripts/check-published.py
     if ssh {{host}} 'systemctl is-active --quiet formalization-corpus-api.service'; then ssh {{host}} "pkill -TERM -u zack -f '/home/zack/lean-corpus/api/.venv/bin/uvicorn formalization_api.app:app' || true"; else echo 'FastAPI adapter inactive; filtered index published to the currently active search backend'; fi
@@ -152,11 +119,6 @@ build-search-pool:
 audit-search-data output="/tmp/formalization-corpus-data-audit.json":
     python evaluation/search/audit_corpus_data.py --output "{{output}}"
 
-# Rebuild the authoritative per-source/per-subtree review catalogue from hydrated sources.
-repository-review-catalogue:
-    python scripts/repository-review.py build
-    python scripts/repository-review.py validate
-
 # Validate catalogue coverage, review history, snapshot freshness, and selectors.
 repository-review-validate:
     python scripts/repository-review.py validate
@@ -169,18 +131,9 @@ repository-review-status:
 repository-review-batch batch:
     python scripts/repository-review.py status --batch "{{batch}}"
 
-# Recompute the reversible per-file filtering decisions from clean source snapshots.
-# Fresh accepted repository-local blacklist rules materialize here as FD-018.
-filter-state: repository-review-validate
-    python scripts/build-filter-state.py
-
 # Replay and validate the append-only filtering ledger against derived snapshots.
 filter-validate: repository-review-validate
     python scripts/validate-filter-state.py
-
-# Materialize hard-link views for primary mathematical content and auxiliary navigation/docs.
-filter-views: filter-validate
-    python scripts/materialize-index-views.py
 
 # Search declarations and source text across the corpus.
 search query:

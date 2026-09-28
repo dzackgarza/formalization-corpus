@@ -11,7 +11,7 @@ import subprocess
 from dataclasses import dataclass
 from typing import Any, Iterable
 
-from filtering_lib import CURRENT, FILTER_ROOT, ROOT, is_formal_file, iter_files, load_jsonl, sha256_file, source_revision, sources
+from filtering_lib import CURRENT, FILTER_ROOT, ROOT, is_formal_file, iter_files, load_jsonl, sha256_file
 
 REVIEW_ROOT = FILTER_ROOT / "repository-review"
 CATALOGUE_ROOT = REVIEW_ROOT / "catalogue"
