@@ -4,18 +4,18 @@
   "proof_assistant": "lean",
   "repository": "leanprover-community__mathlib4",
   "schema_version": 1,
-  "source_revision": "81a5d257c8e410db227a6665ed08f64fea08e997",
-  "source_snapshot_sha256": "d46530fd9af7fe506ee9a848895d7d60a488ac87ec5522b8a7d952bec68a0250",
+  "source_revision": "6e123c3c89b870c447231b33425c2d17d07cb374",
+  "source_snapshot_sha256": "df4d57edf0934681583b18207130ad9b83d8c1d21883850986dc2083c12546bc",
   "sync_group": "routine",
   "totals": {
-    "auxiliary_only": 24,
-    "baseline_primary_retained": 8795,
-    "bytes": 100692056,
-    "current_primary_excluded": 3,
-    "current_primary_retained": 8795,
-    "files": 8972,
-    "formal_source_files": 8795,
-    "unindexed_nonformal": 150
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 9138,
+    "bytes": 102019990,
+    "current_primary_excluded": 2,
+    "current_primary_retained": 9138,
+    "files": 9149,
+    "formal_source_files": 9138,
+    "unindexed_nonformal": 8
   },
   "transport": "git",
   "url": "https://github.com/leanprover-community/mathlib4",
@@ -24,18 +24,18 @@
       "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-64280b03bb78.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 16,
+        "root_count": 17,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "767f57d8dc17db0726196b87f18f204ec36c9ec5b997edebfdf94eabea2e6901",
+      "snapshot_sha256": "6cb8ad38a0f791608b736fc542d16fe2943fdc974f20dc8b09c5ab4062074c91",
       "stats": {
         "auxiliary_only": 1,
-        "baseline_primary_retained": 5,
-        "bytes": 494315,
+        "baseline_primary_retained": 6,
+        "bytes": 515244,
         "current_primary_excluded": 2,
-        "current_primary_retained": 5,
-        "files": 16,
-        "formal_source_files": 5,
+        "current_primary_retained": 6,
+        "files": 17,
+        "formal_source_files": 6,
         "unindexed_nonformal": 8
       },
       "unit_id": "RRU-64280b03bb78"
@@ -44,19 +44,19 @@
       "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-59be611d3d2e.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 12,
+        "root_count": 8,
         "value": "./@subtrees/all"
       },
-      "snapshot_sha256": "e6c43db77031d8ae243ba2ad85cc92ac36242c251376b57b2d7f49e1d6b52f67",
+      "snapshot_sha256": "8f9fdf2868a384574265972fa05f08cfce803fb43c3309219f441127bdd8a5a3",
       "stats": {
-        "auxiliary_only": 13,
-        "baseline_primary_retained": 526,
-        "bytes": 4065534,
-        "current_primary_excluded": 1,
-        "current_primary_retained": 526,
-        "files": 682,
-        "formal_source_files": 526,
-        "unindexed_nonformal": 142
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 585,
+        "bytes": 2940120,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 585,
+        "files": 585,
+        "formal_source_files": 585,
+        "unindexed_nonformal": 0
       },
       "unit_id": "RRU-59be611d3d2e"
     },
@@ -67,11 +67,11 @@
         "root_count": 2,
         "value": "Mathlib/@files/all"
       },
-      "snapshot_sha256": "26cdb46a00cf98e4cf249f70a639862a47c33fa872e5075538b8763fa8836a24",
+      "snapshot_sha256": "765709287ed7c6c25dfc76e2d80ace16fa0f7d24a62804234349e83aced49184",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 2,
-        "bytes": 23026,
+        "bytes": 25276,
         "current_primary_excluded": 0,
         "current_primary_retained": 2,
         "files": 2,
@@ -87,15 +87,15 @@
         "root_count": 1,
         "value": "Mathlib/@subtrees/0"
       },
-      "snapshot_sha256": "9137ea3996cb292b5519a7236f460712b819549b8ee3c4358feca480b24d19a0",
+      "snapshot_sha256": "033a113f8f0b5cb8112de9f9f7cdcc0d53ec8b7c058fd00c9272b9d004b9f3b5",
       "stats": {
-        "auxiliary_only": 2,
-        "baseline_primary_retained": 1341,
-        "bytes": 12730391,
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1364,
+        "bytes": 12924055,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1341,
-        "files": 1343,
-        "formal_source_files": 1341,
+        "current_primary_retained": 1364,
+        "files": 1364,
+        "formal_source_files": 1364,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-95fd5184b260"
@@ -107,15 +107,15 @@
         "root_count": 1,
         "value": "Mathlib/@subtrees/1"
       },
-      "snapshot_sha256": "fb58d95e26f92c975d05cea0a8ae3332d4990ac7dc4e85585f5e86704cc5a7d1",
+      "snapshot_sha256": "5230ad0fc2ab4016aa378234bafe79bf892c58c6d8cf3b8a9f83f4e42f613117",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 194,
-        "bytes": 2462127,
+        "baseline_primary_retained": 200,
+        "bytes": 2550686,
         "current_primary_excluded": 0,
-        "current_primary_retained": 194,
-        "files": 194,
-        "formal_source_files": 194,
+        "current_primary_retained": 200,
+        "files": 200,
+        "formal_source_files": 200,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-62b1ac93c197"
@@ -127,15 +127,15 @@
         "root_count": 4,
         "value": "Mathlib/@subtrees/2"
       },
-      "snapshot_sha256": "2e327a6489d1bda41bd4886ed882534c5bff64eec8cb49d9aedb2d2eedcb3350",
+      "snapshot_sha256": "6c8d184b500514594b7673f2dbbe191d8e438881d2cc0c837e39a53cda983317",
       "stats": {
-        "auxiliary_only": 4,
-        "baseline_primary_retained": 513,
-        "bytes": 9068355,
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 557,
+        "bytes": 9418852,
         "current_primary_excluded": 0,
-        "current_primary_retained": 513,
-        "files": 517,
-        "formal_source_files": 513,
+        "current_primary_retained": 557,
+        "files": 557,
+        "formal_source_files": 557,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-773c77ab6116"
@@ -147,15 +147,15 @@
         "root_count": 3,
         "value": "Mathlib/@subtrees/3"
       },
-      "snapshot_sha256": "cb9a750cd6d22a2b78ba89128ebf168678f80cf9d32758a12f133322d90cc45a",
+      "snapshot_sha256": "4bdfb5e89dae109ebb5ac1afc158862a7b15685eda36cf2d775e7bb0f5e2ab38",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 531,
-        "bytes": 5890197,
+        "baseline_primary_retained": 555,
+        "bytes": 6194901,
         "current_primary_excluded": 0,
-        "current_primary_retained": 531,
-        "files": 531,
-        "formal_source_files": 531,
+        "current_primary_retained": 555,
+        "files": 555,
+        "formal_source_files": 555,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-c565e15b23a2"
@@ -167,15 +167,15 @@
         "root_count": 2,
         "value": "Mathlib/@subtrees/4"
       },
-      "snapshot_sha256": "b85282bea33e6527dce707051a6590c80e5425bdd4ded04cbb63fcb133e528b6",
+      "snapshot_sha256": "21074f9dfc7ee335167cf8f8825c06ee4d0eb526b63b5c26fbf7290710f1df24",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 169,
-        "bytes": 2228201,
+        "baseline_primary_retained": 173,
+        "bytes": 2312606,
         "current_primary_excluded": 0,
-        "current_primary_retained": 169,
-        "files": 169,
-        "formal_source_files": 169,
+        "current_primary_retained": 173,
+        "files": 173,
+        "formal_source_files": 173,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-812717aeb88c"
@@ -187,15 +187,15 @@
         "root_count": 1,
         "value": "Mathlib/@subtrees/5"
       },
-      "snapshot_sha256": "ce13f18337d91f976a8f34760a24c1597552aa7319f420b8eff1f37f2e2b5fc6",
+      "snapshot_sha256": "63e28e28c15e1aa87397f81327398c8322f653b757dc0ba72a556dbccd2b7fca",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 647,
-        "bytes": 5884287,
+        "baseline_primary_retained": 658,
+        "bytes": 5565100,
         "current_primary_excluded": 0,
-        "current_primary_retained": 647,
-        "files": 647,
-        "formal_source_files": 647,
+        "current_primary_retained": 658,
+        "files": 658,
+        "formal_source_files": 658,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-4a9c34e4a856"
@@ -207,15 +207,15 @@
         "root_count": 1,
         "value": "Mathlib/@subtrees/6"
       },
-      "snapshot_sha256": "0a4cddb9c182a561bbdd810bf29aee226d79a142bed6e844d9ce484b3ea533ea",
+      "snapshot_sha256": "a3dc46ebb6b30758e435334b22c5003ded80ca8a9f73ee3b6eeaa5f2d0fc7439",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 34,
-        "bytes": 327357,
+        "baseline_primary_retained": 35,
+        "bytes": 347300,
         "current_primary_excluded": 0,
-        "current_primary_retained": 34,
-        "files": 34,
-        "formal_source_files": 34,
+        "current_primary_retained": 35,
+        "files": 35,
+        "formal_source_files": 35,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-9d0288ac4a9e"
@@ -227,11 +227,11 @@
         "root_count": 3,
         "value": "Mathlib/@subtrees/7"
       },
-      "snapshot_sha256": "ea7c59f9b02c3dd47e9657c57bc02e3fc5962bceccb3c10e21494ca7d1d340cf",
+      "snapshot_sha256": "f7ca6420aaea3a281d03d4589e58b5e367f36e9181f849788a1b96a66fb1dd14",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 135,
-        "bytes": 1585732,
+        "bytes": 1595078,
         "current_primary_excluded": 0,
         "current_primary_retained": 135,
         "files": 135,
@@ -247,15 +247,15 @@
         "root_count": 2,
         "value": "Mathlib/@subtrees/8"
       },
-      "snapshot_sha256": "6299d764e8e297c5e19397041ac46167e044f9e80b1ceda0c08a214bc44a3d7d",
+      "snapshot_sha256": "c2477cde53fc321ab89377121cca1f1132552cf005b5910af645d5315ff2a243",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 956,
-        "bytes": 11347669,
+        "baseline_primary_retained": 974,
+        "bytes": 11583469,
         "current_primary_excluded": 0,
-        "current_primary_retained": 956,
-        "files": 956,
-        "formal_source_files": 956,
+        "current_primary_retained": 974,
+        "files": 974,
+        "formal_source_files": 974,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-f2cc913f9b26"
@@ -267,15 +267,15 @@
         "root_count": 3,
         "value": "Mathlib/@subtrees/9"
       },
-      "snapshot_sha256": "c82111baa7c4808eea44a0a8fd066e7d78eebde134c5743f704581793cf84948",
+      "snapshot_sha256": "9f8baa1f03ea2a55420219b82af7f556348e288085b462a46a340390b54d0b6a",
       "stats": {
-        "auxiliary_only": 1,
-        "baseline_primary_retained": 225,
-        "bytes": 2741222,
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 218,
+        "bytes": 2663008,
         "current_primary_excluded": 0,
-        "current_primary_retained": 225,
-        "files": 226,
-        "formal_source_files": 225,
+        "current_primary_retained": 218,
+        "files": 218,
+        "formal_source_files": 218,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-fb7c2379228c"
@@ -287,15 +287,15 @@
         "root_count": 1,
         "value": "Mathlib/@subtrees/a"
       },
-      "snapshot_sha256": "48f2f17142a6fa33eb57ba071ab4f76bd1ef1f14163922f11fc348bacb2b549f",
+      "snapshot_sha256": "a89a00d3e929a21e47c865294602958403b64a75785d7c089a894c2c540c7b63",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 139,
-        "bytes": 2210704,
+        "baseline_primary_retained": 140,
+        "bytes": 2268740,
         "current_primary_excluded": 0,
-        "current_primary_retained": 139,
-        "files": 139,
-        "formal_source_files": 139,
+        "current_primary_retained": 140,
+        "files": 140,
+        "formal_source_files": 140,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-c218859c9c8b"
@@ -307,15 +307,15 @@
         "root_count": 2,
         "value": "Mathlib/@subtrees/b"
       },
-      "snapshot_sha256": "779b550977106bd10688c994ed16fb7f943cd9cee022f06df08cba999f225480",
+      "snapshot_sha256": "7731977fc34ab32e8a571c35f70ddb4ed2826bfb5fd13726ab41316472cbb50e",
       "stats": {
-        "auxiliary_only": 1,
-        "baseline_primary_retained": 986,
-        "bytes": 12275672,
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1016,
+        "bytes": 12500479,
         "current_primary_excluded": 0,
-        "current_primary_retained": 986,
-        "files": 987,
-        "formal_source_files": 986,
+        "current_primary_retained": 1016,
+        "files": 1016,
+        "formal_source_files": 1016,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-4a2ed3c59c30"
@@ -327,18 +327,38 @@
         "root_count": 2,
         "value": "Mathlib/@subtrees/c"
       },
-      "snapshot_sha256": "69cc9d5e930b648be0214f1bd5f1c9c9de5a80194be60fbe6be723195c94776a",
+      "snapshot_sha256": "750e85f68e86afde5b8f39cb416cb6308b6486c5a6657757a3d08c57601dc41d",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1172,
-        "bytes": 12317320,
+        "baseline_primary_retained": 1207,
+        "bytes": 12491436,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1172,
-        "files": 1172,
-        "formal_source_files": 1172,
+        "current_primary_retained": 1207,
+        "files": 1207,
+        "formal_source_files": 1207,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-e87368644d7b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-eb20d2182729.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Mathlib/@subtrees/d"
+      },
+      "snapshot_sha256": "af87a14e279ac2f0b842f510808f18e8ab7015dcace2ef9f26902e0f70909376",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 45,
+        "bytes": 486544,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 45,
+        "files": 45,
+        "formal_source_files": 45,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-eb20d2182729"
     },
     {
       "files_manifest": "filtering/repository-review/files/leanprover-community__mathlib4/RRU-fc2c5a10e77b.jsonl",
@@ -347,11 +367,11 @@
         "root_count": 1,
         "value": "Mathlib/@subtrees/e"
       },
-      "snapshot_sha256": "092d9aed02bc8bc75c746b0362b3faebc9b0cd35bf164b5f84eabd819d53d791",
+      "snapshot_sha256": "77bd5822a09542d0ce29aefa9d6260bf0ed25671fdc6158c24a39b2e1868225e",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 1,
-        "bytes": 352,
+        "bytes": 345,
         "current_primary_excluded": 0,
         "current_primary_retained": 1,
         "files": 1,
@@ -367,15 +387,15 @@
         "root_count": 4,
         "value": "Mathlib/@subtrees/f"
       },
-      "snapshot_sha256": "2b9b5643f1f9d22b8f2053410ec5db682cc42f6a08e4c74287c5a30dbfa00ab0",
+      "snapshot_sha256": "f669ae61bdb5e3d8270a62ecd3756ae8d662ea84169b705788eef7c83edd688b",
       "stats": {
-        "auxiliary_only": 2,
-        "baseline_primary_retained": 1219,
-        "bytes": 15039595,
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1267,
+        "bytes": 15636751,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1219,
-        "files": 1221,
-        "formal_source_files": 1219,
+        "current_primary_retained": 1267,
+        "files": 1267,
+        "formal_source_files": 1267,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-b7d3b182ef9a"
