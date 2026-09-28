@@ -314,7 +314,7 @@ source.
 must not occupy shards in the public `.zoekt` index, be queried through
 `/api/search`, or be appended to ordinary formalization results.  The repository's
 optional `.zoekt-metadata` index is a maintainer-side auxiliary index built with
-`just index-metadata` and queried explicitly with `just search-metadata`; it is not
+`just sync` beside the primary shards and queried explicitly with `just search-metadata`; it is not
 published or queried by the public site.  A future reader-facing documentation
 search, if one is justified independently, must remain a distinct search surface.
 

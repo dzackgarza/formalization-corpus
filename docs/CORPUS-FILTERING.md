@@ -361,7 +361,7 @@ decision inside file-level filtering and destroy the audit boundary.
 The operational commands are:
 
 ```sh
-just repository-review-catalogue
+just index-source <repository>
 just repository-review-validate
 just repository-review-status
 just repository-review-batch RRB-0001
@@ -369,9 +369,12 @@ python scripts/repository-review.py template RRU-... > /tmp/review.json
 python scripts/repository-review.py append /tmp/review.json
 ```
 
-Only after the review catalogue validates should `just filter-state` be run to
-materialize accepted blacklist rules into `FD-018` decisions and the append-only
-filtering ledger.
+`just index-source` hydrates the source, rebuilds its catalogue entry, and
+validates the catalogue. Only then does it run `build-filter-state.py --source`
+to materialize accepted blacklist rules into `FD-018` decisions and the
+append-only filtering ledger, and rebuild the source's shards. After a new review
+is appended, `build-filter-state.py` with no `--source` re-derives every source
+from the committed catalogue, with no checkout.
 
 ## 12. Required workflow for a new hard filter
 

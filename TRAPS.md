@@ -39,8 +39,8 @@ about 4.6 GB of shards across 864 shard files. That is a historical measurement,
 not a size estimate for the expanded corpus. After indexing all 45 cross-prover
 sources on 2026-09-13, `.zoekt/` measured 9.8 GB while the corresponding
 `port-sources/` sparse checkouts measured 3.2 GB. Check free disk space before
-`just index` or `just index-ports`; ACL2 and AFP alone split across many large
-shards. The index is already too large for static hosting: GitHub Pages caps a
+a full `just sync` or `refresh --offline`; ACL2 and AFP alone split across many
+large shards. The index is already too large for static hosting: GitHub Pages caps a
 published site at 1 GB.
 
 ## Counting declarations

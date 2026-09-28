@@ -39,24 +39,25 @@ source repositories; it is not itself a source category.
 Synchronization keeps only the proof-source extensions appropriate to each proof
 assistant plus minimal build metadata where needed. Definitions, structures,
 specifications, theorem statements, constructions, and proofs are all searchable.
-The source checkouts remain authoritative and are never destructively cleaned for
-search. Filtering is recorded separately and materialized as reversible hard-link
-views used only for indexing.
+A checkout is a working copy, not a permanent store. The committed review
+catalogue and filter state record each source's revision and per-file hashes;
+`scripts/index-source.py` hydrates one batch of sources at a time, builds and
+verifies their shards from temporary hard-link views, records the shard
+provenance in `.index-provenance/`, and releases the checkouts. Filtering never
+edits a checkout.
 
 ## Workflow
 
 ```sh
 just build-tools        # build zoekt-index, zoekt, and the Lean ast-grep parser
-just sync               # refresh the routine sync group
-just sync-bulk          # refresh the large secondary sync group
-just sync-cross-prover  # refresh non-Lean proof-assistant sources
-just filter-state       # classify the current source snapshot and append filtering decisions
+just sync-tools         # update the tool repositories; run build-tools afterwards
+just sync               # refresh, index and release every stale source, one batch at a time
+just sync-group bulk    # the same for one sync group (routine, bulk, cross-prover)
+just index-source agda__agda-categories  # the same for one source
+just index-verify       # check every shard against sources.tsv, the evidence and the provenance
+just release-checkouts  # verify, then remove the checkouts sync can hydrate again
 just filter-validate    # replay the append-only filtering ledger and verify snapshots
-just filter-views       # materialize primary and auxiliary hard-link index views
-just index-cross-prover # incrementally rebuild only that group's Zoekt shards
-just index              # (re)build the primary mathematical index from the filtered view
-just index-metadata     # build the separate README/import-navigation index
-just metrics            # validate corpus membership and regenerate public totals
+just metrics            # regenerate public totals from sources.tsv and source-topics.tsv
 just site               # regenerate committed static source metadata
 just preview            # deploy site/ to formalization-corpus-preview.localhost
 just check-sources      # verify static source-table identities and cross-prover documentation
@@ -93,7 +94,7 @@ is generated from the manifests by `scripts/build-site.py`, which is how a hit
 in `leanprover__hex-lll` links back to its file on GitHub.
 
 The search host carries the index alone — no source checkouts and no indexing
-work. `just index` builds locally and `just publish` rsyncs `.zoekt/`; Zoekt
+work. `just sync` builds locally and `just publish` verifies and rsyncs `.zoekt/`; Zoekt
 watches its shard directory, so replaced shards load without a restart. The
 public HTTP boundary is a small FastAPI/Pydantic adapter on `127.0.0.1:6070`.
 An unmodified `zoekt-webserver` listens privately on `127.0.0.1:6071` and is not
@@ -180,7 +181,7 @@ without splitting the inventory into multiple files.
   Lean import-only modules are excluded under the stable `FILTER-###` policies;
   source checkouts are unchanged. README/import-navigation material has its own
   auxiliary index. Every file-level decision and its evidence is recorded in
-  `filtering/ledger.jsonl`.
+  the append-only `filtering/ledger/` shards.
 - **Exact duplicates keep provenance.** Byte-identical formal files remain
   individually addressable by source/path, but duplicate returned hits are
   collapsed by the API and all exact-content aliases are attached to the retained

@@ -8,20 +8,14 @@ search surface is intentionally prover-independent.
 
 ## Build the index with bounded local source storage
 
-Change ingestion and indexing to process one source at a time: hydrate a source,
-validate its repository-review snapshot and filtering decisions, build its
-primary and auxiliary Zoekt shards, verify that the shards represent the source,
-then release that source checkout. Keep the source inventory, source revision,
-filtering evidence, and shard provenance so a later run can refresh only sources
-that changed. Resume after interruption without rebuilding completed sources.
+`scripts/index-source.py` processes one batch of sources at a time and records
+shard provenance in `.index-provenance/`. Remaining work:
 
-The current `just index` dependency on `filter-views` materializes views across
-the hydrated corpus. `filter-state`, `filter-validate`, and repository-review
-validation also use corpus-wide state. Make these stages work per source while
-preserving cross-source duplicate aliases and the existing review freshness
-rules. Update sync, metrics, and publish so routine operation does not require
-all source checkouts at once. Verify a full index against the registered source
-inventory and its retained provenance before releasing existing checkouts.
+- Build the full local index from the hydrated checkouts with
+  `python scripts/index-source.py refresh --offline --keep-checkouts`, and pass
+  `just index-verify`.
+- Run `just release-checkouts`. It keeps detached and modified checkouts, such as
+  the Mathlib checkout pinned outside `sources.tsv`.
 
 ## Current expansion (2026-09-13)
 
@@ -50,8 +44,7 @@ inventory and its retained provenance before releasing existing checkouts.
   HOL4 5,133; Mizar 1,500; Metamath 96; ACL2 28,666; PVS 4,680; Twelf 1,004.
   Representative lexical searches were verified against UniMath, agda-unimath,
   AFP, HOL Light, HOL4, MML, `set.mm`, ACL2, NASALib, and Twelf. `just
-  sync-cross-prover` refreshes that sync group and `just index-cross-prover`
-  refreshes only its shards. The old spellings remain compatibility aliases.
+  sync-group cross-prover` refreshes that sync group and its shards.
   The August completion record below is retained as historical
   provenance, not a description of the current corpus boundary.
 

@@ -253,7 +253,7 @@ def main() -> int:
             if row["source_revision"] != revision or not content_matches:
                 raise SystemExit(
                     f"{repository}: content decisions predate the review catalogue; "
-                    f"hydrate it and run `python scripts/build-filter-state.py --source {repository}`"
+                    f"run `just index-source {repository}`"
                 )
             current.append(row)
 

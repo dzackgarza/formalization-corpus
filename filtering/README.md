@@ -22,13 +22,16 @@ source inventory, and the generated snapshot counters.  It is part of the
 ordinary commit gate.  Do not edit the derived snapshots by hand; change the
 classifier/decision catalog and regenerate them.
 
-The derived local views are gitignored:
+`scripts/index-source.py` derives two views of each source from the committed
+catalogue and `current.jsonl`, links them from the checkout for the time of one
+Zoekt build, and removes them afterwards:
 
-- `.index-primary/` — formal mathematical documents eligible for the public
-  search index;
-- `.index-metadata/` — README/documentation and parser-verified import-only
-  navigation modules for a separate maintainer-side auxiliary index.  It is not
-  merged into, published with, or queried by the public formalization search.
+- `.index-primary/<repository>` — formal mathematical documents eligible for the
+  public search index;
+- `.index-metadata/<repository>` — README/documentation and parser-verified
+  import-only navigation modules for a separate maintainer-side auxiliary index.
+  It is not merged into, published with, or queried by the public formalization
+  search.
 
 See `CONTRIBUTING.md` `FILTER-###` and `docs/CORPUS-FILTERING.md` before changing
 any decision.
