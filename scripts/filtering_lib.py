@@ -18,10 +18,20 @@ FILTER_ROOT = ROOT / "filtering"
 CATALOG = FILTER_ROOT / "decision-catalog.json"
 CURRENT = FILTER_ROOT / "current.jsonl"
 LEDGER_DIR = FILTER_ROOT / "ledger"
-LEGACY_LEDGER = FILTER_ROOT / "ledger.jsonl"
 LEDGER_SHARD_MAX_BYTES = 40 * 1024 * 1024
 DUPLICATES = FILTER_ROOT / "duplicate-aliases.json"
 SNAPSHOT = FILTER_ROOT / "snapshot.json"
+# Outputs of `repository-review.py build` and `build-filter-state.py`.
+GENERATED_PATHS = (
+    "filtering/current.jsonl",
+    "filtering/ledger/",
+    "filtering/duplicate-aliases.json",
+    "filtering/snapshot.json",
+    "filtering/repository-review/catalogue.jsonl",
+    "filtering/repository-review/catalogue/",
+    "filtering/repository-review/files/",
+    "filtering/repository-review/batches.jsonl",
+)
 
 FORMAL_SUFFIXES: dict[str, tuple[str, ...]] = {
     "lean": (".lean",),
@@ -156,6 +166,15 @@ def iter_files(source: Source) -> Iterable[pathlib.Path]:
                 yield path
 
 
+def ungenerated_changes() -> list[str]:
+    """Return the uncommitted repository paths outside ``GENERATED_PATHS``."""
+    status = subprocess.check_output(
+        ["git", "status", "--porcelain=v1", "--untracked-files=all", "-z"], cwd=ROOT, text=True
+    )
+    paths = [entry[3:] for entry in status.split("\0") if len(entry) > 3]
+    return [path for path in paths if not path.startswith(GENERATED_PATHS)]
+
+
 def sha256_file(path: pathlib.Path) -> str:
     h = hashlib.sha256()
     with path.open("rb") as handle:
@@ -182,18 +201,8 @@ def load_jsonl(path: pathlib.Path) -> list[dict[str, Any]]:
 
 
 def filter_ledger_paths() -> list[pathlib.Path]:
-    """Return filtering-ledger shards in replay order.
-
-    ``LEGACY_LEDGER`` is accepted only as a read fallback so historical clones
-    remain inspectable during the storage migration.  New writes require the
-    sharded directory and never append to the legacy monolith.
-    """
-    shards = sorted(LEDGER_DIR.glob("*.jsonl")) if LEDGER_DIR.is_dir() else []
-    if shards:
-        return shards
-    if LEGACY_LEDGER.is_file():
-        return [LEGACY_LEDGER]
-    return []
+    """Return filtering-ledger shards in replay order."""
+    return sorted(LEDGER_DIR.glob("*.jsonl")) if LEDGER_DIR.is_dir() else []
 
 
 def load_filter_ledger() -> list[dict[str, Any]]:
@@ -211,10 +220,6 @@ def append_filter_ledger(events: Iterable[dict[str, Any]]) -> None:
     ]
     if not encoded:
         return
-    if LEGACY_LEDGER.exists():
-        raise RuntimeError(
-            f"legacy filtering ledger still exists at {LEGACY_LEDGER}; migrate it before appending"
-        )
     if any(len(line) > LEDGER_SHARD_MAX_BYTES for line in encoded):
         raise ValueError("one filtering-ledger event exceeds the shard-size limit")
 

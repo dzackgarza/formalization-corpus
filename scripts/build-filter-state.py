@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+"""Recompute the per-file filtering decisions, one hydrated source at a time.
+
+Content decisions (every decision in ``SCAN_DECISIONS``) need the source bytes.
+They are recomputed only for the sources named with ``--source``, whose checkout
+must match the committed review catalogue. The other registered sources keep
+their current content decisions. Review exclusions (FD-018), exact duplicates
+(FD-006) and the per-source primary counts are recomputed for the whole corpus
+from the committed catalogue manifests, so no other checkout is read.
+"""
 from __future__ import annotations
 
 import argparse
@@ -16,9 +25,11 @@ from filtering_lib import (
     FILTER_ROOT,
     ROOT,
     SNAPSHOT,
+    Source,
     append_filter_ledger,
-    is_formal_file,
+    dump_jsonl,
     is_acl2_useless_runes_report,
+    is_formal_file,
     is_lean_build_metadata,
     is_nonformal_readme,
     is_whitespace_only_formal_source,
@@ -29,9 +40,21 @@ from filtering_lib import (
     sha256_file,
     source_revision,
     sources,
+    ungenerated_changes,
     verify_lean_import_only,
 )
-from repository_review_lib import resolve_review_exclusions
+from repository_review_lib import (
+    FileRecord,
+    catalogue_path,
+    catalogued_records,
+    file_record,
+    load_json,
+    material_snapshot_sha256,
+    resolve_review_exclusions,
+)
+
+SCAN_DECISIONS = frozenset({"FD-001", "FD-002", "FD-007", "FD-011", "FD-013", "FD-015", "FD-016", "FD-017"})
+ZOEKT_DEFAULT_FILE_LIMIT = 2 * 1024 * 1024
 
 
 def utc_now() -> str:
@@ -46,40 +69,6 @@ def decision_key(row: dict[str, Any]) -> tuple[str, str, str]:
     return row["repository"], row["file"], row["decision_id"]
 
 
-def decision_record(
-    *,
-    catalog: dict[str, dict[str, Any]],
-    decision_id: str,
-    repository: str,
-    file: str,
-    proof_assistant: str,
-    source_revision_value: str | None,
-    content_sha256: str | None,
-    evidence: dict[str, Any],
-    observed_at: str,
-    commit: str,
-) -> dict[str, Any]:
-    decision = catalog[decision_id]
-    return {
-        "schema_version": 1,
-        "repository": repository,
-        "file": file,
-        "proof_assistant": proof_assistant,
-        "source_revision": source_revision_value,
-        "decision_id": decision_id,
-        "title": decision["title"],
-        "primary": decision["primary"],
-        "auxiliary": decision["auxiliary"],
-        "result_action": decision.get("result_action"),
-        "policies": decision["policies"],
-        "justification": decision["justification"],
-        "content_sha256": content_sha256,
-        "evidence": evidence,
-        "observed_at": observed_at,
-        "corpus_git_commit": commit,
-    }
-
-
 def stable_payload(row: dict[str, Any]) -> dict[str, Any]:
     return {
         key: value
@@ -88,293 +77,290 @@ def stable_payload(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+class Recorder:
+    """Build decision rows that share one catalog, scan time and corpus commit."""
+
+    def __init__(self, catalog: dict[str, dict[str, Any]], now: str, commit: str) -> None:
+        self.catalog = catalog
+        self.now = now
+        self.commit = commit
+
+    def row(
+        self,
+        decision_id: str,
+        *,
+        repository: str,
+        file: str,
+        proof_assistant: str,
+        revision: str | None,
+        content_sha256: str | None,
+        evidence: dict[str, Any],
+    ) -> dict[str, Any]:
+        decision = self.catalog[decision_id]
+        return {
+            "schema_version": 1,
+            "repository": repository,
+            "file": file,
+            "proof_assistant": proof_assistant,
+            "source_revision": revision,
+            "decision_id": decision_id,
+            "title": decision["title"],
+            "primary": decision["primary"],
+            "auxiliary": decision["auxiliary"],
+            "result_action": decision.get("result_action"),
+            "policies": decision["policies"],
+            "justification": decision["justification"],
+            "content_sha256": content_sha256,
+            "evidence": evidence,
+            "observed_at": self.now,
+            "corpus_git_commit": self.commit,
+        }
+
+
+def scan_source(
+    source: Source, revision: str | None, record: Recorder
+) -> tuple[list[dict[str, Any]], list[FileRecord]]:
+    """Return the content decisions and the file records of one checkout."""
+    rows: list[dict[str, Any]] = []
+    candidates: list[tuple[pathlib.Path, str, str]] = []
+    files: list[FileRecord] = []
+
+    def add(decision_id: str, rel: str, digest: str | None, evidence: dict[str, Any]) -> None:
+        rows.append(
+            record.row(
+                decision_id, repository=source.repository, file=rel,
+                proof_assistant=source.proof_assistant, revision=revision,
+                content_sha256=digest, evidence=evidence,
+            )
+        )
+
+    for path in iter_files(source):
+        rel = path.relative_to(source.root).as_posix()
+        size = path.stat().st_size
+        digest = sha256_file(path)
+        formal = is_formal_file(source.proof_assistant, path)
+        files.append(file_record(source.repository, rel, size, digest, formal, {}))
+
+        if is_nonformal_readme(source.proof_assistant, path):
+            add("FD-002", rel, None, {"basename": path.name, "size_bytes": size})
+            continue
+        if source.proof_assistant == "lean" and is_lean_build_metadata(path):
+            add("FD-013", rel, digest, {"basename": path.name, "size_bytes": size})
+            continue
+        if not formal:
+            continue
+        if size == 0:
+            add("FD-001", rel, digest, {"size_bytes": 0})
+            continue
+        # Narrower than "comment-only": comments and prose are search evidence,
+        # a nonempty file of whitespace alone is not.
+        raw = path.read_bytes()
+        if is_whitespace_only_formal_source(raw):
+            add("FD-015", rel, digest, {"size_bytes": size, "content_class": "whitespace-only"})
+            continue
+        if source.proof_assistant == "acl2" and is_acl2_useless_runes_report(path):
+            add("FD-017", rel, digest, {
+                "path_component": ".sys",
+                "artifact_suffix": "@useless-runes.lsp",
+                "size_bytes": size,
+                "content_class": "acl2-certification-proof-metadata",
+            })
+        if source.proof_assistant == "pvs" and path.suffix.casefold() == ".prf":
+            add("FD-007", rel, digest, {"extension": ".prf", "size_bytes": size})
+            if size > ZOEKT_DEFAULT_FILE_LIMIT:
+                add("FD-011", rel, digest, {
+                    "size_bytes": size, "zoekt_default_file_limit": ZOEKT_DEFAULT_FILE_LIMIT,
+                })
+        if source.proof_assistant == "lean" and path.suffix == ".lean" and lean_import_only_candidate(raw):
+            candidates.append((path, rel, digest))
+
+    accepted, parser_meta = verify_lean_import_only([path for path, _rel, _digest in candidates])
+    for path, rel, digest in candidates:
+        if path in accepted:
+            add("FD-016", rel, digest, {
+                "tree_sitter_verified": True,
+                "allowed_top_level_nodes": ["import", "line_comment", "block_comment"],
+                "parser_sha256": parser_meta["parser_sha256"],
+            })
+    return rows, files
+
+
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--allow-dirty", action="store_true")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--source", action="append", default=[], metavar="REPOSITORY",
+        help="recompute the content decisions of this hydrated source (repeatable)",
+    )
+    parser.add_argument(
+        "--allow-dirty", action="store_true",
+        help="run although tracked files outside the generated filtering state have changes",
+    )
     args = parser.parse_args()
 
-    status = subprocess.check_output(
-        ["git", "status", "--porcelain=v1", "--untracked-files=all"], cwd=ROOT, text=True
-    )
-    if status.strip() and not args.allow_dirty:
-        raise SystemExit("filter-state generation requires a clean worktree; commit the classifier first")
+    dirty = ungenerated_changes()
+    if dirty and not args.allow_dirty:
+        raise SystemExit(
+            "filter-state generation requires committed classifier inputs; uncommitted changes:\n  "
+            + "\n  ".join(dirty[:20])
+        )
 
-    catalog = load_catalog()
+    registered = {source.repository: source for source in sources()}
+    unknown = sorted(set(args.source) - set(registered))
+    if unknown:
+        raise SystemExit(f"unregistered sources: {', '.join(unknown)}")
+    scanned = set(args.source)
+
     review_exclusions, review_errors = resolve_review_exclusions(require_fresh=True)
     if review_errors:
         raise SystemExit(
             "repository review state is invalid; run `just repository-review-validate`:\n  "
             + "\n  ".join(review_errors[:50])
         )
-    now = utc_now()
-    commit = corpus_commit()
+
+    record = Recorder(load_catalog(), utc_now(), corpus_commit())
+    old_rows = load_jsonl(CURRENT)
+    old_by_source: dict[str, list[dict[str, Any]]] = collections.defaultdict(list)
+    for row in old_rows:
+        if row["decision_id"] in SCAN_DECISIONS:
+            old_by_source[row["repository"]].append(row)
+
     current: list[dict[str, Any]] = []
-    hashes: dict[str, list[dict[str, Any]]] = collections.defaultdict(list)
-    import_candidates: list[tuple[Any, pathlib.Path, str, bytes, str]] = []
     source_revisions: dict[str, str | None] = {}
-    primary_counts: collections.Counter[str] = collections.Counter()
-    scanned_counts: collections.Counter[str] = collections.Counter()
-
-    # First pass: content-independent decisions plus content hashes.
-    for source in sources():
-        revision = source_revision(source)
-        source_revisions[source.repository] = revision
-        if not source.root.exists():
+    manifest_records: dict[str, list[FileRecord]] = {}
+    for repository, source in sorted(registered.items()):
+        revision = load_json(catalogue_path(repository)).get("source_revision")
+        source_revisions[repository] = revision
+        manifest_records[repository] = catalogued_records(repository, {})
+        by_path = {item.path: item for item in manifest_records[repository]}
+        if repository in scanned:
+            if not source.root.exists():
+                raise SystemExit(f"{repository}: --source needs the hydrated checkout at {source.root}")
+            if source_revision(source) != revision:
+                raise SystemExit(
+                    f"{repository}: checkout revision differs from the review catalogue; "
+                    f"run `python scripts/repository-review.py build --source {repository}`"
+                )
+            rows, files = scan_source(source, revision, record)
+            if material_snapshot_sha256(files) != material_snapshot_sha256(manifest_records[repository]):
+                raise SystemExit(
+                    f"{repository}: checkout content differs from the review catalogue; "
+                    f"run `python scripts/repository-review.py build --source {repository}`"
+                )
+            current.extend(rows)
             continue
-        for path in iter_files(source):
-            rel = path.relative_to(source.root).as_posix()
-            scanned_counts[source.repository] += 1
-            try:
-                size = path.stat().st_size
-            except OSError:
-                continue
-            formal = is_formal_file(source.proof_assistant, path)
-
-            if is_nonformal_readme(source.proof_assistant, path):
-                current.append(
-                    decision_record(
-                        catalog=catalog, decision_id="FD-002", repository=source.repository,
-                        file=rel, proof_assistant=source.proof_assistant,
-                        source_revision_value=revision, content_sha256=None,
-                        evidence={"basename": path.name, "size_bytes": size}, observed_at=now, commit=commit,
-                    )
+        for row in old_by_source[repository]:
+            item = by_path.get(row["file"])
+            content_matches = item is not None and row["content_sha256"] in {None, item.sha256}
+            if row["source_revision"] != revision or not content_matches:
+                raise SystemExit(
+                    f"{repository}: content decisions predate the review catalogue; "
+                    f"hydrate it and run `python scripts/build-filter-state.py --source {repository}`"
                 )
-                continue
+            current.append(row)
 
-            if source.proof_assistant == "lean" and is_lean_build_metadata(path):
-                digest = sha256_file(path) if size else hashlib.sha256(b"").hexdigest()
-                current.append(
-                    decision_record(
-                        catalog=catalog, decision_id="FD-013", repository=source.repository,
-                        file=rel, proof_assistant=source.proof_assistant,
-                        source_revision_value=revision, content_sha256=digest,
-                        evidence={"basename": path.name, "size_bytes": size}, observed_at=now, commit=commit,
-                    )
-                )
-                continue
-
-            if not formal:
-                continue
-
-            digest = sha256_file(path) if size else hashlib.sha256(b"").hexdigest()
-
-            if size == 0:
-                current.append(
-                    decision_record(
-                        catalog=catalog, decision_id="FD-001", repository=source.repository,
-                        file=rel, proof_assistant=source.proof_assistant,
-                        source_revision_value=revision, content_sha256=digest,
-                        evidence={"size_bytes": 0}, observed_at=now, commit=commit,
-                    )
-                )
-                continue
-
-            # This is intentionally narrower than "contains no declaration" or
-            # "comment-only".  Comments and prose are useful search evidence;
-            # a nonempty file consisting solely of whitespace has none.
-            raw_for_whitespace = path.read_bytes()
-            if is_whitespace_only_formal_source(raw_for_whitespace):
-                current.append(
-                    decision_record(
-                        catalog=catalog, decision_id="FD-015", repository=source.repository,
-                        file=rel, proof_assistant=source.proof_assistant,
-                        source_revision_value=revision, content_sha256=digest,
-                        evidence={"size_bytes": size, "content_class": "whitespace-only"},
-                        observed_at=now, commit=commit,
-                    )
-                )
-                continue
-
-            if source.proof_assistant == "acl2" and is_acl2_useless_runes_report(path):
-                current.append(
-                    decision_record(
-                        catalog=catalog, decision_id="FD-017", repository=source.repository,
-                        file=rel, proof_assistant=source.proof_assistant,
-                        source_revision_value=revision, content_sha256=digest,
-                        evidence={
-                            "path_component": ".sys",
-                            "artifact_suffix": "@useless-runes.lsp",
-                            "size_bytes": size,
-                            "content_class": "acl2-certification-proof-metadata",
-                        }, observed_at=now, commit=commit,
-                    )
-                )
-
-            if source.proof_assistant == "pvs" and path.suffix.casefold() == ".prf":
-                current.append(
-                    decision_record(
-                        catalog=catalog, decision_id="FD-007", repository=source.repository,
-                        file=rel, proof_assistant=source.proof_assistant,
-                        source_revision_value=revision, content_sha256=digest,
-                        evidence={"extension": ".prf", "size_bytes": size}, observed_at=now, commit=commit,
-                    )
-                )
-                if size > 2 * 1024 * 1024:
-                    current.append(
-                        decision_record(
-                            catalog=catalog, decision_id="FD-011", repository=source.repository,
-                            file=rel, proof_assistant=source.proof_assistant,
-                            source_revision_value=revision, content_sha256=digest,
-                            evidence={"size_bytes": size, "zoekt_default_file_limit": 2 * 1024 * 1024},
-                            observed_at=now, commit=commit,
-                        )
-                    )
-
-            raw: bytes | None = None
-            if source.proof_assistant == "lean" and path.suffix == ".lean":
-                raw = raw_for_whitespace
-                if lean_import_only_candidate(raw):
-                    import_candidates.append((source, path, rel, raw, digest))
-
-            review_exclusion = review_exclusions.get((source.repository, rel))
-            if review_exclusion is not None:
-                if digest != review_exclusion["file_sha256"]:
-                    raise SystemExit(
-                        f"repository review hash drift for {source.repository}/{rel}; "
-                        "rebuild and re-audit the review catalogue"
-                    )
-                current.append(
-                    decision_record(
-                        catalog=catalog, decision_id="FD-018", repository=source.repository,
-                        file=rel, proof_assistant=source.proof_assistant,
-                        source_revision_value=revision, content_sha256=digest,
-                        evidence={
-                            "review_id": review_exclusion["review_id"],
-                            "unit_id": review_exclusion["unit_id"],
-                            "rule_id": review_exclusion["rule_id"],
-                            "selector": review_exclusion["selector"],
-                            "unit_snapshot_sha256": review_exclusion["unit_snapshot_sha256"],
-                            "size_bytes": review_exclusion["file_size_bytes"],
-                            "rationale": review_exclusion["rationale"],
-                            "content_invariant": review_exclusion["content_invariant"],
-                            "review_evidence": review_exclusion["evidence"],
-                        },
-                        observed_at=now, commit=commit,
-                    )
-                )
-                continue
-
-            # Candidate for exact-content result dedup.  Import-only files are
-            # removed after parser verification below; harmless inclusion here
-            # is corrected before duplicate groups are finalized.
-            hashes[digest].append(
-                {
-                    "repository": source.repository,
-                    "file": rel,
-                    "proof_assistant": source.proof_assistant,
-                    "source_revision": revision,
-                    "size_bytes": size,
-                }
-            )
-            primary_counts[source.repository] += 1
-
-    accepted_imports, parser_meta = verify_lean_import_only(
-        [path for _source, path, _rel, _raw, _digest in import_candidates]
-    )
-    for source, path, rel, _raw, digest in import_candidates:
-        if path not in accepted_imports:
-            continue
+    for (repository, rel), exclusion in sorted(review_exclusions.items()):
         current.append(
-            decision_record(
-                catalog=catalog, decision_id="FD-016", repository=source.repository,
-                file=rel, proof_assistant=source.proof_assistant,
-                source_revision_value=source_revisions[source.repository], content_sha256=digest,
+            record.row(
+                "FD-018", repository=repository, file=rel,
+                proof_assistant=registered[repository].proof_assistant,
+                revision=source_revisions[repository], content_sha256=exclusion["file_sha256"],
                 evidence={
-                    "tree_sitter_verified": True,
-                    "allowed_top_level_nodes": ["import", "line_comment", "block_comment"],
-                    "parser_sha256": parser_meta.get("parser_sha256"),
-                }, observed_at=now, commit=commit,
+                    "review_id": exclusion["review_id"],
+                    "unit_id": exclusion["unit_id"],
+                    "rule_id": exclusion["rule_id"],
+                    "selector": exclusion["selector"],
+                    "unit_snapshot_sha256": exclusion["unit_snapshot_sha256"],
+                    "size_bytes": exclusion["file_size_bytes"],
+                    "rationale": exclusion["rationale"],
+                    "content_invariant": exclusion["content_invariant"],
+                    "review_evidence": exclusion["evidence"],
+                },
             )
         )
 
-    # Exact duplicates among documents that remain primary-eligible.  All paths
-    # stay in the physical index; FD-006 controls result-layer canonicalization.
-    # Parser-verified import-only modules also remain primary-eligible under
-    # FD-016 until their auxiliary representation is actually searchable.
+    # A file is primary-eligible when it is nonempty formal source and no active
+    # decision excludes it from the primary index.
+    excluded = {(row["repository"], row["file"]) for row in current if row["primary"] == "exclude"}
+    hashes: dict[str, list[tuple[str, FileRecord]]] = collections.defaultdict(list)
+    primary_counts: collections.Counter[str] = collections.Counter()
+    for repository, records in manifest_records.items():
+        for item in records:
+            if item.formal_source and item.size_bytes > 0 and (repository, item.path) not in excluded:
+                hashes[item.sha256].append((repository, item))
+                primary_counts[repository] += 1
+
+    # Every occurrence stays in the physical index; FD-006 only canonicalizes results.
     duplicate_groups: list[dict[str, Any]] = []
     for digest, members in sorted(hashes.items()):
-        eligible = members
-        if len(eligible) < 2:
+        if len(members) < 2:
             continue
-        eligible.sort(key=lambda m: (m["repository"], m["file"]))
-        group = {
+        members.sort(key=lambda member: (member[0], member[1].path))
+        canonical = {"repository": members[0][0], "file": members[0][1].path}
+        duplicate_groups.append({
             "sha256": digest,
-            "size_bytes": eligible[0]["size_bytes"],
-            "canonical": {"repository": eligible[0]["repository"], "file": eligible[0]["file"]},
+            "size_bytes": members[0][1].size_bytes,
+            "canonical": canonical,
             "occurrences": [
-                {"repository": m["repository"], "file": m["file"], "proof_assistant": m["proof_assistant"]}
-                for m in eligible
+                {"repository": repository, "file": item.path,
+                 "proof_assistant": registered[repository].proof_assistant}
+                for repository, item in members
             ],
-        }
-        duplicate_groups.append(group)
-        for number, member in enumerate(eligible):
+        })
+        for number, (repository, item) in enumerate(members):
             current.append(
-                decision_record(
-                    catalog=catalog, decision_id="FD-006", repository=member["repository"],
-                    file=member["file"], proof_assistant=member["proof_assistant"],
-                    source_revision_value=member["source_revision"], content_sha256=digest,
+                record.row(
+                    "FD-006", repository=repository, file=item.path,
+                    proof_assistant=registered[repository].proof_assistant,
+                    revision=source_revisions[repository], content_sha256=digest,
                     evidence={
                         "sha256": digest,
-                        "group_size": len(eligible),
+                        "group_size": len(members),
                         "duplicate_role": "canonical" if number == 0 else "alias",
-                        "canonical": group["canonical"],
-                    }, observed_at=now, commit=commit,
+                        "canonical": canonical,
+                    },
                 )
             )
 
     current.sort(key=decision_key)
-    old_rows = load_jsonl(CURRENT)
     old = {decision_key(row): row for row in old_rows}
     new = {decision_key(row): row for row in current}
     events: list[dict[str, Any]] = []
     for key in sorted(old.keys() - new.keys()):
-        row = old[key]
-        events.append(
-            {
-                **row,
-                "ledger_event": "reverted",
-                "recorded_at": now,
-                "reverted_by_corpus_git_commit": commit,
-                "event_reason": "The file no longer matches this decision in the current source snapshot.",
-            }
-        )
+        events.append({
+            **old[key],
+            "ledger_event": "reverted",
+            "recorded_at": record.now,
+            "reverted_by_corpus_git_commit": record.commit,
+            "event_reason": "The file no longer matches this decision in the current source snapshot.",
+        })
     for key in sorted(new):
-        row = new[key]
         previous = old.get(key)
-        if previous is not None and stable_payload(previous) == stable_payload(row):
+        if previous is not None and stable_payload(previous) == stable_payload(new[key]):
             continue
-        events.append(
-            {
-                **row,
-                "ledger_event": "applied" if previous is None else "updated",
-                "recorded_at": now,
-            }
-        )
+        events.append({
+            **new[key],
+            "ledger_event": "applied" if previous is None else "updated",
+            "recorded_at": record.now,
+        })
 
-    # Do not rewrite provenance fields on decisions whose substantive payload is
-    # unchanged.  The top-level snapshot records the latest scan commit/time; an
-    # unchanged per-file row should keep the provenance of the decision actually
-    # represented by that row.  This also keeps repository-review batches
-    # auditable instead of producing whole-corpus timestamp churn for a handful
-    # of changed decisions.
+    # A decision whose substance is unchanged keeps the provenance of the scan
+    # that made it; the snapshot records the latest scan.
     current = [
-        old.get(decision_key(row), row)
-        if old.get(decision_key(row)) is not None
-        and stable_payload(old[decision_key(row)]) == stable_payload(row)
+        old[decision_key(row)]
+        if decision_key(row) in old and stable_payload(old[decision_key(row)]) == stable_payload(row)
         else row
         for row in current
     ]
 
     FILTER_ROOT.mkdir(parents=True, exist_ok=True)
     append_filter_ledger(events)
-    from filtering_lib import dump_jsonl
     dump_jsonl(CURRENT, current)
     DUPLICATES.write_text(
         json.dumps(
             {
                 "schema_version": 1,
-                "generated_at": now,
-                "corpus_git_commit": commit,
+                "generated_at": record.now,
+                "corpus_git_commit": record.commit,
                 "hash_algorithm": "sha256",
                 "groups": duplicate_groups,
             },
@@ -384,14 +370,12 @@ def main() -> int:
         + "\n"
     )
 
-    repositories = [source.repository for source in sources() if source.root.exists()]
-    empty_primary = sorted(repo for repo in repositories if primary_counts[repo] <= 0)
+    empty_primary = sorted(repository for repository in registered if primary_counts[repository] <= 0)
     snapshot = {
         "schema_version": 1,
-        "generated_at": now,
-        "corpus_git_commit": commit,
+        "generated_at": record.now,
+        "corpus_git_commit": record.commit,
         "source_revisions": source_revisions,
-        "parser_verification": parser_meta,
         "decision_counts": dict(collections.Counter(row["decision_id"] for row in current)),
         "ledger_events_appended": len(events),
         "duplicate_groups": len(duplicate_groups),

@@ -101,13 +101,8 @@ class FilteringTests(unittest.TestCase):
     def test_filter_ledger_shards_preserve_append_order_and_roll_over(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = pathlib.Path(directory)
-            saved = (
-                filtering_lib.LEDGER_DIR,
-                filtering_lib.LEGACY_LEDGER,
-                filtering_lib.LEDGER_SHARD_MAX_BYTES,
-            )
+            saved = filtering_lib.LEDGER_DIR, filtering_lib.LEDGER_SHARD_MAX_BYTES
             filtering_lib.LEDGER_DIR = root / "ledger"
-            filtering_lib.LEGACY_LEDGER = root / "ledger.jsonl"
             filtering_lib.LEDGER_SHARD_MAX_BYTES = 50
             try:
                 events = [
@@ -121,25 +116,7 @@ class FilteringTests(unittest.TestCase):
                 self.assertGreater(len(shards), 1)
                 self.assertEqual(shards, sorted(shards))
             finally:
-                (
-                    filtering_lib.LEDGER_DIR,
-                    filtering_lib.LEGACY_LEDGER,
-                    filtering_lib.LEDGER_SHARD_MAX_BYTES,
-                ) = saved
-
-    def test_filter_ledger_refuses_to_append_to_legacy_monolith(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            root = pathlib.Path(directory)
-            saved = filtering_lib.LEDGER_DIR, filtering_lib.LEGACY_LEDGER
-            filtering_lib.LEDGER_DIR = root / "ledger"
-            filtering_lib.LEGACY_LEDGER = root / "ledger.jsonl"
-            filtering_lib.LEGACY_LEDGER.write_text('{"old":true}\n')
-            try:
-                self.assertEqual(filtering_lib.load_filter_ledger(), [{"old": True}])
-                with self.assertRaises(RuntimeError):
-                    filtering_lib.append_filter_ledger([{"new": True}])
-            finally:
-                filtering_lib.LEDGER_DIR, filtering_lib.LEGACY_LEDGER = saved
+                filtering_lib.LEDGER_DIR, filtering_lib.LEDGER_SHARD_MAX_BYTES = saved
 
     def test_index_pruning_removes_documentation_shards_from_primary_index(self) -> None:
         repository = filtering_lib.sources()[0].repository
