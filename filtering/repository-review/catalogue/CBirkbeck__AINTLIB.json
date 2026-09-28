@@ -4,18 +4,18 @@
   "proof_assistant": "lean",
   "repository": "CBirkbeck__AINTLIB",
   "schema_version": 1,
-  "source_revision": "6d87d596a5372d5b122c47b7082d4c3afa9b7c3b",
-  "source_snapshot_sha256": "68d11b46d677b67871c48569a9867fc0adf27210d2a32a832da924a821f0be35",
+  "source_revision": "a9f11988dc0df9b84b640a785b273ff44b9827c4",
+  "source_snapshot_sha256": "318f3e18a60811cf643dd6b550a5bbf20ed0f921e353eea0b2e3b1654f74387a",
   "sync_group": "routine",
   "totals": {
-    "auxiliary_only": 2,
+    "auxiliary_only": 4,
     "baseline_primary_retained": 2823,
-    "bytes": 63976607,
-    "current_primary_excluded": 3,
-    "current_primary_retained": 2820,
-    "files": 2825,
+    "bytes": 64011070,
+    "current_primary_excluded": 21,
+    "current_primary_retained": 2802,
+    "files": 2833,
     "formal_source_files": 2823,
-    "unindexed_nonformal": 0
+    "unindexed_nonformal": 6
   },
   "transport": "git",
   "url": "https://github.com/CBirkbeck/AINTLIB",
@@ -24,19 +24,19 @@
       "files_manifest": "filtering/repository-review/files/CBirkbeck__AINTLIB/RRU-8cfd8461fb5c.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 2,
+        "root_count": 10,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "d083951ae4710cdd31bbbca8cdbd95d63b840401e62c01972cb4435dd47a44ac",
+      "snapshot_sha256": "3f270825ce518076bff499d1c09a852a454ca543a7036a2dde6c80dc87675533",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 0,
-        "bytes": 6834,
-        "current_primary_excluded": 1,
+        "bytes": 38672,
+        "current_primary_excluded": 3,
         "current_primary_retained": 0,
-        "files": 2,
+        "files": 10,
         "formal_source_files": 0,
-        "unindexed_nonformal": 0
+        "unindexed_nonformal": 6
       },
       "unit_id": "RRU-8cfd8461fb5c"
     },
@@ -67,11 +67,11 @@
         "root_count": 2,
         "value": "projects/@subtrees/0"
       },
-      "snapshot_sha256": "8ba896b767505dc011cbaf0df7796b4d27edee743ffb57665216f549ede57092",
+      "snapshot_sha256": "36de90e73389edf810dd794f8d9799a7c34a23e0608adfda291811f73e3f0b30",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 61,
-        "bytes": 1905698,
+        "bytes": 1905624,
         "current_primary_excluded": 2,
         "current_primary_retained": 58,
         "files": 61,
@@ -87,11 +87,11 @@
         "root_count": 2,
         "value": "projects/@subtrees/1"
       },
-      "snapshot_sha256": "eee90f07c8606a744d8833e61b400ebf1a94597e8374557375d23c6d19173774",
+      "snapshot_sha256": "e80d4e5bdff51f30b28374146c0fcad8df0c3af6b5d3def9f9c3c61574f5e3ae",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 917,
-        "bytes": 16161518,
+        "bytes": 16163661,
         "current_primary_excluded": 0,
         "current_primary_retained": 917,
         "files": 917,
@@ -107,11 +107,11 @@
         "root_count": 1,
         "value": "projects/@subtrees/2"
       },
-      "snapshot_sha256": "81963cb4b9c8e4ba6e66761232a8f19405e39d214e023ff2918775522f83fa30",
+      "snapshot_sha256": "248752b423a2b08e2714e79feb3042c2c1b07db89fb047bbeeddf3cef407ab8a",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 269,
-        "bytes": 7716061,
+        "bytes": 7716081,
         "current_primary_excluded": 0,
         "current_primary_retained": 269,
         "files": 269,
@@ -127,11 +127,11 @@
         "root_count": 1,
         "value": "projects/@subtrees/3"
       },
-      "snapshot_sha256": "96c21ada34a756f669330a969d6c418559c53d51cbf2a113237ba9803feee02b",
+      "snapshot_sha256": "1e315a72ad7434a12d6f2bdadc271454a044c89ba5ec9ba97534c557bf1c9a4a",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 278,
-        "bytes": 8260366,
+        "bytes": 8260500,
         "current_primary_excluded": 0,
         "current_primary_retained": 278,
         "files": 278,
@@ -147,13 +147,13 @@
         "root_count": 1,
         "value": "projects/@subtrees/4"
       },
-      "snapshot_sha256": "6393d08099660ba34cfe3b00494c3c5f18ad305d9dbbfa27d52556a9301d5622",
+      "snapshot_sha256": "efc3a4f7536d8ebd53ae06cea5831ad6d0d4bf8619caf6f3f9761eb93252d0f2",
       "stats": {
-        "auxiliary_only": 0,
+        "auxiliary_only": 2,
         "baseline_primary_retained": 262,
-        "bytes": 5709130,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 262,
+        "bytes": 5709334,
+        "current_primary_excluded": 13,
+        "current_primary_retained": 247,
         "files": 262,
         "formal_source_files": 262,
         "unindexed_nonformal": 0
@@ -167,11 +167,11 @@
         "root_count": 1,
         "value": "projects/@subtrees/8"
       },
-      "snapshot_sha256": "5ed5c257cf5faa1db094c9fb31f2232bf6840e75a3756c6717af0258e10e5723",
+      "snapshot_sha256": "f221cbce16b19541a66b10e53fffb2db9a3c4e9799f14185e3a4f20977ff82f8",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 56,
-        "bytes": 1777965,
+        "bytes": 1778141,
         "current_primary_excluded": 0,
         "current_primary_retained": 56,
         "files": 56,
@@ -187,11 +187,11 @@
         "root_count": 1,
         "value": "projects/@subtrees/d"
       },
-      "snapshot_sha256": "0fdbc9a03a8f7fe91673cc7b905fdfbf4083b909ffd5eba685b0366b54afcdae",
+      "snapshot_sha256": "732e30936ab38769f07fbf164b50d21b19612ab2a54f9b6e89c056cb9bc78c62",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 15,
-        "bytes": 902595,
+        "bytes": 902816,
         "current_primary_excluded": 0,
         "current_primary_retained": 15,
         "files": 15,
@@ -207,13 +207,13 @@
         "root_count": 1,
         "value": "projects/@subtrees/f"
       },
-      "snapshot_sha256": "2389f340a9d94bcc82c8eb243a5b186514385b4b2223fb00d5eb83721ab46fa9",
+      "snapshot_sha256": "87cb5c868c2a8473932d7782036a3aadae52e3dd2cd3090dbddbe8b71599b2ac",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 963,
-        "bytes": 21527936,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 963,
+        "bytes": 21527737,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 960,
         "files": 963,
         "formal_source_files": 963,
         "unindexed_nonformal": 0
