@@ -24,12 +24,15 @@ from repository_review_lib import (
     RULE_ID_RE,
     SCHEMA_VERSION,
     UNIT_ID_RE,
+    FileRecord,
     active_decisions_by_file,
     catalogue_path,
+    catalogued_records,
     corpus_commit,
     dump_jsonl,
     latest_reviews,
     load_catalogue_index,
+    load_json,
     load_review_history,
     load_retired_sources,
     load_unit_file_records,
@@ -49,7 +52,7 @@ def relative(path: pathlib.Path) -> str:
     return path.relative_to(ROOT).as_posix()
 
 
-def source_summary(source: Any, records: list[Any], units: list[Any]) -> dict[str, Any]:
+def source_summary(source: Any, revision: str | None, records: list[Any], units: list[Any]) -> dict[str, Any]:
     source_snapshot = material_snapshot_sha256(records)
     totals = collections.Counter(record.current_primary_status for record in records)
     baseline = collections.Counter(record.baseline_primary_status for record in records)
@@ -62,7 +65,7 @@ def source_summary(source: Any, records: list[Any], units: list[Any]) -> dict[st
         "transport": source.transport,
         "sync_group": source.sync_group,
         "discovered_via": source.discovered_via,
-        "source_revision": source_revision(source),
+        "source_revision": revision,
         "source_snapshot_sha256": source_snapshot,
         "totals": {
             "files": len(records),
@@ -92,7 +95,13 @@ def source_summary(source: Any, records: list[Any], units: list[Any]) -> dict[st
     }
 
 
-def build() -> int:
+def build(scanned: list[str]) -> int:
+    """Write the catalogue of every active source.
+
+    A source named in ``scanned`` is rescanned from its hydrated checkout.  Every
+    other source is rebuilt from its committed unit manifests, so no checkout is
+    needed; only its decision columns are recomputed from the current filter state.
+    """
     decisions = active_decisions_by_file()
     CATALOGUE_ROOT.mkdir(parents=True, exist_ok=True)
     FILES_ROOT.mkdir(parents=True, exist_ok=True)
@@ -102,17 +111,27 @@ def build() -> int:
     overlap = sorted(active_repositories & set(retired))
     if overlap:
         raise SystemExit(f"retired repositories remain in sources.tsv: {overlap[:10]}")
+    unknown = sorted(set(scanned) - active_repositories)
+    if unknown:
+        raise SystemExit(f"not registered in sources.tsv: {unknown}")
     source_index: list[dict[str, Any]] = []
     live_catalogues: set[pathlib.Path] = set()
     live_manifests: set[pathlib.Path] = set()
 
     for number, source in enumerate(sources(), start=1):
-        if not source.root.exists():
-            raise SystemExit(f"missing hydrated source: {source.repository}")
-        records = source_records(source, decisions)
-        units = partition_source(source.repository, records)
-        summary = source_summary(source, records, units)
         path = catalogue_path(source.repository)
+        if source.repository in scanned:
+            if not source.root.exists():
+                raise SystemExit(f"missing hydrated source: {source.repository}")
+            records = source_records(source, decisions)
+            revision = source_revision(source)
+        elif path.is_file():
+            records = catalogued_records(source.repository, decisions)
+            revision = load_json(path)["source_revision"]
+        else:
+            raise SystemExit(f"{source.repository}: no catalogue; hydrate it and run `build --source {source.repository}`")
+        units = partition_source(source.repository, records)
+        summary = source_summary(source, revision, records, units)
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n")
         live_catalogues.add(path)
@@ -401,7 +420,6 @@ def validate() -> int:
                     errors.append(f"{repository}/{unit.get('unit_id')}: retired files manifest is missing")
                     continue
                 records = load_unit_file_records(unit)
-                from repository_review_lib import FileRecord, material_snapshot_sha256
                 reconstructed = [
                     FileRecord(
                         path=str(item["path"]), size_bytes=int(item["size_bytes"]), sha256=str(item["sha256"]),
@@ -428,13 +446,13 @@ def validate() -> int:
             errors.append(f"{repository}: missing catalogue file")
             continue
         catalogue = json.loads(cat_path.read_text())
-        actual_revision = source_revision(source)
+        actual_revision = source_revision(source) if source.root.exists() else catalogue.get("source_revision")
         if catalogue.get("source_revision") != actual_revision:
             errors.append(
                 f"{repository}: source revision changed since review catalogue "
                 f"({catalogue.get('source_revision')!r} -> {actual_revision!r}); run `just repository-review-catalogue`"
             )
-        if source.transport == "web-dir":
+        if source.transport == "web-dir" and source.root.exists():
             current_records = source_records(source, active_decisions_by_file())
             current_digest = material_snapshot_sha256(current_records)
             if current_digest != catalogue.get("source_snapshot_sha256"):
@@ -460,7 +478,6 @@ def validate() -> int:
                 errors.append(f"{repository}: work units overlap on {sorted(overlap)[:5]}")
             seen_paths.update(unit_paths)
             # Reconstruct digest from committed rows without touching source bytes.
-            from repository_review_lib import FileRecord, material_snapshot_sha256
             reconstructed = [
                 FileRecord(
                     path=str(item["path"]), size_bytes=int(item["size_bytes"]), sha256=str(item["sha256"]),
@@ -742,7 +759,11 @@ def retire_source(uid: str) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build and audit repository-local filtering review work")
     sub = parser.add_subparsers(dest="command", required=True)
-    sub.add_parser("build")
+    build_parser = sub.add_parser("build")
+    build_parser.add_argument(
+        "--source", action="append", default=[], metavar="REPOSITORY",
+        help="rescan this hydrated source; the other sources are rebuilt from their manifests",
+    )
     sub.add_parser("validate")
     status_parser = sub.add_parser("status")
     status_parser.add_argument("--batch")
@@ -754,7 +775,7 @@ def main() -> int:
     retire_parser.add_argument("unit")
     args = parser.parse_args()
     if args.command == "build":
-        return build()
+        return build(args.source)
     if args.command == "validate":
         return validate()
     if args.command == "status":

@@ -135,25 +135,58 @@ def classify_status(formal: bool, decisions: list[dict[str, Any]], *, ignore_rev
     return "unindexed-nonformal"
 
 
-def source_records(source: Any, decisions: dict[tuple[str, str], list[dict[str, Any]]]) -> list[FileRecord]:
-    records: list[FileRecord] = []
-    for path in iter_files(source):
-        rel = path.relative_to(source.root).as_posix()
-        size = path.stat().st_size
-        digest = sha256_file(path)
-        formal = is_formal_file(source.proof_assistant, path)
-        rows = decisions.get((source.repository, rel), [])
-        records.append(
-            FileRecord(
-                path=rel,
-                size_bytes=size,
-                sha256=digest,
-                formal_source=formal,
-                active_decisions=tuple(str(row["decision_id"]) for row in rows),
-                baseline_primary_status=classify_status(formal, rows, ignore_review=True),
-                current_primary_status=classify_status(formal, rows, ignore_review=False),
-            )
+Decisions = dict[tuple[str, str], list[dict[str, Any]]]
+
+
+def file_record(repository: str, path: str, size_bytes: int, sha256: str, formal: bool, decisions: Decisions) -> FileRecord:
+    rows = decisions.get((repository, path), [])
+    return FileRecord(
+        path=path,
+        size_bytes=size_bytes,
+        sha256=sha256,
+        formal_source=formal,
+        active_decisions=tuple(str(row["decision_id"]) for row in rows),
+        baseline_primary_status=classify_status(formal, rows, ignore_review=True),
+        current_primary_status=classify_status(formal, rows, ignore_review=False),
+    )
+
+
+def source_records(source: Any, decisions: Decisions) -> list[FileRecord]:
+    """Scan a hydrated checkout into file records."""
+    records = [
+        file_record(
+            source.repository,
+            path.relative_to(source.root).as_posix(),
+            path.stat().st_size,
+            sha256_file(path),
+            is_formal_file(source.proof_assistant, path),
+            decisions,
         )
+        for path in iter_files(source)
+    ]
+    records.sort(key=lambda record: record.path)
+    return records
+
+
+def catalogued_records(repository: str, decisions: Decisions) -> list[FileRecord]:
+    """Rebuild file records from the committed unit manifests, without the checkout.
+
+    Path, size, hash and the formal flag come from the manifests; the decision
+    columns are recomputed from ``decisions``.
+    """
+    catalogue = load_json(catalogue_path(repository))
+    records = [
+        file_record(
+            repository,
+            str(item["path"]),
+            int(item["size_bytes"]),
+            str(item["sha256"]),
+            bool(item["formal_source"]),
+            decisions,
+        )
+        for unit in catalogue["work_units"]
+        for item in load_unit_file_records(unit)
+    ]
     records.sort(key=lambda record: record.path)
     return records
 
