@@ -275,6 +275,48 @@ class RepositoryReviewTests(unittest.TestCase):
                 cli.ROOT = saved_root
                 review_lib.ROOT = saved_lib_root
 
+    def test_rule_selector_is_checked_against_the_snapshot_its_review_saw(self) -> None:
+        cli = load_review_cli()
+        with tempfile.TemporaryDirectory() as directory:
+            manifest = pathlib.Path(directory) / "unit.jsonl"
+            review_lib.dump_jsonl(manifest, [{
+                "path": "Kept.lean", "size_bytes": 1, "sha256": "a" * 64,
+                "formal_source": True, "active_decisions": [],
+                "baseline_primary_status": "primary-retained",
+                "current_primary_status": "primary-retained",
+            }])
+            uid = review_lib.unit_id("owner__repo", "repository", ".")
+            short = uid.split("-", 1)[1]
+            unit = {
+                "unit_id": uid, "repository": "owner__repo",
+                "scope": {"kind": "repository", "value": "."},
+                "snapshot_sha256": "b" * 64, "files_manifest": str(manifest),
+            }
+            review = {
+                "schema_version": 1, "review_id": f"RRV-{short}-r1",
+                "unit_id": uid, "repository": "owner__repo", "supersedes": None,
+                "status": "reviewed", "default_action": "retain",
+                "summary": "Exhaustive inspection found one generated file to exclude.",
+                "review_evidence": ["Upstream generates Removed.lean from a script."],
+                "recorded_at": "2026-09-15T00:00:00+00:00", "corpus_git_commit": "deadbeef",
+                "unit_snapshot_sha256": "b" * 64, "source_action": None,
+                "rules": [{
+                    "rule_id": f"RRX-{short}-1", "action": "primary-exclude",
+                    "selector": {"kind": "exact-path", "path": "Removed.lean"},
+                    "rationale": "The file is generated output with no authored mathematics.",
+                    "content_invariant": "Every declaration in the file is emitted by the generator.",
+                    "evidence": ["The file header names the generator script."],
+                    "policies": [
+                        "FILTER-002", "FILTER-004", "FILTER-005", "FILTER-018", "FILTER-020",
+                        "FILTER-022", "FILTER-023", "FILTER-024", "FILTER-025",
+                    ],
+                }],
+            }
+            errors = cli.validate_review_record(review, unit, 0, None)
+            self.assertTrue(any("matches no unit files" in error for error in errors))
+            upstream_moved = {**unit, "snapshot_sha256": "c" * 64}
+            self.assertEqual(cli.validate_review_record(review, upstream_moved, 0, None), [])
+
     def test_fd018_has_no_standalone_path_heuristic_authority(self) -> None:
         decision = filtering_lib.load_catalog()["FD-018"]
         self.assertEqual(decision["primary"], "exclude")

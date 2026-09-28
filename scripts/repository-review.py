@@ -332,6 +332,9 @@ def validate_review_record(record: dict[str, Any], unit: dict[str, Any], history
 
     unit_records = load_unit_file_records(unit)
     paths = {str(item["path"]) for item in unit_records}
+    # A selector is checked against the file set its review saw; a stale review's
+    # rules lapse per file in resolve_review_exclusions instead.
+    reviewed_current_snapshot = record.get("unit_snapshot_sha256") == unit.get("snapshot_sha256")
     matched: set[str] = set()
     rule_ids: set[str] = set()
     for rule_number, rule in enumerate(record.get("rules", []), start=1):
@@ -356,14 +359,15 @@ def validate_review_record(record: dict[str, Any], unit: dict[str, Any], history
             specified = {str(selector.get("path", ""))}
         elif kind == "path-set":
             specified = {str(value) for value in selector.get("paths", [])}
-        if specified - paths:
-            errors.append(f"{unit_id}/{rule_id}: selector names paths outside the unit: {sorted(specified - paths)[:5]}")
-        if not selected:
-            errors.append(f"{unit_id}/{rule_id}: selector matches no unit files")
-        overlap = matched & selected
-        if overlap:
-            errors.append(f"{unit_id}: rules overlap on {sorted(overlap)[:5]}")
-        matched |= selected
+        if reviewed_current_snapshot:
+            if specified - paths:
+                errors.append(f"{unit_id}/{rule_id}: selector names paths outside the unit: {sorted(specified - paths)[:5]}")
+            if not selected:
+                errors.append(f"{unit_id}/{rule_id}: selector matches no unit files")
+            overlap = matched & selected
+            if overlap:
+                errors.append(f"{unit_id}: rules overlap on {sorted(overlap)[:5]}")
+            matched |= selected
         for field in ("rationale", "content_invariant"):
             if not isinstance(rule.get(field), str) or len(rule[field].strip()) < 30:
                 errors.append(f"{unit_id}/{rule_id}: {field} must state explicit reasoning")
