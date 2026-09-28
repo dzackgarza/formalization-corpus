@@ -4,17 +4,17 @@
   "proof_assistant": "lean",
   "repository": "Verified-zkEVM__evm-asm",
   "schema_version": 1,
-  "source_revision": "bc1a2123a2752cac48a769598ad8371454922ecb",
-  "source_snapshot_sha256": "42ab2c13afc75c75fa7d81c387c7ccaa8c8b3fdb7d11b5686a06291bcfcbfd20",
+  "source_revision": "7e65e4d024718f704226cd795f3d03d4e9aafe13",
+  "source_snapshot_sha256": "af6d30df59b5d745a10474af9ae7484c672c2ff970e68b4349528ee2517c201d",
   "sync_group": "bulk",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 3047,
-    "bytes": 57245729,
-    "current_primary_excluded": 4,
-    "current_primary_retained": 3047,
-    "files": 3068,
-    "formal_source_files": 3048,
+    "baseline_primary_retained": 3120,
+    "bytes": 64965375,
+    "current_primary_excluded": 21,
+    "current_primary_retained": 3102,
+    "files": 3140,
+    "formal_source_files": 3120,
     "unindexed_nonformal": 16
   },
   "transport": "git",
@@ -27,13 +27,13 @@
         "root_count": 28,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "d88c66d604dfe65c652b44111e093994d4599f23769ffe8e6849bb7950333324",
+      "snapshot_sha256": "30c3e72fefd849009845185c687b3c4792c3e1677bb3f6e74806b88298664276",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 8,
-        "bytes": 801158,
-        "current_primary_excluded": 3,
-        "current_primary_retained": 8,
+        "bytes": 891345,
+        "current_primary_excluded": 10,
+        "current_primary_retained": 1,
         "files": 28,
         "formal_source_files": 8,
         "unindexed_nonformal": 16
@@ -44,18 +44,18 @@
       "files_manifest": "filtering/repository-review/files/Verified-zkEVM__evm-asm/RRU-99e7587f5c92.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 3,
+        "root_count": 2,
         "value": "./@subtrees/all"
       },
-      "snapshot_sha256": "57a38e10779ba0b9b1e6cb9637ff5efca896719b83664cce011607a19f302c98",
+      "snapshot_sha256": "28256635fff5a66861e5ab7f2e25081981f24fa4d1144e754c47c6e0b52ac855",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 122,
-        "bytes": 2179595,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 122,
-        "files": 122,
-        "formal_source_files": 122,
+        "baseline_primary_retained": 9,
+        "bytes": 127189,
+        "current_primary_excluded": 5,
+        "current_primary_retained": 4,
+        "files": 9,
+        "formal_source_files": 9,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-99e7587f5c92"
@@ -64,18 +64,18 @@
       "files_manifest": "filtering/repository-review/files/Verified-zkEVM__evm-asm/RRU-17081ae7e2d2.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 5,
+        "root_count": 6,
         "value": "EvmAsm/@files/all"
       },
-      "snapshot_sha256": "d0d2a439cc89b62e31f3d4e8479222dd3b4bf9afd8163d9112a5633e9bfa991d",
+      "snapshot_sha256": "41d3d052547af6b7d9a2c5c137fa4b27de9c4777154ddb4ef3bab4ba71b33ef2",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 5,
-        "bytes": 97115,
+        "baseline_primary_retained": 6,
+        "bytes": 104431,
         "current_primary_excluded": 0,
-        "current_primary_retained": 5,
-        "files": 5,
-        "formal_source_files": 5,
+        "current_primary_retained": 6,
+        "files": 6,
+        "formal_source_files": 6,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-17081ae7e2d2"
@@ -87,15 +87,15 @@
         "root_count": 1,
         "value": "EvmAsm/@subtrees/0"
       },
-      "snapshot_sha256": "105260287a5f22056fc0cbb7be92b00754511d44451477711e15f6a4116f35bc",
+      "snapshot_sha256": "4c18523fed8bd04695597816d3a6a688693cd1f503653f396ed921cd09bdc616",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1010,
-        "bytes": 23408108,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 1010,
-        "files": 1010,
-        "formal_source_files": 1010,
+        "baseline_primary_retained": 1151,
+        "bytes": 32243917,
+        "current_primary_excluded": 6,
+        "current_primary_retained": 1145,
+        "files": 1151,
+        "formal_source_files": 1151,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-476fe0d0e439"
@@ -107,15 +107,15 @@
         "root_count": 1,
         "value": "EvmAsm/@subtrees/1"
       },
-      "snapshot_sha256": "e2b9f716f826c20741609390d673d774c048cb4e9decc15d7fd00ff2c9c0835d",
+      "snapshot_sha256": "82f543a25888807302e1c89aa426f1555f2fdb10fe62d56837b3d35bbc558d9d",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 63,
-        "bytes": 917540,
+        "baseline_primary_retained": 67,
+        "bytes": 1116785,
         "current_primary_excluded": 0,
-        "current_primary_retained": 63,
-        "files": 63,
-        "formal_source_files": 63,
+        "current_primary_retained": 67,
+        "files": 67,
+        "formal_source_files": 67,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-3ead4d6dd2cc"
@@ -127,11 +127,11 @@
         "root_count": 1,
         "value": "EvmAsm/@subtrees/5"
       },
-      "snapshot_sha256": "875ac42c87d468a7981b325cf2e5ed3eceb45aff73ef6bfb3c7da0ea99920335",
+      "snapshot_sha256": "a76e3b7ab259de1bea6a28caee69e22e5790d0b3025548a570f6c564a1420459",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 13,
-        "bytes": 103922,
+        "bytes": 108284,
         "current_primary_excluded": 0,
         "current_primary_retained": 13,
         "files": 13,
@@ -147,15 +147,15 @@
         "root_count": 1,
         "value": "EvmAsm/@subtrees/7"
       },
-      "snapshot_sha256": "7a10946a004dc3de21447fe4edbde721911f9680cbd93e77075a39bd4fdbc1be",
+      "snapshot_sha256": "e4be943fa8d6108930e46e0540aa9e47fd9a488dcd8404c2e7ce8a4d00331964",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 98,
-        "bytes": 632778,
-        "current_primary_excluded": 1,
-        "current_primary_retained": 98,
-        "files": 99,
-        "formal_source_files": 99,
+        "baseline_primary_retained": 106,
+        "bytes": 757283,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 106,
+        "files": 106,
+        "formal_source_files": 106,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-7ad98075b403"
@@ -167,15 +167,15 @@
         "root_count": 1,
         "value": "EvmAsm/@subtrees/9"
       },
-      "snapshot_sha256": "8969341055abb386de697d018ecd9ccbf9251d13d7b20bd2ba8ff391d134bb46",
+      "snapshot_sha256": "557fb1d2e7a289260373bd74725586723ebc605d4d9dc30b0ff2a07406fa7040",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 5,
-        "bytes": 308387,
+        "baseline_primary_retained": 6,
+        "bytes": 808575,
         "current_primary_excluded": 0,
-        "current_primary_retained": 5,
-        "files": 5,
-        "formal_source_files": 5,
+        "current_primary_retained": 6,
+        "files": 6,
+        "formal_source_files": 6,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-e1cb19e8d085"
@@ -187,18 +187,38 @@
         "root_count": 2,
         "value": "EvmAsm/@subtrees/a"
       },
-      "snapshot_sha256": "f9589757d9a9c96d917a4bdbf9a43df271f8033497aed911fe4cf4371810daa1",
+      "snapshot_sha256": "ce6f53c4b9d0ef361b8c16e5630923ba38ca625ee10d354984e603adb97835c1",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1719,
-        "bytes": 28753828,
+        "baseline_primary_retained": 1734,
+        "bytes": 28605399,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1719,
-        "files": 1719,
-        "formal_source_files": 1719,
+        "current_primary_retained": 1734,
+        "files": 1734,
+        "formal_source_files": 1734,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-7c1a4082e6a3"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__evm-asm/RRU-3bf319537e5e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "EvmAsm/@subtrees/b"
+      },
+      "snapshot_sha256": "1a6b973dcd221c2d8a550347c30343f560d388af67db8b9ab41e7677402d6d6d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 14,
+        "bytes": 146264,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 14,
+        "files": 14,
+        "formal_source_files": 14,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3bf319537e5e"
     },
     {
       "files_manifest": "filtering/repository-review/files/Verified-zkEVM__evm-asm/RRU-ec4027dbd164.jsonl",
@@ -207,15 +227,15 @@
         "root_count": 1,
         "value": "EvmAsm/@subtrees/e"
       },
-      "snapshot_sha256": "5158fbf90df19f9ab87d4834fe9154d2cd19e040f5747ca6a5ba660d21fc518e",
+      "snapshot_sha256": "b6f5f9a4beb1bc8e709d9d01725afe268d958b3da73635e56451573d40bbd46c",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 4,
-        "bytes": 43298,
+        "baseline_primary_retained": 6,
+        "bytes": 55903,
         "current_primary_excluded": 0,
-        "current_primary_retained": 4,
-        "files": 4,
-        "formal_source_files": 4,
+        "current_primary_retained": 6,
+        "files": 6,
+        "formal_source_files": 6,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-ec4027dbd164"
