@@ -4,17 +4,17 @@
   "proof_assistant": "isabelle",
   "repository": "isabelle-prover__mirror-isabelle",
   "schema_version": 1,
-  "source_revision": "d42c517e6847166be2ddbfcfa635e4ecec82f5df",
-  "source_snapshot_sha256": "37aaac18b0e5c18ae175b12a8ef70ca61ed56be7dfaf2a0d0c2799ab8d23dcc9",
+  "source_revision": "26a608f6514f8ede62b27ed6a6c3e5afb52882c0",
+  "source_snapshot_sha256": "1b32c813c65cde571b6386a9f92738af8262bfc0fcef5c158f069487140aea9f",
   "sync_group": "cross-prover",
   "totals": {
     "auxiliary_only": 2,
-    "baseline_primary_retained": 1997,
-    "bytes": 45654952,
+    "baseline_primary_retained": 2005,
+    "bytes": 46467069,
     "current_primary_excluded": 0,
-    "current_primary_retained": 1997,
-    "files": 2007,
-    "formal_source_files": 1997,
+    "current_primary_retained": 2005,
+    "files": 2015,
+    "formal_source_files": 2005,
     "unindexed_nonformal": 8
   },
   "transport": "git",
@@ -27,11 +27,11 @@
         "root_count": 10,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "96cc008e3bdec73a58cc88d65c3a44adce46654b409d25ebccb4f0d4a3433a05",
+      "snapshot_sha256": "e7f8bc602dadff2eb3ff5bfe9d754a6378cc2b14620a2d3f1d83632e50f8764c",
       "stats": {
         "auxiliary_only": 2,
         "baseline_primary_retained": 0,
-        "bytes": 855165,
+        "bytes": 858662,
         "current_primary_excluded": 0,
         "current_primary_retained": 0,
         "files": 10,
@@ -41,24 +41,184 @@
       "unit_id": "RRU-dbfdcd0d69a6"
     },
     {
-      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-ceb3f596f9cd.jsonl",
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-abb7766f4901.jsonl",
       "scope": {
         "kind": "subtree-bucket",
         "root_count": 1,
-        "value": "./@subtrees/all"
+        "value": "src/@subtrees/0"
       },
-      "snapshot_sha256": "c58cf4858b7c343d47667d08b4aa398582911912568705ed039701b4dae40055",
+      "snapshot_sha256": "fe13d800623d20cb6f3ac52c90a85d55d829da0d8c4b8e4c88d8c7b1f4b0542d",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1997,
-        "bytes": 44799787,
+        "baseline_primary_retained": 9,
+        "bytes": 60551,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1997,
-        "files": 1997,
-        "formal_source_files": 1997,
+        "current_primary_retained": 9,
+        "files": 9,
+        "formal_source_files": 9,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-ceb3f596f9cd"
+      "unit_id": "RRU-abb7766f4901"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-7d7e14273147.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "src/@subtrees/1"
+      },
+      "snapshot_sha256": "f3fad14ec258baabbaa77eba5fe1b4420f24fe2a51daec47e0804a8acf568f71",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 14,
+        "bytes": 126262,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 14,
+        "files": 14,
+        "formal_source_files": 14,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7d7e14273147"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-717fc22fd66f.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "src/@subtrees/2"
+      },
+      "snapshot_sha256": "66af8d7d720548cd1f3d2e9c691f86b603b75d23546aae10e2b4bef568eb57f7",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 14,
+        "bytes": 88493,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 14,
+        "files": 14,
+        "formal_source_files": 14,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-717fc22fd66f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-940c28e45210.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "src/@subtrees/3"
+      },
+      "snapshot_sha256": "ca7d65c7609ba8b4c3bf904a250c0c6515c75ec109808270c4b7b7cead8efaca",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 16,
+        "bytes": 153157,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 16,
+        "files": 16,
+        "formal_source_files": 16,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-940c28e45210"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-2d5e9383e50d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "src/@subtrees/7"
+      },
+      "snapshot_sha256": "e7ccb9c848a0c1fa15e5b31bbc6b5d62eb323e95e91f8b7255ec3c654761b4e8",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 17,
+        "bytes": 84440,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 17,
+        "files": 17,
+        "formal_source_files": 17,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-2d5e9383e50d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-405690bf9f6a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "src/@subtrees/9"
+      },
+      "snapshot_sha256": "f98e97cfab52809359545bcd669392c6e71f70c15af9fee31722e739471c9327",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 20,
+        "bytes": 166231,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 20,
+        "files": 20,
+        "formal_source_files": 20,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-405690bf9f6a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-ba7668b6f959.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "src/@subtrees/a"
+      },
+      "snapshot_sha256": "0448b27232b31842c62e77d607dadc37db13cdbe5b8d1dd725f3c24eb828a2df",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 146,
+        "bytes": 2590624,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 146,
+        "files": 146,
+        "formal_source_files": 146,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ba7668b6f959"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-f9e25e4de0c9.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "src/@subtrees/b"
+      },
+      "snapshot_sha256": "353f9ca8617489eaf88b0844539d9f4fea5bae77a5cbdc0e522cad8a3bf49432",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 140,
+        "bytes": 2277685,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 140,
+        "files": 140,
+        "formal_source_files": 140,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f9e25e4de0c9"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/isabelle-prover__mirror-isabelle/RRU-9c6b316433c1.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "src/@subtrees/c"
+      },
+      "snapshot_sha256": "44b1102097cf8a5f8d05de24af1dd4571229472e9725d977e47f919e50233e34",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1629,
+        "bytes": 40060964,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1629,
+        "files": 1629,
+        "formal_source_files": 1629,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9c6b316433c1"
     }
   ]
 }
