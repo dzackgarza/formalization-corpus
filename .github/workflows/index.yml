@@ -1,7 +1,8 @@
-# Rebuild the search-host shards whose committed catalogue or filter decisions changed.
-# Each source is hydrated at its catalogued revision, indexed, installed on the host
-# with its provenance record, and released. A run that reaches its deadline stops
-# between sources; the next run resumes from the recorded provenance.
+# Follow every Git source to its upstream HEAD, then rebuild the search-host shards whose
+# committed catalogue or filter decisions changed. A moved source gets a new filtering
+# record, committed to main, before it is indexed. Each source is hydrated, indexed,
+# installed on the host with its provenance record, and released. A run that reaches its
+# deadline stops between sources; the next run resumes from the recorded provenance.
 name: index
 on:
   schedule:
@@ -12,7 +13,7 @@ on:
         description: minutes after which the refresh starts no new source
         default: "300"
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: index
 jobs:
@@ -22,6 +23,8 @@ jobs:
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
@@ -33,6 +36,18 @@ jobs:
           cache: false
       - name: Install the Zoekt indexer
         run: GOBIN="$PWD/bin" go install github.com/sourcegraph/zoekt/cmd/zoekt-index@153817f643cde8b229ee388c1dddbcf07f4798af
+      - name: Install the tree-sitter CLI
+        run: |
+          mkdir -p bin
+          curl -fsSL https://github.com/tree-sitter/tree-sitter/releases/download/v0.26.9/tree-sitter-linux-x64.gz | gunzip > bin/tree-sitter
+          chmod +x bin/tree-sitter
+          echo "$PWD/bin" >> "$GITHUB_PATH"
+      - name: Build the Lean grammar
+        run: |
+          git clone -q https://github.com/Julian/tree-sitter-lean tools/Julian__tree-sitter-lean
+          git -C tools/Julian__tree-sitter-lean checkout -q 259a2daf7a699cc047221f1e043e4d045fcd6be2
+          mkdir -p .ast-grep
+          cd tools/Julian__tree-sitter-lean && tree-sitter build --output ../../.ast-grep/lean.so
       - name: Configure ssh to the search host
         env:
           SSH_KEY: ${{ secrets.SEARCH_HOST_SSH_KEY }}
@@ -42,5 +57,17 @@ jobs:
           printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
-      - name: Refresh the stale sources
-        run: python scripts/source-cache.py refresh --stop-after "${{ inputs.stop-after || '300' }}"
+      - name: Set the commit identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Track upstream and refresh the stale sources
+        run: python scripts/source-cache.py refresh --commit --stop-after "${{ inputs.stop-after || '300' }}"
+      - name: Push the tracked filtering record
+        if: always()
+        run: |
+          for attempt in 1 2 3; do
+            git pull -q --rebase --autostash origin main && git push -q origin HEAD:main && exit 0
+            sleep 10
+          done
+          exit 1

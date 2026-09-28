@@ -452,17 +452,25 @@ A reviewer may explicitly conclude that a unit has no safe exclusions.  That is
 a substantive disposition: record the review and retain the unmatched material
 rather than inventing a weak blacklist merely to reduce the index.
 
-### FILTER-023 — Repository reviews are snapshot-pinned and expire on relevant change
+### FILTER-023 — Sources follow upstream; changed exclusions lapse per file
 
-Every completed repository-review record is pinned to the SHA-256 snapshot of
-its work unit.  A changed, added, removed, or renamed file inside that unit makes
-the review stale.  Stale exclusions must not silently carry forward to a new
-upstream revision; indexing must stop until the changed unit is re-audited and a
-new review revision explicitly supersedes the old one.
+The corpus follows each Git source's upstream `HEAD`. The nightly `index` workflow
+moves every source whose upstream moved, re-derives its filtering record, commits
+that record to `main`, and reindexes the source. No human approves an upstream
+revision.
 
-For very large sources this invalidation is intentionally subtree-local.  A
-change in one review unit does not invalidate an unchanged unit elsewhere in the
-same repository.
+Every completed repository-review record is pinned to the SHA-256 snapshot of its
+work unit. A changed, added, removed, or renamed file inside that unit makes the
+review stale, and the unit enters the re-review queue (`repository-review.py
+status`). While the unit is stale, an exclusion rule of its latest review stays
+active only if every file that the rule matched still has the same path and
+SHA-256 and is still baseline primary-retained. A rule with any changed, moved, or
+removed file lapses as a whole, and its files become searchable. An exclusion can
+therefore hide only the exact bytes that a reviewer inspected; new content is
+searchable until a new review excludes it.
+
+This invalidation is subtree-local. A change in one review unit does not make an
+unchanged unit elsewhere in the same repository stale.
 
 ### FILTER-024 — A blacklist must materialize to exact files and hashes
 
@@ -516,11 +524,12 @@ just publish-index  # verify remote published inventory; no local full-index upl
 just review-batch-dehydrate RRB-NNNN
 ```
 
-Hydration defaults to the revision already pinned by the campaign catalogue. Use
-`just source-hydrate-latest REPO` only for an intentional upstream refresh; before that
-cache can be discarded or indexed as a new snapshot, refresh the source-local catalogue
-with `python scripts/repository-review.py build --repository REPO` and re-audit any stale
-units. Dehydration refuses dirty Git checkouts, revision drift, uncatalogued sources, or
+Hydration defaults to the revision recorded in the campaign catalogue.
+`python scripts/source-cache.py refresh` moves a source to its upstream `HEAD`
+(FILTER-023) with this per-source sequence: `build-filter-state.py --repository
+REPO` for the content decisions, `repository-review.py build --repository REPO`
+for the catalogue, and `refresh-review-filter-state.py --repository REPO` for FD-018
+and FD-006. Dehydration refuses dirty Git checkouts, revision drift, uncatalogued sources, or
 sources with no persistent Zoekt shard on the search host. It deletes the disposable nested checkout rather
 than retaining fetched Git objects, so disk is actually reclaimed.
 

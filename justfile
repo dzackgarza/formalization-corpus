@@ -245,10 +245,14 @@ repository-review-status:
 repository-review-batch batch:
     python scripts/repository-review.py status --batch "{{batch}}"
 
-# Recompute the reversible per-file filtering decisions from clean source snapshots.
-# Fresh accepted repository-local blacklist rules materialize here as FD-018.
-filter-state: repository-review-validate
+# Recompute every per-file filtering decision from hydrated active sources:
+# content decisions, then review manifests, then FD-018 (with per-file lapse) and FD-006.
+filter-state:
     python scripts/build-filter-state.py
+    python scripts/repository-review.py build
+    python scripts/refresh-review-filter-state.py --all --allow-dirty
+    python scripts/repository-review.py validate
+    python scripts/validate-filter-state.py
 
 # Replay and validate the append-only filtering ledger against derived snapshots.
 filter-validate: repository-review-validate

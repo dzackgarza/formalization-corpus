@@ -131,7 +131,7 @@ class RemoteIndexResidencyTests(unittest.TestCase):
             ),
             mock.patch.object(refresh, "batch_repositories", return_value={"active", "retired"}),
         ):
-            self.assertEqual(refresh.selected_repositories([], "RRB-X"), {"active", "retired"})
+            self.assertEqual(refresh.selected_repositories([], "RRB-X", all_active=False), {"active", "retired"})
 
 
 if __name__ == "__main__":

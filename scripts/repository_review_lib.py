@@ -11,7 +11,7 @@ import subprocess
 from dataclasses import dataclass
 from typing import Any, Iterable
 
-from filtering_lib import CURRENT, FILTER_ROOT, ROOT, is_formal_file, iter_files, load_jsonl, sha256_file, source_revision, sources
+from filtering_lib import CURRENT, FILTER_ROOT, ROOT, is_formal_file, iter_files, load_jsonl, sha256_file
 
 REVIEW_ROOT = FILTER_ROOT / "repository-review"
 CATALOGUE_ROOT = REVIEW_ROOT / "catalogue"
@@ -393,21 +393,29 @@ def selector_paths(selector: dict[str, Any], paths: set[str]) -> set[str]:
     return set()
 
 
-def resolve_review_exclusions(*, require_fresh: bool = True) -> tuple[dict[tuple[str, str], dict[str, Any]], list[str]]:
+def resolve_review_exclusions() -> tuple[dict[tuple[str, str], dict[str, Any]], list[str]]:
+    """Map each primary-excluded (repository, path) to the review rule that excludes it.
+
+    A review is fresh when its unit snapshot equals the current one; its rules are
+    resolved against the current manifests.  Upstream changes make reviews stale, and a
+    stale review keeps only the rules whose files are all unchanged: see
+    `carried_review_exclusions`.  A fresh review of any status is authoritative for every
+    path in its unit.
+    """
     units = load_units(active_only=True)
     reviews = latest_reviews(units)
     exclusions: dict[tuple[str, str], dict[str, Any]] = {}
     errors: list[str] = []
+    fresh_paths: set[tuple[str, str]] = set()
     for unit_id_value, review in reviews.items():
         unit = units[unit_id_value]
-        if review.get("status") != "reviewed":
-            continue
         if review.get("unit_snapshot_sha256") != unit.get("snapshot_sha256"):
-            if require_fresh:
-                errors.append(f"{unit_id_value}: latest review is stale for current unit snapshot")
             continue
         records = load_unit_file_records(unit)
         by_path = {str(record["path"]): record for record in records}
+        fresh_paths.update((unit["repository"], path) for path in by_path)
+        if review.get("status") != "reviewed":
+            continue
         paths = set(by_path)
         matched_in_unit: set[str] = set()
         for rule in review.get("rules", []):
@@ -441,4 +449,71 @@ def resolve_review_exclusions(*, require_fresh: bool = True) -> tuple[dict[tuple
                     "file_sha256": record["sha256"],
                     "file_size_bytes": record["size_bytes"],
                 }
+    exclusions.update(carried_review_exclusions(units, fresh_paths))
     return exclusions, errors
+
+
+def carried_review_exclusions(
+    units: dict[str, dict[str, Any]], fresh_paths: set[tuple[str, str]]
+) -> dict[tuple[str, str], dict[str, Any]]:
+    """Keep the stale-review rules whose materialized files are all unchanged.
+
+    The FD-018 rows in `current.jsonl` record the path and SHA-256 of every file a rule
+    excluded when it was last materialized.  A rule stays active while each of those
+    files still exists with the same SHA-256 and is otherwise primary-retained, and it
+    then covers exactly those files: a new file under a prefix selector stays
+    searchable.  A rule with a changed or removed file lapses as a whole, so all its
+    files become searchable.  A rule also lapses when a later review of its unit
+    exists, or when a fresh review covers one of its files.  The unit stays `stale` in
+    `repository-review.py status` until someone reviews it again.
+    """
+    active = {str(unit["repository"]) for unit in units.values()}
+    rules: dict[tuple[str, str, str], list[dict[str, Any]]] = collections.defaultdict(list)
+    for row in load_jsonl(CURRENT):
+        if row.get("decision_id") != "FD-018" or row["repository"] not in active:
+            continue
+        evidence = row["evidence"]
+        rules[(str(row["repository"]), str(evidence["unit_id"]), str(evidence["rule_id"]))].append(row)
+
+    manifests: dict[str, dict[str, dict[str, Any]]] = {}
+
+    def repository_files(repository: str) -> dict[str, dict[str, Any]]:
+        if repository not in manifests:
+            manifests[repository] = {
+                str(record["path"]): record
+                for unit in units.values()
+                if unit["repository"] == repository
+                for record in load_unit_file_records(unit)
+            }
+        return manifests[repository]
+
+    out: dict[tuple[str, str], dict[str, Any]] = {}
+    for (repository, unit_id_value, _rule_id), rows in sorted(rules.items()):
+        if any((repository, str(row["file"])) in fresh_paths for row in rows):
+            continue
+        history = load_review_history(repository, unit_id_value)
+        if not history or history[-1].get("review_id") != rows[0]["evidence"]["review_id"]:
+            continue
+        files = repository_files(repository)
+        if not all(
+            str(row["file"]) in files
+            and files[str(row["file"])]["sha256"] == row["content_sha256"]
+            and files[str(row["file"])]["baseline_primary_status"] == "primary-retained"
+            for row in rows
+        ):
+            continue
+        for row in rows:
+            evidence = row["evidence"]
+            out[(repository, str(row["file"]))] = {
+                "review_id": evidence["review_id"],
+                "unit_id": evidence["unit_id"],
+                "rule_id": evidence["rule_id"],
+                "selector": evidence["selector"],
+                "rationale": evidence["rationale"],
+                "content_invariant": evidence["content_invariant"],
+                "evidence": evidence["review_evidence"],
+                "unit_snapshot_sha256": evidence["unit_snapshot_sha256"],
+                "file_sha256": row["content_sha256"],
+                "file_size_bytes": files[str(row["file"])]["size_bytes"],
+            }
+    return out

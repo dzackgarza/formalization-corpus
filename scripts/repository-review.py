@@ -5,8 +5,6 @@ import argparse
 import collections
 import json
 import pathlib
-import shutil
-import subprocess
 import sys
 from typing import Any
 
@@ -19,7 +17,6 @@ from repository_review_lib import (
     CATALOGUE_ROOT,
     FILES_ROOT,
     REVIEW_ID_RE,
-    REVIEWS_ROOT,
     RETIRED_SOURCES,
     RULE_ID_RE,
     SCHEMA_VERSION,
@@ -528,22 +525,13 @@ def validate() -> int:
             for review_number, review in enumerate(history):
                 errors.extend(validate_review_record(review, {**unit, "repository": repository}, review_number, previous))
                 previous = review
-            if history and history[-1].get("status") == "reviewed" and history[-1].get("unit_snapshot_sha256") != unit.get("snapshot_sha256"):
-                errors.append(f"{uid}: reviewed unit changed; append a new review revision before indexing")
         source_digest = material_snapshot_sha256(source_records_for_digest)
         if source_digest != catalogue.get("source_snapshot_sha256"):
             errors.append(f"{repository}: source snapshot digest disagrees with unit manifests")
         if len(seen_paths) != int(catalogue.get("totals", {}).get("files", -1)):
             errors.append(f"{repository}: unit coverage count disagrees with source totals")
 
-    # Reviews for vanished units must not be silently abandoned.
-    if REVIEWS_ROOT.exists():
-        for path in REVIEWS_ROOT.glob("*/*.jsonl"):
-            uid = path.stem
-            if uid not in units:
-                errors.append(f"orphan review history for vanished unit {uid}: {relative(path)}")
-
-    exclusions, exclusion_errors = resolve_review_exclusions(require_fresh=True)
+    exclusions, exclusion_errors = resolve_review_exclusions()
     errors.extend(exclusion_errors)
 
     batches = [json.loads(line) for line in BATCHES.read_text().splitlines() if line.strip()] if BATCHES.exists() else []
@@ -564,9 +552,14 @@ def validate() -> int:
         for uid, review in reviews.items()
     )
     deferred = sum(review.get("status") == "deferred" for review in reviews.values())
+    stale = sum(
+        review.get("unit_snapshot_sha256") != units[uid].get("snapshot_sha256")
+        for uid, review in reviews.items()
+    )
     print(
         f"repository review catalogue ok: {len(index)} sources, {len(units)} units, "
-        f"{reviewed} reviewed, {deferred} deferred, {len(exclusions)} explicitly excluded files"
+        f"{reviewed} reviewed, {deferred} deferred, {stale} stale, "
+        f"{len(exclusions)} explicitly excluded files"
     )
     return 0
 

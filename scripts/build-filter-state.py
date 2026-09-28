@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import argparse
-import collections
 import datetime as dt
 import hashlib
 import json
@@ -12,7 +11,6 @@ from typing import Any
 
 from filtering_lib import (
     CURRENT,
-    DUPLICATES,
     FILTER_ROOT,
     ROOT,
     SNAPSHOT,
@@ -31,7 +29,6 @@ from filtering_lib import (
     sources,
     verify_lean_import_only,
 )
-from repository_review_lib import resolve_review_exclusions
 
 
 def utc_now() -> str:
@@ -40,6 +37,11 @@ def utc_now() -> str:
 
 def corpus_commit() -> str:
     return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+
+
+# Decisions that refresh-review-filter-state.py derives from the committed review
+# manifests: FD-018 from review rules, FD-006 from content hashes across all sources.
+REVIEW_DERIVED = {"FD-006", "FD-018"}
 
 
 def decision_key(row: dict[str, Any]) -> tuple[str, str, str]:
@@ -89,7 +91,14 @@ def stable_payload(row: dict[str, Any]) -> dict[str, Any]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description=(
+            "Recompute the content-derived file decisions of hydrated sources. "
+            "FD-006 and FD-018 belong to refresh-review-filter-state.py, which must run "
+            "after `repository-review.py build` for the same sources."
+        )
+    )
+    parser.add_argument("--repository", action="append", default=[], help="default: every active source")
     parser.add_argument("--allow-dirty", action="store_true")
     args = parser.parse_args()
 
@@ -99,31 +108,33 @@ def main() -> int:
     if status.strip() and not args.allow_dirty:
         raise SystemExit("filter-state generation requires a clean worktree; commit the classifier first")
 
+    active = {source.repository: source for source in sources()}
+    selected = set(args.repository) or set(active)
+    unknown = sorted(selected - set(active))
+    if unknown:
+        raise SystemExit(f"unknown active repositories: {unknown}")
+    missing = sorted(repository for repository in selected if not active[repository].root.exists())
+    if missing:
+        raise SystemExit(f"hydrate these sources first: {missing}")
+
     catalog = load_catalog()
-    review_exclusions, review_errors = resolve_review_exclusions(require_fresh=True)
-    if review_errors:
-        raise SystemExit(
-            "repository review state is invalid; run `just repository-review-validate`:\n  "
-            + "\n  ".join(review_errors[:50])
-        )
     now = utc_now()
     commit = corpus_commit()
-    current: list[dict[str, Any]] = []
-    hashes: dict[str, list[dict[str, Any]]] = collections.defaultdict(list)
+    old_rows = load_jsonl(CURRENT)
+    current: list[dict[str, Any]] = [
+        row
+        for row in old_rows
+        if row["repository"] not in selected or row["decision_id"] in REVIEW_DERIVED
+    ]
     import_candidates: list[tuple[Any, pathlib.Path, str, bytes, str]] = []
     source_revisions: dict[str, str | None] = {}
-    primary_counts: collections.Counter[str] = collections.Counter()
-    scanned_counts: collections.Counter[str] = collections.Counter()
 
-    # First pass: content-independent decisions plus content hashes.
-    for source in sources():
+    for repository in sorted(selected):
+        source = active[repository]
         revision = source_revision(source)
         source_revisions[source.repository] = revision
-        if not source.root.exists():
-            continue
         for path in iter_files(source):
             rel = path.relative_to(source.root).as_posix()
-            scanned_counts[source.repository] += 1
             try:
                 size = path.stat().st_size
             except OSError:
@@ -226,48 +237,6 @@ def main() -> int:
                 if lean_import_only_candidate(raw):
                     import_candidates.append((source, path, rel, raw, digest))
 
-            review_exclusion = review_exclusions.get((source.repository, rel))
-            if review_exclusion is not None:
-                if digest != review_exclusion["file_sha256"]:
-                    raise SystemExit(
-                        f"repository review hash drift for {source.repository}/{rel}; "
-                        "rebuild and re-audit the review catalogue"
-                    )
-                current.append(
-                    decision_record(
-                        catalog=catalog, decision_id="FD-018", repository=source.repository,
-                        file=rel, proof_assistant=source.proof_assistant,
-                        source_revision_value=revision, content_sha256=digest,
-                        evidence={
-                            "review_id": review_exclusion["review_id"],
-                            "unit_id": review_exclusion["unit_id"],
-                            "rule_id": review_exclusion["rule_id"],
-                            "selector": review_exclusion["selector"],
-                            "unit_snapshot_sha256": review_exclusion["unit_snapshot_sha256"],
-                            "size_bytes": review_exclusion["file_size_bytes"],
-                            "rationale": review_exclusion["rationale"],
-                            "content_invariant": review_exclusion["content_invariant"],
-                            "review_evidence": review_exclusion["evidence"],
-                        },
-                        observed_at=now, commit=commit,
-                    )
-                )
-                continue
-
-            # Candidate for exact-content result dedup.  Import-only files are
-            # removed after parser verification below; harmless inclusion here
-            # is corrected before duplicate groups are finalized.
-            hashes[digest].append(
-                {
-                    "repository": source.repository,
-                    "file": rel,
-                    "proof_assistant": source.proof_assistant,
-                    "source_revision": revision,
-                    "size_bytes": size,
-                }
-            )
-            primary_counts[source.repository] += 1
-
     accepted_imports, parser_meta = verify_lean_import_only(
         [path for _source, path, _rel, _raw, _digest in import_candidates]
     )
@@ -287,43 +256,7 @@ def main() -> int:
             )
         )
 
-    # Exact duplicates among documents that remain primary-eligible.  All paths
-    # stay in the physical index; FD-006 controls result-layer canonicalization.
-    # Parser-verified import-only modules also remain primary-eligible under
-    # FD-016 until their auxiliary representation is actually searchable.
-    duplicate_groups: list[dict[str, Any]] = []
-    for digest, members in sorted(hashes.items()):
-        eligible = members
-        if len(eligible) < 2:
-            continue
-        eligible.sort(key=lambda m: (m["repository"], m["file"]))
-        group = {
-            "sha256": digest,
-            "size_bytes": eligible[0]["size_bytes"],
-            "canonical": {"repository": eligible[0]["repository"], "file": eligible[0]["file"]},
-            "occurrences": [
-                {"repository": m["repository"], "file": m["file"], "proof_assistant": m["proof_assistant"]}
-                for m in eligible
-            ],
-        }
-        duplicate_groups.append(group)
-        for number, member in enumerate(eligible):
-            current.append(
-                decision_record(
-                    catalog=catalog, decision_id="FD-006", repository=member["repository"],
-                    file=member["file"], proof_assistant=member["proof_assistant"],
-                    source_revision_value=member["source_revision"], content_sha256=digest,
-                    evidence={
-                        "sha256": digest,
-                        "group_size": len(eligible),
-                        "duplicate_role": "canonical" if number == 0 else "alias",
-                        "canonical": group["canonical"],
-                    }, observed_at=now, commit=commit,
-                )
-            )
-
     current.sort(key=decision_key)
-    old_rows = load_jsonl(CURRENT)
     old = {decision_key(row): row for row in old_rows}
     new = {decision_key(row): row for row in current}
     events: list[dict[str, Any]] = []
@@ -369,48 +302,14 @@ def main() -> int:
     append_filter_ledger(events)
     from filtering_lib import dump_jsonl
     dump_jsonl(CURRENT, current)
-    DUPLICATES.write_text(
-        json.dumps(
-            {
-                "schema_version": 1,
-                "generated_at": now,
-                "corpus_git_commit": commit,
-                "hash_algorithm": "sha256",
-                "groups": duplicate_groups,
-            },
-            indent=2,
-            sort_keys=True,
-        )
-        + "\n"
-    )
-
-    repositories = [source.repository for source in sources() if source.root.exists()]
-    empty_primary = sorted(repo for repo in repositories if primary_counts[repo] <= 0)
-    snapshot = {
-        "schema_version": 1,
-        "generated_at": now,
-        "corpus_git_commit": commit,
-        "source_revisions": source_revisions,
-        "parser_verification": parser_meta,
-        "decision_counts": dict(collections.Counter(row["decision_id"] for row in current)),
-        "ledger_events_appended": len(events),
-        "duplicate_groups": len(duplicate_groups),
-        "duplicate_occurrences": sum(len(group["occurrences"]) for group in duplicate_groups),
-        "primary_eligible_counts_by_source": dict(sorted(primary_counts.items())),
-        "sources_with_no_primary_documents": empty_primary,
-    }
+    snapshot = json.loads(SNAPSHOT.read_text())
+    snapshot["source_revisions"] = {**snapshot["source_revisions"], **source_revisions}
     SNAPSHOT.write_text(json.dumps(snapshot, indent=2, sort_keys=True) + "\n")
-
-    print(json.dumps(snapshot["decision_counts"], sort_keys=True))
     print(
-        f"filter state: {len(current)} current decisions, {len(events)} ledger events, "
-        f"{len(duplicate_groups)} duplicate groups"
+        f"content filter state for {len(selected)} sources: {len(current)} current decisions, "
+        f"{len(events)} ledger events, parser verification {json.dumps(parser_meta, sort_keys=True)}; run repository-review.py build and "
+        "refresh-review-filter-state.py for the same sources next"
     )
-    if empty_primary:
-        print("ERROR: filtering would leave sources without primary documents:")
-        for repository in empty_primary:
-            print(f"  {repository}")
-        return 2
     return 0
 
 

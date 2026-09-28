@@ -142,12 +142,13 @@ class RepositoryReviewTests(unittest.TestCase):
                     review_lib.FILES_ROOT, review_lib.REVIEWS_ROOT, review_lib.CATALOGUE_INDEX,
                 ) = saved
 
-    def test_stale_review_never_resolves_an_exclusion(self) -> None:
+    def test_stale_review_rule_holds_only_while_its_files_are_unchanged(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = pathlib.Path(directory)
             saved = (
                 review_lib.ROOT, review_lib.REVIEW_ROOT, review_lib.CATALOGUE_ROOT,
                 review_lib.FILES_ROOT, review_lib.REVIEWS_ROOT, review_lib.CATALOGUE_INDEX,
+                review_lib.CURRENT,
             )
             review_lib.ROOT = root
             review_lib.REVIEW_ROOT = root / "filtering/repository-review"
@@ -155,6 +156,7 @@ class RepositoryReviewTests(unittest.TestCase):
             review_lib.FILES_ROOT = review_lib.REVIEW_ROOT / "files"
             review_lib.REVIEWS_ROOT = review_lib.REVIEW_ROOT / "reviews"
             review_lib.CATALOGUE_INDEX = review_lib.REVIEW_ROOT / "catalogue.jsonl"
+            review_lib.CURRENT = root / "filtering/current.jsonl"
             try:
                 repository = "owner__repo"
                 uid = review_lib.unit_id(repository, "repository", ".")
@@ -191,13 +193,36 @@ class RepositoryReviewTests(unittest.TestCase):
                         "evidence": ["old evidence"],
                     }],
                 }])
-                exclusions, errors = review_lib.resolve_review_exclusions(require_fresh=True)
+
+                def materialize(sha256: str) -> None:
+                    review_lib.dump_jsonl(review_lib.CURRENT, [{
+                        "repository": repository, "file": "A.lean", "decision_id": "FD-018",
+                        "content_sha256": sha256,
+                        "evidence": {
+                            "review_id": f"RRV-{short}-r1", "unit_id": uid, "rule_id": f"RRX-{short}-1",
+                            "selector": {"kind": "exact-path", "path": "A.lean"},
+                            "rationale": "old rationale", "content_invariant": "old invariant",
+                            "review_evidence": ["old evidence"],
+                            "unit_snapshot_sha256": "stale-snapshot".ljust(64, "0"),
+                            "size_bytes": 1,
+                        },
+                    }])
+
+                materialize("a" * 64)
+                exclusions, errors = review_lib.resolve_review_exclusions()
+                self.assertEqual(errors, [])
+                self.assertEqual(set(exclusions), {(repository, "A.lean")})
+                self.assertEqual(exclusions[(repository, "A.lean")]["rule_id"], f"RRX-{short}-1")
+
+                materialize("c" * 64)
+                exclusions, errors = review_lib.resolve_review_exclusions()
+                self.assertEqual(errors, [])
                 self.assertEqual(exclusions, {})
-                self.assertTrue(any("stale" in error for error in errors))
             finally:
                 (
                     review_lib.ROOT, review_lib.REVIEW_ROOT, review_lib.CATALOGUE_ROOT,
                     review_lib.FILES_ROOT, review_lib.REVIEWS_ROOT, review_lib.CATALOGUE_INDEX,
+                    review_lib.CURRENT,
                 ) = saved
 
     def test_source_retirement_requires_whole_repository_and_explicit_evidence(self) -> None:

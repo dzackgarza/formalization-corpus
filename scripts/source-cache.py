@@ -22,6 +22,7 @@ import subprocess
 import tempfile
 import time
 import uuid
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Iterable
 from functools import lru_cache
 
@@ -631,28 +632,98 @@ def seed_all(*, fresh: bool) -> None:
     )
 
 
-def refresh(*, stop_after: float | None) -> int:
-    """Rebuild only sources whose remote provenance differs from the committed inputs."""
+def upstream_head(source: Source) -> str:
+    result = run_git(["ls-remote", source.url, "HEAD"], check=False)
+    if result.returncode != 0 or not result.stdout.strip():
+        raise SystemExit(f"{source.repository}: `git ls-remote {source.url} HEAD` failed: {result.stderr.strip()}")
+    return result.stdout.split()[0]
+
+
+def upstream_moved() -> tuple[list[str], list[str]]:
+    """Git sources whose upstream HEAD differs from the catalogued revision, and unreachable ones."""
+    catalogue = catalogue_map()
+    tracked = [source for source in source_map().values() if source.transport != "web-dir"]
+
+    def probe(source: Source) -> tuple[str, str | None]:
+        try:
+            return source.repository, upstream_head(source)
+        except SystemExit as exc:
+            print(exc)
+            return source.repository, None
+
+    with ThreadPoolExecutor(max_workers=16) as pool:
+        heads = dict(pool.map(probe, tracked))
+    moved = sorted(
+        repository
+        for repository, head in heads.items()
+        if head is not None and head != catalogue.get(repository, {}).get("source_revision")
+    )
+    unreachable = sorted(repository for repository, head in heads.items() if head is None)
+    return moved, unreachable
+
+
+def run_script(*args: str) -> None:
+    subprocess.run(["python", str(ROOT / "scripts" / args[0]), *args[1:]], cwd=ROOT, check=True)
+
+
+def track_upstream(repository: str, *, commit: bool) -> None:
+    """Move one hydrated source to its upstream HEAD and re-derive its filtering record."""
+    hydrate(repository, latest=True)
+    run_script("build-filter-state.py", "--repository", repository, "--allow-dirty")
+    run_script("repository-review.py", "build", "--repository", repository)
+    run_script("refresh-review-filter-state.py", "--repository", repository, "--allow-dirty")
+    run_script("repository-review.py", "validate")
+    run_script("validate-filter-state.py")
+    for cached in (campaign_catalogue_map, catalogue_map, filter_rows_by_repository):
+        cached.cache_clear()
+    if not commit:
+        return
+    revision = catalogue_map()[repository]["source_revision"]
+    subprocess.run(["git", "add", "--all", "filtering"], cwd=ROOT, check=True)
+    subprocess.run(
+        ["git", "commit", "-q", "-m", f"chore(corpus): Track upstream {repository} at {revision[:12]}"],
+        cwd=ROOT,
+        check=True,
+    )
+
+
+def refresh(*, stop_after: float | None, commit: bool) -> int:
+    """Follow upstream HEADs, then rebuild every source whose shard differs from the committed inputs.
+
+    A tracking failure stops the run, because the filtering record is then half-written and
+    a later commit would carry it. An index failure leaves the committed record intact, so
+    the run continues with the next source.
+    """
     deadline = None if stop_after is None else time.monotonic() + stop_after * 60
+    moved, unreachable = upstream_moved()
     recorded = remote_provenance()
     for repository in sorted(retired_repository_names()):
         if remote_shard_names(repository):
             remove_repository_shards(repository)
-    stale = [
+    stale = {
         repository
-        for repository in sorted(source_map())
+        for repository in source_map()
         if not remote_shard_names(repository)
         or recorded.get(repository, {}).get("index_key") != index_key(repository)
-    ]
-    print(f"refresh: {len(stale)} of {len(source_map())} sources need a rebuild")
-    failed: list[str] = []
-    for number, repository in enumerate(stale, start=1):
+    }
+    work = sorted(stale | set(moved))
+    print(f"refresh: {len(moved)} upstream moved, {len(stale)} index stale, {len(work)} of {len(source_map())} to rebuild")
+    failed = list(unreachable)
+    for number, repository in enumerate(work, start=1):
         if deadline is not None and time.monotonic() >= deadline:
-            print(f"stopped after {stop_after:g} minutes: {len(stale) - number + 1} sources remain")
+            print(f"stopped after {stop_after:g} minutes: {len(work) - number + 1} sources remain")
             break
-        print(f"refresh {number}/{len(stale)} {repository}")
+        print(f"refresh {number}/{len(work)} {repository}")
+        if repository in moved:
+            try:
+                track_upstream(repository, commit=commit)
+            except (SystemExit, subprocess.CalledProcessError) as exc:
+                print(f"tracking failed at {repository}; stopping with the filtering record uncommitted: {exc}")
+                failed.append(repository)
+                break
         try:
-            hydrate(repository, latest=False)
+            if repository not in moved:
+                hydrate(repository, latest=False)
             reindex([repository], keep_views=False, validate_published=False)
             dehydrate(repository)
         except (SystemExit, subprocess.CalledProcessError) as exc:
@@ -662,7 +733,7 @@ def refresh(*, stop_after: float | None) -> int:
         if not failed:
             subprocess.run(["python", str(ROOT / "scripts" / "check-published.py")], cwd=ROOT, check=True)
     if failed:
-        print("refresh failures:\n  " + "\n  ".join(failed))
+        print("refresh failures (unreachable upstreams included):\n  " + "\n  ".join(failed))
         return 1
     return 0
 
@@ -678,7 +749,7 @@ def main() -> int:
             p.add_argument("--latest", action="store_true", help="refresh current upstream instead of the committed campaign revision")
         if command == "reindex":
             p.add_argument("--keep-views", action="store_true")
-    status_all = sub.add_parser("status-all")
+    sub.add_parser("status-all")
     sub.add_parser("dehydrate-all")
     sub.add_parser("gc")
     refresh_parser = sub.add_parser("refresh")
@@ -687,6 +758,11 @@ def main() -> int:
         type=float,
         metavar="MINUTES",
         help="start no new source after this many minutes; the next run resumes",
+    )
+    refresh_parser.add_argument(
+        "--commit",
+        action="store_true",
+        help="commit the filtering record of each upstream-moved source",
     )
     seed = sub.add_parser("seed")
     seed.add_argument("--all", action="store_true", required=True)
@@ -702,7 +778,7 @@ def main() -> int:
         gc_source_cache()
         return 0
     if args.command == "refresh":
-        return refresh(stop_after=args.stop_after)
+        return refresh(stop_after=args.stop_after, commit=args.commit)
     if args.command == "seed":
         seed_all(fresh=args.fresh)
         return 0
