@@ -20,7 +20,7 @@ subtrees and large sets of direct files are assigned to SHA-256 buckets.  This
 costs some extra work units but avoids order-sensitive chunk boundaries where one
 new path would invalidate unrelated later reviews.
 
-Human review history lives under `reviews/<repository>/<RRU-...>.jsonl`.  These
+Review history lives under `reviews/<repository>/<RRU-...>.jsonl`.  These
 files are append-only.  The latest line is the active disposition for that unit;
 a later line must explicitly supersede the previous review ID.
 
@@ -48,7 +48,9 @@ matched paths/hashes in the ordinary append-only filtering ledger.
 
 ## Review workflow
 
-For a work unit, generate a non-mutating template, edit it outside the review
+The nightly `index` workflow runs `scripts/review-units.py --repository R` on each
+source with a pending or lapsed unit; CONTRIBUTING.md FILTER-023 describes the
+agent review.  To review a unit by hand instead, generate a non-mutating template, edit it outside the review
 history, then append it through the validator:
 
 ```sh

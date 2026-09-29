@@ -140,6 +140,7 @@ class RemoteIndexResidencyTests(unittest.TestCase):
             mock.patch.object(source_cache, "catalogue_map", return_value=catalogue),
             mock.patch.object(source_cache, "upstream_head", side_effect=lambda s: heads[s.repository]),
             mock.patch.object(source_cache, "retired_repository_names", return_value=set()),
+            mock.patch.object(source_cache, "unreviewed_repositories", return_value=set()),
             mock.patch.object(source_cache, "remote_provenance", return_value={"kept": {"index_key": "k"}}),
             mock.patch.object(source_cache, "index_key", return_value="k"),
             mock.patch.object(source_cache, "remote_shard_names", side_effect=lambda name: [f"{name}_v16.00000.zoekt"]),

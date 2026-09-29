@@ -1,7 +1,8 @@
 # Follow every Git source to its upstream HEAD, then rebuild the search-host shards whose
 # committed catalogue or filter decisions changed. A moved source gets a new filtering
-# record, committed to main, before it is indexed. A source whose upstream has no HEAD
-# is lapsed and loses its shard. Each source is hydrated, indexed,
+# record, committed to main, before it is indexed. An opencode agent then reviews each
+# work unit that has no current review, and the review is committed to main. A source
+# whose upstream has no HEAD is lapsed and loses its shard. Each source is hydrated, indexed,
 # installed on the host with its provenance record, and released. A run that reaches its
 # deadline stops between sources; the next run resumes from the recorded provenance.
 name: index
@@ -43,6 +44,9 @@ jobs:
           curl -fsSL https://github.com/tree-sitter/tree-sitter/releases/download/v0.26.9/tree-sitter-linux-x64.gz | gunzip > bin/tree-sitter
           chmod +x bin/tree-sitter
           echo "$PWD/bin" >> "$GITHUB_PATH"
+      - name: Install the opencode review agent
+        run: |
+          curl -fsSL https://github.com/anomalyco/opencode/releases/download/v1.18.33/opencode-linux-x64.tar.gz | tar -xz -C bin opencode
       - name: Build the Lean grammar
         run: |
           git clone -q https://github.com/Julian/tree-sitter-lean tools/Julian__tree-sitter-lean
@@ -62,9 +66,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Track upstream and refresh the stale sources
+      - name: Track upstream, review, and refresh the stale sources
         run: python scripts/source-cache.py refresh --commit --stop-after "${{ inputs.stop-after || '300' }}"
-      - name: Push the tracked filtering record
+      - name: Push the tracked and reviewed filtering record
         if: always()
         run: |
           for attempt in 1 2 3; do

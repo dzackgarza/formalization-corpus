@@ -38,6 +38,7 @@ from repository_review_lib import (
     selector_paths,
     source_records,
     unit_files_path,
+    unit_state,
     utc_now,
 )
 
@@ -582,16 +583,7 @@ def status(batch_id: str | None = None) -> int:
     rows = []
     for uid in sorted(selected, key=lambda value: (units[value]["repository"], units[value]["scope"]["value"])):
         unit = units[uid]
-        review = reviews.get(uid)
-        state = "pending"
-        if review:
-            state = str(review.get("status"))
-            if (review.get("source_action") or {}).get("action") == "retire-source":
-                state = "retire-source"
-            if review.get("unit_snapshot_sha256") != unit.get("snapshot_sha256"):
-                state = "lapsed"
-        if unit.get("inventory_status") == "retired":
-            state = "retired-source"
+        state = unit_state(unit, reviews.get(uid))
         counts[state] += 1
         rows.append((state, uid, unit["repository"], unit["scope"]["value"] or ".", unit["stats"]["files"], unit["stats"]["baseline_primary_retained"]))
     print("state\tunit\trepository\tscope\tfiles\tprimary")

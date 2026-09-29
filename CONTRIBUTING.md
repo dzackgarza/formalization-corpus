@@ -472,6 +472,15 @@ removed file lapses as a whole, and its files become searchable. An exclusion ca
 therefore hide only the exact bytes that a reviewer inspected; new content is
 searchable until a new review excludes it.
 
+The nightly `index` workflow reviews every pending or lapsed unit of the sources
+it processes (`scripts/review-units.py`). A unit with no baseline primary-retained
+file that an earlier review did not see gets a mechanical review record. The unit's
+other files go to an opencode agent (`opencode/nemotron-3-ultra-free`) with only
+the read, glob, grep, and list tools. The agent returns the summary, the evidence,
+and new exclusion rules for those files. `repository-review.py append` validates the
+record. The rules of the lapsed review that are still active are restated on their
+exact files. The workflow commits each review to `main` before it indexes the source.
+
 This invalidation is subtree-local. A change in one review unit does not make the
 review of an unchanged unit elsewhere in the same repository lapse.
 

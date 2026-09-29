@@ -27,7 +27,7 @@ from typing import Any, Iterable
 from functools import lru_cache
 
 from filtering_lib import CURRENT, ROOT, Source, iter_files, load_jsonl, sha256_file, sources, upstream_head
-from repository_review_lib import BATCHES, load_catalogue_index, load_unit_file_records, load_units
+from repository_review_lib import BATCHES, load_catalogue_index, load_review_history, load_unit_file_records, load_units, unit_state
 
 PRIMARY_VIEW = ROOT / ".index-primary"
 METADATA_VIEW = ROOT / ".index-metadata"
@@ -689,8 +689,44 @@ def track_upstream(repository: str, *, commit: bool) -> None:
     )
 
 
+def unreviewed_repositories() -> set[str]:
+    """Sources with an active unit that has no review or whose review lapsed."""
+    return {
+        unit["repository"]
+        for unit in load_units(active_only=True).values()
+        if unit_state(unit, (load_review_history(unit["repository"], unit["unit_id"]) or [None])[-1]) in {"pending", "lapsed"}
+    }
+
+
+def review_units(repository: str, *, commit: bool, minutes: float | None) -> bool:
+    """Review the unreviewed units of one hydrated source and re-derive its filtering record.
+
+    Returns whether every unit now has a current review. The reviews that did validate are
+    committed even when another unit failed.
+    """
+    command = ["python", str(ROOT / "scripts" / "review-units.py"), "--repository", repository]
+    if minutes is not None:
+        command += ["--stop-after", f"{minutes:.1f}"]
+    reviewed = subprocess.run(command, cwd=ROOT).returncode == 0
+    changed = subprocess.run(
+        ["git", "status", "--porcelain", "filtering/repository-review/reviews"],
+        cwd=ROOT, check=True, capture_output=True, text=True,
+    ).stdout.strip()
+    if not changed:
+        return reviewed
+    run_script("refresh-review-filter-state.py", "--repository", repository, "--allow-dirty")
+    run_script("repository-review.py", "validate")
+    run_script("validate-filter-state.py")
+    for cached in (campaign_catalogue_map, catalogue_map, filter_rows_by_repository):
+        cached.cache_clear()
+    if commit:
+        subprocess.run(["git", "add", "--all", "filtering"], cwd=ROOT, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", f"chore(corpus): Review {repository} units"], cwd=ROOT, check=True)
+    return reviewed
+
+
 def refresh(*, stop_after: float | None, commit: bool) -> int:
-    """Follow upstream HEADs, then rebuild every source whose shard differs from the committed inputs.
+    """Follow upstream HEADs, review unreviewed units, then rebuild every source whose shard differs from the committed inputs.
 
     A tracking failure stops the run, because the filtering record is then half-written and
     a later commit would carry it. An index failure leaves the committed record intact, so
@@ -710,9 +746,11 @@ def refresh(*, stop_after: float | None, commit: bool) -> int:
         or recorded.get(repository, {}).get("index_key") != index_key(repository)
     }
     # An unanswered upstream cannot be hydrated; it is a failure and keeps its shard.
-    work = sorted((stale | set(moved)) - set(lapsed) - set(unanswered))
+    unreviewed = unreviewed_repositories()
+    work = sorted((stale | set(moved) | unreviewed) - set(lapsed) - set(unanswered))
     print(
         f"refresh: {len(moved)} upstream moved, {len(lapsed)} lapsed, {len(stale)} index stale, "
+        f"{len(unreviewed)} with unreviewed units, "
         f"{len(work)} of {len(source_map())} to rebuild"
     )
     if lapsed:
@@ -733,6 +771,11 @@ def refresh(*, stop_after: float | None, commit: bool) -> int:
         try:
             if repository not in moved:
                 hydrate(repository, latest=False)
+            if repository in moved or repository in unreviewed:
+                remaining = None if deadline is None else max(0.0, (deadline - time.monotonic()) / 60)
+                if not review_units(repository, commit=commit, minutes=remaining):
+                    print(f"review incomplete at {repository}; its unreviewed units stay in the index")
+                    failed.append(repository)
             reindex([repository], keep_views=False, validate_published=False)
             dehydrate(repository)
         except (SystemExit, subprocess.CalledProcessError) as exc:

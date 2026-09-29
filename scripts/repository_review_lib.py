@@ -377,6 +377,19 @@ def latest_reviews(units: dict[str, dict[str, Any]] | None = None) -> dict[str, 
     return out
 
 
+def unit_state(unit: dict[str, Any], review: dict[str, Any] | None) -> str:
+    """Review state of a unit: pending, lapsed, reviewed, deferred, retire-source, or retired-source."""
+    if unit.get("inventory_status") == "retired":
+        return "retired-source"
+    if review is None:
+        return "pending"
+    if review.get("unit_snapshot_sha256") != unit.get("snapshot_sha256"):
+        return "lapsed"
+    if (review.get("source_action") or {}).get("action") == "retire-source":
+        return "retire-source"
+    return str(review.get("status"))
+
+
 def selector_paths(selector: dict[str, Any], paths: set[str]) -> set[str]:
     kind = selector.get("kind")
     if kind == "exact-path":
