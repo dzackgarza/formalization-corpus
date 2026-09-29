@@ -14,10 +14,13 @@ import re
 import time
 from collections import Counter
 
+from filtering_lib import lapsed, sources
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "site" / "metrics.json"
 
 SOURCE_TABLE = ROOT / "sources.tsv"
+SOURCES = {source.repository: source for source in sources()}
 
 FORMAL_SUFFIXES: dict[str, tuple[str, ...]] = {
     "lean": (".lean",),
@@ -150,7 +153,7 @@ def main() -> None:
                 problems.append(f"{name}: no {kind} source-language files")
         elif audited_formal_counts.get(name, 0) <= 0:
             problems.append(f"{name}: source is ghosted and committed audit manifest has no formal source files")
-        if name not in indexed:
+        if name not in indexed and not lapsed(SOURCES[name]):
             problems.append(f"{name}: no index shard")
 
     if problems:

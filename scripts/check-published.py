@@ -10,18 +10,11 @@ import http.client
 import json
 import time
 import urllib.error
-from functools import lru_cache
 
-from filtering_lib import sources, upstream_head
+from filtering_lib import lapsed, sources
 from published_index import published_sources
 
 SOURCES = {source.repository: source for source in sources()}
-
-
-@lru_cache(maxsize=None)
-def lapsed(repository: str) -> bool:
-    source = SOURCES[repository]
-    return source.transport != "web-dir" and upstream_head(source) is None
 
 
 def main() -> None:
@@ -45,7 +38,7 @@ def main() -> None:
                 time.sleep(1)
                 continue
             break
-        missing = sorted(repository for repository in expected - actual if not lapsed(repository))
+        missing = sorted(repository for repository in expected - actual if not lapsed(SOURCES[repository]))
         if not missing and actual <= expected:
             print(f"published index matches sources.tsv: {len(actual)} sources, {len(expected - actual)} lapsed")
             return

@@ -112,6 +112,11 @@ def upstream_head(source: Source) -> str | None:
     raise SystemExit(f"{source.repository}: `git ls-remote {source.url} HEAD` failed: {result.stderr.strip()}")
 
 
+def lapsed(source: Source) -> bool:
+    """Whether the source is a Git source with no upstream HEAD, and so has no shard."""
+    return source.transport != "web-dir" and upstream_head(source) is None
+
+
 def is_formal_file(kind: str, path: pathlib.Path) -> bool:
     return any(path.name.endswith(suffix) for suffix in FORMAL_SUFFIXES[kind])
 
