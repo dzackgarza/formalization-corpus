@@ -336,7 +336,7 @@ being hidden.
 
 The review is pinned to the unit's material snapshot.  If any file inside that
 unit changes, appears, disappears, or moves, the review lapses.  A lapsed review is
-the same as no review; it is not pending work.  A rule of the lapsed review stays
+unreviewed and needs a new review.  A rule of the lapsed review stays
 active only while every file it matched keeps its path and SHA-256; a rule with any
 changed file lapses, and its files become searchable (CONTRIBUTING.md FILTER-023).
 For a partitioned large repository, unchanged sibling units remain valid.  This is

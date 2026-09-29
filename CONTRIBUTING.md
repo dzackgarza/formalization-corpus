@@ -464,7 +464,7 @@ the index when its upstream returns. A moved repository is followed by changing 
 
 Every completed repository-review record is pinned to the SHA-256 snapshot of its
 work unit. A changed, added, removed, or renamed file inside that unit makes the
-review lapse. A lapsed review is the same as no review: it is not pending work
+review lapse. A lapsed unit is unreviewed and needs a new review
 (`repository-review.py status` shows `lapsed`). An exclusion rule of a lapsed review stays
 active only if every file that the rule matched still has the same path and
 SHA-256 and is still baseline primary-retained. A rule with any changed, moved, or
