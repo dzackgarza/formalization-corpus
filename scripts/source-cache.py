@@ -26,7 +26,7 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Iterable
 from functools import lru_cache
 
-from filtering_lib import CURRENT, ROOT, Source, iter_files, load_jsonl, sha256_file, sources
+from filtering_lib import CURRENT, ROOT, Source, iter_files, load_jsonl, sha256_file, sources, upstream_head
 from repository_review_lib import BATCHES, load_catalogue_index, load_unit_file_records, load_units
 
 PRIMARY_VIEW = ROOT / ".index-primary"
@@ -509,7 +509,7 @@ else:
 def remove_repository_shards(repository: str) -> None:
     names = remote_shard_names(repository)
     if not names:
-        print(f"retired {repository}: remote shard already absent")
+        print(f"{repository}: remote shard already absent")
         return
     remote_command(
         [
@@ -523,7 +523,7 @@ def remove_repository_shards(repository: str) -> None:
     remaining = remote_shard_names(repository)
     if remaining:
         raise SystemExit(f"{repository}: remote shard deletion incomplete: {remaining}")
-    print(f"retired {repository}: removed {len(names)} remote shard(s)")
+    print(f"{repository}: removed {len(names)} remote shard(s)")
 
 
 def status(repositories: Iterable[str] | None = None) -> None:
@@ -632,34 +632,36 @@ def seed_all(*, fresh: bool) -> None:
     )
 
 
-def upstream_head(source: Source) -> str:
-    result = run_git(["ls-remote", source.url, "HEAD"], check=False)
-    if result.returncode != 0 or not result.stdout.strip():
-        raise SystemExit(f"{source.repository}: `git ls-remote {source.url} HEAD` failed: {result.stderr.strip()}")
-    return result.stdout.split()[0]
+def upstream_moved() -> tuple[list[str], list[str], list[str]]:
+    """Git sources to track, lapsed sources, and sources whose upstream gave no answer.
 
-
-def upstream_moved() -> tuple[list[str], list[str]]:
-    """Git sources whose upstream HEAD differs from the catalogued revision, and unreachable ones."""
+    A source moves when its upstream HEAD or URL differs from its catalogue. A source
+    lapses when its upstream has no HEAD.
+    """
     catalogue = catalogue_map()
     tracked = [source for source in source_map().values() if source.transport != "web-dir"]
 
-    def probe(source: Source) -> tuple[str, str | None]:
+    def probe(source: Source) -> tuple[Source, str | None, str | None]:
         try:
-            return source.repository, upstream_head(source)
+            return source, upstream_head(source), None
         except SystemExit as exc:
-            print(exc)
-            return source.repository, None
+            return source, None, str(exc)
 
     with ThreadPoolExecutor(max_workers=16) as pool:
-        heads = dict(pool.map(probe, tracked))
-    moved = sorted(
-        repository
-        for repository, head in heads.items()
-        if head is not None and head != catalogue.get(repository, {}).get("source_revision")
-    )
-    unreachable = sorted(repository for repository, head in heads.items() if head is None)
-    return moved, unreachable
+        results = list(pool.map(probe, tracked))
+    moved: list[str] = []
+    lapsed: list[str] = []
+    unanswered: list[str] = []
+    for source, head, error in results:
+        recorded = catalogue.get(source.repository, {})
+        if error is not None:
+            print(error)
+            unanswered.append(source.repository)
+        elif head is None:
+            lapsed.append(source.repository)
+        elif head != recorded.get("source_revision") or source.url != recorded.get("url"):
+            moved.append(source.repository)
+    return sorted(moved), sorted(lapsed), sorted(unanswered)
 
 
 def run_script(*args: str) -> None:
@@ -692,12 +694,13 @@ def refresh(*, stop_after: float | None, commit: bool) -> int:
 
     A tracking failure stops the run, because the filtering record is then half-written and
     a later commit would carry it. An index failure leaves the committed record intact, so
-    the run continues with the next source.
+    the run continues with the next source. A lapsed source, whose upstream has no HEAD,
+    loses its shard and is followed again when its upstream returns.
     """
     deadline = None if stop_after is None else time.monotonic() + stop_after * 60
-    moved, unreachable = upstream_moved()
+    moved, lapsed, unanswered = upstream_moved()
     recorded = remote_provenance()
-    for repository in sorted(retired_repository_names()):
+    for repository in sorted(retired_repository_names() | set(lapsed)):
         if remote_shard_names(repository):
             remove_repository_shards(repository)
     stale = {
@@ -706,10 +709,15 @@ def refresh(*, stop_after: float | None, commit: bool) -> int:
         if not remote_shard_names(repository)
         or recorded.get(repository, {}).get("index_key") != index_key(repository)
     }
-    # An unreachable upstream cannot be hydrated; it stays a failure and keeps its shard.
-    work = sorted((stale | set(moved)) - set(unreachable))
-    print(f"refresh: {len(moved)} upstream moved, {len(stale)} index stale, {len(work)} of {len(source_map())} to rebuild")
-    failed = list(unreachable)
+    # An unanswered upstream cannot be hydrated; it is a failure and keeps its shard.
+    work = sorted((stale | set(moved)) - set(lapsed) - set(unanswered))
+    print(
+        f"refresh: {len(moved)} upstream moved, {len(lapsed)} lapsed, {len(stale)} index stale, "
+        f"{len(work)} of {len(source_map())} to rebuild"
+    )
+    if lapsed:
+        print("lapsed (upstream has no HEAD):\n  " + "\n  ".join(lapsed))
+    failed = list(unanswered)
     for number, repository in enumerate(work, start=1):
         if deadline is not None and time.monotonic() >= deadline:
             print(f"stopped after {stop_after:g} minutes: {len(work) - number + 1} sources remain")
@@ -734,7 +742,7 @@ def refresh(*, stop_after: float | None, commit: bool) -> int:
         if not failed:
             subprocess.run(["python", str(ROOT / "scripts" / "check-published.py")], cwd=ROOT, check=True)
     if failed:
-        print("refresh failures (unreachable upstreams included):\n  " + "\n  ".join(failed))
+        print("refresh failures (unanswered upstreams included):\n  " + "\n  ".join(failed))
         return 1
     return 0
 

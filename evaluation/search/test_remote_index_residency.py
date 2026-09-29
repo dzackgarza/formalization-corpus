@@ -119,6 +119,39 @@ class RemoteIndexResidencyTests(unittest.TestCase):
         self.assertEqual(args[:2], ["rm", "-f"])
         self.assertEqual(args[2], f"{source_cache.REMOTE_INDEX}/retired_v16.00000.zoekt")
 
+    def test_refresh_lapses_source_whose_upstream_has_no_head(self) -> None:
+        source_cache = load_source_cache()
+
+        def source(name: str) -> object:
+            return source_cache.Source(
+                url=f"https://example.org/{name}",
+                directory=pathlib.Path("reservoir-sources") / name,
+                proof_assistant="lean",
+                transport="git",
+                sync_group="x",
+                discovered_via="x",
+            )
+
+        sources = {"kept": source("kept"), "gone": source("gone")}
+        heads = {"kept": "a" * 40, "gone": None}
+        catalogue = {name: {"source_revision": "a" * 40, "url": sources[name].url} for name in sources}
+        with (
+            mock.patch.object(source_cache, "source_map", return_value=sources),
+            mock.patch.object(source_cache, "catalogue_map", return_value=catalogue),
+            mock.patch.object(source_cache, "upstream_head", side_effect=lambda s: heads[s.repository]),
+            mock.patch.object(source_cache, "retired_repository_names", return_value=set()),
+            mock.patch.object(source_cache, "remote_provenance", return_value={"kept": {"index_key": "k"}}),
+            mock.patch.object(source_cache, "index_key", return_value="k"),
+            mock.patch.object(source_cache, "remote_shard_names", side_effect=lambda name: [f"{name}_v16.00000.zoekt"]),
+            mock.patch.object(source_cache, "remove_repository_shards") as remove,
+            mock.patch.object(source_cache, "hydrate") as hydrate,
+            mock.patch.object(source_cache.subprocess, "run") as run,
+        ):
+            self.assertEqual(source_cache.refresh(stop_after=None, commit=False), 0)
+        remove.assert_called_once_with("gone")
+        hydrate.assert_not_called()
+        self.assertIn("check-published.py", run.call_args.args[0][1])
+
     def test_review_refresh_accepts_retired_campaign_identity(self) -> None:
         refresh = load_review_refresh()
         active = type("Source", (), {"repository": "active"})()

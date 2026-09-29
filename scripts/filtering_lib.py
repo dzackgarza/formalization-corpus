@@ -93,6 +93,25 @@ def source_revision(source: Source) -> str | None:
         return None
 
 
+def upstream_head(source: Source) -> str | None:
+    """The upstream HEAD of a Git source, or None when the host has no public repository there.
+
+    A source with no upstream HEAD is lapsed: it has no revision to follow, so it has no
+    shard. The host says so as "Repository not found" to an authenticated request and by
+    demanding credentials from an anonymous one. Any other `git ls-remote` failure gives
+    no answer and raises.
+    """
+    env = {**os.environ, "GIT_CONFIG_GLOBAL": "/dev/null", "GIT_TERMINAL_PROMPT": "0"}
+    result = subprocess.run(
+        ["git", "ls-remote", source.url, "HEAD"], env=env, text=True, capture_output=True
+    )
+    if result.returncode == 0 and result.stdout.strip():
+        return result.stdout.split()[0]
+    if "Repository not found" in result.stderr or "could not read Username" in result.stderr:
+        return None
+    raise SystemExit(f"{source.repository}: `git ls-remote {source.url} HEAD` failed: {result.stderr.strip()}")
+
+
 def is_formal_file(kind: str, path: pathlib.Path) -> bool:
     return any(path.name.endswith(suffix) for suffix in FORMAL_SUFFIXES[kind])
 

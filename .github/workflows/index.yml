@@ -1,6 +1,7 @@
 # Follow every Git source to its upstream HEAD, then rebuild the search-host shards whose
 # committed catalogue or filter decisions changed. A moved source gets a new filtering
-# record, committed to main, before it is indexed. Each source is hydrated, indexed,
+# record, committed to main, before it is indexed. A source whose upstream has no HEAD
+# is lapsed and loses its shard. Each source is hydrated, indexed,
 # installed on the host with its provenance record, and released. A run that reaches its
 # deadline stops between sources; the next run resumes from the recorded provenance.
 name: index

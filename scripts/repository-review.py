@@ -332,7 +332,7 @@ def validate_review_record(record: dict[str, Any], unit: dict[str, Any], history
 
     unit_records = load_unit_file_records(unit)
     paths = {str(item["path"]) for item in unit_records}
-    # A selector is checked against the file set its review saw; a stale review's
+    # A selector is checked against the file set its review saw; a lapsed review's
     # rules lapse per file in resolve_review_exclusions instead.
     reviewed_current_snapshot = record.get("unit_snapshot_sha256") == unit.get("snapshot_sha256")
     matched: set[str] = set()
@@ -556,13 +556,13 @@ def validate() -> int:
         for uid, review in reviews.items()
     )
     deferred = sum(review.get("status") == "deferred" for review in reviews.values())
-    stale = sum(
+    lapsed = sum(
         review.get("unit_snapshot_sha256") != units[uid].get("snapshot_sha256")
         for uid, review in reviews.items()
     )
     print(
         f"repository review catalogue ok: {len(index)} sources, {len(units)} units, "
-        f"{reviewed} reviewed, {deferred} deferred, {stale} stale, "
+        f"{reviewed} reviewed, {deferred} deferred, {lapsed} lapsed, "
         f"{len(exclusions)} explicitly excluded files"
     )
     return 0
@@ -589,7 +589,7 @@ def status(batch_id: str | None = None) -> int:
             if (review.get("source_action") or {}).get("action") == "retire-source":
                 state = "retire-source"
             if review.get("unit_snapshot_sha256") != unit.get("snapshot_sha256"):
-                state = "stale"
+                state = "lapsed"
         if unit.get("inventory_status") == "retired":
             state = "retired-source"
         counts[state] += 1

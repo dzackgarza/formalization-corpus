@@ -34,9 +34,10 @@ activate exclusions.
 Exclusion rules are repository-local and may select only an exact path, an
 explicit path set, or a literal subtree prefix.  Every rule records a rationale,
 a content-level losslessness invariant, source-local evidence, and the required
-`FILTER-###` policies.  Rules are pinned to the unit snapshot.  A changed unit is
-stale and waits for a new review revision in `repository-review.py status`.  Until
-then, each of its rules stays active only while every matched file keeps its path
+`FILTER-###` policies.  Rules are pinned to the unit snapshot.  The review of a
+changed unit lapses, which is the same as no review (`lapsed` in
+`repository-review.py status`).  Each rule of a lapsed review stays active only
+while every matched file keeps its path
 and SHA-256; a rule with any changed file lapses (CONTRIBUTING.md FILTER-023).
 
 `FD-018` is the per-file materialization of accepted repository-local blacklist

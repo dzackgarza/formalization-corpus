@@ -397,8 +397,8 @@ def resolve_review_exclusions() -> tuple[dict[tuple[str, str], dict[str, Any]], 
     """Map each primary-excluded (repository, path) to the review rule that excludes it.
 
     A review is fresh when its unit snapshot equals the current one; its rules are
-    resolved against the current manifests.  Upstream changes make reviews stale, and a
-    stale review keeps only the rules whose files are all unchanged: see
+    resolved against the current manifests.  Upstream changes make reviews lapse, and a
+    lapsed review keeps only the rules whose files are all unchanged: see
     `carried_review_exclusions`.  A fresh review of any status is authoritative for every
     path in its unit.
     """
@@ -456,7 +456,7 @@ def resolve_review_exclusions() -> tuple[dict[tuple[str, str], dict[str, Any]], 
 def carried_review_exclusions(
     units: dict[str, dict[str, Any]], fresh_paths: set[tuple[str, str]]
 ) -> dict[tuple[str, str], dict[str, Any]]:
-    """Keep the stale-review rules whose materialized files are all unchanged.
+    """Keep the lapsed-review rules whose materialized files are all unchanged.
 
     The FD-018 rows in `current.jsonl` record the path and SHA-256 of every file a rule
     excluded when it was last materialized.  A rule stays active while each of those
@@ -464,8 +464,8 @@ def carried_review_exclusions(
     then covers exactly those files: a new file under a prefix selector stays
     searchable.  A rule with a changed or removed file lapses as a whole, so all its
     files become searchable.  A rule also lapses when a later review of its unit
-    exists, or when a fresh review covers one of its files.  The unit stays `stale` in
-    `repository-review.py status` until someone reviews it again.
+    exists, or when a fresh review covers one of its files.  `repository-review.py status`
+    shows the unit as `lapsed`, which is the same as unreviewed.
     """
     active = {str(unit["repository"]) for unit in units.values()}
     rules: dict[tuple[str, str, str], list[dict[str, Any]]] = collections.defaultdict(list)

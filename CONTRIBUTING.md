@@ -457,20 +457,23 @@ rather than inventing a weak blacklist merely to reduce the index.
 The corpus follows each Git source's upstream `HEAD`. The nightly `index` workflow
 moves every source whose upstream moved, re-derives its filtering record, commits
 that record to `main`, and reindexes the source. No human approves an upstream
-revision.
+revision. A Git source whose upstream has no `HEAD` (the host has no public
+repository at its URL) is lapsed: the workflow removes its shard, and it returns to
+the index when its upstream returns. A moved repository is followed by changing its
+`url` in `sources.tsv`; the directory name is the source identity and stays.
 
 Every completed repository-review record is pinned to the SHA-256 snapshot of its
 work unit. A changed, added, removed, or renamed file inside that unit makes the
-review stale, and the unit enters the re-review queue (`repository-review.py
-status`). While the unit is stale, an exclusion rule of its latest review stays
+review lapse. A lapsed review is the same as no review: it is not pending work
+(`repository-review.py status` shows `lapsed`). An exclusion rule of a lapsed review stays
 active only if every file that the rule matched still has the same path and
 SHA-256 and is still baseline primary-retained. A rule with any changed, moved, or
 removed file lapses as a whole, and its files become searchable. An exclusion can
 therefore hide only the exact bytes that a reviewer inspected; new content is
 searchable until a new review excludes it.
 
-This invalidation is subtree-local. A change in one review unit does not make an
-unchanged unit elsewhere in the same repository stale.
+This invalidation is subtree-local. A change in one review unit does not make the
+review of an unchanged unit elsewhere in the same repository lapse.
 
 ### FILTER-024 — A blacklist must materialize to exact files and hashes
 
@@ -554,14 +557,14 @@ state for that failed submission.
 
 ## Source-inventory invariant
 
-`sources.tsv` is the canonical corpus inventory.  For a fully hydrated local
-corpus, every row must satisfy all of the following:
+`sources.tsv` is the canonical corpus inventory.  A row whose upstream has no
+`HEAD` is lapsed (FILTER-023) and has no index shard.  Every other row must
+satisfy all of the following when its source is hydrated:
 
-1. the upstream source exists;
-2. the local source exists;
-3. it contains at least one source-language file for its proof assistant;
-4. it has an index shard;
-5. searching that source can return formal content.
+1. the local source exists;
+2. it contains at least one source-language file for its proof assistant;
+3. it has an index shard;
+4. searching that source can return formal content.
 
 If any condition fails, repair the source or remove the row.  Do not preserve a
 bad row so that historical registry counts remain stable.
