@@ -48,10 +48,15 @@ matched paths/hashes in the ordinary append-only filtering ledger.
 
 ## Review workflow
 
-The nightly `index` workflow runs `scripts/review-units.py --repository R` on each
+The nightly `index` workflow runs `scripts/review-units.py run --repository R` on each
 source with a pending or lapsed unit; CONTRIBUTING.md FILTER-023 describes the
-agent review.  To review a unit by hand instead, generate a non-mutating template, edit it outside the review
-history, then append it through the validator:
+agent review.  Any other reviewer uses the same file selection and validation:
+`review-units.py brief --repository R --out DIR` records the mechanical reviews of a
+hydrated source and writes one brief per remaining unit, and
+`review-units.py record --unit RRU-... --answer FILE` validates the reviewer's JSON
+answer and appends the review.  To write a review record by hand instead, generate a
+non-mutating template, edit it outside the review history, then append it through the
+validator:
 
 ```sh
 python scripts/repository-review.py template RRU-... > /tmp/review.json

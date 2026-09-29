@@ -704,7 +704,7 @@ def review_units(repository: str, *, commit: bool, minutes: float | None) -> boo
     Returns whether every unit now has a current review. The reviews that did validate are
     committed even when another unit failed.
     """
-    command = ["python", str(ROOT / "scripts" / "review-units.py"), "--repository", repository]
+    command = ["python", str(ROOT / "scripts" / "review-units.py"), "run", "--repository", repository]
     if minutes is not None:
         command += ["--stop-after", f"{minutes:.1f}"]
     reviewed = subprocess.run(command, cwd=ROOT).returncode == 0

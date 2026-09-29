@@ -17,6 +17,7 @@ rejected record goes back to the agent with the validation errors.
 from __future__ import annotations
 
 import argparse
+import dataclasses
 import json
 import os
 import pathlib
@@ -92,12 +93,12 @@ def policy_text() -> str:
     return "\n".join(section for section in sections if section.startswith(tuple(f"### {p} " for p in BRIEF_POLICIES)))
 
 
-def brief(unit: dict[str, Any], to_review: list[dict[str, Any]], carried: list[dict[str, Any]], context: list[str]) -> str:
+def brief(unit: dict[str, Any], to_review: list[dict[str, Any]], carried: list[dict[str, Any]], context: list[str], channel: list[str]) -> str:
     lines = [
         "# Repository review of one work unit",
         "",
         f"Source `{unit['repository']}` ({unit['proof_assistant']}), unit `{unit['unit_id']}`,"
-        f" scope `{unit['scope']['value']}`. Your working directory is the source checkout.",
+        f" scope `{unit['scope']['value']}`. The source checkout is `{unit_root(unit).relative_to(ROOT)}`.",
         "",
         "The corpus indexes formal mathematics for search. Each file listed below is in the",
         "primary search index and no earlier review has seen its current bytes. Decide whether",
@@ -105,13 +106,11 @@ def brief(unit: dict[str, Any], to_review: list[dict[str, Any]], carried: list[d
         "searchable unless the policies below establish that it holds no formal mathematical",
         "content relevant to search. Most units have no exclusions; say so when that is the case.",
         "",
-        "Inspect the files with your read, glob, grep, and list tools only. The shell, write, edit,",
-        "and network tools are unavailable, and a call to one ends your turn. Read every file that",
-        "you propose to exclude completely.",
+        "Read every file that you propose to exclude completely.",
         "",
         *context,
         "",
-        "## Files to review (path, bytes)",
+        "## Files to review (path relative to the checkout, bytes)",
         "",
         *(f"- `{row['path']}` ({row['size_bytes']})" for row in to_review),
     ]
@@ -128,7 +127,7 @@ def brief(unit: dict[str, Any], to_review: list[dict[str, Any]], carried: list[d
         "",
         "## Answer",
         "",
-        "Your final message is the answer: one JSON object and nothing else. Do not write it to a file.",
+        *channel,
         "",
         "```json",
         "{",
@@ -245,14 +244,31 @@ def carried_rules(unit: dict[str, Any], history: list[dict[str, Any]], units: di
     ]
 
 
-def review_unit(unit: dict[str, Any], units: dict[str, dict[str, Any]], workdir: pathlib.Path, home: pathlib.Path) -> None:
+OPENCODE_CHANNEL = [
+    "Inspect the files with your read, glob, grep, and list tools only. The shell, write, edit,",
+    "and network tools are unavailable, and a call to one ends your turn.",
+    "",
+    "Your final message is the answer: one JSON object and nothing else. Do not write it to a file.",
+]
+
+
+@dataclasses.dataclass
+class Review:
+    """One unit's review in progress: the files a reviewer must see and the record so far."""
+
+    unit: dict[str, Any]
+    record: dict[str, Any]
+    to_review: list[dict[str, Any]]
+    carried: list[dict[str, Any]]
+    context: list[str]
+
+
+def prepare(unit: dict[str, Any], units: dict[str, dict[str, Any]]) -> Review:
     uid = unit["unit_id"]
-    short = uid.split("-", 1)[1]
     history = load_review_history(unit["repository"], uid)
     rows = load_unit_file_records(unit)
     primary = [row for row in rows if row["baseline_primary_status"] == "primary-retained"]
     seen = reviewed_manifest(unit, history[-1]["unit_snapshot_sha256"]) if history else None
-    carried = carried_rules(unit, history, units)
     if seen is None:
         to_review = primary
         context = ["No earlier review of this unit saw these files."]
@@ -266,7 +282,7 @@ def review_unit(unit: dict[str, Any], units: dict[str, dict[str, Any]], workdir:
         ]
     record: dict[str, Any] = {
         "schema_version": SCHEMA_VERSION,
-        "review_id": f"RRV-{short}-r{len(history) + 1}",
+        "review_id": f"RRV-{uid.split('-', 1)[1]}-r{len(history) + 1}",
         "unit_id": uid,
         "repository": unit["repository"],
         "source_revision": unit.get("source_revision"),
@@ -276,61 +292,67 @@ def review_unit(unit: dict[str, Any], units: dict[str, dict[str, Any]], workdir:
         "default_action": "retain",
         "source_action": None,
     }
-
-    def finish(summary: str, evidence: list[str], new_rules: list[dict[str, Any]]) -> list[str]:
-        rules = [*carried, *new_rules]
-        for number, rule in enumerate(rules, start=1):
-            rule["rule_id"] = f"RRX-{short}-{number}"
-        record.update(
-            summary=summary,
-            review_evidence=evidence,
-            rules=rules,
-            recorded_at=utc_now(),
-            corpus_git_commit=corpus_commit(),
-        )
-        return append(record, workdir)
-
     if not to_review:
         basis = (
             "The unit has no baseline primary-retained file"
             if not primary
             else f"Every baseline primary-retained file is byte-identical to a file that {history[-1]['review_id']} reviewed"
         )
-        errors = finish(
-            f"{basis}, so no unreviewed content can enter the primary index; the unit retains its material.",
-            [f"Mechanical review: {len(primary)} primary-retained files, {len(carried)} restated exclusion rules."],
-            [],
+        record.update(
+            summary=f"{basis}, so no unreviewed content can enter the primary index; the unit retains its material.",
+            review_evidence=[f"Mechanical review: {len(primary)} primary-retained files, {len(carried_rules(unit, history, units))} restated exclusion rules."],
         )
-        if errors:
-            raise RuntimeError("; ".join(errors))
-        print(f"{uid}: recorded mechanical review")
-        return
+    return Review(unit, record, to_review, carried_rules(unit, history, units), context)
 
+
+def finish(review: Review, new_rules: list[dict[str, Any]], workdir: pathlib.Path) -> list[str]:
+    short = review.unit["unit_id"].split("-", 1)[1]
+    rules = [*review.carried, *new_rules]
+    for number, rule in enumerate(rules, start=1):
+        rule["rule_id"] = f"RRX-{short}-{number}"
+    review.record.update(rules=rules, recorded_at=utc_now(), corpus_git_commit=corpus_commit())
+    return append(review.record, workdir)
+
+
+def record_mechanical(review: Review, workdir: pathlib.Path) -> None:
+    errors = finish(review, [], workdir)
+    if errors:
+        raise RuntimeError(f"{review.unit['unit_id']}: " + "; ".join(errors))
+    print(f"{review.unit['unit_id']}: recorded mechanical review")
+
+
+def record_answer(review: Review, answer: dict[str, Any], workdir: pathlib.Path) -> list[str]:
+    errors = answer_errors(answer, {row["path"] for row in review.to_review})
+    if errors:
+        return errors
+    review.record.update(summary=answer["summary"], review_evidence=answer["review_evidence"])
+    new_rules = [
+        {
+            "action": "primary-exclude",
+            "selector": {"kind": "path-set", "paths": sorted(map(str, rule["paths"]))},
+            "rationale": rule.get("rationale"),
+            "content_invariant": rule.get("content_invariant"),
+            "evidence": rule.get("evidence"),
+            "policies": RULE_POLICIES,
+        }
+        for rule in answer["rules"]
+    ]
+    return finish(review, new_rules, workdir)
+
+
+def review_with_opencode(review: Review, workdir: pathlib.Path, home: pathlib.Path) -> None:
+    uid = review.unit["unit_id"]
     brief_path = workdir / f"{uid}.md"
-    brief_path.write_text(brief(unit, to_review, carried, context))
-    reviewable = {row["path"] for row in to_review}
+    brief_path.write_text(brief(review.unit, review.to_review, review.carried, review.context, OPENCODE_CHANNEL))
     message = "Review the work unit described in the attached brief and answer as it specifies."
     session: str | None = None
     attachment: pathlib.Path | None = brief_path
     failures: list[str] = []
     for attempt in range(1, ATTEMPTS + 1):
         try:
-            session, text = opencode(message, workdir=unit_root(unit), home=home, attachment=attachment, session=session)
+            session, text = opencode(message, workdir=unit_root(review.unit), home=home, attachment=attachment, session=session)
             answer = parse_answer(text)
-            errors = answer_errors(answer, reviewable)
-            if not errors:
-                new_rules = [
-                    {
-                        "action": "primary-exclude",
-                        "selector": {"kind": "path-set", "paths": sorted(map(str, rule["paths"]))},
-                        "rationale": rule.get("rationale"),
-                        "content_invariant": rule.get("content_invariant"),
-                        "evidence": rule.get("evidence"),
-                        "policies": RULE_POLICIES,
-                    }
-                    for rule in answer["rules"]
-                ]
-                errors = finish(answer["summary"], answer["review_evidence"], new_rules)
+            errors = record_answer(review, answer, workdir)
         except (RuntimeError, ValueError, subprocess.TimeoutExpired) as exc:
             errors = [str(exc)]
         if not errors:
@@ -349,32 +371,39 @@ def unit_root(unit: dict[str, Any]) -> pathlib.Path:
     return ROOT / catalogue["directory"]
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--repository", required=True)
-    parser.add_argument("--stop-after", type=float, metavar="MINUTES", help="start no new unit after this many minutes")
-    args = parser.parse_args()
+def unreviewed(unit: dict[str, Any]) -> bool:
+    return unit_state(unit, (load_review_history(unit["repository"], unit["unit_id"]) or [None])[-1]) in {"pending", "lapsed"}
+
+
+def hydrated_pending(units: dict[str, dict[str, Any]], repository: str) -> list[dict[str, Any]]:
+    pending = sorted(
+        (unit for unit in units.values() if unit["repository"] == repository and unreviewed(unit)),
+        key=lambda unit: unit["unit_id"],
+    )
+    if pending and not unit_root(pending[0]).is_dir():
+        raise SystemExit(f"{repository}: source is not hydrated")
+    return pending
+
+
+def run(args: argparse.Namespace) -> int:
     deadline = None if args.stop_after is None else time.monotonic() + args.stop_after * 60
     units = load_units(active_only=True)
-    pending = [
-        unit
-        for unit in units.values()
-        if unit["repository"] == args.repository
-        and unit_state(unit, (load_review_history(unit["repository"], unit["unit_id"]) or [None])[-1]) in {"pending", "lapsed"}
-    ]
-    if pending and not unit_root(pending[0]).is_dir():
-        raise SystemExit(f"{args.repository}: source is not hydrated")
+    pending = hydrated_pending(units, args.repository)
     failed: list[str] = []
     with tempfile.TemporaryDirectory() as scratch:
         workdir = pathlib.Path(scratch)
         home = workdir / "opencode-home"
-        for unit in sorted(pending, key=lambda item: item["unit_id"]):
+        for unit in pending:
             if deadline is not None and time.monotonic() >= deadline:
                 print(f"{args.repository}: stopped at the deadline")
                 failed.append(unit["unit_id"])
                 break
             try:
-                review_unit(unit, units, workdir, home)
+                review = prepare(unit, units)
+                if review.to_review:
+                    review_with_opencode(review, workdir, home)
+                else:
+                    record_mechanical(review, workdir)
             except RuntimeError as exc:
                 print(exc, file=sys.stderr)
                 failed.append(unit["unit_id"])
@@ -382,6 +411,66 @@ def main() -> int:
         print(f"{args.repository}: {len(failed)} of {len(pending)} units unreviewed: {' '.join(failed)}", file=sys.stderr)
         return 1
     return 0
+
+
+def write_briefs(args: argparse.Namespace) -> int:
+    units = load_units(active_only=True)
+    out = pathlib.Path(args.out).resolve()
+    out.mkdir(parents=True, exist_ok=True)
+    for unit in hydrated_pending(units, args.repository):
+        uid = unit["unit_id"]
+        review = prepare(unit, units)
+        if not review.to_review:
+            record_mechanical(review, out)
+            continue
+        answer = out / f"{uid}.answer.json"
+        channel = [
+            f"Write the answer as one JSON object to `{answer}`, then run",
+            f"`python scripts/review-units.py record --unit {uid} --answer {answer}` from the corpus root.",
+            "It validates the answer and appends the review, or prints the errors to correct.",
+        ]
+        path = out / f"{uid}.md"
+        path.write_text(brief(unit, review.to_review, review.carried, review.context, channel))
+        print(f"{uid}\t{len(review.to_review)} files\t{path}")
+    return 0
+
+
+def record(args: argparse.Namespace) -> int:
+    units = load_units(active_only=True)
+    unit = units[args.unit]
+    if not unreviewed(unit):
+        raise SystemExit(f"{args.unit}: the unit has a current review")
+    review = prepare(unit, units)
+    try:
+        answer = json.loads(pathlib.Path(args.answer).read_text())
+    except ValueError as exc:
+        raise SystemExit(f"{args.answer}: not a JSON object: {exc}") from exc
+    with tempfile.TemporaryDirectory() as scratch:
+        errors = record_answer(review, answer, pathlib.Path(scratch))
+    if errors:
+        print("\n".join(errors), file=sys.stderr)
+        return 1
+    print(f"{args.unit}: recorded review with {len(answer['rules'])} new rules")
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    commands = parser.add_subparsers(dest="command", required=True)
+    run_parser = commands.add_parser("run", help="review each unit of a hydrated source with the opencode agent")
+    run_parser.add_argument("--repository", required=True)
+    run_parser.add_argument("--stop-after", type=float, metavar="MINUTES", help="start no new unit after this many minutes")
+    run_parser.set_defaults(handler=run)
+    brief_parser = commands.add_parser("brief", help="record mechanical reviews and write a brief for each other unit")
+    brief_parser.add_argument("--repository", required=True)
+    brief_parser.add_argument("--out", required=True, help="directory for the briefs and answers")
+    brief_parser.set_defaults(handler=write_briefs)
+    record_parser = commands.add_parser("record", help="validate a reviewer's JSON answer and append the review")
+    record_parser.add_argument("--unit", required=True)
+    record_parser.add_argument("--answer", required=True)
+    record_parser.set_defaults(handler=record)
+    args = parser.parse_args()
+    return args.handler(args)
 
 
 if __name__ == "__main__":
