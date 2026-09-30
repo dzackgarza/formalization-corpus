@@ -4,41 +4,401 @@
   "proof_assistant": "lean",
   "repository": "facebookresearch__atlas-lean",
   "schema_version": 1,
-  "source_revision": "e8b31c5cb0bec89b487ce33fe525a2c0b0f8b9c6",
-  "source_snapshot_sha256": "b1fb48404c9b9d1f271b56c163f9a912f215e7cf684e248fe973f40aaabda527",
+  "source_revision": "dca09f91437baae9f7cc37489ba764e0caf1b4a4",
+  "source_snapshot_sha256": "cb1e6b3d017fdd02a13bdcca20b3e379a69473db6078d9307eff066329c99020",
   "sync_group": "routine",
   "totals": {
-    "auxiliary_only": 1,
-    "baseline_primary_retained": 2654,
-    "bytes": 28858835,
+    "auxiliary_only": 2,
+    "baseline_primary_retained": 9752,
+    "bytes": 119049189,
     "current_primary_excluded": 0,
-    "current_primary_retained": 2654,
-    "files": 2655,
-    "formal_source_files": 2654,
-    "unindexed_nonformal": 0
+    "current_primary_retained": 9751,
+    "files": 9757,
+    "formal_source_files": 9752,
+    "unindexed_nonformal": 4
   },
   "transport": "git",
   "url": "https://github.com/facebookresearch/atlas-lean",
   "work_units": [
     {
-      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-b389f1e610b0.jsonl",
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-3c1f4e59fb79.jsonl",
       "scope": {
-        "kind": "direct-files",
-        "root_count": 1,
-        "value": "README.md"
+        "kind": "file-bucket",
+        "root_count": 5,
+        "value": "./@files/all"
       },
-      "snapshot_sha256": "81fb8f4a54b871bbfd2b202c35c48fdccfbb4bcc772fe2dc530075baa595976a",
+      "snapshot_sha256": "86f7f23358dcd7baa1e3afa194dc5229cbf0d6ffc7f804cecca8244c3c51ba21",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 0,
-        "bytes": 1931,
+        "bytes": 18408,
         "current_primary_excluded": 0,
         "current_primary_retained": 0,
-        "files": 1,
+        "files": 5,
         "formal_source_files": 0,
+        "unindexed_nonformal": 4
+      },
+      "unit_id": "RRU-3c1f4e59fb79"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-4ebf5ab17604.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Atlas/@subtrees/all"
+      },
+      "snapshot_sha256": "26fca38d2b11fe1806b76402f428ad4929de6cc93b8a1ec57ddf0754a17c17ee",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 127,
+        "bytes": 4211734,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 127,
+        "files": 127,
+        "formal_source_files": 127,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-b389f1e610b0"
+      "unit_id": "RRU-4ebf5ab17604"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-32492f4bdf05.jsonl",
+      "scope": {
+        "kind": "direct-files",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code.lean"
+      },
+      "snapshot_sha256": "930b9b4caea9711137feedb8f8541ee4c0a8f6fac7601216df3ff58838adf822",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1,
+        "bytes": 289865,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1,
+        "files": 1,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-32492f4bdf05"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-2c89c25e14f9.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/0"
+      },
+      "snapshot_sha256": "c7e5fe7f7b0f6a0bd73f7a79d32cb970a4bf03a4aad8f785346917a8d6c6d075",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 203,
+        "bytes": 1597874,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 203,
+        "files": 203,
+        "formal_source_files": 203,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-2c89c25e14f9"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-732c4aa35895.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/2"
+      },
+      "snapshot_sha256": "8295e47ef6cd9c434b9d3384fada277da21207840fddd65fef9817bd54753e1f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 18,
+        "bytes": 144260,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 18,
+        "files": 18,
+        "formal_source_files": 18,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-732c4aa35895"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-0a436a264db3.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/4"
+      },
+      "snapshot_sha256": "a57ef8437d76ef35923109c271e760624bca29fdf523a9c0f50e35b561146a0e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 3,
+        "bytes": 28741,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 3,
+        "files": 3,
+        "formal_source_files": 3,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0a436a264db3"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-3adbd39b5345.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/5"
+      },
+      "snapshot_sha256": "63a405b6dbd23e92f94c59e53159a117d327a8d78e69c2247f320dc93a21587a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 435,
+        "bytes": 4151529,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 435,
+        "files": 435,
+        "formal_source_files": 435,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3adbd39b5345"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-11b4d0031eb4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/6"
+      },
+      "snapshot_sha256": "ca94105a1671372dfd7c31dd3d8b425e62b54a484578af96a18dd0ee900b2a30",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 416,
+        "bytes": 3821951,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 416,
+        "files": 416,
+        "formal_source_files": 416,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-11b4d0031eb4"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-677203e9dd00.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/7"
+      },
+      "snapshot_sha256": "b505cce0f62f1cc10096c5003e0efea9faff8e875958dc9c642c527b7e53ca09",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 109,
+        "bytes": 1797935,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 109,
+        "files": 109,
+        "formal_source_files": 109,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-677203e9dd00"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-949c926a3ea8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/8"
+      },
+      "snapshot_sha256": "65cbaddc8ef84c1ecb1c1ffe06135663b433e926a3b3102d8580f889ab99c16a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 713,
+        "bytes": 8485989,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 713,
+        "files": 713,
+        "formal_source_files": 713,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-949c926a3ea8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-4caaf47f77d5.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/9"
+      },
+      "snapshot_sha256": "958dcf1c8e0fc9b1c7c918e8865ee714123cf1a93df7397b8a9fb5d05786292f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 163,
+        "bytes": 2185564,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 163,
+        "files": 163,
+        "formal_source_files": 163,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4caaf47f77d5"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-c4d522a4f4f3.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/a"
+      },
+      "snapshot_sha256": "b45e576c997b8c391e39f476494b15db2f0da6ac307b1236aaf387a41ff35fbc",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 796,
+        "bytes": 28538337,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 796,
+        "files": 796,
+        "formal_source_files": 796,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c4d522a4f4f3"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-b0a6b88900f6.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/b"
+      },
+      "snapshot_sha256": "3710b4a2a7f33568c5131a9d5149b26aaa5262d0aaede1963c6cf07e07f9bf40",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 45,
+        "bytes": 458038,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 45,
+        "files": 45,
+        "formal_source_files": 45,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b0a6b88900f6"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-fb84b6782f87.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/d"
+      },
+      "snapshot_sha256": "dbf3e2a5dbd0db84adf88e7b2b464fd0d3d2aae735f2cdd7bb4410d8b5d36edb",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1790,
+        "bytes": 16820586,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1790,
+        "files": 1790,
+        "formal_source_files": 1790,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fb84b6782f87"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-34f8e1bb516c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/e"
+      },
+      "snapshot_sha256": "ad0995712defc28cde5a6d46ae89b02fd2789026bbafeec8beb6e6a41f016e08",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 16,
+        "bytes": 79716,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 16,
+        "files": 16,
+        "formal_source_files": 16,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-34f8e1bb516c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-1e3fb3cbd0d1.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/f1"
+      },
+      "snapshot_sha256": "02f351ce4c449c53c5590d840371452faeb2dd5ddb7f9a87cefff3f3da06aa1b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 33,
+        "bytes": 338789,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 33,
+        "files": 33,
+        "formal_source_files": 33,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1e3fb3cbd0d1"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-b84b29248aa4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/f3"
+      },
+      "snapshot_sha256": "af3592ce6b14a7c6fd3284bf77c3e270dc8998e3f51a25976e629be097cb6e60",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1416,
+        "bytes": 10781584,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1416,
+        "files": 1416,
+        "formal_source_files": 1416,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b84b29248aa4"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-92cc5db69b2c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code/@subtrees/f6"
+      },
+      "snapshot_sha256": "ca0b0fca2a14bb1e49239d0a8cefd4ca4a6e019121b0619f7d7039e67c973a31",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 813,
+        "bytes": 6436197,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 813,
+        "files": 813,
+        "formal_source_files": 813,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-92cc5db69b2c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-22fc13fbab5f.jsonl",
+      "scope": {
+        "kind": "direct-files",
+        "root_count": 1,
+        "value": "Atlas/StatisticalMechanics/Code/Exact3D.lean"
+      },
+      "snapshot_sha256": "af38404f780c3a990896c6180211004684127a553a9ff1cf3d4270184eb00687",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1,
+        "bytes": 5188,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1,
+        "files": 1,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-22fc13fbab5f"
     },
     {
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-4ba8230c6081.jsonl",
@@ -49,11 +409,11 @@
       },
       "snapshot_sha256": "188531d212d9904c9b38a6e32c8cdf5fcf682901fdfab203783e34e59fab989b",
       "stats": {
-        "auxiliary_only": 0,
+        "auxiliary_only": 1,
         "baseline_primary_retained": 1,
         "bytes": 1590,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1,
+        "current_primary_retained": 0,
         "files": 1,
         "formal_source_files": 1,
         "unindexed_nonformal": 0
