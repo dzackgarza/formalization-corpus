@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "e27df4d7b2a8e3d04c7d760990226d0163118f34",
-  "generated_at": "2026-10-01T13:46:08.426609+00:00",
+  "corpus_git_commit": "6de6fdc2a0f4d450225f2ac95055b2c23452a173",
+  "generated_at": "2026-10-01T13:48:14.928096+00:00",
   "groups": [
     {
       "canonical": {
@@ -6496,6 +6496,36 @@
       ],
       "sha256": "14925a7e26b69879c8dc597b93f13e9b84b34dffd644f6a70c881fd6f36b63d3",
       "size_bytes": 206
+    },
+    {
+      "canonical": {
+        "file": "books/projects/milawa/ACL2/clauses/if-lifting/cert.acl2",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/projects/milawa/ACL2/clauses/if-lifting/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/rewrite/assms/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/rewrite/traces/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/utilities/arithmetic/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "14c1941e5ab3b03a51cc4d4d348f6568dcdf9916069079404095bb61287350a6",
+      "size_bytes": 1488
     },
     {
       "canonical": {
@@ -26124,6 +26154,51 @@
     },
     {
       "canonical": {
+        "file": "books/projects/abnf/examples/cert.acl2",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/projects/abnf/examples/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/grammar-definer/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/grammar-operations/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/grammar-parser/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/grammar-printer/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/notation/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/parsing-tools/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "573be2fa4f02d79c6454686b47ca341b14f9866be696ce1519434fd0dc01391a",
+      "size_bytes": 606
+    },
+    {
+      "canonical": {
         "file": "books/rtl/rel4/arithmetic/.sys/common-factor@useless-runes.lsp",
         "repository": "acl2__acl2"
       },
@@ -26301,6 +26376,26 @@
       ],
       "sha256": "57f78c6d2af7502e8439f426f33fb5374f1f50c555e720a5732010b0a5764442",
       "size_bytes": 2476
+    },
+    {
+      "canonical": {
+        "file": "books/projects/milawa/ACL2/interface/acl2-customization.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/projects/milawa/ACL2/interface/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/tactics/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "57f7bf506400c014c34b9a09d32ac48f9fa171b9ba66de0aca3bc114af47cf92",
+      "size_bytes": 1435
     },
     {
       "canonical": {
@@ -35909,6 +36004,56 @@
     },
     {
       "canonical": {
+        "file": "books/projects/milawa/ACL2/acl2-hacks/acl2-customization.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/projects/milawa/ACL2/acl2-hacks/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/build/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/classic/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/clauses/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/defderiv/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/logic/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/rewrite/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/utilities/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "75be2bdb5fa92ee121d5e7843205a5b85cb332250168fcdd1e6861692bd92253",
+      "size_bytes": 1455
+    },
+    {
+      "canonical": {
         "file": "PoincareConjecture/Contributions/LinearMapDensities/Theorems/Thm_OpenGA_areaDensity_basis_independent.lean",
         "repository": "MathNetwork__OpenGA"
       },
@@ -44889,6 +45034,51 @@
     },
     {
       "canonical": {
+        "file": "books/projects/abnf/examples/acl2-customization.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/projects/abnf/examples/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/grammar-definer/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/grammar-operations/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/grammar-parser/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/grammar-printer/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/notation/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/abnf/parsing-tools/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "946d5570bc85d4ee7ea7565e46c2fa0c4d0b45fa9203882b5cab014833843014",
+      "size_bytes": 444
+    },
+    {
+      "canonical": {
         "file": "examples/dev/sw/cpsScript.sml",
         "repository": "HOL-Theorem-Prover__HOL"
       },
@@ -48341,6 +48531,56 @@
       ],
       "sha256": "9fed8a382ca8af13ad026ada3202560b1e43b82d5985a73c6eb99e6f255d8991",
       "size_bytes": 4612
+    },
+    {
+      "canonical": {
+        "file": "books/projects/milawa/ACL2/acl2-hacks/cert.acl2",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/projects/milawa/ACL2/acl2-hacks/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/build/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/classic/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/clauses/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/defderiv/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/logic/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/rewrite/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/utilities/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "9ffaf3af4c0df424c9cc237174c2b47ad6db7cea17a67e7b91f86adaff48d0a8",
+      "size_bytes": 1485
     },
     {
       "canonical": {
@@ -67806,6 +68046,101 @@
       ],
       "sha256": "d6629bec7c1a7c96a1991370adbcbcf36f2a143c706386fc52e997c0cef66eb4",
       "size_bytes": 157
+    },
+    {
+      "canonical": {
+        "file": "books/projects/milawa/ACL2/bootstrap/level10/acl2-customization.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/level10/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/level11/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/level2/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/level3/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/level4/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/level5/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/level6/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/level7/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/level8/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/level9/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/logic/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/user/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/bootstrap/utilities/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/clauses/if-lifting/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/rewrite/assms/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/rewrite/traces/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/milawa/ACL2/utilities/arithmetic/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "d674147658c4a7df2242e9ff9abeba8c7c1570bbf18c3e6d0fd8743137dd1ac0",
+      "size_bytes": 1458
     },
     {
       "canonical": {
