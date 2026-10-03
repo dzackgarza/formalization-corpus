@@ -4,17 +4,17 @@
   "proof_assistant": "lean",
   "repository": "hawkrobe__linglib",
   "schema_version": 1,
-  "source_revision": "f3e9f63d7c63cc00466102e0f93c521a17c07c66",
-  "source_snapshot_sha256": "17f38aaaf807c73543ba7dd259193b1de18198260268f182a3c7c1c540084e8e",
+  "source_revision": "85369c1a6e47bb6bbd6e2b9662c49cb2dc9ffffe",
+  "source_snapshot_sha256": "729c969c7021e43fc9ce040eebaec122af3801e6c1560b367a4cf0672da216c1",
   "sync_group": "bulk",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 2981,
-    "bytes": 39994252,
-    "current_primary_excluded": 2,
-    "current_primary_retained": 2981,
-    "files": 2990,
-    "formal_source_files": 2981,
+    "baseline_primary_retained": 3000,
+    "bytes": 37239561,
+    "current_primary_excluded": 3,
+    "current_primary_retained": 2999,
+    "files": 3009,
+    "formal_source_files": 3000,
     "unindexed_nonformal": 6
   },
   "transport": "git",
@@ -27,18 +27,38 @@
         "root_count": 11,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "12807573ad44d9aff7034a495276e1b60e18726038183c25c8f3c52654051617",
+      "snapshot_sha256": "2d932778ac6fc68d71daa464c2a0eed3610a966f3e9d325131e837575afcc4d5",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 2,
-        "bytes": 1865386,
-        "current_primary_excluded": 2,
-        "current_primary_retained": 2,
+        "bytes": 1880814,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 1,
         "files": 11,
         "formal_source_files": 2,
         "unindexed_nonformal": 6
       },
       "unit_id": "RRU-958a7d2ddbe3"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-db7cd7e8423d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "ebd9af3ecd8f8f2d5597731f9d347e2c0ad04c87308336cdc7f62d9145fb825d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 4,
+        "bytes": 26826,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 4,
+        "files": 4,
+        "formal_source_files": 4,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-db7cd7e8423d"
     },
     {
       "files_manifest": "filtering/repository-review/files/hawkrobe__linglib/RRU-057147e04279.jsonl",
@@ -47,15 +67,15 @@
         "root_count": 1,
         "value": "Linglib/@subtrees/1"
       },
-      "snapshot_sha256": "76392402dfdb181afa84f9f8f47ddbe53ae6c780355bf2bbb45a32fdf5f19c79",
+      "snapshot_sha256": "f532e7eed57a9bf578a6e63aae60d8f3171ee9b59a5f94589d7425fcfcf2a4dc",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 286,
-        "bytes": 2683526,
+        "baseline_primary_retained": 277,
+        "bytes": 2211460,
         "current_primary_excluded": 0,
-        "current_primary_retained": 286,
-        "files": 286,
-        "formal_source_files": 286,
+        "current_primary_retained": 277,
+        "files": 277,
+        "formal_source_files": 277,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-057147e04279"
@@ -67,15 +87,15 @@
         "root_count": 1,
         "value": "Linglib/@subtrees/4"
       },
-      "snapshot_sha256": "8d6db58030275af37d4bf68d3858727e246e1b631a5cc08067dee48d1a4e3ae0",
+      "snapshot_sha256": "83199b9951aa59422ad6018618ba34d253eb620495e25b5494b98b1ebc5d04c6",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 917,
-        "bytes": 13965087,
+        "baseline_primary_retained": 929,
+        "bytes": 14416804,
         "current_primary_excluded": 0,
-        "current_primary_retained": 917,
-        "files": 917,
-        "formal_source_files": 917,
+        "current_primary_retained": 929,
+        "files": 929,
+        "formal_source_files": 929,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-32ba8afead09"
@@ -87,15 +107,15 @@
         "root_count": 1,
         "value": "Linglib/@subtrees/5"
       },
-      "snapshot_sha256": "e9cdf3bca1159b04cf864d9e45527d62df482644918ab900e47a30b9e315ba95",
+      "snapshot_sha256": "d49972d9f513312eb12246498f984c984030429bd4ec00b1911fe29602439a28",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 572,
-        "bytes": 12724188,
+        "baseline_primary_retained": 580,
+        "bytes": 9743193,
         "current_primary_excluded": 0,
-        "current_primary_retained": 572,
-        "files": 572,
-        "formal_source_files": 572,
+        "current_primary_retained": 580,
+        "files": 580,
+        "formal_source_files": 580,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-b3e15a6c834e"
@@ -107,15 +127,15 @@
         "root_count": 1,
         "value": "Linglib/@subtrees/6"
       },
-      "snapshot_sha256": "f245f7f820541441575239c58ab4d8b403f2d7ee51f4d761a866715af6e89af7",
+      "snapshot_sha256": "013feadc5dcca220cd560f9d6de751f15e9e84efc6f63cc5e7536d0b1585ad51",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 69,
-        "bytes": 786106,
+        "baseline_primary_retained": 83,
+        "bytes": 975455,
         "current_primary_excluded": 0,
-        "current_primary_retained": 69,
-        "files": 69,
-        "formal_source_files": 69,
+        "current_primary_retained": 83,
+        "files": 83,
+        "formal_source_files": 83,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-6c9dc5921c1e"
@@ -127,15 +147,15 @@
         "root_count": 1,
         "value": "Linglib/@subtrees/7"
       },
-      "snapshot_sha256": "7f1a0e2765bc7b720f27409acd3f026add499684651172eefe9dcf7d5dcbece3",
+      "snapshot_sha256": "665aa876d465dc8eda724fa15239fd23d613fa556bfcf07b465922a090ba4a77",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 289,
-        "bytes": 2744396,
+        "baseline_primary_retained": 275,
+        "bytes": 2637684,
         "current_primary_excluded": 0,
-        "current_primary_retained": 289,
-        "files": 289,
-        "formal_source_files": 289,
+        "current_primary_retained": 275,
+        "files": 275,
+        "formal_source_files": 275,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-87dd7f67d42f"
@@ -147,15 +167,15 @@
         "root_count": 2,
         "value": "Linglib/@subtrees/a"
       },
-      "snapshot_sha256": "87bfa0d75002b64ca8456866ebee7336e5324d182a4af68a5c79498260a41507",
+      "snapshot_sha256": "c13d544fc415c0d9bec898db4bc50615af581731ccdc3dd2df41cbb4bc120ae8",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 252,
-        "bytes": 2432753,
+        "baseline_primary_retained": 258,
+        "bytes": 2565595,
         "current_primary_excluded": 0,
-        "current_primary_retained": 252,
-        "files": 252,
-        "formal_source_files": 252,
+        "current_primary_retained": 258,
+        "files": 258,
+        "formal_source_files": 258,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-4a00e97e0b85"
@@ -167,11 +187,11 @@
         "root_count": 1,
         "value": "Linglib/@subtrees/b"
       },
-      "snapshot_sha256": "91e6ed026bc342bfc92592ea75610392c9cc221eff5e1442492fd7d220a52a7c",
+      "snapshot_sha256": "de789fe312e46bb983296e9a96474c7cab65cfcb0f232fcbf4b3518212b218a1",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 50,
-        "bytes": 465897,
+        "bytes": 465478,
         "current_primary_excluded": 0,
         "current_primary_retained": 50,
         "files": 50,
@@ -187,15 +207,15 @@
         "root_count": 2,
         "value": "Linglib/@subtrees/d"
       },
-      "snapshot_sha256": "98eb6fe61dfd186ab5f2efd685b829dd041f030867054dc8df9cee873ada6c32",
+      "snapshot_sha256": "1db7d755b24f8d1d12cd9d441c03caf6ea777b34cd9c407715af027748f80e2c",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 45,
-        "bytes": 405499,
+        "baseline_primary_retained": 43,
+        "bytes": 388470,
         "current_primary_excluded": 0,
-        "current_primary_retained": 45,
-        "files": 45,
-        "formal_source_files": 45,
+        "current_primary_retained": 43,
+        "files": 43,
+        "formal_source_files": 43,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-45792a67ef5a"
@@ -207,11 +227,11 @@
         "root_count": 2,
         "value": "Linglib/@subtrees/e"
       },
-      "snapshot_sha256": "104e555c985933924185839a0e18d2bb8756ac21b3b4ef5e0b82d3f9fd454003",
+      "snapshot_sha256": "d6c33b69fe69f1c8280d4d2495ab11e0cba9f4f03ca6ccd6b86662b4d1b0b424",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 499,
-        "bytes": 1921414,
+        "bytes": 1927782,
         "current_primary_excluded": 0,
         "current_primary_retained": 499,
         "files": 499,
