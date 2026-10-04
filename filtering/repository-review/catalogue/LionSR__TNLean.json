@@ -4,41 +4,261 @@
   "proof_assistant": "lean",
   "repository": "LionSR__TNLean",
   "schema_version": 1,
-  "source_revision": "07034fa7312e46dc866a1c5ea4d82d6d712e0eaf",
-  "source_snapshot_sha256": "e6ccb85abb50b92b708a865660c921faa163c78e1f557a204908a7c40da84a84",
+  "source_revision": "9a5a6b6473f139a5a9555e9b93944b481fad9c45",
+  "source_snapshot_sha256": "c605c0ddff94fcafd0cbd54f3a74841122de1f8c6a8f9e9cc7475518ffa2eab2",
   "sync_group": "bulk",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 1942,
-    "bytes": 24277250,
+    "baseline_primary_retained": 2238,
+    "bytes": 26810146,
     "current_primary_excluded": 4,
-    "current_primary_retained": 1941,
-    "files": 1953,
-    "formal_source_files": 1942,
+    "current_primary_retained": 2237,
+    "files": 2249,
+    "formal_source_files": 2238,
     "unindexed_nonformal": 7
   },
   "transport": "git",
   "url": "https://github.com/LionSR/TNLean",
   "work_units": [
     {
-      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-0e2f5384b3fc.jsonl",
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-238d02838a6e.jsonl",
       "scope": {
-        "kind": "repository",
-        "root_count": 0,
-        "value": "."
+        "kind": "file-bucket",
+        "root_count": 12,
+        "value": "./@files/all"
       },
-      "snapshot_sha256": "e6ccb85abb50b92b708a865660c921faa163c78e1f557a204908a7c40da84a84",
+      "snapshot_sha256": "dce22a53deed12171bdd3cd3392cc88dd3ef60e6468323b8faaf92cb08f75c15",
       "stats": {
         "auxiliary_only": 1,
-        "baseline_primary_retained": 1942,
-        "bytes": 24277250,
-        "current_primary_excluded": 4,
-        "current_primary_retained": 1941,
-        "files": 1953,
-        "formal_source_files": 1942,
+        "baseline_primary_retained": 1,
+        "bytes": 123408,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 1,
+        "files": 12,
+        "formal_source_files": 1,
         "unindexed_nonformal": 7
       },
-      "unit_id": "RRU-0e2f5384b3fc"
+      "unit_id": "RRU-238d02838a6e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-b91d63af120a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "93224c3d987835697c9839aa976f8467f23f6f3e97172bc4531a92abbc5001f7",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 14,
+        "bytes": 57093,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 13,
+        "files": 14,
+        "formal_source_files": 14,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b91d63af120a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-5142a97d3a39.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 10,
+        "value": "TNLean/@files/all"
+      },
+      "snapshot_sha256": "547a181d1966fd3299bf40863659665421b722e604ddca4e3b1969f505e258b0",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 10,
+        "bytes": 25582,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 10,
+        "files": 10,
+        "formal_source_files": 10,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-5142a97d3a39"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-a6f349bbeed8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TNLean/@subtrees/0"
+      },
+      "snapshot_sha256": "5c0232fa2b6e58c4318f8fe9c1a9e8ed0647a275d75df82db6547e40e9f24abf",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 31,
+        "bytes": 355839,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 31,
+        "files": 31,
+        "formal_source_files": 31,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a6f349bbeed8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-cf49fa9a15c5.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TNLean/@subtrees/2"
+      },
+      "snapshot_sha256": "4d5a86eae4c1d527c33448807a466936de1613c01992ab66ee39b49038761370",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 158,
+        "bytes": 1022008,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 158,
+        "files": 158,
+        "formal_source_files": 158,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-cf49fa9a15c5"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-3bc141a2a0d3.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TNLean/@subtrees/4"
+      },
+      "snapshot_sha256": "8c4db89e088b84e20c1848e4f0d816568532a060f182524a9e940ab6da5ed97a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1600,
+        "bytes": 19080921,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1600,
+        "files": 1600,
+        "formal_source_files": 1600,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3bc141a2a0d3"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-9aadb880e547.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TNLean/@subtrees/5"
+      },
+      "snapshot_sha256": "c00e420e8afc68d3283f6ff8be53171edd6527fb0c96ec2e7d5e26d12585b6f4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 4,
+        "bytes": 65977,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 4,
+        "files": 4,
+        "formal_source_files": 4,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9aadb880e547"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-1f584098f72c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "TNLean/@subtrees/7"
+      },
+      "snapshot_sha256": "7611a84cd7c1115a760d6fc638bb70c07528eace99d9155e98c2b81e73eeaa0c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 4,
+        "bytes": 23646,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 4,
+        "files": 4,
+        "formal_source_files": 4,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1f584098f72c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-46a4987eb9f4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TNLean/@subtrees/b"
+      },
+      "snapshot_sha256": "0d63b0c67bdd750d2d5e604e0a13051f395c6ae2bc8f9e4ce6129594e92df5ec",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 28,
+        "bytes": 107582,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 28,
+        "files": 28,
+        "formal_source_files": 28,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-46a4987eb9f4"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-b9985011d8b2.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TNLean/@subtrees/c"
+      },
+      "snapshot_sha256": "a9c0d4d447906331d969e1ff5a149f52fedd9c591447930483227d0b9b30abd9",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 7,
+        "bytes": 41877,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 7,
+        "files": 7,
+        "formal_source_files": 7,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b9985011d8b2"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-7eed67fc520e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TNLean/@subtrees/e"
+      },
+      "snapshot_sha256": "fce2353df1d4186d3e69afdca4396b57425898a4b582b23daabc727cf653008f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 48,
+        "bytes": 600778,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 48,
+        "files": 48,
+        "formal_source_files": 48,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7eed67fc520e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/LionSR__TNLean/RRU-3b0cde6487e4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TNLean/@subtrees/f"
+      },
+      "snapshot_sha256": "70401a94e29911a14c5b459368debf359e693f2ee253893530eaa7e91abf50a3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 333,
+        "bytes": 5305435,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 333,
+        "files": 333,
+        "formal_source_files": 333,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3b0cde6487e4"
     }
   ]
 }
