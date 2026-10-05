@@ -4,17 +4,17 @@
   "proof_assistant": "lean",
   "repository": "SamuelSchlesinger__complexitylib",
   "schema_version": 1,
-  "source_revision": "3f11aef0a13125dfa3d76be664fdf2836e1f06ce",
-  "source_snapshot_sha256": "8557b029b34eec1094fe9283c4d9ba5239420b227dc1e86e89671b943faee826",
+  "source_revision": "86de93ef520298552618a466c6c496edf9b69929",
+  "source_snapshot_sha256": "9732f54c6a8e1e68a0801a274f295d940186c4ab327e5fe5ff3ba7878339638f",
   "sync_group": "bulk",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 3307,
-    "bytes": 32323321,
-    "current_primary_excluded": 15,
-    "current_primary_retained": 3295,
-    "files": 3318,
-    "formal_source_files": 3307,
+    "baseline_primary_retained": 3558,
+    "bytes": 33949572,
+    "current_primary_excluded": 6,
+    "current_primary_retained": 3555,
+    "files": 3569,
+    "formal_source_files": 3558,
     "unindexed_nonformal": 7
   },
   "transport": "git",
@@ -27,11 +27,11 @@
         "root_count": 12,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "10bb838a42191655aefff0a01611883e56f1dd1af2fea266dd20736b2869c0d5",
+      "snapshot_sha256": "4f21f3596b3ba56324b9d762f4b00a18ed71d2e28e59e704473865e93872fcf7",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 1,
-        "bytes": 95668,
+        "bytes": 109136,
         "current_primary_excluded": 3,
         "current_primary_retained": 1,
         "files": 12,
@@ -47,13 +47,13 @@
         "root_count": 1,
         "value": "./@subtrees/all"
       },
-      "snapshot_sha256": "5a746dd2babfb3339a1ff0d127ff95b9ed49bd967ce5b01c80fc5e12e569c556",
+      "snapshot_sha256": "44b39b4ca0e7aaa9fc6b24a653f1a5e98d367ce8dce08f623bae10fe5ac6fe32",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 9,
-        "bytes": 46057,
-        "current_primary_excluded": 9,
-        "current_primary_retained": 0,
+        "bytes": 53158,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 8,
         "files": 9,
         "formal_source_files": 9,
         "unindexed_nonformal": 0
@@ -67,11 +67,11 @@
         "root_count": 13,
         "value": "Complexitylib/@files/all"
       },
-      "snapshot_sha256": "9958a5145c80878521fd4a2c6b530fa4d5ade02973bc4a01758fbf3475a3bafe",
+      "snapshot_sha256": "b48fdf04cf4fc6da3ef38c6341bf1d79806d8378423907ebdb5cd5c94c1ba248",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 13,
-        "bytes": 81084,
+        "bytes": 81910,
         "current_primary_excluded": 0,
         "current_primary_retained": 13,
         "files": 13,
@@ -81,24 +81,44 @@
       "unit_id": "RRU-0bd6cdd12b19"
     },
     {
-      "files_manifest": "filtering/repository-review/files/SamuelSchlesinger__complexitylib/RRU-51d65690451d.jsonl",
+      "files_manifest": "filtering/repository-review/files/SamuelSchlesinger__complexitylib/RRU-ce5918ad000c.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 2,
-        "value": "Complexitylib/@subtrees/0"
+        "root_count": 1,
+        "value": "Complexitylib/@subtrees/05"
       },
-      "snapshot_sha256": "3f7a5503ada2ceaf4d72919207fe40432ab9026e9af317bada50eaedecd11675",
+      "snapshot_sha256": "e4423333e5745986d5cef92603fc285471de57d94238b4dc08abb490b5ef9932",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1833,
-        "bytes": 16755213,
-        "current_primary_excluded": 3,
-        "current_primary_retained": 1830,
-        "files": 1833,
-        "formal_source_files": 1833,
+        "baseline_primary_retained": 1552,
+        "bytes": 11178822,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1552,
+        "files": 1552,
+        "formal_source_files": 1552,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-51d65690451d"
+      "unit_id": "RRU-ce5918ad000c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/SamuelSchlesinger__complexitylib/RRU-77770ad9c677.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "Complexitylib/@subtrees/0d"
+      },
+      "snapshot_sha256": "ef2fbbbdd4e58923390e0fa897ea0e8db1b78cadf3a924c2c4f74266b87e2f6a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 525,
+        "bytes": 7138079,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 523,
+        "files": 525,
+        "formal_source_files": 525,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-77770ad9c677"
     },
     {
       "files_manifest": "filtering/repository-review/files/SamuelSchlesinger__complexitylib/RRU-4554ddb3f12e.jsonl",
@@ -107,15 +127,15 @@
         "root_count": 3,
         "value": "Complexitylib/@subtrees/1"
       },
-      "snapshot_sha256": "46b272bdce34c0e7db8463a29f95de5b60d08820a717b40c5896e10fa12d10e9",
+      "snapshot_sha256": "22551bc56b39d109131b42e8774833bc7ef7ecb27a0a8b59525127a91b2ead14",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 33,
-        "bytes": 253627,
+        "baseline_primary_retained": 40,
+        "bytes": 296599,
         "current_primary_excluded": 0,
-        "current_primary_retained": 33,
-        "files": 33,
-        "formal_source_files": 33,
+        "current_primary_retained": 40,
+        "files": 40,
+        "formal_source_files": 40,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-4554ddb3f12e"
@@ -227,11 +247,11 @@
         "root_count": 1,
         "value": "Complexitylib/@subtrees/c"
       },
-      "snapshot_sha256": "4b004e2d7d2517721b35604b32db6e929d9d234baa9d0495edaa1559d55e8325",
+      "snapshot_sha256": "9454c9f3a3d86812b1dca9acab3d08949f8247e4a0269c213e79407c15411dc9",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 365,
-        "bytes": 2658776,
+        "bytes": 2658976,
         "current_primary_excluded": 0,
         "current_primary_retained": 365,
         "files": 365,
@@ -247,11 +267,11 @@
         "root_count": 2,
         "value": "Complexitylib/@subtrees/e"
       },
-      "snapshot_sha256": "4ae94b6508d88655fb8448a31c6878e1b46121f6f5260715c869020bbfd41de5",
+      "snapshot_sha256": "cf673fde639e7b162fbe091aa394649f0abb7ccf5b9fa04716ae2ed4762e110b",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 314,
-        "bytes": 1968301,
+        "bytes": 1968297,
         "current_primary_excluded": 0,
         "current_primary_retained": 314,
         "files": 314,
