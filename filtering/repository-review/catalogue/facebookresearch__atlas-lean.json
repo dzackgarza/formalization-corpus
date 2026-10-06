@@ -4,18 +4,18 @@
   "proof_assistant": "lean",
   "repository": "facebookresearch__atlas-lean",
   "schema_version": 1,
-  "source_revision": "dca09f91437baae9f7cc37489ba764e0caf1b4a4",
-  "source_snapshot_sha256": "cb1e6b3d017fdd02a13bdcca20b3e379a69473db6078d9307eff066329c99020",
+  "source_revision": "767992951a2207bdc4e14758d17eb7b72a55f9d3",
+  "source_snapshot_sha256": "1b7c20deab9322d15134818145fe67fc72fd0e3f344486098ba915f140e42063",
   "sync_group": "routine",
   "totals": {
-    "auxiliary_only": 2,
-    "baseline_primary_retained": 9752,
-    "bytes": 119049189,
-    "current_primary_excluded": 0,
-    "current_primary_retained": 9751,
-    "files": 9757,
-    "formal_source_files": 9752,
-    "unindexed_nonformal": 4
+    "auxiliary_only": 3,
+    "baseline_primary_retained": 12173,
+    "bytes": 152825501,
+    "current_primary_excluded": 8,
+    "current_primary_retained": 12166,
+    "files": 12182,
+    "formal_source_files": 12173,
+    "unindexed_nonformal": 5
   },
   "transport": "git",
   "url": "https://github.com/facebookresearch/atlas-lean",
@@ -24,21 +24,81 @@
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-3c1f4e59fb79.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 5,
+        "root_count": 9,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "86f7f23358dcd7baa1e3afa194dc5229cbf0d6ffc7f804cecca8244c3c51ba21",
+      "snapshot_sha256": "90a07d741b13b8c7b9b777aaf8d1a0dc04302a631e26f710d69d909c604fc064",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 0,
-        "bytes": 18408,
-        "current_primary_excluded": 0,
+        "bytes": 27227,
+        "current_primary_excluded": 3,
         "current_primary_retained": 0,
-        "files": 5,
+        "files": 9,
         "formal_source_files": 0,
-        "unindexed_nonformal": 4
+        "unindexed_nonformal": 5
       },
       "unit_id": "RRU-3c1f4e59fb79"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-7d396856c736.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/1"
+      },
+      "snapshot_sha256": "3c3e19c2fb1fb4f838712821985c1b3e0893e69d63631aa9b571c9a395fafa13",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 851,
+        "bytes": 1508491,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 851,
+        "files": 851,
+        "formal_source_files": 851,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7d396856c736"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-aaf3053c3571.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/7"
+      },
+      "snapshot_sha256": "7747c3245e46b1492d0daf8fd3d084d61b40ed77e9a2f15743922e9ae9fe7507",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1555,
+        "bytes": 32233063,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1555,
+        "files": 1555,
+        "formal_source_files": 1555,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-aaf3053c3571"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-ad487652928d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/d"
+      },
+      "snapshot_sha256": "9fb144d4dd8729e5bff9980db59c069fca1a6a880beb9f512c0b951828203595",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 15,
+        "bytes": 25939,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 15,
+        "files": 15,
+        "formal_source_files": 15,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ad487652928d"
     },
     {
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-4ebf5ab17604.jsonl",
@@ -232,8 +292,8 @@
         "auxiliary_only": 0,
         "baseline_primary_retained": 163,
         "bytes": 2185564,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 163,
+        "current_primary_excluded": 5,
+        "current_primary_retained": 158,
         "files": 163,
         "formal_source_files": 163,
         "unindexed_nonformal": 0
@@ -389,11 +449,11 @@
       },
       "snapshot_sha256": "af38404f780c3a990896c6180211004684127a553a9ff1cf3d4270184eb00687",
       "stats": {
-        "auxiliary_only": 0,
+        "auxiliary_only": 1,
         "baseline_primary_retained": 1,
         "bytes": 5188,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1,
+        "current_primary_retained": 0,
         "files": 1,
         "formal_source_files": 1,
         "unindexed_nonformal": 0
