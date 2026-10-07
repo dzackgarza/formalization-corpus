@@ -78,12 +78,13 @@ review-filter-state batch:
 review-batch-reindex batch:
     python scripts/source-cache.py reindex --batch "{{batch}}"
 
-# Complete the normal review cycle. Review records must already be written.
-# This never performs a whole-corpus hydration or rebuild.
+# Refresh reviewed metadata, publish affected shards, and dehydrate the batch.
+# Review records must already be written; this never rebuilds the whole corpus.
 review-batch-index batch:
     python scripts/refresh-review-filter-state.py --batch "{{batch}}" --allow-dirty
     python scripts/validate-filter-state.py
     python scripts/source-cache.py reindex --batch "{{batch}}"
+    python scripts/source-cache.py dehydrate --batch "{{batch}}"
 
 # Build just the Zoekt indexer used by source-local shard replacement.
 build-zoekt:

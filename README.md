@@ -53,10 +53,7 @@ per-source ephemeral build state.
 just build-tools        # build zoekt-index, zoekt, and the Lean ast-grep parser
 just review-batch-hydrate RRB-0008   # hydrate only this batch at pinned source revisions
 # inspect units and append review records
-just review-filter-state RRB-0008    # update FD-018/duplicate state from committed manifests
-just review-batch-reindex RRB-0008   # build locally, atomically replace only affected remote shards
-just publish-index                   # verify the already-published remote shard set
-just review-batch-dehydrate RRB-0008 # reclaim the source/object-cache bytes
+just review-batch-index RRB-0008     # refresh metadata, publish affected shards, then dehydrate
 just source-cache-status REPO        # inspect one source's hydrated/ghost/index state
 just source-seed-index fresh         # exceptional fresh bootstrap, one source at a time
 

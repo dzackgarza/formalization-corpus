@@ -395,22 +395,16 @@ The source-local storage model is implemented directly. For one review batch:
 ```sh
 just review-batch-hydrate RRB-NNNN
 # inspect the hydrated source(s) and append snapshot-pinned review records
-just review-filter-state RRB-NNNN
-just review-batch-reindex RRB-NNNN
-# validate source-local probes/evaluation; reindex already installed changed shards remotely
-just publish-index  # verify published remote inventory
-just review-batch-dehydrate RRB-NNNN
+just review-batch-index RRB-NNNN
 ```
 
-`review-filter-state` reconstructs FD-018 and exact-duplicate result metadata from the
-committed repository-review manifests, so unrelated source trees need not exist.
-`review-batch-reindex` materializes hard-link views only for the selected repositories,
-builds replacement shards in transient local staging, then atomically swaps them into the
-persistent Zoekt index on the search host and removes the local staging/views. The connector
-must not retain a complete `.zoekt` mirror. `review-batch-dehydrate` verifies the checkout is
-clean, at the catalogue-pinned revision, catalogued, and already represented by a shard
-before deleting it. This deliberately removes the nested Git object database too; keeping
-a sparse working tree but retaining fetched blobs would not reliably reclaim disk.
+`review-batch-index` reconstructs FD-018 and exact-duplicate result metadata from the
+committed repository-review manifests, builds and publishes each affected shard in turn,
+validates the remote index, then dehydrates the batch. Each source's temporary hard-link
+views are removed before the next source is materialized. Dehydration verifies that the
+checkout is clean, at the catalogue-pinned revision, catalogued, and represented by a
+remote shard before removing its Git object database. The connector must not retain a
+complete `.zoekt` mirror.
 
 `just index` and the no-selector `repository-review.py build` are retained only for
 exceptional whole-corpus reproducibility work. A fresh machine can instead run

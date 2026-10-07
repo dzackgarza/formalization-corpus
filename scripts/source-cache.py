@@ -509,13 +509,10 @@ def reindex(repositories: list[str], *, keep_views: bool, validate_published: bo
     if unknown:
         raise SystemExit(f"unknown campaign repositories: {unknown}")
 
-    if active:
-        binary = ensure_zoekt_index()
-        materialize(active)
-    else:
-        binary = None
-    try:
-        for repository in active:
+    binary = ensure_zoekt_index() if active else None
+    for repository in active:
+        try:
+            materialize([repository])
             view = PRIMARY_VIEW / repository
             if not view.is_dir():
                 raise SystemExit(f"missing materialized primary view for {repository}")
@@ -537,15 +534,14 @@ def reindex(repositories: list[str], *, keep_views: bool, validate_published: bo
                 )
             finally:
                 shutil.rmtree(staging, ignore_errors=True)
-        for repository in retired:
-            remove_repository_shards(repository)
-        if validate_published:
-            subprocess.run(["python", str(ROOT / "scripts" / "check-published.py")], cwd=ROOT, check=True)
-    finally:
-        if not keep_views:
-            for repository in active:
+        finally:
+            if not keep_views:
                 shutil.rmtree(PRIMARY_VIEW / repository, ignore_errors=True)
                 shutil.rmtree(METADATA_VIEW / repository, ignore_errors=True)
+    for repository in retired:
+        remove_repository_shards(repository)
+    if validate_published:
+        subprocess.run(["python", str(ROOT / "scripts" / "check-published.py")], cwd=ROOT, check=True)
 
 
 def seed_all(*, fresh: bool) -> None:
