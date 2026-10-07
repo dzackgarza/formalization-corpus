@@ -167,3 +167,4 @@ while IFS=$'\t' read -r url dir proof_assistant transport sync_group discovered_
   fi
 done < "$MANIFEST"
 echo "processed=$COUNT failed=$FAILED log=$FAIL_LOG"
+(( FAILED == 0 ))
