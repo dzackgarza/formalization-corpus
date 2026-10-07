@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "9ad0c6ca7cf3683242a5ea868b9f9b18723e7b21",
-  "generated_at": "2026-10-07T15:16:02.809181+00:00",
+  "corpus_git_commit": "7d2c1ad1a6bbc795809323390f15c11b72dc5517",
+  "generated_at": "2026-10-07T15:16:50.883715+00:00",
   "groups": [
     {
       "canonical": {
@@ -1764,6 +1764,26 @@
     },
     {
       "canonical": {
+        "file": "bench/HexRealClosure/Bench.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexRealClosure/Bench.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "reports/bench-results/real-closure-metitarski-scaling-14b03f/sources/bench/HexRealClosure/Bench.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "04c3b84ab4f85f3e25837a2009f64716c38c24314ed31519222e8b53fd3c0476",
+      "size_bytes": 35529
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/mathd-numbertheory-149.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -2021,26 +2041,6 @@
       ],
       "sha256": "05825aa68b91a9007ce960026a0c28b1b5325f11b2c43e3122ff1cd2f93f96fa",
       "size_bytes": 2814
-    },
-    {
-      "canonical": {
-        "file": "HexBasic/ListShim.lean",
-        "repository": "kim-em__hex-dev"
-      },
-      "occurrences": [
-        {
-          "file": "HexBasic/ListShim.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        },
-        {
-          "file": "HexBasic/ListShim.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__hex-basic"
-        }
-      ],
-      "sha256": "0592907ec6e26446537ba8d8d4b2b01ea0868c871a8183cd4ea833c51706fce7",
-      "size_bytes": 1451
     },
     {
       "canonical": {
@@ -13336,6 +13336,26 @@
       ],
       "sha256": "2d06c583efe3a8cfd870841f8c2ea8c38f5eca429f5370e1112394e8b9a01143",
       "size_bytes": 5132
+    },
+    {
+      "canonical": {
+        "file": "bench/HexRealClosure/Phase4.lean",
+        "repository": "kim-em__hex-dev"
+      },
+      "occurrences": [
+        {
+          "file": "bench/HexRealClosure/Phase4.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        },
+        {
+          "file": "reports/bench-results/real-closure-metitarski-scaling-14b03f/sources/bench/HexRealClosure/Phase4.lean",
+          "proof_assistant": "lean",
+          "repository": "kim-em__hex-dev"
+        }
+      ],
+      "sha256": "2d26f5fbbab2b45013a2536491b5ab168dbbb55fa4a533c1a4dd6103e6a81077",
+      "size_bytes": 10091
     },
     {
       "canonical": {
@@ -52529,26 +52549,6 @@
     },
     {
       "canonical": {
-        "file": "bench/HexRealRoots/Bench.lean",
-        "repository": "kim-em__hex-dev"
-      },
-      "occurrences": [
-        {
-          "file": "bench/HexRealRoots/Bench.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        },
-        {
-          "file": "reports/bench-results/dyadic-cancellation/RealRoots.Bench.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        }
-      ],
-      "sha256": "b3eec1620472202c46b892bf5724faf4bc0b6377c68e30f645b5d8799d4190e9",
-      "size_bytes": 20552
-    },
-    {
-      "canonical": {
         "file": "books/projects/arm/fadd/lza.lisp",
         "repository": "acl2__acl2"
       },
@@ -61286,26 +61286,6 @@
       ],
       "sha256": "ce32ee3c7dff71d47ef0653efbe206732a1fb5188affa7896de6503e4ff87397",
       "size_bytes": 473
-    },
-    {
-      "canonical": {
-        "file": "bench/HexRCF/ProofProbe/Profiling.lean",
-        "repository": "kim-em__hex-dev"
-      },
-      "occurrences": [
-        {
-          "file": "bench/HexRCF/ProofProbe/Profiling.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        },
-        {
-          "file": "reports/data/hexrcf-phase-profile/initial-diagnostic/Profiling.lean",
-          "proof_assistant": "lean",
-          "repository": "kim-em__hex-dev"
-        }
-      ],
-      "sha256": "ce4416bd9a87b7b0780d75687c16549ac9dcff5e90c0474e53d3374140108997",
-      "size_bytes": 720
     },
     {
       "canonical": {
