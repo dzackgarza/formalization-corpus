@@ -4,41 +4,81 @@
   "proof_assistant": "lean",
   "repository": "PierreSenellart__descriptive-complexity",
   "schema_version": 1,
-  "source_revision": "e5d85b1d11f9dc75bb214877541bcc2315e1f497",
-  "source_snapshot_sha256": "052514890fd50c192c1194c724ff27e248d96d6bdb4ca1e00028c1e57f90ed4d",
+  "source_revision": "2c61a96189639b8f90b12d458153bdb62d05ea70",
+  "source_snapshot_sha256": "75cc3ecc275acf1078084f9c4876559f5ce2d7760911930b62a4f33a85153b51",
   "sync_group": "bulk",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 1851,
-    "bytes": 31174119,
+    "baseline_primary_retained": 2301,
+    "bytes": 37493964,
     "current_primary_excluded": 3,
-    "current_primary_retained": 1850,
-    "files": 1860,
-    "formal_source_files": 1851,
+    "current_primary_retained": 2300,
+    "files": 2310,
+    "formal_source_files": 2301,
     "unindexed_nonformal": 6
   },
   "transport": "git",
   "url": "https://github.com/PierreSenellart/descriptive-complexity",
   "work_units": [
     {
-      "files_manifest": "filtering/repository-review/files/PierreSenellart__descriptive-complexity/RRU-8933826a7fa1.jsonl",
+      "files_manifest": "filtering/repository-review/files/PierreSenellart__descriptive-complexity/RRU-6c8b73febcd3.jsonl",
       "scope": {
-        "kind": "repository",
-        "root_count": 0,
-        "value": "."
+        "kind": "file-bucket",
+        "root_count": 11,
+        "value": "./@files/all"
       },
-      "snapshot_sha256": "052514890fd50c192c1194c724ff27e248d96d6bdb4ca1e00028c1e57f90ed4d",
+      "snapshot_sha256": "28c9c27cdeb745d92750ededc3117db132acd5e4ad4185a53f3d163a0a6061da",
       "stats": {
         "auxiliary_only": 1,
-        "baseline_primary_retained": 1851,
-        "bytes": 31174119,
+        "baseline_primary_retained": 2,
+        "bytes": 328764,
         "current_primary_excluded": 3,
-        "current_primary_retained": 1850,
-        "files": 1860,
-        "formal_source_files": 1851,
+        "current_primary_retained": 1,
+        "files": 11,
+        "formal_source_files": 2,
         "unindexed_nonformal": 6
       },
-      "unit_id": "RRU-8933826a7fa1"
+      "unit_id": "RRU-6c8b73febcd3"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/PierreSenellart__descriptive-complexity/RRU-b667684facfc.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/b1"
+      },
+      "snapshot_sha256": "4207705e05742b10b1bef74e6f994ea946b96fa215aae22ff7f5d1fc60f033d3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1449,
+        "bytes": 21027432,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1449,
+        "files": 1449,
+        "formal_source_files": 1449,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b667684facfc"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/PierreSenellart__descriptive-complexity/RRU-004c8548d91c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/bf"
+      },
+      "snapshot_sha256": "6c4b7b21e373e2cb72debd52fdb3bd6ad2f6614daed0e7bc0c378e8e895eb201",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 850,
+        "bytes": 16137768,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 850,
+        "files": 850,
+        "formal_source_files": 850,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-004c8548d91c"
     }
   ]
 }
