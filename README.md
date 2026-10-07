@@ -17,7 +17,7 @@ not a second inventory.
 
 ## What the corpus contains
 
-The canonical table currently has 888 sources. A source is an independently
+The active source table contains catalogued, indexable sources. A source is an independently
 addressable formalization library, repository, or published source distribution:
 Mathlib is one source, UniMath is one source, and the Mizar Mathematical Library
 is one source. How a source was discovered does not change its identity.
@@ -30,6 +30,10 @@ is one source. How a source was discovered does not change its identity.
 - `transport` — `git`, `gitlab`, or `web-dir`;
 - `sync_group` — operational refresh cadence (`routine`, `bulk`, or `cross-prover`);
 - `discovered_via` — provenance such as `registry` or `reservoir`.
+
+`pending-sources.tsv` preserves discovered candidates that have not yet been
+hydrated, catalogued, and published. They are outside the active source table
+until each source completes that intake path.
 
 The last two fields are ingestion/maintenance metadata only. In particular, a
 Lean repository discovered through Reservoir is still simply a Lean source. The
