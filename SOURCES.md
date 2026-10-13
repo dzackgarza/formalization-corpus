@@ -61,6 +61,180 @@ in scope even when its headline result is not a theorem of pure mathematics.
 | [TheoremSearch](https://www.theoremsearch.com/) ([`uw-math-ai/TheoremSearch`](https://github.com/uw-math-ai/TheoremSearch), [arXiv:2602.05216](https://arxiv.org/abs/2602.05216)) | Semantic search over 9.2M *informal* theorem statements: all of arXiv, ProofWiki, the Stacks Project, CRing, the HoTT Book and three more. It holds no Lean, so it answers the question this corpus cannot — where a result is stated in the literature, and under what name. REST at `api.theoremsearch.com/search`, MCP at `api.theoremsearch.com/mcp`. |
 | [TheoremGraph](https://www.theoremsearch.com/) ([arXiv:2606.25363](https://arxiv.org/abs/2606.25363)) | Links those informal statements to 388,105 Lean declarations across 25 projects through a shared embedding space (47,952 matches above a 0.8 cosine floor; Mathlib is 90.5% of the declarations). Its formal side is a subset of this corpus — 24 of its 25 projects are already present in `sources.tsv` — but the matching is a capability this corpus lacks: use it to ask whether a paper's theorem has any formalization, then search here for the text. |
 
+## Verified source evidence
+
+These notes record declaration-level evidence inspected during source intake; they are
+not a second source inventory. Source identity remains owned by `sources.tsv`. Each
+row names an exact upstream revision and one formal declaration or construction that
+was read from the cited source file. The current `openai/NavierStokesAndEuler` head
+is intentionally indexed in addition to its Lean Pool copy because it is one commit
+and 188 changed files ahead of the pool pin; `cameronfreer/infinitary-logic` is 109
+commits and 119 changed files ahead of its pool pin.
+
+| Source | Prover | Inspected revision | Formal evidence |
+| --- | --- | --- | --- |
+| [`bufordrat/fun-with-awodey`](https://github.com/bufordrat/fun-with-awodey) | `agda` | `075b1fe3b28481c2d9cc67f7e0c59b30265987a9` | `FreeMonoid.agda` — `left-id` |
+| [`catskillsresearch/scott2013`](https://github.com/catskillsresearch/scott2013) | `agda` | `bf952f46193681258c16cd2563641e8c6548db1c` | `src/Scott2013/GraphModel/Basic.agda` — `pair` |
+| [`iwilare/loop-dinaturals`](https://github.com/iwilare/loop-dinaturals) | `agda` | `34e3312e8b98155f071d92773882363c63bf843a` | `Dinaturals/ComposeGroupoid.agda` — `to` |
+| [`LorenzoPerticone/KR`](https://github.com/LorenzoPerticone/KR) | `agda` | `d451a3b2ece48132c431ad19fd3855ea73811bfd` | `KR/Cats/Adjoint.agda` — `_⊣_` |
+| [`tgrospic/interaction-arrows-agda`](https://github.com/tgrospic/interaction-arrows-agda) | `agda` | `a55ff73cb73848b3ad398b56cadeae7ef26a3433` | `src/Category.agda` — `Hom` |
+| [`wasabi315/HIT-derivative`](https://github.com/wasabi315/HIT-derivative) | `agda` | `ea03ce499b0c782600af4e4d54e223a6c4118c65` | `src/Exp.agda` — `A` |
+| [`abhijitaj1997/CMAbelianVarieties`](https://github.com/abhijitaj1997/CMAbelianVarieties) | `lean` | `2d4920808ae2c35d3d7bc324cbff8deb9b93d083` | `CMAbelianVarieties/AlgebraicGeometry/Finite.lean` — `affine_iff_top` |
+| [`Achxy/k-5-38`](https://github.com/Achxy/k-5-38) | `lean` | `4330f0513173258259f0585d1c1b8a624fda59d2` | `Kourovka/Problem.lean` — `ProductHopficityStatement` |
+| [`alejandro-soto-franco/EllipticPDE`](https://github.com/alejandro-soto-franco/EllipticPDE) | `lean` | `b2e5380f2ebf73a3224fdee91b7995073072157b` | `lean/EllipticPdes/Sobolev/Basic.lean` — `L2D` |
+| [`alok/JordanCurveTheorem`](https://github.com/alok/JordanCurveTheorem) | `lean` | `9f43c42804d7a171f42aeb71e999456d87c2864d` | `Reeken/Geometry/RingParity.lean` — `parity_eq_inside_of_edge_barriers` |
+| [`anthropics/fermats-last-theorem`](https://github.com/anthropics/fermats-last-theorem) | `lean` | `aa2d8b34692b16c70f699536de0d8e75b9a3e9ef` | `Definitions/Def_AlgebraicGeometry_ProjSpaceCechGradedModule.lean` — `GradedModule` |
+| [`arclabs561/geometry-of-numbers`](https://github.com/arclabs561/geometry-of-numbers) | `lean` | `d779c078418bab2d9f75b0abeb26427d632848b1` | `GeometryOfNumbers/Core/Basic.lean` — `polygonal` |
+| [`AxiomMath/IMO2026`](https://github.com/AxiomMath/IMO2026) | `lean` | `c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2` | `IMO2026/Q1/problem.lean` — `IsInitial` |
+| [`AxiomMath/parity-differential`](https://github.com/AxiomMath/parity-differential) | `lean` | `2b7f353175cfded199801b845041b663ff67bad1` | `ParityDifferential/problem.lean` — `countingFunctionN` |
+| [`AxiomMath/PrimeGapsLib`](https://github.com/AxiomMath/PrimeGapsLib) | `lean` | `1faa7b14e82ddebc2772dfb9153922f01b106477` | `PrimeGaps/Bounded246.lean` — `bombieriVinogradov_implies_frequently_prime_gap_le_246` |
+| [`bridgekat/numlib-auto`](https://github.com/bridgekat/numlib-auto) | `lean` | `92e2312997945aadf819497d5eb87c14462cfa5e` | `Numlib/Analysis/Normed/Ring/CondNumber.lean` — `condNumber` |
+| [`cameronfreer/infinitary-logic`](https://github.com/cameronfreer/infinitary-logic) | `lean` | `e7f88ab2bae048a61c9050376e7a16826078a94c` | `InfinitaryLogic/ModelTheory/Hanf.lean` — `HasArbLargeModels` |
+| [`carlok/diaz-modulus-lean`](https://github.com/carlok/diaz-modulus-lean) | `lean` | `bc7f999a33699d6e360bcbb338b3b0634c7b19d4` | `Diaz/Model.lean` — `norm_form` |
+| [`catskillsresearch/scott_models`](https://github.com/catskillsresearch/scott_models) | `lean` | `85ed1ae09faa29fe292c9867e91cf8e9b48ab2fa` | `ScottModels/InfoSysConstructions.lean` — `productDomainIso` |
+| [`cgarryZA/LevyStochCalc`](https://github.com/cgarryZA/LevyStochCalc) | `lean` | `baf75d5fcf95e01d67030d80ae85f25e5540122c` | `LevyStochCalc/Probability/IndepGrouping.lean` — `iIndep_iSup_fiber` |
+| [`chris-dare-dev/derived-alg-geo-lean`](https://github.com/chris-dare-dev/derived-alg-geo-lean) | `lean` | `7a7c8908f14dc90e9739fbd97346565d5d31c490` | `DerivedAlgGeo/AlgebraicGeometry/Modules/Coherent/Basic/Definitions.lean` — `Modules.IsCoherent` |
+| [`Cimino10/FejerProject`](https://github.com/Cimino10/FejerProject) | `lean` | `339e782c23aa9e831d11036d601e945fed5e18f8` | `FejerProject/Fejer.lean` — `fourierIndices` |
+| [`Cobord/JordanAlgebra`](https://github.com/Cobord/JordanAlgebra) | `lean` | `a4b0d58554732ced63b4217200baa56be5a2c3d5` | `Jordan/StructureAlgebra.lean` — `lmul` |
+| [`crabsatellite/asymmetric-eliminativism-lean4-formalization`](https://github.com/crabsatellite/asymmetric-eliminativism-lean4-formalization) | `lean` | `96a9266c999d9c14613a496e74a1313b21fe0c60` | `AsymmetricEliminativism/Basic.lean` — `ReverseDefinedConcept` |
+| [`cslib-community/fad`](https://github.com/cslib-community/fad) | `lean` | `93148c367abaea05f0284ec9e62fa3553a0bcc50` | `Fad/Chapter0.lean` — `factorial₀` |
+| [`DMDTague/ExactListEdgeLabelings`](https://github.com/DMDTague/ExactListEdgeLabelings) | `lean` | `b9926eb99ec570fa531dbb891734a12c414bc704` | `BachThesisLean/Basic/Multigraph.lean` — `BipartiteMultigraph` |
+| [`dolev765/Formalized-in-Lean-Every-Affine-Scheme-as-an-Affine-Linear-Section-of-a-Smooth-Nilpotent-Orbit-`](https://github.com/dolev765/Formalized-in-Lean-Every-Affine-Scheme-as-an-Affine-Linear-Section-of-a-Smooth-Nilpotent-Orbit-) | `lean` | `cde27292f4c9e7872fcfd04ed80c5afd30b5623b` | `Universality/Circuit/Basic.lean` — `AffineEquation` |
+| [`EdouardBonnet/EH-C5`](https://github.com/EdouardBonnet/EH-C5) | `lean` | `63f5c9284f82bad4ea622526b93c4ddfb95fcae6` | `concepts/Lax54/GraphDefinitions.lean` — `C5` |
+| [`EdouardBonnet/EH-P5`](https://github.com/EdouardBonnet/EH-P5) | `lean` | `a44fe30b0adfc892f26c29ea5dc7815a3f4f45c3` | `concepts/Lax57/GraphDefinitions.lean` — `P5` |
+| [`EdouardBonnet/fine-grained-hypotheses`](https://github.com/EdouardBonnet/fine-grained-hypotheses) | `lean` | `0c66830680856ae535e19462b5bc2af150d308fb` | `concepts/Lax489179/TuringMachine.lean` — `Move` |
+| [`EdouardBonnet/moser-tardos`](https://github.com/EdouardBonnet/moser-tardos) | `lean` | `2fc19f8c69c3ae6dc8770629b3613220283ce669` | `concepts/Lax296731/MoserTardosDefinitions.lean` — `TableIndex` |
+| [`EgoFakeFantasy/PCFAlephOmega4`](https://github.com/EgoFakeFantasy/PCFAlephOmega4) | `lean` | `1425aaf31aa9168ccbde6a41bcf5a7d2302f4b1b` | `PcfProject/FinitePcf.lean` — `finset_exists_small` |
+| [`FormalizedFormalLogic/AlphaCentauri`](https://github.com/FormalizedFormalLogic/AlphaCentauri) | `lean` | `c8c11b032df0dbf6d6e94469259b7a24593089ac` | `AlphaCentauri/Model/Basic.lean` — `EndExtension` |
+| [`FredericaBernkastel1/Stochastic-Process-lean-lib`](https://github.com/FredericaBernkastel1/Stochastic-Process-lean-lib) | `lean` | `b609382f2b7f1eb460c48b13072197dfd998f4b7` | `StochLean/ForMathlib/MeasureTheory/QuadraticMeasureAlgebra.lean` — `quadratic_measure_domination_add` |
+| [`gdahia/DensityHalesJewett`](https://github.com/gdahia/DensityHalesJewett) | `lean` | `a11ca509eb19594ae724424711964dd2211ea67f` | `DensityHalesJewett/Subspace.lean` — `injective` |
+| [`gdanezis/lean-dag`](https://github.com/gdanezis/lean-dag) | `lean` | `e4cb503b96ba7415ab90f944999ec2483953ccc6` | `LeanDag/Adaptive/Headline.lean` — `score_safe` |
+| [`guanyangwang/ktv-swap-lean-comparator`](https://github.com/guanyangwang/ktv-swap-lean-comparator) | `lean` | `fd4dc985900b1fba59791067dcf3bf9341a94bda` | `Solution.lean` — `toKTVModel` |
+| [`hanyi162013-Yihan/projection-density-theorem-formalization`](https://github.com/hanyi162013-Yihan/projection-density-theorem-formalization) | `lean` | `91cede0789e5ee3613a4ab735c364904818691b4` | `LivshytsProjectionFormalization/ProbabilityCore.lean` — `interval_small_ball_of_bounded_pdf` |
+| [`heffordj/TwoMonoidal`](https://github.com/heffordj/TwoMonoidal) | `lean` | `8d50e6dbd58265644cfbd9b06507fcd7d6c9cd12` | `TwoMonoidal/Basic.lean` — `TwoMonoidalStructures` |
+| [`ilyasergey/langlib`](https://github.com/ilyasergey/langlib) | `lean` | `38f5a43dc360ea3dc0fdc24b83fa312e1bd17b2c` | `Langlib/Common/Computability.lean` — `TuringComplete` |
+| [`itpplasma/algebraic-analysis`](https://github.com/itpplasma/algebraic-analysis) | `lean` | `121596ebe2447b60933a39c378779eabed552902` | `AlgebraicAnalysis/RingTheory/RatFuncAtPoint.lean` — `polynomialAtPoint` |
+| [`jaredwilder/additive-combinatorics-campaigns`](https://github.com/jaredwilder/additive-combinatorics-campaigns) | `lean` | `f262fe6fa8371ca1d41da028d783129a83aa862d` | `blade-championship/formal/BvSmoke.lean` — `bvSmoke` |
+| [`jaredwilder/erdos-theorems`](https://github.com/jaredwilder/erdos-theorems) | `lean` | `cc8d3a6128d6ece468e04c867d048948b48dab31` | `theorems/cover-C13-6-3/Cover20Degree.lean` — `CoversTriples` |
+| [`jaredwilder/erdos138-obstruction`](https://github.com/jaredwilder/erdos138-obstruction) | `lean` | `8f87dd38062535eb50b77973f3e9747b92db16ea` | `E138Fragments.lean` — `RootDiv` |
+| [`jaredwilder/erdos74-bipartite-defect`](https://github.com/jaredwilder/erdos74-bipartite-defect) | `lean` | `29d3347da826b82c3717d1318d40aa3bd012f49b` | `research/lean/Attack01.lean` — `edgeDistancesToBipartite` |
+| [`jaredwilder/erdos902-tournament-f4`](https://github.com/jaredwilder/erdos902-tournament-f4) | `lean` | `abc594fec27e338297aee91e994991068a9307b6` | `structural-proof/probe.lean` — `row35` |
+| [`JD-Jones-ASES/fs-formal`](https://github.com/JD-Jones-ASES/fs-formal) | `lean` | `4e796565301b1425c53e807a6edf408535b2e922` | `FsLowerBound/Defs.lean` — `IsNonzeroSquareMod` |
+| [`JD-Jones-ASES/x-ray-lean`](https://github.com/JD-Jones-ASES/x-ray-lean) | `lean` | `c0a7d9f6119ed1126a292081689fdf8927ac12ea` | `XRay/Defs.lean` — `Profile` |
+| [`joelcanary/collatz-kodama-observable`](https://github.com/joelcanary/collatz-kodama-observable) | `lean` | `2493cf651c6dfdc61d43051a8cf7377436428330` | `lean/CollatzProof/KodamaFermat.lean` — `step_a` |
+| [`karirogg/strong-roberson-conjecture-for-split-off-minors`](https://github.com/karirogg/strong-roberson-conjecture-for-split-off-minors) | `lean` | `f93926d1c29164f03713bfee580bca8898d14014` | `StrongRoberson/Basic.lean` — `MultigraphHom` |
+| [`kim-em/erdos-unit-distance-comparator`](https://github.com/kim-em/erdos-unit-distance-comparator) | `lean` | `ea90703b93418edea2cdc7a631b0b4287e47bac4` | `Solution.lean` — `unitDist` |
+| [`klavins/polya-topology`](https://github.com/klavins/polya-topology) | `lean` | `7e6c1e25910e72146dbeb4831dd2e128cf641c65` | `PolyaTopology/GeneralTopology/MetricSpaces.lean` — `MetricSpace` |
+| [`landonfox00/lean-operads`](https://github.com/landonfox00/lean-operads) | `lean` | `799e1cd8107ace580aa79b76a1a13ae04913a118` | `Operad/Basic.lean` — `reindex` |
+| [`linhaowei1/sum-diff-proof`](https://github.com/linhaowei1/sum-diff-proof) | `lean` | `f53f84223b48457ac922836b661227309d9340c3` | `SumDiffExponent.lean` — `growthExponent` |
+| [`LR-UK/exp-chaotic`](https://github.com/LR-UK/exp-chaotic) | `lean` | `303b2d3d1121ebc3a86399de8f1e71c17a8b6dd8` | `ExpChaotic/Basic.lean` — `exponentialMap` |
+| [`macgregor-sudo/albert-frame-triple-invariants`](https://github.com/macgregor-sudo/albert-frame-triple-invariants) | `lean` | `dd06ef5d423a0e4a5d814d2c221e999b98887ee1` | `AlbertLean/ModelProduct.lean` — `coordToHermitian_productForm_square` |
+| [`manitgupta27/A-Topological-Interpretation-of-Divisibility`](https://github.com/manitgupta27/A-Topological-Interpretation-of-Divisibility) | `lean` | `8608c95760553ea987dfd9c9af24c36201bf58f8` | `subspace_topology_semigroup.lean` — `yS_set` |
+| [`marco-david/ainfinity-lean`](https://github.com/marco-david/ainfinity-lean) | `lean` | `28684eb7a4d32489f081e2f415118746ff6f48ab` | `AInfinity/AInfinityCategory.lean` — `AInfinityCategoryStruct` |
+| [`mario-ullrich/Lean-SNumbers`](https://github.com/mario-ullrich/Lean-SNumbers) | `lean` | `d984f39b53eb1579920fe987de10382dcf553f4e` | `BasicResults/KadetsSnobar.lean` — `exists_projection_range_eq_of_rank_le` |
+| [`Matherunner/formalproofs`](https://github.com/Matherunner/formalproofs) | `lean` | `d8f3ec76b3746674984b0f73024645d28186ed42` | `First/Ladder.lean` — `norm3` |
+| [`minchaowu/Kruskal.lean4`](https://github.com/minchaowu/Kruskal.lean4) | `lean` | `8b2815bfd3d3ceca9079a1cbb48fe43d2264161e` | `Kruskal/Tree.lean` — `Tree` |
+| [`mroximut/dLean`](https://github.com/mroximut/dLean) | `lean` | `04c83a1a488eea298e10439c3e0d4f251cbe8201` | `dLean/Core/ODE.lean` — `Evolvable` |
+| [`N-Y-L/quantum-adiabatic-lean`](https://github.com/N-Y-L/quantum-adiabatic-lean) | `lean` | `73b4a2688d0ec6db16be89bd6db13041271adc08` | `Adiabatic/Unbounded/GraphLimit.lean` — `norm_shift_le_of_tendsto_inclusion_of_bound_tendsto` |
+| [`nikhgarg/AppliedModelingLib`](https://github.com/nikhgarg/AppliedModelingLib) | `lean` | `2db7d108cd3a2cb10148974bb2a77856e7d87428` | `AppliedModelingLib/Algorithms/Complexity/Classes.lean` — `ComplexityClassModel` |
+| [`nitromannitol/Unique-Continuation-Planar`](https://github.com/nitromannitol/Unique-Continuation-Planar) | `lean` | `570e94f540e20dc4698207f0f3eb4f12c8f45e42` | `UCPlanar/Basic.lean` — `UCPlanar.boundedDensity` |
+| [`openai/NavierStokesAndEuler`](https://github.com/openai/NavierStokesAndEuler) | `lean` | `f9e8bc5b38b6e212696e8a30e3e91517af887bbd` | `Euler/AllOrderDriftBudget.lean` — `Budget` |
+| [`project-numina/kakeya-3d`](https://github.com/project-numina/kakeya-3d) | `lean` | `a26427e3c2fcaf9f98694fbd0d4dd49e41dcf5e3` | `Kakeya/CShading.lean` — `CShadedBody` |
+| [`proximity-prize/proximity-prize`](https://github.com/proximity-prize/proximity-prize) | `lean` | `cdb451f13fdc6c84f5fe363e77ee13a89bd30974` | `ProximityPrize/Benchmark/IRSProfile.lean` — `totalDimension` |
+| [`r-tanaka-math/mathlib-annex`](https://github.com/r-tanaka-math/mathlib-annex) | `lean` | `6b97ccddc4641d8c8f55b2c3982aa481f4e3b15f` | `MathlibAnnex/Analysis/Normed/Affine/Reflection.lean` — `restrictedPointReflection` |
+| [`rchain-community/quantum-logical-framework`](https://github.com/rchain-community/quantum-logical-framework) | `lean` | `e345ac7380d10ca87e8427862ac36511289034dd` | `lean/ER_EPR_QLF.lean` — `ERBridge` |
+| [`rollroyces/erdos-125`](https://github.com/rollroyces/erdos-125) | `lean` | `b8d46ebfbe2be682ba956c4b53c8e98087109a9f` | `code/L9_attempt.lean` — `inA` |
+| [`roos-j/lean-nct`](https://github.com/roos-j/lean-nct) | `lean` | `412a206c3d6254058d78c0805dabefa735502af0` | `LeanNct/Defs.lean` — `multipleErgodicAverage` |
+| [`SamuelSchlesinger/algebraic-circuits`](https://github.com/SamuelSchlesinger/algebraic-circuits) | `lean` | `aa344cfac8c9e74d6847fef41fd88ea386b2244c` | `Algebraic/MassProduction/SortingSemantics/Defs.lean` — `SequenceBitonic` |
+| [`SauersML/group-approximation`](https://github.com/SauersML/group-approximation) | `lean` | `c72fa1015c52ce53c9ad9c196b2b71fe346101ff` | `GroupApproximation/AlgTop/ChernMap.lean` — `map` |
+| [`ScottCarnahan/vertexAlg`](https://github.com/ScottCarnahan/vertexAlg) | `lean` | `4453e34ec390e82a0c789c731ada8f9a6e86bdea` | `VertexAlg/VertexBasic/Defs.lean` — `stateField` |
+| [`sebastianbiallas/sz8-over-q`](https://github.com/sebastianbiallas/sz8-over-q) | `lean` | `1fec485dad123e41af9f5260de2270e452a2ba28` | `lean/Sz8/Galois/IntModel.lean` — `termOK` |
+| [`seewoo5/cohn-elkies-refactor`](https://github.com/seewoo5/cohn-elkies-refactor) | `lean` | `9195137d03693486eed0cc98d76a902098e4598d` | `CohnElkiesForMathlib/Topology/Algebra/InfiniteSum/ENat.lean` — `hasSum` |
+| [`shosonoda/lean-ridgelet`](https://github.com/shosonoda/lean-ridgelet) | `lean` | `e9af79a1042c19891a9991addb92b75947886343` | `LeanRidgelet/Basic.lean` — `InputSpace` |
+| [`sterraf/chain-bounding`](https://github.com/sterraf/chain-bounding) | `lean` | `921d8c068b65882ce3f96b9cc92beb24aa2b224d` | `Solution.lean` — `IsSegment` |
+| [`SteveWmoc/riemann-roch`](https://github.com/SteveWmoc/riemann-roch) | `lean` | `7912cc4c7d00854c4ca60a51ec1cb659c70d2782` | `RiemannRoch/ProjectiveLine/BasicOpens.lean` — `scheme` |
+| [`subfish-zhou/goldbach-lean`](https://github.com/subfish-zhou/goldbach-lean) | `lean` | `09b97db5764ade1246bfb77206baa1b124760958` | `AnalyticNumberTheory/Mertens/Abelian.lean` — `primeEulerCorrection` |
+| [`sweeneyde/1mfld`](https://github.com/sweeneyde/1mfld) | `lean` | `83e961ba28dd8182e7bae844756aba614eb1512e` | `OneMfld/Charts.lean` — `OChart` |
+| [`tadamcz/erdos548`](https://github.com/tadamcz/erdos548) | `lean` | `82ffb751f3d37768927df9239ed08439bbe0dd09` | `Erdos548/Resolutions/Erdos548_192usd_21h.lean` — `MarkedEnd` |
+| [`thiagomassensini/quantity-representation-foundations`](https://github.com/thiagomassensini/quantity-representation-foundations) | `lean` | `66f9ab46c6fa2622c5e6d9f5ed2c497040c62374` | `QuantityRepresentationFoundations/CarryGeometryNormalizationBridge.lean` — `emergentCoordinates_are_carryGeometryNormalization` |
+| [`timaeus-research/grammar`](https://github.com/timaeus-research/grammar) | `lean` | `52b10d534d396dc0dd6a14e4a804418db3783524` | `Grammar/ChartModelGeometry.lean` — `monoPhase` |
+| [`Timeroot/InverseGaloisProblem`](https://github.com/Timeroot/InverseGaloisProblem) | `lean` | `a7e7a1748aa9473adf4c508e94615c926f38f81c` | `InverseGalois/NumberTheory/NormSign.lean` — `filter_mk_eq_pair` |
+| [`tomdif/eml-lean`](https://github.com/tomdif/eml-lean) | `lean` | `72bfdee3487e9705c58afef21bdfd384c22354e3` | `EML/Basic.lean` — `eml` |
+| [`trailofbits/constructive-cryptography`](https://github.com/trailofbits/constructive-cryptography) | `lean` | `e13678ce0876e144a15ca3340f66b650ae41f92b` | `Probability/DistributionMeasure.lean` — `toPMF` |
+| [`tunnellm/lean-ieee754`](https://github.com/tunnellm/lean-ieee754) | `lean` | `122bf4ba118e694d32d82a1f67cea27b7f6b8bb6` | `FP/Basic.lean` — `RelativeError` |
+| [`turahigashi/hyper-tamari`](https://github.com/turahigashi/hyper-tamari) | `lean` | `5168c78bbfcafe6e2dd21ff2db4d8e6a43253ad6` | `HyperTamari/Basic.lean` — `hyper` |
+| [`UCLA-StarAI/ddnnf-negation`](https://github.com/UCLA-StarAI/ddnnf-negation) | `lean` | `276e8b34c0f31221b0670b1a8e067c03ce32bfc7` | `src/DDNNFNegationCorollaries/ProbabilisticSubtraction.lean` — `botCircuit` |
+| [`ucsd-formal/constrained-decoding-formalization`](https://github.com/ucsd-formal/constrained-decoding-formalization) | `lean` | `989fd77dc39b7d2e97bee8719a797efa3afac9fc` | `ConstrainedDecodingFormalization/Char.lean` — `ExtChar` |
+| [`wwylele/Compass`](https://github.com/wwylele/Compass) | `lean` | `738da583822a43ffa8e6356b9f5629678cf700d7` | `Compass/Basis.lean` — `basis2D` |
+| [`xiyin137/OSreconstruction`](https://github.com/xiyin137/OSreconstruction) | `lean` | `4ff9075f579608425a63d997a4a88bec5402af9f` | `Proofideas/paley_wiener_definition_analysis.lean` — `HasOneSidedFourierSupport` |
+| [`xukai92/mcmc-lean`](https://github.com/xukai92/mcmc-lean) | `lean` | `58fb038917b505f652ad145294238487e7f798a8` | `formal/Mcmc/Docs/Graph.lean` — `GraphNode` |
+| [`yangdabei/ttn-loss-landscape`](https://github.com/yangdabei/ttn-loss-landscape) | `lean` | `b1f47991b435dc930e37e94106dbda1b1acf3821` | `TTN/Landscape/CriticalityBasic.lean` — `instTopologicalSpaceNodeTensor` |
+| [`zilberstein/convex-powerset`](https://github.com/zilberstein/convex-powerset) | `lean` | `1ca469942cab628084b9fcd7bcb0958679d184cd` | `ConvexPowerset/Basic.lean` — `ConvexPowerset` |
+| [`zilberstein/pomsets-with-formulae`](https://github.com/zilberstein/pomsets-with-formulae) | `lean` | `2cbc9a17ab634218282ea1655da0018ad3d3e0ae` | `Pom/Basic.lean` — `Pom` |
+| [`CharlesCNorton/stellarocq`](https://github.com/CharlesCNorton/stellarocq) | `rocq` | `c7acc866eb68a80753eec5bfadd59bab419b2c88` | `theories/Cell.v` — `xeval_agree` |
+| [`clayrat/strictness-pcf`](https://github.com/clayrat/strictness-pcf) | `rocq` | `67d26ac615c463c4ffe36cce5638afdd1b909f77` | `theories/LogicalRelation.v` — `term_rel` |
+| [`CMU-SAFARI/CertiFlash`](https://github.com/CMU-SAFARI/CertiFlash) | `rocq` | `a1b6a1a4febc1f70feefdea725eb04fe35ceaea6` | `formal-proof/src/core/Model.v` — `Addr` |
+| [`formal-dynamics/rocq-dynamics`](https://github.com/formal-dynamics/rocq-dynamics) | `rocq` | `7d734d5c201649704a68208e981f64ac9a1c9283` | `theories/prob/avg.v` — `avg` |
+| [`jwiegley/washsale`](https://github.com/jwiegley/washsale) | `rocq` | `4e304665aa9bb9e5febcd3a30bce9a50c9213355` | `doc/probes/Gate1.v` — `corpus10` |
+| [`kiranandcode/rupi-c`](https://github.com/kiranandcode/rupi-c) | `rocq` | `f35a51acf5e5077aaf44a457105ab65139d2bd87` | `theories/SQLite/MutexEndG1.v` — `me_start` |
+| [`mukeshtiwari/PQ-Crypto`](https://github.com/mukeshtiwari/PQ-Crypto) | `rocq` | `df0c7e6d5e60671244eb3655ec0c636eeb10a64a` | `src/Security/Model.v` — `r_sample_pair_bij` |
+| [`mukeshtiwari/SigmaLang`](https://github.com/mukeshtiwari/SigmaLang) | `rocq` | `b02a0e1f55c2b1c362cacec00dd859e8e5f25824` | `Algebra/Group.v` — `group_cancel_right` |
+| [`TheFrozenFire/unknown-order`](https://github.com/TheFrozenFire/unknown-order) | `rocq` | `9942418c46e3532e6b925032083ca516fbe3a0e9` | `rocq/BitLogic.v` — `bit_and` |
+| [`womeier/local-coalescing`](https://github.com/womeier/local-coalescing) | `rocq` | `7723d4b524106bd4873448ec337e5ca9a2cbbe52` | `theories/pipeline.v` — `parse_and_print` |
+
+| [`LionSR/QICLean`](https://github.com/LionSR/QICLean) | `lean` | `cdaa636d1f41560f7caca7077c11068229cb9727` | `QICLean/Channel/Basic.lean` — `IsChannel` |
+| [`Riflonnade/RandomSetTheory`](https://github.com/Riflonnade/RandomSetTheory) | `lean` | `544f98470c3960a282d6f95c6e08c5487a195664` | `RandomSetTheory/AumannExpectation.lean` — `aumannExpectation` |
+| [`lean-dojo/FloatLib`](https://github.com/lean-dojo/FloatLib) | `lean` | `40301cd44f253a4ac6ccd34a0eb6c221e185e25c` | `FloatLib/Floats/Formats/BinaryInterchange/Configured/Type.lean` — `Binary` |
+| [`aravpaladiya/factorization-theory-formalization`](https://github.com/aravpaladiya/factorization-theory-formalization) | `lean` | `446677f78db920289a200faefe20a5a1db8fdf5f` | `FactorizationTheory/Mathlib/RingTheory/Factorization/BlockMonoid/Basic.lean` — `blockMonoidOver` |
+| [`BochaoKong/classical-complex-wpt`](https://github.com/BochaoKong/classical-complex-wpt) | `lean` | `b4a7273fe5c9752753c52e10494097569089642d` | `ClassicalComplexWPT/Basic.lean` — `IsWeierstrassPreparation` |
+| [`selpoG/lean-hahn-kaplansky`](https://github.com/selpoG/lean-hahn-kaplansky) | `lean` | `0ac403089dede98ca95868d21e0cd1d484358eec` | `HahnKaplanskyRealClosedness/Basic/HahnField.lean` — `HahnField` |
+| [`selpoG/lean-ratfunc-witt-local-global`](https://github.com/selpoG/lean-ratfunc-witt-local-global) | `lean` | `ffe86b61b793a93d6fbd63816be83ab3f9c4b410` | `RatFuncWittLocalGlobal/FiniteDimensional/QuadraticForm.lean` — `diagonalQuadraticForm` |
+| [`tvdlinde/snake-lean`](https://github.com/tvdlinde/snake-lean) | `lean` | `40eef824104c8d77480e033acd6dc1ad051b5f19` | `SnakeLean/Normal.lean` — `IsNormal` |
+| [`dhsorens/lean-refine`](https://github.com/dhsorens/lean-refine) | `lean` | `fc87328256423a029d8aac6753a1c356c7228ac6` | `Refine/Nres.lean` — `Nres` |
+| [`fukubillueda-web/epsilon_FML`](https://github.com/fukubillueda-web/epsilon_FML) | `lean` | `b91ad93900a5e6d9207a4e6166ac94bb3bbcf3ed` | `LanglandsFirstMainLemma/Basic/CharacterTypes.lean` — `ContinuousAddChar` |
+| [`hzldew-git/BongTheory`](https://github.com/hzldew-git/BongTheory) | `lean` | `a81fa2edf7d79c7740ea58539b809ce93f1612c0` | `Bong/Bong/Basic.lean` — `BONG` |
+| [`EdouardBonnet/cook-levin`](https://github.com/EdouardBonnet/cook-levin) | `lean` | `3481a9cc2e2693124717e398f443f8053629d730` | `concepts/Lax429075/Satisfiability.lean` — `SAT` |
+| [`dcposch/jc2-lean`](https://github.com/dcposch/jc2-lean) | `lean` | `6ee763cd623649a5af0517dd12d7202ce2e2ea3c` | `gcd3-69-composition/FaberNormalForm.lean` — `GCD369CubeFaberNormalForm` |
+| [`catskillsresearch/platonic-solids`](https://github.com/catskillsresearch/platonic-solids) | `lean` | `ba9e6b50e243473210d6ca0ba6aae81c8d6922a0` | `PlatonicSolids/PlatonicPair.lean` — `IsPlatonicPair` |
+| [`meixide/tightness-ring`](https://github.com/meixide/tightness-ring) | `lean` | `6f7fa8ce73e1988052fc215b8e98cc8f26a08fcb` | `TightnessRing/OpRing.lean` — `OP1` |
+| [`MichaelStollBayreuth/QuadraticIterates`](https://github.com/MichaelStollBayreuth/QuadraticIterates) | `lean` | `e9e091f5e46b9e5fddee4fb34ca848aa50acf8ba` | `QuadraticIterates/ArchMath1992/Iterates.lean` — `iteratedPoly` |
+| [`Cobord/ErrorCorrection`](https://github.com/Cobord/ErrorCorrection) | `lean` | `f88ba4146ecb070687ef7c165e65157bff2a594c` | `ErrorCorrection/LinearECC.lean` — `LinearECC` |
+| [`Frisk17/TypeTheory`](https://github.com/Frisk17/TypeTheory) | `lean` | `6236735ae737d404e08d238a96d53c6716b71a06` | `TypeTheory/Untyped/Lambda/LocallyNameless/Basic.lean` — `Term` |
+| [`ushironoko/flp-lean`](https://github.com/ushironoko/flp-lean) | `lean` | `4a5cbbad4951e2ecae6bf747c1c0a05efb994bd0` | `FlpLean/Model.lean` — `Protocol` |
+| [`EdouardBonnet/immerman-szelepcsenyi`](https://github.com/EdouardBonnet/immerman-szelepcsenyi) | `lean` | `fae3750ccee617c7f97680c6f1ceef3996b3f47e` | `concepts/Lax733996/Counting.lean` — `Census` |
+| [`EdouardBonnet/savitch`](https://github.com/EdouardBonnet/savitch) | `lean` | `1062714795609fb441d35a663d6d21fa2fba3a72` | `concepts/Lax307052/ConfigurationGraph.lean` — `graph` |
+| [`nickroci/timed-kt`](https://github.com/nickroci/timed-kt) | `lean` | `9816ed9fe6cc16ce29e3d8da475ae36a0df37022` | `TimedKt/Kt.lean` — `Kt_cond` |
+| [`YuanheZ/lean-stat-learning-theory`](https://github.com/YuanheZ/lean-stat-learning-theory) | `lean` | `d0f506f0a695018265dccb33bcb05e2f5ca1c876` | `SLT/CoveringNumber.lean` — `coveringNumber` |
+| [`itpplasma/navier-formal`](https://github.com/itpplasma/navier-formal) | `lean` | `576b72d43a55a81ca18c9bf87e306a55a9b06cdd` | `NavierFormal/SolutionClass.lean` — `IsClassicalSolution` |
+| [`jaumededios/LMLF`](https://github.com/jaumededios/LMLF) | `lean` | `00f4ab46c750d006319066f44115a218c1cc4c62` | `LMLF/Definitions/Gamma.lean` — `gamma_eq_eulerIntegral` |
+| [`rdlnmrn/purelib`](https://github.com/rdlnmrn/purelib) | `lean` | `6564360775d0a235ac5781af772fa98131e469dc` | `CCL/Arithmetic/Enclosures.lean` — `Ball` |
+| [`jardenadi/Jarden-Shami-Colorings`](https://github.com/jardenadi/Jarden-Shami-Colorings) | `lean` | `7dbf3335844638109946d4c7fad2fec2b6298d46` | `JrSh.lean` — `IsAdditive` |
+| [`selpoG/lean-matrix-sos`](https://github.com/selpoG/lean-matrix-sos) | `lean` | `300ad5f2ebe606100661c9d27ca6ffc815fca9b8` | `MatrixSOS/PolyMatrix.lean` — `IsMatrixSOS` |
+| [`siqiliu-tsinghua/tautology`](https://github.com/siqiliu-tsinghua/tautology) | `lean` | `261012c7540673d59a4015371b7618b7573d43da` | `Tautology/RealBasic/ModuleBackend/Dedekind/Basic.lean` — `Cut` |
+| [`codula-code/SwitchingLemma`](https://github.com/codula-code/SwitchingLemma) | `lean` | `32e195c3482cc07301ec14f163b0ce356a962c98` | `SwitchingLemma.lean` — `DecisionTree` |
+| [`leanprover/con-leche`](https://github.com/leanprover/con-leche) | `lean` | `c431b1ca1b7a93486dd3e0440d3ee82abe90ccd0` | `ConLeche/Kernel/Expr.lean` — `Expr` |
+| [`Open-Markets-Initiative/omi-lean-definitions`](https://github.com/Open-Markets-Initiative/omi-lean-definitions) | `lean` | `e16fe48bc4fc82dbc75b4cb3be50a89798507f02` | `Omi/Wire.lean` — `decodeUInt_encodeUInt` |
+| [`OneRegex/revera`](https://github.com/OneRegex/revera) | `lean` | `55d4c955f421e253aaa4ff339335d818987e4831` | `lean/Ere/Syntax.lean` — `Ere` |
+| [`G-course/char-p-NAhodge-formalization`](https://github.com/G-course/char-p-NAhodge-formalization) | `lean` | `46198a786a1b727f4a24717c272ce49b2f2d3b4e` | `LSZ/Objects.lean` — `NilpotentHiggs` |
+| [`Hydrodynamical/Vlasov_Meanfield_Formalization`](https://github.com/Hydrodynamical/Vlasov_Meanfield_Formalization) | `lean` | `986b5f1ec2bdf26800ef65daecbe6187f5e4ae4e` | `Vlasov/Vlasov/OT/Wasserstein.lean` — `wasserstein1` |
+| [`Polarnova/FABL`](https://github.com/Polarnova/FABL) | `lean` | `164f830312946ccac6e7fdc7bb9493f0149e820d` | `FABL/Chapter02/InfluencesAndDerivatives/BooleanInfluence.lean` — `booleanInfluence` |
+| [`cameronfreer/algorithmic-randomness`](https://github.com/cameronfreer/algorithmic-randomness) | `lean` | `6facf35aeaca4c344a6e967bac96dd24b916b673` | `AlgorithmicRandomness/Complexity/PrefixComplexity.lean` — `prefixComplexity` |
+| [`cameronfreer/hilbert10`](https://github.com/cameronfreer/hilbert10) | `lean` | `c244a00d838f72d7633c7ddabb742f1f0f5ee665` | `Hilbert10/DPRM.lean` — `dioph_iff_rePred` |
+| [`cameronfreer/reverse-mathlib`](https://github.com/cameronfreer/reverse-mathlib) | `lean` | `e299be8e05881c797571041c66af8e6b46ace507` | `ReverseMathlib/Omega/Graph.lean` — `InternalFunction` |
+| [`duckki/quantum-computing-lean`](https://github.com/duckki/quantum-computing-lean) | `lean` | `127ace2fa4a00bfb1f2e40fa7ede1a1de7d86ca2` | `QuantumComputing/State.lean` — `PureState` |
+| [`gabrielhrs/markovgames`](https://github.com/gabrielhrs/markovgames) | `lean` | `9c90274fd96d6e8cef50a1c5698294af1de635e1` | `Csg/Basic.lean` — `CSG` |
+| [`gotrevor/lean-formalizations`](https://github.com/gotrevor/lean-formalizations) | `lean` | `3a24a73416f83c32b4d4a2ac09588524c6291650` | `src/LeanFormalizations/GeometricMeasureTheory/Kakeya2D/Defs.lean` — `IsKakeya` |
+| [`gotrevor/lean-gallery`](https://github.com/gotrevor/lean-gallery) | `lean` | `efc72e14c2030842a44dbc7e42850981886fdd03` | `LeanGallery/Logic/Goodstein/Basic.lean` — `goodsteinSeq` |
+| [`n-yamaguchi-0729/ProCGroups`](https://github.com/n-yamaguchi-0729/ProCGroups) | `lean` | `6933dfe3f376833421ce10e782108b95ac84bda5` | `Lean4/ProCGroups/CompletedGroupAlgebra/Basic/InClass/LimitAlgebra.lean` — `CompletedGroupAlgebraInClass` |
+| [`nhajouji/matrix_category`](https://github.com/nhajouji/matrix_category) | `lean` | `18786f2934ac0e3efe707c1f5c79bdc9f47e4ea0` | `MatrixCategory/Smith.lean` — `smithOne` |
+| [`cjyark/cards-formalization-isabelle`](https://github.com/cjyark/cards-formalization-isabelle) | `isabelle` | `4cb91ee101a24e7e80404541b38ac665ea63be84` | `card.thy` — `protocol_correct` |
+| [`a1exziegler/mu-recursive`](https://github.com/a1exziegler/mu-recursive) | `isabelle` | `74db39bc34d172d3111875129ce4e150ed450684` | `muRecursive.thy` — `expr` |
+| [`haskell-user/mixed-base-number-system-in-coq`](https://github.com/haskell-user/mixed-base-number-system-in-coq) | `rocq` | `ef08f6fa0c9ea197dd8b48867636e3d21d4615d2` | `number_system.v` — `Number` |
+| [`haskell-user/permutations-in-coq`](https://github.com/haskell-user/permutations-in-coq) | `rocq` | `5a32872d1363609a5b174e78d3f701982e720868` | `perm.v` — `Perm` |
+| [`VvSsNPk/PropAgda`](https://github.com/VvSsNPk/PropAgda) | `agda` | `fc3a4c10eeb847ae6919c9222cbb05ae293772b6` | `Logic-Agda.agda` — `Props` |
+| [`njayinthehouse/subtype-agda`](https://github.com/njayinthehouse/subtype-agda) | `agda` | `6d22c3bdc5c0a40833cca52ce763a7aee56b944b` | `MPSS/Subtyping.lagda.md` — `_∣_⊢_⊲[_]_` |
+| [`rocq-community/dedekind-reals`](https://github.com/rocq-community/dedekind-reals) | `rocq` | `da4a7452e1d2a8c89558ee72c40535f484415c54` | `theories/Cut.v` — `R_of_Q` |
+
 ## Where to look in Mathlib
 
 The subtrees that carry the most relevant material. A search restricted by path lands in the right part of the library faster than a bare name search.
@@ -381,6 +555,18 @@ The [Lean FRO](https://lean-lang.org/fro/) runs three AI projects ([Year 4 Part 
 | [`the1lab/1lab`](https://github.com/the1lab/1lab) | Cross-linked HoTT reference in cubical Agda. |
 | [`martinescardo/TypeTopology`](https://github.com/martinescardo/TypeTopology) | Topology and logic from the univalent point of view, in Agda. |
 | [`HoTT-Intro/Agda`](https://github.com/HoTT-Intro/Agda) | Section-by-section Agda formalization of Rijke's *Introduction to Homotopy Type Theory*. |
+| [`Sterling1111/rocq-spivak`](https://github.com/Sterling1111/rocq-spivak) | Rocq real-analysis development following Spivak, including formal sets, limits, derivatives, continuity, and chapter-level theorem statements. |
+| [`thealgebraist/zeta-two-thirds-coq`](https://github.com/thealgebraist/zeta-two-thirds-coq) | Rocq formalization of the two-thirds simple-zero result for the Riemann zeta function, including finite-sum and rank/trace statements. |
+| [`takanuva/cps`](https://github.com/takanuva/cps) | Rocq formalization of continuation-passing calculi with syntax, substitution metatheory, categorical models, and term/presheaf constructions. |
+| [`code-artifacts/taps-plume-coq`](https://github.com/code-artifacts/taps-plume-coq) | Rocq formalization of transactional access patterns from Plume, including operation/transaction histories and consistency relations. |
+| [`alonjon-sysfeat/SysFEAT-Agda`](https://github.com/alonjon-sysfeat/SysFEAT-Agda) | Agda formalization of the SysFEAT ontology and relation calculus with bounded-individual classes, subtype witnesses, and linkage constructions. |
+| [`slemus9/hott-intro`](https://github.com/slemus9/hott-intro) | Agda development following Rijke's homotopy type theory text, including dependent sums, coproducts, finite types, decidability, and identification types. |
+| [`SkyLabsAI/BRiCk`](https://github.com/SkyLabsAI/BRiCk) | Rocq formalization of C++ syntax and semantics, including ABI-sensitive integral promotion, typed values, translation units, and semantic preservation lemmas. |
+| [`harp-project/Core-Erlang-Formalization`](https://github.com/harp-project/Core-Erlang-Formalization) | Rocq formalization of Core Erlang with sequential and concurrent semantics, maps, built-in functions, scoping, closure, and program-equivalence infrastructure. |
+| [`HFunction2013/basel-coq-proof`](https://github.com/HFunction2013/basel-coq-proof) | Rocq development of the Basel-series proof with reusable finite-sum and analytic definitions. |
+| [`gangchensh/micpro-riscv-3`](https://github.com/gangchensh/micpro-riscv-3) | Rocq formalization of a three-stage RISC-V processor, including bit-level encodings, core semantics, and machine-correctness lemmas. |
+| [`chaikens/IntroDepTypeThProofAssts`](https://github.com/chaikens/IntroDepTypeThProofAssts) | Rocq dependent-type and theorem-proving examples with explicit definitions and proof terms. |
+| [`leibniz-stt/agda-formalization`](https://github.com/leibniz-stt/agda-formalization) | Agda formalization of Leibniz constructions and simplicial type theory, including category-theoretic and wild-preorder interfaces. |
 
 ## Isabelle and HOL
 
@@ -397,6 +583,12 @@ The [Lean FRO](https://lean-lang.org/fro/) runs three AI projects ([Year 4 Part 
 | [`HOLMS-lib/HOLMS`](https://github.com/HOLMS-lib/HOLMS) | HOL Light Library for Modal Systems: Kripke semantics, normal modal logics, labelled calculi, completeness and verified proof search. |
 | [`kth-step/HOL4P4`](https://github.com/kth-step/HOL4P4) | HOL4 formal syntax, small-step semantics, type system, architecture models and symbolic execution for the P4 language. |
 | [`CakeML/game-of-life`](https://github.com/CakeML/game-of-life) | HOL4 formalization of Conway's Game of Life and verified compilation into Life circuits, including executable semantics and circuit definitions. |
+| [`NatLabRockies/BdL`](https://github.com/NatLabRockies/BdL) | Isabelle/HOL differential dynamic logic for biological dynamical systems, including ODE rules, differential invariants, and stability arguments. |
+| [`nisizaki/penv-confluence-WCTP`](https://github.com/nisizaki/penv-confluence-WCTP) | Isabelle/HOL LambdaEnv/LambdaPEnv reduction systems and confluence, with explicit syntax, reduction relations, termination, and local-confluence lemmas. |
+| [`nisizaki/frenv-confluence-WCTP`](https://github.com/nisizaki/frenv-confluence-WCTP) | Isabelle/HOL FREnv/EnvEps confluence development with a companion Lean formalization of the term and reduction interfaces. |
+| [`ajreynol/iogos`](https://github.com/ajreynol/iogos) | Isabelle formalization containing CPC specifications and obligation/semantics infrastructure. |
+| [`stepanholub/ZFfin-formalization`](https://github.com/stepanholub/ZFfin-formalization) | Isabelle set-theory development using permutation models to separate finite fragments of ZF-style axiom systems, including regularity and transitive-superset arguments. |
+| [`catalin-carstea/arxiv-2606.15977-formalization`](https://github.com/catalin-carstea/arxiv-2606.15977-formalization) | Isabelle development for flat-cell recovery and related inverse-problem arguments, with affine-hyperplane arrangements, dimension propagation, and literature-interface locales. |
 
 ## Mizar, Metamath, ACL2, PVS, Twelf
 
