@@ -4,17 +4,17 @@
   "proof_assistant": "lean",
   "repository": "CBirkbeck__LeanBridge",
   "schema_version": 1,
-  "source_revision": "1a8cc770452beb157834679bd3fb6173f1583c04",
-  "source_snapshot_sha256": "ef6df12ddf6930be920929ac57936ad81b129e390c58434bf6c9434003a3b808",
+  "source_revision": "7c2960cce8da8ff1be5844dadff0c89a6fb9fff3",
+  "source_snapshot_sha256": "8ad188391495128001d903be3ceaa6af5955853ef9101ad8bab6ef1c04bc62d6",
   "sync_group": "routine",
   "totals": {
-    "auxiliary_only": 3,
-    "baseline_primary_retained": 2221,
-    "bytes": 1566732677,
-    "current_primary_excluded": 17,
-    "current_primary_retained": 2205,
-    "files": 2229,
-    "formal_source_files": 2221,
+    "auxiliary_only": 2,
+    "baseline_primary_retained": 2225,
+    "bytes": 1566789450,
+    "current_primary_excluded": 12,
+    "current_primary_retained": 2215,
+    "files": 2233,
+    "formal_source_files": 2225,
     "unindexed_nonformal": 4
   },
   "transport": "git",
@@ -27,13 +27,13 @@
         "root_count": 9,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "cddc0cadde3a166476c874ffe56fad0719b94c8fef28d8d2b16ea585840acd96",
+      "snapshot_sha256": "3b623a58a6e720c1f8bb1e6047761a57cc5079ea880b038f23a18cc072ab993d",
       "stats": {
-        "auxiliary_only": 2,
+        "auxiliary_only": 1,
         "baseline_primary_retained": 1,
-        "bytes": 35012,
+        "bytes": 36802,
         "current_primary_excluded": 3,
-        "current_primary_retained": 0,
+        "current_primary_retained": 1,
         "files": 9,
         "formal_source_files": 1,
         "unindexed_nonformal": 4
@@ -84,401 +84,381 @@
       "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-9461c60db37d.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 3,
+        "root_count": 4,
         "value": "LeanBridge/@subtrees/all"
       },
-      "snapshot_sha256": "2562b47a5bf6ce474500026c0c810670f6433a8d8b3bc49f8bbc20df01b93fe5",
+      "snapshot_sha256": "29734b5d22493f05e030e23d35c43c0c8b4285b1222503250fc047bdf1e56d01",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 8,
-        "bytes": 50155,
+        "baseline_primary_retained": 26,
+        "bytes": 222084,
         "current_primary_excluded": 0,
-        "current_primary_retained": 8,
-        "files": 8,
-        "formal_source_files": 8,
+        "current_primary_retained": 26,
+        "files": 26,
+        "formal_source_files": 26,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-9461c60db37d"
     },
     {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-0c7773e29904.jsonl",
-      "scope": {
-        "kind": "direct-files",
-        "root_count": 1,
-        "value": "LeanBridge/ForMathlib/4-EC.lean"
-      },
-      "snapshot_sha256": "a5e735e3a27cb21c7bd2f4bdeac8547df3487848ff5d19281d489f7f2493d60b",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 1,
-        "bytes": 12893,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 1,
-        "files": 1,
-        "formal_source_files": 1,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-0c7773e29904"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-e8afc67c596a.jsonl",
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-1cd1a0f40e34.jsonl",
       "scope": {
         "kind": "subtree-bucket",
         "root_count": 2,
-        "value": "LeanBridge/ForMathlib/@subtrees/all"
+        "value": "LeanBridge/LMFDB/@subtrees/all"
       },
-      "snapshot_sha256": "3c34d9b602944444f047cd5e098dc73676c666844d2214a79a0a3707200b2ca1",
+      "snapshot_sha256": "a934baf1a3ec75c09b270d83a4bcf76d2ebb3313d84c05577c7596c9ca7a4b1c",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 26,
-        "bytes": 174080,
-        "current_primary_excluded": 3,
-        "current_primary_retained": 23,
-        "files": 26,
-        "formal_source_files": 26,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-e8afc67c596a"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-8c4a31c54ed9.jsonl",
-      "scope": {
-        "kind": "file-bucket",
-        "root_count": 20,
-        "value": "LeanBridge/ForMathlib/QExpansion/@files/all"
-      },
-      "snapshot_sha256": "9de69b8684e86bc426db3e97421c3a399bee134cd46171832440ba69660d51e8",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 20,
-        "bytes": 111852,
-        "current_primary_excluded": 2,
-        "current_primary_retained": 18,
-        "files": 20,
-        "formal_source_files": 20,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-8c4a31c54ed9"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-0c1f8a46234c.jsonl",
-      "scope": {
-        "kind": "file-bucket",
-        "root_count": 130,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/0"
-      },
-      "snapshot_sha256": "2359fbca17728467332f28e57eb943c8680567b527a320ebf81d4bebb8ff6cb3",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 130,
-        "bytes": 23032532,
+        "baseline_primary_retained": 22,
+        "bytes": 48828,
         "current_primary_excluded": 0,
-        "current_primary_retained": 130,
-        "files": 130,
-        "formal_source_files": 130,
+        "current_primary_retained": 22,
+        "files": 22,
+        "formal_source_files": 22,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-0c1f8a46234c"
+      "unit_id": "RRU-1cd1a0f40e34"
     },
     {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-e666dff5f2c1.jsonl",
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-c55d589be743.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 120,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/1"
+        "root_count": 11,
+        "value": "LeanBridge/LMFDB/ModularForms/@files/all"
       },
-      "snapshot_sha256": "6bfad51077dc8616f6d41f3d4aea463d6be5910f696acdeaf992cf966aa69897",
+      "snapshot_sha256": "2f46a68fe458363a4d31d7393efa957cc9ba0d21fefc59ba511a1bb6bfea28d5",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 120,
-        "bytes": 80541877,
+        "baseline_primary_retained": 11,
+        "bytes": 73095,
         "current_primary_excluded": 0,
-        "current_primary_retained": 120,
-        "files": 120,
-        "formal_source_files": 120,
+        "current_primary_retained": 11,
+        "files": 11,
+        "formal_source_files": 11,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-e666dff5f2c1"
+      "unit_id": "RRU-c55d589be743"
     },
     {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-af28a57cf7ba.jsonl",
-      "scope": {
-        "kind": "file-bucket",
-        "root_count": 126,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/2"
-      },
-      "snapshot_sha256": "f9328e228444b1c97e4bc3d52e26c375704873bf9c0fec479d531dd105d4223d",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 126,
-        "bytes": 137392188,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 126,
-        "files": 126,
-        "formal_source_files": 126,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-af28a57cf7ba"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-b02069c86655.jsonl",
-      "scope": {
-        "kind": "file-bucket",
-        "root_count": 137,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/3"
-      },
-      "snapshot_sha256": "b4c53517029537a6ab15bce7cf2a8fca7e870440e9986b6229b60b614b018330",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 137,
-        "bytes": 19087235,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 137,
-        "files": 137,
-        "formal_source_files": 137,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-b02069c86655"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-0c82ba07b043.jsonl",
-      "scope": {
-        "kind": "file-bucket",
-        "root_count": 123,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/4"
-      },
-      "snapshot_sha256": "a6bda9a0c5000a94ef535be9a1733d2e79b09eb9323a581b0f47836ea69c1107",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 123,
-        "bytes": 96887171,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 123,
-        "files": 123,
-        "formal_source_files": 123,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-0c82ba07b043"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-a123f59b3469.jsonl",
-      "scope": {
-        "kind": "file-bucket",
-        "root_count": 152,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/5"
-      },
-      "snapshot_sha256": "8b06d3e47568b0a6c0b12dddd4e7722ed6314fc54216e87cb500c45a37b68748",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 152,
-        "bytes": 86336203,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 152,
-        "files": 152,
-        "formal_source_files": 152,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-a123f59b3469"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-b356a89b0ddc.jsonl",
-      "scope": {
-        "kind": "file-bucket",
-        "root_count": 136,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/6"
-      },
-      "snapshot_sha256": "aa37a7b9d167883d7593c53317b7c9811e954a93df1d9710a55f279ea4b4dc91",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 136,
-        "bytes": 94647178,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 136,
-        "files": 136,
-        "formal_source_files": 136,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-b356a89b0ddc"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-07c556928ea1.jsonl",
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-795fc041c94c.jsonl",
       "scope": {
         "kind": "file-bucket",
         "root_count": 127,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/7"
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/0"
       },
-      "snapshot_sha256": "7a4a22023171e1d9811e83855c3e090155b589fccc10458e33db86ba8a1c09ea",
+      "snapshot_sha256": "6d0651dcf728b5989b461f970e9296efb21a76feb16a8cde502703c5512e7591",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 127,
-        "bytes": 35954350,
+        "bytes": 149508853,
         "current_primary_excluded": 0,
         "current_primary_retained": 127,
         "files": 127,
         "formal_source_files": 127,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-07c556928ea1"
+      "unit_id": "RRU-795fc041c94c"
     },
     {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-345180a09739.jsonl",
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-a6ff77e507d8.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 132,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/8"
+        "root_count": 117,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/1"
       },
-      "snapshot_sha256": "b04dbb03374f9afae480ba0dc1ab18940929f405d0ee4f3ab519aee8d8ad3e0a",
+      "snapshot_sha256": "45a117005f7adafbfc8eb32d9a4dd7c89c88699cf07cc653331f752707e3bed7",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 132,
-        "bytes": 58030467,
+        "baseline_primary_retained": 117,
+        "bytes": 58820556,
         "current_primary_excluded": 0,
-        "current_primary_retained": 132,
-        "files": 132,
-        "formal_source_files": 132,
+        "current_primary_retained": 117,
+        "files": 117,
+        "formal_source_files": 117,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-345180a09739"
+      "unit_id": "RRU-a6ff77e507d8"
     },
     {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-fa5659eb5d23.jsonl",
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-dd27a3f29e73.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 143,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/9"
+        "root_count": 136,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/2"
       },
-      "snapshot_sha256": "29efd467dcb2b1e8e4552bd4447f3c7fb1ca28949ad1219088fa7d60054293ce",
+      "snapshot_sha256": "c98623213050c311c58fb3db389d37a0ff788a5dff256ab5fd3e3153373983d0",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 143,
-        "bytes": 35884253,
+        "baseline_primary_retained": 136,
+        "bytes": 101225794,
         "current_primary_excluded": 0,
-        "current_primary_retained": 143,
-        "files": 143,
-        "formal_source_files": 143,
+        "current_primary_retained": 136,
+        "files": 136,
+        "formal_source_files": 136,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-fa5659eb5d23"
+      "unit_id": "RRU-dd27a3f29e73"
     },
     {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-6795574b7102.jsonl",
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-b4ca7dcdf1a5.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 142,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/a"
+        "root_count": 150,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/3"
       },
-      "snapshot_sha256": "573451fc982d517cffe20943a434a2fe49c890930854c10f72d8ed121c6a0dbf",
+      "snapshot_sha256": "9b240c274f36c09e40acdaa2269df2dc75f64143834835556d50b6ff641ed7b9",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 142,
-        "bytes": 113111695,
+        "baseline_primary_retained": 150,
+        "bytes": 143804169,
         "current_primary_excluded": 0,
-        "current_primary_retained": 142,
-        "files": 142,
-        "formal_source_files": 142,
+        "current_primary_retained": 150,
+        "files": 150,
+        "formal_source_files": 150,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-6795574b7102"
+      "unit_id": "RRU-b4ca7dcdf1a5"
     },
     {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-c1c75e830f4d.jsonl",
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-77fb82b47b62.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 143,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/b"
+        "root_count": 144,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/4"
       },
-      "snapshot_sha256": "d4172341df5261d9f08e7a6a07bb6b9739a2cf0982f516be14d55bb589c7cf95",
+      "snapshot_sha256": "86581f4414cf78b2cb0d4c5445ed14eee85f4548af384dbfbea18c72e2e3f2f3",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 143,
-        "bytes": 120339520,
+        "baseline_primary_retained": 144,
+        "bytes": 144805149,
         "current_primary_excluded": 0,
-        "current_primary_retained": 143,
-        "files": 143,
-        "formal_source_files": 143,
+        "current_primary_retained": 144,
+        "files": 144,
+        "formal_source_files": 144,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-c1c75e830f4d"
+      "unit_id": "RRU-77fb82b47b62"
     },
     {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-58ad6a755873.jsonl",
-      "scope": {
-        "kind": "file-bucket",
-        "root_count": 129,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/c"
-      },
-      "snapshot_sha256": "294536fdb5ecfe4e8c0f6ce04e3dc336820933f6aa221a5b8bf52204e9b63603",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 129,
-        "bytes": 203444786,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 129,
-        "files": 129,
-        "formal_source_files": 129,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-58ad6a755873"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-c1420e964a13.jsonl",
-      "scope": {
-        "kind": "file-bucket",
-        "root_count": 134,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/d"
-      },
-      "snapshot_sha256": "94995b724c2383b9fa3a2128990a40abf805021ee794cecd3d0e709005d697eb",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 134,
-        "bytes": 119168349,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 134,
-        "files": 134,
-        "formal_source_files": 134,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-c1420e964a13"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-f5febe3f5631.jsonl",
-      "scope": {
-        "kind": "file-bucket",
-        "root_count": 139,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/e"
-      },
-      "snapshot_sha256": "e8d4445f3aa55a6d10f6b41ce20d6b35c725af0c7a700eb5f87cb627136186e3",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 139,
-        "bytes": 119925191,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 139,
-        "files": 139,
-        "formal_source_files": 139,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-f5febe3f5631"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-59924a3fc9a4.jsonl",
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-4078813c376b.jsonl",
       "scope": {
         "kind": "file-bucket",
         "root_count": 141,
-        "value": "LeanBridge/ForMathlib/QExpansion/LMFDB/@files/f"
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/5"
       },
-      "snapshot_sha256": "d6da56b2f6bf1ae3b5754ac18e79a93016df43afa5a0482a82a229c7a0d78bb3",
+      "snapshot_sha256": "b120c10a18c1d690bfb2b628ad86ec18d27cd4a5d2976582645fb358cda7c654",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 141,
-        "bytes": 222220692,
+        "bytes": 147782482,
         "current_primary_excluded": 0,
         "current_primary_retained": 141,
         "files": 141,
         "formal_source_files": 141,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-59924a3fc9a4"
+      "unit_id": "RRU-4078813c376b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-c3ee7063fbdd.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 123,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/6"
+      },
+      "snapshot_sha256": "cf96954c4dff01004a8f9ff96157851b3fe33117b76fd9cfe77eb9663c97afc3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 123,
+        "bytes": 136835064,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 123,
+        "files": 123,
+        "formal_source_files": 123,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c3ee7063fbdd"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-251b32c74c3a.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 148,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/7"
+      },
+      "snapshot_sha256": "3c32d0b69ac8a5d5d31a010170a355000495e5856956368db3cfb5060f4ba43e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 148,
+        "bytes": 78126935,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 148,
+        "files": 148,
+        "formal_source_files": 148,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-251b32c74c3a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-d53661ec9a1d.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 148,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/8"
+      },
+      "snapshot_sha256": "cacfef5b96c2f4cd33fe9450ee6fdda8d17fad99e8247a39bb94d11de564638b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 148,
+        "bytes": 61716372,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 148,
+        "files": 148,
+        "formal_source_files": 148,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-d53661ec9a1d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-fe50963d91f1.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 105,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/9"
+      },
+      "snapshot_sha256": "345b34165b96fc43924decc0a2a28578201d63710833e9772858533a84a17484",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 105,
+        "bytes": 30057435,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 105,
+        "files": 105,
+        "formal_source_files": 105,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fe50963d91f1"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-c506c54df2c7.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 151,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/a"
+      },
+      "snapshot_sha256": "56f0da35e133569b44081ac41538ebdfb54597a1ba860d81f2fba4d3c9841d5a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 151,
+        "bytes": 151953387,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 151,
+        "files": 151,
+        "formal_source_files": 151,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c506c54df2c7"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-e5cdd34cebe1.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 127,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/b"
+      },
+      "snapshot_sha256": "3a5f7c87f651a0400d25f550dcc9914057ff4f436fce5dd7a9bc64d7396b9724",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 127,
+        "bytes": 62618894,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 127,
+        "files": 127,
+        "formal_source_files": 127,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e5cdd34cebe1"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-bc28dd11b4a0.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 138,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/c"
+      },
+      "snapshot_sha256": "7bdc51c28319c9af4c66a078fc573b58cae0693c8f71faad10daa703dd3af492",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 138,
+        "bytes": 77339654,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 138,
+        "files": 138,
+        "formal_source_files": 138,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-bc28dd11b4a0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-fd76312a09cb.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 147,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/d"
+      },
+      "snapshot_sha256": "ec576045b80218021ad1b209441303cf87a2755b956f19e8547770c92ddc8f53",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 147,
+        "bytes": 87847577,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 147,
+        "files": 147,
+        "formal_source_files": 147,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fd76312a09cb"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-ca5371c3582b.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 130,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/e"
+      },
+      "snapshot_sha256": "00e5b51917d0df67a29ab3fe7bdafdea5ac45a26c3825f94e9e440b1fc456792",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 130,
+        "bytes": 63966071,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 130,
+        "files": 130,
+        "formal_source_files": 130,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ca5371c3582b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-c6b59a987751.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 122,
+        "value": "LeanBridge/LMFDB/ModularForms/LevelOne/@files/f"
+      },
+      "snapshot_sha256": "b3ef2eafe63dc801380d9c38a824bcf20addf89a0db9936c8ba9fa44f4f51c7c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 122,
+        "bytes": 69655251,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 122,
+        "files": 122,
+        "formal_source_files": 122,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c6b59a987751"
     }
   ]
 }
