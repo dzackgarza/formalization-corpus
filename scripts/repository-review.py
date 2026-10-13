@@ -5,8 +5,6 @@ import argparse
 import collections
 import json
 import pathlib
-import shutil
-import subprocess
 import sys
 from typing import Any
 
@@ -19,7 +17,6 @@ from repository_review_lib import (
     CATALOGUE_ROOT,
     FILES_ROOT,
     REVIEW_ID_RE,
-    REVIEWS_ROOT,
     RETIRED_SOURCES,
     RULE_ID_RE,
     SCHEMA_VERSION,
@@ -41,6 +38,7 @@ from repository_review_lib import (
     selector_paths,
     source_records,
     unit_files_path,
+    unit_state,
     utc_now,
 )
 
@@ -335,6 +333,9 @@ def validate_review_record(record: dict[str, Any], unit: dict[str, Any], history
 
     unit_records = load_unit_file_records(unit)
     paths = {str(item["path"]) for item in unit_records}
+    # A selector is checked against the file set its review saw; a lapsed review's
+    # rules lapse per file in resolve_review_exclusions instead.
+    reviewed_current_snapshot = record.get("unit_snapshot_sha256") == unit.get("snapshot_sha256")
     matched: set[str] = set()
     rule_ids: set[str] = set()
     for rule_number, rule in enumerate(record.get("rules", []), start=1):
@@ -359,14 +360,15 @@ def validate_review_record(record: dict[str, Any], unit: dict[str, Any], history
             specified = {str(selector.get("path", ""))}
         elif kind == "path-set":
             specified = {str(value) for value in selector.get("paths", [])}
-        if specified - paths:
-            errors.append(f"{unit_id}/{rule_id}: selector names paths outside the unit: {sorted(specified - paths)[:5]}")
-        if not selected:
-            errors.append(f"{unit_id}/{rule_id}: selector matches no unit files")
-        overlap = matched & selected
-        if overlap:
-            errors.append(f"{unit_id}: rules overlap on {sorted(overlap)[:5]}")
-        matched |= selected
+        if reviewed_current_snapshot:
+            if specified - paths:
+                errors.append(f"{unit_id}/{rule_id}: selector names paths outside the unit: {sorted(specified - paths)[:5]}")
+            if not selected:
+                errors.append(f"{unit_id}/{rule_id}: selector matches no unit files")
+            overlap = matched & selected
+            if overlap:
+                errors.append(f"{unit_id}: rules overlap on {sorted(overlap)[:5]}")
+            matched |= selected
         for field in ("rationale", "content_invariant"):
             if not isinstance(rule.get(field), str) or len(rule[field].strip()) < 30:
                 errors.append(f"{unit_id}/{rule_id}: {field} must state explicit reasoning")
@@ -528,22 +530,13 @@ def validate() -> int:
             for review_number, review in enumerate(history):
                 errors.extend(validate_review_record(review, {**unit, "repository": repository}, review_number, previous))
                 previous = review
-            if history and history[-1].get("status") == "reviewed" and history[-1].get("unit_snapshot_sha256") != unit.get("snapshot_sha256"):
-                errors.append(f"{uid}: reviewed unit changed; append a new review revision before indexing")
         source_digest = material_snapshot_sha256(source_records_for_digest)
         if source_digest != catalogue.get("source_snapshot_sha256"):
             errors.append(f"{repository}: source snapshot digest disagrees with unit manifests")
         if len(seen_paths) != int(catalogue.get("totals", {}).get("files", -1)):
             errors.append(f"{repository}: unit coverage count disagrees with source totals")
 
-    # Reviews for vanished units must not be silently abandoned.
-    if REVIEWS_ROOT.exists():
-        for path in REVIEWS_ROOT.glob("*/*.jsonl"):
-            uid = path.stem
-            if uid not in units:
-                errors.append(f"orphan review history for vanished unit {uid}: {relative(path)}")
-
-    exclusions, exclusion_errors = resolve_review_exclusions(require_fresh=True)
+    exclusions, exclusion_errors = resolve_review_exclusions()
     errors.extend(exclusion_errors)
 
     batches = [json.loads(line) for line in BATCHES.read_text().splitlines() if line.strip()] if BATCHES.exists() else []
@@ -564,9 +557,14 @@ def validate() -> int:
         for uid, review in reviews.items()
     )
     deferred = sum(review.get("status") == "deferred" for review in reviews.values())
+    lapsed = sum(
+        review.get("unit_snapshot_sha256") != units[uid].get("snapshot_sha256")
+        for uid, review in reviews.items()
+    )
     print(
         f"repository review catalogue ok: {len(index)} sources, {len(units)} units, "
-        f"{reviewed} reviewed, {deferred} deferred, {len(exclusions)} explicitly excluded files"
+        f"{reviewed} reviewed, {deferred} deferred, {lapsed} lapsed, "
+        f"{len(exclusions)} explicitly excluded files"
     )
     return 0
 
@@ -585,16 +583,7 @@ def status(batch_id: str | None = None) -> int:
     rows = []
     for uid in sorted(selected, key=lambda value: (units[value]["repository"], units[value]["scope"]["value"])):
         unit = units[uid]
-        review = reviews.get(uid)
-        state = "pending"
-        if review:
-            state = str(review.get("status"))
-            if (review.get("source_action") or {}).get("action") == "retire-source":
-                state = "retire-source"
-            if review.get("unit_snapshot_sha256") != unit.get("snapshot_sha256"):
-                state = "stale"
-        if unit.get("inventory_status") == "retired":
-            state = "retired-source"
+        state = unit_state(unit, reviews.get(uid))
         counts[state] += 1
         rows.append((state, uid, unit["repository"], unit["scope"]["value"] or ".", unit["stats"]["files"], unit["stats"]["baseline_primary_retained"]))
     print("state\tunit\trepository\tscope\tfiles\tprimary")

@@ -335,15 +335,16 @@ no useful definition, statement, proof, interface, or retrieval evidence is
 being hidden.
 
 The review is pinned to the unit's material snapshot.  If any file inside that
-unit changes, appears, disappears, or moves, validation marks the review stale
-and indexing stops until a new review revision supersedes it.  For a partitioned
-large repository, unchanged sibling units remain valid.  This is the mechanism
-that prevents an old blacklist from becoming a lazy permanent omission after an
-upstream update.
+unit changes, appears, disappears, or moves, the review lapses.  A lapsed review is
+unreviewed and needs a new review.  A rule of the lapsed review stays
+active only while every file it matched keeps its path and SHA-256; a rule with any
+changed file lapses, and its files become searchable (CONTRIBUTING.md FILTER-023).
+For a partitioned large repository, unchanged sibling units remain valid.  This is
+the mechanism that prevents an old blacklist from hiding new upstream content.
 
 Accepted exclusions materialize as `FD-018` per-file decisions in the ordinary
 filter ledger.  `FD-018` is intentionally powerless by itself: it can only be
-created from a fresh accepted review rule, and its evidence carries the review,
+created from an accepted review rule whose files are unchanged, and its evidence carries the review,
 unit, rule, selector, unit snapshot, file hash, rationale, invariant, and
 source-local evidence.  Thus the public index remains reproducible through the
 same per-file filtering machinery while the reasoning stays attached to the
@@ -410,7 +411,16 @@ complete `.zoekt` mirror.
 exceptional whole-corpus reproducibility work. A fresh machine can instead run
 `just source-seed-index fresh`: each source is hydrated at its pinned revision, indexed,
 and immediately dehydrated before the next source is fetched. No phase requires all
-source checkouts to coexist.
+source checkouts to coexist. Every shard installation also writes
+`lean-corpus/index-provenance/REPO.json` on the search host: a digest of the
+repository's catalogue entry and filter decisions, its source revision, and its shard
+names. `just source-refresh-index`, which the scheduled `index` GitHub workflow runs,
+first compares each Git source's upstream `HEAD` (`git ls-remote`) with its catalogued
+revision. It moves each changed source to the new `HEAD`, re-derives and commits its
+filtering record (CONTRIBUTING.md FILTER-023), and indexes it. A source whose catalogued
+URL differs from `sources.tsv` moves the same way. A source whose upstream has no `HEAD`
+is lapsed: its shard is removed, and `check-published.py` does not expect it. The run then
+rebuilds the other sources whose digest differs or whose shard is absent.
 
 ## 12. Required workflow for a new hard filter
 

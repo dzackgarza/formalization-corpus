@@ -452,17 +452,37 @@ A reviewer may explicitly conclude that a unit has no safe exclusions.  That is
 a substantive disposition: record the review and retain the unmatched material
 rather than inventing a weak blacklist merely to reduce the index.
 
-### FILTER-023 — Repository reviews are snapshot-pinned and expire on relevant change
+### FILTER-023 — Sources follow upstream; changed exclusions lapse per file
 
-Every completed repository-review record is pinned to the SHA-256 snapshot of
-its work unit.  A changed, added, removed, or renamed file inside that unit makes
-the review stale.  Stale exclusions must not silently carry forward to a new
-upstream revision; indexing must stop until the changed unit is re-audited and a
-new review revision explicitly supersedes the old one.
+The corpus follows each Git source's upstream `HEAD`. The nightly `index` workflow
+moves every source whose upstream moved, re-derives its filtering record, commits
+that record to `main`, and reindexes the source. No human approves an upstream
+revision. A Git source whose upstream has no `HEAD` (the host has no public
+repository at its URL) is lapsed: the workflow removes its shard, and it returns to
+the index when its upstream returns. A moved repository is followed by changing its
+`url` in `sources.tsv`; the directory name is the source identity and stays.
 
-For very large sources this invalidation is intentionally subtree-local.  A
-change in one review unit does not invalidate an unchanged unit elsewhere in the
-same repository.
+Every completed repository-review record is pinned to the SHA-256 snapshot of its
+work unit. A changed, added, removed, or renamed file inside that unit makes the
+review lapse. A lapsed unit is unreviewed and needs a new review
+(`repository-review.py status` shows `lapsed`). An exclusion rule of a lapsed review stays
+active only if every file that the rule matched still has the same path and
+SHA-256 and is still baseline primary-retained. A rule with any changed, moved, or
+removed file lapses as a whole, and its files become searchable. An exclusion can
+therefore hide only the exact bytes that a reviewer inspected; new content is
+searchable until a new review excludes it.
+
+The nightly `index` workflow reviews every pending or lapsed unit of the sources
+it processes (`scripts/review-units.py`). A unit with no baseline primary-retained
+file that an earlier review did not see gets a mechanical review record. The unit's
+other files go to an opencode agent (`opencode/nemotron-3-ultra-free`) with only
+the read, glob, grep, and list tools. The agent returns the summary, the evidence,
+and new exclusion rules for those files. `repository-review.py append` validates the
+record. The rules of the lapsed review that are still active are restated on their
+exact files. The workflow commits each review to `main` before it indexes the source.
+
+This invalidation is subtree-local. A change in one review unit does not make the
+review of an unchanged unit elsewhere in the same repository lapse.
 
 ### FILTER-024 — A blacklist must materialize to exact files and hashes
 
@@ -516,11 +536,12 @@ just publish-index  # verify remote published inventory; no local full-index upl
 just review-batch-dehydrate RRB-NNNN
 ```
 
-Hydration defaults to the revision already pinned by the campaign catalogue. Use
-`just source-hydrate-latest REPO` only for an intentional upstream refresh; before that
-cache can be discarded or indexed as a new snapshot, refresh the source-local catalogue
-with `python scripts/repository-review.py build --repository REPO` and re-audit any stale
-units. Dehydration refuses dirty Git checkouts, revision drift, uncatalogued sources, or
+Hydration defaults to the revision recorded in the campaign catalogue.
+`python scripts/source-cache.py refresh` moves a source to its upstream `HEAD`
+(FILTER-023) with this per-source sequence: `build-filter-state.py --repository
+REPO` for the content decisions, `repository-review.py build --repository REPO`
+for the catalogue, and `refresh-review-filter-state.py --repository REPO` for FD-018
+and FD-006. Dehydration refuses dirty Git checkouts, revision drift, uncatalogued sources, or
 sources with no persistent Zoekt shard on the search host. It deletes the disposable nested checkout rather
 than retaining fetched Git objects, so disk is actually reclaimed.
 
@@ -571,14 +592,14 @@ state for that failed submission.
 
 ## Source-inventory invariant
 
-`sources.tsv` is the canonical corpus inventory.  For a fully hydrated local
-corpus, every row must satisfy all of the following:
+`sources.tsv` is the canonical corpus inventory.  A row whose upstream has no
+`HEAD` is lapsed (FILTER-023) and has no index shard.  Every other row must
+satisfy all of the following when its source is hydrated:
 
-1. the upstream source exists;
-2. the local source exists;
-3. it contains at least one source-language file for its proof assistant;
-4. it has an index shard;
-5. searching that source can return formal content.
+1. the local source exists;
+2. it contains at least one source-language file for its proof assistant;
+3. it has an index shard;
+4. searching that source can return formal content.
 
 If any condition fails, repair the source or remove the row.  Do not preserve a
 bad row so that historical registry counts remain stable.

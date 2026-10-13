@@ -1,0 +1,1484 @@
+{
+  "directory": "qinz1yang__differential-geometry",
+  "discovered_via": "registry",
+  "proof_assistant": "lean",
+  "repository": "qinz1yang__differential-geometry",
+  "schema_version": 1,
+  "source_revision": "7a48598d35109aa99d1cc678e2724c213cdf4ff3",
+  "source_snapshot_sha256": "e9c92461593265b41396d5c5b2056077643c9081ec8735bfeef7bb2aabcf1fcb",
+  "sync_group": "routine",
+  "totals": {
+    "auxiliary_only": 1,
+    "baseline_primary_retained": 17556,
+    "bytes": 240667645,
+    "current_primary_excluded": 3,
+    "current_primary_retained": 17556,
+    "files": 17563,
+    "formal_source_files": 17556,
+    "unindexed_nonformal": 3
+  },
+  "transport": "git",
+  "url": "https://github.com/qinz1yang/differential-geometry",
+  "work_units": [
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-4d45348a1c22.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 8,
+        "value": "./@files/all"
+      },
+      "snapshot_sha256": "8f4a4062361857d543b4c20def6d2fed1b489b9ad36e40136aab7a75f225515a",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 1,
+        "bytes": 1483872,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 1,
+        "files": 8,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 3
+      },
+      "unit_id": "RRU-4d45348a1c22"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-f5e33e1913c4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "DifferentialGeometry/@subtrees/all"
+      },
+      "snapshot_sha256": "b47823d1e4c2373249f8a533152388af414a0c49e5f23a74ed4cf270ede43254",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 634,
+        "bytes": 11475767,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 634,
+        "files": 634,
+        "formal_source_files": 634,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f5e33e1913c4"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-42fbb397d3b0.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 5,
+        "value": "DifferentialGeometry/Analysis/@files/all"
+      },
+      "snapshot_sha256": "b1baf60d3c36e8169925dc54ddda341c42bb06ee0b050e3fb2cf1340e5c498d6",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 5,
+        "bytes": 50494,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 5,
+        "files": 5,
+        "formal_source_files": 5,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-42fbb397d3b0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-1e270761765f.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Analysis/@subtrees/0"
+      },
+      "snapshot_sha256": "dd857fc64d13ee9fab9bd2585ebfdb1ebb59cd21b818632939a6aa34bb97811b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 58,
+        "bytes": 1140266,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 58,
+        "files": 58,
+        "formal_source_files": 58,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1e270761765f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-4c0ac90cb188.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Analysis/@subtrees/1"
+      },
+      "snapshot_sha256": "22f69164e6f5451559bf22135536395b98ebe735589aec8d3211798bc3c92778",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 54,
+        "bytes": 381660,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 54,
+        "files": 54,
+        "formal_source_files": 54,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4c0ac90cb188"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-7a2956ba8bc9.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "DifferentialGeometry/Analysis/@subtrees/2"
+      },
+      "snapshot_sha256": "b6e11be55c60a8172b93935c6c731caa6a09b698157f35ec265d9985957b07b5",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 779,
+        "bytes": 10952165,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 779,
+        "files": 779,
+        "formal_source_files": 779,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7a2956ba8bc9"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-cbcdd4a1c8fb.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Analysis/@subtrees/4"
+      },
+      "snapshot_sha256": "46cdf19a7b00eab2554165e3360657fd5210171727a8505a8c08dca194859be7",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 8,
+        "bytes": 108865,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 8,
+        "files": 8,
+        "formal_source_files": 8,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-cbcdd4a1c8fb"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-1ef7dabf85fb.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "DifferentialGeometry/Analysis/@subtrees/5"
+      },
+      "snapshot_sha256": "75647b63e92dc084907840df6006dc6a45483fcfb2bfc28d3b61d149fc250946",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1668,
+        "bytes": 37595031,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1668,
+        "files": 1668,
+        "formal_source_files": 1668,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1ef7dabf85fb"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-26b98ecf830d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Analysis/@subtrees/7"
+      },
+      "snapshot_sha256": "4c17a49197b6173ec4f5b3d87a9157373e75791887dbb4fcd2df13a1570dc064",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 592,
+        "bytes": 13557309,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 592,
+        "files": 592,
+        "formal_source_files": 592,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-26b98ecf830d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-0dfe03f24634.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Analysis/@subtrees/8"
+      },
+      "snapshot_sha256": "f73e427a3fa8080c3ed8cdafc2b2e733022e570b38506a8074c2107ee49298e7",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 321,
+        "bytes": 2202956,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 321,
+        "files": 321,
+        "formal_source_files": 321,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0dfe03f24634"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-862abb1ec7dc.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Analysis/@subtrees/9"
+      },
+      "snapshot_sha256": "cb849a676aedc79c498abab93a887f18f230da1a9c7cba0afc3e72a78547d180",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 2,
+        "bytes": 8251,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 2,
+        "files": 2,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-862abb1ec7dc"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-15824fe5cd33.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Analysis/@subtrees/a"
+      },
+      "snapshot_sha256": "949559208f45ccc827a5f7f7ac0e883f1689c67893f49442efdf9fd2a63e6c77",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 50,
+        "bytes": 1113098,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 50,
+        "files": 50,
+        "formal_source_files": 50,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-15824fe5cd33"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-3fb0993dc528.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Analysis/@subtrees/b"
+      },
+      "snapshot_sha256": "0dbe861f72dc1fcfa9f218a11a119db3d1a52a020bc0f08d342ec4f94cddb3c4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 40,
+        "bytes": 338290,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 40,
+        "files": 40,
+        "formal_source_files": 40,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3fb0993dc528"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-189c925d617b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Analysis/@subtrees/c"
+      },
+      "snapshot_sha256": "33ab7c498b57c7ef987345e928e00cab327f29cf449101198d533d3bbac16c17",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 2,
+        "bytes": 3373,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 2,
+        "files": 2,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-189c925d617b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-b02c3bdb07c3.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Analysis/@subtrees/d"
+      },
+      "snapshot_sha256": "af68edff9ab8ef0ac0a347f88fdcac1688ed64de52d36b7fadb1196247d15c16",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 8,
+        "bytes": 24840,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 8,
+        "files": 8,
+        "formal_source_files": 8,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b02c3bdb07c3"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-ce236eeabf3c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Analysis/@subtrees/e"
+      },
+      "snapshot_sha256": "e1e7bbc12b988e10918adc3018b8bf62e8f3be8771534710ed12f1176047a28c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 12,
+        "bytes": 62440,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 12,
+        "files": 12,
+        "formal_source_files": 12,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ce236eeabf3c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-1ac45ef4c4df.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Geometry/@subtrees/1"
+      },
+      "snapshot_sha256": "1eb67d127da4613916d97196f1d8294700ff019e518d1368eed29b0c55d609e5",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 14,
+        "bytes": 165796,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 14,
+        "files": 14,
+        "formal_source_files": 14,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1ac45ef4c4df"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-a69c0e9be53f.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Geometry/@subtrees/2"
+      },
+      "snapshot_sha256": "b199c77d32f16cd59346f993774f2b45ce0148a3b6b5663d60e52b0589f9ae41",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 406,
+        "bytes": 6204276,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 406,
+        "files": 406,
+        "formal_source_files": 406,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a69c0e9be53f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-6559f8b8b188.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "DifferentialGeometry/Geometry/@subtrees/3"
+      },
+      "snapshot_sha256": "6e2b87e540a3c14a845b3d99e6da994d94b840dccf7fa3c5e032be37dc7541b3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 49,
+        "bytes": 600154,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 49,
+        "files": 49,
+        "formal_source_files": 49,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6559f8b8b188"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-407817d8065e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Geometry/@subtrees/4"
+      },
+      "snapshot_sha256": "0dddbb619fc1fead3e40d50d1c1308aacc4ae35f8c61e1f1fd4729bb1a7c65c3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 505,
+        "bytes": 7645537,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 505,
+        "files": 505,
+        "formal_source_files": 505,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-407817d8065e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-ece22717b79e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "DifferentialGeometry/Geometry/@subtrees/5"
+      },
+      "snapshot_sha256": "b0368e14fc6a6f8e2dc192ec718423118f13dacf45a8de84cbcf3219302433ab",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 138,
+        "bytes": 1404414,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 138,
+        "files": 138,
+        "formal_source_files": 138,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ece22717b79e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-ad38e9b5e49c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Geometry/@subtrees/6"
+      },
+      "snapshot_sha256": "54c9680cc2533410d0b51a9cd4727311495d3973c04f9c00d1759643ab90b686",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 414,
+        "bytes": 5408849,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 414,
+        "files": 414,
+        "formal_source_files": 414,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-ad38e9b5e49c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-71972dc94cbc.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "DifferentialGeometry/Geometry/@subtrees/7"
+      },
+      "snapshot_sha256": "b4711016c460f960930f84aea0ce64239405f2d116463d5da59194c72287f6a0",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 282,
+        "bytes": 3805785,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 282,
+        "files": 282,
+        "formal_source_files": 282,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-71972dc94cbc"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-bb1407774bf8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Geometry/@subtrees/b"
+      },
+      "snapshot_sha256": "251545785bf065aebd29849c812a86ffa034e126df405ca209d2cbb3899a8c9a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 829,
+        "bytes": 8309807,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 829,
+        "files": 829,
+        "formal_source_files": 829,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-bb1407774bf8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-9c46117de2b8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Geometry/@subtrees/c"
+      },
+      "snapshot_sha256": "6fbde8ca4be750edcfc7777b5e0ecacb030a1b968ee909962d799de381894fda",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 333,
+        "bytes": 6417426,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 333,
+        "files": 333,
+        "formal_source_files": 333,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9c46117de2b8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-caa95e516f35.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "DifferentialGeometry/Geometry/@subtrees/e"
+      },
+      "snapshot_sha256": "ddc2baaa35e9d17879d6ccda99d8dd7486053eddffac2782168b84d5691a7c09",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 160,
+        "bytes": 1478184,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 160,
+        "files": 160,
+        "formal_source_files": 160,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-caa95e516f35"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-27c9456ea92d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Geometry/@subtrees/f"
+      },
+      "snapshot_sha256": "4efbbc0aa0a701e07e876368050be5413fe08e4d44009809625bf797e09abd16",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 78,
+        "bytes": 374929,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 78,
+        "files": 78,
+        "formal_source_files": 78,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-27c9456ea92d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-87dc4a51616f.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@files/all"
+      },
+      "snapshot_sha256": "1a1ae3110f2257ab23c29eb59482c6a7b5b0d0cc6a4426482815f4ae6aac7837",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 2,
+        "bytes": 16172,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 2,
+        "files": 2,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-87dc4a51616f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-2c99750209e1.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@subtrees/0"
+      },
+      "snapshot_sha256": "f134aef82453817a138a0661cf54191357058d2c02c7a210351df39046217383",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 55,
+        "bytes": 945855,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 55,
+        "files": 55,
+        "formal_source_files": 55,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-2c99750209e1"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-a2eef5d443fb.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@subtrees/1"
+      },
+      "snapshot_sha256": "103cf3118a588789e3f0d6d217af56c0e8e8b65806cbcc278734dc7075c5d06d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 125,
+        "bytes": 2503290,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 125,
+        "files": 125,
+        "formal_source_files": 125,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a2eef5d443fb"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-6c931d3d3457.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@subtrees/2"
+      },
+      "snapshot_sha256": "eea4649e8a29d1d05652efaf5e28ac4bd0a0e29b53e797492292a1b50bf682e2",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 21,
+        "bytes": 810025,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 21,
+        "files": 21,
+        "formal_source_files": 21,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6c931d3d3457"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-03d847fb22b6.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@subtrees/4"
+      },
+      "snapshot_sha256": "3ba30aeb68288dd8ebe232b934f9bce70d2f3e248d327ca20240ef4c83e2c390",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1964,
+        "bytes": 20320764,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1964,
+        "files": 1964,
+        "formal_source_files": 1964,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-03d847fb22b6"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-b93d72655d45.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@subtrees/7"
+      },
+      "snapshot_sha256": "7022c05197c00fb6627f59b118a91d20a1418fa62a50d33a96816696f35af268",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 5,
+        "bytes": 53929,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 5,
+        "files": 5,
+        "formal_source_files": 5,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b93d72655d45"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-6705ccac1eeb.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@subtrees/8"
+      },
+      "snapshot_sha256": "696d00b3faac2d4f6cdc82948684299ab4dcbec95d8e6d63ebedf58713831afc",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 258,
+        "bytes": 4263340,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 258,
+        "files": 258,
+        "formal_source_files": 258,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6705ccac1eeb"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-769bd9687712.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@subtrees/a"
+      },
+      "snapshot_sha256": "3cfc32b2b56d0a2f995dcba0cca1799211620dbfbb7faa1154a67931fa54a901",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 31,
+        "bytes": 1878747,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 31,
+        "files": 31,
+        "formal_source_files": 31,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-769bd9687712"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-12f337b198a1.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@subtrees/b"
+      },
+      "snapshot_sha256": "158221ea1039ae381bdf7fbb09dd7df8fad6ef0d86e1bffce361a44fc746530f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 11,
+        "bytes": 221514,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 11,
+        "files": 11,
+        "formal_source_files": 11,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-12f337b198a1"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-623ed2934302.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@subtrees/d"
+      },
+      "snapshot_sha256": "9f1d353e1ddc329617c2e73b7bff1f0ae4ad624512c3bcd263d9eca38f3c4e33",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1279,
+        "bytes": 25241286,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1279,
+        "files": 1279,
+        "formal_source_files": 1279,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-623ed2934302"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-fb331f5801da.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@subtrees/e"
+      },
+      "snapshot_sha256": "a11ed180aaabe12089c56c159a2cdf07a46617dac8a9ad09f5e9b39980983f4e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 372,
+        "bytes": 6431290,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 372,
+        "files": 372,
+        "formal_source_files": 372,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fb331f5801da"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-0cd73ee023f2.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Geometry/Flow/RicciFlow/@subtrees/f"
+      },
+      "snapshot_sha256": "a93310fb8f1d9205311198d8537a5d61f7da69f487f58f0edde15e75d9f04e1c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 218,
+        "bytes": 3215504,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 218,
+        "files": 218,
+        "formal_source_files": 218,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0cd73ee023f2"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-2c649c2cf32a.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 60,
+        "value": "DifferentialGeometry/Topology/@files/all"
+      },
+      "snapshot_sha256": "af1cadf50d578f2d47db2e1aa30e2e1ca48c2d3aa199e3a649aa09f63844a1d8",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 60,
+        "bytes": 271053,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 60,
+        "files": 60,
+        "formal_source_files": 60,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-2c649c2cf32a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-8820e8c12e99.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "DifferentialGeometry/Topology/@subtrees/0"
+      },
+      "snapshot_sha256": "d0b35310be6827f77184a9989cb4b4337beeeae49d4735b65c72ce8ff1cad242",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 70,
+        "bytes": 1283858,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 70,
+        "files": 70,
+        "formal_source_files": 70,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-8820e8c12e99"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-004c87a0665b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 7,
+        "value": "DifferentialGeometry/Topology/@subtrees/1"
+      },
+      "snapshot_sha256": "bc6cec7ba204845ced3cfae4dc07df3cbe04ef1dc2fbd8dbdf6af09c2ec20d53",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 127,
+        "bytes": 1037632,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 127,
+        "files": 127,
+        "formal_source_files": 127,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-004c87a0665b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-4518e9f1ad87.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "DifferentialGeometry/Topology/@subtrees/2"
+      },
+      "snapshot_sha256": "ab0604c9c350d242cb03e93bff1ad8051476679eec271036428c3423b16ccf0c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 83,
+        "bytes": 926900,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 83,
+        "files": 83,
+        "formal_source_files": 83,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4518e9f1ad87"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-e43134703177.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "DifferentialGeometry/Topology/@subtrees/3"
+      },
+      "snapshot_sha256": "0b2411677863f91ded16dd96cdebbb1de9a4ad067b206b2e9765a97776d6361f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 151,
+        "bytes": 845695,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 151,
+        "files": 151,
+        "formal_source_files": 151,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e43134703177"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-a3f59aa82031.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "DifferentialGeometry/Topology/@subtrees/4"
+      },
+      "snapshot_sha256": "45ef9c6304315d6a8dc72532953989c8c41b7cd608adc8cdc2154100aca26d57",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 61,
+        "bytes": 263974,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 61,
+        "files": 61,
+        "formal_source_files": 61,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a3f59aa82031"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-db90a90bcf23.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "DifferentialGeometry/Topology/@subtrees/5"
+      },
+      "snapshot_sha256": "c4f71aedfd3842d1d379cb444d140b5338b34a69e1ac04c325aad8b02655b856",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 95,
+        "bytes": 403843,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 95,
+        "files": 95,
+        "formal_source_files": 95,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-db90a90bcf23"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-c6359ced7c36.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Topology/@subtrees/6"
+      },
+      "snapshot_sha256": "11003e5e7ee6972ada4fce25137ff9fba472d68508f901c3bd2db4c1d120d2cf",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 165,
+        "bytes": 2052735,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 165,
+        "files": 165,
+        "formal_source_files": 165,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c6359ced7c36"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-1658eceb58a7.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Topology/@subtrees/7"
+      },
+      "snapshot_sha256": "e1c300273e853783662b1e3e495b347d0dec1e076390e1e3105bf03a3a29da60",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 15,
+        "bytes": 76539,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 15,
+        "files": 15,
+        "formal_source_files": 15,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1658eceb58a7"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-a6af083fda50.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "DifferentialGeometry/Topology/@subtrees/8"
+      },
+      "snapshot_sha256": "1b34fab5b179f7c05dfdd26920cd4b5bbacdd00a3284cbe0ea364ae258ec1120",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 168,
+        "bytes": 705519,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 168,
+        "files": 168,
+        "formal_source_files": 168,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a6af083fda50"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-b7ef9ac86fe5.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Topology/@subtrees/9"
+      },
+      "snapshot_sha256": "f971527019eeaab88a89e8a29d35fd89ee1a9d3b05ccc5f9b0d72ede513b4b22",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 105,
+        "bytes": 552646,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 105,
+        "files": 105,
+        "formal_source_files": 105,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b7ef9ac86fe5"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-90042dbd5c3f.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Topology/@subtrees/a"
+      },
+      "snapshot_sha256": "628be64230b200e0c86e1871239c854e76a882998b4f3783b0ff29000d6a1f1a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 5,
+        "bytes": 8587,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 5,
+        "files": 5,
+        "formal_source_files": 5,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-90042dbd5c3f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-e7c5de4fde96.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Topology/@subtrees/b"
+      },
+      "snapshot_sha256": "ed8057dea9de36fdeb94cd913c97c05d87920b87c09242527d16473d7907287d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 494,
+        "bytes": 4913766,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 494,
+        "files": 494,
+        "formal_source_files": 494,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e7c5de4fde96"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-4edbdd607f89.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Topology/@subtrees/c"
+      },
+      "snapshot_sha256": "ec41579e7a83be0f5045adfe771970aefc138d08499ee0a30e8eb0fd78f262c2",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 65,
+        "bytes": 359722,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 65,
+        "files": 65,
+        "formal_source_files": 65,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4edbdd607f89"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-25980e438959.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "DifferentialGeometry/Topology/@subtrees/d"
+      },
+      "snapshot_sha256": "6f7ca7de10f43ce38cc7b294457e428045e40c2bd80a217833e47e8ce16a1f9a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 66,
+        "bytes": 350693,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 66,
+        "files": 66,
+        "formal_source_files": 66,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-25980e438959"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-dd1dce8194d5.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "DifferentialGeometry/Topology/@subtrees/e"
+      },
+      "snapshot_sha256": "b524aa071677d7370789f7cfc1d5006b771d160cc228b85819fa34d6b778c692",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1043,
+        "bytes": 6760953,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1043,
+        "files": 1043,
+        "formal_source_files": 1043,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-dd1dce8194d5"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-b2e8a26794b8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 6,
+        "value": "DifferentialGeometry/Topology/@subtrees/f"
+      },
+      "snapshot_sha256": "f3d2c0be339f6aa52e7530aee2b0a607c762f518b656d5f27107132f4f3f7368",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 231,
+        "bytes": 5344494,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 231,
+        "files": 231,
+        "formal_source_files": 231,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b2e8a26794b8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-35dd53b7e09b.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 159,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/0"
+      },
+      "snapshot_sha256": "7c8e71087e294631da93e02da328c47a5f86f7371eecd394e7aa9551fec9af31",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 159,
+        "bytes": 1470752,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 159,
+        "files": 159,
+        "formal_source_files": 159,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-35dd53b7e09b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-a9a25ae90525.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 162,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/1"
+      },
+      "snapshot_sha256": "0f35fb1bdf80c152184e6db76348517a8c7aeec6d1734dbeeee78cad0559cfac",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 162,
+        "bytes": 1252554,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 162,
+        "files": 162,
+        "formal_source_files": 162,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a9a25ae90525"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-880fade9283e.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 163,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/2"
+      },
+      "snapshot_sha256": "2a53a093a228260b3bc21cff14ea35a71fe67fa38fb7788873932f7a448ad9a2",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 163,
+        "bytes": 1249594,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 163,
+        "files": 163,
+        "formal_source_files": 163,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-880fade9283e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-0e8b33ca5894.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 147,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/3"
+      },
+      "snapshot_sha256": "c2f8022a87dd5cf46000a78ea767c52f325ec035c818704f23d4d08d508cc4c3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 147,
+        "bytes": 1410068,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 147,
+        "files": 147,
+        "formal_source_files": 147,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0e8b33ca5894"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-9de6cd6f1b57.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 159,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/4"
+      },
+      "snapshot_sha256": "03d74ebea67fe6ca1c206d438c4b9998293e1290ddaf53bd5bce1a6f55b8835c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 159,
+        "bytes": 1516451,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 159,
+        "files": 159,
+        "formal_source_files": 159,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9de6cd6f1b57"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-1d6f158e2ead.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 194,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/5"
+      },
+      "snapshot_sha256": "1b7b0b9ed3a3ddac0d11887084fbcc4a159a6931f7ce8a0f2275bf4fdcb97d46",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 194,
+        "bytes": 1648070,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 194,
+        "files": 194,
+        "formal_source_files": 194,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1d6f158e2ead"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-6385a0216baf.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 154,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/6"
+      },
+      "snapshot_sha256": "150336f9cb21253c2977996842661fefd250fd1e3f0460336a5dccc6c9f2b9e3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 154,
+        "bytes": 1403265,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 154,
+        "files": 154,
+        "formal_source_files": 154,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6385a0216baf"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-eb59acc1e4c9.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 175,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/7"
+      },
+      "snapshot_sha256": "578cfa09b26c5af56d237f2bf26f4dd5bbac60b56433e7defe32e352ce32a9bf",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 175,
+        "bytes": 1502597,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 175,
+        "files": 175,
+        "formal_source_files": 175,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-eb59acc1e4c9"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-488da1c4054f.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 130,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/8"
+      },
+      "snapshot_sha256": "27329a8b8139cdb3750462291e47f69caf36e7960e875ba3f566d2d6e3ece4fd",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 130,
+        "bytes": 1101932,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 130,
+        "files": 130,
+        "formal_source_files": 130,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-488da1c4054f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-b4ff0c329eab.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 174,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/9"
+      },
+      "snapshot_sha256": "f2d3fd5c15a313cd44aed169890ff859062ec768680fe675eae122d698dcdccd",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 174,
+        "bytes": 1559746,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 174,
+        "files": 174,
+        "formal_source_files": 174,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b4ff0c329eab"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-d8c54f2cafb3.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 161,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/a"
+      },
+      "snapshot_sha256": "79c7338181206534fcada3e509820f4c6fbddfc198917c48aa6797e955939510",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 161,
+        "bytes": 1804718,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 161,
+        "files": 161,
+        "formal_source_files": 161,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-d8c54f2cafb3"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-29d4d453ac2d.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 155,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/b"
+      },
+      "snapshot_sha256": "86dd6aa2617164e342a5e9a6464faa6a17f1b307f83c4c3c50a6a811919f2200",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 155,
+        "bytes": 1507379,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 155,
+        "files": 155,
+        "formal_source_files": 155,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-29d4d453ac2d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-5c029285f068.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 148,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/c"
+      },
+      "snapshot_sha256": "e55e676a7bbc5b45c0b482c4c5658c0f7e2211993e835bb4caee46bf023940f4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 148,
+        "bytes": 1228748,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 148,
+        "files": 148,
+        "formal_source_files": 148,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-5c029285f068"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-c0e91934a6fe.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 152,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/d"
+      },
+      "snapshot_sha256": "6bb7d2acd2af03531218a5178e50faf0d71cae930ea3ebdc5510b16f4cb10d5f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 152,
+        "bytes": 1279778,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 152,
+        "files": 152,
+        "formal_source_files": 152,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c0e91934a6fe"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-a9a2441ff681.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 180,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/e"
+      },
+      "snapshot_sha256": "45b89528c704f177b1575f42108d78a40f9b96b4b4d11d16644670a66d229233",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 180,
+        "bytes": 1859001,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 180,
+        "files": 180,
+        "formal_source_files": 180,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a9a2441ff681"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-9a8872bd2641.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 145,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@files/f"
+      },
+      "snapshot_sha256": "63b7ede05016d897ea5af18b85c5a3d5ba7081f966d7c5faab9db4196a7db1d6",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 145,
+        "bytes": 1337423,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 145,
+        "files": 145,
+        "formal_source_files": 145,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9a8872bd2641"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/qinz1yang__differential-geometry/RRU-d88b42f9b5f7.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "DifferentialGeometry/Topology/PiecewiseLinear/@subtrees/all"
+      },
+      "snapshot_sha256": "a8d5957fd95aa620e4853cd29e1c17cd6fa63dbc788c4e06997b58224b9495da",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 211,
+        "bytes": 3161410,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 211,
+        "files": 211,
+        "formal_source_files": 211,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-d88b42f9b5f7"
+    }
+  ]
+}

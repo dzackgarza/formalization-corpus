@@ -4,18 +4,18 @@
   "proof_assistant": "lean",
   "repository": "CBirkbeck__AINTLIB",
   "schema_version": 1,
-  "source_revision": "6d87d596a5372d5b122c47b7082d4c3afa9b7c3b",
-  "source_snapshot_sha256": "68d11b46d677b67871c48569a9867fc0adf27210d2a32a832da924a821f0be35",
+  "source_revision": "f8fd7bf3f0194ae5cf015f8095a7e120ba8344d6",
+  "source_snapshot_sha256": "6a28c9e613dafc023486602d7142d0bb1285cdb382e4a0d0650c729b23bae262",
   "sync_group": "routine",
   "totals": {
-    "auxiliary_only": 2,
-    "baseline_primary_retained": 2823,
-    "bytes": 63976607,
-    "current_primary_excluded": 3,
-    "current_primary_retained": 2820,
-    "files": 2825,
-    "formal_source_files": 2823,
-    "unindexed_nonformal": 0
+    "auxiliary_only": 4,
+    "baseline_primary_retained": 2826,
+    "bytes": 64154258,
+    "current_primary_excluded": 23,
+    "current_primary_retained": 2803,
+    "files": 2835,
+    "formal_source_files": 2826,
+    "unindexed_nonformal": 5
   },
   "transport": "git",
   "url": "https://github.com/CBirkbeck/AINTLIB",
@@ -24,19 +24,19 @@
       "files_manifest": "filtering/repository-review/files/CBirkbeck__AINTLIB/RRU-8cfd8461fb5c.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 2,
+        "root_count": 9,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "d083951ae4710cdd31bbbca8cdbd95d63b840401e62c01972cb4435dd47a44ac",
+      "snapshot_sha256": "c430448534a2fa8d2738f7f694aa422f0929333235b3165b6cc9e720d583f839",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 0,
-        "bytes": 6834,
-        "current_primary_excluded": 1,
+        "bytes": 40740,
+        "current_primary_excluded": 3,
         "current_primary_retained": 0,
-        "files": 2,
+        "files": 9,
         "formal_source_files": 0,
-        "unindexed_nonformal": 0
+        "unindexed_nonformal": 5
       },
       "unit_id": "RRU-8cfd8461fb5c"
     },
@@ -44,18 +44,18 @@
       "files_manifest": "filtering/repository-review/files/CBirkbeck__AINTLIB/RRU-e106cec3b653.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 1,
+        "root_count": 2,
         "value": "./@subtrees/all"
       },
-      "snapshot_sha256": "a430df0322fafe8d1a5b65e0d6f5ec4c65a7f47e6b8401b356e48739dd99428d",
+      "snapshot_sha256": "15c62123d0c7e662fedc26613ef40ad9faea0bf590bc12f56c58a76bc4484a9e",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 2,
-        "bytes": 8504,
+        "baseline_primary_retained": 3,
+        "bytes": 10210,
         "current_primary_excluded": 0,
-        "current_primary_retained": 2,
-        "files": 2,
-        "formal_source_files": 2,
+        "current_primary_retained": 3,
+        "files": 3,
+        "formal_source_files": 3,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-e106cec3b653"
@@ -67,13 +67,13 @@
         "root_count": 2,
         "value": "projects/@subtrees/0"
       },
-      "snapshot_sha256": "8ba896b767505dc011cbaf0df7796b4d27edee743ffb57665216f549ede57092",
+      "snapshot_sha256": "e09ec4f53c7d42f81452bd164636bc3e019d4cc5a847d9c77820814894ad6461",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 61,
-        "bytes": 1905698,
-        "current_primary_excluded": 2,
-        "current_primary_retained": 58,
+        "bytes": 1906757,
+        "current_primary_excluded": 4,
+        "current_primary_retained": 56,
         "files": 61,
         "formal_source_files": 61,
         "unindexed_nonformal": 0
@@ -87,15 +87,15 @@
         "root_count": 2,
         "value": "projects/@subtrees/1"
       },
-      "snapshot_sha256": "eee90f07c8606a744d8833e61b400ebf1a94597e8374557375d23c6d19173774",
+      "snapshot_sha256": "738180de6dbcdd5df526ecef5f0211d4bf6eb939b1fc7859c15b182a69f0e34d",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 917,
-        "bytes": 16161518,
+        "baseline_primary_retained": 919,
+        "bytes": 16179050,
         "current_primary_excluded": 0,
-        "current_primary_retained": 917,
-        "files": 917,
-        "formal_source_files": 917,
+        "current_primary_retained": 919,
+        "files": 919,
+        "formal_source_files": 919,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-dd818dada979"
@@ -107,11 +107,11 @@
         "root_count": 1,
         "value": "projects/@subtrees/2"
       },
-      "snapshot_sha256": "81963cb4b9c8e4ba6e66761232a8f19405e39d214e023ff2918775522f83fa30",
+      "snapshot_sha256": "170d712c7e372df4ed95993dac63265373b9d5455d7dd096f7f568652f1bd1d0",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 269,
-        "bytes": 7716061,
+        "bytes": 7732342,
         "current_primary_excluded": 0,
         "current_primary_retained": 269,
         "files": 269,
@@ -127,11 +127,11 @@
         "root_count": 1,
         "value": "projects/@subtrees/3"
       },
-      "snapshot_sha256": "96c21ada34a756f669330a969d6c418559c53d51cbf2a113237ba9803feee02b",
+      "snapshot_sha256": "3373e0239ba1c5213222ebb9af03ac518afe99bba2f1f58a4654ca28ecd56374",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 278,
-        "bytes": 8260366,
+        "bytes": 8278749,
         "current_primary_excluded": 0,
         "current_primary_retained": 278,
         "files": 278,
@@ -147,13 +147,13 @@
         "root_count": 1,
         "value": "projects/@subtrees/4"
       },
-      "snapshot_sha256": "6393d08099660ba34cfe3b00494c3c5f18ad305d9dbbfa27d52556a9301d5622",
+      "snapshot_sha256": "7c871c3c3e0f1fb3a07c8035881c189ea98477cc4ef32169375816d57946057a",
       "stats": {
-        "auxiliary_only": 0,
+        "auxiliary_only": 2,
         "baseline_primary_retained": 262,
-        "bytes": 5709130,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 262,
+        "bytes": 5725245,
+        "current_primary_excluded": 13,
+        "current_primary_retained": 247,
         "files": 262,
         "formal_source_files": 262,
         "unindexed_nonformal": 0
@@ -167,11 +167,11 @@
         "root_count": 1,
         "value": "projects/@subtrees/8"
       },
-      "snapshot_sha256": "5ed5c257cf5faa1db094c9fb31f2232bf6840e75a3756c6717af0258e10e5723",
+      "snapshot_sha256": "c33a17f47a4dcc1418c76386899b9ff6bc446f10a049cea8d762610baa657aac",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 56,
-        "bytes": 1777965,
+        "bytes": 1781873,
         "current_primary_excluded": 0,
         "current_primary_retained": 56,
         "files": 56,
@@ -187,11 +187,11 @@
         "root_count": 1,
         "value": "projects/@subtrees/d"
       },
-      "snapshot_sha256": "0fdbc9a03a8f7fe91673cc7b905fdfbf4083b909ffd5eba685b0366b54afcdae",
+      "snapshot_sha256": "732e30936ab38769f07fbf164b50d21b19612ab2a54f9b6e89c056cb9bc78c62",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 15,
-        "bytes": 902595,
+        "bytes": 902816,
         "current_primary_excluded": 0,
         "current_primary_retained": 15,
         "files": 15,
@@ -207,13 +207,13 @@
         "root_count": 1,
         "value": "projects/@subtrees/f"
       },
-      "snapshot_sha256": "2389f340a9d94bcc82c8eb243a5b186514385b4b2223fb00d5eb83721ab46fa9",
+      "snapshot_sha256": "2731df0993bcf0312bd05dfd507277b6af6a604b7267bb39c868666a42210dbc",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 963,
-        "bytes": 21527936,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 963,
+        "bytes": 21596476,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 960,
         "files": 963,
         "formal_source_files": 963,
         "unindexed_nonformal": 0

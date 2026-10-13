@@ -1,0 +1,2912 @@
+{
+  "cases": [
+    {
+      "candidates": [
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec24RiemannRochSerre.lean",
+          "judgment": {
+            "file": "v1/Atlas/AlgebraicGeometryI/code/Lec24RiemannRochSerre.lean",
+            "note": "Contains serre_duality_dimension and reverse Serre duality for sheaves on smooth complete curves.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/CanonicalSheafCurves.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/GBSplittingExistence.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/AlgebraicGeometryI.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "Jacobians/RiemannSurface/Cohomology/SheafCohomologySpec.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "LeanPool.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityTate.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityLinear.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityCurves.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "serre-duality-coherent-sheaves",
+      "query": "Is Serre duality for coherent sheaves already formalized?"
+    },
+    {
+      "candidates": [
+        {
+          "file": "BruhatTits/Graph/Tree.lean",
+          "judgment": {
+            "file": "BruhatTits/Graph/Tree.lean",
+            "note": "Direct owner file proving the Bruhat\u2013Tits graph is a tree.",
+            "relevance": 3,
+            "repository": "chrisflav__bruhat-tits"
+          },
+          "repository": "chrisflav__bruhat-tits",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/Building/AffineSLV.lean",
+          "judgment": {
+            "file": "v1/Atlas/Buildings/code/Building/AffineSLV.lean",
+            "note": "Formalizes the Bruhat\u2013Tits affine building of SL(V); for rank two this is the tree, but the file is a more general building development.",
+            "relevance": 2,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph/Tree.lean",
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph/Tree.lean",
+            "note": "Direct proof that the Bruhat\u2013Tits graph is a tree, including acyclicity and the `BTtree` result.",
+            "relevance": 3,
+            "repository": "Vilin97__lean-pool"
+          },
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/Building/AffineSLVStrong.lean",
+          "judgment": {
+            "file": "v1/Atlas/Buildings/code/Building/AffineSLVStrong.lean",
+            "note": "Supporting higher-rank Bruhat\u2013Tits building/action theory for SL(V), not the tree theorem itself.",
+            "relevance": 1,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "LeanPool/BruhatTits.lean",
+          "judgment": {
+            "file": "LeanPool/BruhatTits.lean",
+            "note": "Import-only root module for the LeanPool copy; useful navigation, not owner content.",
+            "relevance": 1,
+            "repository": "Vilin97__lean-pool"
+          },
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/Building/AffineIsometry/Contexts.lean",
+          "judgment": {
+            "file": "v1/Atlas/Buildings/code/Building/AffineIsometry/Contexts.lean",
+            "note": "Defines contexts for affine buildings of types C, D, and B; it is not a formalization of the Bruhat\u2013Tits tree.",
+            "relevance": 0,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph.lean",
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph.lean",
+            "note": "Import aggregator for Bruhat\u2013Tits graph component modules; the mathematical content lives in the imported files.",
+            "relevance": 0,
+            "repository": "Vilin97__lean-pool"
+          },
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph/Edges.lean",
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph/Edges.lean",
+            "note": "Defines and proves the edge/neighbor relation used to construct the Bruhat\u2013Tits graph/tree.",
+            "relevance": 2,
+            "repository": "Vilin97__lean-pool"
+          },
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph/Regular.lean",
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph/Regular.lean",
+            "note": "Proves that the Bruhat\u2013Tits tree is q+1-regular and develops its neighbor structure.",
+            "relevance": 2,
+            "repository": "Vilin97__lean-pool"
+          },
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "frontend_lexical_v2": 6,
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "BruhatTits/Graph/Edges.lean",
+          "judgment": null,
+          "repository": "chrisflav__bruhat-tits",
+          "runs": {
+            "frontend_lexical_v2": 7,
+            "gemini_multiquery_rrf_v1": 10
+          }
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph/Vertices.lean",
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph/Vertices.lean",
+            "note": "Defines vertices of the Bruhat\u2013Tits tree and the distance/intermediate-vertex infrastructure used for connectedness.",
+            "relevance": 2,
+            "repository": "Vilin97__lean-pool"
+          },
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "frontend_lexical_v2": 8
+          }
+        },
+        {
+          "file": "LeanPool/BruhatTits/Harmonic/Basic.lean",
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Harmonic/Basic.lean",
+            "note": "Generic harmonic/Laplacian theory for trees used by the Bruhat\u2013Tits development; supporting rather than tree-specific.",
+            "relevance": 1,
+            "repository": "Vilin97__lean-pool"
+          },
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "frontend_lexical_v2": 9
+          }
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph/Orientation.lean",
+          "judgment": {
+            "file": "LeanPool/BruhatTits/Graph/Orientation.lean",
+            "note": "Formalizes the canonical orientation of the Bruhat\u2013Tits tree, a substantive component of the tree development.",
+            "relevance": 2,
+            "repository": "Vilin97__lean-pool"
+          },
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "frontend_lexical_v2": 10
+          }
+        }
+      ],
+      "id": "bruhat-tits-tree",
+      "query": "does Lean have the Bruhat Tits tree?"
+    },
+    {
+      "candidates": [
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochCurves.lean",
+          "judgment": {
+            "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochCurves.lean",
+            "note": "States and proves a Riemann\u2013Roch theorem for curves via the Euler-characteristic formula.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 1
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochRiemannForm.lean",
+          "judgment": {
+            "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochRiemannForm.lean",
+            "note": "Riemann-form consequences of Riemann\u2013Roch under Serre duality for curves.",
+            "relevance": 2,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochApplications.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochEulerCurves.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 2
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RiemannRochTheorem/Corollaries.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 3
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/AlgebraicCurves/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Basic.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 4
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/EllipticCurves/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/PlaceEquiv.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 5
+          }
+        },
+        {
+          "file": "vendor/kirov-dolbeault-port/KirovDolbeault/Dolbeault/SerreResidueTheorem.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Basic.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 6
+          }
+        },
+        {
+          "file": "Jacobians/Extensions/HyperellipticOdd.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Polar.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 7
+          }
+        },
+        {
+          "file": "vendor/kirov-jacobian-claude-dolbeault/Jacobians/Dolbeault/SerreResidueTheorem.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/LinearKneser.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 8
+          }
+        },
+        {
+          "file": "Jacobians/Extensions/HyperellipticEven.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RRspace/Basic.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 9
+          }
+        },
+        {
+          "file": "Jacobians/Axioms/HyperellipticLiouville.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/HasseBound/PoleDivisorFallback.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochDedekind.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 10
+          }
+        }
+      ],
+      "id": "riemann-roch-curves",
+      "query": "Riemann Roch theorem for algebraic curves"
+    },
+    {
+      "candidates": [
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "LeanPool.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/LevelStructure/CartierDivisor.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "src/for_mathlib/mapping_cone.lean",
+          "judgment": null,
+          "repository": "leanprover-community__lean-liquid",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/NoethApprox.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "theories/HoTT.v",
+          "judgment": null,
+          "repository": "HoTT__Coq-HoTT",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/FinitePresentationDescent.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "Adic spaces/FJP/KoszulFreeExactness.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicTopologyI/code/Section34.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "coherent-cohomology-finite/CoherentCohomologyFinite/AcyclicResolution.lean",
+          "judgment": null,
+          "repository": "Vilin97__Clawristotle",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "mapping-cone-quasi-isomorphism",
+      "query": "mapping cone criterion for quasi isomorphisms"
+    },
+    {
+      "candidates": [
+        {
+          "file": "PhyslibAlpha/AlgebraicFramework/HilbertSpace/Unbounded/UnitaryInfra/SesquilinearForm.lean",
+          "judgment": null,
+          "repository": "leanprover-community__physlib",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "OddOrder.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 7,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "Mathlib/Algebra/Jordan/Basic.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/RepresentationTheory/LieHighestWeight/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "frontend_lexical_v2": 6,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "thys/Complex_Bounded_Operators/Cblinfun_Matrix.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "frontend_lexical_v2": 3
+          }
+        },
+        {
+          "file": "TNLean/Channel/WolfChapter6Index.lean",
+          "judgment": null,
+          "repository": "LionSR__TNLean",
+          "runs": {
+            "frontend_lexical_v2": 9,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "FastMultiplication/ShorVerification/Implementation/ModularExponentiation/Proofs/Step1QPE.lean",
+          "judgment": null,
+          "repository": "VerifiedQC__ForShor",
+          "runs": {
+            "frontend_lexical_v2": 5
+          }
+        },
+        {
+          "file": "thys/Jordan_Normal_Form/Schur_Decomposition.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "TNLean/Channel/Peripheral/JordanBlocks.lean",
+          "judgment": null,
+          "repository": "LionSR__TNLean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "v1/Atlas/Buildings/Buildings.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 8
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraNotes/code/JordanForm.lean",
+          "judgment": {
+            "file": "v1/Atlas/AlgebraNotes/code/JordanForm.lean",
+            "note": "Jordan-form development.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "v1/Atlas/LieGroups/code/GrothendieckGroupO.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "jordan-canonical-form",
+      "query": "Jordan canonical form of a linear operator"
+    },
+    {
+      "candidates": [
+        {
+          "file": "Mathlib.lean",
+          "judgment": {
+            "file": "Mathlib.lean",
+            "note": "Repository-wide Mathlib import aggregator; it only mentions Hensel-related modules indirectly and does not formalize the theorem here.",
+            "relevance": 0,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/LocalFieldsRamification/Suggested.lean",
+          "judgment": {
+            "file": "TauCetiRoadmap/LocalFieldsRamification/Suggested.lean",
+            "note": "Roadmap/suggested declarations with `sorry`; Hensel appears only as a proposed implementation route for Teichm\u00fcller lifts, not as a completed Hensel formalization.",
+            "relevance": 0,
+            "repository": "TauCetiProject__TauCetiRoadmap"
+          },
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "v1/Atlas/NumberTheoryI/code/HenselLemmas.lean",
+          "judgment": {
+            "file": "v1/Atlas/NumberTheoryI/code/HenselLemmas.lean",
+            "note": "Proves simple-root lifting and Newton Hensel statements for complete discrete valuation rings.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "TauCeti/RingTheory/DedekindDomain/AdicCompletionExtension.lean",
+          "judgment": {
+            "file": "TauCeti/RingTheory/DedekindDomain/AdicCompletionExtension.lean",
+            "note": "Supporting completion/DVR infrastructure; it points to a Henselian/completeness chain in another module but does not prove Hensel\u2019s lemma in this file.",
+            "relevance": 1,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 3
+          }
+        },
+        {
+          "file": "thys/Padic_Ints/Cring_Poly.thy",
+          "judgment": {
+            "file": "thys/Padic_Ints/Cring_Poly.thy",
+            "note": "Polynomial/Taylor infrastructure explicitly identified as a necessary component of the AFP proof of Hensel\u2019s lemma for p-adic integers; not the Hensel theorem itself.",
+            "relevance": 1,
+            "repository": "isabelle-prover__mirror-afp-devel"
+          },
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "projects/FltRegularBernoulli/BernoulliRegular/Reflection.lean",
+          "judgment": {
+            "file": "projects/FltRegularBernoulli/BernoulliRegular/Reflection.lean",
+            "note": "Large reflection-theory import/overview file; Hensel appears only in descriptions of imported local lifting components.",
+            "relevance": 0,
+            "repository": "CBirkbeck__AINTLIB"
+          },
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "OddOrder/Algebra/AlgClosedIdempotentLift.lean",
+          "judgment": {
+            "file": "OddOrder/Algebra/AlgClosedIdempotentLift.lean",
+            "note": "Supporting Henselian/idempotent-lifting development discussing complete valuation rings; it proves an application rather than Hensel\u2019s lemma itself.",
+            "relevance": 1,
+            "repository": "yawara__odd-order"
+          },
+          "repository": "yawara__odd-order",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "TauCeti/RingTheory/Cyclotomic/Lift.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/Valuation/DiscreteValuationBook.lean",
+          "judgment": {
+            "file": "v1/Atlas/Buildings/code/Valuation/DiscreteValuationBook.lean",
+            "note": "Direct generalized Hensel theorem `hensel_nonmonic_adic` over an I-adically complete commutative ring, with Newton-sequence proof.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/ArithmeticGeometry.lean",
+          "judgment": {
+            "file": "v1/Atlas/ArithmeticGeometry/ArithmeticGeometry.lean",
+            "note": "Course/module import aggregator; it imports the actual Hensel module but contains no Hensel theorem itself.",
+            "relevance": 0,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "Mathlib/Tactic/Ring/Basic.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "hensel-complete-dvr",
+      "query": "Hensel lemma over complete discrete valuation rings"
+    },
+    {
+      "candidates": [
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Circle/FundamentalGroup.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 1
+          }
+        },
+        {
+          "file": "TauCeti/Topology/Covering/Sigma.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "TauCeti/Topology/Homotopy/Covering.lean",
+          "judgment": {
+            "file": "TauCeti/Topology/Homotopy/Covering.lean",
+            "note": "Covering-space homotopy infrastructure.",
+            "relevance": 2,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "Instance/Top/FundamentalGroupoid.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "frontend_lexical_v2": 2
+          }
+        },
+        {
+          "file": "TauCeti/Topology/Covering/Monodromy/Basic.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "axioms.lisp",
+          "judgment": null,
+          "repository": "acl2__acl2",
+          "runs": {
+            "frontend_lexical_v2": 3
+          }
+        },
+        {
+          "file": "contrib/HoTTBook.v",
+          "judgment": null,
+          "repository": "HoTT__Coq-HoTT",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/Basic.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 4
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/Opposite.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 5
+          }
+        },
+        {
+          "file": "Jacobians/Topology/CoveringPi1.lean",
+          "judgment": null,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/UniversalCover.lean",
+          "judgment": {
+            "file": "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/UniversalCover.lean",
+            "note": "Fundamental group and universal-cover deck transformations.",
+            "relevance": 3,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 6
+          }
+        },
+        {
+          "file": "TauCeti/Topology/Covering/Monodromy/Connected.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/RealProjective/FundamentalGroup/Basic.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 7
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicTopologyI/code/Section31.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/FundamentalGroupAction.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 8
+          }
+        },
+        {
+          "file": "TauCeti/Topology/Homotopy/Monodromy/Full.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "projects/AdicSpaces/Adic spaces/Wedhorn828.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 9
+          }
+        },
+        {
+          "file": "TauCeti/Topology/Covering/Monodromy/Transitive.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "projects/AdicSpaces/Adic spaces/StructureSheaf.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 10
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Covering.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "fundamental-group-covering-space",
+      "query": "fundamental group of a covering space"
+    },
+    {
+      "candidates": [
+        {
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Global.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Local.lean",
+          "judgment": {
+            "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Local.lean",
+            "note": "Local collar construction for manifolds with boundary.",
+            "relevance": 3,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Diffeomorph.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Basic.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Chart.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "TauCeti/Geometry/Manifold/Boundary/Charts.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Manifold.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "Mathlib/Geometry/Manifold/Bordism.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "ClassificationOfSurfaces/Moise/ChartInduction.lean",
+          "judgment": null,
+          "repository": "mccorvie__classification-of-surfaces",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "ClassificationOfSurfaces/Moise/ChartInductionCore.lean",
+          "judgment": null,
+          "repository": "mccorvie__classification-of-surfaces",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "manifold-boundary-collar",
+      "query": "smooth manifolds with boundary and collars"
+    },
+    {
+      "candidates": [
+        {
+          "file": "Structure/Abelian.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/LeftDerived.lean",
+          "judgment": {
+            "file": "Mathlib/CategoryTheory/Abelian/LeftDerived.lean",
+            "note": "Derived-functor consumer of resolution infrastructure.",
+            "relevance": 2,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/RightDerived.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/Injective/Resolution.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Preadditive/Injective/Resolution.lean",
+          "judgment": {
+            "file": "Mathlib/CategoryTheory/Preadditive/Injective/Resolution.lean",
+            "note": "Injective resolutions and their quasi-isomorphisms.",
+            "relevance": 3,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/Injective/Ext.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/SheafCechInjectiveBicomplex.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/SheafCechInjectiveCokernel.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/Injective/Extend.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/ForMathlib/SheafCechInjectiveComparison.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "injective-resolutions",
+      "query": "existence of injective resolutions in abelian categories"
+    },
+    {
+      "candidates": [
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/AffineVarieties.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec1ZariskiNullstellensatz.lean",
+          "judgment": {
+            "file": "v1/Atlas/AlgebraicGeometryI/code/Lec1ZariskiNullstellensatz.lean",
+            "note": "Algebraic-geometry presentation of the Nullstellensatz.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "v1/Atlas/EllipticCurves/code/AlgebraicGeometry.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/TangentSpaces.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec3ProjectiveNoether.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/AlgebraicGeometryI.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "TauCeti/RingTheory/FiniteType/PointSeparation.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/Heights.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "projects/AdicSpaces/Adic spaces/StructureSheaf.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "nullstellensatz-affine",
+      "query": "Hilbert Nullstellensatz for affine varieties"
+    },
+    {
+      "candidates": [
+        {
+          "file": "Mathlib/Analysis/Fourier/FiniteAbelian/PontryaginDuality.lean",
+          "judgment": {
+            "file": "Mathlib/Analysis/Fourier/FiniteAbelian/PontryaginDuality.lean",
+            "note": "Dedicated Mathlib Pontryagin-duality file.",
+            "relevance": 3,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "TauCeti/LinearAlgebra/FiniteBilinearModule/Basic.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "Instance/Ab/Character/Finite.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "Instance/Ab/Character.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "frontend_lexical_v2": 7,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S06_CertainTypeCharacters.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_v1": 10
+          }
+        },
+        {
+          "file": "projects/FltRegularBernoulli/BernoulliRegular/Reflection/Comparison.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 6
+          }
+        },
+        {
+          "file": "v1/Atlas/LieGroups/code/CategoryO.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "v1/Atlas/LieGroups/code/KostantTheorem.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "Toric/GroupScheme/Character.lean",
+          "judgment": null,
+          "repository": "YaelDillies__toric",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "thys/Dirichlet_L/Multiplicative_Characters.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "frontend_lexical_v2": 8
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/ProfiniteProPGroups/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S12_MaximalIII_IV_V_Core/Hypothesis.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 9
+          }
+        }
+      ],
+      "id": "pontryagin-duality-finite-abelian",
+      "query": "Pontryagin duality for finite abelian groups"
+    },
+    {
+      "candidates": [
+        {
+          "file": "TauCeti/Analysis/Calculus/Morse/Index.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "TauCeti/Analysis/Calculus/Morse/Basic.lean",
+          "judgment": {
+            "file": "TauCeti/Analysis/Calculus/Morse/Basic.lean",
+            "note": "Core Morse-theory definitions and lemmas.",
+            "relevance": 2,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "TauCeti/Analysis/Calculus/Morse/Generic.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "TauCeti/Analysis/Calculus/Morse/NormalForm.lean",
+          "judgment": {
+            "file": "TauCeti/Analysis/Calculus/Morse/NormalForm.lean",
+            "note": "Morse normal-form development.",
+            "relevance": 3,
+            "repository": "TauCetiProject__TauCeti"
+          },
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "TauCeti/Analysis/Normed/Algebra/SquareRoot.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "thys/Gromov_Hyperbolicity/Morse_Gromov_Theorem.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "LeanPool/DomainTheory/Neighborhood/Exercise516ThueMorse.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "LeanPool.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "TauCeti/Analysis/Calculus/Morse/SplitModel.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "TauCeti/Analysis/Calculus/Morse/HessianFlow.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "morse-lemma",
+      "query": "Morse lemma near a nondegenerate critical point"
+    },
+    {
+      "candidates": [
+        {
+          "file": "TauCetiRoadmap/ProfiniteProPGroups/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/RepresentationTheory/LieHighestWeight/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/EllipticCurves/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "LeanPool.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "frontend_lexical_v2": 6,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "ImscribingGrammar/Millennium/BSD.lean",
+          "judgment": null,
+          "repository": "umpolungfish__Imscribing_Grammar",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "v1/Atlas/EllipticCurves/code/ModularForms.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicTopologyI/code/Section18.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/ClassFieldTheory/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "TauCetiRoadmap/NumberFieldArithmetic/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "fg-abelian-structure-theorem",
+      "query": "classification of finitely generated abelian groups"
+    },
+    {
+      "candidates": [
+        {
+          "file": "Mathlib/Topology/ContinuousMap/StoneWeierstrass.lean",
+          "judgment": {
+            "file": "Mathlib/Topology/ContinuousMap/StoneWeierstrass.lean",
+            "note": "Dedicated Stone-Weierstrass development.",
+            "relevance": 3,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "src/HOL/Analysis/Weierstrass_Theorems.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-isabelle",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "projects/PadicLFunctions/PadicLFunctions/Coleman/Theorem.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 2
+          }
+        },
+        {
+          "file": "Mathlib/Topology/ContinuousMap/Weierstrass.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "1002/lean/Erdos1002/GaussMovingSignedMarkedContinuous.lean",
+          "judgment": null,
+          "repository": "ShouqiaoW__erdos",
+          "runs": {
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "100/fourier.ml",
+          "judgment": null,
+          "repository": "jrh13__hol-light",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "Mathlib/Topology/ContinuousMap/Algebra.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 6
+          }
+        },
+        {
+          "file": "Game/Levels/L14Levels/L01_BolzanoWeierstrass.lean",
+          "judgment": null,
+          "repository": "AlexKontorovich__RealAnalysisGame",
+          "runs": {
+            "frontend_lexical_v2": 7
+          }
+        },
+        {
+          "file": "thys/Fourier/Fourier.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "LeanPool.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "Mathlib/Analysis/SpecialFunctions/MulExpNegMulSqIntegral.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 8
+          }
+        },
+        {
+          "file": "NN/MLTheory/Proofs/ReLU/Approximation/CompactSet.lean",
+          "judgment": null,
+          "repository": "lean-dojo__TorchLean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Basic.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 9
+          }
+        },
+        {
+          "file": "100/fourier.ml",
+          "judgment": null,
+          "repository": "CakeML__candle",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        },
+        {
+          "file": "Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Unique.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 10
+          }
+        }
+      ],
+      "id": "stone-weierstrass",
+      "query": "Stone Weierstrass theorem for continuous functions"
+    },
+    {
+      "candidates": [
+        {
+          "file": "verso/Manual/Front.lean",
+          "judgment": null,
+          "repository": "RemyDegenne__brownian-motion",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "Mathlib/Probability/BrownianMotion/GaussianProjectiveFamily.lean",
+          "judgment": {
+            "file": "Mathlib/Probability/BrownianMotion/GaussianProjectiveFamily.lean",
+            "note": "Constructs Brownian finite-dimensional Gaussian projective families; the file notes the Kolmogorov extension step is not yet in Mathlib.",
+            "relevance": 2,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "MathFin/Foundations/ItoIntegralBrownian.lean",
+          "judgment": null,
+          "repository": "formal-applied-math__formal-mathfin",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "v1/Atlas/FourierAnalysis/code/BrownianMotion.lean",
+          "judgment": {
+            "file": "v1/Atlas/FourierAnalysis/code/BrownianMotion.lean",
+            "note": "Contains a Wiener-series construction culminating in wiener_construction_brownian_motion.",
+            "relevance": 3,
+            "repository": "facebookresearch__atlas-lean"
+          },
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "MathFin/Foundations/ExpMartingaleQBrownian.lean",
+          "judgment": null,
+          "repository": "formal-applied-math__formal-mathfin",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "MathFin/AxiomAudit.lean",
+          "judgment": null,
+          "repository": "formal-applied-math__formal-mathfin",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "MathFin.lean",
+          "judgment": null,
+          "repository": "formal-applied-math__formal-mathfin",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "MathFin/AxiomAuditGen.lean",
+          "judgment": null,
+          "repository": "formal-applied-math__formal-mathfin",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "LeanPool.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "brownian-motion-construction",
+      "query": "construction of Brownian motion from Gaussian processes"
+    },
+    {
+      "candidates": [
+        {
+          "file": "SphereEversion/Local/HPrinciple.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "SphereEversion/Local/ParametricHPrinciple.lean",
+          "judgment": {
+            "file": "SphereEversion/Local/ParametricHPrinciple.lean",
+            "note": "Parametric h-principle machinery used by the proof.",
+            "relevance": 2,
+            "repository": "leanprover-community__sphere-eversion"
+          },
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "SphereEversion/Local/SphereEversion.lean",
+          "judgment": {
+            "file": "SphereEversion/Local/SphereEversion.lean",
+            "note": "Sphere-eversion construction.",
+            "relevance": 3,
+            "repository": "leanprover-community__sphere-eversion"
+          },
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "frontend_lexical_v2": 10,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "Multivariate/complex_database.ml",
+          "judgment": null,
+          "repository": "jrh13__hol-light",
+          "runs": {
+            "frontend_lexical_v2": 3
+          }
+        },
+        {
+          "file": "SphereEversion/Main.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "SphereEversion/Indexing.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "LeanCourse25/Lectures/Lecture25.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__LeanCourse25",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "SphereEversion/Global/Gromov.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "frontend_lexical_v2": 6,
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "SphereEversion/Local/Relation.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "frontend_lexical_v2": 7,
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "SphereEversion/Global/Relation.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "frontend_lexical_v2": 8,
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "SphereEversion/Global/Immersion.lean",
+          "judgment": null,
+          "repository": "leanprover-community__sphere-eversion",
+          "runs": {
+            "frontend_lexical_v2": 9,
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "sphere-eversion",
+      "query": "sphere eversion via the h principle"
+    },
+    {
+      "candidates": [
+        {
+          "file": "Carleson/Classical/CarlesonHunt.lean",
+          "judgment": {
+            "file": "Carleson/Classical/CarlesonHunt.lean",
+            "note": "Carleson-Hunt theorem development.",
+            "relevance": 2,
+            "repository": "fpvandoorn__carleson"
+          },
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "Carleson/Classical/ClassicalCarleson.lean",
+          "judgment": {
+            "file": "Carleson/Classical/ClassicalCarleson.lean",
+            "note": "Classical Carleson theorem development.",
+            "relevance": 3,
+            "repository": "fpvandoorn__carleson"
+          },
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "Carleson/Defs.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "Carleson.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "Carleson/MetricCarleson/Basic.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "Carleson/MetricCarleson/Truncation.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "Carleson/Classical/CarlesonHuntBasic.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "Carleson/TwoSidedCarleson/NontangentialOperator.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "Carleson/ToMathlib/MeasureTheory/Function/LpSeminorm/Basic.lean",
+          "judgment": null,
+          "repository": "fpvandoorn__carleson",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "1002/lean/Erdos1002/FourierSeries.lean",
+          "judgment": null,
+          "repository": "ShouqiaoW__erdos",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "carleson-theorem",
+      "query": "Carleson theorem on pointwise convergence of Fourier series"
+    },
+    {
+      "candidates": [
+        {
+          "file": "TauCetiRoadmap/QuadraticFormInvariants/Suggested.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/HilbertSymbol.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "HassePrinciple/HilbertSymbol/Basic.lean",
+          "judgment": null,
+          "repository": "mariainesdff__HassePrinciple",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/HilbertFormulaOdd.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/HilbertProductFormula.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/HilbertPrimitiveSolutions.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/HasseMinkowskiProof.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "LeanPool.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "projects/FltRegularBernoulli/BernoulliRegular.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "dyadic-hilbert-symbol",
+      "query": "dyadic Hilbert symbol over Q2"
+    },
+    {
+      "candidates": [
+        {
+          "file": "UniMath/CategoryTheory/Categories/KaroubiEnvelope/UnivalentKaroubi.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "UniMath/Bicategories/Core/YonedaLemma.v",
+          "judgment": {
+            "file": "UniMath/Bicategories/Core/YonedaLemma.v",
+            "note": "Proves a bicategorical Yoneda lemma with univalent-category targets; closely related but more general/different level than the category-level query.",
+            "relevance": 2,
+            "repository": "UniMath__UniMath"
+          },
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 1
+          }
+        },
+        {
+          "file": "UniMath/Bicategories/RezkCompletions/BicatToLocalUnivalentBicat.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 2
+          }
+        },
+        {
+          "file": "src/1Lab/intro.lagda.md",
+          "judgment": null,
+          "repository": "the1lab__1lab",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "src/Cat/Univalent/Rezk.lagda.md",
+          "judgment": null,
+          "repository": "the1lab__1lab",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "source/Lifting/UnivalentWildCategory.lagda",
+          "judgment": null,
+          "repository": "martinescardo__TypeTopology",
+          "runs": {
+            "frontend_lexical_v2": 10,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/RepresentableFunctors/Precategories.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 9,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "theories/Categories.v",
+          "judgment": null,
+          "repository": "HoTT__Coq-HoTT",
+          "runs": {
+            "frontend_lexical_v2": 5
+          }
+        },
+        {
+          "file": "UniMath/Bicategories/DisplayedBicats/Examples/CwF.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 6
+          }
+        },
+        {
+          "file": "src/category-theory.lagda.md",
+          "judgment": null,
+          "repository": "UniMath__agda-unimath",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "UniMath/Bicategories/RezkCompletions/RezkCompletionOfBicategory.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/Categories/HSET/Structures.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 7
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/Categories/KaroubiEnvelope/SetKaroubi.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/Categories/PreorderCategory/Sieves.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 8
+          }
+        },
+        {
+          "file": "src/HoTT.lagda.md",
+          "judgment": null,
+          "repository": "the1lab__1lab",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/RezkCompletions/Construction.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "yoneda-univalent-categories",
+      "query": "Yoneda lemma for univalent categories"
+    },
+    {
+      "candidates": [
+        {
+          "file": "UniMath/Bicategories/Grothendieck/FibrationToPseudoFunctor.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "UniMath/Bicategories/Grothendieck/Unit.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "UniMath/Bicategories/Grothendieck/Counit.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/IndexedCategories/IndexedCategoryToFibration.v",
+          "judgment": {
+            "file": "UniMath/CategoryTheory/IndexedCategories/IndexedCategoryToFibration.v",
+            "note": "Indexed category to fibration comparison.",
+            "relevance": 3,
+            "repository": "UniMath__UniMath"
+          },
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 9,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "UniMath/Bicategories/Grothendieck/PseudoFunctorToFibration.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 6,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "src/Cat/Bi/Functor/IndexedCategory.lagda.md",
+          "judgment": null,
+          "repository": "the1lab__1lab",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "UniMath/Bicategories/Grothendieck/Biequivalence.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 10
+          }
+        },
+        {
+          "file": "Construction/Grothendieck.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "frontend_lexical_v2": 7,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "UniMath/CategoryTheory/IndexedCategories/IndexedFunctorToCartesian.v",
+          "judgment": null,
+          "repository": "UniMath__UniMath",
+          "runs": {
+            "frontend_lexical_v2": 8,
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "Theory/Fibration.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "Construction/Grothendieck/RoundTrip.v",
+          "judgment": null,
+          "repository": "jwiegley__category-theory",
+          "runs": {
+            "frontend_lexical_v2": 10
+          }
+        }
+      ],
+      "id": "grothendieck-construction-indexed-categories",
+      "query": "Grothendieck construction for indexed categories and fibrations"
+    },
+    {
+      "candidates": [
+        {
+          "file": "OddOrder/FeitThompson.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "theories/stripped_odd_order_theorem.v",
+          "judgment": {
+            "file": "theories/stripped_odd_order_theorem.v",
+            "note": "MathComp/Rocq odd-order theorem proof.",
+            "relevance": 3,
+            "repository": "math-comp__odd-order"
+          },
+          "repository": "math-comp__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "OddOrder/FeitThompsonSetup.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "OddOrder/FeitThompsonNuGrid.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "OddOrder/BG/AppD_CNGroups/Basic.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "OddOrder/FeitThompsonPairProducer.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 5
+          }
+        },
+        {
+          "file": "OddOrder/BG/AppC_SL2Example.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 10,
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "OddOrder/FeitThompsonCharacterData.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 6
+          }
+        },
+        {
+          "file": "OddOrder/FeitThompsonSection16Core.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 7
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S01_Introduction.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "OddOrder/BG/AppC_HypothesisB.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "OddOrder/Isaacs/Ch07_ThompsonSubgroup/Basic.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 8
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/Appendices/FeitSibleyInduction.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "frontend_lexical_v2": 9
+          }
+        },
+        {
+          "file": "OddOrder/Peterfalvi/Appendices/Huppert.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "OddOrder/BG/AppC_LemmaC3_Setup.lean",
+          "judgment": null,
+          "repository": "yawara__odd-order",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "feit-thompson-odd-order",
+      "query": "formal proof of the Feit Thompson odd order theorem"
+    },
+    {
+      "candidates": [
+        {
+          "file": "jordan.miz",
+          "judgment": {
+            "file": "jordan.miz",
+            "note": "Mizar Jordan-curve development.",
+            "relevance": 3,
+            "repository": "Mizar__MML-current"
+          },
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "JordanPick/PicksTheorem/Pick.lean",
+          "judgment": null,
+          "repository": "rkirov__jordan_pick",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "jordan6.miz",
+          "judgment": null,
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "JordanPick/PicksTheorem/Jordan.lean",
+          "judgment": null,
+          "repository": "rkirov__jordan_pick",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "jordan7.miz",
+          "judgment": null,
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "jordan4.miz",
+          "judgment": null,
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "frontend_lexical_v2": 4
+          }
+        },
+        {
+          "file": "Matroid/ForMathlib/Topology/JordanCurve.lean",
+          "judgment": null,
+          "repository": "apnelson1__Matroid",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "jordan9.miz",
+          "judgment": {
+            "file": "jordan9.miz",
+            "note": "Further Mizar Jordan-curve material.",
+            "relevance": 2,
+            "repository": "Mizar__MML-current"
+          },
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "frontend_lexical_v2": 5
+          }
+        },
+        {
+          "file": "jordan24.miz",
+          "judgment": null,
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "frontend_lexical_v2": 6
+          }
+        },
+        {
+          "file": "jordan16.miz",
+          "judgment": null,
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "frontend_lexical_v2": 7
+          }
+        },
+        {
+          "file": "Schoenflies/TwoArcJordan.lean",
+          "judgment": null,
+          "repository": "mccorvie__classification-of-surfaces",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "jordan18.miz",
+          "judgment": null,
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "frontend_lexical_v2": 8
+          }
+        },
+        {
+          "file": "Schoenflies/AuxiliaryJordan.lean",
+          "judgment": null,
+          "repository": "mccorvie__classification-of-surfaces",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "jordan1c.miz",
+          "judgment": null,
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "frontend_lexical_v2": 9
+          }
+        },
+        {
+          "file": "thys/Picks_Theorem/Polygon_Jordan_Curve.thy",
+          "judgment": null,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "jordan10.miz",
+          "judgment": null,
+          "repository": "Mizar__MML-current",
+          "runs": {
+            "frontend_lexical_v2": 10
+          }
+        },
+        {
+          "file": "JordanCurve/Arcs.lean",
+          "judgment": null,
+          "repository": "mccorvie__classification-of-surfaces",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "mizar-jordan-curve",
+      "query": "Jordan curve theorem in Mizar"
+    },
+    {
+      "candidates": [
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/EvalGroup.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupLawSpec.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 1
+          }
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/Definition.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "Mathlib/RingTheory/FormalGroup/Basic.lean",
+          "judgment": {
+            "file": "Mathlib/RingTheory/FormalGroup/Basic.lean",
+            "note": "Defines one-dimensional formal group laws and their basic API.",
+            "relevance": 3,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "src/commutative-algebra/formal-power-series-commutative-rings.lagda.md",
+          "judgment": null,
+          "repository": "UniMath__agda-unimath",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "FormalConjecturesForMathlib/GroupTheory/Torsion.lean",
+          "judgment": null,
+          "repository": "google-deepmind__formal-conjectures",
+          "runs": {
+            "frontend_lexical_v2": 10,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/WExpansion.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/Isogeny/OmegaCoeffViaFormalGroup.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 7,
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupAssoc.lean",
+          "judgment": null,
+          "repository": "CBirkbeck__AINTLIB",
+          "runs": {
+            "frontend_lexical_v2": 6
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Chord.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "frontend_lexical_v2": 9,
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "FormalConjectures/Mathoverflow/507128.lean",
+          "judgment": null,
+          "repository": "google-deepmind__formal-conjectures",
+          "runs": {
+            "frontend_lexical_v2": 8
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Assoc.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Inverse.lean",
+          "judgment": null,
+          "repository": "TauCetiProject__TauCeti",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "formal-group-law",
+      "query": "formal group law over a commutative ring"
+    },
+    {
+      "candidates": [
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/EnoughInjectives.lean",
+          "judgment": {
+            "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/EnoughInjectives.lean",
+            "note": "Grothendieck categories have enough injectives.",
+            "relevance": 3,
+            "repository": "leanprover-community__mathlib4"
+          },
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 1,
+            "gemini_multiquery_rrf_v1": 1
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/ColimCoyoneda.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 2,
+            "gemini_multiquery_rrf_v1": 2
+          }
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23DerivedFunctors.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 5,
+            "gemini_multiquery_rrf_v1": 3
+          }
+        },
+        {
+          "file": "v1/Atlas/TensorCategories/code/FiniteTensorCategory.lean",
+          "judgment": null,
+          "repository": "facebookresearch__atlas-lean",
+          "runs": {
+            "frontend_lexical_v2": 3,
+            "gemini_multiquery_rrf_v1": 4
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/SmallObject/Basic.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "frontend_lexical_v2": 4,
+            "gemini_multiquery_rrf_v1": 8
+          }
+        },
+        {
+          "file": "Mathlib.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 5
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/HasExt.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 6
+          }
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/FreydMitchell.lean",
+          "judgment": null,
+          "repository": "leanprover-community__mathlib4",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 7
+          }
+        },
+        {
+          "file": "LeanPool/GrothendieckVanishing/FlasqueVanishing.lean",
+          "judgment": null,
+          "repository": "Vilin97__lean-pool",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 9
+          }
+        },
+        {
+          "file": "Comparator/Definitions.lean",
+          "judgment": null,
+          "repository": "chrisflav__proetale",
+          "runs": {
+            "gemini_multiquery_rrf_v1": 10
+          }
+        }
+      ],
+      "id": "enough-injectives-grothendieck",
+      "query": "existence of enough injectives in a Grothendieck category"
+    }
+  ],
+  "gold_sha256": "255f0e30f8eeaf5408e45fb7680656251cd55b1a05fd6fde886b7bf485516a50",
+  "index": {
+    "document_count": 201221,
+    "index_bytes": 72696988,
+    "kind": "api-list-v1",
+    "metadata_sha256": "3c46008663aa6cf42e712df1f7326cadae23db2b9b58a9a2bedc25c9bc0c0696",
+    "repository_count": 762,
+    "shard_count": 780
+  },
+  "pool_depth_per_run": 10,
+  "runs": [
+    {
+      "depth": 10,
+      "path": "evaluation/search/runs/20260917T082548Z__frontend_lexical_v2__f63440b3__33e3e38d.json",
+      "variant": "frontend_lexical_v2"
+    },
+    {
+      "depth": 10,
+      "path": "evaluation/search/runs/20260917T083159Z__gemini_multiquery_rrf_v1__f63440b3__6483cd81.json",
+      "variant": "gemini_multiquery_rrf_v1"
+    }
+  ],
+  "schema_version": 1,
+  "summary": {
+    "already_judged": 48,
+    "candidates": 299,
+    "judged_nonrelevant": 6,
+    "judged_relevant": 42,
+    "queries": 24,
+    "unjudged": 251
+  }
+}

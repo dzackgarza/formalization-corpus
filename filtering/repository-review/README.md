@@ -20,7 +20,7 @@ subtrees and large sets of direct files are assigned to SHA-256 buckets.  This
 costs some extra work units but avoids order-sensitive chunk boundaries where one
 new path would invalidate unrelated later reviews.
 
-Human review history lives under `reviews/<repository>/<RRU-...>.jsonl`.  These
+Review history lives under `reviews/<repository>/<RRU-...>.jsonl`.  These
 files are append-only.  The latest line is the active disposition for that unit;
 a later line must explicitly supersede the previous review ID.
 
@@ -34,18 +34,29 @@ activate exclusions.
 Exclusion rules are repository-local and may select only an exact path, an
 explicit path set, or a literal subtree prefix.  Every rule records a rationale,
 a content-level losslessness invariant, source-local evidence, and the required
-`FILTER-###` policies.  Rules are pinned to the unit snapshot; changed units are
-stale and block indexing until a new review revision is appended.
+`FILTER-###` policies.  Rules are pinned to the unit snapshot.  The review of a
+changed unit lapses, which is the same as no review (`lapsed` in
+`repository-review.py status`).  Each rule of a lapsed review stays active only
+while every matched file keeps its path
+and SHA-256; a rule with any changed file lapses (CONTRIBUTING.md FILTER-023).
 
 `FD-018` is the per-file materialization of accepted repository-local blacklist
-rules.  Do not write `FD-018` records manually.  `scripts/build-filter-state.py`
-resolves fresh accepted review rules against these manifests and records the exact
+rules.  Do not write `FD-018` records manually.
+`scripts/refresh-review-filter-state.py` resolves accepted review rules against
+these manifests and records the exact
 matched paths/hashes in the ordinary append-only filtering ledger.
 
 ## Review workflow
 
-For a work unit, generate a non-mutating template, edit it outside the review
-history, then append it through the validator:
+The nightly `index` workflow runs `scripts/review-units.py run --repository R` on each
+source with a pending or lapsed unit; CONTRIBUTING.md FILTER-023 describes the
+agent review.  Any other reviewer uses the same file selection and validation:
+`review-units.py brief --repository R --out DIR` records the mechanical reviews of a
+hydrated source and writes one brief per remaining unit, and
+`review-units.py record --unit RRU-... --answer FILE` validates the reviewer's JSON
+answer and appends the review.  To write a review record by hand instead, generate a
+non-mutating template, edit it outside the review history, then append it through the
+validator:
 
 ```sh
 python scripts/repository-review.py template RRU-... > /tmp/review.json

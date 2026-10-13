@@ -13,7 +13,6 @@ import argparse
 import collections
 import datetime as dt
 import json
-import pathlib
 import subprocess
 from typing import Any
 
@@ -99,8 +98,9 @@ def batch_repositories(batch_id: str) -> set[str]:
     return set(map(str, batch.get("repositories", [])))
 
 
-def selected_repositories(values: list[str], batch: str | None = None) -> set[str]:
-    active = {source.repository for source in sources()}
+def selected_repositories(values: list[str], batch: str | None, all_active: bool) -> set[str]:
+    if all_active:
+        return {source.repository for source in sources()}
     campaign = {str(row["repository"]) for row in load_catalogue_index()}
     requested = set(values)
     if batch:
@@ -109,7 +109,7 @@ def selected_repositories(values: list[str], batch: str | None = None) -> set[st
     if unknown:
         raise SystemExit(f"unknown campaign repositories: {unknown}")
     if not requested:
-        raise SystemExit("at least one --repository is required")
+        raise SystemExit("at least one --repository, --batch, or --all is required")
     # Batch history is immutable, so a reviewed batch may contain a source that was
     # retired after its source-level review.  Keep accepting that frozen identity;
     # the caller will remove its old file decisions instead of trying to rematerialize it.
@@ -122,10 +122,11 @@ def main() -> int:
     )
     parser.add_argument("--repository", action="append", default=[])
     parser.add_argument("--batch")
+    parser.add_argument("--all", action="store_true", help="every active source")
     parser.add_argument("--allow-dirty", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
-    selected = selected_repositories(args.repository, args.batch)
+    selected = selected_repositories(args.repository, args.batch, args.all)
 
     status = subprocess.check_output(
         ["git", "status", "--porcelain=v1", "--untracked-files=all"], cwd=ROOT, text=True
@@ -139,7 +140,7 @@ def main() -> int:
     for unit in units.values():
         by_repository[str(unit["repository"])].append(unit)
 
-    exclusions, review_errors = resolve_review_exclusions(require_fresh=True)
+    exclusions, review_errors = resolve_review_exclusions()
     if review_errors:
         raise SystemExit("repository review state is invalid:\n  " + "\n  ".join(review_errors[:50]))
 

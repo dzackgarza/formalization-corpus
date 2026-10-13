@@ -1,0 +1,4261 @@
+{
+  "api_url": "https://formalization-corpus.dzackgarza.com/api/search",
+  "corpus_git_commit": "c97b196b76f6f6d1354d20ce0a6cff0789dd8e47",
+  "created_at": "2026-09-18T04:33:58.932217+00:00",
+  "diagnostic": {
+    "api_retries": 2,
+    "batch_fallbacks": [
+      {
+        "batch_size": 6,
+        "chunks": true,
+        "left_size": 3,
+        "mode": "split",
+        "reason": "Command '['curl', '-fsS', '--max-time', '60', '--retry', '2', '--retry-all-errors', '--retry-delay', '0', 'https://formalization-corpus.dzackgarza.com/api/search/batch', '-H', 'Content-Type: application/json', '-d', '{\"Searches\": [{\"ID\": \"0\", \"Request\": {\"Q\": \"\\\\\"Kolmogorov\\\\\" \\\\\"extension\\\\\" \\\\\"theorem\\\\\" file:\\\\\\\\.(lean|v|agda|lagda(\\\\\\\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no\", \"Opts\": {\"MaxDocDisplayCount\": 200, \"ChunkMatches\": true, \"Whole\": false, \"ShardMaxMatchCount\": 10000}}}, {\"ID\": \"1\", \"Request\": {\"Q\": \"\\\\\"sphere\\\\\" \\\\\"eversion\\\\\" \\\\\"h\\\\\" \\\\\"principle\\\\\" file:\\\\\\\\.(lean|v|agda|lagda(\\\\\\\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no\", \"Opts\": {\"MaxDocDisplayCount\": 200, \"ChunkMatches\": true, \"Whole\": false, \"ShardMaxMatchCount\": 10000}}}, {\"ID\": \"2\", \"Request\": {\"Q\": \"content:\\\\\"sphere\\\\\" content:\\\\\"eversion\\\\\" content:\\\\\"h\\\\\" content:\\\\\"principle\\\\\" file:\\\\\\\\.(lean|v|agda|lagda(\\\\\\\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no\", \"Opts\": {\"MaxDocDisplayCount\": 200, \"ChunkMatches\": true, \"Whole\": false, \"ShardMaxMatchCount\": 10000}}}, {\"ID\": \"3\", \"Request\": {\"Q\": \"(file:\\\\\"sphere\\\\\" or file:\\\\\"eversion\\\\\" or file:\\\\\"h\\\\\" or file:\\\\\"principle\\\\\") file:\\\\\\\\.(lean|v|agda|lagda(\\\\\\\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no\", \"Opts\": {\"MaxDocDisplayCount\": 200, \"ChunkMatches\": true, \"Whole\": false, \"ShardMaxMatchCount\": 10000}}}, {\"ID\": \"4\", \"Request\": {\"Q\": \"\\\\\"sphere\\\\\" \\\\\"eversion\\\\\" file:\\\\\\\\.(lean|v|agda|lagda(\\\\\\\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no\", \"Opts\": {\"MaxDocDisplayCount\": 200, \"ChunkMatches\": true, \"Whole\": false, \"ShardMaxMatchCount\": 10000}}}, {\"ID\": \"5\", \"Request\": {\"Q\": \"\\\\\"h\\\\\" \\\\\"principle\\\\\" file:\\\\\\\\.(lean|v|agda|lagda(\\\\\\\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no\", \"Opts\": {\"MaxDocDisplayCount\": 200, \"ChunkMatches\": true, \"Whole\": false, \"ShardMaxMatchCount\": 10000}}}], \"MaxConcurrency\": 2}']' timed out after 182 seconds",
+        "right_size": 3
+      }
+    ],
+    "batch_first_pass": true,
+    "batch_max_concurrency": 2,
+    "batch_pairs": [
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 5174.747838638723,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 1602013,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 1535.087469033897,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 1271218,
+          "physical_api_requests": 1
+        },
+        "end": 6,
+        "start": 1
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 5496.217280626297,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 9639627,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 2569.5359837263823,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 7749402,
+          "physical_api_requests": 1
+        },
+        "end": 12,
+        "start": 7
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 6272.000562399626,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 5775195,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 2000.0714994966984,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 4683942,
+          "physical_api_requests": 1
+        },
+        "end": 18,
+        "start": 13
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 6665.273594669998,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 1918557,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 2897.8442307561636,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 1538681,
+          "physical_api_requests": 1
+        },
+        "end": 24,
+        "start": 19
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 7904.721456579864,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 4626520,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 2635.740302503109,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 3777782,
+          "physical_api_requests": 1
+        },
+        "end": 30,
+        "start": 25
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 30618.238335475326,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 43410582,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 40824.51945450157,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 44213918,
+          "physical_api_requests": 1
+        },
+        "end": 36,
+        "start": 31
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 41457.680496387184,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 34395300,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 35653.82269863039,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 27297893,
+          "physical_api_requests": 1
+        },
+        "end": 42,
+        "start": 37
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 7208.352125249803,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 10722211,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 3187.0758226141334,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 8656227,
+          "physical_api_requests": 1
+        },
+        "end": 48,
+        "start": 43
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 6332.082943059504,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 4794337,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 4162.855043075979,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 3894995,
+          "physical_api_requests": 1
+        },
+        "end": 54,
+        "start": 49
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 11703.525762073696,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 8196797,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 3299.6876696124673,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 6613465,
+          "physical_api_requests": 1
+        },
+        "end": 60,
+        "start": 55
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 2769.2483672872186,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 3030244,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 1705.9027627110481,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 2471592,
+          "physical_api_requests": 1
+        },
+        "end": 66,
+        "start": 61
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 50473.3101837337,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 44673779,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 38249.57857467234,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 37509717,
+          "physical_api_requests": 1
+        },
+        "end": 72,
+        "start": 67
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 13147.259959951043,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 2657582,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 2379.7007370740175,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 2144534,
+          "physical_api_requests": 1
+        },
+        "end": 78,
+        "start": 73
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 10706.46930206567,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 6318005,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 2835.9772032126784,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 5017458,
+          "physical_api_requests": 1
+        },
+        "end": 84,
+        "start": 79
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 14233.867126516998,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 16761697,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 5821.7941066250205,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 13450752,
+          "physical_api_requests": 1
+        },
+        "end": 90,
+        "start": 85
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 5840.689033269882,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 1650541,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 1521.2185652926564,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 1343297,
+          "physical_api_requests": 1
+        },
+        "end": 96,
+        "start": 91
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "HIT": 5,
+            "MISS": 1
+          },
+          "elapsed_ms": 60696.601123549044,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 43890453,
+          "physical_api_requests": 2
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 46477.52504050732,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 40931058,
+          "physical_api_requests": 1
+        },
+        "end": 102,
+        "start": 97
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 14391.922735609114,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 1804283,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 2007.2852922603488,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 1496429,
+          "physical_api_requests": 1
+        },
+        "end": 108,
+        "start": 103
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 5549.980595707893,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 2003073,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 2917.067227885127,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 1631123,
+          "physical_api_requests": 1
+        },
+        "end": 114,
+        "start": 109
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 5783.93670078367,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 1951969,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 1730.3502634167671,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 1577792,
+          "physical_api_requests": 1
+        },
+        "end": 120,
+        "start": 115
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 6195.971501991153,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 2639251,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 3011.8576791137457,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 2148941,
+          "physical_api_requests": 1
+        },
+        "end": 126,
+        "start": 121
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 17065.529097802937,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 13319107,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 5989.739538170397,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 10822017,
+          "physical_api_requests": 1
+        },
+        "end": 132,
+        "start": 127
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 28926.57793033868,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 15460898,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 8644.802669994533,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 11378278,
+          "physical_api_requests": 1
+        },
+        "end": 138,
+        "start": 133
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 46168.18227432668,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 38603633,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 29407.383910380304,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 30700115,
+          "physical_api_requests": 1
+        },
+        "end": 144,
+        "start": 139
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 58394.06070578843,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 39586164,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 6
+          },
+          "elapsed_ms": 37207.51446578652,
+          "logical_queries": 6,
+          "max_concurrency": 2,
+          "payload_bytes": 32204170,
+          "physical_api_requests": 1
+        },
+        "end": 150,
+        "start": 145
+      },
+      {
+        "chunked": {
+          "cache_counts": {
+            "MISS": 5
+          },
+          "elapsed_ms": 8680.453449487686,
+          "logical_queries": 5,
+          "max_concurrency": 2,
+          "payload_bytes": 5274390,
+          "physical_api_requests": 1
+        },
+        "chunkless": {
+          "cache_counts": {
+            "MISS": 5
+          },
+          "elapsed_ms": 2205.3083172068,
+          "logical_queries": 5,
+          "max_concurrency": 2,
+          "payload_bytes": 4247875,
+          "physical_api_requests": 1
+        },
+        "end": 155,
+        "start": 151
+      }
+    ],
+    "batch_size": 6,
+    "chunked_batch_runtime": {
+      "cache_counts": {
+        "HIT": 5,
+        "MISS": 150
+      },
+      "elapsed_ms": 477856.9004833698,
+      "logical_queries": 155,
+      "max_concurrency": 2,
+      "payload_bytes": 364706208,
+      "physical_api_requests": 27
+    },
+    "chunkless_batch_runtime": {
+      "cache_counts": {
+        "MISS": 155
+      },
+      "elapsed_ms": 290879.2465282604,
+      "logical_queries": 155,
+      "max_concurrency": 2,
+      "payload_bytes": 308772671,
+      "physical_api_requests": 26
+    },
+    "paired_backend_searches": 310,
+    "paired_requests": 52,
+    "repeat_requests": 60,
+    "unique_queries": 155,
+    "wall_ms": 1293187.6174630597,
+    "workers": 1
+  },
+  "expansion_model": "gemini-3.5-flash-lite",
+  "expansion_prompt_version": 1,
+  "expansions_sha256": "84b47314869ea58550d399945569504b911048fe1895d93107eca9984c112c67",
+  "gold_sha256": "bb813a9dda30b069cb061d18fcc1dc16610e48ae496f374c009ae85cb988dd12",
+  "index": {
+    "document_count": 201221,
+    "index_bytes": 72696988,
+    "kind": "api-list-v1",
+    "metadata_sha256": "ac84604fcef752d81c538bfc495b992977997f82a1b84e94f632c8bf9c5a5eea",
+    "repository_count": 762,
+    "shard_count": 780
+  },
+  "metrics": {
+    "chunked_batch_elapsed_ms": 477856.9004833698,
+    "chunked_latency_ms_mean": null,
+    "chunked_latency_ms_p50": null,
+    "chunked_latency_ms_p95": null,
+    "chunked_payload_bytes": 364706208.0,
+    "chunkless_batch_elapsed_ms": 290879.2465282604,
+    "chunkless_latency_ms_mean": null,
+    "chunkless_latency_ms_p50": null,
+    "chunkless_latency_ms_p95": null,
+    "chunkless_payload_bytes": 308772671.0,
+    "ordered_identity_mismatches": 15,
+    "ordered_score_mismatches": 15,
+    "payload_reduction_fraction": 0.15336601289770202,
+    "unique_first_stage_queries": 155
+  },
+  "mismatches": [
+    {
+      "chunked_count": 105,
+      "chunked_head": [
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/NumberTheoryI/code/HenselLemmas.lean",
+          8420000009.027883
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/Padics/Lemmas.lean",
+          8330000009.545455
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Berlekamp_Zassenhaus/Hensel_Lifting.thy",
+          8330000005.257999
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHenselMathlib.lean",
+          8330000009.16149
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHensel/Linear.lean",
+          8330000009.026916
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHensel/WordStep.lean",
+          8330000008.623188
+        ],
+        [
+          "ImperialCollegeLondon__FLT",
+          "FLT/HenselianLocalRing/Stuff.lean",
+          8330000008.593156
+        ],
+        [
+          "ImperialCollegeLondon__FLT",
+          "FLT/HenselianLocalRing/Finite.lean",
+          8330000008.326996
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHensel/Quadratic.lean",
+          8330000008.15735
+        ],
+        [
+          "chrisflav__proetale",
+          "Proetale/Algebra/HenselianLocalRing.lean",
+          8330000007.7215185
+        ],
+        [
+          "chrisflav__proetale",
+          "Proetale/Mathlib/RingTheory/Henselian.lean",
+          8330000006.64557
+        ],
+        [
+          "kbuzzard__ClassFieldTheory",
+          "ClassFieldTheory/Mathlib/RingTheory/HenselPolynomial.lean",
+          8330000005.045872
+        ],
+        [
+          "Verified-zkEVM__ArkLib",
+          "ArkLib/Data/Polynomial/RationalFunctions/HenselNumerators/Setup.lean",
+          8330000001.072386
+        ],
+        [
+          "Verified-zkEVM__ArkLib",
+          "ArkLib/Data/Polynomial/RationalFunctions/HenselNumerators/Weight.lean",
+          8330000000.965147
+        ],
+        [
+          "Verified-zkEVM__ArkLib",
+          "ArkLib/Data/Polynomial/RationalFunctions/HenselNumerators/Hensel.lean",
+          8330000000.938337
+        ],
+        [
+          "Verified-zkEVM__ArkLib",
+          "ArkLib/Data/Polynomial/RationalFunctions/HenselNumerators/Sequence.lean",
+          8330000000.77748
+        ],
+        [
+          "kbuzzard__ClassFieldTheory",
+          "ClassFieldTheory.lean",
+          8200000010.0
+        ],
+        [
+          "SRI-CSL__PVS",
+          "lib/prelude.pvs",
+          8200000009.972826
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/IdealClosedness.lean",
+          8200000009.693186
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/NumberTheoryI/code/Cor1015.lean",
+          8200000009.691032
+        ]
+      ],
+      "chunkless_count": 147,
+      "chunkless_head": [
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/NumberTheoryI/code/HenselLemmas.lean",
+          8420000009.027883
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Padic_Ints/Hensels_Lemma.thy",
+          8420000007.7541685
+        ],
+        [
+          "SRI-CSL__PVS",
+          "lib/prelude.pvs",
+          8200000009.972826
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/ArithmeticGeometry/code/HenselsLemma.lean",
+          8420000007.475509
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHenselMathlib/HenselLemmas.lean",
+          8420000005.238095
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/Padics/Lemmas.lean",
+          8330000009.545455
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHenselMathlib.lean",
+          8330000009.16149
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHensel/Linear.lean",
+          8330000009.026916
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHensel/WordStep.lean",
+          8330000008.623188
+        ],
+        [
+          "ImperialCollegeLondon__FLT",
+          "FLT/HenselianLocalRing/Stuff.lean",
+          8330000008.593156
+        ],
+        [
+          "ImperialCollegeLondon__FLT",
+          "FLT/HenselianLocalRing/Finite.lean",
+          8330000008.326996
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHensel/Quadratic.lean",
+          8330000008.15735
+        ],
+        [
+          "chrisflav__proetale",
+          "Proetale/Algebra/HenselianLocalRing.lean",
+          8330000007.7215185
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHensel/Multifactor.lean",
+          8330000007.712215
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/NumberTheoryI/code/HenselBridgeLemmas.lean",
+          8330000007.098719
+        ],
+        [
+          "chrisflav__proetale",
+          "Proetale/Mathlib/RingTheory/Henselian.lean",
+          8330000006.64557
+        ],
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib/NumberTheory/Padics/Hensel.lean",
+          8330000006.568895
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/NumberTheoryI/code/HenselFactorization.lean",
+          8330000006.454409
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHensel/ModularDivision.lean",
+          8330000006.438924
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexHensel/ModularPolynomial.lean",
+          8330000005.817805
+        ]
+      ],
+      "first_difference_rank": 2,
+      "identities_equal": false,
+      "number": 36,
+      "origins": [
+        {
+          "case": "hensel-complete-dvr",
+          "formulation": "Hensel's lemma",
+          "kind": "multiquery"
+        }
+      ],
+      "query": "\"Hensel\" \"s\" \"lemma\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 2,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 2,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 117,
+      "chunked_head": [
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/RingTheory/Cyclotomic/Lift.lean",
+          8420000009.32681
+        ],
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib/Tactic/Ring/Basic.lean",
+          8420000009.021146
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Padic_Ints/Cring_Poly.thy",
+          8420000008.628295
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/Foundation/EC/TranslateValuation.lean",
+          8420000007.927221
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/EllipticCurves/code/FermatsLastTheorem.lean",
+          8420000006.446873
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/ModularCurves/ModularCurves/WeilPairing/GaloisEquivariance.lean",
+          8420000006.22904
+        ],
+        [
+          "isabelle-prover__mirror-isabelle",
+          "src/HOL/New_Algebra/Poly_Ring.thy",
+          8420000004.764765
+        ],
+        [
+          "ImperialCollegeLondon__FLT",
+          "FLT/Mathlib/RingTheory/Unramified/LocalRing.lean",
+          8420000004.638783
+        ],
+        [
+          "acl2__acl2",
+          "books/kestrel/remora/primitives-evaluation-first-order.lisp",
+          8420000003.15696
+        ],
+        [
+          "HOL-Theorem-Prover__HOL",
+          "examples/algebra/polynomial/polyRingScript.sml",
+          8420000002.805312
+        ],
+        [
+          "Verified-zkEVM__ArkLib",
+          "ArkLib/Data/Lattices/CyclotomicRing/NormBounds/LsCore.lean",
+          8420000002.680965
+        ],
+        [
+          "HOL-Theorem-Prover__HOL",
+          "examples/algebra/polynomial/polyRingModuloScript.sml",
+          8420000001.716877
+        ],
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib.lean",
+          8330000009.997726
+        ],
+        [
+          "acl2__acl2",
+          "axioms.lisp",
+          8330000009.986308
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/Cor832.lean",
+          8330000009.953621
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/PLM/Thesis.thy",
+          8330000009.948897
+        ],
+        [
+          "acl2__acl2",
+          "books/doc/relnotes.lisp",
+          8330000009.934547
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/BirdKMP/KMP.thy",
+          8330000009.927933
+        ],
+        [
+          "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "Adic spaces/Cor832.lean",
+          8330000009.774436
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Clean/src/Clean.thy",
+          8330000009.703084
+        ]
+      ],
+      "chunkless_count": 122,
+      "chunkless_head": [
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/RingTheory/Cyclotomic/Lift.lean",
+          8420000009.32681
+        ],
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib/Tactic/Ring/Basic.lean",
+          8420000009.021146
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Padic_Ints/Cring_Poly.thy",
+          8420000008.628295
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/Foundation/EC/TranslateValuation.lean",
+          8420000007.927221
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/EllipticCurves/code/FermatsLastTheorem.lean",
+          8420000006.446873
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/ModularCurves/ModularCurves/WeilPairing/GaloisEquivariance.lean",
+          8420000006.22904
+        ],
+        [
+          "isabelle-prover__mirror-isabelle",
+          "src/HOL/New_Algebra/Poly_Ring.thy",
+          8420000004.764765
+        ],
+        [
+          "ImperialCollegeLondon__FLT",
+          "FLT/Mathlib/RingTheory/Unramified/LocalRing.lean",
+          8420000004.638783
+        ],
+        [
+          "acl2__acl2",
+          "books/kestrel/remora/primitives-evaluation-first-order.lisp",
+          8420000003.15696
+        ],
+        [
+          "HOL-Theorem-Prover__HOL",
+          "examples/algebra/polynomial/polyRingScript.sml",
+          8420000002.805312
+        ],
+        [
+          "Verified-zkEVM__ArkLib",
+          "ArkLib/Data/Lattices/CyclotomicRing/NormBounds/LsCore.lean",
+          8420000002.680965
+        ],
+        [
+          "HOL-Theorem-Prover__HOL",
+          "examples/algebra/polynomial/polyRingModuloScript.sml",
+          8420000001.716877
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/FltRegularBernoulli/BernoulliRegular/Reflection/ResidueSymbol/Furtwaengler/Stickelberger/GaussSumQadicValuation.lean",
+          8420000000.49233
+        ],
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib.lean",
+          8330000009.997726
+        ],
+        [
+          "acl2__acl2",
+          "axioms.lisp",
+          8330000009.986308
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/Cor832.lean",
+          8330000009.953621
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/PLM/Thesis.thy",
+          8330000009.948897
+        ],
+        [
+          "acl2__acl2",
+          "books/doc/relnotes.lisp",
+          8330000009.934547
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/BirdKMP/KMP.thy",
+          8330000009.927933
+        ],
+        [
+          "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "Adic spaces/Cor832.lean",
+          8330000009.774436
+        ]
+      ],
+      "first_difference_rank": 13,
+      "identities_equal": false,
+      "number": 39,
+      "origins": [
+        {
+          "case": "hensel-complete-dvr",
+          "formulation": "valuation ring root lifting theorem",
+          "kind": "multiquery"
+        }
+      ],
+      "query": "\"valuation\" \"ring\" \"root\" \"lifting\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 13,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 13,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 139,
+      "chunked_head": [
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/Circle/FundamentalGroup.lean",
+          8420000001.350293
+        ],
+        [
+          "jwiegley__category-theory",
+          "Instance/Top/FundamentalGroupoid.v",
+          8420000001.028513
+        ],
+        [
+          "acl2__acl2",
+          "axioms.lisp",
+          8200000009.986308
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/Basic.lean",
+          8420000000.786693
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/Opposite.lean",
+          8420000000.547945
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/UniversalCover.lean",
+          8420000000.258317
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/RealProjective/FundamentalGroup/Basic.lean",
+          8420000000.213307
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/Classification/FundamentalGroupAction.lean",
+          8420000000.2093935
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/Wedhorn828.lean",
+          8330000009.864431
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/StructureSheaf.lean",
+          8330000009.7467
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Sigma.lean",
+          8330000009.708415
+        ],
+        [
+          "mrdouglasny__jacobian-challenge",
+          "Jacobians/Topology/CoveringPi1.lean",
+          8330000009.573241
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/GeometricReduction.lean",
+          8330000009.475562
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Homotopy/Covering.lean",
+          8330000009.389433
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Quotient.lean",
+          8330000009.379648
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Category.lean",
+          8330000009.348336
+        ],
+        [
+          "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "Adic spaces/Wedhorn828.lean",
+          8330000009.172933
+        ],
+        [
+          "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "Adic spaces/StructureSheaf.lean",
+          8330000008.39599
+        ],
+        [
+          "mrdouglasny__jacobian-challenge",
+          "Jacobians/RiemannSurface/CoveringGeneration.lean",
+          8330000008.292964
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Monodromy/Full.lean",
+          8330000008.291585
+        ]
+      ],
+      "chunkless_count": 140,
+      "chunkless_head": [
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/Circle/FundamentalGroup.lean",
+          8420000001.350293
+        ],
+        [
+          "jwiegley__category-theory",
+          "Instance/Top/FundamentalGroupoid.v",
+          8420000001.028513
+        ],
+        [
+          "acl2__acl2",
+          "axioms.lisp",
+          8200000009.986308
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/Basic.lean",
+          8420000000.786693
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/Opposite.lean",
+          8420000000.547945
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/UniversalCover.lean",
+          8420000000.258317
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/RealProjective/FundamentalGroup/Basic.lean",
+          8420000000.213307
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicTopology/UniversalCover/Classification/FundamentalGroupAction.lean",
+          8420000000.2093935
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/Wedhorn828.lean",
+          8330000009.864431
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/StructureSheaf.lean",
+          8330000009.7467
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Sigma.lean",
+          8330000009.708415
+        ],
+        [
+          "mrdouglasny__jacobian-challenge",
+          "Jacobians/Topology/CoveringPi1.lean",
+          8330000009.573241
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/GeometricReduction.lean",
+          8330000009.475562
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Homotopy/Covering.lean",
+          8330000009.389433
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Quotient.lean",
+          8330000009.379648
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Category.lean",
+          8330000009.348336
+        ],
+        [
+          "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "Adic spaces/Wedhorn828.lean",
+          8330000009.172933
+        ],
+        [
+          "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "Adic spaces/StructureSheaf.lean",
+          8330000008.39599
+        ],
+        [
+          "mrdouglasny__jacobian-challenge",
+          "Jacobians/RiemannSurface/CoveringGeneration.lean",
+          8330000008.292964
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Monodromy/Full.lean",
+          8330000008.291585
+        ]
+      ],
+      "first_difference_rank": 130,
+      "identities_equal": false,
+      "number": 40,
+      "origins": [
+        {
+          "case": "fundamental-group-covering-space",
+          "kind": "fielded:baseline"
+        },
+        {
+          "case": "fundamental-group-covering-space",
+          "formulation": "fundamental group of a covering space",
+          "kind": "multiquery"
+        }
+      ],
+      "query": "\"fundamental\" \"group\" \"covering\" \"space\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 130,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 130,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 139,
+      "chunked_head": [
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib.lean",
+          8200000009.997726
+        ],
+        [
+          "acl2__acl2",
+          "axioms.lisp",
+          8200000009.986308
+        ],
+        [
+          "the1lab__1lab",
+          "src/index.lagda.md",
+          8200000009.973753
+        ],
+        [
+          "acl2__acl2",
+          "books/doc/relnotes.lisp",
+          8200000009.934547
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/Wedhorn828.lean",
+          8200000009.864431
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/NumberTheoryI/code/Adeles.lean",
+          8200000009.853052
+        ],
+        [
+          "google-deepmind__formal-conjectures",
+          "FormalConjecturesForMathlib.lean",
+          8200000009.811575
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/StructureSheaf.lean",
+          8200000009.7467
+        ],
+        [
+          "HoTT__Coq-HoTT",
+          "contrib/HoTTBook.v",
+          8200000009.746032
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Sigma.lean",
+          8200000009.708415
+        ],
+        [
+          "mrdouglasny__jacobian-challenge",
+          "Jacobians/Topology/CoveringPi1.lean",
+          8200000009.573241
+        ],
+        [
+          "acl2__acl2",
+          "translate.lisp",
+          8200000009.523809
+        ],
+        [
+          "rkirov__jordan_pick",
+          "site/Site/Brouwer.lean",
+          8200000009.510489
+        ],
+        [
+          "the1lab__1lab",
+          "src/1Lab/intro.lagda.md",
+          8200000009.488189
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/GeometricReduction.lean",
+          8200000009.475562
+        ],
+        [
+          "TauCetiProject__TauCetiRoadmap",
+          "TauCetiRoadmap/BelyiMaps/Suggested.lean",
+          8200000009.473684
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Homotopy/Covering.lean",
+          8200000009.389433
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Quotient.lean",
+          8200000009.379648
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Category.lean",
+          8200000009.348336
+        ],
+        [
+          "mrdouglasny__jacobian-challenge",
+          "Jacobians/Topology/PunctureLoops.lean",
+          8200000009.342561
+        ]
+      ],
+      "chunkless_count": 140,
+      "chunkless_head": [
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib.lean",
+          8200000009.997726
+        ],
+        [
+          "acl2__acl2",
+          "axioms.lisp",
+          8200000009.986308
+        ],
+        [
+          "the1lab__1lab",
+          "src/index.lagda.md",
+          8200000009.973753
+        ],
+        [
+          "acl2__acl2",
+          "books/doc/relnotes.lisp",
+          8200000009.934547
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/Wedhorn828.lean",
+          8200000009.864431
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/NumberTheoryI/code/Adeles.lean",
+          8200000009.853052
+        ],
+        [
+          "google-deepmind__formal-conjectures",
+          "FormalConjecturesForMathlib.lean",
+          8200000009.811575
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/StructureSheaf.lean",
+          8200000009.7467
+        ],
+        [
+          "HoTT__Coq-HoTT",
+          "contrib/HoTTBook.v",
+          8200000009.746032
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Sigma.lean",
+          8200000009.708415
+        ],
+        [
+          "mrdouglasny__jacobian-challenge",
+          "Jacobians/Topology/CoveringPi1.lean",
+          8200000009.573241
+        ],
+        [
+          "acl2__acl2",
+          "translate.lisp",
+          8200000009.523809
+        ],
+        [
+          "rkirov__jordan_pick",
+          "site/Site/Brouwer.lean",
+          8200000009.510489
+        ],
+        [
+          "the1lab__1lab",
+          "src/1Lab/intro.lagda.md",
+          8200000009.488189
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/GeometricReduction.lean",
+          8200000009.475562
+        ],
+        [
+          "TauCetiProject__TauCetiRoadmap",
+          "TauCetiRoadmap/BelyiMaps/Suggested.lean",
+          8200000009.473684
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Homotopy/Covering.lean",
+          8200000009.389433
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Quotient.lean",
+          8200000009.379648
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Topology/Covering/Category.lean",
+          8200000009.348336
+        ],
+        [
+          "mrdouglasny__jacobian-challenge",
+          "Jacobians/Topology/PunctureLoops.lean",
+          8200000009.342561
+        ]
+      ],
+      "first_difference_rank": 124,
+      "identities_equal": false,
+      "number": 41,
+      "origins": [
+        {
+          "case": "fundamental-group-covering-space",
+          "kind": "fielded:content"
+        }
+      ],
+      "query": "content:\"fundamental\" content:\"group\" content:\"covering\" content:\"space\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 124,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 124,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 200,
+      "chunked_head": [
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Finitely_Generated_Abelian_Groups/IDirProds.thy",
+          8600000002.39914
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Finitely_Generated_Abelian_Groups/Finite_Product_Extend.thy",
+          8600000001.013987
+        ],
+        [
+          "YaelDillies__toric",
+          "Toric/GroupScheme/Character.lean",
+          8550000005.0
+        ],
+        [
+          "TauCetiProject__TauCetiRoadmap",
+          "TauCetiRoadmap/ProfiniteProPGroups/Suggested.lean",
+          8550000004.385965
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Finitely_Generated_Abelian_Groups/Generated_Groups_Extend.thy",
+          8550000000.8741255
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/CategoryO.lean",
+          8500000009.924642
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/KostantTheorem.lean",
+          8500000009.385833
+        ],
+        [
+          "acl2__acl2",
+          "books/projects/groups/symmetric.lisp",
+          8500000009.329359
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/ModularCurves/ModularCurves/GroupScheme/NIsogeny.lean",
+          8500000008.704959
+        ],
+        [
+          "acl2__acl2",
+          "books/projects/groups/support/groups.lisp",
+          8500000008.561848
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/GroupTheory/SpecificGroups/Braid.lean",
+          8500000008.119373
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/GroupTheory/Perm/AlternatingCharacter.lean",
+          8500000006.765166
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Rep_Fin_Groups/Rep_Fin_Groups.thy",
+          8500000006.7244
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/ModularCurves/ModularCurves/ForMathlib/FiniteAbelianRankTwo.lean",
+          8500000005.99001
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/HarishChandraIsomorphism.lean",
+          8500000005.919367
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/GroupTheory/SpecificGroups/Dihedral/Basic.lean",
+          8500000005.287671
+        ],
+        [
+          "HOL-Theorem-Prover__HOL",
+          "src/algebra/construction/groupScript.sml",
+          8500000004.434727
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Algebra/AlgebraicGroup/Torus/Characterization.lean",
+          8500000004.213307
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Algebra/AlgebraicGroup/SplitTorus/Cocharacter.lean",
+          8500000004.013699
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Algebra/AlgebraicGroup/Torus/Cocharacter/Basic.lean",
+          8500000003.919765
+        ]
+      ],
+      "chunkless_count": 200,
+      "chunkless_head": [
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Finitely_Generated_Abelian_Groups/IDirProds.thy",
+          8600000002.39914
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Finitely_Generated_Abelian_Groups/Finite_Product_Extend.thy",
+          8600000001.013987
+        ],
+        [
+          "YaelDillies__toric",
+          "Toric/GroupScheme/Character.lean",
+          8550000005.0
+        ],
+        [
+          "TauCetiProject__TauCetiRoadmap",
+          "TauCetiRoadmap/ProfiniteProPGroups/Suggested.lean",
+          8550000004.385965
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Finitely_Generated_Abelian_Groups/Generated_Groups_Extend.thy",
+          8550000000.8741255
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/CategoryO.lean",
+          8500000009.924642
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/KostantTheorem.lean",
+          8500000009.385833
+        ],
+        [
+          "acl2__acl2",
+          "books/projects/groups/symmetric.lisp",
+          8500000009.329359
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/ModularCurves/ModularCurves/GroupScheme/NIsogeny.lean",
+          8500000008.704959
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/GroupTheory/CNGroupStructure.lean",
+          8500000008.64089
+        ],
+        [
+          "acl2__acl2",
+          "books/projects/groups/support/groups.lisp",
+          8500000008.561848
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/Ch3_MaximalSubgroups/S12_E.lean",
+          8500000008.371412
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/GroupTheory/SpecificGroups/Braid.lean",
+          8500000008.119373
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/GroupTheory/Perm/AlternatingCharacter.lean",
+          8500000006.765166
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Rep_Fin_Groups/Rep_Fin_Groups.thy",
+          8500000006.7244
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/ModularCurves/ModularCurves/ForMathlib/FiniteAbelianRankTwo.lean",
+          8500000005.99001
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/HarishChandraIsomorphism.lean",
+          8500000005.919367
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/GroupTheory/SpecificGroups/Dihedral/Basic.lean",
+          8500000005.287671
+        ],
+        [
+          "HOL-Theorem-Prover__HOL",
+          "src/algebra/construction/groupScript.sml",
+          8500000004.434727
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Algebra/AlgebraicGroup/Torus/Characterization.lean",
+          8500000004.213307
+        ]
+      ],
+      "first_difference_rank": 10,
+      "identities_equal": false,
+      "number": 71,
+      "origins": [
+        {
+          "case": "pontryagin-duality-finite-abelian",
+          "formulation": "character group finite abelian groups",
+          "kind": "multiquery"
+        }
+      ],
+      "query": "\"character\" \"group\" \"finite\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 10,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 10,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 174,
+      "chunked_head": [
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib/GroupTheory/FiniteAbelian/Duality.lean",
+          8500000004.042747
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Finitely_Generated_Abelian_Groups/Finitely_Generated_Abelian_Groups.thy",
+          8500000000.3119955
+        ],
+        [
+          "acl2__acl2",
+          "books/projects/groups/simple.lisp",
+          8420000009.769002
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/CategoryO.lean",
+          8420000009.924642
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/DModulesII.lean",
+          8420000009.871891
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/KostantTheorem.lean",
+          8420000009.385833
+        ],
+        [
+          "acl2__acl2",
+          "books/projects/groups/support/simple.lisp",
+          8420000008.584203
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/GroupTheory/LinearGroupSimple.lean",
+          8420000008.553017
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/ModularCurves/ModularCurves/GroupScheme/ChartCoaction.lean",
+          8420000007.552622
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Higman/Suzuki2Groups/HigmanLemmaSix.lean",
+          8420000006.760398
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/HarishChandraIsomorphism.lean",
+          8420000005.919367
+        ],
+        [
+          "YaelDillies__toric",
+          "Toric/GroupScheme/Character.lean",
+          8420000005.0
+        ],
+        [
+          "TauCetiProject__TauCetiRoadmap",
+          "TauCetiRoadmap/ProfiniteProPGroups/Suggested.lean",
+          8420000004.385965
+        ],
+        [
+          "Vilin97__lean-pool",
+          "LeanPool/Polylean/UnitConjecture/MetabelianGroup.lean",
+          8420000004.306652
+        ],
+        [
+          "siddhartha-gadgil__Polylean",
+          "UnitConjecture/MetabelianGroup.lean",
+          8420000003.333333
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/PSemigroupsConvolution/Partial_Semigroups.thy",
+          8420000002.764927
+        ],
+        [
+          "TauCetiProject__TauCetiRoadmap",
+          "TauCetiRoadmap/RepresentationTheory/LieGroups/Suggested.lean",
+          8420000001.929825
+        ],
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib/Analysis/Fourier/FiniteAbelian/PontryaginDuality.lean",
+          8420000000.559345
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/GroupTheory/OmegaSubgroup.lean",
+          8330000009.232572
+        ],
+        [
+          "jwiegley__category-theory",
+          "Structure/Group.v",
+          8330000009.002037
+        ]
+      ],
+      "chunkless_count": 184,
+      "chunkless_head": [
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib/GroupTheory/FiniteAbelian/Duality.lean",
+          8500000004.042747
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/Finitely_Generated_Abelian_Groups/Finitely_Generated_Abelian_Groups.thy",
+          8500000000.3119955
+        ],
+        [
+          "acl2__acl2",
+          "books/projects/groups/simple.lisp",
+          8420000009.769002
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/CategoryO.lean",
+          8420000009.924642
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/DModulesII.lean",
+          8420000009.871891
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/KostantTheorem.lean",
+          8420000009.385833
+        ],
+        [
+          "acl2__acl2",
+          "books/projects/groups/support/simple.lisp",
+          8420000008.584203
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/GroupTheory/LinearGroupSimple.lean",
+          8420000008.553017
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/ModularCurves/ModularCurves/GroupScheme/ChartCoaction.lean",
+          8420000007.552622
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Higman/Suzuki2Groups/HigmanLemmaSix.lean",
+          8420000006.760398
+        ],
+        [
+          "facebookresearch__atlas-lean",
+          "v1/Atlas/LieGroups/code/HarishChandraIsomorphism.lean",
+          8420000005.919367
+        ],
+        [
+          "YaelDillies__toric",
+          "Toric/GroupScheme/Character.lean",
+          8420000005.0
+        ],
+        [
+          "TauCetiProject__TauCetiRoadmap",
+          "TauCetiRoadmap/ProfiniteProPGroups/Suggested.lean",
+          8420000004.385965
+        ],
+        [
+          "Vilin97__lean-pool",
+          "LeanPool/Polylean/UnitConjecture/MetabelianGroup.lean",
+          8420000004.306652
+        ],
+        [
+          "siddhartha-gadgil__Polylean",
+          "UnitConjecture/MetabelianGroup.lean",
+          8420000003.333333
+        ],
+        [
+          "isabelle-prover__mirror-afp-devel",
+          "thys/PSemigroupsConvolution/Partial_Semigroups.thy",
+          8420000002.764927
+        ],
+        [
+          "TauCetiProject__TauCetiRoadmap",
+          "TauCetiRoadmap/RepresentationTheory/LieGroups/Suggested.lean",
+          8420000001.929825
+        ],
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib/Analysis/Fourier/FiniteAbelian/PontryaginDuality.lean",
+          8420000000.559345
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/GroupTheory/OmegaSubgroup.lean",
+          8330000009.232572
+        ],
+        [
+          "jwiegley__category-theory",
+          "Structure/Group.v",
+          8330000009.002037
+        ]
+      ],
+      "first_difference_rank": 35,
+      "identities_equal": false,
+      "number": 72,
+      "origins": [
+        {
+          "case": "pontryagin-duality-finite-abelian",
+          "formulation": "dual group abelian groups",
+          "kind": "multiquery"
+        }
+      ],
+      "query": "\"dual\" \"group\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 35,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 35,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 18,
+      "chunked_head": [
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/HPrinciple.lean",
+          8550000008.030303
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/ParametricHPrinciple.lean",
+          8550000004.848485
+        ],
+        [
+          "jrh13__hol-light",
+          "Multivariate/complex_database.ml",
+          8200000001.262849
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Main.lean",
+          8500000009.848485
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Indexing.lean",
+          8500000009.69697
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Gromov.lean",
+          8500000008.939394
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/Relation.lean",
+          8500000008.787879
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Relation.lean",
+          8500000008.484848
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Immersion.lean",
+          8500000008.181818
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/SphereEversion.lean",
+          8500000006.666667
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/ParametricityForFree.lean",
+          8500000004.242424
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/LocalizedConstruction.lean",
+          8500000003.939394
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture24.lean",
+          8200000007.692307
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture25.lean",
+          8200000007.051282
+        ],
+        [
+          "fpvandoorn__LeanCourse24",
+          "LeanCourse/Lectures/Lecture10Before.lean",
+          8200000006.896552
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture24After.lean",
+          8200000003.717949
+        ],
+        [
+          "CakeML__candle",
+          "Multivariate/complex_database.ml",
+          8200000001.168224
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion.lean",
+          8500000010.0
+        ]
+      ],
+      "chunkless_count": 20,
+      "chunkless_head": [
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/HPrinciple.lean",
+          8550000008.030303
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/ParametricHPrinciple.lean",
+          8550000004.848485
+        ],
+        [
+          "jrh13__hol-light",
+          "Multivariate/complex_database.ml",
+          8200000001.262849
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Main.lean",
+          8500000009.848485
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Indexing.lean",
+          8500000009.69697
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Gromov.lean",
+          8500000008.939394
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/Relation.lean",
+          8500000008.787879
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Relation.lean",
+          8500000008.484848
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Immersion.lean",
+          8500000008.181818
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/SphereEversion.lean",
+          8500000006.666667
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/ParametricityForFree.lean",
+          8500000004.242424
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/LocalizedConstruction.lean",
+          8500000003.939394
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture24.lean",
+          8200000007.692307
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture25.lean",
+          8200000007.051282
+        ],
+        [
+          "fpvandoorn__LeanCourse24",
+          "LeanCourse/Lectures/Lecture10Before.lean",
+          8200000006.896552
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture24After.lean",
+          8200000003.717949
+        ],
+        [
+          "CakeML__candle",
+          "Multivariate/complex_database.ml",
+          8200000001.168224
+        ],
+        [
+          "jrh13__hol-light",
+          "Multivariate/multivariate_database.ml",
+          8200000000.71953
+        ],
+        [
+          "CakeML__candle",
+          "Multivariate/multivariate_database.ml",
+          8200000000.669782
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion.lean",
+          8500000010.0
+        ]
+      ],
+      "first_difference_rank": 18,
+      "identities_equal": false,
+      "number": 98,
+      "origins": [
+        {
+          "case": "sphere-eversion",
+          "kind": "fielded:baseline"
+        },
+        {
+          "case": "sphere-eversion",
+          "formulation": "sphere eversion via the h principle",
+          "kind": "multiquery"
+        }
+      ],
+      "query": "\"sphere\" \"eversion\" \"h\" \"principle\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 18,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 18,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 18,
+      "chunked_head": [
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Main.lean",
+          8200000009.848485
+        ],
+        [
+          "jrh13__hol-light",
+          "Multivariate/complex_database.ml",
+          8200000001.262849
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Indexing.lean",
+          8200000009.69697
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Gromov.lean",
+          8200000008.939394
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/Relation.lean",
+          8200000008.787879
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Relation.lean",
+          8200000008.484848
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Immersion.lean",
+          8200000008.181818
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/HPrinciple.lean",
+          8200000008.030303
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture24.lean",
+          8200000007.692307
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture25.lean",
+          8200000007.051282
+        ],
+        [
+          "fpvandoorn__LeanCourse24",
+          "LeanCourse/Lectures/Lecture10Before.lean",
+          8200000006.896552
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/SphereEversion.lean",
+          8200000006.666667
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/ParametricHPrinciple.lean",
+          8200000004.848485
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/ParametricityForFree.lean",
+          8200000004.242424
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/LocalizedConstruction.lean",
+          8200000003.939394
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture24After.lean",
+          8200000003.717949
+        ],
+        [
+          "CakeML__candle",
+          "Multivariate/complex_database.ml",
+          8200000001.168224
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion.lean",
+          8200000010.0
+        ]
+      ],
+      "chunkless_count": 20,
+      "chunkless_head": [
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Main.lean",
+          8200000009.848485
+        ],
+        [
+          "jrh13__hol-light",
+          "Multivariate/complex_database.ml",
+          8200000001.262849
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Indexing.lean",
+          8200000009.69697
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Gromov.lean",
+          8200000008.939394
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/Relation.lean",
+          8200000008.787879
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Relation.lean",
+          8200000008.484848
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Immersion.lean",
+          8200000008.181818
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/HPrinciple.lean",
+          8200000008.030303
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture24.lean",
+          8200000007.692307
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture25.lean",
+          8200000007.051282
+        ],
+        [
+          "fpvandoorn__LeanCourse24",
+          "LeanCourse/Lectures/Lecture10Before.lean",
+          8200000006.896552
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/SphereEversion.lean",
+          8200000006.666667
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/ParametricHPrinciple.lean",
+          8200000004.848485
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/ParametricityForFree.lean",
+          8200000004.242424
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/LocalizedConstruction.lean",
+          8200000003.939394
+        ],
+        [
+          "fpvandoorn__LeanCourse25",
+          "LeanCourse25/Lectures/Lecture24After.lean",
+          8200000003.717949
+        ],
+        [
+          "CakeML__candle",
+          "Multivariate/complex_database.ml",
+          8200000001.168224
+        ],
+        [
+          "jrh13__hol-light",
+          "Multivariate/multivariate_database.ml",
+          8200000000.71953
+        ],
+        [
+          "CakeML__candle",
+          "Multivariate/multivariate_database.ml",
+          8200000000.669782
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion.lean",
+          8200000010.0
+        ]
+      ],
+      "first_difference_rank": 18,
+      "identities_equal": false,
+      "number": 99,
+      "origins": [
+        {
+          "case": "sphere-eversion",
+          "kind": "fielded:content"
+        }
+      ],
+      "query": "content:\"sphere\" content:\"eversion\" content:\"h\" content:\"principle\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 18,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 18,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 200,
+      "chunked_head": [
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/HPrinciple.lean",
+          63200000008.030304
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/ParametricHPrinciple.lean",
+          63200000004.84849
+        ],
+        [
+          "flyspeck__flyspeck",
+          "formal_lp/glpk/sphere.ml",
+          62660000009.9187
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Main.lean",
+          63000000009.84849
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Indexing.lean",
+          63000000009.69697
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Notations.lean",
+          63000000009.545456
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Loops/Basic.lean",
+          63000000009.393936
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/OneJet.lean",
+          63000000009.242424
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Loops/Exists.lean",
+          63000000009.09091
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Gromov.lean",
+          63000000008.93939
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/Relation.lean",
+          63000000008.78788
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/DualPair.lean",
+          63000000008.63636
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Relation.lean",
+          63000000008.48485
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/OneJetSec.lean",
+          63000000008.333336
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Immersion.lean",
+          63000000008.181816
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/Corrugation.lean",
+          63000000007.878784
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Loops/Surrounding.lean",
+          63000000007.72727
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/ToMathlib/Partition.lean",
+          63000000007.57576
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/AmpleRelation.lean",
+          63000000007.42424
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Localisation.lean",
+          63000000007.27273
+        ]
+      ],
+      "chunkless_count": 200,
+      "chunkless_head": [
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/HPrinciple.lean",
+          63200000008.030304
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/ParametricHPrinciple.lean",
+          63200000004.84849
+        ],
+        [
+          "flyspeck__flyspeck",
+          "formal_lp/glpk/sphere.ml",
+          62660000009.9187
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Main.lean",
+          63000000009.84849
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Indexing.lean",
+          63000000009.69697
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Notations.lean",
+          63000000009.545456
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Loops/Basic.lean",
+          63000000009.393936
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/OneJet.lean",
+          63000000009.242424
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Loops/Exists.lean",
+          63000000009.09091
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Gromov.lean",
+          63000000008.93939
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/Relation.lean",
+          63000000008.78788
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/DualPair.lean",
+          63000000008.63636
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Relation.lean",
+          63000000008.48485
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/OneJetSec.lean",
+          63000000008.333336
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Immersion.lean",
+          63000000008.181816
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/Corrugation.lean",
+          63000000007.878784
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Loops/Surrounding.lean",
+          63000000007.72727
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/ToMathlib/Partition.lean",
+          63000000007.57576
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/AmpleRelation.lean",
+          63000000007.42424
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Global/Localisation.lean",
+          63000000007.27273
+        ]
+      ],
+      "first_difference_rank": 171,
+      "identities_equal": false,
+      "number": 100,
+      "origins": [
+        {
+          "case": "sphere-eversion",
+          "kind": "fielded:path"
+        }
+      ],
+      "query": "(file:\"sphere\" or file:\"eversion\" or file:\"h\" or file:\"principle\") file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 171,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 171,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 200,
+      "chunked_head": [
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple.lean",
+          8200000010.0
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/Padics/Squares.lean",
+          8200000009.090909
+        ],
+        [
+          "HoTT-Intro__Agda",
+          "extra/pigeonhole-principle.agda",
+          8200000003.235294
+        ],
+        [
+          "jaalonso__Calculemus2",
+          "src/Pigeonhole_principle.lean",
+          8200000008.27476
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/Rat.lean",
+          8200000008.181818
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/HPrinciple.lean",
+          8200000008.030303
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/HilbertSymbol/Basic.lean",
+          8200000007.272727
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/Basic.lean",
+          8200000006.818182
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/LowRank.lean",
+          8200000006.363636
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/HighRank.lean",
+          8200000005.909091
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/RankFour.lean",
+          8200000005.454545
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/RankThree.lean",
+          8200000005.0
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/ParametricHPrinciple.lean",
+          8200000004.848485
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/HasseMinkowski.lean",
+          8200000004.545455
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexRootsMathlib/ArgumentPrinciple.lean",
+          8200000004.347826
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/HilbertSymbol/ExistenceTheorem.lean",
+          8200000004.090909
+        ],
+        [
+          "math-inc__FormalQualBench",
+          "FormalQualBench/ParisHarringtonPrinciple/Main.lean",
+          8200000003.461538
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/HasseMinkowskiInvariant.lean",
+          8200000002.272727
+        ],
+        [
+          "elazarg__GameTheory",
+          "GameTheory/Mechanism/Bayesian/RevelationPrinciple.lean",
+          8200000002.060606
+        ],
+        [
+          "weiran-sun__pde",
+          "PDE/Basics/Heat/HeatMaximumPrinciple.lean",
+          8200000001.666667
+        ]
+      ],
+      "chunkless_count": 200,
+      "chunkless_head": [
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple.lean",
+          8200000010.0
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/Padics/Squares.lean",
+          8200000009.090909
+        ],
+        [
+          "HoTT-Intro__Agda",
+          "extra/pigeonhole-principle.agda",
+          8200000003.235294
+        ],
+        [
+          "jaalonso__Calculemus2",
+          "src/Pigeonhole_principle.lean",
+          8200000008.27476
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/Rat.lean",
+          8200000008.181818
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/HPrinciple.lean",
+          8200000008.030303
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/HilbertSymbol/Basic.lean",
+          8200000007.272727
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/Analysis/PDE/Harnack/StrongPrinciple.lean",
+          8200000007.093933
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/Basic.lean",
+          8200000006.818182
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/LowRank.lean",
+          8200000006.363636
+        ],
+        [
+          "AlexKontorovich__PrimeNumberTheoremAnd",
+          "PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean",
+          8200000005.932203
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/HighRank.lean",
+          8200000005.909091
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/RankFour.lean",
+          8200000005.454545
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/RankThree.lean",
+          8200000005.0
+        ],
+        [
+          "leanprover-community__sphere-eversion",
+          "SphereEversion/Local/ParametricHPrinciple.lean",
+          8200000004.848485
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/QuadraticForm/HasseMinkowski.lean",
+          8200000004.545455
+        ],
+        [
+          "kim-em__hex-dev",
+          "HexRootsMathlib/ArgumentPrinciple.lean",
+          8200000004.347826
+        ],
+        [
+          "mariainesdff__HassePrinciple",
+          "HassePrinciple/HilbertSymbol/ExistenceTheorem.lean",
+          8200000004.090909
+        ],
+        [
+          "math-inc__FormalQualBench",
+          "FormalQualBench/ParisHarringtonPrinciple/Main.lean",
+          8200000003.461538
+        ],
+        [
+          "HoTT__Coq-HoTT",
+          "theories/Homotopy/WhiteheadsPrinciple.v",
+          8200000002.857142
+        ]
+      ],
+      "first_difference_rank": 8,
+      "identities_equal": false,
+      "number": 102,
+      "origins": [
+        {
+          "case": "sphere-eversion",
+          "formulation": "h principle",
+          "kind": "multiquery"
+        }
+      ],
+      "query": "\"h\" \"principle\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 8,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 8,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 59,
+      "chunked_head": [
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompson.lean",
+          8600000009.994143
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonSetup.lean",
+          8600000009.90627
+        ],
+        [
+          "math-comp__odd-order",
+          "theories/stripped_odd_order_theorem.v",
+          8550000000.571428
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonNuGrid.lean",
+          8600000009.871119
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonPairProducer.lean",
+          8600000009.47276
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonCharacterData.lean",
+          8600000009.185705
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonSection16Core.lean",
+          8600000009.16813
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Isaacs/Ch07_ThompsonSubgroup/Basic.lean",
+          8550000007.006444
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/Appendices/FeitSibleyInduction.lean",
+          8550000005.313416
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_SL2Example.lean",
+          8500000009.876977
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_HypothesisB.lean",
+          8500000009.83597
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_LemmaC3_Setup.lean",
+          8500000009.70123
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppD_CNGroups/Basic.lean",
+          8500000009.642648
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_FurtherResults.lean",
+          8500000009.613357
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Isaacs/Ch01_Sylow/Main.lean",
+          8500000009.607498
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_YsetInner.lean",
+          8500000009.33802
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_FiliformRefutation.lean",
+          8500000009.103691
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_FinalContradiction.lean",
+          8500000009.086116
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S01_Introduction.lean",
+          8500000008.93966
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_GeneralAdjoin.lean",
+          8500000008.664324
+        ]
+      ],
+      "chunkless_count": 63,
+      "chunkless_head": [
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompson.lean",
+          8600000009.994143
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonSetup.lean",
+          8600000009.90627
+        ],
+        [
+          "math-comp__odd-order",
+          "theories/stripped_odd_order_theorem.v",
+          8550000000.571428
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonNuGrid.lean",
+          8600000009.871119
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonPairProducer.lean",
+          8600000009.47276
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonCharacterData.lean",
+          8600000009.185705
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonSection16Core.lean",
+          8600000009.16813
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Isaacs/Ch07_ThompsonSubgroup/Basic.lean",
+          8550000007.006444
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/Appendices/FeitSibleyInduction.lean",
+          8550000005.313416
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_SL2Example.lean",
+          8500000009.876977
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_HypothesisB.lean",
+          8500000009.83597
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_LemmaC3_Setup.lean",
+          8500000009.70123
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppD_CNGroups/Basic.lean",
+          8500000009.642648
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_FurtherResults.lean",
+          8500000009.613357
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Isaacs/Ch01_Sylow/Main.lean",
+          8500000009.607498
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_YsetInner.lean",
+          8500000009.33802
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_FiliformRefutation.lean",
+          8500000009.103691
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_FinalContradiction.lean",
+          8500000009.086116
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S01_Introduction.lean",
+          8500000008.93966
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_GeneralAdjoin.lean",
+          8500000008.664324
+        ]
+      ],
+      "first_difference_rank": 52,
+      "identities_equal": false,
+      "number": 130,
+      "origins": [
+        {
+          "case": "feit-thompson-odd-order",
+          "kind": "fielded:baseline"
+        },
+        {
+          "case": "feit-thompson-odd-order",
+          "formulation": "formal proof of the Feit Thompson odd order theorem",
+          "kind": "multiquery"
+        }
+      ],
+      "query": "\"Feit\" \"Thompson\" \"odd\" \"order\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 52,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 52,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 59,
+      "chunked_head": [
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompson.lean",
+          8330000009.994142
+        ],
+        [
+          "math-comp__odd-order",
+          "theories/PFsection4.v",
+          8330000007.714286
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonSetup.lean",
+          8330000009.906268
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_SL2Example.lean",
+          8330000009.876977
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonNuGrid.lean",
+          8330000009.871119
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_HypothesisB.lean",
+          8330000009.83597
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_LemmaC3_Setup.lean",
+          8330000009.70123
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppD_CNGroups/Basic.lean",
+          8330000009.642648
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_FurtherResults.lean",
+          8330000009.613357
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Isaacs/Ch01_Sylow/Main.lean",
+          8330000009.607498
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonPairProducer.lean",
+          8330000009.472759
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_YsetInner.lean",
+          8330000009.33802
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonCharacterData.lean",
+          8330000009.185706
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonSection16Core.lean",
+          8330000009.168131
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_FiliformRefutation.lean",
+          8330000009.103691
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_FinalContradiction.lean",
+          8330000009.086116
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S01_Introduction.lean",
+          8330000008.93966
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_GeneralAdjoin.lean",
+          8330000008.664324
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_SixTwoGeneral.lean",
+          8330000008.6057415
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S12_Section9Counts.lean",
+          8330000008.336263
+        ]
+      ],
+      "chunkless_count": 63,
+      "chunkless_head": [
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompson.lean",
+          8330000009.994142
+        ],
+        [
+          "math-comp__odd-order",
+          "theories/PFsection4.v",
+          8330000007.714286
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonSetup.lean",
+          8330000009.906268
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_SL2Example.lean",
+          8330000009.876977
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonNuGrid.lean",
+          8330000009.871119
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_HypothesisB.lean",
+          8330000009.83597
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_LemmaC3_Setup.lean",
+          8330000009.70123
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppD_CNGroups/Basic.lean",
+          8330000009.642648
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_FurtherResults.lean",
+          8330000009.613357
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Isaacs/Ch01_Sylow/Main.lean",
+          8330000009.607498
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonPairProducer.lean",
+          8330000009.472759
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_YsetInner.lean",
+          8330000009.33802
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonCharacterData.lean",
+          8330000009.185706
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonSection16Core.lean",
+          8330000009.168131
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_FiliformRefutation.lean",
+          8330000009.103691
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_FinalContradiction.lean",
+          8330000009.086116
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S01_Introduction.lean",
+          8330000008.93966
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_GeneralAdjoin.lean",
+          8330000008.664324
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_SixTwoGeneral.lean",
+          8330000008.6057415
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S12_Section9Counts.lean",
+          8330000008.336263
+        ]
+      ],
+      "first_difference_rank": 56,
+      "identities_equal": false,
+      "number": 131,
+      "origins": [
+        {
+          "case": "feit-thompson-odd-order",
+          "kind": "fielded:content"
+        }
+      ],
+      "query": "content:\"Feit\" content:\"Thompson\" content:\"odd\" content:\"order\" content:\"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 56,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 56,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 198,
+      "chunked_head": [
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_Theorem63.lean",
+          8420000009.4083185
+        ],
+        [
+          "math-comp__odd-order",
+          "theories/stripped_odd_order_theorem.v",
+          8420000000.571428
+        ],
+        [
+          "acl2__acl2",
+          "books/doc/100-theorems.lisp",
+          8200000009.618669
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompson.lean",
+          8330000009.994142
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppB_Puig.lean",
+          8330000009.988283
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Mathlib/Sylow.lean",
+          8330000009.982426
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppB_Thm62.lean",
+          8330000009.976567
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Algebra/AlgInt.lean",
+          8330000009.970709
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_PropE4.lean",
+          8330000009.96485
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_LemmaC2.lean",
+          8330000009.958992
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/GroupTheory/SCN.lean",
+          8330000009.953135
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_NormSet.lean",
+          8330000009.947276
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Algebra/ClassSum.lean",
+          8330000009.935559
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppB_PuigB3B4.lean",
+          8330000009.929701
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Mathlib/Subgroup.lean",
+          8330000009.923843
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_Problem1.lean",
+          8330000009.917985
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Algebra/Rosenberg.lean",
+          8330000009.912127
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonSetup.lean",
+          8330000009.906268
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/GroupTheory/PRank.lean",
+          8330000009.90041
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_ExponentP.lean",
+          8330000009.894552
+        ]
+      ],
+      "chunkless_count": 200,
+      "chunkless_head": [
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_Theorem63.lean",
+          8420000009.4083185
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Peterfalvi/S08_Theorem65c2.lean",
+          8420000009.03925
+        ],
+        [
+          "math-comp__odd-order",
+          "theories/stripped_odd_order_theorem.v",
+          8420000000.571428
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompson.lean",
+          8330000009.994142
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppB_Puig.lean",
+          8330000009.988283
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Mathlib/Sylow.lean",
+          8330000009.982426
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppB_Thm62.lean",
+          8330000009.976567
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Algebra/AlgInt.lean",
+          8330000009.970709
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_PropE4.lean",
+          8330000009.96485
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_LemmaC2.lean",
+          8330000009.958992
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/GroupTheory/SCN.lean",
+          8330000009.953135
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_NormSet.lean",
+          8330000009.947276
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Algebra/ClassSum.lean",
+          8330000009.935559
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppB_PuigB3B4.lean",
+          8330000009.929701
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Mathlib/Subgroup.lean",
+          8330000009.923843
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppC_Problem1.lean",
+          8330000009.917985
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/Algebra/Rosenberg.lean",
+          8330000009.912127
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/FeitThompsonSetup.lean",
+          8330000009.906268
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/GroupTheory/PRank.lean",
+          8330000009.90041
+        ],
+        [
+          "yawara__odd-order",
+          "OddOrder/BG/AppE_ExponentP.lean",
+          8330000009.894552
+        ]
+      ],
+      "first_difference_rank": 2,
+      "identities_equal": false,
+      "number": 134,
+      "origins": [
+        {
+          "case": "feit-thompson-odd-order",
+          "formulation": "odd order theorem",
+          "kind": "multiquery"
+        }
+      ],
+      "query": "\"odd\" \"order\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 2,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 2,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 197,
+      "chunked_head": [
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Height.lean",
+          8330000009.703889
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/EvalGroup.lean",
+          8330000009.4934
+        ],
+        [
+          "nasa__pvslib",
+          "algebra/commutative_groupoid.prf",
+          8330000002.497273
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Logarithm.lean",
+          8330000009.4826975
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/OrderSubst.lean",
+          8330000009.450588
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Definition.lean",
+          8330000009.407778
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Differential.lean",
+          8330000009.200856
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupAssoc.lean",
+          8330000008.783446
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupLawSpec.lean",
+          8330000008.348198
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/Isogeny/OmegaCoeffViaFormalGroup.lean",
+          8330000007.941491
+        ],
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib/RingTheory/FormalGroup/Basic.lean",
+          8330000005.881083
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Basic.lean",
+          8330000003.04501
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Chord.lean",
+          8330000002.810176
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/AdicPoint.lean",
+          8330000001.972603
+        ],
+        [
+          "google-deepmind__formal-conjectures",
+          "FormalConjecturesForMathlib/GroupTheory/Torsion.lean",
+          8330000001.938088
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Assoc.lean",
+          8330000001.81409
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Series.lean",
+          8330000001.76908
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/WExpansion.lean",
+          8330000001.630137
+        ],
+        [
+          "UniMath__agda-unimath",
+          "src/commutative-algebra/formal-power-series-commutative-rings.lagda.md",
+          8330000001.541749
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Inverse.lean",
+          8330000001.489237
+        ]
+      ],
+      "chunkless_count": 197,
+      "chunkless_head": [
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Height.lean",
+          8330000009.703889
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/EvalGroup.lean",
+          8330000009.4934
+        ],
+        [
+          "nasa__pvslib",
+          "algebra/commutative_groupoid.prf",
+          8330000002.497273
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Logarithm.lean",
+          8330000009.4826975
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/OrderSubst.lean",
+          8330000009.450588
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Definition.lean",
+          8330000009.407778
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Differential.lean",
+          8330000009.200856
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupAssoc.lean",
+          8330000008.783446
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupLawSpec.lean",
+          8330000008.348198
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/Isogeny/OmegaCoeffViaFormalGroup.lean",
+          8330000007.941491
+        ],
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib/RingTheory/FormalGroup/Basic.lean",
+          8330000005.881083
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Basic.lean",
+          8330000003.04501
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Chord.lean",
+          8330000002.810176
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/AdicPoint.lean",
+          8330000001.972603
+        ],
+        [
+          "google-deepmind__formal-conjectures",
+          "FormalConjecturesForMathlib/GroupTheory/Torsion.lean",
+          8330000001.938088
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Assoc.lean",
+          8330000001.81409
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Series.lean",
+          8330000001.76908
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/WExpansion.lean",
+          8330000001.630137
+        ],
+        [
+          "UniMath__agda-unimath",
+          "src/commutative-algebra/formal-power-series-commutative-rings.lagda.md",
+          8330000001.541749
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Inverse.lean",
+          8330000001.489237
+        ]
+      ],
+      "first_difference_rank": 52,
+      "identities_equal": false,
+      "number": 146,
+      "origins": [
+        {
+          "case": "formal-group-law",
+          "formulation": "commutative formal group",
+          "kind": "multiquery"
+        }
+      ],
+      "query": "\"commutative\" \"formal\" \"group\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 52,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 52,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    },
+    {
+      "chunked_count": 198,
+      "chunked_head": [
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib/RingTheory/FormalGroup/Basic.lean",
+          8550000005.881083
+        ],
+        [
+          "UniMath__agda-unimath",
+          "src/commutative-algebra/formal-power-series-commutative-rings.lagda.md",
+          8550000001.541749
+        ],
+        [
+          "jwiegley__category-theory",
+          "Structure/Ring.v",
+          8420000009.093686
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Height.lean",
+          8500000009.703889
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/EvalGroup.lean",
+          8500000009.4934
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Logarithm.lean",
+          8500000009.4826975
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/OrderSubst.lean",
+          8500000009.450588
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Definition.lean",
+          8500000009.407778
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Differential.lean",
+          8500000009.200856
+        ],
+        [
+          "facebookresearch__algebraic-combinatorics",
+          "AlgebraicCombinatorics/FPS/CommutativeRings.lean",
+          8500000004.909091
+        ],
+        [
+          "google-deepmind__formal-conjectures",
+          "FormalConjectures/Mathoverflow/507128.lean",
+          8500000003.479138
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Chord.lean",
+          8500000002.810176
+        ],
+        [
+          "google-deepmind__formal-conjectures",
+          "FormalConjecturesForMathlib/GroupTheory/Torsion.lean",
+          8500000001.938088
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Assoc.lean",
+          8500000001.81409
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/WExpansion.lean",
+          8500000001.630137
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Inverse.lean",
+          8500000001.489237
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/StandardCover.lean",
+          8420000009.796646
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/GroupTheory/Finiteness.lean",
+          8420000009.761252
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/GroupTheory/IndexNSmul.lean",
+          8420000009.753425
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/RingTheory/Huber/Bounded.lean",
+          8420000009.618395
+        ]
+      ],
+      "chunkless_count": 198,
+      "chunkless_head": [
+        [
+          "leanprover-community__mathlib4",
+          "Mathlib/RingTheory/FormalGroup/Basic.lean",
+          8550000005.881083
+        ],
+        [
+          "UniMath__agda-unimath",
+          "src/commutative-algebra/formal-power-series-commutative-rings.lagda.md",
+          8550000001.541749
+        ],
+        [
+          "jwiegley__category-theory",
+          "Structure/Ring.v",
+          8420000009.093686
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Height.lean",
+          8500000009.703889
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/EvalGroup.lean",
+          8500000009.4934
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Logarithm.lean",
+          8500000009.4826975
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/OrderSubst.lean",
+          8500000009.450588
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Definition.lean",
+          8500000009.407778
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/Differential.lean",
+          8500000009.200856
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupAssoc.lean",
+          8500000008.783446
+        ],
+        [
+          "facebookresearch__algebraic-combinatorics",
+          "AlgebraicCombinatorics/FPS/CommutativeRings.lean",
+          8500000004.909091
+        ],
+        [
+          "google-deepmind__formal-conjectures",
+          "FormalConjectures/Mathoverflow/507128.lean",
+          8500000003.479138
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Chord.lean",
+          8500000002.810176
+        ],
+        [
+          "google-deepmind__formal-conjectures",
+          "FormalConjecturesForMathlib/GroupTheory/Torsion.lean",
+          8500000001.938088
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Assoc.lean",
+          8500000001.81409
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/WExpansion.lean",
+          8500000001.630137
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Inverse.lean",
+          8500000001.489237
+        ],
+        [
+          "CBirkbeck__AINTLIB",
+          "projects/AdicSpaces/Adic spaces/StandardCover.lean",
+          8420000009.796646
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/GroupTheory/Finiteness.lean",
+          8420000009.761252
+        ],
+        [
+          "TauCetiProject__TauCeti",
+          "TauCeti/GroupTheory/IndexNSmul.lean",
+          8420000009.753425
+        ]
+      ],
+      "first_difference_rank": 10,
+      "identities_equal": false,
+      "number": 147,
+      "origins": [
+        {
+          "case": "formal-group-law",
+          "formulation": "formal group over commutative ring",
+          "kind": "multiquery"
+        }
+      ],
+      "query": "\"formal\" \"group\" \"over\" \"commutative\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "repeats": [
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 10,
+          "identities_equal": false,
+          "scores_equal": false
+        },
+        {
+          "chunked_matches_first_chunked": true,
+          "chunkless_matches_first_chunkless": true,
+          "first_difference_rank": 10,
+          "identities_equal": false,
+          "scores_equal": false
+        }
+      ],
+      "scores_equal": false
+    }
+  ],
+  "provider": "api",
+  "query_config_sha256": "ec6bc123f9c7e024914451092565092e665e077c4fb283bd516da4f35d8794e6",
+  "repository_state": {
+    "commit": "c97b196b76f6f6d1354d20ce0a6cff0789dd8e47",
+    "state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": [],
+    "untracked_files": [],
+    "worktree_clean": true
+  },
+  "result_role_state": {
+    "navigation_count": 2564,
+    "navigation_sha256": "bcccc04446520027c62134e3635d03d6bc8547e35015a04099936e2ef1b2bf32",
+    "role_counts": {
+      "navigation-import-only": 2564,
+      "proof-metadata-useless-runes": 9359
+    },
+    "roles_sha256": "bd36e23df638ba2a39e9dc5a9c7af5694d38f066740380898d8e7a8e029314c3"
+  },
+  "schema_version": 1,
+  "serving_config_sha256": "3de4262b5d4681cedfe23bcacc8dd3a49359def489057d7bad79f4836866acce",
+  "serving_options": {
+    "max_doc_display_count": 200,
+    "shard_max_match_count": 10000,
+    "total_max_match_count": 0,
+    "use_bm25_scoring": false,
+    "whole": false
+  },
+  "variant": "paired_first_stage_chunk_transport_v1"
+}

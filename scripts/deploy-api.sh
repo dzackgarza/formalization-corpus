@@ -5,16 +5,22 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 host="${FORMALIZATION_CORPUS_HOST:-zack@159.223.102.204}"
 remote_root="${FORMALIZATION_CORPUS_REMOTE_ROOT:-/home/zack/lean-corpus}"
 
-binary="$(mktemp)"
-trap 'rm -f "$binary"' EXIT
-
-(
-  cd "$root/tools/sourcegraph__zoekt"
-  GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
-    go build -o "$binary" ./cmd/zoekt-webserver
-)
-
-rsync -a "$binary" "$host:$remote_root/bin/zoekt-webserver.stock"
+zoekt_source="$root/tools/sourcegraph__zoekt"
+if [[ -f "$zoekt_source/go.mod" ]]; then
+  binary="$(mktemp)"
+  trap 'rm -f "$binary"' EXIT
+  (
+    cd "$zoekt_source"
+    GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
+      go build -o "$binary" ./cmd/zoekt-webserver
+  )
+  rsync -a "$binary" "$host:$remote_root/bin/zoekt-webserver.stock"
+elif ssh "$host" "test -x '$remote_root/bin/zoekt-webserver.stock'"; then
+  echo "Zoekt source checkout is ghosted; retaining the deployed stock binary"
+else
+  echo "Zoekt source checkout is ghosted and no deployed stock binary exists" >&2
+  exit 1
+fi
 ssh "$host" "mkdir -p '$remote_root/api' '$remote_root/systemd'"
 rsync -a --delete --exclude .venv/ "$root/server/" "$host:$remote_root/api/"
 ssh "$host" "mkdir -p '$remote_root/api/data'"
@@ -33,10 +39,15 @@ if ssh "$host" 'systemctl is-active --quiet formalization-corpus-api.service'; t
 elif ssh "$host" "systemctl cat zoekt-webserver.service 2>/dev/null | grep -Fq '$remote_root/bin/zoekt-webserver' && systemctl cat zoekt-webserver.service 2>/dev/null | grep -Fq '127.0.0.1:6070'"; then
   # Compatibility migration for the original root-owned unit. The unit keeps
   # its existing ExecStart, but that path becomes a supervisor which runs stock
-  # Zoekt on 6071 and FastAPI on 6070. SIGKILL makes Restart=on-failure reload
-  # the replacement executable without requiring root access.
+  # Zoekt on 6071 and FastAPI on 6070. The first migration replaces a running
+  # stock binary, so SIGKILL is required to make Restart=on-failure reload the
+  # new supervisor. Subsequent deploys are already running that supervisor:
+  # terminate it normally so its trap can reap both children before it exits
+  # nonzero and systemd restarts the pair. Killing the supervisor itself with
+  # SIGKILL leaves uvicorn behind in the service cgroup and can wedge the unit in
+  # deactivating state indefinitely.
   rsync -a "$root/deploy/zoekt-api-compat-launcher.sh" "$host:$remote_root/bin/zoekt-webserver"
-  ssh "$host" "pid=\$(systemctl show -p MainPID --value zoekt-webserver.service); test \"\$pid\" -gt 0; kill -KILL \"\$pid\""
+  ssh "$host" "pid=\$(systemctl show -p MainPID --value zoekt-webserver.service); test \"\$pid\" -gt 0; exe=\$(readlink /proc/\"\$pid\"/exe); case \"\$exe\" in */bash|*/dash|*/sh) kill -TERM \"\$pid\" ;; *) kill -KILL \"\$pid\" ;; esac"
   echo "deployed FastAPI through the existing zoekt-webserver.service compatibility entrypoint"
 else
   cat <<EOF

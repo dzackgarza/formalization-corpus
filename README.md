@@ -59,6 +59,7 @@ just review-batch-hydrate RRB-0008   # hydrate only this batch at pinned source 
 # inspect units and append review records
 just review-batch-index RRB-0008     # refresh metadata, publish affected shards, then dehydrate
 just source-cache-status REPO        # inspect one source's hydrated/ghost/index state
+just source-refresh-index            # rebuild only sources whose committed inputs changed
 just source-seed-index fresh         # exceptional fresh bootstrap, one source at a time
 
 # Whole-corpus maintenance/reproducibility commands (not the normal review loop):

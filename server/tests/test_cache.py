@@ -81,3 +81,43 @@ def test_singleflight_coalesces_identical_work() -> None:
         assert sum(leader for _, leader in results) == 1
 
     asyncio.run(run())
+
+
+def test_singleflight_keeps_inflight_work_after_leader_cancellation() -> None:
+    async def run() -> None:
+        group = SingleFlight()
+        started = 0
+        started_event = asyncio.Event()
+        release = asyncio.Event()
+
+        async def producer() -> bytes:
+            nonlocal started
+            started += 1
+            started_event.set()
+            await release.wait()
+            return b"answer"
+
+        leader = asyncio.create_task(group.run("same", producer))
+        await started_event.wait()
+        leader.cancel()
+        try:
+            await leader
+        except asyncio.CancelledError:
+            pass
+
+        follower = asyncio.create_task(group.run("same", producer))
+        await asyncio.sleep(0)
+        assert started == 1
+        release.set()
+        body, is_leader = await follower
+        assert body == b"answer"
+        assert not is_leader
+
+        # Once the shared producer itself has finished, the key is reusable.
+        await asyncio.sleep(0)
+        body, is_leader = await group.run("same", producer)
+        assert body == b"answer"
+        assert is_leader
+        assert started == 2
+
+    asyncio.run(run())

@@ -4,17 +4,17 @@
   "proof_assistant": "lean",
   "repository": "CBirkbeck__LeanBridge",
   "schema_version": 1,
-  "source_revision": "4dffaca404780f5ec439bda834fbc90a891174c2",
-  "source_snapshot_sha256": "abfac4dca0b8478fe113d11ef39fd789d643a1923063c9544b0d785d9ad6ea0e",
+  "source_revision": "1a8cc770452beb157834679bd3fb6173f1583c04",
+  "source_snapshot_sha256": "ef6df12ddf6930be920929ac57936ad81b129e390c58434bf6c9434003a3b808",
   "sync_group": "routine",
   "totals": {
-    "auxiliary_only": 1,
-    "baseline_primary_retained": 2215,
-    "bytes": 1566680183,
-    "current_primary_excluded": 3,
-    "current_primary_retained": 2215,
-    "files": 2223,
-    "formal_source_files": 2215,
+    "auxiliary_only": 3,
+    "baseline_primary_retained": 2221,
+    "bytes": 1566732677,
+    "current_primary_excluded": 17,
+    "current_primary_retained": 2205,
+    "files": 2229,
+    "formal_source_files": 2221,
     "unindexed_nonformal": 4
   },
   "transport": "git",
@@ -27,13 +27,13 @@
         "root_count": 9,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "ff5cff8138136f57e46f5ad76692116d1628eb75631c95ce0c41854fd364da9f",
+      "snapshot_sha256": "cddc0cadde3a166476c874ffe56fad0719b94c8fef28d8d2b16ea585840acd96",
       "stats": {
-        "auxiliary_only": 1,
+        "auxiliary_only": 2,
         "baseline_primary_retained": 1,
-        "bytes": 33719,
+        "bytes": 35012,
         "current_primary_excluded": 3,
-        "current_primary_retained": 1,
+        "current_primary_retained": 0,
         "files": 9,
         "formal_source_files": 1,
         "unindexed_nonformal": 4
@@ -49,11 +49,11 @@
       },
       "snapshot_sha256": "1e481dcb1ea56019f18a4a173743aa3240cea78a76f9992346fe531bac63361a",
       "stats": {
-        "auxiliary_only": 0,
+        "auxiliary_only": 1,
         "baseline_primary_retained": 9,
         "bytes": 343359,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 9,
+        "current_primary_excluded": 8,
+        "current_primary_retained": 0,
         "files": 9,
         "formal_source_files": 9,
         "unindexed_nonformal": 0
@@ -61,44 +61,64 @@
       "unit_id": "RRU-fb6d3d7bc63b"
     },
     {
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-8ed4e319b060.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 2,
+        "value": "LeanBridge/@files/all"
+      },
+      "snapshot_sha256": "22cb859e6308f22f53728e58ade66bee9ef0af3ab7bde05cb5534dc32b1d765c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 2,
+        "bytes": 1639,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 1,
+        "files": 2,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-8ed4e319b060"
+    },
+    {
       "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-9461c60db37d.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 2,
+        "root_count": 3,
         "value": "LeanBridge/@subtrees/all"
       },
-      "snapshot_sha256": "797c36dfa11eafc2e2bf6fbd7e0c361ae5f0202a407d6de5d3e102af409dfed7",
+      "snapshot_sha256": "2562b47a5bf6ce474500026c0c810670f6433a8d8b3bc49f8bbc20df01b93fe5",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 4,
-        "bytes": 13157,
+        "baseline_primary_retained": 8,
+        "bytes": 50155,
         "current_primary_excluded": 0,
-        "current_primary_retained": 4,
-        "files": 4,
-        "formal_source_files": 4,
+        "current_primary_retained": 8,
+        "files": 8,
+        "formal_source_files": 8,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-9461c60db37d"
     },
     {
-      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-7ff8dfc8f091.jsonl",
+      "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-0c7773e29904.jsonl",
       "scope": {
         "kind": "direct-files",
         "root_count": 1,
-        "value": "LeanBridge/Example.lean"
+        "value": "LeanBridge/ForMathlib/4-EC.lean"
       },
-      "snapshot_sha256": "ea49d05ce4e28732b7dbfc5de1f01ae86e1949c043ae0aa10f0a8f16f834bad9",
+      "snapshot_sha256": "a5e735e3a27cb21c7bd2f4bdeac8547df3487848ff5d19281d489f7f2493d60b",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 1,
-        "bytes": 307,
+        "bytes": 12893,
         "current_primary_excluded": 0,
         "current_primary_retained": 1,
         "files": 1,
         "formal_source_files": 1,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-7ff8dfc8f091"
+      "unit_id": "RRU-0c7773e29904"
     },
     {
       "files_manifest": "filtering/repository-review/files/CBirkbeck__LeanBridge/RRU-e8afc67c596a.jsonl",
@@ -107,13 +127,13 @@
         "root_count": 2,
         "value": "LeanBridge/ForMathlib/@subtrees/all"
       },
-      "snapshot_sha256": "32a5a7698e93f61e35602558365bb74c329463229ca8dd7b75341409c9be212f",
+      "snapshot_sha256": "3c34d9b602944444f047cd5e098dc73676c666844d2214a79a0a3707200b2ca1",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 26,
-        "bytes": 174090,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 26,
+        "bytes": 174080,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 23,
         "files": 26,
         "formal_source_files": 26,
         "unindexed_nonformal": 0
@@ -127,13 +147,13 @@
         "root_count": 20,
         "value": "LeanBridge/ForMathlib/QExpansion/@files/all"
       },
-      "snapshot_sha256": "486dec45caa1da80d5156933b1cc51384c767bfbc6181db59b53b3f09448a8b4",
+      "snapshot_sha256": "9de69b8684e86bc426db3e97421c3a399bee134cd46171832440ba69660d51e8",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 20,
-        "bytes": 111864,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 20,
+        "bytes": 111852,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 18,
         "files": 20,
         "formal_source_files": 20,
         "unindexed_nonformal": 0

@@ -90,6 +90,19 @@ class SingleFlight:
         self._tasks: dict[str, asyncio.Task[bytes]] = {}
         self._lock = asyncio.Lock()
 
+    async def _run_producer(
+        self,
+        key: str,
+        producer: Callable[[], Awaitable[bytes]],
+    ) -> bytes:
+        try:
+            return await producer()
+        finally:
+            task = asyncio.current_task()
+            async with self._lock:
+                if self._tasks.get(key) is task:
+                    self._tasks.pop(key, None)
+
     async def run(
         self,
         key: str,
@@ -99,13 +112,10 @@ class SingleFlight:
             task = self._tasks.get(key)
             leader = task is None
             if task is None:
-                task = asyncio.create_task(producer())
+                task = asyncio.create_task(self._run_producer(key, producer))
                 self._tasks[key] = task
 
-        try:
-            return await asyncio.shield(task), leader
-        finally:
-            if leader:
-                async with self._lock:
-                    if self._tasks.get(key) is task:
-                        self._tasks.pop(key, None)
+        # A disconnected/cancelled caller must not cancel or unregister the shared
+        # producer.  The producer owns cleanup when it actually finishes, so a
+        # retry can still join the same in-flight backend search.
+        return await asyncio.shield(task), leader

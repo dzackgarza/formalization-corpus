@@ -4,41 +4,141 @@
   "proof_assistant": "lean",
   "repository": "leanprover__lean-eval",
   "schema_version": 1,
-  "source_revision": "b3f154b605e13aa255035be39ce5587affb2ce03",
-  "source_snapshot_sha256": "59ee81ee06f73f9a7c487b5b2f54d4eca7e2a086cac5d9ad4acc301cbedf1346",
+  "source_revision": "0e093293afbe96be91504ae6e44947876d3fc84e",
+  "source_snapshot_sha256": "a805bbe2f349c56721e407fba392aa25f7a171268e386a8b10a1804e5045211f",
   "sync_group": "bulk",
   "totals": {
-    "auxiliary_only": 1,
-    "baseline_primary_retained": 1651,
-    "bytes": 2082425,
-    "current_primary_excluded": 3,
-    "current_primary_retained": 1651,
-    "files": 1660,
-    "formal_source_files": 1651,
-    "unindexed_nonformal": 5
+    "auxiliary_only": 2,
+    "baseline_primary_retained": 2094,
+    "bytes": 2835154,
+    "current_primary_excluded": 1412,
+    "current_primary_retained": 684,
+    "files": 2104,
+    "formal_source_files": 2094,
+    "unindexed_nonformal": 6
   },
   "transport": "git",
   "url": "https://github.com/leanprover/lean-eval",
   "work_units": [
     {
-      "files_manifest": "filtering/repository-review/files/leanprover__lean-eval/RRU-3ce793b57f1b.jsonl",
+      "files_manifest": "filtering/repository-review/files/leanprover__lean-eval/RRU-b0f30848eb99.jsonl",
       "scope": {
-        "kind": "repository",
-        "root_count": 0,
-        "value": "."
+        "kind": "file-bucket",
+        "root_count": 12,
+        "value": "./@files/all"
       },
-      "snapshot_sha256": "59ee81ee06f73f9a7c487b5b2f54d4eca7e2a086cac5d9ad4acc301cbedf1346",
+      "snapshot_sha256": "1db4b3eae734d340c2a1007fe2a8f4e841c703b7ec024e818f43c9e643c95ab3",
       "stats": {
-        "auxiliary_only": 1,
-        "baseline_primary_retained": 1651,
-        "bytes": 2082425,
+        "auxiliary_only": 2,
+        "baseline_primary_retained": 2,
+        "bytes": 90078,
         "current_primary_excluded": 3,
-        "current_primary_retained": 1651,
-        "files": 1660,
-        "formal_source_files": 1651,
-        "unindexed_nonformal": 5
+        "current_primary_retained": 1,
+        "files": 12,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 6
       },
-      "unit_id": "RRU-3ce793b57f1b"
+      "unit_id": "RRU-b0f30848eb99"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover__lean-eval/RRU-f71c52f0cd5c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/1"
+      },
+      "snapshot_sha256": "28a29aef1fe1a1b90bbd2989c47e8869a65fb3ae644b2e35ce89bb5f2c6e8023",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 306,
+        "bytes": 794155,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 306,
+        "files": 306,
+        "formal_source_files": 306,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f71c52f0cd5c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover__lean-eval/RRU-e7b788f0152b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/4"
+      },
+      "snapshot_sha256": "f32f38acd979212265e1e34d5ee564317c612a279ba8b9d5fa41687f9fe9e2b4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 18,
+        "bytes": 78281,
+        "current_primary_excluded": 17,
+        "current_primary_retained": 1,
+        "files": 18,
+        "formal_source_files": 18,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e7b788f0152b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover__lean-eval/RRU-f2baac143a0b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/5"
+      },
+      "snapshot_sha256": "132e4ea19e420d1af37656c7821fa56b6e1759e621c6eb7d7ae318c323c5f03f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 4,
+        "bytes": 95148,
+        "current_primary_excluded": 4,
+        "current_primary_retained": 0,
+        "files": 4,
+        "formal_source_files": 4,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f2baac143a0b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover__lean-eval/RRU-0e6c29c7ae8a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/9"
+      },
+      "snapshot_sha256": "13f71ecfeaace72423d30646b32bf07945814ae0db383009cf4f46c4e59ec10d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1,
+        "bytes": 1600,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 0,
+        "files": 1,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0e6c29c7ae8a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover__lean-eval/RRU-3048d24cf621.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/e"
+      },
+      "snapshot_sha256": "3f86f1eda95aa53905181cde20ead8f4940e7dbba7e3a0f3fd4fba4678e78245",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1763,
+        "bytes": 1775892,
+        "current_primary_excluded": 1387,
+        "current_primary_retained": 376,
+        "files": 1763,
+        "formal_source_files": 1763,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3048d24cf621"
     }
   ]
 }

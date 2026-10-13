@@ -6,6 +6,7 @@ import json
 import pathlib
 import subprocess
 import sys
+import tempfile
 import unittest
 from unittest import mock
 
@@ -13,8 +14,28 @@ HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import evaluate  # noqa: E402
 import evaluate_repeated  # noqa: E402
-from evaluate_multiquery import rrf_fuse  # noqa: E402
+from evaluate_fielded_lexical import (  # noqa: E402
+    compile_field_queries,
+    retrieve_fielded,
+    weighted_rrf_fuse,
+)
+from evaluate_fielded_fts5 import (  # noqa: E402
+    fts5_match_query,
+    fts5_rerank,
+    lean_declaration_signature_texts,
+    query_matched_lines,
+    query_matched_windows,
+)
+from evaluate_multiquery import retrieve_multiquery, rrf_fuse  # noqa: E402
 from evaluate_rerank import bounded_excerpt, humanize_path  # noqa: E402
+from evaluate_union_fts5 import (  # noqa: E402
+    CoalescingApiSearch,
+    add_first_stage_rank_evidence,
+    compressed_multiquery_or,
+    balanced_union,
+    retrieve_batched_first_stages,
+)
+from diagnose_chunk_transport import compare_rankings, unique_first_stage_queries  # noqa: E402
 
 
 class SearchEvaluationTests(unittest.TestCase):
@@ -42,6 +63,232 @@ class SearchEvaluationTests(unittest.TestCase):
             return_value={"CBirkbeck__AINTLIB": {"directory": "definitely-missing-cache"}},
         ):
             self.assertEqual(evaluate.validate_gold(gold), [])
+
+    def test_judgments_of_files_removed_upstream_lapse_out_of_scoring(self) -> None:
+        def judgment(file_name: str, relevance: int) -> dict[str, object]:
+            return {"repository": "CBirkbeck__AINTLIB", "file": file_name, "relevance": relevance}
+
+        gold = {
+            "version": 1,
+            "cases": [
+                {"id": "kept", "query": "flat module",
+                 "judgments": [judgment("Common/Common.lean", 3), judgment("Gone/A.lean", 2)]},
+                {"id": "gone", "query": "removed theorem",
+                 "judgments": [judgment("Gone/B.lean", 3), judgment("Common/Common.lean", 0)]},
+            ],
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            path = pathlib.Path(tmp) / "gold.json"
+            path.write_text(json.dumps(gold))
+            with mock.patch.object(
+                evaluate,
+                "source_rows",
+                return_value={"CBirkbeck__AINTLIB": {"directory": "definitely-missing-cache"}},
+            ):
+                loaded = evaluate.load_gold(path)
+                self.assertEqual(evaluate.validate_gold(loaded), [])
+
+        self.assertEqual([case["id"] for case in loaded["cases"]], ["kept"])
+        self.assertEqual(loaded["cases"][0]["judgments"], [judgment("Common/Common.lean", 3)])
+        self.assertEqual(loaded["lapsed_cases"], ["gone"])
+        self.assertEqual(
+            [(item["case"], item["file"]) for item in loaded["lapsed_judgments"]],
+            [("kept", "Gone/A.lean"), ("gone", "Gone/B.lean")],
+        )
+
+    def test_api_search_batch_preserves_query_identity_and_normalizes_files(self) -> None:
+        response = {
+            "Results": [
+                {
+                    "ID": "0",
+                    "StatusCode": 200,
+                    "Cache": "MISS",
+                    "Result": {
+                        "Files": [
+                            {"Repository": "r", "FileName": "A.lean", "Score": 7.0}
+                        ]
+                    },
+                },
+                {
+                    "ID": "1",
+                    "StatusCode": 200,
+                    "Cache": "HIT",
+                    "Result": {"Files": []},
+                },
+            ]
+        }
+        completed = subprocess.CompletedProcess(
+            args=["curl"], returncode=0, stdout=json.dumps(response).encode(), stderr=b""
+        )
+        serving = {
+            "max_doc_display_count": 200,
+            "shard_max_match_count": 10000,
+            "total_max_match_count": 0,
+            "whole": False,
+            "use_bm25_scoring": False,
+            "chunk_matches": False,
+        }
+        with mock.patch.object(evaluate.subprocess, "run", return_value=completed) as run:
+            rows, runtime = evaluate.api_search_batch(
+                ["query a", "query b"],
+                30.0,
+                "https://example.test/api/search",
+                serving,
+                max_concurrency=4,
+                retries=2,
+            )
+        self.assertEqual(rows["query a"][0]["FileName"], "A.lean")
+        self.assertEqual(rows["query b"], [])
+        self.assertEqual(runtime["logical_queries"], 2)
+        self.assertEqual(runtime["physical_api_requests"], 1)
+        self.assertEqual(runtime["cache_counts"], {"MISS": 1, "HIT": 1})
+        payload = json.loads(run.call_args.args[0][-1])
+        self.assertEqual(payload["MaxConcurrency"], 4)
+        self.assertFalse(payload["Searches"][0]["Request"]["Opts"]["ChunkMatches"])
+        self.assertEqual(run.call_args.kwargs["timeout"], 92)
+
+
+    def test_compressed_multiquery_or_preserves_complete_compiled_branches(self) -> None:
+        compiled = [
+            '"Serre" "duality" file:\\.(lean|v)$ case:no',
+            '"Grothendieck" "duality" file:\\.(lean|v)$ case:no',
+        ]
+        self.assertEqual(
+            compressed_multiquery_or(compiled),
+            '({}) or ({})'.format(*compiled),
+        )
+        with self.assertRaises(ValueError):
+            compressed_multiquery_or([])
+
+    def test_batched_first_stage_can_compress_multiquery_to_one_backend_search(self) -> None:
+        case = {"id": "q", "query": "Jordan canonical form"}
+        expansions = {"q": ["Jordan normal form"]}
+        field_queries = compile_field_queries(case["query"])
+        compiled = [
+            evaluate.compile_query(case["query"], "normalized_path_content_v1"),
+            evaluate.compile_query("Jordan normal form", "normalized_path_content_v1"),
+        ]
+        compressed = compressed_multiquery_or(compiled)
+        candidate = {"Repository": "r", "FileName": "Jordan.lean", "Score": 1.0}
+        by_query = {query: [candidate] for query in dict.fromkeys([*field_queries.values(), compressed])}
+        batch_runtime = {
+            "elapsed_ms": 10.0,
+            "payload_bytes": 100,
+            "physical_api_requests": 1,
+            "logical_queries": len(by_query),
+            "max_concurrency": 2,
+            "cache_counts": {"MISS": len(by_query)},
+        }
+        with mock.patch.object(evaluate, "api_search_batch", return_value=(by_query, batch_runtime)):
+            _, multiquery, _, _, got_compiled, runtime = retrieve_batched_first_stages(
+                case,
+                expansions,
+                timeout=30.0,
+                api_url="https://example.test/api/search",
+                serving=evaluate.serving_options(top=200, whole=False),
+                depth=200,
+                rrf_constant=60,
+                weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
+                max_concurrency=2,
+                batch_size=4,
+                api_retries=2,
+                compress_multiquery=True,
+            )
+        self.assertEqual(got_compiled, compiled)
+        self.assertEqual(multiquery[0]["FileName"], "Jordan.lean")
+        self.assertEqual(runtime["multiquery_backend_queries"], 1)
+        self.assertEqual(runtime["unique_backend_searches"], len(by_query))
+
+    def test_batched_first_stage_can_limit_frozen_expansion_prefix(self) -> None:
+        case = {"id": "q", "query": "Jordan canonical form"}
+        expansions = {"q": ["Jordan normal form", "rational canonical form"]}
+        field_queries = compile_field_queries(case["query"])
+        compiled = [
+            evaluate.compile_query(case["query"], "normalized_path_content_v1"),
+            evaluate.compile_query("Jordan normal form", "normalized_path_content_v1"),
+        ]
+        candidate = {"Repository": "r", "FileName": "Jordan.lean", "Score": 1.0}
+        by_query = {
+            query: [candidate]
+            for query in dict.fromkeys([*field_queries.values(), *compiled])
+        }
+        batch_runtime = {
+            "elapsed_ms": 10.0,
+            "payload_bytes": 100,
+            "physical_api_requests": 1,
+            "logical_queries": len(by_query),
+            "max_concurrency": 2,
+            "cache_counts": {"MISS": len(by_query)},
+        }
+        with mock.patch.object(evaluate, "api_search_batch", return_value=(by_query, batch_runtime)):
+            _, _, _, formulations, got_compiled, runtime = retrieve_batched_first_stages(
+                case,
+                expansions,
+                timeout=30.0,
+                api_url="https://example.test/api/search",
+                serving=evaluate.serving_options(top=200, whole=False),
+                depth=200,
+                rrf_constant=60,
+                weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
+                max_concurrency=2,
+                batch_size=4,
+                api_retries=2,
+                expansion_limit=1,
+            )
+        self.assertEqual(formulations, [case["query"], "Jordan normal form"])
+        self.assertEqual(got_compiled, compiled)
+        self.assertEqual(runtime["multiquery_backend_queries"], 2)
+        self.assertEqual(runtime["unique_backend_searches"], len(by_query))
+
+    def test_batched_first_stage_reconstructs_fielded_and_multiquery_rankings(self) -> None:
+        case = {"id": "q", "query": "Jordan canonical form"}
+        expansions = {"q": ["Jordan normal form"]}
+        field_queries = compile_field_queries(case["query"])
+        compiled = [
+            evaluate.compile_query(case["query"], "normalized_path_content_v1"),
+            evaluate.compile_query("Jordan normal form", "normalized_path_content_v1"),
+        ]
+        candidate = {"Repository": "r", "FileName": "Jordan.lean", "Score": 1.0}
+        by_query = {
+            query: [candidate]
+            for query in dict.fromkeys([*field_queries.values(), *compiled])
+        }
+        batch_runtime = {
+            "elapsed_ms": 10.0,
+            "payload_bytes": 100,
+            "physical_api_requests": 1,
+            "logical_queries": len(by_query),
+            "max_concurrency": 4,
+            "cache_counts": {"MISS": len(by_query)},
+        }
+        with mock.patch.object(
+            evaluate, "api_search_batch", return_value=(by_query, batch_runtime)
+        ) as search:
+            fielded, multiquery, got_fields, formulations, got_compiled, runtime = (
+                retrieve_batched_first_stages(
+                    case,
+                    expansions,
+                    timeout=30.0,
+                    api_url="https://example.test/api/search",
+                    serving=evaluate.serving_options(top=200, whole=False),
+                    depth=200,
+                    rrf_constant=60,
+                    weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
+                    max_concurrency=4,
+                    batch_size=2,
+                    api_retries=2,
+                )
+            )
+        self.assertEqual(got_fields, field_queries)
+        self.assertEqual(got_compiled, compiled)
+        self.assertEqual(formulations, [case["query"], "Jordan normal form"])
+        self.assertEqual(fielded[0]["FileName"], "Jordan.lean")
+        self.assertEqual(multiquery[0]["FileName"], "Jordan.lean")
+        self.assertEqual(runtime["physical_api_requests"], 2)
+        self.assertEqual(runtime["batch_count"], 2)
+        self.assertEqual(runtime["coalesced_query_consumers"], 1)
+        self.assertEqual(runtime["unique_backend_searches"], len(by_query))
+        self.assertEqual(search.call_args.kwargs["max_concurrency"], 4)
 
     def test_frontend_v1_compiler_preserves_current_strict_behavior(self) -> None:
         compiled = evaluate.compile_query(
@@ -85,6 +332,381 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         compiled = evaluate.compile_query("is this already formalized?", "frontend_lexical_v2")
         self.assertIn('content:"$a"', compiled)
 
+    def test_zoekt_bm25_uses_the_same_query_semantics_as_frontend_v2(self) -> None:
+        text = "does Lean have the Jordan canonical form theorem?"
+        self.assertEqual(
+            evaluate.compile_query(text, "zoekt_bm25_v1"),
+            evaluate.compile_query(text, "frontend_lexical_v2"),
+        )
+
+    def test_fielded_query_separates_path_and_content_evidence(self) -> None:
+        queries = compile_field_queries("does Lean have the Jordan canonical form theorem?")
+        self.assertEqual(
+            queries["baseline"],
+            evaluate.compile_query(
+                "does Lean have the Jordan canonical form theorem?",
+                "normalized_path_content_v1",
+            ),
+        )
+        self.assertIn('content:"Jordan"', queries["content"])
+        self.assertIn('content:"canonical"', queries["content"])
+        self.assertIn('file:"Jordan" or file:"canonical"', queries["path"])
+        self.assertIn(r"file:\.lean$", queries["path"])
+
+    def test_weighted_rrf_rewards_cross_field_evidence(self) -> None:
+        rankings = [
+            ("baseline", 2.0, [{"Repository": "r", "FileName": "a"}]),
+            (
+                "content",
+                1.0,
+                [
+                    {"Repository": "r", "FileName": "b"},
+                    {"Repository": "r", "FileName": "a"},
+                ],
+            ),
+            ("path", 1.0, [{"Repository": "r", "FileName": "b"}]),
+        ]
+        fused = weighted_rrf_fuse(rankings, constant=60, depth=200)
+        self.assertEqual(fused[0]["FileName"], "a")
+        self.assertEqual(fused[0]["RRFFields"], ["baseline", "content"])
+
+    def test_fielded_retrieval_can_ablate_a_fixed_channel(self) -> None:
+        calls: list[str] = []
+
+        def api_search(
+            query: str,
+            timeout: float,
+            api_url: str,
+            serving: dict,
+            *,
+            retries: int = 0,
+        ) -> tuple[list[dict], dict]:
+            calls.append(query)
+            return (
+                [{"Repository": "r", "FileName": "owner.lean", "Score": 1.0}],
+                {
+                    "elapsed_ms": 1.0,
+                    "payload_bytes": 1,
+                    "physical_api_requests": 1,
+                },
+            )
+
+        results, runtime, queries = retrieve_fielded(
+            "Jordan canonical form",
+            timeout=5.0,
+            provider="api",
+            api_url="https://example.test/api/search",
+            serving=evaluate.serving_options(top=20, whole=False),
+            depth=20,
+            rrf_constant=60,
+            weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
+            api_search_fn=api_search,
+            fields=("baseline", "path"),
+        )
+        self.assertEqual(set(queries), {"baseline", "path"})
+        self.assertEqual(set(calls), {queries["baseline"], queries["path"]})
+        self.assertEqual(runtime["retrieval_queries"], 2)
+        self.assertEqual(results[0]["RRFFields"], ["baseline", "path"])
+
+        with self.assertRaises(ValueError):
+            retrieve_fielded(
+                "Jordan canonical form",
+                timeout=5.0,
+                provider="api",
+                api_url="https://example.test/api/search",
+                serving=evaluate.serving_options(top=20, whole=False),
+                depth=20,
+                rrf_constant=60,
+                weights={"baseline": 2.0, "content": 1.0, "path": 1.0},
+                api_search_fn=api_search,
+                fields=("baseline", "baseline"),
+            )
+
+    def test_fts5_second_stage_uses_shared_normalized_query_terms(self) -> None:
+        self.assertEqual(
+            fts5_match_query("does Lean have the Jordan canonical form theorem?"),
+            '"Jordan" OR "canonical" OR "form" OR "theorem"',
+        )
+
+    def test_fts5_second_stage_can_promote_direct_owner_from_fixed_pool(self) -> None:
+        candidates = [
+            {
+                "Repository": "r",
+                "FileName": "Linear/JordanAlgebra.lean",
+                "Score": 2.0,
+            },
+            {
+                "Repository": "r",
+                "FileName": "Linear/JordanNormalForm.lean",
+                "Score": 1.0,
+            },
+        ]
+        contents = {
+            ("r", "Linear/JordanAlgebra.lean"): "Jordan algebra multiplication identity",
+            ("r", "Linear/JordanNormalForm.lean"): (
+                "Jordan canonical form theorem for a linear operator"
+            ),
+        }
+        reranked = fts5_rerank(
+            "Jordan canonical form of a linear operator", candidates, contents
+        )
+        self.assertEqual(reranked[0]["FileName"], "Linear/JordanNormalForm.lean")
+        self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_bm25_full")
+
+    def test_fts5_matched_windows_keep_local_query_evidence(self) -> None:
+        content = "\n".join(
+            [
+                "namespace Example",
+                "supporting material",
+                "theorem unrelated : True := by trivial",
+                "more support",
+                "theorem jordanCanonicalForm : True := by",
+                "  -- Jordan canonical form for a linear operator",
+                "  trivial",
+                "tail material",
+            ]
+        )
+        excerpt = query_matched_windows(
+            "Jordan canonical form of a linear operator", content
+        )
+        self.assertIn("jordanCanonicalForm", excerpt)
+        self.assertIn("Jordan canonical form for a linear operator", excerpt)
+        self.assertIn("trivial", excerpt)
+        self.assertNotIn("namespace Example", excerpt)
+
+    def test_fts5_matched_windows_mode_is_recorded_on_results(self) -> None:
+        candidates = [{"Repository": "r", "FileName": "Jordan.lean", "Score": 1.0}]
+        contents = {
+            ("r", "Jordan.lean"): "theorem jordan : True := by -- Jordan canonical form\ntrivial"
+        }
+        reranked = fts5_rerank(
+            "Jordan canonical form", candidates, contents, content_mode="matched-windows"
+        )
+        self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_bm25_matched-windows")
+
+    def test_fts5_matched_lines_keep_dense_source_local_evidence(self) -> None:
+        content = "\n".join(
+            [
+                "namespace Example",
+                "-- Jordan appears here",
+                "theorem jordanCanonicalForm : Matrix n n R → True := by",
+                "  -- canonical form for a linear operator",
+                "theorem canonicalMap : True := by trivial",
+            ]
+        )
+        excerpt = query_matched_lines(
+            "Jordan canonical form of a linear operator", content, max_lines=2
+        )
+        self.assertIn("jordanCanonicalForm", excerpt)
+        self.assertIn("canonical form for a linear operator", excerpt)
+        self.assertNotIn("namespace Example", excerpt)
+        self.assertNotIn("canonicalMap", excerpt)
+
+    def test_fts5_evidence_rrf_combines_path_broad_and_local_rankings(self) -> None:
+        candidates = [
+            {
+                "Repository": "r",
+                "FileName": "Linear/JordanAlgebra.lean",
+                "Score": 3.0,
+            },
+            {
+                "Repository": "r",
+                "FileName": "Linear/JordanCanonicalForm.lean",
+                "Score": 2.0,
+            },
+            {
+                "Repository": "r",
+                "FileName": "Linear/CanonicalMaps.lean",
+                "Score": 1.0,
+            },
+        ]
+        contents = {
+            ("r", "Linear/JordanAlgebra.lean"): "Jordan algebra Jordan algebra Jordan algebra",
+            ("r", "Linear/JordanCanonicalForm.lean"): (
+                "theorem jordanCanonicalForm : True := by\n"
+                "  -- Jordan canonical form for a linear operator\n"
+                "  trivial"
+            ),
+            ("r", "Linear/CanonicalMaps.lean"): "canonical linear map theorem",
+        }
+        reranked = fts5_rerank(
+            "Jordan canonical form of a linear operator",
+            candidates,
+            contents,
+            content_mode="evidence-rrf",
+        )
+        self.assertEqual(reranked[0]["FileName"], "Linear/JordanCanonicalForm.lean")
+        self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_evidence_rrf")
+        self.assertEqual(
+            reranked[0]["SecondStageEvidence"],
+            ["path", "full-content", "matched-windows"],
+        )
+
+    def test_fts5_evidence_lines_rrf_adds_line_local_channel(self) -> None:
+        candidates = [
+            {
+                "Repository": "r",
+                "FileName": "Linear/JordanCanonicalForm.lean",
+                "Score": 1.0,
+            }
+        ]
+        contents = {
+            ("r", "Linear/JordanCanonicalForm.lean"): (
+                "theorem jordanCanonicalForm : True := by\n"
+                "  -- Jordan canonical form for a linear operator\n"
+                "  trivial"
+            )
+        }
+        reranked = fts5_rerank(
+            "Jordan canonical form of a linear operator",
+            candidates,
+            contents,
+            content_mode="evidence-lines-rrf",
+        )
+        self.assertEqual(reranked[0]["SecondStage"], "sqlite_fts5_evidence_lines_rrf")
+        self.assertEqual(
+            reranked[0]["SecondStageEvidence"],
+            ["path", "full-content", "matched-windows", "matched-lines"],
+        )
+
+    def test_lean_declaration_signature_parser_excludes_proof_bodies(self) -> None:
+        candidates = [{"Repository": "r", "FileName": "Demo.lean"}]
+        contents = {
+            ("r", "Demo.lean"): (
+                "theorem sourceHierarchyWitness (n : Nat) : n = n := by\n"
+                "  exact rfl\n"
+                "structure SignatureCarrier where\n"
+                "  payload : Nat\n"
+            )
+        }
+        signatures = lean_declaration_signature_texts(candidates, contents)
+        text = signatures[("r", "Demo.lean")]
+        self.assertIn("sourceHierarchyWitness", text)
+        self.assertIn("(n : Nat)", text)
+        self.assertIn("n = n", text)
+        self.assertIn("SignatureCarrier", text)
+        self.assertIn("payload", text)
+        self.assertNotIn("exact rfl", text)
+
+    def test_fts5_declaration_evidence_adds_parser_channel(self) -> None:
+        candidates = [
+            {"Repository": "r", "FileName": "Owner.lean"},
+            {"Repository": "r", "FileName": "Mention.lean"},
+        ]
+        contents = {
+            ("r", "Owner.lean"): "irrelevant body text",
+            ("r", "Mention.lean"): "target concept appears broadly",
+        }
+        reranked = fts5_rerank(
+            "target concept",
+            candidates,
+            contents,
+            content_mode="evidence-declarations-rrf",
+            declaration_signatures={
+                ("r", "Owner.lean"): "target concept",
+                ("r", "Mention.lean"): "",
+            },
+        )
+        owner = next(item for item in reranked if item["FileName"] == "Owner.lean")
+        self.assertIn("lean-declaration-signatures", owner["SecondStageEvidence"])
+        self.assertEqual(owner["SecondStage"], "sqlite_fts5_evidence_declarations_rrf")
+
+    def test_fts5_evidence_rrf_preserves_first_stage_order_for_unmatched_candidates(self) -> None:
+        candidates = [
+            {"Repository": "r", "FileName": "A.lean", "Score": 2.0},
+            {"Repository": "r", "FileName": "B.lean", "Score": 1.0},
+        ]
+        contents = {
+            ("r", "A.lean"): "alpha",
+            ("r", "B.lean"): "beta",
+        }
+        reranked = fts5_rerank(
+            "Jordan canonical form",
+            candidates,
+            contents,
+            content_mode="evidence-rrf",
+        )
+        self.assertEqual([item["FileName"] for item in reranked], ["A.lean", "B.lean"])
+
+    def test_balanced_union_preserves_bounded_recall_from_both_retrievers(self) -> None:
+        fielded = [
+            {"Repository": "r", "FileName": "shared.lean", "Score": 3.0},
+            {"Repository": "r", "FileName": "fielded-owner.lean", "Score": 2.0},
+            {"Repository": "r", "FileName": "fielded-tail.lean", "Score": 1.0},
+        ]
+        multiquery = [
+            {"Repository": "r", "FileName": "shared.lean", "Score": 4.0},
+            {"Repository": "r", "FileName": "multi-owner.lean", "Score": 2.0},
+            {"Repository": "r", "FileName": "multi-tail.lean", "Score": 1.0},
+        ]
+        union = balanced_union(fielded, multiquery, per_retriever_depth=2)
+        self.assertEqual(
+            [item["FileName"] for item in union],
+            ["shared.lean", "fielded-owner.lean", "multi-owner.lean"],
+        )
+        self.assertEqual(union[0]["CandidateSources"], ["fielded", "multiquery"])
+        self.assertEqual(
+            union[0]["CandidateSourceRanks"],
+            {"fielded": 1, "multiquery": 1},
+        )
+        self.assertEqual(union[1]["CandidateUnionRank"], 2)
+
+    def test_union_rank_evidence_rewards_independent_first_stage_support(self) -> None:
+        reranked = [
+            {
+                "Repository": "r",
+                "FileName": "content-only.lean",
+                "Score": 0.048,
+                "CandidateUnionRank": 2,
+                "CandidateSourceRanks": {"fielded": 40},
+            },
+            {
+                "Repository": "r",
+                "FileName": "agreed-owner.lean",
+                "Score": 0.047,
+                "CandidateUnionRank": 1,
+                "CandidateSourceRanks": {"fielded": 2, "multiquery": 3},
+            },
+        ]
+        fused = add_first_stage_rank_evidence(reranked, rrf_constant=60)
+        self.assertEqual(fused[0]["FileName"], "agreed-owner.lean")
+        self.assertEqual(
+            fused[0]["SecondStage"],
+            "sqlite_fts5_plus_first_stage_rank_rrf",
+        )
+        self.assertEqual(
+            fused[0]["FirstStageRankEvidence"],
+            {"fielded": 2, "multiquery": 3},
+        )
+
+    def test_coalescing_api_search_charges_identical_request_once(self) -> None:
+        serving = evaluate.serving_options(top=50, whole=False)
+        result = [{"Repository": "r", "FileName": "owner.lean", "Score": 1}]
+        runtime = {"elapsed_ms": 7.0, "payload_bytes": 123, "returned_files": 1}
+        cache = CoalescingApiSearch()
+        with mock.patch.object(evaluate, "api_search", return_value=(result, runtime)) as search:
+            first_results, first_runtime = cache(
+                "content:toy",
+                30.0,
+                "https://example.test/api/search",
+                serving,
+                retries=2,
+            )
+            second_results, second_runtime = cache(
+                "content:toy",
+                30.0,
+                "https://example.test/api/search",
+                serving,
+                retries=2,
+            )
+        search.assert_called_once()
+        self.assertEqual(first_results, second_results)
+        self.assertEqual(first_runtime["physical_api_requests"], 1)
+        self.assertEqual(second_runtime["physical_api_requests"], 0)
+        self.assertEqual(first_runtime["payload_bytes"], 123)
+        self.assertEqual(second_runtime["payload_bytes"], 0)
+        self.assertEqual(second_runtime["coalesced_api_hits"], 1)
+
     def test_query_compiler_does_not_hide_acl2_sys_proof_metadata(self) -> None:
         for variant in ("frontend_lexical_v1", "frontend_lexical_v2", "normalized_path_content_v1"):
             compiled = evaluate.compile_query("generated induction scheme", variant)
@@ -103,11 +725,110 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
             shard_max_match_count=500,
             total_max_match_count=100000,
             whole=False,
+            use_bm25_scoring=True,
         )
         self.assertEqual(serving["max_doc_display_count"], 60)
         self.assertEqual(serving["shard_max_match_count"], 500)
         self.assertEqual(serving["total_max_match_count"], 100000)
         self.assertFalse(serving["whole"])
+        self.assertTrue(serving["use_bm25_scoring"])
+
+    def test_api_search_can_omit_chunk_matches_for_rank_only_requests(self) -> None:
+        serving = evaluate.serving_options(top=10, whole=False)
+        serving["chunk_matches"] = False
+        response = {
+            "Result": {
+                "Files": [
+                    {"Repository": "r", "FileName": "owner.lean", "Score": 7}
+                ]
+            }
+        }
+        completed = subprocess.CompletedProcess(
+            args=[], returncode=0, stdout=json.dumps(response).encode(), stderr=b""
+        )
+        with mock.patch.object(evaluate.subprocess, "run", return_value=completed) as run:
+            results, runtime = evaluate.api_search(
+                "toy theorem",
+                5.0,
+                "https://example.test/api/search",
+                serving,
+            )
+        command = run.call_args.args[0]
+        payload = json.loads(command[command.index("-d") + 1])
+        self.assertFalse(payload["Opts"]["ChunkMatches"])
+        self.assertEqual(results[0]["FileName"], "owner.lean")
+        self.assertEqual(runtime["returned_files"], 1)
+
+    def test_chunk_transport_comparison_distinguishes_identity_and_score_changes(self) -> None:
+        base = [("r", "A.lean", 4.0), ("r", "B.lean", 3.0)]
+        score_only = [("r", "A.lean", 5.0), ("r", "B.lean", 3.0)]
+        reordered = [("r", "B.lean", 3.0), ("r", "A.lean", 4.0)]
+        self.assertEqual(
+            compare_rankings(base, base),
+            {
+                "identities_equal": True,
+                "scores_equal": True,
+                "first_difference_rank": None,
+            },
+        )
+        score_comparison = compare_rankings(base, score_only)
+        self.assertTrue(score_comparison["identities_equal"])
+        self.assertFalse(score_comparison["scores_equal"])
+        self.assertEqual(score_comparison["first_difference_rank"], 1)
+        identity_comparison = compare_rankings(base, reordered)
+        self.assertFalse(identity_comparison["identities_equal"])
+        self.assertEqual(identity_comparison["first_difference_rank"], 1)
+
+    def test_chunk_transport_query_population_deduplicates_shared_requests(self) -> None:
+        gold = {
+            "cases": [
+                {"id": "one", "query": "Jordan canonical form"},
+            ]
+        }
+        expansions = {
+            "one": ["Jordan canonical form", "canonical Jordan form"],
+        }
+        queries, origins = unique_first_stage_queries(gold, expansions)
+        baseline = evaluate.compile_query("Jordan canonical form", "normalized_path_content_v1")
+        self.assertIn(baseline, queries)
+        self.assertGreaterEqual(len(origins[baseline]), 2)
+        self.assertEqual(len(queries), len(set(queries)))
+
+    def test_api_index_fingerprint_ignores_list_order_but_tracks_index_state(self) -> None:
+        def payload(order: list[str], *, documents: int = 10) -> dict:
+            entries = []
+            for name in order:
+                entries.append(
+                    {
+                        "Repository": {"Name": name, "IndexOptions": "opts"},
+                        "IndexMetadata": {
+                            "ID": f"id-{name}",
+                            "IndexFormatVersion": 16,
+                            "IndexFeatureVersion": 12,
+                            "IndexMinReaderVersion": 10,
+                            "IndexTime": "2026-09-17T00:00:00Z",
+                            "PlainASCII": False,
+                            "LanguageMap": {"Lean": 1},
+                            "ZoektVersion": "",
+                        },
+                        "Stats": {
+                            "Shards": 1,
+                            "Documents": documents,
+                            "IndexBytes": 100,
+                            "ContentBytes": 200,
+                            "NewLinesCount": 300,
+                        },
+                    }
+                )
+            return {"List": {"Repos": entries}}
+
+        left = evaluate.api_index_fingerprint_from_list(payload(["b", "a"]))
+        right = evaluate.api_index_fingerprint_from_list(payload(["a", "b"]))
+        changed = evaluate.api_index_fingerprint_from_list(payload(["a", "b"], documents=11))
+        self.assertEqual(left, right)
+        self.assertNotEqual(left["metadata_sha256"], changed["metadata_sha256"])
+        self.assertEqual(left["repository_count"], 2)
+        self.assertEqual(left["document_count"], 20)
 
     def test_query_semantics_hash_excludes_serving_budget(self) -> None:
         left = {
@@ -187,6 +908,36 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         self.assertGreater(scored["per_k"]["5"]["ndcg"], 0)
         self.assertLess(scored["per_k"]["5"]["ndcg"], 1)
 
+    def test_score_case_report_depth_controls_pooling_payload(self) -> None:
+        case = {
+            "id": "toy",
+            "query": "toy",
+            "tags": [],
+            "judgments": [{"repository": "r", "file": "owner", "relevance": 3}],
+        }
+        results = [
+            {"Repository": "r", "FileName": f"f-{index}", "Score": 100 - index}
+            for index in range(30)
+        ]
+        results[0]["FileName"] = "owner"
+        scored = evaluate.score_case(
+            case,
+            results,
+            "toy",
+            {"elapsed_ms": 1.0, "payload_bytes": 1},
+            report_depth=25,
+        )
+        self.assertEqual(len(scored["top_results"]), 25)
+        self.assertEqual(scored["top_results"][-1]["rank"], 25)
+        with self.assertRaises(ValueError):
+            evaluate.score_case(
+                case,
+                results,
+                "toy",
+                {"elapsed_ms": 1.0, "payload_bytes": 1},
+                report_depth=0,
+            )
+
     def test_aggregate_does_not_use_sparse_judgments_as_precision(self) -> None:
         case = {
             "id": "toy",
@@ -256,6 +1007,41 @@ process.stdout.write(JSON.stringify(queries.map(text => q.normalizedQueryTerms(t
         ])
         self.assertEqual(fused[0]["FileName"], "b")
         self.assertEqual(fused[0]["RRFLists"], 2)
+
+    def test_multiquery_can_retrieve_from_public_api_provider(self) -> None:
+        case = {"id": "toy", "query": "toy theorem"}
+        expansions = {"toy": ["toy result"]}
+        calls: list[str] = []
+
+        def api_search(
+            query: str,
+            timeout: float,
+            api_url: str,
+            serving: dict,
+            *,
+            retries: int = 0,
+        ) -> tuple[list[dict], dict]:
+            self.assertEqual(retries, 0)
+            calls.append(query)
+            result = {
+                "Repository": "r",
+                "FileName": "owner.lean" if "theorem" in query else "alternate.lean",
+                "Score": 1,
+            }
+            return [result], {"elapsed_ms": 1.0, "payload_bytes": 1, "returned_files": 1}
+
+        with mock.patch.object(evaluate, "api_search", side_effect=api_search):
+            fused, runtime, formulations, _ = retrieve_multiquery(
+                case,
+                expansions,
+                provider="api",
+                api_url="https://example.test/api/search",
+                serving=evaluate.serving_options(whole=False),
+            )
+        self.assertEqual(formulations, ["toy theorem", "toy result"])
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(runtime["retrieval_queries"], 2)
+        self.assertEqual({item["FileName"] for item in fused}, {"owner.lean", "alternate.lean"})
 
     def test_compare_requires_same_index_fingerprint(self) -> None:
         base = {

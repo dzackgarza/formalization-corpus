@@ -1,0 +1,4953 @@
+{
+  "api_url": "https://formalization-corpus.dzackgarza.com/api/search",
+  "cases": [
+    {
+      "compiled_query": "\"Serre\" \"duality\" \"coherent\" \"sheaves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 1,
+      "first_relevant_rank": 1,
+      "id": "serre-duality-coherent-sheaves",
+      "owner_reciprocal_rank": 1.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "Is Serre duality for coherent sheaves already formalized?",
+      "reciprocal_rank": 1.0,
+      "result_count": 5,
+      "runtime": {
+        "elapsed_ms": 5922.36830946058,
+        "payload_bytes": 67518,
+        "reported_file_count": 5,
+        "returned_files": 5,
+        "server_duration_ns": 5636273937
+      },
+      "tags": [
+        "algebraic-geometry",
+        "conversational",
+        "theorem"
+      ],
+      "top_results": [
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec24RiemannRochSerre.lean",
+          "rank": 1,
+          "relevance": 3,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8330000003.285606
+        },
+        {
+          "file": "Mathlib.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8200000009.997726
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/GBSplittingExistence.lean",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8200000003.703843
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/CanonicalSheafCurves.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8200000003.700075
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/AlgebraicGeometryI.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8200000006.955539
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Bruhat\" \"Tits\" \"tree\" file:\\.lean$ case:no",
+      "first_owner_rank": 1,
+      "first_relevant_rank": 1,
+      "id": "bruhat-tits-tree",
+      "owner_reciprocal_rank": 1.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.06666666666666667,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.5333333333333333,
+          "hit": 1,
+          "ndcg": 0.8067870916687933,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.9143016992234992,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.7333333333333333,
+          "hit": 1,
+          "ndcg": 0.83711727444152,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.9143016992234992,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.26666666666666666,
+          "hit": 1,
+          "ndcg": 0.8508676360077778,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.9143016992234992,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "does Lean have the Bruhat Tits tree?",
+      "reciprocal_rank": 1.0,
+      "result_count": 34,
+      "runtime": {
+        "elapsed_ms": 5697.479575872421,
+        "payload_bytes": 287662,
+        "reported_file_count": 34,
+        "returned_files": 34,
+        "server_duration_ns": 2644038704
+      },
+      "tags": [
+        "number-theory",
+        "geometry",
+        "conversational",
+        "repository-name"
+      ],
+      "top_results": [
+        {
+          "file": "BruhatTits/Graph/Tree.lean",
+          "rank": 1,
+          "relevance": 3,
+          "repository": "chrisflav__bruhat-tits",
+          "score": 8420000008.965517
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph/Tree.lean",
+          "rank": 2,
+          "relevance": 3,
+          "repository": "Vilin97__lean-pool",
+          "score": 8420000008.692221
+        },
+        {
+          "file": "LeanPool/BruhatTits.lean",
+          "rank": 3,
+          "relevance": 1,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000009.847801
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000009.472942
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph/Edges.lean",
+          "rank": 5,
+          "relevance": 2,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000008.494926
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph/Regular.lean",
+          "rank": 6,
+          "relevance": 2,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000008.049605
+        },
+        {
+          "file": "BruhatTits/Graph/Edges.lean",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "chrisflav__bruhat-tits",
+          "score": 8330000007.931034
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph/Vertices.lean",
+          "rank": 8,
+          "relevance": 2,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000007.815671
+        },
+        {
+          "file": "LeanPool/BruhatTits/Harmonic/Basic.lean",
+          "rank": 9,
+          "relevance": 1,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000007.753664
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph/Orientation.lean",
+          "rank": 10,
+          "relevance": 2,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000007.181511
+        },
+        {
+          "file": "LeanPool/BruhatTits/Graph/GroupAction.lean",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000007.077227
+        },
+        {
+          "file": "BruhatTits/Graph/Regular.lean",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "chrisflav__bruhat-tits",
+          "score": 8330000006.551724
+        },
+        {
+          "file": "LeanPool/BruhatTits/Harmonic/Application.lean",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000006.510711
+        },
+        {
+          "file": "BruhatTits/Graph/Vertices.lean",
+          "rank": 14,
+          "relevance": 2,
+          "repository": "chrisflav__bruhat-tits",
+          "score": 8330000005.862069
+        },
+        {
+          "file": "BruhatTits/Harmonic/Basic.lean",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "chrisflav__bruhat-tits",
+          "score": 8330000005.5172415
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/Building/BruhatTitsFixedPoint.lean",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8330000003.681236
+        },
+        {
+          "file": "BruhatTits/Graph/Orientation.lean",
+          "rank": 17,
+          "relevance": 2,
+          "repository": "chrisflav__bruhat-tits",
+          "score": 8330000003.448276
+        },
+        {
+          "file": "BruhatTits/Graph/GroupAction.lean",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "chrisflav__bruhat-tits",
+          "score": 8330000002.413794
+        },
+        {
+          "file": "BruhatTits/Harmonic/Application.lean",
+          "rank": 19,
+          "relevance": 2,
+          "repository": "chrisflav__bruhat-tits",
+          "score": 8330000001.724138
+        },
+        {
+          "file": "v1/Atlas/Buildings/code/CoxeterGroup/BruhatSubexpression.lean",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8200000002.539563
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Riemann\" \"Roch\" \"theorem\" \"algebraic\" \"curves\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 1,
+      "first_relevant_rank": 1,
+      "id": "riemann-roch-curves",
+      "owner_reciprocal_rank": 1.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.2,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.2,
+          "hit": 1,
+          "ndcg": 0.40301463303053875,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.4,
+          "hit": 1,
+          "ndcg": 0.4472238456476599,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.4,
+          "hit": 1,
+          "ndcg": 0.4472238456476599,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.4,
+          "hit": 1,
+          "ndcg": 0.4472238456476599,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.2,
+          "hit": 1,
+          "ndcg": 0.40301463303053875,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.4,
+          "hit": 1,
+          "ndcg": 0.4472238456476599,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "Riemann Roch theorem for algebraic curves",
+      "reciprocal_rank": 1.0,
+      "result_count": 96,
+      "runtime": {
+        "elapsed_ms": 10567.510324530303,
+        "payload_bytes": 1710925,
+        "reported_file_count": 96,
+        "returned_files": 96,
+        "server_duration_ns": 7751624857
+      },
+      "tags": [
+        "algebraic-geometry",
+        "theorem",
+        "natural-phrase"
+      ],
+      "top_results": [
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochCurves.lean",
+          "rank": 1,
+          "relevance": 3,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8600000005.075357
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochEulerCurves.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8600000002.984175
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RiemannRochTheorem/Corollaries.lean",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8600000002.268997
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Basic.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000007.502676
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/PlaceEquiv.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000005.972173
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Basic.lean",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000005.668926
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/Genus/Polar.lean",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000005.583303
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/LinearKneser.lean",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000005.429896
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/RRspace/Basic.lean",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000005.080271
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochDedekind.lean",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8550000004.33685
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochGeometric.lean",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8550000003.805576
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/WeilDifferential/Basic.lean",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000003.228683
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/EllipticCurve/Instances.lean",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000003.089547
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochRiemannForm.lean",
+          "rank": 14,
+          "relevance": 2,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8550000002.9578
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/RiemannRochApplications.lean",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8550000002.58101
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/EllipticCurve/PlaceDictionary.lean",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000002.397431
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/Vendored/RiemannRoch/EllipticCurve/ConcreteRegression.lean",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000002.140564
+        },
+        {
+          "file": "TauCetiRoadmap/AlgebraicCurves/Suggested.lean",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "score": 8500000006.491228
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/SerreDualityCurves.lean",
+          "rank": 19,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8500000004.532781
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/CanonicalSheafCurves.lean",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8500000003.700075
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"mapping\" \"cone\" \"criterion\" \"quasi\" \"isomorphisms\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": null,
+      "first_relevant_rank": null,
+      "id": "mapping-cone-quasi-isomorphism",
+      "owner_reciprocal_rank": 0.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        }
+      },
+      "query": "mapping cone criterion for quasi isomorphisms",
+      "reciprocal_rank": 0.0,
+      "result_count": 2,
+      "runtime": {
+        "elapsed_ms": 6583.726391196251,
+        "payload_bytes": 66467,
+        "reported_file_count": 2,
+        "returned_files": 2,
+        "server_duration_ns": 6319083839
+      },
+      "tags": [
+        "homological-algebra",
+        "descriptive",
+        "terminology"
+      ],
+      "top_results": [
+        {
+          "file": "Mathlib.lean",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8330000009.997726
+        },
+        {
+          "file": "LeanPool.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000009.997182
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Jordan\" \"canonical\" \"form\" \"linear\" \"operator\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": null,
+      "first_relevant_rank": null,
+      "id": "jordan-canonical-form",
+      "owner_reciprocal_rank": 0.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "10": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        }
+      },
+      "query": "Jordan canonical form of a linear operator",
+      "reciprocal_rank": 0.0,
+      "result_count": 9,
+      "runtime": {
+        "elapsed_ms": 6440.022423863411,
+        "payload_bytes": 551873,
+        "reported_file_count": 9,
+        "returned_files": 9,
+        "server_duration_ns": 5679173367
+      },
+      "tags": [
+        "linear-algebra",
+        "synonym",
+        "theorem"
+      ],
+      "top_results": [
+        {
+          "file": "PhyslibAlpha/AlgebraicFramework/HilbertSpace/Unbounded/UnitaryInfra/SesquilinearForm.lean",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "leanprover-community__physlib",
+          "score": 8500000000.142687
+        },
+        {
+          "file": "Mathlib/Algebra/Jordan/Basic.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8420000008.415189
+        },
+        {
+          "file": "thys/Complex_Bounded_Operators/Cblinfun_Matrix.thy",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "score": 8420000003.119055
+        },
+        {
+          "file": "Mathlib.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8330000009.997726
+        },
+        {
+          "file": "FastMultiplication/ShorVerification/Implementation/ModularExponentiation/Proofs/Step1QPE.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "VerifiedQC__ForShor",
+          "score": 8330000004.565217
+        },
+        {
+          "file": "TauCetiRoadmap/RepresentationTheory/LieHighestWeight/Suggested.lean",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "score": 8330000001.052631
+        },
+        {
+          "file": "OddOrder.lean",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8330000010
+        },
+        {
+          "file": "v1/Atlas/Buildings/Buildings.lean",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8330000009.988696
+        },
+        {
+          "file": "TNLean/Channel/WolfChapter6Index.lean",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "LionSR__TNLean",
+          "score": 8330000007.385977
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Hensel\" \"lemma\" \"over\" \"complete\" \"discrete\" \"valuation\" \"rings\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": null,
+      "first_relevant_rank": 3,
+      "id": "hensel-complete-dvr",
+      "owner_reciprocal_rank": 0.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.07692307692307693,
+          "hit": 1,
+          "ndcg": 0.0214601728130994,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.07692307692307693,
+          "hit": 1,
+          "ndcg": 0.020737591121143865,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.07692307692307693,
+          "hit": 1,
+          "ndcg": 0.020737591121143865,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.07692307692307693,
+          "hit": 1,
+          "ndcg": 0.020737591121143865,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.07692307692307693,
+          "hit": 1,
+          "ndcg": 0.026189250454314566,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.07692307692307693,
+          "hit": 1,
+          "ndcg": 0.020737591121143865,
+          "owner_hit": 0,
+          "source_hit": 1
+        }
+      },
+      "query": "Hensel lemma over complete discrete valuation rings",
+      "reciprocal_rank": 0.3333333333333333,
+      "result_count": 3,
+      "runtime": {
+        "elapsed_ms": 11367.014471441507,
+        "payload_bytes": 201352,
+        "reported_file_count": 3,
+        "returned_files": 3,
+        "server_duration_ns": 10986209086
+      },
+      "tags": [
+        "number-theory",
+        "commutative-algebra",
+        "theorem",
+        "descriptive"
+      ],
+      "top_results": [
+        {
+          "file": "Mathlib.lean",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8500000009.997726
+        },
+        {
+          "file": "TauCetiRoadmap/LocalFieldsRamification/Suggested.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "score": 8500000002.807017
+        },
+        {
+          "file": "TauCeti/RingTheory/DedekindDomain/AdicCompletionExtension.lean",
+          "rank": 3,
+          "relevance": 1,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8500000002.804305
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"fundamental\" \"group\" \"covering\" \"space\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 6,
+      "first_relevant_rank": 6,
+      "id": "fundamental-group-covering-space",
+      "owner_reciprocal_rank": 0.16666666666666666,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.280390126950546,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.366738071551199,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.366738071551199,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.366738071551199,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.366738071551199,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "fundamental group of a covering space",
+      "reciprocal_rank": 0.16666666666666666,
+      "result_count": 139,
+      "runtime": {
+        "elapsed_ms": 19591.78727772087,
+        "payload_bytes": 10789792,
+        "reported_file_count": 141,
+        "returned_files": 139,
+        "server_duration_ns": 8166910281
+      },
+      "tags": [
+        "algebraic-topology",
+        "descriptive"
+      ],
+      "top_results": [
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Circle/FundamentalGroup.lean",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8420000001.350293
+        },
+        {
+          "file": "Instance/Top/FundamentalGroupoid.v",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 8420000001.028513
+        },
+        {
+          "file": "axioms.lisp",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "acl2__acl2",
+          "score": 8200000009.986308
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/Basic.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8420000000.786693
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/Opposite.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8420000000.547945
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Deck/FundamentalGroup/UniversalCover.lean",
+          "rank": 6,
+          "relevance": 3,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8420000000.258317
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/RealProjective/FundamentalGroup/Basic.lean",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8420000000.213307
+        },
+        {
+          "file": "TauCeti/AlgebraicTopology/UniversalCover/Classification/FundamentalGroupAction.lean",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8420000000.2093935
+        },
+        {
+          "file": "projects/AdicSpaces/Adic spaces/Wedhorn828.lean",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8330000009.864431
+        },
+        {
+          "file": "projects/AdicSpaces/Adic spaces/StructureSheaf.lean",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8330000009.7467
+        },
+        {
+          "file": "TauCeti/Topology/Covering/Sigma.lean",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8330000009.708415
+        },
+        {
+          "file": "Jacobians/Topology/CoveringPi1.lean",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "score": 8330000009.573241
+        },
+        {
+          "file": "projects/AdicSpaces/Adic spaces/GeometricReduction.lean",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8330000009.475562
+        },
+        {
+          "file": "TauCeti/Topology/Homotopy/Covering.lean",
+          "rank": 14,
+          "relevance": 2,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8330000009.389433
+        },
+        {
+          "file": "TauCeti/Topology/Covering/Quotient.lean",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8330000009.379648
+        },
+        {
+          "file": "TauCeti/Topology/Covering/Category.lean",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8330000009.348336
+        },
+        {
+          "file": "Adic spaces/Wedhorn828.lean",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "score": 8330000009.172933
+        },
+        {
+          "file": "Adic spaces/StructureSheaf.lean",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "CBirkbeck__uniform-sheafy-tate-domains-lean",
+          "score": 8330000008.39599
+        },
+        {
+          "file": "Jacobians/RiemannSurface/CoveringGeneration.lean",
+          "rank": 19,
+          "relevance": 0,
+          "repository": "mrdouglasny__jacobian-challenge",
+          "score": 8330000008.292964
+        },
+        {
+          "file": "TauCeti/Topology/Covering/Monodromy/Full.lean",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8330000008.291585
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"smooth\" \"manifolds\" \"boundary\" \"collars\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 1,
+      "first_relevant_rank": 1,
+      "id": "manifold-boundary-collar",
+      "owner_reciprocal_rank": 1.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "smooth manifolds with boundary and collars",
+      "reciprocal_rank": 1.0,
+      "result_count": 3,
+      "runtime": {
+        "elapsed_ms": 3182.3655162006617,
+        "payload_bytes": 65901,
+        "reported_file_count": 3,
+        "returned_files": 3,
+        "server_duration_ns": 2926698651
+      },
+      "tags": [
+        "differential-geometry",
+        "descriptive"
+      ],
+      "top_results": [
+        {
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Local.lean",
+          "rank": 1,
+          "relevance": 3,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8330000006.013699
+        },
+        {
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Global.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8330000005.810176
+        },
+        {
+          "file": "TauCeti/Geometry/Manifold/Boundary/Collar/Diffeomorph.lean",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8330000004.074364
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"existence\" \"injective\" \"resolutions\" \"abelian\" \"categories\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": null,
+      "first_relevant_rank": 2,
+      "id": "injective-resolutions",
+      "owner_reciprocal_rank": 0.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "10": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.2128453970090281,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.2128453970090281,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.2128453970090281,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.2128453970090281,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.2128453970090281,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.2128453970090281,
+          "owner_hit": 0,
+          "source_hit": 1
+        }
+      },
+      "query": "existence of injective resolutions in abelian categories",
+      "reciprocal_rank": 0.5,
+      "result_count": 3,
+      "runtime": {
+        "elapsed_ms": 8218.73916964978,
+        "payload_bytes": 78110,
+        "reported_file_count": 3,
+        "returned_files": 3,
+        "server_duration_ns": 7864518800
+      },
+      "tags": [
+        "category-theory",
+        "homological-algebra",
+        "descriptive"
+      ],
+      "top_results": [
+        {
+          "file": "Structure/Abelian.v",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 8420000008.1670065
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/LeftDerived.lean",
+          "rank": 2,
+          "relevance": 2,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8420000003.626649
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/RightDerived.lean",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8420000003.278763
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Hilbert\" \"Nullstellensatz\" \"affine\" \"varieties\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": null,
+      "first_relevant_rank": null,
+      "id": "nullstellensatz-affine",
+      "owner_reciprocal_rank": 0.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        }
+      },
+      "query": "Hilbert Nullstellensatz for affine varieties",
+      "reciprocal_rank": 0.0,
+      "result_count": 5,
+      "runtime": {
+        "elapsed_ms": 2640.029089525342,
+        "payload_bytes": 113185,
+        "reported_file_count": 5,
+        "returned_files": 5,
+        "server_duration_ns": 2284478650
+      },
+      "tags": [
+        "algebraic-geometry",
+        "commutative-algebra",
+        "theorem"
+      ],
+      "top_results": [
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/AffineVarieties.lean",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8330000005.938207
+        },
+        {
+          "file": "v1/Atlas/EllipticCurves/code/AlgebraicGeometry.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8200000006.936699
+        },
+        {
+          "file": "v1/Atlas/ArithmeticGeometry/code/TangentSpaces.lean",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8200000006.902788
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec3ProjectiveNoether.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8200000003.31575
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/AlgebraicGeometryI.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8200000006.955539
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Pontryagin\" \"duality\" \"finite\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 1,
+      "first_relevant_rank": 1,
+      "id": "pontryagin-duality-finite-abelian",
+      "owner_reciprocal_rank": 1.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.7871546029909718,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "Pontryagin duality for finite abelian groups",
+      "reciprocal_rank": 1.0,
+      "result_count": 9,
+      "runtime": {
+        "elapsed_ms": 3425.689583644271,
+        "payload_bytes": 357725,
+        "reported_file_count": 9,
+        "returned_files": 9,
+        "server_duration_ns": 2873191426
+      },
+      "tags": [
+        "harmonic-analysis",
+        "group-theory",
+        "exact-name"
+      ],
+      "top_results": [
+        {
+          "file": "Mathlib/Analysis/Fourier/FiniteAbelian/PontryaginDuality.lean",
+          "rank": 1,
+          "relevance": 3,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8600000000.559345
+        },
+        {
+          "file": "TauCeti/LinearAlgebra/FiniteBilinearModule/Basic.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8420000005.589041
+        },
+        {
+          "file": "Instance/Ab/Character/Finite.v",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 8420000002.057027
+        },
+        {
+          "file": "Mathlib.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8330000009.997726
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S06_CertainTypeCharacters.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8330000006.526069
+        },
+        {
+          "file": "projects/FltRegularBernoulli/BernoulliRegular/Reflection/Comparison.lean",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8330000006.39315
+        },
+        {
+          "file": "Instance/Ab/Character.v",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 8330000006.191446
+        },
+        {
+          "file": "thys/Dirichlet_L/Multiplicative_Characters.thy",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "score": 8330000004.508504
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S12_MaximalIII_IV_V_Core/Hypothesis.lean",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8330000004.141769
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Morse\" \"lemma\" \"nondegenerate\" \"critical\" \"point\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 4,
+      "first_relevant_rank": 2,
+      "id": "morse-lemma",
+      "owner_reciprocal_rank": 0.25,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5518544320968081,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5518544320968081,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5518544320968081,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5518544320968081,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5518544320968081,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5518544320968081,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "Morse lemma near a nondegenerate critical point",
+      "reciprocal_rank": 0.5,
+      "result_count": 5,
+      "runtime": {
+        "elapsed_ms": 5908.224554732442,
+        "payload_bytes": 176616,
+        "reported_file_count": 5,
+        "returned_files": 5,
+        "server_duration_ns": 5634314387
+      },
+      "tags": [
+        "differential-geometry",
+        "analysis",
+        "theorem"
+      ],
+      "top_results": [
+        {
+          "file": "TauCeti/Analysis/Calculus/Morse/Index.lean",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8420000008.896282
+        },
+        {
+          "file": "TauCeti/Analysis/Calculus/Morse/Basic.lean",
+          "rank": 2,
+          "relevance": 2,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8420000008.8551855
+        },
+        {
+          "file": "TauCeti/Analysis/Calculus/Morse/Generic.lean",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8420000008.395304
+        },
+        {
+          "file": "TauCeti/Analysis/Calculus/Morse/NormalForm.lean",
+          "rank": 4,
+          "relevance": 3,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8420000007.610567
+        },
+        {
+          "file": "TauCeti/Analysis/Normed/Algebra/SquareRoot.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8330000007.757339
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"classification\" \"finitely\" \"generated\" \"abelian\" \"groups\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": null,
+      "first_relevant_rank": null,
+      "id": "fg-abelian-structure-theorem",
+      "owner_reciprocal_rank": 0.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "10": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        }
+      },
+      "query": "classification of finitely generated abelian groups",
+      "reciprocal_rank": 0.0,
+      "result_count": 6,
+      "runtime": {
+        "elapsed_ms": 5223.908256739378,
+        "payload_bytes": 155476,
+        "reported_file_count": 6,
+        "returned_files": 6,
+        "server_duration_ns": 4917244434
+      },
+      "tags": [
+        "algebra",
+        "group-theory",
+        "synonym",
+        "theorem"
+      ],
+      "top_results": [
+        {
+          "file": "TauCetiRoadmap/ProfiniteProPGroups/Suggested.lean",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "score": 8420000004.385965
+        },
+        {
+          "file": "Mathlib.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8330000009.997726
+        },
+        {
+          "file": "TauCetiRoadmap/EllipticCurves/Suggested.lean",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "score": 8330000007.368421
+        },
+        {
+          "file": "ImscribingGrammar/Millennium/BSD.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "umpolungfish__Imscribing_Grammar",
+          "score": 8330000006.666667
+        },
+        {
+          "file": "TauCetiRoadmap/RepresentationTheory/LieHighestWeight/Suggested.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "score": 8330000001.052631
+        },
+        {
+          "file": "LeanPool.lean",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000009.997182
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Stone\" \"Weierstrass\" \"theorem\" \"continuous\" \"functions\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 1,
+      "first_relevant_rank": 1,
+      "id": "stone-weierstrass",
+      "owner_reciprocal_rank": 1.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "Stone Weierstrass theorem for continuous functions",
+      "reciprocal_rank": 1.0,
+      "result_count": 46,
+      "runtime": {
+        "elapsed_ms": 10625.431611202657,
+        "payload_bytes": 5044778,
+        "reported_file_count": 46,
+        "returned_files": 46,
+        "server_duration_ns": 6594899267
+      },
+      "tags": [
+        "analysis",
+        "topology",
+        "exact-name"
+      ],
+      "top_results": [
+        {
+          "file": "Mathlib/Topology/ContinuousMap/StoneWeierstrass.lean",
+          "rank": 1,
+          "relevance": 3,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8550000002.00432
+        },
+        {
+          "file": "projects/PadicLFunctions/PadicLFunctions/Coleman/Theorem.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8500000008.858366
+        },
+        {
+          "file": "src/HOL/Analysis/Weierstrass_Theorems.thy",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "isabelle-prover__mirror-isabelle",
+          "score": 8500000001.6866865
+        },
+        {
+          "file": "Mathlib/Topology/ContinuousMap/Weierstrass.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8500000003.780128
+        },
+        {
+          "file": "1002/lean/Erdos1002/GaussMovingSignedMarkedContinuous.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "ShouqiaoW__erdos",
+          "score": 8420000007.330176
+        },
+        {
+          "file": "Mathlib/Topology/ContinuousMap/Algebra.lean",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8420000005.027286
+        },
+        {
+          "file": "Game/Levels/L14Levels/L01_BolzanoWeierstrass.lean",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "AlexKontorovich__RealAnalysisGame",
+          "score": 8420000000.594059
+        },
+        {
+          "file": "Mathlib/Analysis/SpecialFunctions/MulExpNegMulSqIntegral.lean",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8420000000.5479765
+        },
+        {
+          "file": "Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Basic.lean",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8420000000.1489315
+        },
+        {
+          "file": "Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Unique.lean",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8420000000.121646
+        },
+        {
+          "file": "Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Unital.lean",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8420000000.120509
+        },
+        {
+          "file": "Mathlib/Analysis/CStarAlgebra/ContinuousFunctionalCalculus/NonUnital.lean",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8420000000.076171
+        },
+        {
+          "file": "Mathlib.lean",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8330000009.997726
+        },
+        {
+          "file": "thys/Fourier/Fourier.thy",
+          "rank": 14,
+          "relevance": 0,
+          "repository": "isabelle-prover__mirror-afp-devel",
+          "score": 8330000009.661108
+        },
+        {
+          "file": "100/fourier.ml",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "jrh13__hol-light",
+          "score": 8330000007.856094
+        },
+        {
+          "file": "100/fourier.ml",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "CakeML__candle",
+          "score": 8330000007.7570095
+        },
+        {
+          "file": "LeanPool/Vlasov/OT/WeakToLagrangian.lean",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "Vilin97__lean-pool",
+          "score": 8330000007.528185
+        },
+        {
+          "file": "TauCetiRoadmap/EllipticCurves/Suggested.lean",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "score": 8330000007.368421
+        },
+        {
+          "file": "TauCeti/RepresentationTheory/SU2/Exhaustion.lean",
+          "rank": 19,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8330000007.348336
+        },
+        {
+          "file": "QuantumInfo/ForMathlib/HermitianMat/CFC.lean",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "leanprover-community__physlib",
+          "score": 8330000007.336504
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"construction\" \"Brownian\" \"motion\" \"Gaussian\" \"processes\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": null,
+      "first_relevant_rank": 1,
+      "id": "brownian-motion-construction",
+      "owner_reciprocal_rank": 0.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.25,
+          "hit": 1,
+          "ndcg": 0.42857142857142855,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.25,
+          "hit": 1,
+          "ndcg": 0.21114065435315313,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.25,
+          "hit": 1,
+          "ndcg": 0.21114065435315313,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.25,
+          "hit": 1,
+          "ndcg": 0.21114065435315313,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.25,
+          "hit": 1,
+          "ndcg": 0.21114065435315313,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.25,
+          "hit": 1,
+          "ndcg": 0.21114065435315313,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.25,
+          "hit": 1,
+          "ndcg": 0.21114065435315313,
+          "owner_hit": 0,
+          "source_hit": 1
+        }
+      },
+      "query": "construction of Brownian motion from Gaussian processes",
+      "reciprocal_rank": 1.0,
+      "result_count": 4,
+      "runtime": {
+        "elapsed_ms": 3773.361122235656,
+        "payload_bytes": 74731,
+        "reported_file_count": 4,
+        "returned_files": 4,
+        "server_duration_ns": 3467777242
+      },
+      "tags": [
+        "probability",
+        "descriptive",
+        "repository-name"
+      ],
+      "top_results": [
+        {
+          "file": "Mathlib/Probability/BrownianMotion/GaussianProjectiveFamily.lean",
+          "rank": 1,
+          "relevance": 2,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8550000000.345612
+        },
+        {
+          "file": "MathFin/Foundations/ItoIntegralBrownian.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "formal-applied-math__formal-mathfin",
+          "score": 8420000002.642858
+        },
+        {
+          "file": "MathFin/Foundations/ExpMartingaleQBrownian.lean",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "formal-applied-math__formal-mathfin",
+          "score": 8420000001.678572
+        },
+        {
+          "file": "verso/Manual/Front.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "RemyDegenne__brownian-motion",
+          "score": 8330000009.789474
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"sphere\" \"eversion\" \"h\" \"principle\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 10,
+      "first_relevant_rank": 2,
+      "id": "sphere-eversion",
+      "owner_reciprocal_rank": 0.1,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.44038410560793934,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.44038410560793934,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.44038410560793934,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.44038410560793934,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.2128453970090281,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.44038410560793934,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "sphere eversion via the h principle",
+      "reciprocal_rank": 0.5,
+      "result_count": 18,
+      "runtime": {
+        "elapsed_ms": 7116.4038348942995,
+        "payload_bytes": 7397769,
+        "reported_file_count": 18,
+        "returned_files": 18,
+        "server_duration_ns": 2712053485
+      },
+      "tags": [
+        "differential-topology",
+        "exact-name",
+        "repository-name"
+      ],
+      "top_results": [
+        {
+          "file": "SphereEversion/Local/HPrinciple.lean",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8550000008.030303
+        },
+        {
+          "file": "SphereEversion/Local/ParametricHPrinciple.lean",
+          "rank": 2,
+          "relevance": 2,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8550000004.848485
+        },
+        {
+          "file": "Multivariate/complex_database.ml",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "jrh13__hol-light",
+          "score": 8200000001.262849
+        },
+        {
+          "file": "SphereEversion/Main.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8500000009.848485
+        },
+        {
+          "file": "SphereEversion/Indexing.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8500000009.69697
+        },
+        {
+          "file": "SphereEversion/Global/Gromov.lean",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8500000008.939394
+        },
+        {
+          "file": "SphereEversion/Local/Relation.lean",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8500000008.787879
+        },
+        {
+          "file": "SphereEversion/Global/Relation.lean",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8500000008.484848
+        },
+        {
+          "file": "SphereEversion/Global/Immersion.lean",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8500000008.181818
+        },
+        {
+          "file": "SphereEversion/Local/SphereEversion.lean",
+          "rank": 10,
+          "relevance": 3,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8500000006.666667
+        },
+        {
+          "file": "SphereEversion/Global/ParametricityForFree.lean",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8500000004.242424
+        },
+        {
+          "file": "SphereEversion/Global/LocalizedConstruction.lean",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8500000003.939394
+        },
+        {
+          "file": "LeanCourse25/Lectures/Lecture24.lean",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "fpvandoorn__LeanCourse25",
+          "score": 8200000007.692307
+        },
+        {
+          "file": "LeanCourse25/Lectures/Lecture25.lean",
+          "rank": 14,
+          "relevance": 0,
+          "repository": "fpvandoorn__LeanCourse25",
+          "score": 8200000007.051282
+        },
+        {
+          "file": "LeanCourse/Lectures/Lecture10Before.lean",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "fpvandoorn__LeanCourse24",
+          "score": 8200000006.896552
+        },
+        {
+          "file": "LeanCourse25/Lectures/Lecture24After.lean",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "fpvandoorn__LeanCourse25",
+          "score": 8200000003.717949
+        },
+        {
+          "file": "Multivariate/complex_database.ml",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "CakeML__candle",
+          "score": 8200000001.168224
+        },
+        {
+          "file": "SphereEversion.lean",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "leanprover-community__sphere-eversion",
+          "score": 8500000010
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Carleson\" \"theorem\" \"pointwise\" \"convergence\" \"Fourier\" \"series\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": null,
+      "first_relevant_rank": null,
+      "id": "carleson-theorem",
+      "owner_reciprocal_rank": 0.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "10": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "100": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "20": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "200": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "5": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "50": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        }
+      },
+      "query": "Carleson theorem on pointwise convergence of Fourier series",
+      "reciprocal_rank": 0.0,
+      "result_count": 0,
+      "runtime": {
+        "elapsed_ms": 5373.138795606792,
+        "payload_bytes": 500,
+        "reported_file_count": 0,
+        "returned_files": 0,
+        "server_duration_ns": 5165123440
+      },
+      "tags": [
+        "harmonic-analysis",
+        "theorem",
+        "repository-name"
+      ],
+      "top_results": []
+    },
+    {
+      "compiled_query": "\"dyadic\" \"Hilbert\" \"symbol\" \"over\" \"Q2\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": null,
+      "first_relevant_rank": null,
+      "id": "dyadic-hilbert-symbol",
+      "owner_reciprocal_rank": 0.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "10": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "100": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "20": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "200": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "5": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "50": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        }
+      },
+      "query": "dyadic Hilbert symbol over Q2",
+      "reciprocal_rank": 0.0,
+      "result_count": 1,
+      "runtime": {
+        "elapsed_ms": 2821.2124994024634,
+        "payload_bytes": 81752,
+        "reported_file_count": 1,
+        "returned_files": 1,
+        "server_duration_ns": 2611238452
+      },
+      "tags": [
+        "number-theory",
+        "quadratic-forms",
+        "exact-name"
+      ],
+      "top_results": [
+        {
+          "file": "TauCetiRoadmap/QuadraticFormInvariants/Suggested.lean",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCetiRoadmap",
+          "score": 8330000002.631579
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Yoneda\" \"lemma\" \"univalent\" \"categories\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": null,
+      "first_relevant_rank": 1,
+      "id": "yoneda-univalent-categories",
+      "owner_reciprocal_rank": 0.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.3333333333333333,
+          "hit": 1,
+          "ndcg": 0.42857142857142855,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.3333333333333333,
+          "hit": 1,
+          "ndcg": 0.2322609126342973,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.3333333333333333,
+          "hit": 1,
+          "ndcg": 0.2322609126342973,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.3333333333333333,
+          "hit": 1,
+          "ndcg": 0.2322609126342973,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.3333333333333333,
+          "hit": 1,
+          "ndcg": 0.2322609126342973,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.3333333333333333,
+          "hit": 1,
+          "ndcg": 0.2322609126342973,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.3333333333333333,
+          "hit": 1,
+          "ndcg": 0.2322609126342973,
+          "owner_hit": 0,
+          "source_hit": 1
+        }
+      },
+      "query": "Yoneda lemma for univalent categories",
+      "reciprocal_rank": 1.0,
+      "result_count": 27,
+      "runtime": {
+        "elapsed_ms": 5957.988731563091,
+        "payload_bytes": 560430,
+        "reported_file_count": 27,
+        "returned_files": 27,
+        "server_duration_ns": 5263197779
+      },
+      "tags": [
+        "category-theory",
+        "cross-prover",
+        "exact-name"
+      ],
+      "top_results": [
+        {
+          "file": "UniMath/Bicategories/Core/YonedaLemma.v",
+          "rank": 1,
+          "relevance": 2,
+          "repository": "UniMath__UniMath",
+          "score": 8500000008.608748
+        },
+        {
+          "file": "UniMath/Bicategories/RezkCompletions/BicatToLocalUnivalentBicat.v",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8420000002.308627
+        },
+        {
+          "file": "src/Cat/Univalent/Rezk.lagda.md",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "the1lab__1lab",
+          "score": 8330000007.309711
+        },
+        {
+          "file": "UniMath/CategoryTheory/Categories/KaroubiEnvelope/UnivalentKaroubi.v",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8420000001.749696
+        },
+        {
+          "file": "theories/Categories.v",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "HoTT__Coq-HoTT",
+          "score": 8330000009.460318
+        },
+        {
+          "file": "UniMath/Bicategories/DisplayedBicats/Examples/CwF.v",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8330000005.844471
+        },
+        {
+          "file": "UniMath/CategoryTheory/Categories/HSET/Structures.v",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8330000005.814095
+        },
+        {
+          "file": "UniMath/CategoryTheory/Categories/PreorderCategory/Sieves.v",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8330000004.10085
+        },
+        {
+          "file": "UniMath/CategoryTheory/RepresentableFunctors/Precategories.v",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8330000003.742406
+        },
+        {
+          "file": "source/Lifting/UnivalentWildCategory.lagda",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "martinescardo__TypeTopology",
+          "score": 8330000003.343373
+        },
+        {
+          "file": "UniMath/CategoryTheory/Categories/KaroubiEnvelope/SetKaroubi.v",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8330000003.122722
+        },
+        {
+          "file": "Cubical/Categories/Presheaf/Representable.agda",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "agda__cubical",
+          "score": 8330000002.635079
+        },
+        {
+          "file": "UniMath/Bicategories/RezkCompletions/RezkCompletionOfBicategory.v",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8330000002.575942
+        },
+        {
+          "file": "src/HoTT.lagda.md",
+          "rank": 14,
+          "relevance": 0,
+          "repository": "the1lab__1lab",
+          "score": 8200000010
+        },
+        {
+          "file": "src/category-theory.lagda.md",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "UniMath__agda-unimath",
+          "score": 8200000009.888231
+        },
+        {
+          "file": "contrib/HoTTBook.v",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "HoTT__Coq-HoTT",
+          "score": 8200000009.746032
+        },
+        {
+          "file": "UniMath/CategoryTheory/Monics.v",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8200000009.568651
+        },
+        {
+          "file": "src/1Lab/intro.lagda.md",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "the1lab__1lab",
+          "score": 8200000009.488189
+        },
+        {
+          "file": "theories/Pointed/Core.v",
+          "rank": 19,
+          "relevance": 0,
+          "repository": "HoTT__Coq-HoTT",
+          "score": 8200000008.777778
+        },
+        {
+          "file": "src/Cat/Allegory/Base.lagda.md",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "the1lab__1lab",
+          "score": 8200000007.742783
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Grothendieck\" \"construction\" \"indexed\" \"categories\" \"fibrations\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 9,
+      "first_relevant_rank": 9,
+      "id": "grothendieck-construction-indexed-categories",
+      "owner_reciprocal_rank": 0.1111111111111111,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.18457569677956817,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.18457569677956817,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.18457569677956817,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.18457569677956817,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 0.18457569677956817,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "Grothendieck construction for indexed categories and fibrations",
+      "reciprocal_rank": 0.1111111111111111,
+      "result_count": 15,
+      "runtime": {
+        "elapsed_ms": 3999.020549468696,
+        "payload_bytes": 382222,
+        "reported_file_count": 15,
+        "returned_files": 15,
+        "server_duration_ns": 3627724471
+      },
+      "tags": [
+        "category-theory",
+        "cross-prover",
+        "descriptive"
+      ],
+      "top_results": [
+        {
+          "file": "UniMath/Bicategories/Grothendieck/Unit.v",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8500000008.35966
+        },
+        {
+          "file": "UniMath/Bicategories/Grothendieck/Counit.v",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8500000007.897934
+        },
+        {
+          "file": "src/Cat/Bi/Functor/IndexedCategory.lagda.md",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "the1lab__1lab",
+          "score": 8420000001.627296
+        },
+        {
+          "file": "UniMath/Bicategories/Grothendieck/Biequivalence.v",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8500000006.470231
+        },
+        {
+          "file": "UniMath/Bicategories/Grothendieck/FibrationToPseudoFunctor.v",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8500000003.778858
+        },
+        {
+          "file": "UniMath/Bicategories/Grothendieck/PseudoFunctorToFibration.v",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8500000003.705954
+        },
+        {
+          "file": "Construction/Grothendieck.v",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 8500000003.655805
+        },
+        {
+          "file": "UniMath/CategoryTheory/IndexedCategories/IndexedFunctorToCartesian.v",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8500000001.8226
+        },
+        {
+          "file": "UniMath/CategoryTheory/IndexedCategories/IndexedCategoryToFibration.v",
+          "rank": 9,
+          "relevance": 3,
+          "repository": "UniMath__UniMath",
+          "score": 8500000001.464155
+        },
+        {
+          "file": "Construction/Grothendieck/RoundTrip.v",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 8500000000.478615
+        },
+        {
+          "file": "Mathlib.lean",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8330000009.997726
+        },
+        {
+          "file": "src/1Lab/intro.lagda.md",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "the1lab__1lab",
+          "score": 8330000009.488189
+        },
+        {
+          "file": "Theory/Fibration.v",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 8330000008.604888
+        },
+        {
+          "file": "Theory/Displayed.v",
+          "rank": 14,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 8330000008.584521
+        },
+        {
+          "file": "UniMath/CategoryTheory/DisplayedCats/Core.v",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "UniMath__UniMath",
+          "score": 8330000007.752127
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Feit\" \"Thompson\" \"odd\" \"order\" \"theorem\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 3,
+      "first_relevant_rank": 3,
+      "id": "feit-thompson-odd-order",
+      "owner_reciprocal_rank": 0.3333333333333333,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "10": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.5,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "formal proof of the Feit Thompson odd order theorem",
+      "reciprocal_rank": 0.3333333333333333,
+      "result_count": 59,
+      "runtime": {
+        "elapsed_ms": 6281.50715213269,
+        "payload_bytes": 2843328,
+        "reported_file_count": 61,
+        "returned_files": 59,
+        "server_duration_ns": 3462918650
+      },
+      "tags": [
+        "group-theory",
+        "cross-prover",
+        "theorem"
+      ],
+      "top_results": [
+        {
+          "file": "OddOrder/FeitThompson.lean",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8600000009.994143
+        },
+        {
+          "file": "OddOrder/FeitThompsonSetup.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8600000009.90627
+        },
+        {
+          "file": "theories/stripped_odd_order_theorem.v",
+          "rank": 3,
+          "relevance": 3,
+          "repository": "math-comp__odd-order",
+          "score": 8550000000.571428
+        },
+        {
+          "file": "OddOrder/FeitThompsonNuGrid.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8600000009.871119
+        },
+        {
+          "file": "OddOrder/FeitThompsonPairProducer.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8600000009.47276
+        },
+        {
+          "file": "OddOrder/FeitThompsonCharacterData.lean",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8600000009.185705
+        },
+        {
+          "file": "OddOrder/FeitThompsonSection16Core.lean",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8600000009.16813
+        },
+        {
+          "file": "OddOrder/Isaacs/Ch07_ThompsonSubgroup/Basic.lean",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8550000007.006444
+        },
+        {
+          "file": "OddOrder/Peterfalvi/Appendices/FeitSibleyInduction.lean",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8550000005.313416
+        },
+        {
+          "file": "OddOrder/BG/AppC_SL2Example.lean",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000009.876977
+        },
+        {
+          "file": "OddOrder/BG/AppC_HypothesisB.lean",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000009.83597
+        },
+        {
+          "file": "OddOrder/BG/AppC_LemmaC3_Setup.lean",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000009.70123
+        },
+        {
+          "file": "OddOrder/BG/AppD_CNGroups/Basic.lean",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000009.642648
+        },
+        {
+          "file": "OddOrder/BG/AppE_FurtherResults.lean",
+          "rank": 14,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000009.613357
+        },
+        {
+          "file": "OddOrder/Isaacs/Ch01_Sylow/Main.lean",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000009.607498
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S08_YsetInner.lean",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000009.33802
+        },
+        {
+          "file": "OddOrder/BG/AppE_FiliformRefutation.lean",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000009.103691
+        },
+        {
+          "file": "OddOrder/BG/AppC_FinalContradiction.lean",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000009.086116
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S01_Introduction.lean",
+          "rank": 19,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000008.93966
+        },
+        {
+          "file": "OddOrder/Peterfalvi/S08_GeneralAdjoin.lean",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000008.664324
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"Jordan\" \"curve\" \"theorem\" file:\\.miz$ case:no",
+      "first_owner_rank": 1,
+      "first_relevant_rank": 1,
+      "id": "mizar-jordan-curve",
+      "owner_reciprocal_rank": 1.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.5,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.9176601606601069,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.9176601606601069,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.9176601606601069,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.9176601606601069,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.9176601606601069,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.9176601606601069,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "Jordan curve theorem in Mizar",
+      "reciprocal_rank": 1.0,
+      "result_count": 43,
+      "runtime": {
+        "elapsed_ms": 1821.2061868980527,
+        "payload_bytes": 3069148,
+        "reported_file_count": 43,
+        "returned_files": 43,
+        "server_duration_ns": 979697909
+      },
+      "tags": [
+        "topology",
+        "cross-prover",
+        "theorem",
+        "proof-assistant-name"
+      ],
+      "top_results": [
+        {
+          "file": "jordan.miz",
+          "rank": 1,
+          "relevance": 3,
+          "repository": "Mizar__MML-current",
+          "score": 8200000008.920188
+        },
+        {
+          "file": "jordan6.miz",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000007.58216
+        },
+        {
+          "file": "jordan7.miz",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000007.488263
+        },
+        {
+          "file": "jordan4.miz",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000007.300469
+        },
+        {
+          "file": "jordan9.miz",
+          "rank": 5,
+          "relevance": 2,
+          "repository": "Mizar__MML-current",
+          "score": 8200000007.261346
+        },
+        {
+          "file": "jordan24.miz",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000006.611894
+        },
+        {
+          "file": "jordan16.miz",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000006.5414715
+        },
+        {
+          "file": "jordan18.miz",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000006.025039
+        },
+        {
+          "file": "jordan1c.miz",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000005.985915
+        },
+        {
+          "file": "jordan10.miz",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000005.594679
+        },
+        {
+          "file": "jordan1b.miz",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000005.4616585
+        },
+        {
+          "file": "jordan17.miz",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000005.320814
+        },
+        {
+          "file": "jordan1e.miz",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000005.226917
+        },
+        {
+          "file": "jordan11.miz",
+          "rank": 14,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000004.608764
+        },
+        {
+          "file": "jordan21.miz",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000004.248826
+        },
+        {
+          "file": "jordan_a.miz",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000003.881064
+        },
+        {
+          "file": "jordan1f.miz",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000003.591549
+        },
+        {
+          "file": "jordan5b.miz",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000003.568075
+        },
+        {
+          "file": "jordan14.miz",
+          "rank": 19,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000003.435055
+        },
+        {
+          "file": "jordan5c.miz",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "Mizar__MML-current",
+          "score": 8200000002.480438
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"formal\" \"group\" \"law\" \"over\" \"commutative\" \"ring\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 2,
+      "first_relevant_rank": 2,
+      "id": "formal-group-law",
+      "owner_reciprocal_rank": 0.5,
+      "per_k": {
+        "1": {
+          "gold_recall": 0.0,
+          "hit": 0,
+          "ndcg": 0.0,
+          "owner_hit": 0,
+          "source_hit": 0
+        },
+        "10": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.6309297535714575,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.6309297535714575,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.6309297535714575,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.6309297535714575,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.6309297535714575,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 0.6309297535714575,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "formal group law over a commutative ring",
+      "reciprocal_rank": 0.5,
+      "result_count": 122,
+      "runtime": {
+        "elapsed_ms": 11888.23089748621,
+        "payload_bytes": 10213115,
+        "reported_file_count": 122,
+        "returned_files": 122,
+        "server_duration_ns": 6420098844
+      },
+      "tags": [
+        "algebra",
+        "ambiguous-stopword",
+        "exact-name"
+      ],
+      "top_results": [
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupLawSpec.lean",
+          "rank": 1,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8600000008.348198
+        },
+        {
+          "file": "Mathlib/RingTheory/FormalGroup/Basic.lean",
+          "rank": 2,
+          "relevance": 3,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8600000005.881083
+        },
+        {
+          "file": "src/commutative-algebra/formal-power-series-commutative-rings.lagda.md",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "UniMath__agda-unimath",
+          "score": 8600000001.541748
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/EvalGroup.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000009.4934
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/Definition.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000009.407778
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/FormalGroup/FormalGroupAssoc.lean",
+          "rank": 6,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000008.783446
+        },
+        {
+          "file": "projects/HasseWeil/HasseWeil/Isogeny/OmegaCoeffViaFormalGroup.lean",
+          "rank": 7,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8550000007.941491
+        },
+        {
+          "file": "FormalConjectures/Mathoverflow/507128.lean",
+          "rank": 8,
+          "relevance": 0,
+          "repository": "google-deepmind__formal-conjectures",
+          "score": 8550000003.479138
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Chord.lean",
+          "rank": 9,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8550000002.810176
+        },
+        {
+          "file": "FormalConjecturesForMathlib/GroupTheory/Torsion.lean",
+          "rank": 10,
+          "relevance": 0,
+          "repository": "google-deepmind__formal-conjectures",
+          "score": 8550000001.938088
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Assoc.lean",
+          "rank": 11,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8550000001.81409
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/WExpansion.lean",
+          "rank": 12,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8550000001.630137
+        },
+        {
+          "file": "TauCeti/AlgebraicGeometry/EllipticCurve/FormalGroup/Add/Inverse.lean",
+          "rank": 13,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8550000001.489237
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/GroupScheme/MuN.lean",
+          "rank": 14,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8500000009.3043165
+        },
+        {
+          "file": "Structure/Ring.v",
+          "rank": 15,
+          "relevance": 0,
+          "repository": "jwiegley__category-theory",
+          "score": 8500000009.093686
+        },
+        {
+          "file": "projects/ModularCurves/ModularCurves/GroupScheme/NIsogeny.lean",
+          "rank": 16,
+          "relevance": 0,
+          "repository": "CBirkbeck__AINTLIB",
+          "score": 8500000008.704959
+        },
+        {
+          "file": "TauCeti/RingTheory/Huber/StronglyNoetherian.lean",
+          "rank": 17,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8500000007.350293
+        },
+        {
+          "file": "OddOrder/Higman/Suzuki2Groups/HigmanSquareMap.lean",
+          "rank": 18,
+          "relevance": 0,
+          "repository": "yawara__odd-order",
+          "score": 8500000006.584651
+        },
+        {
+          "file": "Mathlib/GroupTheory/FreeGroup/Basic.lean",
+          "rank": 19,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8500000006.142565
+        },
+        {
+          "file": "TauCeti/RingTheory/Huber/Restricted/PowerSeries.lean",
+          "rank": 20,
+          "relevance": 0,
+          "repository": "TauCetiProject__TauCeti",
+          "score": 8500000005.996086
+        }
+      ]
+    },
+    {
+      "compiled_query": "\"existence\" \"enough\" \"injectives\" \"Grothendieck\" \"category\" file:\\.(lean|v|agda|lagda(\\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$ case:no",
+      "first_owner_rank": 1,
+      "first_relevant_rank": 1,
+      "id": "enough-injectives-grothendieck",
+      "owner_reciprocal_rank": 1.0,
+      "per_k": {
+        "1": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "10": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "100": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "20": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "200": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "5": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        },
+        "50": {
+          "gold_recall": 1.0,
+          "hit": 1,
+          "ndcg": 1.0,
+          "owner_hit": 1,
+          "source_hit": 1
+        }
+      },
+      "query": "existence of enough injectives in a Grothendieck category",
+      "reciprocal_rank": 1.0,
+      "result_count": 5,
+      "runtime": {
+        "elapsed_ms": 5322.201609611511,
+        "payload_bytes": 137549,
+        "reported_file_count": 5,
+        "returned_files": 5,
+        "server_duration_ns": 5042070431
+      },
+      "tags": [
+        "category-theory",
+        "ambiguous-stopword",
+        "descriptive"
+      ],
+      "top_results": [
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/EnoughInjectives.lean",
+          "rank": 1,
+          "relevance": 3,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8600000000.079582
+        },
+        {
+          "file": "Mathlib/CategoryTheory/Abelian/GrothendieckCategory/ColimCoyoneda.lean",
+          "rank": 2,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8500000000.129604
+        },
+        {
+          "file": "v1/Atlas/TensorCategories/code/FiniteTensorCategory.lean",
+          "rank": 3,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8420000004.48003
+        },
+        {
+          "file": "Mathlib/CategoryTheory/SmallObject/Basic.lean",
+          "rank": 4,
+          "relevance": 0,
+          "repository": "leanprover-community__mathlib4",
+          "score": 8420000004.464529
+        },
+        {
+          "file": "v1/Atlas/AlgebraicGeometryI/code/Lec23DerivedFunctors.lean",
+          "rank": 5,
+          "relevance": 0,
+          "repository": "facebookresearch__atlas-lean",
+          "score": 8330000003.692539
+        }
+      ]
+    }
+  ],
+  "corpus_git_commit": "5bcd1e4c8b657105fc87ed0e4a55471c0bc8b3a9",
+  "created_at": "2026-09-17T08:47:48.097042+00:00",
+  "gold_sha256": "255f0e30f8eeaf5408e45fb7680656251cd55b1a05fd6fde886b7bf485516a50",
+  "index": {
+    "document_count": 201221,
+    "index_bytes": 72696988,
+    "kind": "api-list-v1",
+    "metadata_sha256": "3c46008663aa6cf42e712df1f7326cadae23db2b9b58a9a2bedc25c9bc0c0696",
+    "repository_count": 762,
+    "shard_count": 780
+  },
+  "metrics": {
+    "gold_recall@1": 0.2020833333333333,
+    "gold_recall@10": 0.47473290598290596,
+    "gold_recall@100": 0.5233440170940171,
+    "gold_recall@20": 0.5122329059829059,
+    "gold_recall@200": 0.5233440170940171,
+    "gold_recall@5": 0.4011217948717949,
+    "gold_recall@50": 0.5233440170940171,
+    "hit@1": 0.4166666666666667,
+    "hit@10": 0.75,
+    "hit@100": 0.75,
+    "hit@20": 0.75,
+    "hit@200": 0.75,
+    "hit@5": 0.6666666666666666,
+    "hit@50": 0.75,
+    "latency_ms_mean": 6656.190330628306,
+    "latency_ms_p50": 5915.296432096511,
+    "latency_ms_p95": 11810.048433579503,
+    "mrr": 0.5393518518518519,
+    "ndcg@1": 0.36904761904761907,
+    "ndcg@10": 0.40644862275617716,
+    "ndcg@100": 0.416338172051199,
+    "ndcg@20": 0.4131221543519499,
+    "ndcg@200": 0.416338172051199,
+    "ndcg@5": 0.3796280014916427,
+    "ndcg@50": 0.416338172051199,
+    "owner_hit@1": 0.3333333333333333,
+    "owner_hit@10": 0.5833333333333334,
+    "owner_hit@100": 0.5833333333333334,
+    "owner_hit@20": 0.5833333333333334,
+    "owner_hit@200": 0.5833333333333334,
+    "owner_hit@5": 0.4583333333333333,
+    "owner_hit@50": 0.5833333333333334,
+    "owner_mrr": 0.39421296296296293,
+    "payload_bytes_mean": 1851163.5,
+    "payload_bytes_p95": 9790813.099999994,
+    "queries": 24,
+    "source_hit@1": 0.7083333333333334,
+    "source_hit@10": 0.9166666666666666,
+    "source_hit@100": 0.9166666666666666,
+    "source_hit@20": 0.9166666666666666,
+    "source_hit@200": 0.9166666666666666,
+    "source_hit@5": 0.9166666666666666,
+    "source_hit@50": 0.9166666666666666,
+    "zero_result_rate": 0.041666666666666664
+  },
+  "metrics_by_tag": {
+    "algebra": {
+      "gold_recall@1": 0.0,
+      "gold_recall@10": 0.5,
+      "gold_recall@100": 0.5,
+      "gold_recall@20": 0.5,
+      "gold_recall@200": 0.5,
+      "gold_recall@5": 0.5,
+      "gold_recall@50": 0.5,
+      "hit@1": 0.0,
+      "hit@10": 0.5,
+      "hit@100": 0.5,
+      "hit@20": 0.5,
+      "hit@200": 0.5,
+      "hit@5": 0.5,
+      "hit@50": 0.5,
+      "latency_ms_mean": 8556.069577112794,
+      "latency_ms_p50": 8556.069577112794,
+      "latency_ms_p95": 11555.014765448868,
+      "mrr": 0.25,
+      "ndcg@1": 0.0,
+      "ndcg@10": 0.31546487678572877,
+      "ndcg@100": 0.31546487678572877,
+      "ndcg@20": 0.31546487678572877,
+      "ndcg@200": 0.31546487678572877,
+      "ndcg@5": 0.31546487678572877,
+      "ndcg@50": 0.31546487678572877,
+      "owner_hit@1": 0.0,
+      "owner_hit@10": 0.5,
+      "owner_hit@100": 0.5,
+      "owner_hit@20": 0.5,
+      "owner_hit@200": 0.5,
+      "owner_hit@5": 0.5,
+      "owner_hit@50": 0.5,
+      "owner_mrr": 0.25,
+      "payload_bytes_mean": 5184295.5,
+      "payload_bytes_p95": 9710233.05,
+      "queries": 2,
+      "source_hit@1": 0.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "algebraic-geometry": {
+      "gold_recall@1": 0.2333333333333333,
+      "gold_recall@10": 0.2333333333333333,
+      "gold_recall@100": 0.3,
+      "gold_recall@20": 0.3,
+      "gold_recall@200": 0.3,
+      "gold_recall@5": 0.2333333333333333,
+      "gold_recall@50": 0.3,
+      "hit@1": 0.6666666666666666,
+      "hit@10": 0.6666666666666666,
+      "hit@100": 0.6666666666666666,
+      "hit@20": 0.6666666666666666,
+      "hit@200": 0.6666666666666666,
+      "hit@5": 0.6666666666666666,
+      "hit@50": 0.6666666666666666,
+      "latency_ms_mean": 6376.635907838742,
+      "latency_ms_p50": 5922.36830946058,
+      "latency_ms_p95": 10102.99612302333,
+      "mrr": 0.6666666666666666,
+      "ndcg@1": 0.6666666666666666,
+      "ndcg@10": 0.3967230786738369,
+      "ndcg@100": 0.4114594828795439,
+      "ndcg@20": 0.4114594828795439,
+      "ndcg@200": 0.4114594828795439,
+      "ndcg@5": 0.3967230786738369,
+      "ndcg@50": 0.4114594828795439,
+      "owner_hit@1": 0.6666666666666666,
+      "owner_hit@10": 0.6666666666666666,
+      "owner_hit@100": 0.6666666666666666,
+      "owner_hit@20": 0.6666666666666666,
+      "owner_hit@200": 0.6666666666666666,
+      "owner_hit@5": 0.6666666666666666,
+      "owner_hit@50": 0.6666666666666666,
+      "owner_mrr": 0.6666666666666666,
+      "payload_bytes_mean": 630542.6666666666,
+      "payload_bytes_p95": 1551150.9999999998,
+      "queries": 3,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "algebraic-topology": {
+      "gold_recall@1": 0.0,
+      "gold_recall@10": 0.5,
+      "gold_recall@100": 1.0,
+      "gold_recall@20": 1.0,
+      "gold_recall@200": 1.0,
+      "gold_recall@5": 0.0,
+      "gold_recall@50": 1.0,
+      "hit@1": 0.0,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 0.0,
+      "hit@50": 1.0,
+      "latency_ms_mean": 19591.78727772087,
+      "latency_ms_p50": 19591.78727772087,
+      "latency_ms_p95": 19591.78727772087,
+      "mrr": 0.16666666666666666,
+      "ndcg@1": 0.0,
+      "ndcg@10": 0.280390126950546,
+      "ndcg@100": 0.366738071551199,
+      "ndcg@20": 0.366738071551199,
+      "ndcg@200": 0.366738071551199,
+      "ndcg@5": 0.0,
+      "ndcg@50": 0.366738071551199,
+      "owner_hit@1": 0.0,
+      "owner_hit@10": 1.0,
+      "owner_hit@100": 1.0,
+      "owner_hit@20": 1.0,
+      "owner_hit@200": 1.0,
+      "owner_hit@5": 0.0,
+      "owner_hit@50": 1.0,
+      "owner_mrr": 0.16666666666666666,
+      "payload_bytes_mean": 10789792.0,
+      "payload_bytes_p95": 10789792.0,
+      "queries": 1,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "ambiguous-stopword": {
+      "gold_recall@1": 0.5,
+      "gold_recall@10": 1.0,
+      "gold_recall@100": 1.0,
+      "gold_recall@20": 1.0,
+      "gold_recall@200": 1.0,
+      "gold_recall@5": 1.0,
+      "gold_recall@50": 1.0,
+      "hit@1": 0.5,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 1.0,
+      "hit@50": 1.0,
+      "latency_ms_mean": 8605.21625354886,
+      "latency_ms_p50": 8605.21625354886,
+      "latency_ms_p95": 11559.929433092475,
+      "mrr": 0.75,
+      "ndcg@1": 0.5,
+      "ndcg@10": 0.8154648767857288,
+      "ndcg@100": 0.8154648767857288,
+      "ndcg@20": 0.8154648767857288,
+      "ndcg@200": 0.8154648767857288,
+      "ndcg@5": 0.8154648767857288,
+      "ndcg@50": 0.8154648767857288,
+      "owner_hit@1": 0.5,
+      "owner_hit@10": 1.0,
+      "owner_hit@100": 1.0,
+      "owner_hit@20": 1.0,
+      "owner_hit@200": 1.0,
+      "owner_hit@5": 1.0,
+      "owner_hit@50": 1.0,
+      "owner_mrr": 0.75,
+      "payload_bytes_mean": 5175332.0,
+      "payload_bytes_p95": 9709336.7,
+      "queries": 2,
+      "source_hit@1": 0.5,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "analysis": {
+      "gold_recall@1": 0.5,
+      "gold_recall@10": 1.0,
+      "gold_recall@100": 1.0,
+      "gold_recall@20": 1.0,
+      "gold_recall@200": 1.0,
+      "gold_recall@5": 1.0,
+      "gold_recall@50": 1.0,
+      "hit@1": 0.5,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 1.0,
+      "hit@50": 1.0,
+      "latency_ms_mean": 8266.82808296755,
+      "latency_ms_p50": 8266.82808296755,
+      "latency_ms_p95": 10389.571258379146,
+      "mrr": 0.75,
+      "ndcg@1": 0.5,
+      "ndcg@10": 0.7759272160484041,
+      "ndcg@100": 0.7759272160484041,
+      "ndcg@20": 0.7759272160484041,
+      "ndcg@200": 0.7759272160484041,
+      "ndcg@5": 0.7759272160484041,
+      "ndcg@50": 0.7759272160484041,
+      "owner_hit@1": 0.5,
+      "owner_hit@10": 1.0,
+      "owner_hit@100": 1.0,
+      "owner_hit@20": 1.0,
+      "owner_hit@200": 1.0,
+      "owner_hit@5": 1.0,
+      "owner_hit@50": 1.0,
+      "owner_mrr": 0.625,
+      "payload_bytes_mean": 2610697.0,
+      "payload_bytes_p95": 4801369.899999999,
+      "queries": 2,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "category-theory": {
+      "gold_recall@1": 0.3333333333333333,
+      "gold_recall@10": 0.5833333333333334,
+      "gold_recall@100": 0.5833333333333334,
+      "gold_recall@20": 0.5833333333333334,
+      "gold_recall@200": 0.5833333333333334,
+      "gold_recall@5": 0.4583333333333333,
+      "gold_recall@50": 0.5833333333333334,
+      "hit@1": 0.5,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 0.75,
+      "hit@50": 1.0,
+      "latency_ms_mean": 5874.48751507327,
+      "latency_ms_p50": 5640.095170587301,
+      "latency_ms_p95": 7879.626603936776,
+      "mrr": 0.6527777777777778,
+      "ndcg@1": 0.35714285714285715,
+      "ndcg@10": 0.4074205016057234,
+      "ndcg@100": 0.4074205016057234,
+      "ndcg@20": 0.4074205016057234,
+      "ndcg@200": 0.4074205016057234,
+      "ndcg@5": 0.36127657741083136,
+      "ndcg@50": 0.4074205016057234,
+      "owner_hit@1": 0.25,
+      "owner_hit@10": 0.5,
+      "owner_hit@100": 0.5,
+      "owner_hit@20": 0.5,
+      "owner_hit@200": 0.5,
+      "owner_hit@5": 0.25,
+      "owner_hit@50": 0.5,
+      "owner_mrr": 0.2777777777777778,
+      "payload_bytes_mean": 289577.75,
+      "payload_bytes_p95": 533698.7999999999,
+      "queries": 4,
+      "source_hit@1": 0.75,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "commutative-algebra": {
+      "gold_recall@1": 0.0,
+      "gold_recall@10": 0.038461538461538464,
+      "gold_recall@100": 0.038461538461538464,
+      "gold_recall@20": 0.038461538461538464,
+      "gold_recall@200": 0.038461538461538464,
+      "gold_recall@5": 0.038461538461538464,
+      "gold_recall@50": 0.038461538461538464,
+      "hit@1": 0.0,
+      "hit@10": 0.5,
+      "hit@100": 0.5,
+      "hit@20": 0.5,
+      "hit@200": 0.5,
+      "hit@5": 0.5,
+      "hit@50": 0.5,
+      "latency_ms_mean": 7003.521780483425,
+      "latency_ms_p50": 7003.521780483425,
+      "latency_ms_p95": 10930.665202345699,
+      "mrr": 0.16666666666666666,
+      "ndcg@1": 0.0,
+      "ndcg@10": 0.0107300864065497,
+      "ndcg@100": 0.010368795560571933,
+      "ndcg@20": 0.010368795560571933,
+      "ndcg@200": 0.010368795560571933,
+      "ndcg@5": 0.013094625227157283,
+      "ndcg@50": 0.010368795560571933,
+      "owner_hit@1": 0.0,
+      "owner_hit@10": 0.0,
+      "owner_hit@100": 0.0,
+      "owner_hit@20": 0.0,
+      "owner_hit@200": 0.0,
+      "owner_hit@5": 0.0,
+      "owner_hit@50": 0.0,
+      "owner_mrr": 0.0,
+      "payload_bytes_mean": 157268.5,
+      "payload_bytes_p95": 196943.65,
+      "queries": 2,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "conversational": {
+      "gold_recall@1": 0.2833333333333333,
+      "gold_recall@10": 0.5166666666666666,
+      "gold_recall@100": 0.75,
+      "gold_recall@20": 0.6166666666666667,
+      "gold_recall@200": 0.75,
+      "gold_recall@5": 0.3833333333333333,
+      "gold_recall@50": 0.75,
+      "hit@1": 1.0,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 1.0,
+      "hit@50": 1.0,
+      "latency_ms_mean": 5809.923942666501,
+      "latency_ms_p50": 5809.923942666501,
+      "latency_ms_p95": 5911.123872781172,
+      "mrr": 1.0,
+      "ndcg@1": 1.0,
+      "ndcg@10": 0.7969708473298825,
+      "ndcg@100": 0.8507281511072355,
+      "ndcg@20": 0.8121359387162459,
+      "ndcg@200": 0.8507281511072355,
+      "ndcg@5": 0.8190111194993748,
+      "ndcg@50": 0.8507281511072355,
+      "owner_hit@1": 1.0,
+      "owner_hit@10": 1.0,
+      "owner_hit@100": 1.0,
+      "owner_hit@20": 1.0,
+      "owner_hit@200": 1.0,
+      "owner_hit@5": 1.0,
+      "owner_hit@50": 1.0,
+      "owner_mrr": 1.0,
+      "payload_bytes_mean": 177590.0,
+      "payload_bytes_p95": 276654.8,
+      "queries": 2,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "cross-prover": {
+      "gold_recall@1": 0.20833333333333331,
+      "gold_recall@10": 0.7083333333333334,
+      "gold_recall@100": 0.7083333333333334,
+      "gold_recall@20": 0.7083333333333334,
+      "gold_recall@200": 0.7083333333333334,
+      "gold_recall@5": 0.5833333333333334,
+      "gold_recall@50": 0.7083333333333334,
+      "hit@1": 0.5,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 0.75,
+      "hit@50": 1.0,
+      "latency_ms_mean": 4514.9306550156325,
+      "latency_ms_p50": 4978.504640515894,
+      "latency_ms_p95": 6232.97938904725,
+      "mrr": 0.6111111111111112,
+      "ndcg@1": 0.35714285714285715,
+      "ndcg@10": 0.45862419251849307,
+      "ndcg@100": 0.45862419251849307,
+      "ndcg@20": 0.45862419251849307,
+      "ndcg@200": 0.45862419251849307,
+      "ndcg@5": 0.4124802683236011,
+      "ndcg@50": 0.45862419251849307,
+      "owner_hit@1": 0.25,
+      "owner_hit@10": 0.75,
+      "owner_hit@100": 0.75,
+      "owner_hit@20": 0.75,
+      "owner_hit@200": 0.75,
+      "owner_hit@5": 0.5,
+      "owner_hit@50": 0.75,
+      "owner_mrr": 0.3611111111111111,
+      "payload_bytes_mean": 1713782.0,
+      "payload_bytes_p95": 3035275.0,
+      "queries": 4,
+      "source_hit@1": 0.75,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "descriptive": {
+      "gold_recall@1": 0.21875,
+      "gold_recall@10": 0.41586538461538464,
+      "gold_recall@100": 0.47836538461538464,
+      "gold_recall@20": 0.47836538461538464,
+      "gold_recall@200": 0.47836538461538464,
+      "gold_recall@5": 0.29086538461538464,
+      "gold_recall@50": 0.47836538461538464,
+      "hit@1": 0.375,
+      "hit@10": 0.875,
+      "hit@100": 0.875,
+      "hit@20": 0.875,
+      "hit@200": 0.875,
+      "hit@5": 0.625,
+      "hit@50": 0.875,
+      "latency_ms_mean": 7754.777013440616,
+      "latency_ms_p50": 5952.964000403881,
+      "latency_ms_p95": 16713.11679552309,
+      "mrr": 0.5138888888888888,
+      "ndcg@1": 0.30357142857142855,
+      "ndcg@10": 0.33719583136204584,
+      "ndcg@100": 0.347899001725633,
+      "ndcg@20": 0.347899001725633,
+      "ndcg@200": 0.347899001725633,
+      "ndcg@5": 0.27966623810093344,
+      "ndcg@50": 0.347899001725633,
+      "owner_hit@1": 0.25,
+      "owner_hit@10": 0.5,
+      "owner_hit@100": 0.5,
+      "owner_hit@20": 0.5,
+      "owner_hit@200": 0.5,
+      "owner_hit@5": 0.25,
+      "owner_hit@50": 0.5,
+      "owner_mrr": 0.2847222222222222,
+      "payload_bytes_mean": 1474515.5,
+      "payload_bytes_p95": 7147142.499999994,
+      "queries": 8,
+      "source_hit@1": 0.875,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "differential-geometry": {
+      "gold_recall@1": 0.25,
+      "gold_recall@10": 0.75,
+      "gold_recall@100": 0.75,
+      "gold_recall@20": 0.75,
+      "gold_recall@200": 0.75,
+      "gold_recall@5": 0.75,
+      "gold_recall@50": 0.75,
+      "hit@1": 0.5,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 1.0,
+      "hit@50": 1.0,
+      "latency_ms_mean": 4545.295035466552,
+      "latency_ms_p50": 4545.295035466552,
+      "latency_ms_p95": 5771.931602805853,
+      "mrr": 0.75,
+      "ndcg@1": 0.5,
+      "ndcg@10": 0.66950451754389,
+      "ndcg@100": 0.66950451754389,
+      "ndcg@20": 0.66950451754389,
+      "ndcg@200": 0.66950451754389,
+      "ndcg@5": 0.66950451754389,
+      "ndcg@50": 0.66950451754389,
+      "owner_hit@1": 0.5,
+      "owner_hit@10": 1.0,
+      "owner_hit@100": 1.0,
+      "owner_hit@20": 1.0,
+      "owner_hit@200": 1.0,
+      "owner_hit@5": 1.0,
+      "owner_hit@50": 1.0,
+      "owner_mrr": 0.625,
+      "payload_bytes_mean": 121258.5,
+      "payload_bytes_p95": 171080.25,
+      "queries": 2,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "differential-topology": {
+      "gold_recall@1": 0.0,
+      "gold_recall@10": 1.0,
+      "gold_recall@100": 1.0,
+      "gold_recall@20": 1.0,
+      "gold_recall@200": 1.0,
+      "gold_recall@5": 0.5,
+      "gold_recall@50": 1.0,
+      "hit@1": 0.0,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 1.0,
+      "hit@50": 1.0,
+      "latency_ms_mean": 7116.4038348942995,
+      "latency_ms_p50": 7116.4038348942995,
+      "latency_ms_p95": 7116.4038348942995,
+      "mrr": 0.5,
+      "ndcg@1": 0.0,
+      "ndcg@10": 0.44038410560793934,
+      "ndcg@100": 0.44038410560793934,
+      "ndcg@20": 0.44038410560793934,
+      "ndcg@200": 0.44038410560793934,
+      "ndcg@5": 0.2128453970090281,
+      "ndcg@50": 0.44038410560793934,
+      "owner_hit@1": 0.0,
+      "owner_hit@10": 1.0,
+      "owner_hit@100": 1.0,
+      "owner_hit@20": 1.0,
+      "owner_hit@200": 1.0,
+      "owner_hit@5": 0.0,
+      "owner_hit@50": 1.0,
+      "owner_mrr": 0.1,
+      "payload_bytes_mean": 7397769.0,
+      "payload_bytes_p95": 7397769.0,
+      "queries": 1,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "exact-name": {
+      "gold_recall@1": 0.3055555555555555,
+      "gold_recall@10": 0.638888888888889,
+      "gold_recall@100": 0.638888888888889,
+      "gold_recall@20": 0.638888888888889,
+      "gold_recall@200": 0.638888888888889,
+      "gold_recall@5": 0.5555555555555556,
+      "gold_recall@50": 0.638888888888889,
+      "hit@1": 0.5,
+      "hit@10": 0.8333333333333334,
+      "hit@100": 0.8333333333333334,
+      "hit@20": 0.8333333333333334,
+      "hit@200": 0.8333333333333334,
+      "hit@5": 0.8333333333333334,
+      "hit@50": 0.8333333333333334,
+      "latency_ms_mean": 6972.492859698832,
+      "latency_ms_p50": 6537.196283228695,
+      "latency_ms_p95": 11572.531075915322,
+      "mrr": 0.6666666666666666,
+      "ndcg@1": 0.4047619047619047,
+      "ndcg@10": 0.5151215624674443,
+      "ndcg@100": 0.5151215624674443,
+      "ndcg@20": 0.5151215624674443,
+      "ndcg@200": 0.5151215624674443,
+      "ndcg@5": 0.4771984443676258,
+      "ndcg@50": 0.5151215624674443,
+      "owner_hit@1": 0.3333333333333333,
+      "owner_hit@10": 0.6666666666666666,
+      "owner_hit@100": 0.6666666666666666,
+      "owner_hit@20": 0.6666666666666666,
+      "owner_hit@200": 0.6666666666666666,
+      "owner_hit@5": 0.5,
+      "owner_hit@50": 0.6666666666666666,
+      "owner_mrr": 0.43333333333333335,
+      "payload_bytes_mean": 3942594.8333333335,
+      "payload_bytes_p95": 9509278.5,
+      "queries": 6,
+      "source_hit@1": 0.6666666666666666,
+      "source_hit@10": 0.8333333333333334,
+      "source_hit@100": 0.8333333333333334,
+      "source_hit@20": 0.8333333333333334,
+      "source_hit@200": 0.8333333333333334,
+      "source_hit@5": 0.8333333333333334,
+      "source_hit@50": 0.8333333333333334,
+      "zero_result_rate": 0.0
+    },
+    "geometry": {
+      "gold_recall@1": 0.06666666666666667,
+      "gold_recall@10": 0.5333333333333333,
+      "gold_recall@100": 1.0,
+      "gold_recall@20": 0.7333333333333333,
+      "gold_recall@200": 1.0,
+      "gold_recall@5": 0.26666666666666666,
+      "gold_recall@50": 1.0,
+      "hit@1": 1.0,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 1.0,
+      "hit@50": 1.0,
+      "latency_ms_mean": 5697.479575872421,
+      "latency_ms_p50": 5697.479575872421,
+      "latency_ms_p95": 5697.479575872421,
+      "mrr": 1.0,
+      "ndcg@1": 1.0,
+      "ndcg@10": 0.8067870916687933,
+      "ndcg@100": 0.9143016992234992,
+      "ndcg@20": 0.83711727444152,
+      "ndcg@200": 0.9143016992234992,
+      "ndcg@5": 0.8508676360077778,
+      "ndcg@50": 0.9143016992234992,
+      "owner_hit@1": 1.0,
+      "owner_hit@10": 1.0,
+      "owner_hit@100": 1.0,
+      "owner_hit@20": 1.0,
+      "owner_hit@200": 1.0,
+      "owner_hit@5": 1.0,
+      "owner_hit@50": 1.0,
+      "owner_mrr": 1.0,
+      "payload_bytes_mean": 287662.0,
+      "payload_bytes_p95": 287662.0,
+      "queries": 1,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "group-theory": {
+      "gold_recall@1": 0.16666666666666666,
+      "gold_recall@10": 0.5,
+      "gold_recall@100": 0.5,
+      "gold_recall@20": 0.5,
+      "gold_recall@200": 0.5,
+      "gold_recall@5": 0.5,
+      "gold_recall@50": 0.5,
+      "hit@1": 0.3333333333333333,
+      "hit@10": 0.6666666666666666,
+      "hit@100": 0.6666666666666666,
+      "hit@20": 0.6666666666666666,
+      "hit@200": 0.6666666666666666,
+      "hit@5": 0.6666666666666666,
+      "hit@50": 0.6666666666666666,
+      "latency_ms_mean": 4977.034997505446,
+      "latency_ms_p50": 5223.908256739378,
+      "latency_ms_p95": 6175.747262593359,
+      "mrr": 0.4444444444444444,
+      "ndcg@1": 0.3333333333333333,
+      "ndcg@10": 0.429051534330324,
+      "ndcg@100": 0.429051534330324,
+      "ndcg@20": 0.429051534330324,
+      "ndcg@200": 0.429051534330324,
+      "ndcg@5": 0.429051534330324,
+      "ndcg@50": 0.429051534330324,
+      "owner_hit@1": 0.3333333333333333,
+      "owner_hit@10": 0.6666666666666666,
+      "owner_hit@100": 0.6666666666666666,
+      "owner_hit@20": 0.6666666666666666,
+      "owner_hit@200": 0.6666666666666666,
+      "owner_hit@5": 0.6666666666666666,
+      "owner_hit@50": 0.6666666666666666,
+      "owner_mrr": 0.4444444444444444,
+      "payload_bytes_mean": 1118843.0,
+      "payload_bytes_p95": 2594767.6999999997,
+      "queries": 3,
+      "source_hit@1": 0.3333333333333333,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "harmonic-analysis": {
+      "gold_recall@1": 0.25,
+      "gold_recall@10": 0.25,
+      "gold_recall@100": 0.25,
+      "gold_recall@20": 0.25,
+      "gold_recall@200": 0.25,
+      "gold_recall@5": 0.25,
+      "gold_recall@50": 0.25,
+      "hit@1": 0.5,
+      "hit@10": 0.5,
+      "hit@100": 0.5,
+      "hit@20": 0.5,
+      "hit@200": 0.5,
+      "hit@5": 0.5,
+      "hit@50": 0.5,
+      "latency_ms_mean": 4399.414189625531,
+      "latency_ms_p50": 4399.414189625531,
+      "latency_ms_p95": 5275.766335008666,
+      "mrr": 0.5,
+      "ndcg@1": 0.5,
+      "ndcg@10": 0.3935773014954859,
+      "ndcg@100": 0.3935773014954859,
+      "ndcg@20": 0.3935773014954859,
+      "ndcg@200": 0.3935773014954859,
+      "ndcg@5": 0.3935773014954859,
+      "ndcg@50": 0.3935773014954859,
+      "owner_hit@1": 0.5,
+      "owner_hit@10": 0.5,
+      "owner_hit@100": 0.5,
+      "owner_hit@20": 0.5,
+      "owner_hit@200": 0.5,
+      "owner_hit@5": 0.5,
+      "owner_hit@50": 0.5,
+      "owner_mrr": 0.5,
+      "payload_bytes_mean": 179112.5,
+      "payload_bytes_p95": 339863.75,
+      "queries": 2,
+      "source_hit@1": 0.5,
+      "source_hit@10": 0.5,
+      "source_hit@100": 0.5,
+      "source_hit@20": 0.5,
+      "source_hit@200": 0.5,
+      "source_hit@5": 0.5,
+      "source_hit@50": 0.5,
+      "zero_result_rate": 0.5
+    },
+    "homological-algebra": {
+      "gold_recall@1": 0.0,
+      "gold_recall@10": 0.25,
+      "gold_recall@100": 0.25,
+      "gold_recall@20": 0.25,
+      "gold_recall@200": 0.25,
+      "gold_recall@5": 0.25,
+      "gold_recall@50": 0.25,
+      "hit@1": 0.0,
+      "hit@10": 0.5,
+      "hit@100": 0.5,
+      "hit@20": 0.5,
+      "hit@200": 0.5,
+      "hit@5": 0.5,
+      "hit@50": 0.5,
+      "latency_ms_mean": 7401.232780423015,
+      "latency_ms_p50": 7401.232780423015,
+      "latency_ms_p95": 8136.988530727103,
+      "mrr": 0.25,
+      "ndcg@1": 0.0,
+      "ndcg@10": 0.10642269850451405,
+      "ndcg@100": 0.10642269850451405,
+      "ndcg@20": 0.10642269850451405,
+      "ndcg@200": 0.10642269850451405,
+      "ndcg@5": 0.10642269850451405,
+      "ndcg@50": 0.10642269850451405,
+      "owner_hit@1": 0.0,
+      "owner_hit@10": 0.0,
+      "owner_hit@100": 0.0,
+      "owner_hit@20": 0.0,
+      "owner_hit@200": 0.0,
+      "owner_hit@5": 0.0,
+      "owner_hit@50": 0.0,
+      "owner_mrr": 0.0,
+      "payload_bytes_mean": 72288.5,
+      "payload_bytes_p95": 77527.85,
+      "queries": 2,
+      "source_hit@1": 0.5,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "linear-algebra": {
+      "gold_recall@1": 0.0,
+      "gold_recall@10": 0.0,
+      "gold_recall@100": 0.0,
+      "gold_recall@20": 0.0,
+      "gold_recall@200": 0.0,
+      "gold_recall@5": 0.0,
+      "gold_recall@50": 0.0,
+      "hit@1": 0.0,
+      "hit@10": 0.0,
+      "hit@100": 0.0,
+      "hit@20": 0.0,
+      "hit@200": 0.0,
+      "hit@5": 0.0,
+      "hit@50": 0.0,
+      "latency_ms_mean": 6440.022423863411,
+      "latency_ms_p50": 6440.022423863411,
+      "latency_ms_p95": 6440.022423863411,
+      "mrr": 0.0,
+      "ndcg@1": 0.0,
+      "ndcg@10": 0.0,
+      "ndcg@100": 0.0,
+      "ndcg@20": 0.0,
+      "ndcg@200": 0.0,
+      "ndcg@5": 0.0,
+      "ndcg@50": 0.0,
+      "owner_hit@1": 0.0,
+      "owner_hit@10": 0.0,
+      "owner_hit@100": 0.0,
+      "owner_hit@20": 0.0,
+      "owner_hit@200": 0.0,
+      "owner_hit@5": 0.0,
+      "owner_hit@50": 0.0,
+      "owner_mrr": 0.0,
+      "payload_bytes_mean": 551873.0,
+      "payload_bytes_p95": 551873.0,
+      "queries": 1,
+      "source_hit@1": 0.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "natural-phrase": {
+      "gold_recall@1": 0.2,
+      "gold_recall@10": 0.2,
+      "gold_recall@100": 0.4,
+      "gold_recall@20": 0.4,
+      "gold_recall@200": 0.4,
+      "gold_recall@5": 0.2,
+      "gold_recall@50": 0.4,
+      "hit@1": 1.0,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 1.0,
+      "hit@50": 1.0,
+      "latency_ms_mean": 10567.510324530303,
+      "latency_ms_p50": 10567.510324530303,
+      "latency_ms_p95": 10567.510324530303,
+      "mrr": 1.0,
+      "ndcg@1": 1.0,
+      "ndcg@10": 0.40301463303053875,
+      "ndcg@100": 0.4472238456476599,
+      "ndcg@20": 0.4472238456476599,
+      "ndcg@200": 0.4472238456476599,
+      "ndcg@5": 0.40301463303053875,
+      "ndcg@50": 0.4472238456476599,
+      "owner_hit@1": 1.0,
+      "owner_hit@10": 1.0,
+      "owner_hit@100": 1.0,
+      "owner_hit@20": 1.0,
+      "owner_hit@200": 1.0,
+      "owner_hit@5": 1.0,
+      "owner_hit@50": 1.0,
+      "owner_mrr": 1.0,
+      "payload_bytes_mean": 1710925.0,
+      "payload_bytes_p95": 1710925.0,
+      "queries": 1,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "number-theory": {
+      "gold_recall@1": 0.022222222222222223,
+      "gold_recall@10": 0.20341880341880345,
+      "gold_recall@100": 0.358974358974359,
+      "gold_recall@20": 0.27008547008547007,
+      "gold_recall@200": 0.358974358974359,
+      "gold_recall@5": 0.11452991452991453,
+      "gold_recall@50": 0.358974358974359,
+      "hit@1": 0.3333333333333333,
+      "hit@10": 0.6666666666666666,
+      "hit@100": 0.6666666666666666,
+      "hit@20": 0.6666666666666666,
+      "hit@200": 0.6666666666666666,
+      "hit@5": 0.6666666666666666,
+      "hit@50": 0.6666666666666666,
+      "latency_ms_mean": 6628.568848905464,
+      "latency_ms_p50": 5697.479575872421,
+      "latency_ms_p95": 10800.060981884597,
+      "mrr": 0.4444444444444444,
+      "ndcg@1": 0.3333333333333333,
+      "ndcg@10": 0.2760824214939642,
+      "ndcg@100": 0.31167976344821435,
+      "ndcg@20": 0.28595162185422124,
+      "ndcg@200": 0.31167976344821435,
+      "ndcg@5": 0.29235229548736413,
+      "ndcg@50": 0.31167976344821435,
+      "owner_hit@1": 0.3333333333333333,
+      "owner_hit@10": 0.3333333333333333,
+      "owner_hit@100": 0.3333333333333333,
+      "owner_hit@20": 0.3333333333333333,
+      "owner_hit@200": 0.3333333333333333,
+      "owner_hit@5": 0.3333333333333333,
+      "owner_hit@50": 0.3333333333333333,
+      "owner_mrr": 0.3333333333333333,
+      "payload_bytes_mean": 190255.33333333334,
+      "payload_bytes_p95": 279031.0,
+      "queries": 3,
+      "source_hit@1": 0.6666666666666666,
+      "source_hit@10": 0.6666666666666666,
+      "source_hit@100": 0.6666666666666666,
+      "source_hit@20": 0.6666666666666666,
+      "source_hit@200": 0.6666666666666666,
+      "source_hit@5": 0.6666666666666666,
+      "source_hit@50": 0.6666666666666666,
+      "zero_result_rate": 0.0
+    },
+    "probability": {
+      "gold_recall@1": 0.25,
+      "gold_recall@10": 0.25,
+      "gold_recall@100": 0.25,
+      "gold_recall@20": 0.25,
+      "gold_recall@200": 0.25,
+      "gold_recall@5": 0.25,
+      "gold_recall@50": 0.25,
+      "hit@1": 1.0,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 1.0,
+      "hit@50": 1.0,
+      "latency_ms_mean": 3773.361122235656,
+      "latency_ms_p50": 3773.361122235656,
+      "latency_ms_p95": 3773.361122235656,
+      "mrr": 1.0,
+      "ndcg@1": 0.42857142857142855,
+      "ndcg@10": 0.21114065435315313,
+      "ndcg@100": 0.21114065435315313,
+      "ndcg@20": 0.21114065435315313,
+      "ndcg@200": 0.21114065435315313,
+      "ndcg@5": 0.21114065435315313,
+      "ndcg@50": 0.21114065435315313,
+      "owner_hit@1": 0.0,
+      "owner_hit@10": 0.0,
+      "owner_hit@100": 0.0,
+      "owner_hit@20": 0.0,
+      "owner_hit@200": 0.0,
+      "owner_hit@5": 0.0,
+      "owner_hit@50": 0.0,
+      "owner_mrr": 0.0,
+      "payload_bytes_mean": 74731.0,
+      "payload_bytes_p95": 74731.0,
+      "queries": 1,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "proof-assistant-name": {
+      "gold_recall@1": 0.5,
+      "gold_recall@10": 1.0,
+      "gold_recall@100": 1.0,
+      "gold_recall@20": 1.0,
+      "gold_recall@200": 1.0,
+      "gold_recall@5": 1.0,
+      "gold_recall@50": 1.0,
+      "hit@1": 1.0,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 1.0,
+      "hit@50": 1.0,
+      "latency_ms_mean": 1821.2061868980527,
+      "latency_ms_p50": 1821.2061868980527,
+      "latency_ms_p95": 1821.2061868980527,
+      "mrr": 1.0,
+      "ndcg@1": 1.0,
+      "ndcg@10": 0.9176601606601069,
+      "ndcg@100": 0.9176601606601069,
+      "ndcg@20": 0.9176601606601069,
+      "ndcg@200": 0.9176601606601069,
+      "ndcg@5": 0.9176601606601069,
+      "ndcg@50": 0.9176601606601069,
+      "owner_hit@1": 1.0,
+      "owner_hit@10": 1.0,
+      "owner_hit@100": 1.0,
+      "owner_hit@20": 1.0,
+      "owner_hit@200": 1.0,
+      "owner_hit@5": 1.0,
+      "owner_hit@50": 1.0,
+      "owner_mrr": 1.0,
+      "payload_bytes_mean": 3069148.0,
+      "payload_bytes_p95": 3069148.0,
+      "queries": 1,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "quadratic-forms": {
+      "gold_recall@1": 0.0,
+      "gold_recall@10": 0.0,
+      "gold_recall@100": 0.0,
+      "gold_recall@20": 0.0,
+      "gold_recall@200": 0.0,
+      "gold_recall@5": 0.0,
+      "gold_recall@50": 0.0,
+      "hit@1": 0.0,
+      "hit@10": 0.0,
+      "hit@100": 0.0,
+      "hit@20": 0.0,
+      "hit@200": 0.0,
+      "hit@5": 0.0,
+      "hit@50": 0.0,
+      "latency_ms_mean": 2821.2124994024634,
+      "latency_ms_p50": 2821.2124994024634,
+      "latency_ms_p95": 2821.2124994024634,
+      "mrr": 0.0,
+      "ndcg@1": 0.0,
+      "ndcg@10": 0.0,
+      "ndcg@100": 0.0,
+      "ndcg@20": 0.0,
+      "ndcg@200": 0.0,
+      "ndcg@5": 0.0,
+      "ndcg@50": 0.0,
+      "owner_hit@1": 0.0,
+      "owner_hit@10": 0.0,
+      "owner_hit@100": 0.0,
+      "owner_hit@20": 0.0,
+      "owner_hit@200": 0.0,
+      "owner_hit@5": 0.0,
+      "owner_hit@50": 0.0,
+      "owner_mrr": 0.0,
+      "payload_bytes_mean": 81752.0,
+      "payload_bytes_p95": 81752.0,
+      "queries": 1,
+      "source_hit@1": 0.0,
+      "source_hit@10": 0.0,
+      "source_hit@100": 0.0,
+      "source_hit@20": 0.0,
+      "source_hit@200": 0.0,
+      "source_hit@5": 0.0,
+      "source_hit@50": 0.0,
+      "zero_result_rate": 0.0
+    },
+    "repository-name": {
+      "gold_recall@1": 0.07916666666666666,
+      "gold_recall@10": 0.4458333333333333,
+      "gold_recall@100": 0.5625,
+      "gold_recall@20": 0.49583333333333335,
+      "gold_recall@200": 0.5625,
+      "gold_recall@5": 0.25416666666666665,
+      "gold_recall@50": 0.5625,
+      "hit@1": 0.5,
+      "hit@10": 0.75,
+      "hit@100": 0.75,
+      "hit@20": 0.75,
+      "hit@200": 0.75,
+      "hit@5": 0.75,
+      "hit@50": 0.75,
+      "latency_ms_mean": 5490.095832152292,
+      "latency_ms_p50": 5535.309185739607,
+      "latency_ms_p95": 6903.565196041017,
+      "mrr": 0.625,
+      "ndcg@1": 0.35714285714285715,
+      "ndcg@10": 0.3645779629074714,
+      "ndcg@100": 0.3914566147961479,
+      "ndcg@20": 0.3721605086006531,
+      "ndcg@200": 0.3914566147961479,
+      "ndcg@5": 0.31871342184248974,
+      "ndcg@50": 0.3914566147961479,
+      "owner_hit@1": 0.25,
+      "owner_hit@10": 0.5,
+      "owner_hit@100": 0.5,
+      "owner_hit@20": 0.5,
+      "owner_hit@200": 0.5,
+      "owner_hit@5": 0.25,
+      "owner_hit@50": 0.5,
+      "owner_mrr": 0.275,
+      "payload_bytes_mean": 1940165.5,
+      "payload_bytes_p95": 6331252.949999997,
+      "queries": 4,
+      "source_hit@1": 0.75,
+      "source_hit@10": 0.75,
+      "source_hit@100": 0.75,
+      "source_hit@20": 0.75,
+      "source_hit@200": 0.75,
+      "source_hit@5": 0.75,
+      "source_hit@50": 0.75,
+      "zero_result_rate": 0.25
+    },
+    "synonym": {
+      "gold_recall@1": 0.0,
+      "gold_recall@10": 0.0,
+      "gold_recall@100": 0.0,
+      "gold_recall@20": 0.0,
+      "gold_recall@200": 0.0,
+      "gold_recall@5": 0.0,
+      "gold_recall@50": 0.0,
+      "hit@1": 0.0,
+      "hit@10": 0.0,
+      "hit@100": 0.0,
+      "hit@20": 0.0,
+      "hit@200": 0.0,
+      "hit@5": 0.0,
+      "hit@50": 0.0,
+      "latency_ms_mean": 5831.9653403013945,
+      "latency_ms_p50": 5831.9653403013945,
+      "latency_ms_p95": 6379.216715507209,
+      "mrr": 0.0,
+      "ndcg@1": 0.0,
+      "ndcg@10": 0.0,
+      "ndcg@100": 0.0,
+      "ndcg@20": 0.0,
+      "ndcg@200": 0.0,
+      "ndcg@5": 0.0,
+      "ndcg@50": 0.0,
+      "owner_hit@1": 0.0,
+      "owner_hit@10": 0.0,
+      "owner_hit@100": 0.0,
+      "owner_hit@20": 0.0,
+      "owner_hit@200": 0.0,
+      "owner_hit@5": 0.0,
+      "owner_hit@50": 0.0,
+      "owner_mrr": 0.0,
+      "payload_bytes_mean": 353674.5,
+      "payload_bytes_p95": 532053.15,
+      "queries": 2,
+      "source_hit@1": 0.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "terminology": {
+      "gold_recall@1": 0.0,
+      "gold_recall@10": 0.0,
+      "gold_recall@100": 0.0,
+      "gold_recall@20": 0.0,
+      "gold_recall@200": 0.0,
+      "gold_recall@5": 0.0,
+      "gold_recall@50": 0.0,
+      "hit@1": 0.0,
+      "hit@10": 0.0,
+      "hit@100": 0.0,
+      "hit@20": 0.0,
+      "hit@200": 0.0,
+      "hit@5": 0.0,
+      "hit@50": 0.0,
+      "latency_ms_mean": 6583.726391196251,
+      "latency_ms_p50": 6583.726391196251,
+      "latency_ms_p95": 6583.726391196251,
+      "mrr": 0.0,
+      "ndcg@1": 0.0,
+      "ndcg@10": 0.0,
+      "ndcg@100": 0.0,
+      "ndcg@20": 0.0,
+      "ndcg@200": 0.0,
+      "ndcg@5": 0.0,
+      "ndcg@50": 0.0,
+      "owner_hit@1": 0.0,
+      "owner_hit@10": 0.0,
+      "owner_hit@100": 0.0,
+      "owner_hit@20": 0.0,
+      "owner_hit@200": 0.0,
+      "owner_hit@5": 0.0,
+      "owner_hit@50": 0.0,
+      "owner_mrr": 0.0,
+      "payload_bytes_mean": 66467.0,
+      "payload_bytes_p95": 66467.0,
+      "queries": 1,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    },
+    "theorem": {
+      "gold_recall@1": 0.12,
+      "gold_recall@10": 0.37769230769230766,
+      "gold_recall@100": 0.3976923076923077,
+      "gold_recall@20": 0.3976923076923077,
+      "gold_recall@200": 0.3976923076923077,
+      "gold_recall@5": 0.37769230769230766,
+      "gold_recall@50": 0.3976923076923077,
+      "hit@1": 0.3,
+      "hit@10": 0.6,
+      "hit@100": 0.6,
+      "hit@20": 0.6,
+      "hit@200": 0.6,
+      "hit@5": 0.6,
+      "hit@50": 0.6,
+      "latency_ms_mean": 6154.49295649305,
+      "latency_ms_p50": 5915.296432096511,
+      "latency_ms_p95": 11007.237605331466,
+      "mrr": 0.4166666666666667,
+      "ndcg@1": 0.3,
+      "ndcg@10": 0.3181144001591525,
+      "ndcg@100": 0.32246306325166907,
+      "ndcg@20": 0.32246306325166907,
+      "ndcg@200": 0.32246306325166907,
+      "ndcg@5": 0.31858730792327405,
+      "ndcg@50": 0.32246306325166907,
+      "owner_hit@1": 0.3,
+      "owner_hit@10": 0.5,
+      "owner_hit@100": 0.5,
+      "owner_hit@20": 0.5,
+      "owner_hit@200": 0.5,
+      "owner_hit@5": 0.5,
+      "owner_hit@50": 0.5,
+      "owner_mrr": 0.35833333333333334,
+      "payload_bytes_mean": 888992.1,
+      "payload_bytes_p95": 2967529.0,
+      "queries": 10,
+      "source_hit@1": 0.6,
+      "source_hit@10": 0.9,
+      "source_hit@100": 0.9,
+      "source_hit@20": 0.9,
+      "source_hit@200": 0.9,
+      "source_hit@5": 0.9,
+      "source_hit@50": 0.9,
+      "zero_result_rate": 0.1
+    },
+    "topology": {
+      "gold_recall@1": 0.75,
+      "gold_recall@10": 1.0,
+      "gold_recall@100": 1.0,
+      "gold_recall@20": 1.0,
+      "gold_recall@200": 1.0,
+      "gold_recall@5": 1.0,
+      "gold_recall@50": 1.0,
+      "hit@1": 1.0,
+      "hit@10": 1.0,
+      "hit@100": 1.0,
+      "hit@20": 1.0,
+      "hit@200": 1.0,
+      "hit@5": 1.0,
+      "hit@50": 1.0,
+      "latency_ms_mean": 6223.318899050355,
+      "latency_ms_p50": 6223.318899050355,
+      "latency_ms_p95": 10185.220339987427,
+      "mrr": 1.0,
+      "ndcg@1": 1.0,
+      "ndcg@10": 0.9588300803300535,
+      "ndcg@100": 0.9588300803300535,
+      "ndcg@20": 0.9588300803300535,
+      "ndcg@200": 0.9588300803300535,
+      "ndcg@5": 0.9588300803300535,
+      "ndcg@50": 0.9588300803300535,
+      "owner_hit@1": 1.0,
+      "owner_hit@10": 1.0,
+      "owner_hit@100": 1.0,
+      "owner_hit@20": 1.0,
+      "owner_hit@200": 1.0,
+      "owner_hit@5": 1.0,
+      "owner_hit@50": 1.0,
+      "owner_mrr": 1.0,
+      "payload_bytes_mean": 4056963.0,
+      "payload_bytes_p95": 4945996.5,
+      "queries": 2,
+      "source_hit@1": 1.0,
+      "source_hit@10": 1.0,
+      "source_hit@100": 1.0,
+      "source_hit@20": 1.0,
+      "source_hit@200": 1.0,
+      "source_hit@5": 1.0,
+      "source_hit@50": 1.0,
+      "zero_result_rate": 0.0
+    }
+  },
+  "provider": "api",
+  "query_config_sha256": "ec6bc123f9c7e024914451092565092e665e077c4fb283bd516da4f35d8794e6",
+  "repository_state": {
+    "commit": "5bcd1e4c8b657105fc87ed0e4a55471c0bc8b3a9",
+    "state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": [],
+    "untracked_files": [],
+    "worktree_clean": true
+  },
+  "result_role_state": {
+    "navigation_count": 2564,
+    "navigation_sha256": "bcccc04446520027c62134e3635d03d6bc8547e35015a04099936e2ef1b2bf32",
+    "role_counts": {
+      "navigation-import-only": 2564,
+      "proof-metadata-useless-runes": 9359
+    },
+    "roles_sha256": "bd36e23df638ba2a39e9dc5a9c7af5694d38f066740380898d8e7a8e029314c3"
+  },
+  "retrieval_engine": null,
+  "schema_version": 1,
+  "serving_config_sha256": "3de4262b5d4681cedfe23bcacc8dd3a49359def489057d7bad79f4836866acce",
+  "serving_options": {
+    "max_doc_display_count": 200,
+    "shard_max_match_count": 10000,
+    "total_max_match_count": 0,
+    "use_bm25_scoring": false,
+    "whole": false
+  },
+  "variant": "frontend_lexical_v2"
+}

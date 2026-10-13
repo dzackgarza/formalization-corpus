@@ -60,6 +60,11 @@ source-seed-index fresh="":
       python scripts/source-cache.py seed --all
     fi
 
+# Rebuild only the sources whose remote provenance differs from the committed catalogue
+# and filter decisions. The scheduled `index` GitHub workflow runs this with a deadline.
+source-refresh-index:
+    python scripts/source-cache.py refresh
+
 review-batch-cache-status batch:
     python scripts/source-cache.py status --batch "{{batch}}"
 
@@ -241,10 +246,14 @@ repository-review-status:
 repository-review-batch batch:
     python scripts/repository-review.py status --batch "{{batch}}"
 
-# Recompute the reversible per-file filtering decisions from clean source snapshots.
-# Fresh accepted repository-local blacklist rules materialize here as FD-018.
-filter-state: repository-review-validate
+# Recompute every per-file filtering decision from hydrated active sources:
+# content decisions, then review manifests, then FD-018 (with per-file lapse) and FD-006.
+filter-state:
     python scripts/build-filter-state.py
+    python scripts/repository-review.py build
+    python scripts/refresh-review-filter-state.py --all --allow-dirty
+    python scripts/repository-review.py validate
+    python scripts/validate-filter-state.py
 
 # Replay and validate the append-only filtering ledger against derived snapshots.
 filter-validate: repository-review-validate

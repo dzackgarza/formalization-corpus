@@ -20,17 +20,20 @@ import shlex
 import shutil
 import subprocess
 import tempfile
+import time
 import uuid
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Iterable
 from functools import lru_cache
 
-from filtering_lib import ROOT, Source, iter_files, sha256_file, sources
-from repository_review_lib import BATCHES, load_catalogue_index, load_unit_file_records, load_units
+from filtering_lib import CURRENT, ROOT, Source, iter_files, load_jsonl, sha256_file, sources, upstream_head
+from repository_review_lib import BATCHES, load_catalogue_index, load_review_history, load_unit_file_records, load_units, unit_state
 
 PRIMARY_VIEW = ROOT / ".index-primary"
 METADATA_VIEW = ROOT / ".index-metadata"
 REMOTE_HOST = os.environ.get("FORMALIZATION_INDEX_HOST", "zack@159.223.102.204")
 REMOTE_INDEX = os.environ.get("FORMALIZATION_INDEX_DIR", "lean-corpus/index")
+REMOTE_PROVENANCE = f"{REMOTE_INDEX}-provenance"
 
 
 @lru_cache(maxsize=1)
@@ -380,6 +383,35 @@ def remote_shard_names(repository: str) -> list[str]:
     return [name for name in remote_shard_inventory() if name.startswith(prefix)]
 
 
+@lru_cache(maxsize=1)
+def filter_rows_by_repository() -> dict[str, list[dict[str, Any]]]:
+    out: dict[str, list[dict[str, Any]]] = {}
+    for row in load_jsonl(CURRENT):
+        out.setdefault(str(row["repository"]), []).append(row)
+    return out
+
+
+def index_key(repository: str) -> str:
+    """Digest of every committed input that decides a repository's primary shard."""
+    inputs = {
+        "catalogue": campaign_catalogue_map()[repository],
+        "filter": sorted(
+            filter_rows_by_repository().get(repository, []),
+            key=lambda row: str(row["file"]),
+        ),
+    }
+    return hashlib.sha256(json.dumps(inputs, sort_keys=True).encode()).hexdigest()
+
+
+def remote_provenance() -> dict[str, dict[str, Any]]:
+    remote_command(["mkdir", "-p", REMOTE_PROVENANCE])
+    result = remote_command(
+        ["find", REMOTE_PROVENANCE, "-maxdepth", "1", "-name", "*.json", "-exec", "cat", "{}", "+"]
+    )
+    records = [json.loads(line) for line in result.stdout.splitlines() if line.strip()]
+    return {str(record["repository"]): record for record in records}
+
+
 def publish_repository_shards(repository: str, staged: list[pathlib.Path]) -> None:
     if not staged:
         raise SystemExit(f"{repository}: refusing to publish an empty shard set")
@@ -392,7 +424,8 @@ def publish_repository_shards(repository: str, staged: list[pathlib.Path]) -> No
             cwd=ROOT,
             check=True,
         )
-        transaction = r"""import os
+        transaction = r"""import json
+import os
 import pathlib
 import shutil
 import sys
@@ -420,6 +453,13 @@ try:
     # after every replacement/new piece is installed.
     for name in old_names - new_names:
         (index / name).unlink(missing_ok=True)
+    provenance = pathlib.Path(sys.argv[4])
+    provenance.mkdir(parents=True, exist_ok=True)
+    record = json.loads(sys.argv[5])
+    record["shards"] = sorted(new_names)
+    partial = provenance / f".{repository}.json.part"
+    partial.write_text(json.dumps(record, sort_keys=True) + "\n")
+    os.replace(partial, provenance / f"{repository}.json")
 except BaseException:
     for name in new_names:
         (index / name).unlink(missing_ok=True)
@@ -432,7 +472,21 @@ else:
 """
         command = " ".join(
             shlex.quote(arg)
-            for arg in ["python3", "-", REMOTE_INDEX, remote_stage, repository]
+            for arg in [
+                "python3",
+                "-",
+                REMOTE_INDEX,
+                remote_stage,
+                repository,
+                REMOTE_PROVENANCE,
+                json.dumps(
+                    {
+                        "repository": repository,
+                        "index_key": index_key(repository),
+                        "source_revision": campaign_catalogue_map()[repository].get("source_revision"),
+                    }
+                ),
+            ]
         )
         subprocess.run(
             ["ssh", "-o", "BatchMode=yes", REMOTE_HOST, command],
@@ -455,14 +509,21 @@ else:
 def remove_repository_shards(repository: str) -> None:
     names = remote_shard_names(repository)
     if not names:
-        print(f"retired {repository}: remote shard already absent")
+        print(f"{repository}: remote shard already absent")
         return
-    remote_command(["rm", "-f", *[f"{REMOTE_INDEX}/{name}" for name in names]])
+    remote_command(
+        [
+            "rm",
+            "-f",
+            *[f"{REMOTE_INDEX}/{name}" for name in names],
+            f"{REMOTE_PROVENANCE}/{repository}.json",
+        ]
+    )
     remote_shard_inventory.cache_clear()
     remaining = remote_shard_names(repository)
     if remaining:
         raise SystemExit(f"{repository}: remote shard deletion incomplete: {remaining}")
-    print(f"retired {repository}: removed {len(names)} remote shard(s)")
+    print(f"{repository}: removed {len(names)} remote shard(s)")
 
 
 def status(repositories: Iterable[str] | None = None) -> None:
@@ -567,6 +628,164 @@ def seed_all(*, fresh: bool) -> None:
     )
 
 
+def upstream_moved() -> tuple[list[str], list[str], list[str]]:
+    """Git sources to track, lapsed sources, and sources whose upstream gave no answer.
+
+    A source moves when its upstream HEAD or URL differs from its catalogue. A source
+    lapses when its upstream has no HEAD.
+    """
+    catalogue = catalogue_map()
+    tracked = [source for source in source_map().values() if source.transport != "web-dir"]
+
+    def probe(source: Source) -> tuple[Source, str | None, str | None]:
+        try:
+            return source, upstream_head(source), None
+        except SystemExit as exc:
+            return source, None, str(exc)
+
+    with ThreadPoolExecutor(max_workers=16) as pool:
+        results = list(pool.map(probe, tracked))
+    moved: list[str] = []
+    lapsed: list[str] = []
+    unanswered: list[str] = []
+    for source, head, error in results:
+        recorded = catalogue.get(source.repository, {})
+        if error is not None:
+            print(error)
+            unanswered.append(source.repository)
+        elif head is None:
+            lapsed.append(source.repository)
+        elif head != recorded.get("source_revision") or source.url != recorded.get("url"):
+            moved.append(source.repository)
+    return sorted(moved), sorted(lapsed), sorted(unanswered)
+
+
+def run_script(*args: str) -> None:
+    subprocess.run(["python", str(ROOT / "scripts" / args[0]), *args[1:]], cwd=ROOT, check=True)
+
+
+def track_upstream(repository: str, *, commit: bool) -> None:
+    """Move one hydrated source to its upstream HEAD and re-derive its filtering record."""
+    hydrate(repository, latest=True)
+    run_script("build-filter-state.py", "--repository", repository, "--allow-dirty")
+    run_script("repository-review.py", "build", "--repository", repository)
+    run_script("refresh-review-filter-state.py", "--repository", repository, "--allow-dirty")
+    run_script("repository-review.py", "validate")
+    run_script("validate-filter-state.py")
+    for cached in (campaign_catalogue_map, catalogue_map, filter_rows_by_repository):
+        cached.cache_clear()
+    if not commit:
+        return
+    revision = catalogue_map()[repository]["source_revision"]
+    subprocess.run(["git", "add", "--all", "filtering"], cwd=ROOT, check=True)
+    subprocess.run(
+        ["git", "commit", "-q", "-m", f"chore(corpus): Track upstream {repository} at {revision[:12]}"],
+        cwd=ROOT,
+        check=True,
+    )
+
+
+def unreviewed_repositories() -> set[str]:
+    """Sources with an active unit that has no review or whose review lapsed."""
+    return {
+        unit["repository"]
+        for unit in load_units(active_only=True).values()
+        if unit_state(unit, (load_review_history(unit["repository"], unit["unit_id"]) or [None])[-1]) in {"pending", "lapsed"}
+    }
+
+
+def review_units(repository: str, *, commit: bool, minutes: float | None) -> bool:
+    """Review the unreviewed units of one hydrated source and re-derive its filtering record.
+
+    Returns whether every unit now has a current review. The reviews that did validate are
+    committed even when another unit failed.
+    """
+    command = ["python", str(ROOT / "scripts" / "review-units.py"), "run", "--repository", repository]
+    if minutes is not None:
+        command += ["--stop-after", f"{minutes:.1f}"]
+    reviewed = subprocess.run(command, cwd=ROOT).returncode == 0
+    changed = subprocess.run(
+        ["git", "status", "--porcelain", "filtering/repository-review/reviews"],
+        cwd=ROOT, check=True, capture_output=True, text=True,
+    ).stdout.strip()
+    if not changed:
+        return reviewed
+    run_script("refresh-review-filter-state.py", "--repository", repository, "--allow-dirty")
+    run_script("repository-review.py", "validate")
+    run_script("validate-filter-state.py")
+    for cached in (campaign_catalogue_map, catalogue_map, filter_rows_by_repository):
+        cached.cache_clear()
+    if commit:
+        subprocess.run(["git", "add", "--all", "filtering"], cwd=ROOT, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", f"chore(corpus): Review {repository} units"], cwd=ROOT, check=True)
+    return reviewed
+
+
+def refresh(*, stop_after: float | None, commit: bool) -> int:
+    """Follow upstream HEADs, review unreviewed units, then rebuild every source whose shard differs from the committed inputs.
+
+    A tracking failure stops the run, because the filtering record is then half-written and
+    a later commit would carry it. An index failure leaves the committed record intact, so
+    the run continues with the next source. A lapsed source, whose upstream has no HEAD,
+    loses its shard and is followed again when its upstream returns.
+    """
+    deadline = None if stop_after is None else time.monotonic() + stop_after * 60
+    moved, lapsed, unanswered = upstream_moved()
+    recorded = remote_provenance()
+    for repository in sorted(retired_repository_names() | set(lapsed)):
+        if remote_shard_names(repository):
+            remove_repository_shards(repository)
+    stale = {
+        repository
+        for repository in source_map()
+        if not remote_shard_names(repository)
+        or recorded.get(repository, {}).get("index_key") != index_key(repository)
+    }
+    # An unanswered upstream cannot be hydrated; it is a failure and keeps its shard.
+    unreviewed = unreviewed_repositories()
+    work = sorted((stale | set(moved) | unreviewed) - set(lapsed) - set(unanswered))
+    print(
+        f"refresh: {len(moved)} upstream moved, {len(lapsed)} lapsed, {len(stale)} index stale, "
+        f"{len(unreviewed)} with unreviewed units, "
+        f"{len(work)} of {len(source_map())} to rebuild"
+    )
+    if lapsed:
+        print("lapsed (upstream has no HEAD):\n  " + "\n  ".join(lapsed))
+    failed = list(unanswered)
+    for number, repository in enumerate(work, start=1):
+        if deadline is not None and time.monotonic() >= deadline:
+            print(f"stopped after {stop_after:g} minutes: {len(work) - number + 1} sources remain")
+            break
+        print(f"refresh {number}/{len(work)} {repository}")
+        if repository in moved:
+            try:
+                track_upstream(repository, commit=commit)
+            except (SystemExit, subprocess.CalledProcessError) as exc:
+                print(f"tracking failed at {repository}; stopping with the filtering record uncommitted: {exc}")
+                failed.append(repository)
+                break
+        try:
+            if repository not in moved:
+                hydrate(repository, latest=False)
+            if repository in moved or repository in unreviewed:
+                remaining = None if deadline is None else max(0.0, (deadline - time.monotonic()) / 60)
+                if not review_units(repository, commit=commit, minutes=remaining):
+                    print(f"review incomplete at {repository}; its unreviewed units stay in the index")
+                    failed.append(repository)
+            reindex([repository], keep_views=False, validate_published=False)
+            dehydrate(repository)
+        except (SystemExit, subprocess.CalledProcessError) as exc:
+            print(f"refresh failed at {repository}; source left hydrated for inspection: {exc}")
+            failed.append(repository)
+    else:
+        if not failed:
+            subprocess.run(["python", str(ROOT / "scripts" / "check-published.py")], cwd=ROOT, check=True)
+    if failed:
+        print("refresh failures (unanswered upstreams included):\n  " + "\n  ".join(failed))
+        return 1
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Hydrate/dehydrate disposable corpus source mirrors")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -578,9 +797,21 @@ def main() -> int:
             p.add_argument("--latest", action="store_true", help="refresh current upstream instead of the committed campaign revision")
         if command == "reindex":
             p.add_argument("--keep-views", action="store_true")
-    status_all = sub.add_parser("status-all")
+    sub.add_parser("status-all")
     sub.add_parser("dehydrate-all")
     sub.add_parser("gc")
+    refresh_parser = sub.add_parser("refresh")
+    refresh_parser.add_argument(
+        "--stop-after",
+        type=float,
+        metavar="MINUTES",
+        help="start no new source after this many minutes; the next run resumes",
+    )
+    refresh_parser.add_argument(
+        "--commit",
+        action="store_true",
+        help="commit the filtering record of each upstream-moved source",
+    )
     seed = sub.add_parser("seed")
     seed.add_argument("--all", action="store_true", required=True)
     seed.add_argument("--fresh", action="store_true")
@@ -594,6 +825,8 @@ def main() -> int:
     if args.command == "gc":
         gc_source_cache()
         return 0
+    if args.command == "refresh":
+        return refresh(stop_after=args.stop_after, commit=args.commit)
     if args.command == "seed":
         seed_all(fresh=args.fresh)
         return 0

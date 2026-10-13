@@ -48,6 +48,14 @@ def main() -> int:
             cid = case["id"]
             if cid not in gold_cases:
                 raise SystemExit(f"unknown case {cid} in {report_path}")
+            available = len(case["top_results"])
+            required = min(args.depth, int(case.get("result_count", args.depth)))
+            if available < required:
+                raise SystemExit(
+                    f"report depth insufficient for {cid} in {report_path}: "
+                    f"need {required}, have {available}; rerun the evaluator with a "
+                    "larger reported-result depth"
+                )
             for result in case["top_results"][: args.depth]:
                 key = (result["repository"], result["file"])
                 entry = pool[cid].setdefault(

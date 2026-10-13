@@ -23,6 +23,7 @@ import statistics
 import subprocess
 import sys
 import time
+import urllib.parse
 from collections import defaultdict
 from datetime import datetime, timezone
 from functools import lru_cache
@@ -37,7 +38,7 @@ QUERY_CONFIG = ROOT / "site/search-query.json"
 ZOEKT = ROOT / "bin/zoekt"
 INDEX_DIR = ROOT / ".zoekt"
 FORMAL_FILES = r"\.(lean|v|agda|lagda(\.(md|rst|tex))?|thy|ml|hl|sml|sig|miz|mm|mm0|mm1|lisp|lsp|acl2|pvs|prf|elf)$"
-K_VALUES = (1, 5, 10, 20)
+K_VALUES = (1, 5, 10, 20, 50, 100, 200)
 DEFAULT_API_URL = "https://formalization-corpus.dzackgarza.com/api/search"
 FILTER_STATE = ROOT / "filtering/current.jsonl"
 
@@ -46,7 +47,59 @@ def load_gold(path: pathlib.Path) -> dict[str, Any]:
     data = json.loads(path.read_text())
     if data.get("version") != 1 or not isinstance(data.get("cases"), list):
         raise ValueError(f"unsupported gold schema in {path}")
+    lapse_absent_judgments(data)
+    lapsed = data["lapsed_judgments"]
+    if lapsed:
+        print(
+            f"gold: {len(lapsed)} judgments lapsed because their files left the source; "
+            f"{len(data['lapsed_cases'])} cases lapsed with no live positive judgment",
+            file=sys.stderr,
+        )
     return data
+
+
+def judged_file_present(repository: str, file_name: str, directory: str) -> bool:
+    return (ROOT / directory / file_name).is_file() or file_name in catalogued_files(repository)
+
+
+def lapse_absent_judgments(data: dict[str, Any]) -> None:
+    """Move judgments of files that upstream tracking removed out of scoring.
+
+    Sources follow their upstream HEAD, so a judged file can disappear. Such a
+    judgment lapses: it is recorded in ``lapsed_judgments`` for re-judging, and a
+    case with no live positive judgment moves to ``lapsed_cases``.
+    """
+    sources = source_rows()
+    live_cases: list[dict[str, Any]] = []
+    lapsed_judgments: list[dict[str, Any]] = []
+    lapsed_cases: list[str] = []
+    for case in data["cases"]:
+        judgments = case.get("judgments")
+        if not isinstance(judgments, list):
+            live_cases.append(case)
+            continue
+        live: list[dict[str, Any]] = []
+        for judgment in judgments:
+            repo = judgment.get("repository")
+            file_name = judgment.get("file")
+            if (
+                repo in sources
+                and isinstance(file_name, str)
+                and file_name
+                and not judged_file_present(str(repo), file_name, sources[repo]["directory"])
+            ):
+                lapsed_judgments.append({"case": case.get("id"), **judgment})
+            else:
+                live.append(judgment)
+        if len(live) == len(judgments):
+            live_cases.append(case)
+        elif any(isinstance(j.get("relevance"), int) and j["relevance"] > 0 for j in live):
+            live_cases.append({**case, "judgments": live})
+        else:
+            lapsed_cases.append(str(case.get("id")))
+    data["cases"] = live_cases
+    data["lapsed_judgments"] = lapsed_judgments
+    data["lapsed_cases"] = lapsed_cases
 
 
 def source_rows() -> dict[str, dict[str, str]]:
@@ -119,11 +172,6 @@ def validate_gold(data: dict[str, Any]) -> list[str]:
             if key in seen_targets:
                 errors.append(f"{case_id}: duplicate judgment {repo}:{file_name}")
             seen_targets.add(key)
-            local_path = ROOT / sources[repo]["directory"] / file_name
-            if not local_path.is_file() and file_name not in catalogued_files(str(repo)):
-                errors.append(
-                    f"{case_id}: judged file is neither hydrated nor present in the committed audit manifest: {local_path}"
-                )
         if positive_judgments == 0:
             errors.append(f"{case_id}: needs at least one positive judgment")
     return errors
@@ -214,7 +262,12 @@ def compile_query(text: str, variant: str) -> str:
     if variant == "frontend_lexical_v1":
         parts = literal_terms(text)
         parts.append(f"file:{FORMAL_FILES}")
-    elif variant in {"normalized_content_v1", "normalized_path_content_v1", "frontend_lexical_v2"}:
+    elif variant in {
+        "normalized_content_v1",
+        "normalized_path_content_v1",
+        "frontend_lexical_v2",
+        "zoekt_bm25_v1",
+    }:
         terms, proof_filter = normalized_query_terms(text)
         if variant == "normalized_content_v1":
             parts = [f"content:{quoted_pattern(regex_escape(term))}" for term in terms]
@@ -316,6 +369,7 @@ def serving_options(
     shard_max_match_count: int | None = None,
     total_max_match_count: int | None = None,
     whole: bool | None = None,
+    use_bm25_scoring: bool | None = None,
 ) -> dict[str, Any]:
     configured = query_config().get("serving") or {}
     resolved = {
@@ -333,6 +387,7 @@ def serving_options(
             else total_max_match_count
         ),
         "whole": bool(configured.get("whole", True) if whole is None else whole),
+        "use_bm25_scoring": bool(use_bm25_scoring) if use_bm25_scoring is not None else False,
     }
     if resolved["max_doc_display_count"] <= 0:
         raise ValueError("max_doc_display_count must be positive")
@@ -346,27 +401,46 @@ def api_search(
     timeout: float,
     api_url: str,
     serving: dict[str, Any],
+    *,
+    retries: int = 0,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    if retries < 0:
+        raise ValueError("retries must be nonnegative")
     opts: dict[str, Any] = {
         "MaxDocDisplayCount": serving["max_doc_display_count"],
-        "ChunkMatches": True,
+        "ChunkMatches": bool(serving.get("chunk_matches", True)),
         "Whole": serving["whole"],
     }
+    if serving.get("use_bm25_scoring"):
+        opts["UseBM25Scoring"] = True
     if serving["shard_max_match_count"] > 0:
         opts["ShardMaxMatchCount"] = serving["shard_max_match_count"]
     if serving["total_max_match_count"] > 0:
         opts["TotalMaxMatchCount"] = serving["total_max_match_count"]
     payload = json.dumps({"Q": query, "Opts": opts})
     started = time.perf_counter()
-    proc = subprocess.run(
+    command = [
+        "curl", "-fsS", "--max-time", str(max(1, int(math.ceil(timeout)))),
+    ]
+    if retries:
+        command.extend(
+            [
+                "--retry", str(retries),
+                "--retry-all-errors",
+                "--retry-delay", "0",
+            ]
+        )
+    command.extend(
         [
-            "curl", "-fsS", "--max-time", str(max(1, int(math.ceil(timeout)))),
             api_url,
             "-H", "Content-Type: application/json", "-d", payload,
-        ],
+        ]
+    )
+    proc = subprocess.run(
+        command,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
-        timeout=timeout + 2,
+        timeout=(retries + 1) * max(1, int(math.ceil(timeout))) + 2,
         check=False,
     )
     elapsed_ms = (time.perf_counter() - started) * 1000
@@ -392,6 +466,221 @@ def api_search(
     }
 
 
+def _api_batch_url(api_url: str) -> str:
+    parsed = urllib.parse.urlsplit(api_url)
+    path = parsed.path
+    if path.endswith("/api/search") or path.endswith("/search"):
+        path = path + "/batch"
+    else:
+        raise ValueError(f"cannot derive API batch endpoint from {api_url!r}")
+    return urllib.parse.urlunsplit(
+        (parsed.scheme, parsed.netloc, path, parsed.query, parsed.fragment)
+    )
+
+
+def api_search_batch(
+    queries: list[str],
+    timeout: float,
+    api_url: str,
+    serving: dict[str, Any],
+    *,
+    max_concurrency: int = 4,
+    retries: int = 0,
+) -> tuple[dict[str, list[dict[str, Any]]], dict[str, Any]]:
+    """Submit a finite first-stage query set through the public batch endpoint.
+
+    Results are keyed by the exact compiled query string.  The caller is
+    responsible for deduplicating semantically identical consumers before this
+    transport layer; duplicate strings are rejected so request accounting stays
+    explicit.
+    """
+    if not queries:
+        return {}, {
+            "elapsed_ms": 0.0,
+            "payload_bytes": 0,
+            "physical_api_requests": 0,
+            "logical_queries": 0,
+            "max_concurrency": max_concurrency,
+        }
+    if len(set(queries)) != len(queries):
+        raise ValueError("api_search_batch requires unique query strings")
+    if max_concurrency <= 0:
+        raise ValueError("max_concurrency must be positive")
+    if retries < 0:
+        raise ValueError("retries must be nonnegative")
+
+    opts: dict[str, Any] = {
+        "MaxDocDisplayCount": serving["max_doc_display_count"],
+        "ChunkMatches": bool(serving.get("chunk_matches", True)),
+        "Whole": serving["whole"],
+    }
+    if serving.get("use_bm25_scoring"):
+        opts["UseBM25Scoring"] = True
+    if serving["shard_max_match_count"] > 0:
+        opts["ShardMaxMatchCount"] = serving["shard_max_match_count"]
+    if serving["total_max_match_count"] > 0:
+        opts["TotalMaxMatchCount"] = serving["total_max_match_count"]
+
+    items = [
+        {"ID": str(index), "Request": {"Q": query, "Opts": opts}}
+        for index, query in enumerate(queries)
+    ]
+    payload = json.dumps({"Searches": items, "MaxConcurrency": max_concurrency})
+    command = [
+        "curl", "-fsS", "--max-time", str(max(1, int(math.ceil(timeout)))),
+    ]
+    if retries:
+        command.extend(
+            [
+                "--retry", str(retries),
+                "--retry-all-errors",
+                "--retry-delay", "0",
+            ]
+        )
+    command.extend(
+        [
+            _api_batch_url(api_url),
+            "-H", "Content-Type: application/json", "-d", payload,
+        ]
+    )
+    started = time.perf_counter()
+    proc = subprocess.run(
+        command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        timeout=(retries + 1) * max(1, int(math.ceil(timeout))) + 2,
+        check=False,
+    )
+    elapsed_ms = (time.perf_counter() - started) * 1000
+    if proc.returncode != 0:
+        raise RuntimeError(
+            proc.stderr.decode(errors="replace").strip()
+            or f"curl exited {proc.returncode}"
+        )
+    response = json.loads(proc.stdout)
+    rows = response.get("Results") or []
+    by_id = {str(row.get("ID", "")): row for row in rows}
+    missing = [str(index) for index in range(len(queries)) if str(index) not in by_id]
+    if missing:
+        raise RuntimeError(f"batch API omitted result IDs: {', '.join(missing)}")
+
+    results: dict[str, list[dict[str, Any]]] = {}
+    cache_counts: dict[str, int] = {}
+    for index, query in enumerate(queries):
+        row = by_id[str(index)]
+        status = int(row.get("StatusCode", 0))
+        if status != 200:
+            raise RuntimeError(
+                f"batch query {index} failed with HTTP {status}: {row.get('Error') or 'unknown error'}"
+            )
+        result = row.get("Result") or {}
+        files = result.get("Files") or []
+        results[query] = [
+            {
+                "Repository": item.get("Repository", ""),
+                "FileName": item.get("FileName", ""),
+                "Score": item.get("Score", 0),
+            }
+            for item in files
+        ]
+        cache_status = str(row.get("Cache") or "UNKNOWN")
+        cache_counts[cache_status] = cache_counts.get(cache_status, 0) + 1
+
+    return results, {
+        "elapsed_ms": elapsed_ms,
+        "payload_bytes": len(proc.stdout),
+        "physical_api_requests": 1,
+        "logical_queries": len(queries),
+        "max_concurrency": max_concurrency,
+        "cache_counts": cache_counts,
+    }
+
+
+def api_index_fingerprint_from_list(payload: dict[str, Any]) -> dict[str, Any]:
+    """Fingerprint the exact public Zoekt state exposed by ``/api/list``."""
+    rows: list[dict[str, Any]] = []
+    repo_list = payload.get("List") or {}
+    for entry in repo_list.get("Repos") or []:
+        repository = entry.get("Repository") or {}
+        metadata = entry.get("IndexMetadata") or {}
+        stats = entry.get("Stats") or {}
+        rows.append(
+            {
+                "repository": repository.get("Name", ""),
+                "index_options": repository.get("IndexOptions"),
+                "index_metadata": {
+                    key: metadata.get(key)
+                    for key in (
+                        "ID",
+                        "IndexFormatVersion",
+                        "IndexFeatureVersion",
+                        "IndexMinReaderVersion",
+                        "IndexTime",
+                        "PlainASCII",
+                        "LanguageMap",
+                        "ZoektVersion",
+                    )
+                },
+                "stats": {
+                    key: stats.get(key)
+                    for key in (
+                        "Shards",
+                        "Documents",
+                        "IndexBytes",
+                        "ContentBytes",
+                        "NewLinesCount",
+                    )
+                },
+            }
+        )
+    rows.sort(key=lambda row: row["repository"])
+    return {
+        "kind": "api-list-v1",
+        "repository_count": len(rows),
+        "shard_count": sum(int(row["stats"].get("Shards") or 0) for row in rows),
+        "document_count": sum(int(row["stats"].get("Documents") or 0) for row in rows),
+        "index_bytes": sum(int(row["stats"].get("IndexBytes") or 0) for row in rows),
+        "metadata_sha256": canonical_json_sha256(rows),
+    }
+
+
+def api_index_fingerprint(api_url: str, timeout: float) -> dict[str, Any]:
+    parsed = urllib.parse.urlsplit(api_url)
+    path = parsed.path
+    if path.endswith("/api/search"):
+        path = path[: -len("/api/search")] + "/api/list"
+    elif path.endswith("/search"):
+        path = path[: -len("/search")] + "/list"
+    else:
+        raise ValueError(f"cannot derive API list endpoint from {api_url!r}")
+    list_url = urllib.parse.urlunsplit(
+        (parsed.scheme, parsed.netloc, path, parsed.query, parsed.fragment)
+    )
+    proc = subprocess.run(
+        [
+            "curl",
+            "-fsS",
+            "--max-time",
+            str(max(1, int(math.ceil(timeout)))),
+            list_url,
+            "-H",
+            "Content-Type: application/json",
+            "-d",
+            '{"Q":""}',
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        timeout=timeout + 2,
+        check=False,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(
+            proc.stderr.decode(errors="replace").strip()
+            or f"curl exited {proc.returncode}"
+        )
+    return api_index_fingerprint_from_list(json.loads(proc.stdout))
+
+
 def judgment_map(case: dict[str, Any]) -> dict[tuple[str, str], int]:
     return {(j["repository"], j["file"]): j["relevance"] for j in case["judgments"]}
 
@@ -403,7 +692,16 @@ def dcg(relevances: list[int], k: int) -> float:
     return value
 
 
-def score_case(case: dict[str, Any], results: list[dict[str, Any]], compiled_query: str, runtime: dict[str, Any]) -> dict[str, Any]:
+def score_case(
+    case: dict[str, Any],
+    results: list[dict[str, Any]],
+    compiled_query: str,
+    runtime: dict[str, Any],
+    *,
+    report_depth: int = 20,
+) -> dict[str, Any]:
+    if report_depth <= 0:
+        raise ValueError("report depth must be positive")
     judgments = judgment_map(case)
     gold_sources = {repo for (repo, _), rel in judgments.items() if rel > 0}
     ranked_relevance: list[int] = []
@@ -452,7 +750,7 @@ def score_case(case: dict[str, Any], results: list[dict[str, Any]], compiled_que
                 "score": item.get("Score", 0),
                 "relevance": ranked_relevance[i],
             }
-            for i, item in enumerate(results[:20])
+            for i, item in enumerate(results[:report_depth])
         ],
     }
 
@@ -514,6 +812,9 @@ def compare_reports(current: dict[str, Any], baseline: dict[str, Any], tolerance
     problems: list[str] = []
     if current.get("gold_sha256") != baseline.get("gold_sha256"):
         problems.append("gold-set hash differs; regenerate both runs against the same relevance judgments before comparing")
+        return problems
+    if current.get("lapsed_judgments") != baseline.get("lapsed_judgments"):
+        problems.append("lapsed gold judgments differ; regenerate both runs against the same live judgments before comparing")
         return problems
     if current.get("index") != baseline.get("index"):
         problems.append("index fingerprint differs; do not attribute score changes to retrieval code until the index change is reviewed")
@@ -579,6 +880,12 @@ def main() -> int:
     parser.add_argument("--api-shard-max-match-count", type=int)
     parser.add_argument("--api-total-max-match-count", type=int)
     parser.add_argument(
+        "--api-bm25",
+        action=argparse.BooleanOptionalAction,
+        default=None,
+        help="Enable Zoekt's built-in BM25 scorer for API retrieval.",
+    )
+    parser.add_argument(
         "--api-whole",
         action=argparse.BooleanOptionalAction,
         default=None,
@@ -596,18 +903,34 @@ def main() -> int:
             print(f"ERROR: {error}", file=sys.stderr)
         return 2
     if args.validate_only:
-        print(f"gold ok: {len(gold['cases'])} cases, {sum(len(c['judgments']) for c in gold['cases'])} judgments")
+        print(
+            f"gold ok: {len(gold['cases'])} cases, {sum(len(c['judgments']) for c in gold['cases'])} judgments; "
+            f"lapsed: {len(gold['lapsed_cases'])} cases, {len(gold['lapsed_judgments'])} judgments"
+        )
         return 0
 
     if args.provider == "local" and (not INDEX_DIR.is_dir() or not any(INDEX_DIR.glob("*.zoekt"))):
         print("ERROR: local .zoekt index is unavailable; build or materialize it before running retrieval evals", file=sys.stderr)
         return 2
+    if args.provider == "local" and args.variant == "zoekt_bm25_v1":
+        print("ERROR: zoekt_bm25_v1 currently requires --provider api", file=sys.stderr)
+        return 2
+
+    api_bm25 = args.api_bm25
+    if api_bm25 is None and args.variant == "zoekt_bm25_v1":
+        api_bm25 = True
 
     resolved_serving = serving_options(
         top=args.api_top,
         shard_max_match_count=args.api_shard_max_match_count,
         total_max_match_count=args.api_total_max_match_count,
         whole=args.api_whole,
+        use_bm25_scoring=api_bm25,
+    )
+    api_index_before = (
+        api_index_fingerprint(args.api_url, args.timeout)
+        if args.provider == "api"
+        else None
     )
 
     scored_cases: list[dict[str, Any]] = []
@@ -630,19 +953,25 @@ def main() -> int:
         scored_cases.append(score_case(case, results, compiled, runtime))
 
     repo_state = provenance.repository_state(ROOT)
+    if args.provider == "api":
+        api_index_after = api_index_fingerprint(args.api_url, args.timeout)
+        if api_index_after != api_index_before:
+            print("ERROR: published API index changed during evaluation", file=sys.stderr)
+            return 2
     report = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "corpus_git_commit": repo_state["commit"],
         "repository_state": repo_state,
         "gold_sha256": hashlib.sha256(args.gold.read_bytes()).hexdigest(),
+        "lapsed_judgments": gold["lapsed_judgments"],
         "query_config_sha256": query_config_sha256(),
         "serving_config_sha256": serving_config_sha256(),
         "variant": args.variant,
         "provider": args.provider,
         "api_url": args.api_url if args.provider == "api" else None,
         "serving_options": resolved_serving if args.provider == "api" else None,
-        "index": index_fingerprint() if args.provider == "local" else None,
+        "index": index_fingerprint() if args.provider == "local" else api_index_before,
         "retrieval_engine": retrieval_engine_fingerprint() if args.provider == "local" else None,
         "result_role_state": file_role_index().fingerprint(),
         "metrics": aggregate(scored_cases),

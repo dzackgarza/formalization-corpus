@@ -234,7 +234,7 @@ def main() -> int:
         registered_repositories=registered,
     )
 
-    review_exclusions, review_errors = resolve_review_exclusions(require_fresh=True)
+    review_exclusions, review_errors = resolve_review_exclusions()
     errors.extend(review_errors)
     fd018_rows = {
         (str(row["repository"]), str(row["file"])): row
