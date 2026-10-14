@@ -4,41 +4,61 @@
   "proof_assistant": "rocq",
   "repository": "formal-land__rocq-of-rust",
   "schema_version": 1,
-  "source_revision": "f9568c8a6adb837a9556bf04c5f2e9192bf4d0ee",
-  "source_snapshot_sha256": "ca5ca7b8b75f00fcee00be3c8be92682dc85140dcb94230d5a51dcf38e95c480",
+  "source_revision": "4d20cd70753f236e9602804339b5b1612271ebc9",
+  "source_snapshot_sha256": "942f8a33d0a37597a626fd18f1f79cc8134d6ca76c9c9f99959ad704ab223590",
   "sync_group": "cross-prover",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 1941,
-    "bytes": 254790353,
+    "baseline_primary_retained": 1999,
+    "bytes": 255278381,
     "current_primary_excluded": 0,
-    "current_primary_retained": 1941,
-    "files": 1951,
-    "formal_source_files": 1941,
+    "current_primary_retained": 1999,
+    "files": 2009,
+    "formal_source_files": 1999,
     "unindexed_nonformal": 9
   },
   "transport": "git",
   "url": "https://github.com/formal-land/rocq-of-rust",
   "work_units": [
     {
-      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-0436070e49ce.jsonl",
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-3effbb84655f.jsonl",
       "scope": {
-        "kind": "repository",
-        "root_count": 0,
-        "value": "."
+        "kind": "file-bucket",
+        "root_count": 10,
+        "value": "./@files/all"
       },
-      "snapshot_sha256": "ca5ca7b8b75f00fcee00be3c8be92682dc85140dcb94230d5a51dcf38e95c480",
+      "snapshot_sha256": "d8197ee9fe01500919f17379adfc108f20d1eb9dc78003ed7c96f87ad0eee7ea",
       "stats": {
         "auxiliary_only": 1,
-        "baseline_primary_retained": 1941,
-        "bytes": 254790353,
+        "baseline_primary_retained": 0,
+        "bytes": 472009,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1941,
-        "files": 1951,
-        "formal_source_files": 1941,
+        "current_primary_retained": 0,
+        "files": 10,
+        "formal_source_files": 0,
         "unindexed_nonformal": 9
       },
-      "unit_id": "RRU-0436070e49ce"
+      "unit_id": "RRU-3effbb84655f"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-d9d34bfa20d1.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "09750320586b6ac9cf3965039dfa5f021ff2c8d682ca5815705b577036d6f958",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1999,
+        "bytes": 254806372,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1999,
+        "files": 1999,
+        "formal_source_files": 1999,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-d9d34bfa20d1"
     }
   ]
 }
