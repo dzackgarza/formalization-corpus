@@ -4,17 +4,17 @@
   "proof_assistant": "rocq",
   "repository": "formal-land__rocq-of-rust",
   "schema_version": 1,
-  "source_revision": "4d20cd70753f236e9602804339b5b1612271ebc9",
-  "source_snapshot_sha256": "942f8a33d0a37597a626fd18f1f79cc8134d6ca76c9c9f99959ad704ab223590",
+  "source_revision": "f1c26d11ad2ce26897a8a94d9b92d8aa171003ab",
+  "source_snapshot_sha256": "aab87d3b61b993e287425d1fc94d28111e373c9ab4ab3c5445c1c0cecaed319d",
   "sync_group": "cross-prover",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 1999,
-    "bytes": 255278381,
+    "baseline_primary_retained": 2004,
+    "bytes": 255301265,
     "current_primary_excluded": 0,
-    "current_primary_retained": 1999,
-    "files": 2009,
-    "formal_source_files": 1999,
+    "current_primary_retained": 2004,
+    "files": 2014,
+    "formal_source_files": 2004,
     "unindexed_nonformal": 9
   },
   "transport": "git",
@@ -41,24 +41,264 @@
       "unit_id": "RRU-3effbb84655f"
     },
     {
-      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-d9d34bfa20d1.jsonl",
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-7b492a930afb.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 3,
+        "value": "RocqOfRust/@files/all"
+      },
+      "snapshot_sha256": "1f96cbd84091902760b865bd68270636902d38201b35c7d86ab782cbc0689a3f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 3,
+        "bytes": 36571,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 3,
+        "files": 3,
+        "formal_source_files": 3,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7b492a930afb"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-86deb7967751.jsonl",
       "scope": {
         "kind": "subtree-bucket",
         "root_count": 1,
-        "value": "./@subtrees/all"
+        "value": "RocqOfRust/@subtrees/0"
       },
-      "snapshot_sha256": "09750320586b6ac9cf3965039dfa5f021ff2c8d682ca5815705b577036d6f958",
+      "snapshot_sha256": "3eed36055d2b5d8216518779e2767492ec78ae6f6842ac0bd73d3bc943dfdb1a",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1999,
-        "bytes": 254806372,
+        "baseline_primary_retained": 3,
+        "bytes": 60871,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1999,
-        "files": 1999,
-        "formal_source_files": 1999,
+        "current_primary_retained": 3,
+        "files": 3,
+        "formal_source_files": 3,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-d9d34bfa20d1"
+      "unit_id": "RRU-86deb7967751"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-9a55ea4ade75.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "RocqOfRust/@subtrees/1"
+      },
+      "snapshot_sha256": "a1d3142fcb7e10faf2f444cbca88d9dff8a1107f7c8736c37e9e1a9c8b83f196",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 5,
+        "bytes": 23004,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 5,
+        "files": 5,
+        "formal_source_files": 5,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9a55ea4ade75"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-2056585c3609.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "RocqOfRust/@subtrees/2"
+      },
+      "snapshot_sha256": "2e6ba025c0d36dee2294b344658feeba3443e3b4104f36a289b990bcb16ab616",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 343,
+        "bytes": 94660572,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 343,
+        "files": 343,
+        "formal_source_files": 343,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-2056585c3609"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-233e8f304f8a.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "RocqOfRust/@subtrees/4"
+      },
+      "snapshot_sha256": "b176e51229c5bf48c2ba33fe9771eb787b05944493dab489ac08916d5957cb6c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 142,
+        "bytes": 39274290,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 142,
+        "files": 142,
+        "formal_source_files": 142,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-233e8f304f8a"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-1009238e3165.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "RocqOfRust/@subtrees/6"
+      },
+      "snapshot_sha256": "a2b3bf80e0fc18d937c40a2fbaebc012b990c3041b3576f38befd7b9accc072e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 72,
+        "bytes": 19363282,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 72,
+        "files": 72,
+        "formal_source_files": 72,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1009238e3165"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-a92a5fd06ba7.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "RocqOfRust/@subtrees/8"
+      },
+      "snapshot_sha256": "f84ce8fde4d661500612573c62da42eab2d331c6e311538eec20520224f97e32",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 498,
+        "bytes": 25775901,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 498,
+        "files": 498,
+        "formal_source_files": 498,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a92a5fd06ba7"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-6cb320636080.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "RocqOfRust/@subtrees/9"
+      },
+      "snapshot_sha256": "00211769ab4c8697dc5b0e40c6296c52b33c5ccf14445d92c81046a7c6f32b43",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 562,
+        "bytes": 6838472,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 562,
+        "files": 562,
+        "formal_source_files": 562,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6cb320636080"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-fc40fd1cb9c9.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "RocqOfRust/@subtrees/a"
+      },
+      "snapshot_sha256": "1ab9f79d93e08b6b493dd8adc505eb53bb6ef91704c2ca85db7507a6245ff3c5",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 305,
+        "bytes": 61134455,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 305,
+        "files": 305,
+        "formal_source_files": 305,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fc40fd1cb9c9"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-f396ce1f238c.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "RocqOfRust/@subtrees/b"
+      },
+      "snapshot_sha256": "d4a2a773286caf5d5a78472bdb64d110f7c0637c59966d20cbe53ad8ddf17abf",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 4,
+        "bytes": 16533,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 4,
+        "files": 4,
+        "formal_source_files": 4,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f396ce1f238c"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-c43a45334c04.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "RocqOfRust/@subtrees/c"
+      },
+      "snapshot_sha256": "600ecac48b919a224e40fb499398fa5f16888edc6960b79883acc5d9249845a9",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 51,
+        "bytes": 6941460,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 51,
+        "files": 51,
+        "formal_source_files": 51,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c43a45334c04"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-3cc34fcfee61.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "RocqOfRust/@subtrees/d"
+      },
+      "snapshot_sha256": "240237ce002b9dfd944299b68b84fd144a1076e083f817d6a80ae8c682488a7e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 2,
+        "bytes": 2991,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 2,
+        "files": 2,
+        "formal_source_files": 2,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3cc34fcfee61"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/formal-land__rocq-of-rust/RRU-f7b94845a27d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "RocqOfRust/@subtrees/f"
+      },
+      "snapshot_sha256": "aa6f58ac95396a6ec9343722eb9be3281ed98e229bbf5c7e41f82d09b1fbde4e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 14,
+        "bytes": 700854,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 14,
+        "files": 14,
+        "formal_source_files": 14,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f7b94845a27d"
     }
   ]
 }
