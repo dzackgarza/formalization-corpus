@@ -4,18 +4,18 @@
   "proof_assistant": "lean",
   "repository": "TauCetiProject__TauCeti",
   "schema_version": 1,
-  "source_revision": "cfda6ef3bd2ca9850dc1d8a124b50cadb618fa69",
-  "source_snapshot_sha256": "a2fe661008f564bade32014be951c9310563d062c304f2ec41a338d8421f9d88",
+  "source_revision": "4fb7b350a5e1e8e161c051eaf68d39d0c261dd0b",
+  "source_snapshot_sha256": "fa76c6551e80996f3a4a06262e902137b7b7d34e28fba440670545ff02cad03b",
   "sync_group": "routine",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 16633,
-    "bytes": 176015669,
+    "baseline_primary_retained": 17073,
+    "bytes": 180678542,
     "current_primary_excluded": 3,
-    "current_primary_retained": 16633,
-    "files": 16643,
-    "formal_source_files": 16633,
-    "unindexed_nonformal": 6
+    "current_primary_retained": 17073,
+    "files": 17084,
+    "formal_source_files": 17073,
+    "unindexed_nonformal": 7
   },
   "transport": "git",
   "url": "https://github.com/TauCetiProject/TauCeti",
@@ -24,19 +24,19 @@
       "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-615ccb609e7d.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 11,
+        "root_count": 12,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "c939d1a378f119311af0ca883e6623921bb3ba9e90c5592e83daaf8f3a438731",
+      "snapshot_sha256": "f22ebd58921c377d6649909b892ee8bad1075a28f9ab777a8aeae1383ae6aa39",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 1,
-        "bytes": 64606,
+        "bytes": 68006,
         "current_primary_excluded": 3,
         "current_primary_retained": 1,
-        "files": 11,
+        "files": 12,
         "formal_source_files": 1,
-        "unindexed_nonformal": 6
+        "unindexed_nonformal": 7
       },
       "unit_id": "RRU-615ccb609e7d"
     },
@@ -47,11 +47,11 @@
         "root_count": 2,
         "value": "./@subtrees/all"
       },
-      "snapshot_sha256": "87e862e52f7454f52f1a5f77bba9841c786503a62b776ba5fe9114686e79a686",
+      "snapshot_sha256": "ce8b00fe2d780a940f483b5129827532172e5652f902d68d429cc028853a93cc",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 15,
-        "bytes": 85666,
+        "bytes": 86428,
         "current_primary_excluded": 0,
         "current_primary_retained": 15,
         "files": 15,
@@ -67,15 +67,15 @@
         "root_count": 2,
         "value": "TauCeti/@subtrees/0"
       },
-      "snapshot_sha256": "e7abe29deaf83fc9f2dfaf326b4f312744a6c4055cdec4e5261ef3036f2b1bdc",
+      "snapshot_sha256": "760ffa1c9f90ec6890dfbc9cf39de007d6c215f206f0f8168320f5cc2919c8f2",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 597,
-        "bytes": 5896368,
+        "baseline_primary_retained": 624,
+        "bytes": 6134880,
         "current_primary_excluded": 0,
-        "current_primary_retained": 597,
-        "files": 597,
-        "formal_source_files": 597,
+        "current_primary_retained": 624,
+        "files": 624,
+        "formal_source_files": 624,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-52bfdd9265b5"
@@ -87,15 +87,15 @@
         "root_count": 1,
         "value": "TauCeti/@subtrees/1"
       },
-      "snapshot_sha256": "9a837f5b405f6b8cb514527269be1401053946e28829b59ef1d25d7efacc3612",
+      "snapshot_sha256": "05a7c42957a6ac8fd0d71c79ae0f2ec72fd423352bdef6011fdcd83b91f12847",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 460,
-        "bytes": 5101076,
+        "baseline_primary_retained": 462,
+        "bytes": 5126855,
         "current_primary_excluded": 0,
-        "current_primary_retained": 460,
-        "files": 460,
-        "formal_source_files": 460,
+        "current_primary_retained": 462,
+        "files": 462,
+        "formal_source_files": 462,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-f1adf0c667db"
@@ -107,98 +107,38 @@
         "root_count": 2,
         "value": "TauCeti/@subtrees/2"
       },
-      "snapshot_sha256": "019ad15c8006c2de603a45478366863937b1d4256ed903cd72abfe0db2a9f7c1",
+      "snapshot_sha256": "b0daa4950bc4095a666e6b5314b6632dc2647d9cb434cb585e2ed4f0952d47da",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 21,
-        "bytes": 97876,
+        "baseline_primary_retained": 31,
+        "bytes": 125669,
         "current_primary_excluded": 0,
-        "current_primary_retained": 21,
-        "files": 21,
-        "formal_source_files": 21,
+        "current_primary_retained": 31,
+        "files": 31,
+        "formal_source_files": 31,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-b07062f913db"
     },
     {
-      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-ec6a6f34d54a.jsonl",
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-2000fc1b4720.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 1,
-        "value": "TauCeti/@subtrees/46"
+        "root_count": 3,
+        "value": "TauCeti/@subtrees/4"
       },
-      "snapshot_sha256": "68eae1839326718b8223b421ce2bebb26324bc8e61b222a77e9f65eb9f8a9757",
+      "snapshot_sha256": "5c6d554417d837f55e32964e940b145384a549a8c182555f00e6d843c6a2bdc5",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 468,
-        "bytes": 4347328,
+        "baseline_primary_retained": 571,
+        "bytes": 4967522,
         "current_primary_excluded": 0,
-        "current_primary_retained": 468,
-        "files": 468,
-        "formal_source_files": 468,
+        "current_primary_retained": 571,
+        "files": 571,
+        "formal_source_files": 571,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-ec6a6f34d54a"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-9918458f7f12.jsonl",
-      "scope": {
-        "kind": "subtree-bucket",
-        "root_count": 1,
-        "value": "TauCeti/@subtrees/49"
-      },
-      "snapshot_sha256": "5a61147934269afb705985c20f7c11bf04e647c125efd3f130fd4cf758b9aa94",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 11,
-        "bytes": 74568,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 11,
-        "files": 11,
-        "formal_source_files": 11,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-9918458f7f12"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-b548fb076848.jsonl",
-      "scope": {
-        "kind": "subtree-bucket",
-        "root_count": 1,
-        "value": "TauCeti/@subtrees/4e"
-      },
-      "snapshot_sha256": "176a8593542212dde20f774117fb7a56f568dad2905a80d15abab61e53c3f057",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 1979,
-        "bytes": 21115351,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 1979,
-        "files": 1979,
-        "formal_source_files": 1979,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-b548fb076848"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-78ae30e0760f.jsonl",
-      "scope": {
-        "kind": "subtree-bucket",
-        "root_count": 1,
-        "value": "TauCeti/@subtrees/4f"
-      },
-      "snapshot_sha256": "7d4c5ea8b3dbfcc40b4ed7386b0fd5749d41f9374e32a4b8bb8876cf228588ed",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 21,
-        "bytes": 88437,
-        "current_primary_excluded": 0,
-        "current_primary_retained": 21,
-        "files": 21,
-        "formal_source_files": 21,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-78ae30e0760f"
+      "unit_id": "RRU-2000fc1b4720"
     },
     {
       "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-e1ae67bb9f63.jsonl",
@@ -207,15 +147,15 @@
         "root_count": 1,
         "value": "TauCeti/@subtrees/5"
       },
-      "snapshot_sha256": "2287bd3cabbee6f88c6e393c4c5a075a78408ab434ee456dc1a806ab86cbe425",
+      "snapshot_sha256": "16efbf9425810c3ac09830c9180e00578f198024b7aa4f6a002b077cfcb92b00",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 62,
-        "bytes": 753378,
+        "baseline_primary_retained": 63,
+        "bytes": 759591,
         "current_primary_excluded": 0,
-        "current_primary_retained": 62,
-        "files": 62,
-        "formal_source_files": 62,
+        "current_primary_retained": 63,
+        "files": 63,
+        "formal_source_files": 63,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-e1ae67bb9f63"
@@ -227,15 +167,15 @@
         "root_count": 1,
         "value": "TauCeti/@subtrees/6"
       },
-      "snapshot_sha256": "578f16b7e8e940e61d421c6483f45d16831dc65661f448daf218a558c0831be5",
+      "snapshot_sha256": "f31fbb6887fbe92f507eb1af717ec328c07cd84cb060cb9803a3e6214adaa01b",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 270,
-        "bytes": 2865361,
+        "baseline_primary_retained": 287,
+        "bytes": 3042703,
         "current_primary_excluded": 0,
-        "current_primary_retained": 270,
-        "files": 270,
-        "formal_source_files": 270,
+        "current_primary_retained": 287,
+        "files": 287,
+        "formal_source_files": 287,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-3013016827e8"
@@ -247,15 +187,15 @@
         "root_count": 4,
         "value": "TauCeti/@subtrees/7"
       },
-      "snapshot_sha256": "77b5757976c062080ad91821f98908ee94b291205e372f752dc31e8394b8d696",
+      "snapshot_sha256": "49d979928c8b0abc0df96797b0f68bf6c9f39a2c5e6beca2bd16d730231757e4",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1876,
-        "bytes": 17789860,
+        "baseline_primary_retained": 1940,
+        "bytes": 18335499,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1876,
-        "files": 1876,
-        "formal_source_files": 1876,
+        "current_primary_retained": 1940,
+        "files": 1940,
+        "formal_source_files": 1940,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-b8903bf22446"
@@ -267,15 +207,15 @@
         "root_count": 3,
         "value": "TauCeti/@subtrees/8"
       },
-      "snapshot_sha256": "5fba29dc7cd01ca329fde2819e328b2feec7ca9556635bb12040b6cbbfca0f70",
+      "snapshot_sha256": "a94f85625337049c377163269d275018d7686221e82411f880388a9efafbb2d8",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1522,
-        "bytes": 16443936,
+        "baseline_primary_retained": 1580,
+        "bytes": 17140336,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1522,
-        "files": 1522,
-        "formal_source_files": 1522,
+        "current_primary_retained": 1580,
+        "files": 1580,
+        "formal_source_files": 1580,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-cd2e44478d07"
@@ -287,15 +227,15 @@
         "root_count": 2,
         "value": "TauCeti/@subtrees/9"
       },
-      "snapshot_sha256": "0724aea10dfda0c31083c253ce6bb13f055822de12b2fb2c951c4264b412ae44",
+      "snapshot_sha256": "2558bca013baf9c531be7476ba0523d3663df17144e59e9707eb685df9fc5a6d",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 362,
-        "bytes": 5173762,
+        "baseline_primary_retained": 373,
+        "bytes": 5331185,
         "current_primary_excluded": 0,
-        "current_primary_retained": 362,
-        "files": 362,
-        "formal_source_files": 362,
+        "current_primary_retained": 373,
+        "files": 373,
+        "formal_source_files": 373,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-6f3b87b50dcd"
@@ -307,15 +247,15 @@
         "root_count": 3,
         "value": "TauCeti/@subtrees/a"
       },
-      "snapshot_sha256": "33f3a55c18789e07c43c0095f4ef52c508f9efbe5ee5e653b4287f25979bdb41",
+      "snapshot_sha256": "301591c857841db4cc8937d556f41254c3f2c9310572bce9527846f893f5e39b",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1417,
-        "bytes": 17107935,
+        "baseline_primary_retained": 1426,
+        "bytes": 17171429,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1417,
-        "files": 1417,
-        "formal_source_files": 1417,
+        "current_primary_retained": 1426,
+        "files": 1426,
+        "formal_source_files": 1426,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-cdc664c89c61"
@@ -327,15 +267,15 @@
         "root_count": 2,
         "value": "TauCeti/@subtrees/b"
       },
-      "snapshot_sha256": "3f9fa4d0366acf6c131e51b7bdc4566dfa6c8cd59651ccca81d7d3392d4fd1b8",
+      "snapshot_sha256": "2569dc41133aa187f399a81602380e611ad034df38469b02a50af3ef281acf5a",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1377,
-        "bytes": 14661205,
+        "baseline_primary_retained": 1411,
+        "bytes": 15047229,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1377,
-        "files": 1377,
-        "formal_source_files": 1377,
+        "current_primary_retained": 1411,
+        "files": 1411,
+        "formal_source_files": 1411,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-909f0bfcd4f7"
@@ -347,15 +287,15 @@
         "root_count": 1,
         "value": "TauCeti/@subtrees/c"
       },
-      "snapshot_sha256": "ce35fcc9b0ad49f379e625e4f69a0041d940412bef09b2f312d360f15fe8637d",
+      "snapshot_sha256": "f54b43c54f997d987e548ace31edbbd4ecbc737f3c47717dd0edf9bfc8e8506d",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1256,
-        "bytes": 14612775,
+        "baseline_primary_retained": 1270,
+        "bytes": 14986419,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1256,
-        "files": 1256,
-        "formal_source_files": 1256,
+        "current_primary_retained": 1270,
+        "files": 1270,
+        "formal_source_files": 1270,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-afe29469dc27"
@@ -367,15 +307,15 @@
         "root_count": 1,
         "value": "TauCeti/@subtrees/e0"
       },
-      "snapshot_sha256": "06077fc0005ed4cec52ba2cb14a1f62808bae5bf8b8749b3e7960a69234acb32",
+      "snapshot_sha256": "7bafbeab23dfd3c6eaa95eee13c56fdc4e33fa09db1701b0ecbb0a124bacc3ed",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1742,
-        "bytes": 18912097,
+        "baseline_primary_retained": 1759,
+        "bytes": 19195124,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1742,
-        "files": 1742,
-        "formal_source_files": 1742,
+        "current_primary_retained": 1759,
+        "files": 1759,
+        "formal_source_files": 1759,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-2be2ead6c638"
@@ -387,15 +327,15 @@
         "root_count": 1,
         "value": "TauCeti/@subtrees/e5"
       },
-      "snapshot_sha256": "ecb52c51f2fce3542ddc534852b65db1ee43f2741a977827172acce93ecad702",
+      "snapshot_sha256": "f5ef87d1a4e3d04e0c0a8ca175e8624df3c03c490dcb4098ccb945c471b67810",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 303,
-        "bytes": 3654019,
+        "baseline_primary_retained": 305,
+        "bytes": 3692112,
         "current_primary_excluded": 0,
-        "current_primary_retained": 303,
-        "files": 303,
-        "formal_source_files": 303,
+        "current_primary_retained": 305,
+        "files": 305,
+        "formal_source_files": 305,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-21f42d20ae49"
@@ -404,18 +344,18 @@
       "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-9741fa5e3986.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 4,
+        "root_count": 5,
         "value": "TauCeti/Algebra/@files/all"
       },
-      "snapshot_sha256": "9d637d617674a51a93d4052813c59e9ca87cdb7a01e153c8732174ca33106e21",
+      "snapshot_sha256": "f6a7c862bb9bba77ca0460d969dad38b6c764f5669136468041caccea172b641",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 4,
-        "bytes": 61917,
+        "baseline_primary_retained": 5,
+        "bytes": 70735,
         "current_primary_excluded": 0,
-        "current_primary_retained": 4,
-        "files": 4,
-        "formal_source_files": 4,
+        "current_primary_retained": 5,
+        "files": 5,
+        "formal_source_files": 5,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-9741fa5e3986"
@@ -427,15 +367,15 @@
         "root_count": 4,
         "value": "TauCeti/Algebra/@subtrees/0"
       },
-      "snapshot_sha256": "c0218c2e50fdf920ca06cc8076851511e9b12137ad83117c4fb5383503f5340a",
+      "snapshot_sha256": "004f25f16579c1d795946de9fdc47c64258f96007d6b6561c92ec0008e4b0794",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 229,
-        "bytes": 2055575,
+        "baseline_primary_retained": 234,
+        "bytes": 2105974,
         "current_primary_excluded": 0,
-        "current_primary_retained": 229,
-        "files": 229,
-        "formal_source_files": 229,
+        "current_primary_retained": 234,
+        "files": 234,
+        "formal_source_files": 234,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-776f5e28575f"
@@ -467,11 +407,11 @@
         "root_count": 4,
         "value": "TauCeti/Algebra/@subtrees/3"
       },
-      "snapshot_sha256": "66661ac5f9369ef66065eace7a00973b9849fed2dcf68ce5a894444f11517ef4",
+      "snapshot_sha256": "bdc9d368230085c71a22c5df0fd3992b95c1985ea2188ccfcc17fbb605c467a2",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 176,
-        "bytes": 1384608,
+        "bytes": 1392273,
         "current_primary_excluded": 0,
         "current_primary_retained": 176,
         "files": 176,
@@ -527,15 +467,15 @@
         "root_count": 4,
         "value": "TauCeti/Algebra/@subtrees/6"
       },
-      "snapshot_sha256": "3757755d7581c2a53ccb3ecdf0f2a5d839af8f4443090f30e51772fd16fefb74",
+      "snapshot_sha256": "7d2c9a57796abf820bd2b2bcaa0599635502c3c4163914164c7596f114ca0d6e",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 931,
-        "bytes": 7810406,
+        "baseline_primary_retained": 949,
+        "bytes": 7998246,
         "current_primary_excluded": 0,
-        "current_primary_retained": 931,
-        "files": 931,
-        "formal_source_files": 931,
+        "current_primary_retained": 949,
+        "files": 949,
+        "formal_source_files": 949,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-3f3b139c78a1"
@@ -547,11 +487,11 @@
         "root_count": 5,
         "value": "TauCeti/Algebra/@subtrees/7"
       },
-      "snapshot_sha256": "7d625adfd1e5bb85a1f99ef73f45a976fb4c67760a0cb742e6f686946546fc7d",
+      "snapshot_sha256": "2ec11f296239f4cc7c910b739833ac1586c8d25c37d57711d82baee075bbdfe6",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 57,
-        "bytes": 256516,
+        "bytes": 260415,
         "current_primary_excluded": 0,
         "current_primary_retained": 57,
         "files": 57,
@@ -567,15 +507,15 @@
         "root_count": 4,
         "value": "TauCeti/Algebra/@subtrees/8"
       },
-      "snapshot_sha256": "986067ac364a1d673d4002f33a4dc564c876ddb60ccf55c17846f1d8e1966587",
+      "snapshot_sha256": "07e53ba9e17eb6dca13ec846418269cf1a4331f75880eda2fb30889029e61d02",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 76,
-        "bytes": 559909,
+        "baseline_primary_retained": 77,
+        "bytes": 571720,
         "current_primary_excluded": 0,
-        "current_primary_retained": 76,
-        "files": 76,
-        "formal_source_files": 76,
+        "current_primary_retained": 77,
+        "files": 77,
+        "formal_source_files": 77,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-4ddbfd21ae6b"
@@ -587,15 +527,15 @@
         "root_count": 7,
         "value": "TauCeti/Algebra/@subtrees/9"
       },
-      "snapshot_sha256": "b96198f404a3cc3a70ff39f52353e50ca79fbcc9cf7c4dc82c7275748f10e503",
+      "snapshot_sha256": "c503877de381fcac7527661476cb0f54f6806f316b4ff713e5aa1a2f6ba64fac",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 811,
-        "bytes": 8983080,
+        "baseline_primary_retained": 820,
+        "bytes": 9067770,
         "current_primary_excluded": 0,
-        "current_primary_retained": 811,
-        "files": 811,
-        "formal_source_files": 811,
+        "current_primary_retained": 820,
+        "files": 820,
+        "formal_source_files": 820,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-74629bc79d2b"
@@ -607,15 +547,15 @@
         "root_count": 2,
         "value": "TauCeti/Algebra/@subtrees/a"
       },
-      "snapshot_sha256": "4ac810d985fbac121eff3db06e5cea55e8e6d713619bec1a50bdeecbd2eee4e1",
+      "snapshot_sha256": "4b0891d750368bdbac0dbbf55e273e285b9c77c978c886222c78dccad892a46b",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 500,
-        "bytes": 5192512,
+        "baseline_primary_retained": 515,
+        "bytes": 5493639,
         "current_primary_excluded": 0,
-        "current_primary_retained": 500,
-        "files": 500,
-        "formal_source_files": 500,
+        "current_primary_retained": 515,
+        "files": 515,
+        "formal_source_files": 515,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-9a3c2d3967dd"
@@ -707,18 +647,318 @@
         "root_count": 2,
         "value": "TauCeti/Algebra/@subtrees/f"
       },
-      "snapshot_sha256": "19129febb64a907c3fd520e7afac6f432b5db1bf1c4d510667331f27b1c6bb3b",
+      "snapshot_sha256": "67e111e354fb90dc3a55f2f87362f83e8db488a8221774067807654689b04f21",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 16,
+        "bytes": 59643,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 16,
+        "files": 16,
+        "formal_source_files": 16,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-edf8f3416518"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-f895ebcf33f0.jsonl",
+      "scope": {
+        "kind": "file-bucket",
+        "root_count": 5,
+        "value": "TauCeti/Analysis/@files/all"
+      },
+      "snapshot_sha256": "9938c7ab99ff37667cd33c6a877970a2b799ec3572ebe8d4cbe2653a4a93927e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 5,
+        "bytes": 31314,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 5,
+        "files": 5,
+        "formal_source_files": 5,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f895ebcf33f0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-fe518f708b3e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "TauCeti/Analysis/@subtrees/0"
+      },
+      "snapshot_sha256": "9e0c7ff7e010aaa25efac0d35dc25b8ccee5a66fef1f63fa1e5c21c4b03adf87",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 161,
+        "bytes": 2470784,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 161,
+        "files": 161,
+        "formal_source_files": 161,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-fe518f708b3e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-22c2509af5c6.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TauCeti/Analysis/@subtrees/1"
+      },
+      "snapshot_sha256": "c1e8917a399bd3a26432dd8a0f64a387b1da84778f9a99124256d7aa873549a6",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 12,
+        "bytes": 141230,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 12,
+        "files": 12,
+        "formal_source_files": 12,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-22c2509af5c6"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-0c10818b6ac8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TauCeti/Analysis/@subtrees/2"
+      },
+      "snapshot_sha256": "41f5fc437ee419acf46ba93fbdc5d604fdfd0f0f1fb9de6474a8b312a0b42f23",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 38,
+        "bytes": 353739,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 38,
+        "files": 38,
+        "formal_source_files": 38,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0c10818b6ac8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-b84537139620.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "TauCeti/Analysis/@subtrees/3"
+      },
+      "snapshot_sha256": "bb2a2c50ac180fbbc60da776aae0224259545e47a0545a5f78c31ea0f3a5ebfe",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 14,
-        "bytes": 55586,
+        "bytes": 97962,
         "current_primary_excluded": 0,
         "current_primary_retained": 14,
         "files": 14,
         "formal_source_files": 14,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-edf8f3416518"
+      "unit_id": "RRU-b84537139620"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-0e27065ca7ac.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TauCeti/Analysis/@subtrees/4"
+      },
+      "snapshot_sha256": "db1327464023c876596da96ef19d7ce31bfc8ca91fc8adb1bf57b37ff15a4d8e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 47,
+        "bytes": 591212,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 47,
+        "files": 47,
+        "formal_source_files": 47,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-0e27065ca7ac"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-1f625fe318a1.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "TauCeti/Analysis/@subtrees/5"
+      },
+      "snapshot_sha256": "503cc0703775f377afbbe701785b75be34ac7aaeb5b0f4d26be6704cc69e7178",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 107,
+        "bytes": 787077,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 107,
+        "files": 107,
+        "formal_source_files": 107,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1f625fe318a1"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-62a78cf29466.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TauCeti/Analysis/@subtrees/6"
+      },
+      "snapshot_sha256": "6bca92e9215318b0b15671072e536281c9c14ddb216073ec6307ca32caafbff0",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 7,
+        "bytes": 43512,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 7,
+        "files": 7,
+        "formal_source_files": 7,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-62a78cf29466"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-da1d14a01e54.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "TauCeti/Analysis/@subtrees/7"
+      },
+      "snapshot_sha256": "9d080b9eda2bf33fbd5d1dbf8253b3825d9a865e6f6533eebf2b71e3fa963295",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 293,
+        "bytes": 2380105,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 293,
+        "files": 293,
+        "formal_source_files": 293,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-da1d14a01e54"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-44b155647420.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "TauCeti/Analysis/@subtrees/8"
+      },
+      "snapshot_sha256": "747294978011f97ebe383a2bb8a3223118f73cbd6c2f3bba82fc366f60b270e8",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 291,
+        "bytes": 2970314,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 291,
+        "files": 291,
+        "formal_source_files": 291,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-44b155647420"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-78d8a9e272e0.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "TauCeti/Analysis/@subtrees/9"
+      },
+      "snapshot_sha256": "ffe83823424aa8ccb78379c0cc8d84d3975d33513ce6047949cd9984cd83197c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 198,
+        "bytes": 1652544,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 198,
+        "files": 198,
+        "formal_source_files": 198,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-78d8a9e272e0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-f822a47854ce.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TauCeti/Analysis/@subtrees/b"
+      },
+      "snapshot_sha256": "b1ef712921b5fda1a62ff2b4101724a6fbcd482ab06e3a3d1746d135b21c3c5c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 30,
+        "bytes": 282268,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 30,
+        "files": 30,
+        "formal_source_files": 30,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-f822a47854ce"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-14148cc454e8.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "TauCeti/Analysis/@subtrees/d"
+      },
+      "snapshot_sha256": "7d37d41eeada811a54e41dc0a718c83c2e58efc2a89a723aa1142c2d1cf5bc81",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 103,
+        "bytes": 1282082,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 103,
+        "files": 103,
+        "formal_source_files": 103,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-14148cc454e8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-4097c0645aae.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "TauCeti/Analysis/@subtrees/e"
+      },
+      "snapshot_sha256": "05ee3b24c7262119275768532fbe91c47fe77346f741bd5965880c833341a12f",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 5,
+        "bytes": 47728,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 5,
+        "files": 5,
+        "formal_source_files": 5,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4097c0645aae"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/TauCetiProject__TauCeti/RRU-345684c06dcf.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "TauCeti/Analysis/@subtrees/f"
+      },
+      "snapshot_sha256": "9070b2403f5eb69a7fe19bd17094999d49e7c886cdbea9c1bdf5e4412e19eaaf",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 720,
+        "bytes": 8505313,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 720,
+        "files": 720,
+        "formal_source_files": 720,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-345684c06dcf"
     }
   ]
 }
