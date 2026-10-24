@@ -4,17 +4,17 @@
   "proof_assistant": "acl2",
   "repository": "acl2__acl2",
   "schema_version": 1,
-  "source_revision": "a002445b577b63ce49c39b43ad7654b4a8272e42",
-  "source_snapshot_sha256": "f11527d708a662012c4b11b43e2fc48a2f8c34a897d9651d2721ae6715dde772",
+  "source_revision": "644cd3f2b8fdccc4529fcc7526b1f47b8f7d0749",
+  "source_snapshot_sha256": "1c66a271852778f12ec69fa5698ffa74a8a3928f97101b897651aed57e1c98ff",
   "sync_group": "cross-prover",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 27297,
-    "bytes": 1015320481,
-    "current_primary_excluded": 4926,
-    "current_primary_retained": 24528,
-    "files": 29464,
-    "formal_source_files": 29454,
+    "baseline_primary_retained": 27314,
+    "bytes": 1015403602,
+    "current_primary_excluded": 4924,
+    "current_primary_retained": 24547,
+    "files": 29481,
+    "formal_source_files": 29471,
     "unindexed_nonformal": 9
   },
   "transport": "git",
@@ -27,13 +27,13 @@
         "root_count": 66,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "03f83294056edb1873c9520c2484439ef6ae32a1417de66dce85491d576dcd9f",
+      "snapshot_sha256": "93765b43ecde040ae7f1a44e11979bc4cecea996b6ec1fa86782bb6d9ed0f696",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 56,
-        "bytes": 22147076,
-        "current_primary_excluded": 1,
-        "current_primary_retained": 55,
+        "bytes": 22149683,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 56,
         "files": 66,
         "formal_source_files": 56,
         "unindexed_nonformal": 9
@@ -347,15 +347,15 @@
         "root_count": 3,
         "value": "books/@subtrees/a"
       },
-      "snapshot_sha256": "f2e8833218a6369f8cf525b55ca29ed45c1743e677eef10cebca48be0dfa5004",
+      "snapshot_sha256": "1d5d0c381d5ed3e94520f5ee66133e7e7e09aaf3c78aa0b0ed43965f08bcbd72",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 780,
-        "bytes": 13585816,
+        "baseline_primary_retained": 781,
+        "bytes": 13594081,
         "current_primary_excluded": 80,
-        "current_primary_retained": 768,
-        "files": 848,
-        "formal_source_files": 848,
+        "current_primary_retained": 769,
+        "files": 849,
+        "formal_source_files": 849,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-f23cd2c4f66c"
@@ -847,11 +847,11 @@
         "root_count": 7,
         "value": "books/kestrel/@subtrees/0"
       },
-      "snapshot_sha256": "b6986f0145205235ea3b8a57f47657a7dee6344962692b56c5cb0ef7ac03ba31",
+      "snapshot_sha256": "4e16577d15f936ff7301f73e4b28a1ed25c576f1babd82dd1b623db2926ceed1",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 524,
-        "bytes": 13269550,
+        "bytes": 13269552,
         "current_primary_excluded": 107,
         "current_primary_retained": 465,
         "files": 572,
@@ -887,11 +887,11 @@
         "root_count": 6,
         "value": "books/kestrel/@subtrees/2"
       },
-      "snapshot_sha256": "29f4c5a56886966c1f5bdc95b3f877f8143b42c7052db52f90b633b52fdc6353",
+      "snapshot_sha256": "4c86f154d845b55c626898feca5f2f133134016b40dd3e7b15d5c6963f2e5e0c",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 556,
-        "bytes": 24402221,
+        "bytes": 24402229,
         "current_primary_excluded": 199,
         "current_primary_retained": 432,
         "files": 631,
@@ -924,18 +924,18 @@
       "files_manifest": "filtering/repository-review/files/acl2__acl2/RRU-0a27716d53aa.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 8,
+        "root_count": 9,
         "value": "books/kestrel/@subtrees/4"
       },
-      "snapshot_sha256": "030560a7b6b86fd3f28ca7ec2c43ce6bb66e568b5f230f69c426eaa222727721",
+      "snapshot_sha256": "f632f9071c7c2aca1af3b07707957cdba81b500bb528dc99f7211ae2206aa756",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 530,
-        "bytes": 12305367,
+        "baseline_primary_retained": 545,
+        "bytes": 12369464,
         "current_primary_excluded": 146,
-        "current_primary_retained": 432,
-        "files": 578,
-        "formal_source_files": 578,
+        "current_primary_retained": 447,
+        "files": 593,
+        "formal_source_files": 593,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-0a27716d53aa"
@@ -967,7 +967,7 @@
         "root_count": 1,
         "value": "books/kestrel/@subtrees/6"
       },
-      "snapshot_sha256": "d8cb935c10ad5267c0ac604a0a98ad3c0fd06b7ed30c913f3891912c357912b7",
+      "snapshot_sha256": "74e28fd699d84df18c0a0dec213dc03130285473c05270ed09d5047233538dc6",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 216,
@@ -1067,15 +1067,15 @@
         "root_count": 5,
         "value": "books/kestrel/@subtrees/b"
       },
-      "snapshot_sha256": "8f439031688470bfc8ca3d4352bc1c19465eed00388d6858bc83237f61f6e695",
+      "snapshot_sha256": "89f3e62262891c5cb6afa2bc7939ab16103837bdefb839a39a799d4497206025",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 509,
-        "bytes": 11479926,
-        "current_primary_excluded": 61,
-        "current_primary_retained": 468,
-        "files": 529,
-        "formal_source_files": 529,
+        "baseline_primary_retained": 510,
+        "bytes": 11488042,
+        "current_primary_excluded": 60,
+        "current_primary_retained": 470,
+        "files": 530,
+        "formal_source_files": 530,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-24bbaded4aa2"
@@ -1167,11 +1167,11 @@
         "root_count": 1,
         "value": "books/kestrel/@subtrees/e4"
       },
-      "snapshot_sha256": "cc9978343662dbd025758f78090e38a7210bb7f724051374c5a0ab0283afb633",
+      "snapshot_sha256": "180d0ac204a3de262f969de57bf724ae68714db6ba5115095aa919e3d9385acc",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 1709,
-        "bytes": 59504222,
+        "bytes": 59504223,
         "current_primary_excluded": 136,
         "current_primary_retained": 1641,
         "files": 1777,
@@ -1307,11 +1307,11 @@
         "root_count": 1,
         "value": "books/kestrel/@subtrees/ef"
       },
-      "snapshot_sha256": "10ac5764419c9e28d9850b46db36ecc5ac0d6301d5f0aed68cfafa0b6d2b1d22",
+      "snapshot_sha256": "d1a6159e25c0c412ad59d510c0540be9ae41ec6637d8431da548a7f86cabeb40",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 142,
-        "bytes": 882022,
+        "bytes": 882047,
         "current_primary_excluded": 42,
         "current_primary_retained": 106,
         "files": 148,
