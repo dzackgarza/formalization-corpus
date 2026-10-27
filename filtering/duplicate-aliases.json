@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "6eeb88c5750e6613b5cd128c1be852582e295482",
-  "generated_at": "2026-10-27T09:44:52.245121+00:00",
+  "corpus_git_commit": "50cbcecd8f42194be6a1dc276cc4f1282b6e5351",
+  "generated_at": "2026-10-27T09:46:18.757037+00:00",
   "groups": [
     {
       "canonical": {
@@ -3939,6 +3939,26 @@
     },
     {
       "canonical": {
+        "file": "examples/compilation/x64/proofs/wordcountProofScript.sml",
+        "repository": "CakeML__cakeml"
+      },
+      "occurrences": [
+        {
+          "file": "examples/compilation/x64/proofs/wordcountProofScript.sml",
+          "proof_assistant": "hol4",
+          "repository": "CakeML__cakeml"
+        },
+        {
+          "file": "tutorial/problems/wordcountProofScript.sml",
+          "proof_assistant": "hol4",
+          "repository": "CakeML__cakeml"
+        }
+      ],
+      "sha256": "0d58dd41f6ca87b23019c8fd6a22423418aa51268f86b70198e5a9b38eee385b",
+      "size_bytes": 1145
+    },
+    {
+      "canonical": {
         "file": ".sofi-test-folders/Test/L01_once-was-level-02.lean",
         "repository": "JadAbouHawili__KnightsAndKnaves-Lean4Game"
       },
@@ -7446,26 +7466,6 @@
       ],
       "sha256": "19b8f78096b501b5659b852dbb1ca83766d9c317f1ea3a141824d03d0c98a042",
       "size_bytes": 893
-    },
-    {
-      "canonical": {
-        "file": "examples/compilation/x64/proofs/wordcountProofScript.sml",
-        "repository": "CakeML__cakeml"
-      },
-      "occurrences": [
-        {
-          "file": "examples/compilation/x64/proofs/wordcountProofScript.sml",
-          "proof_assistant": "hol4",
-          "repository": "CakeML__cakeml"
-        },
-        {
-          "file": "tutorial/problems/wordcountProofScript.sml",
-          "proof_assistant": "hol4",
-          "repository": "CakeML__cakeml"
-        }
-      ],
-      "sha256": "19c878879d1aea6467012001997f27c270f7fe4ec966385b0f4d0cbe2e0b798f",
-      "size_bytes": 1519
     },
     {
       "canonical": {
@@ -31249,26 +31249,6 @@
     },
     {
       "canonical": {
-        "file": "tutorial/problems/wordfreqProofScript.sml",
-        "repository": "CakeML__cakeml"
-      },
-      "occurrences": [
-        {
-          "file": "tutorial/problems/wordfreqProofScript.sml",
-          "proof_assistant": "hol4",
-          "repository": "CakeML__cakeml"
-        },
-        {
-          "file": "tutorial/solutions/wordfreqProofScript.sml",
-          "proof_assistant": "hol4",
-          "repository": "CakeML__cakeml"
-        }
-      ],
-      "sha256": "6c45f748faa6851f64e2a674fb683ba12cf00151ddcd9518d970ffa6aab498a8",
-      "size_bytes": 3030
-    },
-    {
-      "canonical": {
         "file": "NeuralNetwork/MCNN/NN.lean",
         "repository": "mkaratarakis__HopfieldNet"
       },
@@ -54386,6 +54366,26 @@
       ],
       "sha256": "bb9c979bb6092880221d83efc9e8e6f249fd6d4e267e3b42753d17736bdac0a0",
       "size_bytes": 125
+    },
+    {
+      "canonical": {
+        "file": "tutorial/problems/wordfreqProofScript.sml",
+        "repository": "CakeML__cakeml"
+      },
+      "occurrences": [
+        {
+          "file": "tutorial/problems/wordfreqProofScript.sml",
+          "proof_assistant": "hol4",
+          "repository": "CakeML__cakeml"
+        },
+        {
+          "file": "tutorial/solutions/wordfreqProofScript.sml",
+          "proof_assistant": "hol4",
+          "repository": "CakeML__cakeml"
+        }
+      ],
+      "sha256": "bba1dcae49e66b5af237fef46e21f471adafc4a997b4dae69ffeafe8af262e64",
+      "size_bytes": 2608
     },
     {
       "canonical": {
