@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "a85e9a328c40209483a260d2d2f04ddf95d22658",
-  "generated_at": "2026-10-29T11:17:35.601417+00:00",
+  "corpus_git_commit": "9b12acbe23693884ea083e92686af4b6245b52dd",
+  "generated_at": "2026-10-29T11:20:35.142540+00:00",
   "groups": [
     {
       "canonical": {
@@ -1724,6 +1724,26 @@
     },
     {
       "canonical": {
+        "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/stmt-null@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/stmt-null@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/variable@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "04b8a4f2d2d79c68a7df0e725fcebca0b0b2db623750339a1594423bbc0fe690",
+      "size_bytes": 1684
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/mathd-numbertheory-149.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -1741,26 +1761,6 @@
       ],
       "sha256": "04d92b44e6079d9585814010b994cf220ba18c51787a0a8cbe16f3b1a1489e34",
       "size_bytes": 220
-    },
-    {
-      "canonical": {
-        "file": "books/rtl/rel4/arithmetic/.sys/floor-proofs@useless-runes.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/rtl/rel4/arithmetic/.sys/floor-proofs@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/rtl/rel9/arithmetic/.sys/floor-proofs@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "04f0c89a8a8de8b6fe9dffa4485ebef0d60ecb160b728e443b3766462da3f977",
-      "size_bytes": 17642
     },
     {
       "canonical": {
@@ -8149,26 +8149,6 @@
     },
     {
       "canonical": {
-        "file": "books/workshops/1999/embedded/Exercises/Exercise1-2/.sys/private-qr-lemmas@useless-runes.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/workshops/1999/embedded/Exercises/Exercise1-2/.sys/private-qr-lemmas@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/workshops/1999/embedded/Proof-Of-Contribution/.sys/private-qr-lemmas@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "1bd3d44e0f09ba8aa0c92b1a7a60fddaec9e7a94b9c8eda505058aa376ed0d1a",
-      "size_bytes": 39376
-    },
-    {
-      "canonical": {
         "file": "books/hacking/.sys/defstruct-parsing@useless-runes.lsp",
         "repository": "acl2__acl2"
       },
@@ -9011,6 +8991,26 @@
       ],
       "sha256": "1e2d1177855ee77501bc7275454b088dc6841bbac175b2c2f633f908b8af9ff2",
       "size_bytes": 3726
+    },
+    {
+      "canonical": {
+        "file": "books/kestrel/crypto/blake/.sys/blake-common-32@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/crypto/blake/.sys/blake-common-32@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/crypto/blake/.sys/blake-common-64@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "1e5ae848277330d14a403ab542d6db5290a6e9e4b87e9d6e7b848ef2b29d79de",
+      "size_bytes": 6502
     },
     {
       "canonical": {
@@ -34649,6 +34649,26 @@
     },
     {
       "canonical": {
+        "file": "books/system/tests/.sys/nonexec-requiring-verify-guards@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/system/tests/.sys/nonexec-requiring-verify-guards@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/system/tests/.sys/nx2@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "77ce791e35e0937c9f31cf6bbe85f9efe4db07fbc1840164397b85635f0f77ef",
+      "size_bytes": 23
+    },
+    {
+      "canonical": {
         "file": "Jordan/jordan_curve_theorem.ml",
         "repository": "CakeML__candle"
       },
@@ -35291,6 +35311,26 @@
       ],
       "sha256": "7b2dd5e52055ecc7fe39a66c4803745e04a490735cad5cee625de23bde30b614",
       "size_bytes": 201
+    },
+    {
+      "canonical": {
+        "file": "books/workshops/1999/embedded/Exercises/Exercise1-2/.sys/private-qr-lemmas@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/workshops/1999/embedded/Exercises/Exercise1-2/.sys/private-qr-lemmas@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/workshops/1999/embedded/Proof-Of-Contribution/.sys/private-qr-lemmas@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "7b556bc4b7305fcc2eaa320d81ffa2336fa07d07194be7ed20869ee79410398a",
+      "size_bytes": 39376
     },
     {
       "canonical": {
@@ -36036,6 +36076,26 @@
       ],
       "sha256": "7dce8eb844b91ed13e4169fadb78fcdf84030e2304df6d09c8fdf73a13f2360b",
       "size_bytes": 6055
+    },
+    {
+      "canonical": {
+        "file": "books/rtl/rel4/support/.sys/bvecp-lemmas@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/rtl/rel4/support/.sys/bvecp-lemmas@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/rtl/rel9/support/support/.sys/bvecp-lemmas@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "7dd1409f779015bd1758beb84c7072112e837c183aeb1b3a2c24954ba555c5b2",
+      "size_bytes": 5112
     },
     {
       "canonical": {
@@ -39939,6 +39999,26 @@
     },
     {
       "canonical": {
+        "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/logand@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/logand@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/logor@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "8d4b1a09a6b99026f6c732c437c2eab59f5c8b770e78da120af1abd82ce05b74",
+      "size_bytes": 3634
+    },
+    {
+      "canonical": {
         "file": "goals/putnam-1962-b5.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -40636,6 +40716,31 @@
       ],
       "sha256": "8fbae0717256b333cc643b86119a744bdcf825b1d3c363d90448ee6e324cef68",
       "size_bytes": 10095
+    },
+    {
+      "canonical": {
+        "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/constant@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/constant@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/global@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/c/transformation/tests/simpadd0/.sys/void-params@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "8fbbff92c73bdbfe125ac0c04e65773d71ba4cd12c4d912a0628af59be036e7d",
+      "size_bytes": 269
     },
     {
       "canonical": {
@@ -42399,6 +42504,26 @@
     },
     {
       "canonical": {
+        "file": "books/rtl/rel4/support/.sys/ocat@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/rtl/rel4/support/.sys/ocat@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/rtl/rel9/support/support/.sys/ocat@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "965130f1470caf8d0a2e8616f95cb75360dbb6f8db40c3db4948438c8ed03d39",
+      "size_bytes": 22092
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/imo-1990-p3.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -43591,6 +43716,26 @@
       ],
       "sha256": "9a976a75b621d3de2fc1661c53ed3d71234b6d469e3cc8eb6ba582045fb5a9f1",
       "size_bytes": 2680
+    },
+    {
+      "canonical": {
+        "file": "books/system/tests/.sys/measure-fn-redundancy-encap@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/system/tests/.sys/measure-fn-redundancy-encap@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/system/tests/.sys/measure-fn-redundancy@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "9aa633437884052c725116f686e07738ccd59336e635fb3de70eaaafd8cdbf0b",
+      "size_bytes": 32
     },
     {
       "canonical": {
@@ -45776,26 +45921,6 @@
       ],
       "sha256": "a2052010f11ef8e725e58635dcbf98b427565a818ce6da5a74351fc8ef8e0f68",
       "size_bytes": 23
-    },
-    {
-      "canonical": {
-        "file": "books/rtl/rel4/support/.sys/bvecp-lemmas@useless-runes.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/rtl/rel4/support/.sys/bvecp-lemmas@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/rtl/rel9/support/support/.sys/bvecp-lemmas@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "a20e0921cfe1c62d182a4dc87978bf80adbbbe001b3bf9e202cfba79fd957045",
-      "size_bytes": 5112
     },
     {
       "canonical": {
@@ -48531,6 +48656,26 @@
       ],
       "sha256": "aba702f4d5297c9a96a4d8618a5e623c5e2c5c49785acaabd2f1577a18577c29",
       "size_bytes": 8704
+    },
+    {
+      "canonical": {
+        "file": "books/rtl/rel4/arithmetic/.sys/floor-proofs@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/rtl/rel4/arithmetic/.sys/floor-proofs@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/rtl/rel9/arithmetic/.sys/floor-proofs@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "abeddc08ae457ffbb8f2af82243f889d8c7c30b2898e03b08f6c97c49fc44f28",
+      "size_bytes": 17642
     },
     {
       "canonical": {
@@ -63089,6 +63234,26 @@
     },
     {
       "canonical": {
+        "file": "books/projects/aleo/vm/circuits/axe/.sys/poseidon-rate2-1@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/projects/aleo/vm/circuits/axe/.sys/poseidon-rate2-1@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/projects/aleo/vm/circuits/axe/.sys/poseidon-rate4-1@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "dc013662a63d6194c3ffa455fb96cbe218c5a2a7af1ec7ec6de10c2875ef1582",
+      "size_bytes": 3194
+    },
+    {
+      "canonical": {
         "file": "books/projects/hol-in-acl2/v1/acl2/hol-pprint.lisp",
         "repository": "acl2__acl2"
       },
@@ -67694,26 +67859,6 @@
     },
     {
       "canonical": {
-        "file": "books/rtl/rel4/support/.sys/ocat@useless-runes.lsp",
-        "repository": "acl2__acl2"
-      },
-      "occurrences": [
-        {
-          "file": "books/rtl/rel4/support/.sys/ocat@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        },
-        {
-          "file": "books/rtl/rel9/support/support/.sys/ocat@useless-runes.lsp",
-          "proof_assistant": "acl2",
-          "repository": "acl2__acl2"
-        }
-      ],
-      "sha256": "ef0448f52db021d04be4f57a74ebdfb79b64fecebf2e9f988d5e2c3ad8516336",
-      "size_bytes": 22092
-    },
-    {
-      "canonical": {
         "file": "PoincareConjecture/Contributions/ClosedSurfaceArea/Solutions/Sol_OpenGA_hasDerivAt_totalRiemannianVolume.lean",
         "repository": "MathNetwork__OpenGA"
       },
@@ -69236,6 +69381,26 @@
       ],
       "sha256": "f4136a20a75692b6110200d40e5c80027a42e97b8c2866fe5b5e94192d86ddbf",
       "size_bytes": 13053
+    },
+    {
+      "canonical": {
+        "file": "books/system/tests/.sys/non-exec-in-logic-mode-load-time-value@useless-runes.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/system/tests/.sys/non-exec-in-logic-mode-load-time-value@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/system/tests/.sys/non-exec-return-last-load-time-value@useless-runes.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "f418490c98723521781676b1b8e34b788ff165ee247524a834d22f4d8d16f492",
+      "size_bytes": 4
     },
     {
       "canonical": {
