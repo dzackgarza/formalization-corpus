@@ -4,41 +4,61 @@
   "proof_assistant": "lean",
   "repository": "google-deepmind__formal-conjectures",
   "schema_version": 1,
-  "source_revision": "5a2fb85045c86e4a184b15ce7531ba199a3c4580",
-  "source_snapshot_sha256": "cf8f90f1dd88d7ca1e7ca2c52f87c62283d668f19ab77178a9c6f956bb6abb9c",
+  "source_revision": "feacabbcf6ed2e7b622663c3e1c0f61038183392",
+  "source_snapshot_sha256": "3774c403b65674c8cfc4ce62489a5e1e1a068fff57558163ace031926a5a05b9",
   "sync_group": "routine",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 1969,
-    "bytes": 7600029,
+    "baseline_primary_retained": 1996,
+    "bytes": 7811560,
     "current_primary_excluded": 5,
-    "current_primary_retained": 1967,
-    "files": 1983,
-    "formal_source_files": 1969,
+    "current_primary_retained": 1994,
+    "files": 2010,
+    "formal_source_files": 1996,
     "unindexed_nonformal": 10
   },
   "transport": "git",
   "url": "https://github.com/google-deepmind/formal-conjectures",
   "work_units": [
     {
-      "files_manifest": "filtering/repository-review/files/google-deepmind__formal-conjectures/RRU-19eb35d95c12.jsonl",
+      "files_manifest": "filtering/repository-review/files/google-deepmind__formal-conjectures/RRU-3c6049241443.jsonl",
       "scope": {
-        "kind": "repository",
-        "root_count": 0,
-        "value": "."
+        "kind": "file-bucket",
+        "root_count": 16,
+        "value": "./@files/all"
       },
-      "snapshot_sha256": "cf8f90f1dd88d7ca1e7ca2c52f87c62283d668f19ab77178a9c6f956bb6abb9c",
+      "snapshot_sha256": "cfd8083fa6871dde4aef183fd8c3dbc23f82fb2eda45a286496652a92f131da4",
       "stats": {
         "auxiliary_only": 1,
-        "baseline_primary_retained": 1969,
-        "bytes": 7600029,
-        "current_primary_excluded": 5,
-        "current_primary_retained": 1967,
-        "files": 1983,
-        "formal_source_files": 1969,
+        "baseline_primary_retained": 2,
+        "bytes": 75050,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 2,
+        "files": 16,
+        "formal_source_files": 2,
         "unindexed_nonformal": 10
       },
-      "unit_id": "RRU-19eb35d95c12"
+      "unit_id": "RRU-3c6049241443"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/google-deepmind__formal-conjectures/RRU-a53098ad8c3d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "./@subtrees/all"
+      },
+      "snapshot_sha256": "de849e3133caa97cbb635bf9017ace5fef91c93beaaf379ecbee11519732cfac",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1994,
+        "bytes": 7736510,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 1992,
+        "files": 1994,
+        "formal_source_files": 1994,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a53098ad8c3d"
     }
   ]
 }
