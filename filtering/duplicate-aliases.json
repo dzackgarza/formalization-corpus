@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "359a2420499e20910f467a6833f648163fba8dc3",
-  "generated_at": "2026-11-02T13:26:35.738355+00:00",
+  "corpus_git_commit": "5624c26c8b259e057f70829433be36615fce74e3",
+  "generated_at": "2026-11-02T13:27:35.910164+00:00",
   "groups": [
     {
       "canonical": {
@@ -1284,6 +1284,26 @@
     },
     {
       "canonical": {
+        "file": "generated/pick/ChallengeDeps.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "generated/pick/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "submission/pick/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "rkirov__jordan_pick"
+        }
+      ],
+      "sha256": "03c7aefc104a082177c6be8e5fc7a929664d679f0122c3e6c47695604bf70fce",
+      "size_bytes": 2164
+    },
+    {
+      "canonical": {
         "file": "Jordan/lib_ext.ml",
         "repository": "CakeML__candle"
       },
@@ -2251,26 +2271,6 @@
       ],
       "sha256": "067371902d3777810dcd54c6710c3e02414dbee990d55a85a2f4d5762218f747",
       "size_bytes": 3236
-    },
-    {
-      "canonical": {
-        "file": "generated/sphere_theorem_differentiable/ChallengeDeps.lean",
-        "repository": "leanprover__lean-eval"
-      },
-      "occurrences": [
-        {
-          "file": "generated/sphere_theorem_differentiable/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/sphere_theorem_topological/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        }
-      ],
-      "sha256": "06b90fbfd5d7b503adcf173c9f3ca4aa06fb3f2fb5d1e9399ae897b7c88e1260",
-      "size_bytes": 2991
     },
     {
       "canonical": {
@@ -4609,6 +4609,36 @@
     },
     {
       "canonical": {
+        "file": "LeanEval/KnotTheory/Prelude.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "LeanEval/KnotTheory/Prelude.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/exists_chiral_knot/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/exists_nonisotopic_knots/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/exists_nonisotopic_link/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "09b2d1d69936440956a1daabe62d2115b4c80333476e02c0729f265668cfd61f",
+      "size_bytes": 5728
+    },
+    {
+      "canonical": {
         "file": "src/for_mathlib/free_abelian_group2.lean",
         "repository": "dagurtomas__lean-solid"
       },
@@ -5094,26 +5124,6 @@
     },
     {
       "canonical": {
-        "file": "generated/erdos_unit_distance_conjecture_false/ChallengeDeps.lean",
-        "repository": "leanprover__lean-eval"
-      },
-      "occurrences": [
-        {
-          "file": "generated/erdos_unit_distance_conjecture_false/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/unit_distance_upper_bound/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        }
-      ],
-      "sha256": "0bd4f323eb93edc7de83565a9450c04657855dcd05e77d7e1631fe92d08b695f",
-      "size_bytes": 1672
-    },
-    {
-      "canonical": {
         "file": "Boyer_Moore/testset/arith.ml",
         "repository": "CakeML__candle"
       },
@@ -5334,10 +5344,15 @@
     },
     {
       "canonical": {
-        "file": "LeanEval/jordan_curve/Challenge.lean",
-        "repository": "mccorvie__classification-of-surfaces"
+        "file": "generated/jordan_curve/Challenge.lean",
+        "repository": "leanprover__lean-eval"
       },
       "occurrences": [
+        {
+          "file": "generated/jordan_curve/Challenge.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
         {
           "file": "LeanEval/jordan_curve/Challenge.lean",
           "proof_assistant": "lean",
@@ -6864,10 +6879,15 @@
     },
     {
       "canonical": {
-        "file": "LeanEval/jordan_curve/Solution.lean",
-        "repository": "mccorvie__classification-of-surfaces"
+        "file": "generated/jordan_curve/Solution.lean",
+        "repository": "leanprover__lean-eval"
       },
       "occurrences": [
+        {
+          "file": "generated/jordan_curve/Solution.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
         {
           "file": "LeanEval/jordan_curve/Solution.lean",
           "proof_assistant": "lean",
@@ -7391,6 +7411,26 @@
       ],
       "sha256": "13c785fc0393a6c70cd17cb96285f590132e019e66e7b4da8183aa3eec4b8722",
       "size_bytes": 5752
+    },
+    {
+      "canonical": {
+        "file": "generated/conway_knot_not_smoothly_slice/ChallengeDeps.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "generated/conway_knot_not_smoothly_slice/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/conway_knot_topologically_slice/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "13d63bf6653eb35295dc50bb1df61c90553bd6f998bc377800de1f97aa2cf693",
+      "size_bytes": 23603
     },
     {
       "canonical": {
@@ -8266,6 +8306,26 @@
       ],
       "sha256": "174fbf8915cebab4ceac879652f79c6cc3cba4aa95f78148b2b8752d196d1f64",
       "size_bytes": 368
+    },
+    {
+      "canonical": {
+        "file": "generated/schoenflies/Challenge.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "generated/schoenflies/Challenge.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "LeanEval/schoenflies/Challenge.lean",
+          "proof_assistant": "lean",
+          "repository": "mccorvie__classification-of-surfaces"
+        }
+      ],
+      "sha256": "1795bc41e76c3d10cd87948a93e48e1b6288f5d3e3256c92883332ef25f0f315",
+      "size_bytes": 345
     },
     {
       "canonical": {
@@ -12336,26 +12396,6 @@
       ],
       "sha256": "24e6fa27ab826ea41738c44ea664373c0ccd51379a679e2f0ef32e9b78ed0e8e",
       "size_bytes": 55923
-    },
-    {
-      "canonical": {
-        "file": "generated/e8_irrep_tensor_square_decomp/ChallengeDeps.lean",
-        "repository": "leanprover__lean-eval"
-      },
-      "occurrences": [
-        {
-          "file": "generated/e8_irrep_tensor_square_decomp/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/g2_irrep_tensor_square_decomp/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        }
-      ],
-      "sha256": "24e9be61890266143c79c5e525ca21d0d2cc007cf95aa097903d7106eb35e732",
-      "size_bytes": 2112
     },
     {
       "canonical": {
@@ -17344,6 +17384,26 @@
     },
     {
       "canonical": {
+        "file": "generated/adoCharZero/ChallengeDeps.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "generated/adoCharZero/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/adoIwasawa/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "379dffdd0ef8f728533891ff388d84979e48ff66c09aadca972434a918f620db",
+      "size_bytes": 1083
+    },
+    {
+      "canonical": {
         "file": "PoincareConjecture/Contributions/ClosedSurfaceArea/Solutions/Sol_DifferentialGeometry_Integral_Measure_chartGramMatrix_dotProduct_mulVec.lean",
         "repository": "MathNetwork__OpenGA"
       },
@@ -21544,6 +21604,31 @@
     },
     {
       "canonical": {
+        "file": "LeanEval/Combinatorics/UnitDistance.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "LeanEval/Combinatorics/UnitDistance.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/erdos_unit_distance_conjecture_false/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/unit_distance_upper_bound/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "461e80da4e00fbd5d7d5d8815fb5532c4cab96caa8743b6b0183d21c32c178c6",
+      "size_bytes": 1618
+    },
+    {
+      "canonical": {
         "file": "IsabelleLight/support.ml",
         "repository": "CakeML__candle"
       },
@@ -24689,6 +24774,31 @@
     },
     {
       "canonical": {
+        "file": "LeanEval/Topology/AnnulusBase.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "LeanEval/Topology/AnnulusBase.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/annulus_theorem_dim_four/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/annulus_theorem_high_dim/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "52fd1833fd555723ec06b5a9cdfd2141ac1432cc383b1bd36938c48045255c05",
+      "size_bytes": 4365
+    },
+    {
+      "canonical": {
         "file": "FormalisingMathematics2024/Solutions/Section05groups/Sheet3.lean",
         "repository": "ImperialCollegeLondon__formalising-mathematics-2024"
       },
@@ -27494,6 +27604,26 @@
     },
     {
       "canonical": {
+        "file": "generated/e8_irrep_tensor_square_decomp/ChallengeDeps.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "generated/e8_irrep_tensor_square_decomp/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/g2_irrep_tensor_square_decomp/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "5c4df14f5268c47ef7153fa4873b94b700439bdb2c7c8e920378d672ff605874",
+      "size_bytes": 2058
+    },
+    {
+      "canonical": {
         "file": "books/workshops/2004/schmaltz-borrione/support/.sys/routing_defuns@useless-runes.lsp",
         "repository": "acl2__acl2"
       },
@@ -28786,6 +28916,26 @@
       ],
       "sha256": "60bca9eefa4eb41d39ca727cd36e8f117b2d4733603bf8c660d6d8b5330858ce",
       "size_bytes": 650
+    },
+    {
+      "canonical": {
+        "file": "generated/sphere_theorem_differentiable/ChallengeDeps.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "generated/sphere_theorem_differentiable/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/sphere_theorem_topological/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "60e25b66383a3b00e7ecc756ab5757628dca37a2ece1517dae9f0f1ec0d5ba34",
+      "size_bytes": 2937
     },
     {
       "canonical": {
@@ -31716,6 +31866,26 @@
       ],
       "sha256": "6a442a08b1fc598dddb73b80f77852967bdf722dee10549015fb33e6a50fb6ae",
       "size_bytes": 24822
+    },
+    {
+      "canonical": {
+        "file": "LeanEval/GroupTheory/Defs/Suzuki.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "LeanEval/GroupTheory/Defs/Suzuki.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/bender_suzuki/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "6a5cd60909b3a97764c5f00fc4562a0adf94163ca10bc262fc2a2660c77bb2ad",
+      "size_bytes": 2720
     },
     {
       "canonical": {
@@ -35246,26 +35416,6 @@
       ],
       "sha256": "764c81a632eb412622b3481eba679a76530f8d5af5d19f1e23ec14d234494d3b",
       "size_bytes": 278
-    },
-    {
-      "canonical": {
-        "file": "generated/annulus_theorem_dim_four/ChallengeDeps.lean",
-        "repository": "leanprover__lean-eval"
-      },
-      "occurrences": [
-        {
-          "file": "generated/annulus_theorem_dim_four/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/annulus_theorem_high_dim/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        }
-      ],
-      "sha256": "7655adad5a39966d8abf40ed0555fca1896e94d48d8c5bc3dd609d4edec232cf",
-      "size_bytes": 4419
     },
     {
       "canonical": {
@@ -39894,31 +40044,6 @@
     },
     {
       "canonical": {
-        "file": "generated/exists_chiral_knot/ChallengeDeps.lean",
-        "repository": "leanprover__lean-eval"
-      },
-      "occurrences": [
-        {
-          "file": "generated/exists_chiral_knot/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/exists_nonisotopic_knots/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/exists_nonisotopic_link/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        }
-      ],
-      "sha256": "898c13fe610cef02b6931301616f4cd9c6b690168a641fba0a2c40ba638532f0",
-      "size_bytes": 5782
-    },
-    {
-      "canonical": {
         "file": "benchmark-goals/putnam-1986-b3.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -43901,26 +44026,6 @@
       ],
       "sha256": "97de914ee255c4731f70c0dc706ecd85708e1cf910d98fc78224d4bc83bf3ada",
       "size_bytes": 726
-    },
-    {
-      "canonical": {
-        "file": "generated/glAction_range_eq_centralizer_symAction/ChallengeDeps.lean",
-        "repository": "leanprover__lean-eval"
-      },
-      "occurrences": [
-        {
-          "file": "generated/glAction_range_eq_centralizer_symAction/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/symAction_range_eq_centralizer_glAction/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        }
-      ],
-      "sha256": "97ed97273b06bda7fc67ed71ac5839de8908669ea5fcc82ed22eca569108ad10",
-      "size_bytes": 1905
     },
     {
       "canonical": {
@@ -47924,6 +48029,26 @@
     },
     {
       "canonical": {
+        "file": "LeanEval/GroupTheory/Defs/OddCore.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "LeanEval/GroupTheory/Defs/OddCore.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/brauer_suzuki/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "a5f6eb27ddc36f09bf28a4fa2ad4d6d5e7c8b60725940dcdfa8d76cd06dbbbb8",
+      "size_bytes": 1886
+    },
+    {
+      "canonical": {
         "file": "100/ptolemy.ml",
         "repository": "CakeML__candle"
       },
@@ -49151,6 +49276,26 @@
       ],
       "sha256": "aa5b4e349d1e1705899e3b2ecdb418eee62c02ff09140a485b79a813b0c7d168",
       "size_bytes": 178
+    },
+    {
+      "canonical": {
+        "file": "LeanEval/GroupTheory/Defs/PCore.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "LeanEval/GroupTheory/Defs/PCore.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/baer_suzuki/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "aa73f062b57b8988d110dc6c21893a008972759861c65572ca333fd64ff4eaa9",
+      "size_bytes": 781
     },
     {
       "canonical": {
@@ -57459,6 +57604,26 @@
     },
     {
       "canonical": {
+        "file": "generated/glAction_range_eq_centralizer_symAction/ChallengeDeps.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "generated/glAction_range_eq_centralizer_symAction/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/symAction_range_eq_centralizer_glAction/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "c3553d178da394ad58c67a8c0fe0088938909b818b334422ff1a176c36bb38de",
+      "size_bytes": 1851
+    },
+    {
+      "canonical": {
         "file": "benchmark-goals/putnam-1983-b4.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -64584,26 +64749,6 @@
     },
     {
       "canonical": {
-        "file": "generated/adoCharZero/ChallengeDeps.lean",
-        "repository": "leanprover__lean-eval"
-      },
-      "occurrences": [
-        {
-          "file": "generated/adoCharZero/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/adoIwasawa/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        }
-      ],
-      "sha256": "de56f32405c26dc41ed21085fd088f0295c95c226ea1f9ed7178d991eddf4dbc",
-      "size_bytes": 1137
-    },
-    {
-      "canonical": {
         "file": "100/heron.ml",
         "repository": "CakeML__candle"
       },
@@ -66661,6 +66806,26 @@
       ],
       "sha256": "e5a9fa4a03c51eed7cfe784a855fa768579c2c81db9b46db41973e41f0a4ced2",
       "size_bytes": 2220
+    },
+    {
+      "canonical": {
+        "file": "generated/schoenflies/Solution.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "generated/schoenflies/Solution.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "LeanEval/schoenflies/Solution.lean",
+          "proof_assistant": "lean",
+          "repository": "mccorvie__classification-of-surfaces"
+        }
+      ],
+      "sha256": "e5ae3c76d82a906730e0eb004a17d6909c23fbcc099d5b3c6966b3ea87de3e30",
+      "size_bytes": 401
     },
     {
       "canonical": {
@@ -73316,26 +73481,6 @@
       ],
       "sha256": "ffec9c148db59dc4c30a27700b3a6d2aa02f2188e58b2b73077ffd28c1abafda",
       "size_bytes": 1861
-    },
-    {
-      "canonical": {
-        "file": "generated/conway_knot_not_smoothly_slice/ChallengeDeps.lean",
-        "repository": "leanprover__lean-eval"
-      },
-      "occurrences": [
-        {
-          "file": "generated/conway_knot_not_smoothly_slice/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/conway_knot_topologically_slice/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        }
-      ],
-      "sha256": "fff8a4016f283bdfb1ed3f35bc97613ef5bad54bafd4a8a404becd80c606eb54",
-      "size_bytes": 23657
     },
     {
       "canonical": {
