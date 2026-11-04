@@ -4,17 +4,17 @@
   "proof_assistant": "lean",
   "repository": "google-deepmind__formal-conjectures",
   "schema_version": 1,
-  "source_revision": "fd57f5d489321515f695ea205913d0ac3289f41c",
-  "source_snapshot_sha256": "0f74b69e08cf3ace3ea323756991c985befa8b202ed0856f322dfacb0f710118",
+  "source_revision": "2befc3a33248a785a9e0839d5d2fba300bb07863",
+  "source_snapshot_sha256": "6b83ed915fd3c92476e23b81a2a90baf7b907a59aaaa101b4ad6a96e4f25295f",
   "sync_group": "routine",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 2000,
-    "bytes": 7840243,
+    "baseline_primary_retained": 2008,
+    "bytes": 7895290,
     "current_primary_excluded": 5,
-    "current_primary_retained": 1998,
-    "files": 2014,
-    "formal_source_files": 2000,
+    "current_primary_retained": 2006,
+    "files": 2022,
+    "formal_source_files": 2008,
     "unindexed_nonformal": 10
   },
   "transport": "git",
@@ -41,24 +41,104 @@
       "unit_id": "RRU-3c6049241443"
     },
     {
-      "files_manifest": "filtering/repository-review/files/google-deepmind__formal-conjectures/RRU-a53098ad8c3d.jsonl",
+      "files_manifest": "filtering/repository-review/files/google-deepmind__formal-conjectures/RRU-1685e66a9878.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 5,
-        "value": "./@subtrees/all"
+        "root_count": 1,
+        "value": "./@subtrees/0"
       },
-      "snapshot_sha256": "1960a2d94b6fbcbafa2244c51cbdc7e6938b50309a585a79b48a4b4c89c3776b",
+      "snapshot_sha256": "c38a2cd80f0dac0238ce373ed4b0df6e893ee4dfb7bd30f42e62c072a216b9b1",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1998,
-        "bytes": 7765193,
-        "current_primary_excluded": 2,
-        "current_primary_retained": 1996,
-        "files": 1998,
-        "formal_source_files": 1998,
+        "baseline_primary_retained": 251,
+        "bytes": 933324,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 251,
+        "files": 251,
+        "formal_source_files": 251,
         "unindexed_nonformal": 0
       },
-      "unit_id": "RRU-a53098ad8c3d"
+      "unit_id": "RRU-1685e66a9878"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/google-deepmind__formal-conjectures/RRU-03b4d4021a69.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/4"
+      },
+      "snapshot_sha256": "e0117343908789396e656b79644e6d3de7d79dd8b5cae287606731bdac209392",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1725,
+        "bytes": 6718455,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1725,
+        "files": 1725,
+        "formal_source_files": 1725,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-03b4d4021a69"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/google-deepmind__formal-conjectures/RRU-7e79daf84884.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/8"
+      },
+      "snapshot_sha256": "3513e423eba0e3bbeb21fcce5c5153f2752a07b6f08e2fe06c87cc25ad9efed5",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1,
+        "bytes": 15019,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1,
+        "files": 1,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7e79daf84884"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/google-deepmind__formal-conjectures/RRU-1b1c3d8a5a4b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/9"
+      },
+      "snapshot_sha256": "31551bb8e03c7dc3523f1201c3b9d1180dabf63cfb595a7c7730b70fe1661203",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 18,
+        "bytes": 102779,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 17,
+        "files": 18,
+        "formal_source_files": 18,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1b1c3d8a5a4b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/google-deepmind__formal-conjectures/RRU-245a9bf87d90.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/d"
+      },
+      "snapshot_sha256": "ef53488630c46cd3cd8fbf71d9466007e0a7ababe1e76b7e4ae179df1497e19d",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 11,
+        "bytes": 50663,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 10,
+        "files": 11,
+        "formal_source_files": 11,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-245a9bf87d90"
     }
   ]
 }
