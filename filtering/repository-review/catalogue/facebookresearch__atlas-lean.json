@@ -4,17 +4,17 @@
   "proof_assistant": "lean",
   "repository": "facebookresearch__atlas-lean",
   "schema_version": 1,
-  "source_revision": "8ded7f8fc1925a643d70659c582570c765c841a2",
-  "source_snapshot_sha256": "3a07b641bce1dab1b494cd991dba81f4257ec6917174907361a6a61ded3ae8df",
+  "source_revision": "a60759060b5616df0d5775b42da4d337719feb32",
+  "source_snapshot_sha256": "2292b745ef6fb735e1e84f2f6fd523ad84954eb7e6d77464453c4684177b27d4",
   "sync_group": "routine",
   "totals": {
     "auxiliary_only": 3,
-    "baseline_primary_retained": 20365,
-    "bytes": 224295555,
+    "baseline_primary_retained": 20882,
+    "bytes": 230776175,
     "current_primary_excluded": 8,
-    "current_primary_retained": 20358,
-    "files": 20375,
-    "formal_source_files": 20365,
+    "current_primary_retained": 20875,
+    "files": 20892,
+    "formal_source_files": 20882,
     "unindexed_nonformal": 6
   },
   "transport": "git",
@@ -27,11 +27,11 @@
         "root_count": 10,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "b04b730ff64f461aedac26448c0aaf4ceced3b6babccdae918f291bbe261b744",
+      "snapshot_sha256": "4318aae3edb29fac7884fe49c4c7ed28fe58bad0fe3508d9c0dacf0b46a258cf",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 0,
-        "bytes": 31985,
+        "bytes": 33606,
         "current_primary_excluded": 3,
         "current_primary_retained": 0,
         "files": 10,
@@ -47,15 +47,15 @@
         "root_count": 1,
         "value": "./@subtrees/0"
       },
-      "snapshot_sha256": "aa00974d70e7924b09fc3089923710e402f4f425a6d8fa429568b6634cf9fb90",
+      "snapshot_sha256": "b1975e052a0c0d4894a27ad525ee6e2d572fe4fda8d6f8a53998f88a3d3fd26e",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 994,
-        "bytes": 15066278,
+        "baseline_primary_retained": 1000,
+        "bytes": 15149341,
         "current_primary_excluded": 0,
-        "current_primary_retained": 994,
-        "files": 994,
-        "formal_source_files": 994,
+        "current_primary_retained": 1000,
+        "files": 1000,
+        "formal_source_files": 1000,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-93d6cca73ede"
@@ -84,21 +84,41 @@
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-df89bcd18752.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 2,
+        "root_count": 3,
         "value": "./@subtrees/8"
       },
-      "snapshot_sha256": "bb7fde295abff5e4b66f4557805154939b781759da0ebe387092f9dce07c311f",
+      "snapshot_sha256": "4005e0d0122eacfb5772e901e27593be36e6b5434a97dd927d0e8b682ecb0c38",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 743,
-        "bytes": 3146787,
+        "baseline_primary_retained": 836,
+        "bytes": 3446975,
         "current_primary_excluded": 0,
-        "current_primary_retained": 743,
-        "files": 743,
-        "formal_source_files": 743,
+        "current_primary_retained": 836,
+        "files": 836,
+        "formal_source_files": 836,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-df89bcd18752"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-d8ed71d5980e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/9"
+      },
+      "snapshot_sha256": "d5c818cde2263828ea95f3b39279c2932fca6a6f52a5feefbfdd45ac132d8fae",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 418,
+        "bytes": 6095748,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 418,
+        "files": 418,
+        "formal_source_files": 418,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-d8ed71d5980e"
     },
     {
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-ad487652928d.jsonl",
