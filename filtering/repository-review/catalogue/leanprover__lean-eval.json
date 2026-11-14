@@ -4,18 +4,18 @@
   "proof_assistant": "lean",
   "repository": "leanprover__lean-eval",
   "schema_version": 1,
-  "source_revision": "85a88c37f80170d9f08651dc63ce6b81a8a48cb9",
-  "source_snapshot_sha256": "c2e5b81417e8c644234b46844836cc3eb6142487264afd2ac48bc9b8fce2dc80",
+  "source_revision": "8955681b9914d7ebc7d286414843021b7d6c9de1",
+  "source_snapshot_sha256": "50c8780d43f4b5e1c5a0cc63fe11d36f52c74d75fe8d2ab56464dd320c99af09",
   "sync_group": "bulk",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 2101,
-    "bytes": 3362309,
+    "baseline_primary_retained": 2103,
+    "bytes": 3371232,
     "current_primary_excluded": 4,
-    "current_primary_retained": 2100,
-    "files": 2111,
-    "formal_source_files": 2101,
-    "unindexed_nonformal": 6
+    "current_primary_retained": 2102,
+    "files": 2114,
+    "formal_source_files": 2103,
+    "unindexed_nonformal": 7
   },
   "transport": "git",
   "url": "https://github.com/leanprover/lean-eval",
@@ -24,19 +24,19 @@
       "files_manifest": "filtering/repository-review/files/leanprover__lean-eval/RRU-b0f30848eb99.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 12,
+        "root_count": 13,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "c10983ec0b24a281c1b875b92e514a2a540b0e059a4b2dec4e27d9d2bd4390b6",
+      "snapshot_sha256": "3f3013dea78f536c1cd18b6c9ddf28202201def7eb3fae0f7760984839ceb500",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 2,
-        "bytes": 75179,
+        "bytes": 81538,
         "current_primary_excluded": 3,
         "current_primary_retained": 2,
-        "files": 12,
+        "files": 13,
         "formal_source_files": 2,
-        "unindexed_nonformal": 6
+        "unindexed_nonformal": 7
       },
       "unit_id": "RRU-b0f30848eb99"
     },
@@ -47,11 +47,11 @@
         "root_count": 1,
         "value": "./@subtrees/1"
       },
-      "snapshot_sha256": "94005c77c87385f81477e7f90787272da5b3bbf5e877974f331b682086dd5fe5",
+      "snapshot_sha256": "21d26ded7c1149c4f8f4f1514b3277baa928a1e7c9b1aeb426279192ac06ab9d",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 307,
-        "bytes": 797511,
+        "bytes": 797931,
         "current_primary_excluded": 0,
         "current_primary_retained": 307,
         "files": 307,
@@ -67,15 +67,15 @@
         "root_count": 1,
         "value": "./@subtrees/4"
       },
-      "snapshot_sha256": "2a9f2f59fa12a0ba97894d1e2acf6ce2edfeebeba44854160fd488fd8d58ad09",
+      "snapshot_sha256": "abf7d5a7d0f79d867c777e8893c4c17d53f7f8f0eca767c53b897701ce64ee97",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 18,
-        "bytes": 72740,
+        "baseline_primary_retained": 19,
+        "bytes": 73038,
         "current_primary_excluded": 0,
-        "current_primary_retained": 18,
-        "files": 18,
-        "formal_source_files": 18,
+        "current_primary_retained": 19,
+        "files": 19,
+        "formal_source_files": 19,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-e7b788f0152b"
@@ -99,6 +99,26 @@
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-f2baac143a0b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/leanprover__lean-eval/RRU-06ad76dee5aa.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/8"
+      },
+      "snapshot_sha256": "a7be3e8c7fdb5821a564a9833ac944de9fb94661aadc478f5106c27b77c524b8",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 1,
+        "bytes": 1183,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 1,
+        "files": 1,
+        "formal_source_files": 1,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-06ad76dee5aa"
     },
     {
       "files_manifest": "filtering/repository-review/files/leanprover__lean-eval/RRU-0e6c29c7ae8a.jsonl",
@@ -127,11 +147,11 @@
         "root_count": 1,
         "value": "./@subtrees/e"
       },
-      "snapshot_sha256": "339f6af9020a0c026a54b0ef4573c7cdda055532f452794ec1a24eee36de0fd7",
+      "snapshot_sha256": "eaa5bd77e4f43a56c10977378648d77d8d3883d4ac83ef06b5c620ad41ae539a",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 1769,
-        "bytes": 2320361,
+        "bytes": 2321024,
         "current_primary_excluded": 1,
         "current_primary_retained": 1768,
         "files": 1769,

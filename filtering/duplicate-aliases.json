@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "b15febf5d795f051e0994435ad04e12a52114888",
-  "generated_at": "2026-11-14T12:45:36.662772+00:00",
+  "corpus_git_commit": "ee55a29199f18e5e0028dbdfd0763f8aa95540c3",
+  "generated_at": "2026-11-14T12:46:39.207923+00:00",
   "groups": [
     {
       "canonical": {
@@ -9511,26 +9511,6 @@
       ],
       "sha256": "13d18f834a21465e1ed1cd829b92ae139c2e1d059cd07c98f5d7ca13dd46b1c0",
       "size_bytes": 138482
-    },
-    {
-      "canonical": {
-        "file": "generated/conway_knot_not_smoothly_slice/ChallengeDeps.lean",
-        "repository": "leanprover__lean-eval"
-      },
-      "occurrences": [
-        {
-          "file": "generated/conway_knot_not_smoothly_slice/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/conway_knot_topologically_slice/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        }
-      ],
-      "sha256": "13d63bf6653eb35295dc50bb1df61c90553bd6f998bc377800de1f97aa2cf693",
-      "size_bytes": 23603
     },
     {
       "canonical": {
@@ -31684,6 +31664,31 @@
     },
     {
       "canonical": {
+        "file": "LeanEval/Topology/AnnulusBase.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "LeanEval/Topology/AnnulusBase.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/annulus_theorem_dim_four/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/annulus_theorem_high_dim/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "4992e5d73ae78953d202cef91153cb57c418cf014f28768ec8c3c3320d5e7cde",
+      "size_bytes": 4379
+    },
+    {
+      "canonical": {
         "file": "experiments/inspection/lean/appstest/apps_test_4310_impl_glm.lean",
         "repository": "Beneficial-AI-Foundation__vericoding"
       },
@@ -35416,31 +35421,6 @@
       ],
       "sha256": "52f0ea7932869a3d42a8e0fbfef1049c1527ad5f0bdcce9f16cdd271e10750a2",
       "size_bytes": 965
-    },
-    {
-      "canonical": {
-        "file": "LeanEval/Topology/AnnulusBase.lean",
-        "repository": "leanprover__lean-eval"
-      },
-      "occurrences": [
-        {
-          "file": "LeanEval/Topology/AnnulusBase.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/annulus_theorem_dim_four/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/annulus_theorem_high_dim/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        }
-      ],
-      "sha256": "52fd1833fd555723ec06b5a9cdfd2141ac1432cc383b1bd36938c48045255c05",
-      "size_bytes": 4365
     },
     {
       "canonical": {
@@ -81744,26 +81724,6 @@
     },
     {
       "canonical": {
-        "file": "generated/glAction_range_eq_centralizer_symAction/ChallengeDeps.lean",
-        "repository": "leanprover__lean-eval"
-      },
-      "occurrences": [
-        {
-          "file": "generated/glAction_range_eq_centralizer_symAction/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        },
-        {
-          "file": "generated/symAction_range_eq_centralizer_glAction/ChallengeDeps.lean",
-          "proof_assistant": "lean",
-          "repository": "leanprover__lean-eval"
-        }
-      ],
-      "sha256": "c3553d178da394ad58c67a8c0fe0088938909b818b334422ff1a176c36bb38de",
-      "size_bytes": 1851
-    },
-    {
-      "canonical": {
         "file": "benchmark-goals/putnam-1983-b4.lean",
         "repository": "agenticsnz__unsorry"
       },
@@ -104894,6 +104854,26 @@
     },
     {
       "canonical": {
+        "file": "generated/conway_knot_not_smoothly_slice/ChallengeDeps.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "generated/conway_knot_not_smoothly_slice/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/conway_knot_topologically_slice/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "fe80f0a197402f28f0ff06199f80379e7d84e5482638ad99d2ac0e8d6ae03d36",
+      "size_bytes": 23617
+    },
+    {
+      "canonical": {
         "file": "books/rtl/rel4/support/.sys/util@useless-runes.lsp",
         "repository": "acl2__acl2"
       },
@@ -105331,6 +105311,26 @@
       ],
       "sha256": "ff5abae2c9e02dc87986814e8b7ce5446938488842a71032ded92041ca49fe38",
       "size_bytes": 6490
+    },
+    {
+      "canonical": {
+        "file": "generated/glAction_range_eq_centralizer_symAction/ChallengeDeps.lean",
+        "repository": "leanprover__lean-eval"
+      },
+      "occurrences": [
+        {
+          "file": "generated/glAction_range_eq_centralizer_symAction/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        },
+        {
+          "file": "generated/symAction_range_eq_centralizer_glAction/ChallengeDeps.lean",
+          "proof_assistant": "lean",
+          "repository": "leanprover__lean-eval"
+        }
+      ],
+      "sha256": "ff5fd924ddb5d41288cf13a289b026bb22934df82d9c4a3309360de0433e2e27",
+      "size_bytes": 2007
     },
     {
       "canonical": {
