@@ -4,17 +4,17 @@
   "proof_assistant": "hol4",
   "repository": "HOL-Theorem-Prover__HOL",
   "schema_version": 1,
-  "source_revision": "48b1accb3db81ce4af93fbea81c0421a23dbd9e0",
-  "source_snapshot_sha256": "603b0b1d31ee5d9fef6b5883bee53225fe943b445d013d6585d5c96c4f9fa319",
+  "source_revision": "a8e8693c95327d6e011de3a0cb4379d6bb7c1c59",
+  "source_snapshot_sha256": "7ed35d157d8f196dbc53454289a7aa543f858c6c4d54f97166ab5205c086a2b5",
   "sync_group": "cross-prover",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 4222,
-    "bytes": 100109363,
-    "current_primary_excluded": 59,
-    "current_primary_retained": 4167,
-    "files": 4235,
-    "formal_source_files": 4226,
+    "baseline_primary_retained": 4225,
+    "bytes": 100170366,
+    "current_primary_excluded": 54,
+    "current_primary_retained": 4175,
+    "files": 4238,
+    "formal_source_files": 4229,
     "unindexed_nonformal": 8
   },
   "transport": "git",
@@ -27,11 +27,11 @@
         "root_count": 9,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "3c288daa2d6ba1282563081ac51180455a62cc38197c4206bffdf9335e82fb66",
+      "snapshot_sha256": "a5e75dcb34ca13d893e894ef5f764d959b721cc39d562457990cc5d1e44e4713",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 0,
-        "bytes": 67693,
+        "bytes": 71230,
         "current_primary_excluded": 0,
         "current_primary_retained": 0,
         "files": 9,
@@ -59,26 +59,6 @@
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-7594724d26cf"
-    },
-    {
-      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-129d55529c05.jsonl",
-      "scope": {
-        "kind": "subtree-bucket",
-        "root_count": 1,
-        "value": "./@subtrees/2"
-      },
-      "snapshot_sha256": "db3c9ced351947a904287ee594375722e22d462a11bd935a1992330d25b0b5be",
-      "stats": {
-        "auxiliary_only": 0,
-        "baseline_primary_retained": 2000,
-        "bytes": 31175257,
-        "current_primary_excluded": 45,
-        "current_primary_retained": 1955,
-        "files": 2000,
-        "formal_source_files": 2000,
-        "unindexed_nonformal": 0
-      },
-      "unit_id": "RRU-129d55529c05"
     },
     {
       "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-ef06e2264516.jsonl",
@@ -167,11 +147,11 @@
         "root_count": 1,
         "value": "./@subtrees/f"
       },
-      "snapshot_sha256": "ce261a3042f7b787b8df795f4d26b63a8e664c3d7e40f8bfb57f93fd03e3a21e",
+      "snapshot_sha256": "d8c65c137a76b2b7dcec1f8fd1dde3b2284f84e914665021089fe56918a56190",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 364,
-        "bytes": 1959718,
+        "bytes": 1960994,
         "current_primary_excluded": 9,
         "current_primary_retained": 359,
         "files": 368,
@@ -179,6 +159,326 @@
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-041b4e09c108"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-25c78dc78d6b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "src/@subtrees/0"
+      },
+      "snapshot_sha256": "0b87a8dba5c82497b5af5dc92e09caf1805ae54df0c7778907c6369f09c9bee7",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 70,
+        "bytes": 560451,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 68,
+        "files": 70,
+        "formal_source_files": 70,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-25c78dc78d6b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-6f67fe8712cf.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "src/@subtrees/1"
+      },
+      "snapshot_sha256": "28ea33269d6aadf8b7635f1dc01d6c79f4ec23ec9f129564bdc73a137efa87c5",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 117,
+        "bytes": 1762509,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 117,
+        "files": 117,
+        "formal_source_files": 117,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6f67fe8712cf"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-19c4bb8136d0.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "src/@subtrees/2"
+      },
+      "snapshot_sha256": "fd74292670e03929859dbc74a9ccf44ca66da83b3779cad9ea451ac6ef64ab3a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 15,
+        "bytes": 162957,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 15,
+        "files": 15,
+        "formal_source_files": 15,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-19c4bb8136d0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-89cde129d7bf.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "src/@subtrees/3"
+      },
+      "snapshot_sha256": "d3888bea671f6d68eca5d0ed20fbc4c8d3e8ccd2aa6e15244c4274579b24a2e9",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 88,
+        "bytes": 4159677,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 88,
+        "files": 88,
+        "formal_source_files": 88,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-89cde129d7bf"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-7c38b45484ed.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 6,
+        "value": "src/@subtrees/4"
+      },
+      "snapshot_sha256": "fa3994b8390de4fc2f1e335df05437e80e74fef2c0faf11b70956b94befb6daa",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 226,
+        "bytes": 3285777,
+        "current_primary_excluded": 28,
+        "current_primary_retained": 198,
+        "files": 226,
+        "formal_source_files": 226,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7c38b45484ed"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-822894156e34.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "src/@subtrees/5"
+      },
+      "snapshot_sha256": "bcb6744066559de3461568330d0088a963d6b386b2b297a98f21f1b921b16b5b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 79,
+        "bytes": 4756606,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 79,
+        "files": 79,
+        "formal_source_files": 79,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-822894156e34"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-a2ae339e98ae.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "src/@subtrees/6"
+      },
+      "snapshot_sha256": "d1d06437864d555c531f9fc68060581fb3c37c87a7d492961551c25ed3dc0352",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 71,
+        "bytes": 627476,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 71,
+        "files": 71,
+        "formal_source_files": 71,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a2ae339e98ae"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-5be953f80b9e.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 8,
+        "value": "src/@subtrees/7"
+      },
+      "snapshot_sha256": "b7f9852436fd6eeeb97ab5c2a9b007dd642f61a3b0a9abc4696e84a323ab2df4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 291,
+        "bytes": 2761458,
+        "current_primary_excluded": 4,
+        "current_primary_retained": 287,
+        "files": 291,
+        "formal_source_files": 291,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-5be953f80b9e"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-296fbcfb898b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "src/@subtrees/8"
+      },
+      "snapshot_sha256": "2f87d61a3a9c51f7972dba8c417c3dfea3bddd60fecbe2a90c39b9b768b4011e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 231,
+        "bytes": 2230613,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 231,
+        "files": 231,
+        "formal_source_files": 231,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-296fbcfb898b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-3c673db10a34.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "src/@subtrees/9"
+      },
+      "snapshot_sha256": "b9db6fdc3cb92dfc1125308c10c9e1d08a4727e30d538f7b4be2fe372528a86c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 137,
+        "bytes": 1056205,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 135,
+        "files": 137,
+        "formal_source_files": 137,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3c673db10a34"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-7e96c976acb1.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 6,
+        "value": "src/@subtrees/a"
+      },
+      "snapshot_sha256": "cf97b3b421fce02e3fad0b7c8475124310e2de508a72251c96ac6fe21b479bd4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 104,
+        "bytes": 4537082,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 103,
+        "files": 104,
+        "formal_source_files": 104,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7e96c976acb1"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-7dc4dd030849.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 4,
+        "value": "src/@subtrees/b"
+      },
+      "snapshot_sha256": "30a2d63cb098a32516b31bb8bbfe152217434b713e24da899ab84924f1a10841",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 39,
+        "bytes": 296794,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 39,
+        "files": 39,
+        "formal_source_files": 39,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7dc4dd030849"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-98c2afe92163.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "src/@subtrees/c"
+      },
+      "snapshot_sha256": "1d91c39e193ce91b783482825bae43bfc8592354995d722ddbaa5d9208b9b57b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 269,
+        "bytes": 1364336,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 268,
+        "files": 269,
+        "formal_source_files": 269,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-98c2afe92163"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-53a700c6ce2b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "src/@subtrees/d"
+      },
+      "snapshot_sha256": "5aa487df5d316b200b5db6000fb76a96aaaa21edec164e2959480217614fbe1a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 52,
+        "bytes": 896735,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 52,
+        "files": 52,
+        "formal_source_files": 52,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-53a700c6ce2b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-3b16af8fcef0.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "src/@subtrees/e"
+      },
+      "snapshot_sha256": "97f2faa6b061d2637c0afb770e55ae3a509545dde426064720fe5b6e6d3300e5",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 39,
+        "bytes": 1269409,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 39,
+        "files": 39,
+        "formal_source_files": 39,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3b16af8fcef0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/HOL-Theorem-Prover__HOL/RRU-03bd77b5810d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 5,
+        "value": "src/@subtrees/f"
+      },
+      "snapshot_sha256": "21e7fbd7ffb4454172088b0f7e2b594bc141a7f7f91a703baa6650bf0389c3fd",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 175,
+        "bytes": 1503362,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 173,
+        "files": 175,
+        "formal_source_files": 175,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-03bd77b5810d"
     }
   ]
 }
