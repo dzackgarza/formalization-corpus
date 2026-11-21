@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "380af52542d2a46ae494783b3ba4e65b33f4967d",
-  "generated_at": "2026-11-21T12:40:34.630832+00:00",
+  "corpus_git_commit": "19ce4e5771019d31ccf436dd37d1e4dcd2c85056",
+  "generated_at": "2026-11-21T12:43:43.472926+00:00",
   "groups": [
     {
       "canonical": {
@@ -27874,6 +27874,31 @@
     },
     {
       "canonical": {
+        "file": "books/kestrel/data/utilities/bit-vectors/acl2-customization.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/data/utilities/bit-vectors/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/utilities/fixed-size-words/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/utilities/lists/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "403c93fbe7b47439193a7695d5634a49b2bc612cfd012ac55a71c59529ba5e34",
+      "size_bytes": 410
+    },
+    {
+      "canonical": {
         "file": "v1/Atlas/LieGroups/code/ContinuousRep.lean",
         "repository": "facebookresearch__atlas-lean"
       },
@@ -28209,10 +28234,15 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/data/graph/internal/acl2-customization.lsp",
+        "file": "books/kestrel/data/graph/benchmark/acl2-customization.lsp",
         "repository": "acl2__acl2"
       },
       "occurrences": [
+        {
+          "file": "books/kestrel/data/graph/benchmark/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
         {
           "file": "books/kestrel/data/graph/internal/acl2-customization.lsp",
           "proof_assistant": "acl2",
@@ -32279,17 +32309,32 @@
     },
     {
       "canonical": {
-        "file": "books/kestrel/data/graph/cert.acl2",
+        "file": "books/kestrel/data/cert.acl2",
         "repository": "acl2__acl2"
       },
       "occurrences": [
+        {
+          "file": "books/kestrel/data/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/deque/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
         {
           "file": "books/kestrel/data/graph/cert.acl2",
           "proof_assistant": "acl2",
           "repository": "acl2__acl2"
         },
         {
-          "file": "books/kestrel/data/treebag/cert.acl2",
+          "file": "books/kestrel/data/hash/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tbag/cert.acl2",
           "proof_assistant": "acl2",
           "repository": "acl2__acl2"
         }
@@ -48484,7 +48529,17 @@
           "repository": "acl2__acl2"
         },
         {
-          "file": "books/kestrel/data/treebag/internal/cert.acl2",
+          "file": "books/kestrel/data/tbag/internal/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tmap/tests/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/utilities/cert.acl2",
           "proof_assistant": "acl2",
           "repository": "acl2__acl2"
         }
@@ -52551,6 +52606,36 @@
       ],
       "sha256": "7d08bff771f99cb74adea7507e1de21181bdd55fb8ff3201abb153c91c1f7e7a",
       "size_bytes": 15578
+    },
+    {
+      "canonical": {
+        "file": "books/kestrel/data/utilities/bit-vectors/cert.acl2",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/data/utilities/bit-vectors/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/utilities/fixed-size-words/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/utilities/lists/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/utilities/total-order/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "7d0a6474f3eeab57ad8215af96c05f89e0771e18b2f23862da8ae60cb0c86190",
+      "size_bytes": 63
     },
     {
       "canonical": {
@@ -59569,6 +59654,36 @@
     },
     {
       "canonical": {
+        "file": "books/kestrel/data/tmap/benchmark/acl2-customization.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/data/tmap/benchmark/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tmap/cursor/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tmap/internal/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tmap/tests/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "902502857546273b2a73b25b5c7bdafebebf07ecb773ec52a59946f090bf458d",
+      "size_bytes": 372
+    },
+    {
+      "canonical": {
         "file": "v1/Atlas/Buildings/code/CoxeterGroup/StrongExchangeUnconditional.lean",
         "repository": "facebookresearch__atlas-lean"
       },
@@ -66374,6 +66489,31 @@
     },
     {
       "canonical": {
+        "file": "books/kestrel/data/hash/portcullis.acl2",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/data/hash/portcullis.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/portcullis.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tmap/portcullis.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "a051e5cd38e172b68ddc7e26a88c428e1435e36dac1573133f817fd55f020b8b",
+      "size_bytes": 272
+    },
+    {
+      "canonical": {
         "file": "SciLean/Modules/Prob/SimpAttr.lean",
         "repository": "lecopivo__SciLean"
       },
@@ -70089,7 +70229,7 @@
           "repository": "acl2__acl2"
         },
         {
-          "file": "books/kestrel/data/treebag/portcullis.acl2",
+          "file": "books/kestrel/data/tbag/portcullis.acl2",
           "proof_assistant": "acl2",
           "repository": "acl2__acl2"
         }
@@ -84059,6 +84199,41 @@
     },
     {
       "canonical": {
+        "file": "books/kestrel/data/tmap/cursor/cert.acl2",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/data/tmap/cursor/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tmap/internal/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tset/cursor/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tset/internal/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tset/tests/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "c8ffa8ce0183fcb92af620ff66b272612fce776a4e5a8a5150ee1bf40bfe7d6e",
+      "size_bytes": 59
+    },
+    {
+      "canonical": {
         "file": "Tutorial/HOL_as_a_functional_programming_language.ml",
         "repository": "CakeML__candle"
       },
@@ -85664,6 +85839,26 @@
     },
     {
       "canonical": {
+        "file": "books/kestrel/data/tmap/cert.acl2",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/data/tmap/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tset/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "ccec9e2d885ed70b1a42a20b93e63d7a02df3ae98ef31e8840ce42c4c6318a52",
+      "size_bytes": 56
+    },
+    {
+      "canonical": {
         "file": "v1/Atlas/AlgebraicGeometryI/code/ProductsSeparatedness.lean",
         "repository": "facebookresearch__atlas-lean"
       },
@@ -87136,6 +87331,26 @@
       ],
       "sha256": "d0c2bdc2559e7075131527490f6b8c8f10e10f1b2886e94f1af40c58e92cbbaf",
       "size_bytes": 20421
+    },
+    {
+      "canonical": {
+        "file": "books/kestrel/data/tmap/cursor/internal/cert.acl2",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/data/tmap/cursor/internal/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tset/cursor/internal/cert.acl2",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "d10c36aa9c7fa619e95c52e2d5076316d251bb8ed8ef1187a9945644ec3c975c",
+      "size_bytes": 62
     },
     {
       "canonical": {
@@ -97776,6 +97991,26 @@
       ],
       "sha256": "ebb3334d38f3f791272026edeea1b24e55ead763628bee2af56c0ba8df2f2f6f",
       "size_bytes": 1747
+    },
+    {
+      "canonical": {
+        "file": "books/kestrel/data/tset/internal/acl2-customization.lsp",
+        "repository": "acl2__acl2"
+      },
+      "occurrences": [
+        {
+          "file": "books/kestrel/data/tset/internal/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        },
+        {
+          "file": "books/kestrel/data/tset/tests/acl2-customization.lsp",
+          "proof_assistant": "acl2",
+          "repository": "acl2__acl2"
+        }
+      ],
+      "sha256": "ebca01c09d5ae892c64248de0cf236398250b569e5b37d8a1556aab0bf8987cf",
+      "size_bytes": 377
     },
     {
       "canonical": {
