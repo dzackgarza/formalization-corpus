@@ -4,41 +4,221 @@
   "proof_assistant": "lean",
   "repository": "argumentcomputer__ix",
   "schema_version": 1,
-  "source_revision": "bdd4304fa7db1404fd897927f1647db6ad8b300f",
-  "source_snapshot_sha256": "483b5400e41cdea71aecf862303c6078f0677ef23810f05a03c5e5d1b5ad3ec0",
+  "source_revision": "8476de166a3274fec019724e83c0434edd184b60",
+  "source_snapshot_sha256": "fa94e4858a024da788f80fc067147680a8af14f13b6fde0724172e4bce77f841",
   "sync_group": "bulk",
   "totals": {
     "auxiliary_only": 2,
-    "baseline_primary_retained": 1618,
-    "bytes": 37034307,
-    "current_primary_excluded": 9,
-    "current_primary_retained": 1611,
-    "files": 1635,
-    "formal_source_files": 1619,
+    "baseline_primary_retained": 3270,
+    "bytes": 92680776,
+    "current_primary_excluded": 6,
+    "current_primary_retained": 3266,
+    "files": 3287,
+    "formal_source_files": 3271,
     "unindexed_nonformal": 13
   },
   "transport": "git",
   "url": "https://github.com/argumentcomputer/ix",
   "work_units": [
     {
-      "files_manifest": "filtering/repository-review/files/argumentcomputer__ix/RRU-d2d4d0ceb272.jsonl",
+      "files_manifest": "filtering/repository-review/files/argumentcomputer__ix/RRU-e1b923fe2408.jsonl",
       "scope": {
-        "kind": "repository",
-        "root_count": 0,
-        "value": "."
+        "kind": "file-bucket",
+        "root_count": 22,
+        "value": "./@files/all"
       },
-      "snapshot_sha256": "483b5400e41cdea71aecf862303c6078f0677ef23810f05a03c5e5d1b5ad3ec0",
+      "snapshot_sha256": "c3e1dcb466a019f21a22fb0e7a1d0cfda439e95af6306d249e98832ab0c4a87f",
       "stats": {
-        "auxiliary_only": 2,
-        "baseline_primary_retained": 1618,
-        "bytes": 37034307,
-        "current_primary_excluded": 9,
-        "current_primary_retained": 1611,
-        "files": 1635,
-        "formal_source_files": 1619,
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 5,
+        "bytes": 261465,
+        "current_primary_excluded": 3,
+        "current_primary_retained": 5,
+        "files": 22,
+        "formal_source_files": 6,
         "unindexed_nonformal": 13
       },
-      "unit_id": "RRU-d2d4d0ceb272"
+      "unit_id": "RRU-e1b923fe2408"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/argumentcomputer__ix/RRU-a7d1e25ed649.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/0"
+      },
+      "snapshot_sha256": "934c3765cd4eb20f9f7fcc6c387bf072e46f30b66187a5da3e6d6783bf5acbd8",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 478,
+        "bytes": 11743011,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 477,
+        "files": 478,
+        "formal_source_files": 478,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a7d1e25ed649"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/argumentcomputer__ix/RRU-a9b8f616a086.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/3"
+      },
+      "snapshot_sha256": "e18948dcedb937ec93dcb88537d0fa3589750a04a5ab6c0fa9c95a41fe61f237",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 43,
+        "bytes": 2129456,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 43,
+        "files": 43,
+        "formal_source_files": 43,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a9b8f616a086"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/argumentcomputer__ix/RRU-b1f2b7dfedbc.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 3,
+        "value": "./@subtrees/8"
+      },
+      "snapshot_sha256": "f697b462302ca48c422b0cc9f48e4d80a03ad5ebefbd8c57539ecd91582547a1",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 12,
+        "bytes": 122368,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 12,
+        "files": 12,
+        "formal_source_files": 12,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b1f2b7dfedbc"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/argumentcomputer__ix/RRU-1493a443589b.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/9"
+      },
+      "snapshot_sha256": "7da6607e47305a6034fc94abf199b5a6798cd7c73c6d44e71f1d4b819190bbaa",
+      "stats": {
+        "auxiliary_only": 1,
+        "baseline_primary_retained": 221,
+        "bytes": 635129,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 219,
+        "files": 221,
+        "formal_source_files": 221,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1493a443589b"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/argumentcomputer__ix/RRU-1eeecfcce657.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/a"
+      },
+      "snapshot_sha256": "a1f0fda63ce2d3b301eeb1e15f0c3b43241f7100406a09d7c2a0fb2783df3d0a",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 507,
+        "bytes": 4570742,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 507,
+        "files": 507,
+        "formal_source_files": 507,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-1eeecfcce657"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/argumentcomputer__ix/RRU-6e7f81b7bed2.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/b"
+      },
+      "snapshot_sha256": "c04aa8c5fda95126ece35415a3f8a2af1e17d9660a87692af5a9dd66f5b9ceb6",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 722,
+        "bytes": 23979183,
+        "current_primary_excluded": 1,
+        "current_primary_retained": 721,
+        "files": 722,
+        "formal_source_files": 722,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-6e7f81b7bed2"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/argumentcomputer__ix/RRU-a89c764084c0.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "./@subtrees/d"
+      },
+      "snapshot_sha256": "f42c31f977f5c3e129dc1a90856298430d32e101aa640d6cf4f08507d9dffe09",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 87,
+        "bytes": 2051995,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 87,
+        "files": 87,
+        "formal_source_files": 87,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-a89c764084c0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/argumentcomputer__ix/RRU-c04eedb54eff.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/e"
+      },
+      "snapshot_sha256": "1e00754b5ff7acd36fd2acd856c820537369855a3f10d47e0e293c6fa07e7cc3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 235,
+        "bytes": 2789941,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 235,
+        "files": 235,
+        "formal_source_files": 235,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-c04eedb54eff"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/argumentcomputer__ix/RRU-4cce48190de7.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "./@subtrees/f"
+      },
+      "snapshot_sha256": "4b61e9a3da862299a0ec2bb022b4b241ad22cfef717a1739aec09d2b2e7fe3a4",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 960,
+        "bytes": 44397486,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 960,
+        "files": 960,
+        "formal_source_files": 960,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-4cce48190de7"
     }
   ]
 }
