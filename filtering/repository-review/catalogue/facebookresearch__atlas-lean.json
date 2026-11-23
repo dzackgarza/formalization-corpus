@@ -4,18 +4,18 @@
   "proof_assistant": "lean",
   "repository": "facebookresearch__atlas-lean",
   "schema_version": 1,
-  "source_revision": "b547f69cd80280925fad6f2e5d1aebf92b38f5f0",
-  "source_snapshot_sha256": "7a821f562ba6ae28628a9e07aa9321c24cc8817b998ba2c517d3006208a42a07",
+  "source_revision": "5c77d5224cebd12e0808329f65611358b2a85d9a",
+  "source_snapshot_sha256": "38cb13850d995aabdb3f40131e3d21e97d96fa0b741a80ad494488e71f901814",
   "sync_group": "routine",
   "totals": {
     "auxiliary_only": 3,
-    "baseline_primary_retained": 28835,
-    "bytes": 298603457,
+    "baseline_primary_retained": 29891,
+    "bytes": 312067660,
     "current_primary_excluded": 8,
-    "current_primary_retained": 28828,
-    "files": 28846,
-    "formal_source_files": 28835,
-    "unindexed_nonformal": 7
+    "current_primary_retained": 29884,
+    "files": 29903,
+    "formal_source_files": 29891,
+    "unindexed_nonformal": 8
   },
   "transport": "git",
   "url": "https://github.com/facebookresearch/atlas-lean",
@@ -24,19 +24,19 @@
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-3c1f4e59fb79.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 11,
+        "root_count": 12,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "f39c47972c10d7e21b439b29b99f4f5d6da64d6f8e2d981aed3cf478eaf56edb",
+      "snapshot_sha256": "c38df2fb2a236fa5ae822e97a3ccb8d7f39078a7c23da17878bd33c1d513d8b1",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 0,
-        "bytes": 55097,
+        "bytes": 60486,
         "current_primary_excluded": 3,
         "current_primary_retained": 0,
-        "files": 11,
+        "files": 12,
         "formal_source_files": 0,
-        "unindexed_nonformal": 7
+        "unindexed_nonformal": 8
       },
       "unit_id": "RRU-3c1f4e59fb79"
     },
@@ -47,15 +47,15 @@
         "root_count": 1,
         "value": "./@subtrees/0"
       },
-      "snapshot_sha256": "2901df0488b8929086a4237725fa1b34d3ea331ba05c998a6337f3589ba0a2c4",
+      "snapshot_sha256": "cc97e3c9ff977bdf1bdb00588236cb5afa339b0335d279d71afa3e61bd312861",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1429,
-        "bytes": 21886811,
+        "baseline_primary_retained": 1453,
+        "bytes": 25209472,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1429,
-        "files": 1429,
-        "formal_source_files": 1429,
+        "current_primary_retained": 1453,
+        "files": 1453,
+        "formal_source_files": 1453,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-93d6cca73ede"
@@ -67,15 +67,15 @@
         "root_count": 1,
         "value": "./@subtrees/2"
       },
-      "snapshot_sha256": "febc6ea708645ccb93a10ccdbb239cf6d2647291ab118e3c891299909b5afee9",
+      "snapshot_sha256": "88f312b1caebe00e4ccb0ddcbb3d0fac69c2ea523c111fa2451367b6135ed4c3",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 521,
-        "bytes": 3003672,
+        "baseline_primary_retained": 523,
+        "bytes": 3011257,
         "current_primary_excluded": 0,
-        "current_primary_retained": 521,
-        "files": 521,
-        "formal_source_files": 521,
+        "current_primary_retained": 523,
+        "files": 523,
+        "formal_source_files": 523,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-953cbfa6828b"
@@ -107,15 +107,15 @@
         "root_count": 3,
         "value": "./@subtrees/8"
       },
-      "snapshot_sha256": "bc93a38adfdb1f92974cf7b65451b1a7628ff75da5cad4363e5688e5ad3f5c3a",
+      "snapshot_sha256": "8add752620be9d705c3e4879918f74d832b58d28ee8915ab4da7cf6c5449f8ac",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1688,
-        "bytes": 8874786,
+        "baseline_primary_retained": 1716,
+        "bytes": 9209972,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1688,
-        "files": 1688,
-        "formal_source_files": 1688,
+        "current_primary_retained": 1716,
+        "files": 1716,
+        "formal_source_files": 1716,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-df89bcd18752"
@@ -127,15 +127,15 @@
         "root_count": 1,
         "value": "./@subtrees/9"
       },
-      "snapshot_sha256": "43dace7a63b07766897433d227654cf604c85a478d3d729b2c0188d0b0fe6cd6",
+      "snapshot_sha256": "91a4b03df2ea9c2e9a24cbaf3295c149cd7e435e0ff29104212a56dd0af6767f",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 847,
-        "bytes": 13502872,
+        "baseline_primary_retained": 851,
+        "bytes": 13567521,
         "current_primary_excluded": 0,
-        "current_primary_retained": 847,
-        "files": 847,
-        "formal_source_files": 847,
+        "current_primary_retained": 851,
+        "files": 851,
+        "formal_source_files": 851,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-d8ed71d5980e"
@@ -147,15 +147,15 @@
         "root_count": 1,
         "value": "./@subtrees/c"
       },
-      "snapshot_sha256": "6e7cf35bcaddc70d3a4e71e79f5e8010c89faed9b22c862560915d7f9aabd760",
+      "snapshot_sha256": "7fd947767243390ffe8432f814192357ada9fa988e8133a6c9493068fd102c5e",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 524,
-        "bytes": 9170938,
+        "baseline_primary_retained": 526,
+        "bytes": 9196544,
         "current_primary_excluded": 0,
-        "current_primary_retained": 524,
-        "files": 524,
-        "formal_source_files": 524,
+        "current_primary_retained": 526,
+        "files": 526,
+        "formal_source_files": 526,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-0db6acdcdc43"
@@ -527,11 +527,11 @@
         "root_count": 1,
         "value": "MathlibExt/@subtrees/0"
       },
-      "snapshot_sha256": "1763762579191bf437f112bef4896c99d48700ca356b19351efe8217285e7c46",
+      "snapshot_sha256": "0aee6184b2ca78b4fe9c15c648224f9b90f5a7379f3af450d1358c65c034704c",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 11,
-        "bytes": 54445,
+        "bytes": 60359,
         "current_primary_excluded": 0,
         "current_primary_retained": 11,
         "files": 11,
@@ -547,15 +547,15 @@
         "root_count": 5,
         "value": "MathlibExt/@subtrees/1"
       },
-      "snapshot_sha256": "2319b9fb909a7b58cc0103532d2a867c71094dcbb42ca5e0e31c4b1e1dca497e",
+      "snapshot_sha256": "0f7463e0fe47ffd6455f737b67e226fa233f2381aae0207b4009951d6ca1135f",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 852,
-        "bytes": 12192672,
+        "baseline_primary_retained": 1097,
+        "bytes": 14135579,
         "current_primary_excluded": 0,
-        "current_primary_retained": 852,
-        "files": 852,
-        "formal_source_files": 852,
+        "current_primary_retained": 1097,
+        "files": 1097,
+        "formal_source_files": 1097,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-246a64ea8a01"
@@ -587,15 +587,15 @@
         "root_count": 1,
         "value": "MathlibExt/@subtrees/3"
       },
-      "snapshot_sha256": "5db4a1d37749887adb9957e3a6fca346c19b9e1b26f83823bf6ee067ee5e875f",
+      "snapshot_sha256": "2a38b8eedebf54ae4682972e8b77a29abfcec2da7647e709f5a95b87d1062d5f",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 14,
-        "bytes": 95133,
+        "baseline_primary_retained": 15,
+        "bytes": 108385,
         "current_primary_excluded": 0,
-        "current_primary_retained": 14,
-        "files": 14,
-        "formal_source_files": 14,
+        "current_primary_retained": 15,
+        "files": 15,
+        "formal_source_files": 15,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-73537230d175"
@@ -607,15 +607,15 @@
         "root_count": 4,
         "value": "MathlibExt/@subtrees/4"
       },
-      "snapshot_sha256": "e028cd9e88c0ed2b55b85f165734c2c838181702b7f6171cf515223e3638406c",
+      "snapshot_sha256": "faf688a9af6f2bc6db22dab90374b0bd3ca0f6efe5c4a649aac2ddcba81b51c4",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 114,
-        "bytes": 1475818,
+        "baseline_primary_retained": 116,
+        "bytes": 1534427,
         "current_primary_excluded": 0,
-        "current_primary_retained": 114,
-        "files": 114,
-        "formal_source_files": 114,
+        "current_primary_retained": 116,
+        "files": 116,
+        "formal_source_files": 116,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-371ce6bf4327"
@@ -627,15 +627,15 @@
         "root_count": 1,
         "value": "MathlibExt/@subtrees/5"
       },
-      "snapshot_sha256": "1de2d93684e6061fe59b7b5066c8b1d2b53a29f5e3e4d551f0a79294aedebe57",
+      "snapshot_sha256": "5adb6cc9a67ba3a3682145d61bd8e14a5a8ab49aef87240b1554dbb58e299bb7",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 697,
-        "bytes": 13783156,
+        "baseline_primary_retained": 791,
+        "bytes": 14841066,
         "current_primary_excluded": 0,
-        "current_primary_retained": 697,
-        "files": 697,
-        "formal_source_files": 697,
+        "current_primary_retained": 791,
+        "files": 791,
+        "formal_source_files": 791,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-b99fe1f5fdaa"
@@ -647,15 +647,15 @@
         "root_count": 2,
         "value": "MathlibExt/@subtrees/7"
       },
-      "snapshot_sha256": "0b3b4cf0673ab73e041cf5bb026deb6d629f601ba6c9b3740187b9013f73b552",
+      "snapshot_sha256": "6d0b652efb4d19e36b648855136a8b4539ac5529803a92ff7ed68e50c518f8f1",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 32,
-        "bytes": 422086,
+        "baseline_primary_retained": 35,
+        "bytes": 460291,
         "current_primary_excluded": 0,
-        "current_primary_retained": 32,
-        "files": 32,
-        "formal_source_files": 32,
+        "current_primary_retained": 35,
+        "files": 35,
+        "formal_source_files": 35,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-5e388d6ce820"
@@ -667,15 +667,15 @@
         "root_count": 2,
         "value": "MathlibExt/@subtrees/8"
       },
-      "snapshot_sha256": "8610594a081eaf5cc7e88c6f60a4ac635a5373f4dd268e89b0736da2e2b62347",
+      "snapshot_sha256": "3e382937e54ced7d9552e28c252d8e6d8fd5bbc24c263b265235589c41eb9552",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 17,
-        "bytes": 110916,
+        "baseline_primary_retained": 18,
+        "bytes": 140193,
         "current_primary_excluded": 0,
-        "current_primary_retained": 17,
-        "files": 17,
-        "formal_source_files": 17,
+        "current_primary_retained": 18,
+        "files": 18,
+        "formal_source_files": 18,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-fb1b1b4391d5"
@@ -687,15 +687,15 @@
         "root_count": 2,
         "value": "MathlibExt/@subtrees/9"
       },
-      "snapshot_sha256": "1fc834b34cac94a7d3443fdf3c6d5768846959e4c6a74b62c8f22645f02461e6",
+      "snapshot_sha256": "9bce5d278962fb6677a5ef8d606d8d61ff6e1fdb5d433c07960fe5a6c3ad46a0",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 941,
-        "bytes": 14392937,
+        "baseline_primary_retained": 1065,
+        "bytes": 15792107,
         "current_primary_excluded": 0,
-        "current_primary_retained": 941,
-        "files": 941,
-        "formal_source_files": 941,
+        "current_primary_retained": 1065,
+        "files": 1065,
+        "formal_source_files": 1065,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-3b32381cb2ae"
@@ -707,15 +707,15 @@
         "root_count": 3,
         "value": "MathlibExt/@subtrees/a"
       },
-      "snapshot_sha256": "cd8148fe6ca114d88c3c24c94200000bd4b9ae9ee884c8311e31b9d235e90920",
+      "snapshot_sha256": "c789d80dde49fb78904db9e59ae84ab5c635550b742d9ef7e66a66fc1e5250cd",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 181,
-        "bytes": 3521851,
+        "baseline_primary_retained": 184,
+        "bytes": 3712982,
         "current_primary_excluded": 0,
-        "current_primary_retained": 181,
-        "files": 181,
-        "formal_source_files": 181,
+        "current_primary_retained": 184,
+        "files": 184,
+        "formal_source_files": 184,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-366c07d39048"
@@ -727,15 +727,15 @@
         "root_count": 3,
         "value": "MathlibExt/@subtrees/b"
       },
-      "snapshot_sha256": "8f33211b57ffa8511798a2f8b3e7e44b6def5aaf68e8cdd86a20bdf251cd776e",
+      "snapshot_sha256": "d38823e4ba4e54055f573e88e0cc561fb9d604ff55aab05ec36d841955b6aa6c",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 105,
-        "bytes": 1404018,
+        "baseline_primary_retained": 108,
+        "bytes": 1482802,
         "current_primary_excluded": 0,
-        "current_primary_retained": 105,
-        "files": 105,
-        "formal_source_files": 105,
+        "current_primary_retained": 108,
+        "files": 108,
+        "formal_source_files": 108,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-885ebd5b1a14"
@@ -747,15 +747,15 @@
         "root_count": 2,
         "value": "MathlibExt/@subtrees/c"
       },
-      "snapshot_sha256": "0a8dd25aee359e69c06a25cb631dfd28dba06115161c84a7216e710d6e229d1d",
+      "snapshot_sha256": "f57f1ebd21afc381b2095f889ace6310a6f2d430d7dbf3f22143d21a4bac5cd1",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 69,
-        "bytes": 888446,
+        "baseline_primary_retained": 101,
+        "bytes": 1253037,
         "current_primary_excluded": 0,
-        "current_primary_retained": 69,
-        "files": 69,
-        "formal_source_files": 69,
+        "current_primary_retained": 101,
+        "files": 101,
+        "formal_source_files": 101,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-946cd241089e"
@@ -767,15 +767,15 @@
         "root_count": 3,
         "value": "MathlibExt/@subtrees/d"
       },
-      "snapshot_sha256": "e302108229561a4fa1d5013f2750650aac30254437ee43d58823b12ddc42c43d",
+      "snapshot_sha256": "a3a37a8559fae649303d17d439999379748b1ed0506a33dd9150b6358279bf0b",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 183,
-        "bytes": 2118838,
+        "baseline_primary_retained": 192,
+        "bytes": 2281063,
         "current_primary_excluded": 0,
-        "current_primary_retained": 183,
-        "files": 183,
-        "formal_source_files": 183,
+        "current_primary_retained": 192,
+        "files": 192,
+        "formal_source_files": 192,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-13ae78609741"
@@ -787,15 +787,15 @@
         "root_count": 2,
         "value": "MathlibExt/@subtrees/e"
       },
-      "snapshot_sha256": "bfc531c454473efbb95ba5a982205faa21bd45725507a9c1fd3bd7c8819b2c68",
+      "snapshot_sha256": "537176d03da2ceeb3d3535f792654618fccd8a6d7449e923df5d1f361a4ec4cd",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 758,
-        "bytes": 13561928,
+        "baseline_primary_retained": 765,
+        "bytes": 13926823,
         "current_primary_excluded": 0,
-        "current_primary_retained": 758,
-        "files": 758,
-        "formal_source_files": 758,
+        "current_primary_retained": 765,
+        "files": 765,
+        "formal_source_files": 765,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-812f2aef4aeb"
@@ -807,11 +807,11 @@
         "root_count": 1,
         "value": "MathlibExt/@subtrees/f"
       },
-      "snapshot_sha256": "df81c9c1f564e4f926519df33614f872ece7ce708992eaed5b2f0613c8ab6727",
+      "snapshot_sha256": "21397bd1e397783241b5008b6b710790e86c4e9cd888e37e84ef14dcdde9fe3a",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 23,
-        "bytes": 307962,
+        "bytes": 390210,
         "current_primary_excluded": 0,
         "current_primary_retained": 23,
         "files": 23,
@@ -847,15 +847,15 @@
         "root_count": 2,
         "value": "MathlibExtTest/@subtrees/2"
       },
-      "snapshot_sha256": "9a4f448c6944f9fc78c7643b8efffe0064c1a2bb67f84a848ebf1448497ab649",
+      "snapshot_sha256": "67761e14a1eeda915dd15d17875b1bc53e65452cd27403d85b49774cdbb0d842",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 532,
-        "bytes": 2148951,
+        "baseline_primary_retained": 630,
+        "bytes": 2478506,
         "current_primary_excluded": 0,
-        "current_primary_retained": 532,
-        "files": 532,
-        "formal_source_files": 532,
+        "current_primary_retained": 630,
+        "files": 630,
+        "formal_source_files": 630,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-025ccb5ca456"
@@ -867,15 +867,15 @@
         "root_count": 2,
         "value": "MathlibExtTest/@subtrees/3"
       },
-      "snapshot_sha256": "3d32f9933a54bc6a733c982b0f8d253c22e466a514662a5ef5e94b5bb09e64af",
+      "snapshot_sha256": "0ff07f67450f98b7a281e45f8d571a6546bbaae6c106a4e9d8b6fbe90160f56a",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 46,
-        "bytes": 145697,
+        "baseline_primary_retained": 51,
+        "bytes": 151892,
         "current_primary_excluded": 0,
-        "current_primary_retained": 46,
-        "files": 46,
-        "formal_source_files": 46,
+        "current_primary_retained": 51,
+        "files": 51,
+        "formal_source_files": 51,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-f439d7fcafd8"
@@ -887,15 +887,15 @@
         "root_count": 5,
         "value": "MathlibExtTest/@subtrees/5"
       },
-      "snapshot_sha256": "7d2e6e2ea79aeb61e758f1b9d09332ccc1f854f428316a69a9a66c0612f310a6",
+      "snapshot_sha256": "773ea934eac63336bda742f96b77a6ba1f6d3985d81e2b1cfe0f97c0e2e92c0b",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 191,
-        "bytes": 1063701,
+        "baseline_primary_retained": 198,
+        "bytes": 1098854,
         "current_primary_excluded": 0,
-        "current_primary_retained": 191,
-        "files": 191,
-        "formal_source_files": 191,
+        "current_primary_retained": 198,
+        "files": 198,
+        "formal_source_files": 198,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-6ad251534de3"
@@ -927,15 +927,15 @@
         "root_count": 5,
         "value": "MathlibExtTest/@subtrees/7"
       },
-      "snapshot_sha256": "ade7160c2134c7562bd7ba4de016ad3d0f7ad13fa9095105aa6e3fad40e02405",
+      "snapshot_sha256": "09e59c9742feb57a24b647825c77f495166a2c5deac2c3a6f5d97c2826127881",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 50,
-        "bytes": 134442,
+        "baseline_primary_retained": 52,
+        "bytes": 141089,
         "current_primary_excluded": 0,
-        "current_primary_retained": 50,
-        "files": 50,
-        "formal_source_files": 50,
+        "current_primary_retained": 52,
+        "files": 52,
+        "formal_source_files": 52,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-aaad9d169240"
@@ -947,15 +947,15 @@
         "root_count": 2,
         "value": "MathlibExtTest/@subtrees/8"
       },
-      "snapshot_sha256": "9973c2980ce7fe511405d232bc94b231086e1f81830e2a7d7ab6d5ae14d9c340",
+      "snapshot_sha256": "9e11508f1f2664b4938c095030230ab1e89c1150cf1aed03fd5440da74e4c743",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 43,
-        "bytes": 128932,
+        "baseline_primary_retained": 44,
+        "bytes": 130574,
         "current_primary_excluded": 0,
-        "current_primary_retained": 43,
-        "files": 43,
-        "formal_source_files": 43,
+        "current_primary_retained": 44,
+        "files": 44,
+        "formal_source_files": 44,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-da3aaad356fc"
@@ -967,15 +967,15 @@
         "root_count": 1,
         "value": "MathlibExtTest/@subtrees/a"
       },
-      "snapshot_sha256": "103bdc548a3276871db343351a4a932884c10af03475da42f9050e13738ef7c4",
+      "snapshot_sha256": "09453ca5931b2200cc926ed68ea53fa1be1f197ef455111f523c7714883af1a1",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 62,
-        "bytes": 106125,
+        "baseline_primary_retained": 69,
+        "bytes": 141422,
         "current_primary_excluded": 0,
-        "current_primary_retained": 62,
-        "files": 62,
-        "formal_source_files": 62,
+        "current_primary_retained": 69,
+        "files": 69,
+        "formal_source_files": 69,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-6c516128b88b"
@@ -987,15 +987,15 @@
         "root_count": 3,
         "value": "MathlibExtTest/@subtrees/b"
       },
-      "snapshot_sha256": "e795cdea7b95125c7f665962445ef8fd93c70f455a3c2eecfcdb6f51e7f3eacd",
+      "snapshot_sha256": "ce3ba8ccf7f932ee6a06fc6b2ecfb91a8ba112f9920fad7f4bb2f19ea2fdbb9e",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 443,
-        "bytes": 996078,
+        "baseline_primary_retained": 666,
+        "bytes": 1352173,
         "current_primary_excluded": 0,
-        "current_primary_retained": 443,
-        "files": 443,
-        "formal_source_files": 443,
+        "current_primary_retained": 666,
+        "files": 666,
+        "formal_source_files": 666,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-cdeee20f687b"
@@ -1007,15 +1007,15 @@
         "root_count": 3,
         "value": "MathlibExtTest/@subtrees/c"
       },
-      "snapshot_sha256": "88beaa05356e62d9c38cb8162ac0f48022ffbd4fcb8e0a010370631a7f2a7ae9",
+      "snapshot_sha256": "b1279f7738a15e792a9c8befbce58f03a24173ed8b3260b58775f04507f41ec5",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 388,
-        "bytes": 1067119,
+        "baseline_primary_retained": 411,
+        "bytes": 1124834,
         "current_primary_excluded": 0,
-        "current_primary_retained": 388,
-        "files": 388,
-        "formal_source_files": 388,
+        "current_primary_retained": 411,
+        "files": 411,
+        "formal_source_files": 411,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-7d73e81cb37e"
@@ -1027,15 +1027,15 @@
         "root_count": 2,
         "value": "MathlibExtTest/@subtrees/d"
       },
-      "snapshot_sha256": "500de2e995345a61be5c6d240be9ca6572c4b23c88f69090b81d6e723f9c327b",
+      "snapshot_sha256": "3443f8fb8101ca2d8bb43bc69a27332183a6ed1c6067ab25dd499cfb1174b32e",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 369,
-        "bytes": 872338,
+        "baseline_primary_retained": 501,
+        "bytes": 1184829,
         "current_primary_excluded": 0,
-        "current_primary_retained": 369,
-        "files": 369,
-        "formal_source_files": 369,
+        "current_primary_retained": 501,
+        "files": 501,
+        "formal_source_files": 501,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-73eea7da2748"
@@ -1047,15 +1047,15 @@
         "root_count": 4,
         "value": "MathlibExtTest/@subtrees/e"
       },
-      "snapshot_sha256": "db30e8c5c15883e1fddc30d15a5f6797e9825169449f0ac138be1543704242a0",
+      "snapshot_sha256": "96413bcadfbe907ea1583dd29dc92d2b9ea88ff51314633b7e14088febde83f7",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 829,
-        "bytes": 5230595,
+        "baseline_primary_retained": 857,
+        "bytes": 5288974,
         "current_primary_excluded": 0,
-        "current_primary_retained": 829,
-        "files": 829,
-        "formal_source_files": 829,
+        "current_primary_retained": 857,
+        "files": 857,
+        "formal_source_files": 857,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-ce5ec2470f96"
@@ -1067,15 +1067,15 @@
         "root_count": 2,
         "value": "MathlibExtTest/@subtrees/f"
       },
-      "snapshot_sha256": "403c0d94d8db7f52276fece6d34206b2b936de0b39d97d6ad259573116f068b6",
+      "snapshot_sha256": "67e6a34e9530fa716ef708a3f6774a66fe6f2242778d8ff0e38f1d09fde94afc",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 133,
-        "bytes": 463652,
+        "baseline_primary_retained": 135,
+        "bytes": 468335,
         "current_primary_excluded": 0,
-        "current_primary_retained": 133,
-        "files": 133,
-        "formal_source_files": 133,
+        "current_primary_retained": 135,
+        "files": 135,
+        "formal_source_files": 135,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-2f364a5a2f3d"
@@ -1087,11 +1087,11 @@
         "root_count": 1,
         "value": "WantedExt/@subtrees/1"
       },
-      "snapshot_sha256": "74cc96a66cfefcfe9dbf83c5a308ac52322f70d9ad5f61625f79b356f2861cae",
+      "snapshot_sha256": "92edcae71ccf12a506d636a5825730bf52409b485d0d63719d5e0fdcfb45d1bd",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 2,
-        "bytes": 7113,
+        "bytes": 4828,
         "current_primary_excluded": 0,
         "current_primary_retained": 2,
         "files": 2,
@@ -1107,11 +1107,11 @@
         "root_count": 2,
         "value": "WantedExt/@subtrees/2"
       },
-      "snapshot_sha256": "eed69e606f4b95a0983d062a80414f2e0f2eba397da04fc22544fd02a328bb6a",
+      "snapshot_sha256": "fbcc6704b9631032799b1f0bedf0b2ccfd75f5c64baa6176e19d03f3d2082d3a",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 157,
-        "bytes": 589327,
+        "bytes": 618954,
         "current_primary_excluded": 0,
         "current_primary_retained": 157,
         "files": 157,
@@ -1127,15 +1127,15 @@
         "root_count": 2,
         "value": "WantedExt/@subtrees/3"
       },
-      "snapshot_sha256": "9589107b522b7faf6c845f2e45e98e31e117a3b30ab133ca29152e0641cbd351",
+      "snapshot_sha256": "c80aa43934a367422315d140f13e91fb552b691eb7aae2e1d9b1dc19235e8a1a",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 428,
-        "bytes": 1635013,
+        "baseline_primary_retained": 381,
+        "bytes": 1697045,
         "current_primary_excluded": 0,
-        "current_primary_retained": 428,
-        "files": 428,
-        "formal_source_files": 428,
+        "current_primary_retained": 381,
+        "files": 381,
+        "formal_source_files": 381,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-893a2844af69"
@@ -1167,15 +1167,15 @@
         "root_count": 2,
         "value": "WantedExt/@subtrees/6"
       },
-      "snapshot_sha256": "0346d593800b840833acee1791759f9bc2cb0dfbbcc8ef74f4fe017df7b50cd4",
+      "snapshot_sha256": "531bb1912be038d5b54aab015b13dfa94a9621bf4f1640525dfd027c1b7bbeba",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 678,
-        "bytes": 2422681,
+        "baseline_primary_retained": 675,
+        "bytes": 2718126,
         "current_primary_excluded": 0,
-        "current_primary_retained": 678,
-        "files": 678,
-        "formal_source_files": 678,
+        "current_primary_retained": 675,
+        "files": 675,
+        "formal_source_files": 675,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-6f4896e4aa9d"
@@ -1187,15 +1187,15 @@
         "root_count": 5,
         "value": "WantedExt/@subtrees/7"
       },
-      "snapshot_sha256": "ef00251cf46fcd12e28994e9dbb4bc4b0f4001a5b383276c5534494cf51bedbd",
+      "snapshot_sha256": "7783f45799516acb748be3d96483015568dc1320f1cb9a79eca73797fbda85ec",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 257,
-        "bytes": 1084900,
+        "baseline_primary_retained": 253,
+        "bytes": 1225822,
         "current_primary_excluded": 0,
-        "current_primary_retained": 257,
-        "files": 257,
-        "formal_source_files": 257,
+        "current_primary_retained": 253,
+        "files": 253,
+        "formal_source_files": 253,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-c44399816796"
@@ -1207,11 +1207,11 @@
         "root_count": 1,
         "value": "WantedExt/@subtrees/9"
       },
-      "snapshot_sha256": "481a72add95e54c0a9ab1670137e1bd424a0888df4e40368cd0351ce93f0882c",
+      "snapshot_sha256": "ee20ebc245c3582392af8f8d436911b38df3715d1eae946cb97a94f23e7fa3c2",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 1,
-        "bytes": 3533,
+        "bytes": 3816,
         "current_primary_excluded": 0,
         "current_primary_retained": 1,
         "files": 1,
@@ -1227,15 +1227,15 @@
         "root_count": 2,
         "value": "WantedExt/@subtrees/a"
       },
-      "snapshot_sha256": "fc5a7f1c6f99419c1179c83f8ebdd1e0d1100bb3e1da9a18d0f71ab17cb92115",
+      "snapshot_sha256": "934a9bc10377455c1a181f2b3b0972186c9748b7027648fdfe1622508de09c47",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1867,
-        "bytes": 9752692,
+        "baseline_primary_retained": 1866,
+        "bytes": 10025048,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1867,
-        "files": 1867,
-        "formal_source_files": 1867,
+        "current_primary_retained": 1866,
+        "files": 1866,
+        "formal_source_files": 1866,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-9d88cbaf4cfa"
@@ -1247,15 +1247,15 @@
         "root_count": 3,
         "value": "WantedExt/@subtrees/b"
       },
-      "snapshot_sha256": "5098ab11ea7f7905bc1e352109faae09e480be4c866ba0f1ee0d424f3e59b2d2",
+      "snapshot_sha256": "82ec13b7efcc93bf998622c8dc15658c6f000b7cc2d8e0b5a1d0cfd42040c269",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1115,
-        "bytes": 9763866,
+        "baseline_primary_retained": 1109,
+        "bytes": 11592525,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1115,
-        "files": 1115,
-        "formal_source_files": 1115,
+        "current_primary_retained": 1109,
+        "files": 1109,
+        "formal_source_files": 1109,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-1fb370b22f69"
@@ -1267,15 +1267,15 @@
         "root_count": 2,
         "value": "WantedExt/@subtrees/c"
       },
-      "snapshot_sha256": "c0c3790012bf1aafed034edd0997232868028893776d58c285f826135b1584b1",
+      "snapshot_sha256": "59c2355cd133a53c7bad89fd3863fcf721e3b185845348e0cd2c1843d2a16245",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 39,
-        "bytes": 197773,
+        "baseline_primary_retained": 46,
+        "bytes": 237386,
         "current_primary_excluded": 0,
-        "current_primary_retained": 39,
-        "files": 39,
-        "formal_source_files": 39,
+        "current_primary_retained": 46,
+        "files": 46,
+        "formal_source_files": 46,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-77e908085b30"
@@ -1287,15 +1287,15 @@
         "root_count": 2,
         "value": "WantedExt/@subtrees/d"
       },
-      "snapshot_sha256": "7f6b0f508e75250bff7ab0841e348247dc7b4566c68aaeef33cb3bf64384fc7c",
+      "snapshot_sha256": "a026e47ea5ea3f7cb50fedd25969816c95c97b5dbb2c8dc7f695650980f2c186",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 6,
-        "bytes": 17147,
+        "baseline_primary_retained": 4,
+        "bytes": 12467,
         "current_primary_excluded": 0,
-        "current_primary_retained": 6,
-        "files": 6,
-        "formal_source_files": 6,
+        "current_primary_retained": 4,
+        "files": 4,
+        "formal_source_files": 4,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-1b314590c7e4"
@@ -1327,11 +1327,11 @@
         "root_count": 4,
         "value": "WantedExt/@subtrees/f"
       },
-      "snapshot_sha256": "0d8335167fa2f0eaf9709621845c09269f8b7714c8e2506e57a2e64653307da8",
+      "snapshot_sha256": "e56939d00e772d5b0b913117cd552a7807faa288069d0f38c9b756eb7b5d38f1",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 147,
-        "bytes": 614058,
+        "bytes": 662243,
         "current_primary_excluded": 0,
         "current_primary_retained": 147,
         "files": 147,
