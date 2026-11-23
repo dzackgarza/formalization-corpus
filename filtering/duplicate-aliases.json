@@ -1,6 +1,6 @@
 {
-  "corpus_git_commit": "8ed1dcd9cb540cd07b9d480a4b70bf40d1617ffd",
-  "generated_at": "2026-11-23T17:02:47.354940+00:00",
+  "corpus_git_commit": "676c71fafb218eaa5e09d97eca7f02a44e9037d7",
+  "generated_at": "2026-11-23T17:06:18.108183+00:00",
   "groups": [
     {
       "canonical": {
@@ -28259,6 +28259,41 @@
     },
     {
       "canonical": {
+        "file": "proof/crefine/AARCH64/Init_C.thy",
+        "repository": "seL4__l4v"
+      },
+      "occurrences": [
+        {
+          "file": "proof/crefine/AARCH64/Init_C.thy",
+          "proof_assistant": "isabelle",
+          "repository": "seL4__l4v"
+        },
+        {
+          "file": "proof/crefine/ARM/Init_C.thy",
+          "proof_assistant": "isabelle",
+          "repository": "seL4__l4v"
+        },
+        {
+          "file": "proof/crefine/ARM_HYP/Init_C.thy",
+          "proof_assistant": "isabelle",
+          "repository": "seL4__l4v"
+        },
+        {
+          "file": "proof/crefine/RISCV64/Init_C.thy",
+          "proof_assistant": "isabelle",
+          "repository": "seL4__l4v"
+        },
+        {
+          "file": "proof/crefine/X64/Init_C.thy",
+          "proof_assistant": "isabelle",
+          "repository": "seL4__l4v"
+        }
+      ],
+      "sha256": "414540c67e7e09965a95c21fc08cf008d06eed89c53b4df94903ed42747591a3",
+      "size_bytes": 403
+    },
+    {
+      "canonical": {
         "file": "FormalisingMathematics2024/Solutions/Section13measureTheory/Sheet2.lean",
         "repository": "ImperialCollegeLondon__formalising-mathematics-2024"
       },
@@ -29216,41 +29251,6 @@
       ],
       "sha256": "4353d91fdc7aa648a5a34fd4d244f7d1b2f7c05f6a7e4e862345e863c0b5a061",
       "size_bytes": 704
-    },
-    {
-      "canonical": {
-        "file": "proof/crefine/AARCH64/Init_C.thy",
-        "repository": "seL4__l4v"
-      },
-      "occurrences": [
-        {
-          "file": "proof/crefine/AARCH64/Init_C.thy",
-          "proof_assistant": "isabelle",
-          "repository": "seL4__l4v"
-        },
-        {
-          "file": "proof/crefine/ARM/Init_C.thy",
-          "proof_assistant": "isabelle",
-          "repository": "seL4__l4v"
-        },
-        {
-          "file": "proof/crefine/ARM_HYP/Init_C.thy",
-          "proof_assistant": "isabelle",
-          "repository": "seL4__l4v"
-        },
-        {
-          "file": "proof/crefine/RISCV64/Init_C.thy",
-          "proof_assistant": "isabelle",
-          "repository": "seL4__l4v"
-        },
-        {
-          "file": "proof/crefine/X64/Init_C.thy",
-          "proof_assistant": "isabelle",
-          "repository": "seL4__l4v"
-        }
-      ],
-      "sha256": "437bafca5f685fb77ec83697dcc6e7cc2948549331fbc9dafa0d513c9a2bb4b1",
-      "size_bytes": 357
     },
     {
       "canonical": {
