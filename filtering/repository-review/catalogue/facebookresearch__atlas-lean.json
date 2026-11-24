@@ -4,18 +4,18 @@
   "proof_assistant": "lean",
   "repository": "facebookresearch__atlas-lean",
   "schema_version": 1,
-  "source_revision": "5c77d5224cebd12e0808329f65611358b2a85d9a",
-  "source_snapshot_sha256": "38cb13850d995aabdb3f40131e3d21e97d96fa0b741a80ad494488e71f901814",
+  "source_revision": "56c46ef3c49ede89f2f6bac4734cbe1d5b666092",
+  "source_snapshot_sha256": "c073189fe90dad3ee8ba9d24c627f63b934803a7131aed5239c4524d87c62d15",
   "sync_group": "routine",
   "totals": {
     "auxiliary_only": 3,
-    "baseline_primary_retained": 29891,
-    "bytes": 312067660,
+    "baseline_primary_retained": 34012,
+    "bytes": 340242381,
     "current_primary_excluded": 8,
-    "current_primary_retained": 29884,
-    "files": 29903,
-    "formal_source_files": 29891,
-    "unindexed_nonformal": 8
+    "current_primary_retained": 34005,
+    "files": 34026,
+    "formal_source_files": 34012,
+    "unindexed_nonformal": 10
   },
   "transport": "git",
   "url": "https://github.com/facebookresearch/atlas-lean",
@@ -24,19 +24,19 @@
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-3c1f4e59fb79.jsonl",
       "scope": {
         "kind": "file-bucket",
-        "root_count": 12,
+        "root_count": 14,
         "value": "./@files/all"
       },
-      "snapshot_sha256": "c38df2fb2a236fa5ae822e97a3ccb8d7f39078a7c23da17878bd33c1d513d8b1",
+      "snapshot_sha256": "a7b4dd5585869f42d9d68156f61e810914d7024bfc79e90920188f1dc15a0e72",
       "stats": {
         "auxiliary_only": 1,
         "baseline_primary_retained": 0,
-        "bytes": 60486,
+        "bytes": 91680,
         "current_primary_excluded": 3,
         "current_primary_retained": 0,
-        "files": 12,
+        "files": 14,
         "formal_source_files": 0,
-        "unindexed_nonformal": 8
+        "unindexed_nonformal": 10
       },
       "unit_id": "RRU-3c1f4e59fb79"
     },
@@ -47,15 +47,15 @@
         "root_count": 1,
         "value": "./@subtrees/0"
       },
-      "snapshot_sha256": "cc97e3c9ff977bdf1bdb00588236cb5afa339b0335d279d71afa3e61bd312861",
+      "snapshot_sha256": "5958d2f0418093583d887f8463bbc8b2cf9e075faaeb6efa0aa04764d8f769c5",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1453,
-        "bytes": 25209472,
+        "baseline_primary_retained": 1524,
+        "bytes": 27110594,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1453,
-        "files": 1453,
-        "formal_source_files": 1453,
+        "current_primary_retained": 1524,
+        "files": 1524,
+        "formal_source_files": 1524,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-93d6cca73ede"
@@ -67,15 +67,15 @@
         "root_count": 1,
         "value": "./@subtrees/2"
       },
-      "snapshot_sha256": "88f312b1caebe00e4ccb0ddcbb3d0fac69c2ea523c111fa2451367b6135ed4c3",
+      "snapshot_sha256": "38db2f6fa4fb327046923481b94cdb1dc4c16253eb3f1e6c4550d8abe2487c03",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 523,
-        "bytes": 3011257,
+        "baseline_primary_retained": 525,
+        "bytes": 3029155,
         "current_primary_excluded": 0,
-        "current_primary_retained": 523,
-        "files": 523,
-        "formal_source_files": 523,
+        "current_primary_retained": 525,
+        "files": 525,
+        "formal_source_files": 525,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-953cbfa6828b"
@@ -107,15 +107,15 @@
         "root_count": 3,
         "value": "./@subtrees/8"
       },
-      "snapshot_sha256": "8add752620be9d705c3e4879918f74d832b58d28ee8915ab4da7cf6c5449f8ac",
+      "snapshot_sha256": "f5898cb7a9a394a0e613d75740a62cff872afa5653d6197b7fdf1a3d2c664822",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1716,
-        "bytes": 9209972,
+        "baseline_primary_retained": 1794,
+        "bytes": 9872546,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1716,
-        "files": 1716,
-        "formal_source_files": 1716,
+        "current_primary_retained": 1794,
+        "files": 1794,
+        "formal_source_files": 1794,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-df89bcd18752"
@@ -127,15 +127,15 @@
         "root_count": 1,
         "value": "./@subtrees/9"
       },
-      "snapshot_sha256": "91a4b03df2ea9c2e9a24cbaf3295c149cd7e435e0ff29104212a56dd0af6767f",
+      "snapshot_sha256": "519a6efa2b0127c005d02081c712a782bd1f0a55b65f2dabcf5b37df9b626a58",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 851,
-        "bytes": 13567521,
+        "baseline_primary_retained": 855,
+        "bytes": 13644135,
         "current_primary_excluded": 0,
-        "current_primary_retained": 851,
-        "files": 851,
-        "formal_source_files": 851,
+        "current_primary_retained": 855,
+        "files": 855,
+        "formal_source_files": 855,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-d8ed71d5980e"
@@ -147,15 +147,15 @@
         "root_count": 1,
         "value": "./@subtrees/c"
       },
-      "snapshot_sha256": "7fd947767243390ffe8432f814192357ada9fa988e8133a6c9493068fd102c5e",
+      "snapshot_sha256": "9c4dbd210f661eedf80063149d7b115d27b36b3d33d0447032bbb905e8d8ec2a",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 526,
-        "bytes": 9196544,
+        "baseline_primary_retained": 528,
+        "bytes": 9424814,
         "current_primary_excluded": 0,
-        "current_primary_retained": 526,
-        "files": 526,
-        "formal_source_files": 526,
+        "current_primary_retained": 528,
+        "files": 528,
+        "formal_source_files": 528,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-0db6acdcdc43"
@@ -547,15 +547,15 @@
         "root_count": 5,
         "value": "MathlibExt/@subtrees/1"
       },
-      "snapshot_sha256": "0f7463e0fe47ffd6455f737b67e226fa233f2381aae0207b4009951d6ca1135f",
+      "snapshot_sha256": "7ef722628d2b87f11eb6b6ab34e79db6731d16fd6d8f26d8cd2d4da24a35e6b5",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1097,
-        "bytes": 14135579,
+        "baseline_primary_retained": 1416,
+        "bytes": 16974693,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1097,
-        "files": 1097,
-        "formal_source_files": 1097,
+        "current_primary_retained": 1416,
+        "files": 1416,
+        "formal_source_files": 1416,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-246a64ea8a01"
@@ -587,15 +587,15 @@
         "root_count": 1,
         "value": "MathlibExt/@subtrees/3"
       },
-      "snapshot_sha256": "2a38b8eedebf54ae4682972e8b77a29abfcec2da7647e709f5a95b87d1062d5f",
+      "snapshot_sha256": "8d0bc108fec4533ca7663526714dfa0983d7df2c536bd6b8eda3478cc50950c8",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 15,
-        "bytes": 108385,
+        "baseline_primary_retained": 20,
+        "bytes": 131335,
         "current_primary_excluded": 0,
-        "current_primary_retained": 15,
-        "files": 15,
-        "formal_source_files": 15,
+        "current_primary_retained": 20,
+        "files": 20,
+        "formal_source_files": 20,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-73537230d175"
@@ -604,18 +604,18 @@
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-371ce6bf4327.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 4,
+        "root_count": 5,
         "value": "MathlibExt/@subtrees/4"
       },
-      "snapshot_sha256": "faf688a9af6f2bc6db22dab90374b0bd3ca0f6efe5c4a649aac2ddcba81b51c4",
+      "snapshot_sha256": "71136cb3347138c24426f9582992f98060ac9ca459adb6b58a8c1fafe5946a7a",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 116,
-        "bytes": 1534427,
+        "baseline_primary_retained": 274,
+        "bytes": 2885330,
         "current_primary_excluded": 0,
-        "current_primary_retained": 116,
-        "files": 116,
-        "formal_source_files": 116,
+        "current_primary_retained": 274,
+        "files": 274,
+        "formal_source_files": 274,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-371ce6bf4327"
@@ -627,15 +627,15 @@
         "root_count": 1,
         "value": "MathlibExt/@subtrees/5"
       },
-      "snapshot_sha256": "5adb6cc9a67ba3a3682145d61bd8e14a5a8ab49aef87240b1554dbb58e299bb7",
+      "snapshot_sha256": "c635273969d09a032b8880493dd410079f1794b05248224e55f947508ce4a43c",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 791,
-        "bytes": 14841066,
+        "baseline_primary_retained": 875,
+        "bytes": 15621344,
         "current_primary_excluded": 0,
-        "current_primary_retained": 791,
-        "files": 791,
-        "formal_source_files": 791,
+        "current_primary_retained": 875,
+        "files": 875,
+        "formal_source_files": 875,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-b99fe1f5fdaa"
@@ -647,15 +647,15 @@
         "root_count": 2,
         "value": "MathlibExt/@subtrees/7"
       },
-      "snapshot_sha256": "6d0b652efb4d19e36b648855136a8b4539ac5529803a92ff7ed68e50c518f8f1",
+      "snapshot_sha256": "e5bb4fe35f2d7ea2506c211f6a9d548997323bd5791758d9a2e120778432698b",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 35,
-        "bytes": 460291,
+        "baseline_primary_retained": 39,
+        "bytes": 501739,
         "current_primary_excluded": 0,
-        "current_primary_retained": 35,
-        "files": 35,
-        "formal_source_files": 35,
+        "current_primary_retained": 39,
+        "files": 39,
+        "formal_source_files": 39,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-5e388d6ce820"
@@ -667,15 +667,15 @@
         "root_count": 2,
         "value": "MathlibExt/@subtrees/8"
       },
-      "snapshot_sha256": "3e382937e54ced7d9552e28c252d8e6d8fd5bbc24c263b265235589c41eb9552",
+      "snapshot_sha256": "466b1e1c9f05c34fdec3deb13cf81bf04e3dcc9c88e23987e2f4c98c8f40bd4e",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 18,
-        "bytes": 140193,
+        "baseline_primary_retained": 21,
+        "bytes": 264400,
         "current_primary_excluded": 0,
-        "current_primary_retained": 18,
-        "files": 18,
-        "formal_source_files": 18,
+        "current_primary_retained": 21,
+        "files": 21,
+        "formal_source_files": 21,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-fb1b1b4391d5"
@@ -687,15 +687,15 @@
         "root_count": 2,
         "value": "MathlibExt/@subtrees/9"
       },
-      "snapshot_sha256": "9bce5d278962fb6677a5ef8d606d8d61ff6e1fdb5d433c07960fe5a6c3ad46a0",
+      "snapshot_sha256": "86035e3773f21e6a124c9ee8cbf3580241644e9b6f1dabf2a2bdcca233523b98",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1065,
-        "bytes": 15792107,
+        "baseline_primary_retained": 1406,
+        "bytes": 20631321,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1065,
-        "files": 1065,
-        "formal_source_files": 1065,
+        "current_primary_retained": 1406,
+        "files": 1406,
+        "formal_source_files": 1406,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-3b32381cb2ae"
@@ -704,18 +704,18 @@
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-366c07d39048.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 3,
+        "root_count": 4,
         "value": "MathlibExt/@subtrees/a"
       },
-      "snapshot_sha256": "c789d80dde49fb78904db9e59ae84ab5c635550b742d9ef7e66a66fc1e5250cd",
+      "snapshot_sha256": "a6c921f55e3501d1ac9d50a2b73a65577861b9fcdb9eed6f3befd1f13082fbe6",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 184,
-        "bytes": 3712982,
+        "baseline_primary_retained": 213,
+        "bytes": 3993758,
         "current_primary_excluded": 0,
-        "current_primary_retained": 184,
-        "files": 184,
-        "formal_source_files": 184,
+        "current_primary_retained": 213,
+        "files": 213,
+        "formal_source_files": 213,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-366c07d39048"
@@ -727,15 +727,15 @@
         "root_count": 3,
         "value": "MathlibExt/@subtrees/b"
       },
-      "snapshot_sha256": "d38823e4ba4e54055f573e88e0cc561fb9d604ff55aab05ec36d841955b6aa6c",
+      "snapshot_sha256": "b111c9ea9033890bedf4f155d007171508063661baf1d6d2d4544f078269921e",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 108,
-        "bytes": 1482802,
+        "baseline_primary_retained": 127,
+        "bytes": 1585744,
         "current_primary_excluded": 0,
-        "current_primary_retained": 108,
-        "files": 108,
-        "formal_source_files": 108,
+        "current_primary_retained": 127,
+        "files": 127,
+        "formal_source_files": 127,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-885ebd5b1a14"
@@ -747,15 +747,15 @@
         "root_count": 2,
         "value": "MathlibExt/@subtrees/c"
       },
-      "snapshot_sha256": "f57f1ebd21afc381b2095f889ace6310a6f2d430d7dbf3f22143d21a4bac5cd1",
+      "snapshot_sha256": "426533d7a12f45e1ffaaf9544f36c6d483a4ff36ea0f874d5c828dd89ef171b1",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 101,
-        "bytes": 1253037,
+        "baseline_primary_retained": 1572,
+        "bytes": 12699836,
         "current_primary_excluded": 0,
-        "current_primary_retained": 101,
-        "files": 101,
-        "formal_source_files": 101,
+        "current_primary_retained": 1572,
+        "files": 1572,
+        "formal_source_files": 1572,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-946cd241089e"
@@ -767,15 +767,15 @@
         "root_count": 3,
         "value": "MathlibExt/@subtrees/d"
       },
-      "snapshot_sha256": "a3a37a8559fae649303d17d439999379748b1ed0506a33dd9150b6358279bf0b",
+      "snapshot_sha256": "e8c846d3b464ba4cadba106ecfff39f8d822158ace83a642b9d16c10bf232d4c",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 192,
-        "bytes": 2281063,
+        "baseline_primary_retained": 225,
+        "bytes": 2695948,
         "current_primary_excluded": 0,
-        "current_primary_retained": 192,
-        "files": 192,
-        "formal_source_files": 192,
+        "current_primary_retained": 225,
+        "files": 225,
+        "formal_source_files": 225,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-13ae78609741"
@@ -787,15 +787,15 @@
         "root_count": 2,
         "value": "MathlibExt/@subtrees/e"
       },
-      "snapshot_sha256": "537176d03da2ceeb3d3535f792654618fccd8a6d7449e923df5d1f361a4ec4cd",
+      "snapshot_sha256": "489003fc0493006c3d165a72c2bc2e9306fbec2ed014a564cbea1c6e8898d4e5",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 765,
-        "bytes": 13926823,
+        "baseline_primary_retained": 789,
+        "bytes": 14483740,
         "current_primary_excluded": 0,
-        "current_primary_retained": 765,
-        "files": 765,
-        "formal_source_files": 765,
+        "current_primary_retained": 789,
+        "files": 789,
+        "formal_source_files": 789,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-812f2aef4aeb"
@@ -804,18 +804,18 @@
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-0e222f52718d.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 1,
+        "root_count": 2,
         "value": "MathlibExt/@subtrees/f"
       },
-      "snapshot_sha256": "21397bd1e397783241b5008b6b710790e86c4e9cd888e37e84ef14dcdde9fe3a",
+      "snapshot_sha256": "b5ecc1f518e7d9259202d9c97e852c2bd1fa7f41593ca0fe0ba7711afb4c2340",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 23,
-        "bytes": 390210,
+        "baseline_primary_retained": 25,
+        "bytes": 403688,
         "current_primary_excluded": 0,
-        "current_primary_retained": 23,
-        "files": 23,
-        "formal_source_files": 23,
+        "current_primary_retained": 25,
+        "files": 25,
+        "formal_source_files": 25,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-0e222f52718d"
@@ -824,18 +824,18 @@
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-2386829ea1ba.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 2,
+        "root_count": 3,
         "value": "MathlibExtTest/@subtrees/0"
       },
-      "snapshot_sha256": "06f70dd0af7fe0805cd33a2c2f6a7dca7e73909534a92ab48f5516c6baa9994f",
+      "snapshot_sha256": "3cc040b3a92d8fc79860557b691a894af6f955d32fd7223e80365fc67f3947d7",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 16,
-        "bytes": 33754,
+        "baseline_primary_retained": 19,
+        "bytes": 39099,
         "current_primary_excluded": 0,
-        "current_primary_retained": 16,
-        "files": 16,
-        "formal_source_files": 16,
+        "current_primary_retained": 19,
+        "files": 19,
+        "formal_source_files": 19,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-2386829ea1ba"
@@ -844,18 +844,18 @@
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-025ccb5ca456.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 2,
+        "root_count": 3,
         "value": "MathlibExtTest/@subtrees/2"
       },
-      "snapshot_sha256": "67761e14a1eeda915dd15d17875b1bc53e65452cd27403d85b49774cdbb0d842",
+      "snapshot_sha256": "b7fb7517fec8a699e705c6be692f40af9efeaac44f04d015d7bd5d1a71fe9a52",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 630,
-        "bytes": 2478506,
+        "baseline_primary_retained": 717,
+        "bytes": 2675209,
         "current_primary_excluded": 0,
-        "current_primary_retained": 630,
-        "files": 630,
-        "formal_source_files": 630,
+        "current_primary_retained": 717,
+        "files": 717,
+        "formal_source_files": 717,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-025ccb5ca456"
@@ -867,15 +867,15 @@
         "root_count": 2,
         "value": "MathlibExtTest/@subtrees/3"
       },
-      "snapshot_sha256": "0ff07f67450f98b7a281e45f8d571a6546bbaae6c106a4e9d8b6fbe90160f56a",
+      "snapshot_sha256": "9f584a5190ace47eded7f111679648f9d5bb5396c23ca4d355060ffe6eb081be",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 51,
-        "bytes": 151892,
+        "baseline_primary_retained": 56,
+        "bytes": 162858,
         "current_primary_excluded": 0,
-        "current_primary_retained": 51,
-        "files": 51,
-        "formal_source_files": 51,
+        "current_primary_retained": 56,
+        "files": 56,
+        "formal_source_files": 56,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-f439d7fcafd8"
@@ -887,15 +887,15 @@
         "root_count": 5,
         "value": "MathlibExtTest/@subtrees/5"
       },
-      "snapshot_sha256": "773ea934eac63336bda742f96b77a6ba1f6d3985d81e2b1cfe0f97c0e2e92c0b",
+      "snapshot_sha256": "da6647b59cef9f4f8513b83bbf1501a0f87cdd36b523edcf562f228ca709b8e1",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 198,
-        "bytes": 1098854,
+        "baseline_primary_retained": 226,
+        "bytes": 1186094,
         "current_primary_excluded": 0,
-        "current_primary_retained": 198,
-        "files": 198,
-        "formal_source_files": 198,
+        "current_primary_retained": 226,
+        "files": 226,
+        "formal_source_files": 226,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-6ad251534de3"
@@ -907,15 +907,15 @@
         "root_count": 1,
         "value": "MathlibExtTest/@subtrees/6"
       },
-      "snapshot_sha256": "92f028ce8b0bb7e77e416c98729edc5a4a6664cd1c0b4b3b3ef8bdbf9ddbdfc9",
+      "snapshot_sha256": "944f008d37b825c64af792205df5706dd6d148b76916061d60f28006bd1a828f",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 3,
-        "bytes": 9326,
+        "baseline_primary_retained": 4,
+        "bytes": 10712,
         "current_primary_excluded": 0,
-        "current_primary_retained": 3,
-        "files": 3,
-        "formal_source_files": 3,
+        "current_primary_retained": 4,
+        "files": 4,
+        "formal_source_files": 4,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-add927b19830"
@@ -927,15 +927,15 @@
         "root_count": 5,
         "value": "MathlibExtTest/@subtrees/7"
       },
-      "snapshot_sha256": "09e59c9742feb57a24b647825c77f495166a2c5deac2c3a6f5d97c2826127881",
+      "snapshot_sha256": "f9e5ffc65d42ccfd9a22daf9d29ef2c2f79f9f89bdd0895fe921d483b0dfe37d",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 52,
-        "bytes": 141089,
+        "baseline_primary_retained": 77,
+        "bytes": 258712,
         "current_primary_excluded": 0,
-        "current_primary_retained": 52,
-        "files": 52,
-        "formal_source_files": 52,
+        "current_primary_retained": 77,
+        "files": 77,
+        "formal_source_files": 77,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-aaad9d169240"
@@ -947,15 +947,15 @@
         "root_count": 2,
         "value": "MathlibExtTest/@subtrees/8"
       },
-      "snapshot_sha256": "9e11508f1f2664b4938c095030230ab1e89c1150cf1aed03fd5440da74e4c743",
+      "snapshot_sha256": "18650b6a3d51ad3434c97d1c6270a9502916f077e65e017c1659f75e0cdecccd",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 44,
-        "bytes": 130574,
+        "baseline_primary_retained": 48,
+        "bytes": 138391,
         "current_primary_excluded": 0,
-        "current_primary_retained": 44,
-        "files": 44,
-        "formal_source_files": 44,
+        "current_primary_retained": 48,
+        "files": 48,
+        "formal_source_files": 48,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-da3aaad356fc"
@@ -967,15 +967,15 @@
         "root_count": 1,
         "value": "MathlibExtTest/@subtrees/a"
       },
-      "snapshot_sha256": "09453ca5931b2200cc926ed68ea53fa1be1f197ef455111f523c7714883af1a1",
+      "snapshot_sha256": "62f2033990a4b01371c6f7d26da3c231df044ca4f429e1840870c930912e0af8",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 69,
-        "bytes": 141422,
+        "baseline_primary_retained": 332,
+        "bytes": 900291,
         "current_primary_excluded": 0,
-        "current_primary_retained": 69,
-        "files": 69,
-        "formal_source_files": 69,
+        "current_primary_retained": 332,
+        "files": 332,
+        "formal_source_files": 332,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-6c516128b88b"
@@ -984,18 +984,18 @@
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-cdeee20f687b.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 3,
+        "root_count": 4,
         "value": "MathlibExtTest/@subtrees/b"
       },
-      "snapshot_sha256": "ce3ba8ccf7f932ee6a06fc6b2ecfb91a8ba112f9920fad7f4bb2f19ea2fdbb9e",
+      "snapshot_sha256": "2cc3f72083860466ef5850f926adbec54b83a8417d11047c750c24343af83387",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 666,
-        "bytes": 1352173,
+        "baseline_primary_retained": 869,
+        "bytes": 1718962,
         "current_primary_excluded": 0,
-        "current_primary_retained": 666,
-        "files": 666,
-        "formal_source_files": 666,
+        "current_primary_retained": 869,
+        "files": 869,
+        "formal_source_files": 869,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-cdeee20f687b"
@@ -1007,15 +1007,15 @@
         "root_count": 3,
         "value": "MathlibExtTest/@subtrees/c"
       },
-      "snapshot_sha256": "b1279f7738a15e792a9c8befbce58f03a24173ed8b3260b58775f04507f41ec5",
+      "snapshot_sha256": "459c607636bd1e83f87ff5fddc449e454f1a2bc487d53f28818425e9dc928a27",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 411,
-        "bytes": 1124834,
+        "baseline_primary_retained": 460,
+        "bytes": 1263390,
         "current_primary_excluded": 0,
-        "current_primary_retained": 411,
-        "files": 411,
-        "formal_source_files": 411,
+        "current_primary_retained": 460,
+        "files": 460,
+        "formal_source_files": 460,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-7d73e81cb37e"
@@ -1027,15 +1027,15 @@
         "root_count": 2,
         "value": "MathlibExtTest/@subtrees/d"
       },
-      "snapshot_sha256": "3443f8fb8101ca2d8bb43bc69a27332183a6ed1c6067ab25dd499cfb1174b32e",
+      "snapshot_sha256": "9bf5a3bea3dff76a568730e1f5d5f8e3d7b459dd8a67fa7b400572577558308e",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 501,
-        "bytes": 1184829,
+        "baseline_primary_retained": 864,
+        "bytes": 2065599,
         "current_primary_excluded": 0,
-        "current_primary_retained": 501,
-        "files": 501,
-        "formal_source_files": 501,
+        "current_primary_retained": 864,
+        "files": 864,
+        "formal_source_files": 864,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-73eea7da2748"
@@ -1047,15 +1047,15 @@
         "root_count": 4,
         "value": "MathlibExtTest/@subtrees/e"
       },
-      "snapshot_sha256": "96413bcadfbe907ea1583dd29dc92d2b9ea88ff51314633b7e14088febde83f7",
+      "snapshot_sha256": "f430721a6873fbe9cae1719167c9a9af4ffa91e1fe485fecb95350cf5cfb9f2e",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 857,
-        "bytes": 5288974,
+        "baseline_primary_retained": 937,
+        "bytes": 5584467,
         "current_primary_excluded": 0,
-        "current_primary_retained": 857,
-        "files": 857,
-        "formal_source_files": 857,
+        "current_primary_retained": 937,
+        "files": 937,
+        "formal_source_files": 937,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-ce5ec2470f96"
@@ -1067,15 +1067,15 @@
         "root_count": 2,
         "value": "MathlibExtTest/@subtrees/f"
       },
-      "snapshot_sha256": "67e6a34e9530fa716ef708a3f6774a66fe6f2242778d8ff0e38f1d09fde94afc",
+      "snapshot_sha256": "908aaf113037fb66f745d8ad6b905381afae17dbb8a44670aed1acc6ca418597",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 135,
-        "bytes": 468335,
+        "baseline_primary_retained": 150,
+        "bytes": 495290,
         "current_primary_excluded": 0,
-        "current_primary_retained": 135,
-        "files": 135,
-        "formal_source_files": 135,
+        "current_primary_retained": 150,
+        "files": 150,
+        "formal_source_files": 150,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-2f364a5a2f3d"
@@ -1087,15 +1087,15 @@
         "root_count": 1,
         "value": "WantedExt/@subtrees/1"
       },
-      "snapshot_sha256": "92edcae71ccf12a506d636a5825730bf52409b485d0d63719d5e0fdcfb45d1bd",
+      "snapshot_sha256": "d0f570bc5d29f977105098151ec3c0353c91efede27222df60d32c347352a9c1",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 2,
-        "bytes": 4828,
+        "baseline_primary_retained": 6,
+        "bytes": 13849,
         "current_primary_excluded": 0,
-        "current_primary_retained": 2,
-        "files": 2,
-        "formal_source_files": 2,
+        "current_primary_retained": 6,
+        "files": 6,
+        "formal_source_files": 6,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-1788ebdfa3e4"
@@ -1107,15 +1107,15 @@
         "root_count": 2,
         "value": "WantedExt/@subtrees/2"
       },
-      "snapshot_sha256": "fbcc6704b9631032799b1f0bedf0b2ccfd75f5c64baa6176e19d03f3d2082d3a",
+      "snapshot_sha256": "a9ef10b54a6a8c9e2b403e964568bd25acf30a84b50a870d314202043b743c2d",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 157,
-        "bytes": 618954,
+        "baseline_primary_retained": 154,
+        "bytes": 584081,
         "current_primary_excluded": 0,
-        "current_primary_retained": 157,
-        "files": 157,
-        "formal_source_files": 157,
+        "current_primary_retained": 154,
+        "files": 154,
+        "formal_source_files": 154,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-88f9ef517ca2"
@@ -1127,15 +1127,15 @@
         "root_count": 2,
         "value": "WantedExt/@subtrees/3"
       },
-      "snapshot_sha256": "c80aa43934a367422315d140f13e91fb552b691eb7aae2e1d9b1dc19235e8a1a",
+      "snapshot_sha256": "148a3aba4aea9181937e2b8e90e1ce7e62ecfebb4d2d4c9fd508979ceba28b46",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 381,
-        "bytes": 1697045,
+        "baseline_primary_retained": 328,
+        "bytes": 1478232,
         "current_primary_excluded": 0,
-        "current_primary_retained": 381,
-        "files": 381,
-        "formal_source_files": 381,
+        "current_primary_retained": 328,
+        "files": 328,
+        "formal_source_files": 328,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-893a2844af69"
@@ -1167,15 +1167,15 @@
         "root_count": 2,
         "value": "WantedExt/@subtrees/6"
       },
-      "snapshot_sha256": "531bb1912be038d5b54aab015b13dfa94a9621bf4f1640525dfd027c1b7bbeba",
+      "snapshot_sha256": "ccbc0b9fe098b357de64fb2d28c0c2906769987b9751704d2fe9ee39e33de3f5",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 675,
-        "bytes": 2718126,
+        "baseline_primary_retained": 680,
+        "bytes": 2727671,
         "current_primary_excluded": 0,
-        "current_primary_retained": 675,
-        "files": 675,
-        "formal_source_files": 675,
+        "current_primary_retained": 680,
+        "files": 680,
+        "formal_source_files": 680,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-6f4896e4aa9d"
@@ -1187,18 +1187,38 @@
         "root_count": 5,
         "value": "WantedExt/@subtrees/7"
       },
-      "snapshot_sha256": "7783f45799516acb748be3d96483015568dc1320f1cb9a79eca73797fbda85ec",
+      "snapshot_sha256": "1f3f5ef9a577701703d4274ad5d9304212dbfac1080b1fd8f8d5f2cf9200547f",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 253,
-        "bytes": 1225822,
+        "baseline_primary_retained": 244,
+        "bytes": 1094457,
         "current_primary_excluded": 0,
-        "current_primary_retained": 253,
-        "files": 253,
-        "formal_source_files": 253,
+        "current_primary_retained": 244,
+        "files": 244,
+        "formal_source_files": 244,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-c44399816796"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-9d7a7c80ffb1.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "WantedExt/@subtrees/8"
+      },
+      "snapshot_sha256": "7965ff4370592ec846436efe171be0f2190fc95bb2c94a458302e770b875c63e",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 30,
+        "bytes": 65902,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 30,
+        "files": 30,
+        "formal_source_files": 30,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-9d7a7c80ffb1"
     },
     {
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-e844458cce6d.jsonl",
@@ -1207,15 +1227,15 @@
         "root_count": 1,
         "value": "WantedExt/@subtrees/9"
       },
-      "snapshot_sha256": "ee20ebc245c3582392af8f8d436911b38df3715d1eae946cb97a94f23e7fa3c2",
+      "snapshot_sha256": "7138041ff0cd33bd43c3bf19762fbb2afb33ed7dc60f086255abffdfcd7bf4d0",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1,
-        "bytes": 3816,
+        "baseline_primary_retained": 7,
+        "bytes": 14102,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1,
-        "files": 1,
-        "formal_source_files": 1,
+        "current_primary_retained": 7,
+        "files": 7,
+        "formal_source_files": 7,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-e844458cce6d"
@@ -1224,18 +1244,18 @@
       "files_manifest": "filtering/repository-review/files/facebookresearch__atlas-lean/RRU-9d88cbaf4cfa.jsonl",
       "scope": {
         "kind": "subtree-bucket",
-        "root_count": 2,
+        "root_count": 3,
         "value": "WantedExt/@subtrees/a"
       },
-      "snapshot_sha256": "934a9bc10377455c1a181f2b3b0972186c9748b7027648fdfe1622508de09c47",
+      "snapshot_sha256": "c5ca4a33fda44b455fb0d5c62ecc6c75b89d662a136c266f22455374d8d0607d",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1866,
-        "bytes": 10025048,
+        "baseline_primary_retained": 1867,
+        "bytes": 10016709,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1866,
-        "files": 1866,
-        "formal_source_files": 1866,
+        "current_primary_retained": 1867,
+        "files": 1867,
+        "formal_source_files": 1867,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-9d88cbaf4cfa"
@@ -1247,15 +1267,15 @@
         "root_count": 3,
         "value": "WantedExt/@subtrees/b"
       },
-      "snapshot_sha256": "82ec13b7efcc93bf998622c8dc15658c6f000b7cc2d8e0b5a1d0cfd42040c269",
+      "snapshot_sha256": "ccd524dc32364d725267b66c0bec76d8a61465dd980f87e1fb3d0aa3e235f569",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 1109,
-        "bytes": 11592525,
+        "baseline_primary_retained": 1073,
+        "bytes": 9975682,
         "current_primary_excluded": 0,
-        "current_primary_retained": 1109,
-        "files": 1109,
-        "formal_source_files": 1109,
+        "current_primary_retained": 1073,
+        "files": 1073,
+        "formal_source_files": 1073,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-1fb370b22f69"
@@ -1267,15 +1287,15 @@
         "root_count": 2,
         "value": "WantedExt/@subtrees/c"
       },
-      "snapshot_sha256": "59c2355cd133a53c7bad89fd3863fcf721e3b185845348e0cd2c1843d2a16245",
+      "snapshot_sha256": "cf7916c3e7ec8226b386e2e2d43b5579a886491fe61cdc464575f7bb358bb5b4",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 46,
-        "bytes": 237386,
+        "baseline_primary_retained": 461,
+        "bytes": 1771185,
         "current_primary_excluded": 0,
-        "current_primary_retained": 46,
-        "files": 46,
-        "formal_source_files": 46,
+        "current_primary_retained": 461,
+        "files": 461,
+        "formal_source_files": 461,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-77e908085b30"
@@ -1287,15 +1307,15 @@
         "root_count": 2,
         "value": "WantedExt/@subtrees/d"
       },
-      "snapshot_sha256": "a026e47ea5ea3f7cb50fedd25969816c95c97b5dbb2c8dc7f695650980f2c186",
+      "snapshot_sha256": "9e3fde449a850e29e348222cb7d735d6c3e6c1fb69e49a3a40cbdab04fe4150a",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 4,
-        "bytes": 12467,
+        "baseline_primary_retained": 3,
+        "bytes": 9972,
         "current_primary_excluded": 0,
-        "current_primary_retained": 4,
-        "files": 4,
-        "formal_source_files": 4,
+        "current_primary_retained": 3,
+        "files": 3,
+        "formal_source_files": 3,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-1b314590c7e4"
@@ -1307,11 +1327,11 @@
         "root_count": 1,
         "value": "WantedExt/@subtrees/e"
       },
-      "snapshot_sha256": "f069cecab18ee09b8a6d4eabcc13709349e049f32ef96ea628309b2c10c49de5",
+      "snapshot_sha256": "f47f9a017a3b0fd1bc05b058580852e5b6a9f1ed1f0d772c586f8d3292d9103c",
       "stats": {
         "auxiliary_only": 0,
         "baseline_primary_retained": 5,
-        "bytes": 16491,
+        "bytes": 15674,
         "current_primary_excluded": 0,
         "current_primary_retained": 5,
         "files": 5,
@@ -1327,15 +1347,15 @@
         "root_count": 4,
         "value": "WantedExt/@subtrees/f"
       },
-      "snapshot_sha256": "e56939d00e772d5b0b913117cd552a7807faa288069d0f38c9b756eb7b5d38f1",
+      "snapshot_sha256": "4368fcbc2aebbed87eb9d74aa7d41bc7d7a07ec25ea683ee2305262be2267c11",
       "stats": {
         "auxiliary_only": 0,
-        "baseline_primary_retained": 147,
-        "bytes": 662243,
+        "baseline_primary_retained": 134,
+        "bytes": 595861,
         "current_primary_excluded": 0,
-        "current_primary_retained": 147,
-        "files": 147,
-        "formal_source_files": 147,
+        "current_primary_retained": 134,
+        "files": 134,
+        "formal_source_files": 134,
         "unindexed_nonformal": 0
       },
       "unit_id": "RRU-208d85fdb7e9"
