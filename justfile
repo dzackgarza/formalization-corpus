@@ -263,9 +263,25 @@ filter-validate: repository-review-validate
 filter-views: filter-validate
     python scripts/materialize-index-views.py
 
-# Search declarations and source text across the corpus.
+# Search declarations and source text in a complete local primary index.
+[positional-arguments]
 search query:
-    ./bin/zoekt -index_dir .zoekt -r "{{query}}"
+    #!/usr/bin/env zsh
+    set -eu
+    shards=(.zoekt/*.zoekt(N.))
+    if (( ${#shards} == 0 )); then
+      print -u2 'Missing local Zoekt index: .zoekt contains no shard files.'
+      print -u2 'Run just index only on a machine with a fully hydrated corpus and enough disk.'
+      printf >&2 'For the hosted index, run: just search-remote %q\n' "$1"
+      print -u2 'See README, Querying it, for the disk-light workflow.'
+      exit 1
+    fi
+    exec ./bin/zoekt -index_dir .zoekt -r "$1"
+
+# Search the authoritative hosted index without local shards or source checkouts.
+[positional-arguments]
+search-remote query:
+    @jq -cn --arg query "$1" '{Q: $query, Opts: {MaxDocDisplayCount: 20, ChunkMatches: true}}' | curl --fail-with-body --silent --show-error --max-time 60 -H 'Content-Type: application/json' --data-binary @- https://formalization-corpus.dzackgarza.com/api/search
 
 # Search the separate maintainer-only metadata/navigation index.
 search-metadata query:
