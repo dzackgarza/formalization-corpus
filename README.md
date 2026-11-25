@@ -76,7 +76,8 @@ just preview            # deploy site/ to formalization-corpus-preview.localhost
 just check-sources      # verify static source-table identities and cross-prover documentation
 just eval-search        # measure the frozen mathematician-facing retrieval benchmark
 just test-search-quality # compare retrieval scores with the committed same-index baseline
-just search "Nat.Prime"                  # Zoekt text search
+just search-remote "Nat.Prime"           # hosted JSON search; no local index required
+just search "Nat.Prime"                  # local Zoekt search (requires .zoekt shards)
 just ast "def $NAME : $TYPE := $VALUE"   # Lean syntax-tree pattern search
 just publish            # ship the index to the search host
 just deploy-api         # deploy FastAPI adapter + stock Zoekt backend binary
@@ -111,8 +112,17 @@ work. Normal repository-review work builds only the affected repository shard(s)
 transient local staging directory and atomically installs them on the search host over
 SSH/rsync. The connector does not retain a full `.zoekt` mirror. `just index` plus `just
 publish` remains an explicit whole-corpus maintenance path for a machine intentionally
-holding a complete local index. Zoekt watches its shard directory, so replaced shards load
-without a restart. The
+holding a complete local index. On a disk-constrained workstation, do not run
+`just index` just to recover search: use `just search-remote "IsometryEquiv"`
+against the published shards instead. For maintainers who need to rebuild the
+published index, `just source-refresh-index` replaces only sources whose
+committed inputs changed. For an intentional complete reseed, with search-host
+SSH access and enough space for the largest individual source and its staged
+shards, use `just source-seed-index fresh`. It hydrates, builds, publishes, and
+dehydrates each source in turn, without accumulating a full local index. This
+rewrites the production shard set; it is not a prerequisite for querying it.
+See [TRAPS.md](./TRAPS.md) for disk-space considerations. Zoekt watches its shard
+directory, so replaced shards load without a restart. The
 public HTTP boundary is a small FastAPI/Pydantic adapter on `127.0.0.1:6070`.
 An unmodified `zoekt-webserver` listens privately on `127.0.0.1:6071` and is not
 exposed by nginx.
@@ -147,7 +157,13 @@ that live contract with Scalar; request/response schemas and client snippets
 therefore come from the API rather than a second hand-maintained copy. See the
 [For agents](https://dzackgarza.github.io/formalization-corpus/agents.html) page
 for a compact agent prompt and optional OpenAPI-to-MCP setup.
-The short version:
+From a checkout, `just search-remote 'IsometryEquiv file:\.lean$'` sends the
+query to the hosted API and prints its JSON response (up to 20 files, with
+matching chunks). It requires `jq` and `curl`, but neither Zoekt binaries nor
+local shards. HTTP and transport failures exit nonzero. The query accepts the
+same Zoekt `repo:` and `file:` filters as local search.
+
+For other queries and options, invoke the API directly:
 
 ```sh
 curl -s https://formalization-corpus.dzackgarza.com/api/search \
@@ -169,8 +185,11 @@ without splitting the inventory into multiple files.
 
 ## Usage facts
 
-- `just search` uses `zoekt -r`, which **prints the repository names**
-  containing a match. It is not a filter.
+- `just search` is the local-index command. It fails with a diagnostic if
+  `.zoekt/` has no shards, and otherwise uses `zoekt -r`, which **prints the
+  repository names** containing a match. It is not a filter.
+- `just search-remote` queries the authoritative hosted index and returns JSON;
+  use it on a normal ghosted checkout rather than rebuilding the local index.
 - `zoekt -l` lists file names. `repo:` and `file:` are regular-expression
   filters usable inside queries.
 - `just ast` runs a Lean syntax-tree pattern across the corpus via
