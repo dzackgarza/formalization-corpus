@@ -128,9 +128,11 @@ into SSH.** This laptop has carried `url.git@github.com:.insteadof
 https://github.com/`; a partial clone then appears to succeed but the later
 `git checkout` performs its lazy blob fetch over SSH and can hang indefinitely
 when the connector does not inherit an SSH agent. `sync-manifest.zsh` therefore
-runs public-source network and checkout commands with `GIT_CONFIG_GLOBAL=/dev/null`
-and records GitHub origins as their canonical HTTPS URLs. Do not remove that
-isolation in favor of the ambient user Git configuration.
+runs public-source network and checkout commands through `scripts/source_git.py`
+and records GitHub origins as their canonical HTTPS URLs. The wrapper isolates
+global configuration except for content-filter definitions (`filter.*`), which
+must also be used by `source-cache.py` for cleanliness checks. Do not restore
+ambient URL rewrites or suppress the filters during either operation.
 
 **`pgrep -f <pattern>` matches its own invoking shell.** The command line
 containing the pattern is itself a process, so `pgrep -f 'just sync'` inside a

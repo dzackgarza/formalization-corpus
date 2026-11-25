@@ -12,6 +12,7 @@
 set -u
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT" || exit 1
+SOURCE_GIT=(python "$ROOT/scripts/source_git.py")
 MANIFEST="${1:-sources.tsv}"
 shift 2>/dev/null || true
 CLI_GLOBS=("$@")
@@ -110,22 +111,23 @@ while IFS=$'\t' read -r url dir proof_assistant transport sync_group discovered_
     # blob fetch. Keep the recorded origin canonical and ignore global rewrites
     # for every network/materialization command in this synchronizer.
     if [[ "$url" == https://github.com/* ]]; then
-      git -C "$dir" remote set-url origin "$url" >/dev/null 2>&1 || true
+      "${SOURCE_GIT[@]}" -C "$dir" remote set-url origin "$url" >/dev/null 2>&1 || true
     fi
-    if git -C "$dir" symbolic-ref --quiet HEAD >/dev/null 2>&1; then
-      branch="$(git -C "$dir" symbolic-ref --short HEAD)"
-      if ! GIT_CONFIG_GLOBAL=/dev/null timeout "${SYNC_UPDATE_TIMEOUT:-60}" \
-           git -C "$dir" pull --ff-only --depth 1 >/dev/null 2>&1; then
+    if "${SOURCE_GIT[@]}" -C "$dir" symbolic-ref --quiet HEAD >/dev/null 2>&1; then
+      branch="$("${SOURCE_GIT[@]}" -C "$dir" symbolic-ref --short HEAD)"
+      if ! timeout "${SYNC_UPDATE_TIMEOUT:-60}" \
+           "${SOURCE_GIT[@]}" -C "$dir" pull --ff-only --depth 1 >/dev/null 2>&1; then
         # A depth-1 mirror can look "diverged" as soon as upstream advances
         # beyond the one visible commit: pull cannot see the common history.
         # These are read-only corpus mirrors, so a clean shallow checkout may
         # be refreshed directly to the current remote branch tip. Never reset
         # a dirty checkout; preserve it and report the failure instead.
-        if [[ "$(git -C "$dir" rev-parse --is-shallow-repository 2>/dev/null)" == true ]] && \
-           [[ -z "$(git -C "$dir" status --porcelain=v1 2>/dev/null)" ]] && \
-           GIT_CONFIG_GLOBAL=/dev/null timeout "${SYNC_UPDATE_TIMEOUT:-60}" \
-             git -C "$dir" fetch --prune --depth 1 origin "$branch" >/dev/null 2>&1 && \
-           GIT_CONFIG_GLOBAL=/dev/null git -C "$dir" reset --hard FETCH_HEAD >/dev/null 2>&1; then
+        if [[ "$("${SOURCE_GIT[@]}" -C "$dir" rev-parse --is-shallow-repository 2>/dev/null)" == true ]] && \
+           dirty="$("${SOURCE_GIT[@]}" -C "$dir" status --porcelain=v1 2>/dev/null)" && \
+           [[ -z "$dirty" ]] && \
+           timeout "${SYNC_UPDATE_TIMEOUT:-60}" \
+             "${SOURCE_GIT[@]}" -C "$dir" fetch --prune --depth 1 origin "$branch" >/dev/null 2>&1 && \
+           "${SOURCE_GIT[@]}" -C "$dir" reset --hard FETCH_HEAD >/dev/null 2>&1; then
           :
         else
           FAILED=$((FAILED + 1))
@@ -133,33 +135,33 @@ while IFS=$'\t' read -r url dir proof_assistant transport sync_group discovered_
         fi
       fi
     else
-      if ! GIT_CONFIG_GLOBAL=/dev/null timeout "${SYNC_UPDATE_TIMEOUT:-60}" \
-           git -C "$dir" fetch --prune origin >/dev/null 2>&1; then
+      if ! timeout "${SYNC_UPDATE_TIMEOUT:-60}" \
+           "${SOURCE_GIT[@]}" -C "$dir" fetch --prune origin >/dev/null 2>&1; then
         FAILED=$((FAILED + 1))
         echo "$url\t$dir\tFETCH-FAIL" >> "$FAIL_LOG"
       fi
     fi
-    if ! GIT_CONFIG_GLOBAL=/dev/null git -C "$dir" sparse-checkout set --no-cone \
+    if ! "${SOURCE_GIT[@]}" -C "$dir" sparse-checkout set --no-cone \
          '/*' '!/*/' "${PROOF_GLOBS[@]}" '/README*' >/dev/null 2>&1 || \
-       ! GIT_CONFIG_GLOBAL=/dev/null timeout "${SYNC_CHECKOUT_TIMEOUT:-600}" \
-         git -C "$dir" checkout -q >/dev/null 2>&1; then
+       ! timeout "${SYNC_CHECKOUT_TIMEOUT:-600}" \
+         "${SOURCE_GIT[@]}" -C "$dir" checkout -q >/dev/null 2>&1; then
       FAILED=$((FAILED + 1))
       echo "$url	$dir	SPARSE-FAIL" >> "$FAIL_LOG"
     fi
     continue
   fi
 
-  if ! GIT_CONFIG_GLOBAL=/dev/null timeout "${SYNC_CLONE_TIMEOUT:-300}" \
-       git clone --depth 1 --filter=blob:none --no-checkout "$url" "$dir" >/dev/null 2>&1; then
+  if ! timeout "${SYNC_CLONE_TIMEOUT:-300}" \
+       "${SOURCE_GIT[@]}" clone --depth 1 --filter=blob:none --no-checkout "$url" "$dir" >/dev/null 2>&1; then
     command rm -rf "$dir"
     FAILED=$((FAILED + 1))
     echo "$url	$dir	CLONE-FAIL" >> "$FAIL_LOG"
     continue
   fi
-  if GIT_CONFIG_GLOBAL=/dev/null git -C "$dir" sparse-checkout set --no-cone \
+  if "${SOURCE_GIT[@]}" -C "$dir" sparse-checkout set --no-cone \
        '/*' '!/*/' "${PROOF_GLOBS[@]}" '/README*' >/dev/null 2>&1 && \
-     GIT_CONFIG_GLOBAL=/dev/null timeout "${SYNC_CHECKOUT_TIMEOUT:-600}" \
-       git -C "$dir" checkout -q >/dev/null 2>&1; then
+     timeout "${SYNC_CHECKOUT_TIMEOUT:-600}" \
+       "${SOURCE_GIT[@]}" -C "$dir" checkout -q >/dev/null 2>&1; then
     :
   else
     FAILED=$((FAILED + 1))

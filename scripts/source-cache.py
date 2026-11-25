@@ -28,6 +28,7 @@ from functools import lru_cache
 
 from filtering_lib import CURRENT, ROOT, Source, iter_files, load_jsonl, sha256_file, sources, upstream_head
 from repository_review_lib import BATCHES, load_catalogue_index, load_review_history, load_unit_file_records, load_units, unit_state
+from source_git import source_git_environment
 
 PRIMARY_VIEW = ROOT / ".index-primary"
 METADATA_VIEW = ROOT / ".index-metadata"
@@ -128,9 +129,8 @@ def proof_globs(kind: str) -> list[str]:
 
 
 def run_git(args: list[str], *, cwd: pathlib.Path | None = None, check: bool = True) -> subprocess.CompletedProcess[str]:
-    env = dict(os.environ)
-    env["GIT_CONFIG_GLOBAL"] = "/dev/null"
-    return subprocess.run(["git", *args], cwd=cwd, env=env, text=True, check=check, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    with source_git_environment(args, cwd=cwd) as env:
+        return subprocess.run(["git", *args], cwd=cwd, env=env, text=True, check=check, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
 def ensure_clean(source: Source) -> None:
