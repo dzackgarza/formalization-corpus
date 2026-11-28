@@ -4,41 +4,241 @@
   "proof_assistant": "lean",
   "repository": "Verified-zkEVM__VCVio",
   "schema_version": 1,
-  "source_revision": "84928e95caf2ea9e1f576da8c5f6826aba17f15f",
-  "source_snapshot_sha256": "524189ac4200db5524c9b547d158d1a77e543fed993abbfc2cd280afc0d74662",
+  "source_revision": "779c38122cf85b638983eb1c5b6770a5d42c512a",
+  "source_snapshot_sha256": "8f6c1573eea796373454971951140781e9f031329ae869f93ab2e87a8c5b14c5",
   "sync_group": "bulk",
   "totals": {
     "auxiliary_only": 1,
-    "baseline_primary_retained": 1920,
-    "bytes": 24550683,
+    "baseline_primary_retained": 2073,
+    "bytes": 25426302,
     "current_primary_excluded": 4,
-    "current_primary_retained": 1918,
-    "files": 1931,
-    "formal_source_files": 1920,
+    "current_primary_retained": 2071,
+    "files": 2084,
+    "formal_source_files": 2073,
     "unindexed_nonformal": 8
   },
   "transport": "git",
   "url": "https://github.com/Verified-zkEVM/VCVio",
   "work_units": [
     {
-      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-9ff20f256cb0.jsonl",
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-ac431addddc8.jsonl",
       "scope": {
-        "kind": "repository",
-        "root_count": 0,
-        "value": "."
+        "kind": "file-bucket",
+        "root_count": 20,
+        "value": "./@files/all"
       },
-      "snapshot_sha256": "524189ac4200db5524c9b547d158d1a77e543fed993abbfc2cd280afc0d74662",
+      "snapshot_sha256": "d53b9a7472f440bc1398524c3bc0034aaa2fde0cc191e5f88395be724ccb8844",
       "stats": {
         "auxiliary_only": 1,
-        "baseline_primary_retained": 1920,
-        "bytes": 24550683,
-        "current_primary_excluded": 4,
-        "current_primary_retained": 1918,
-        "files": 1931,
-        "formal_source_files": 1920,
+        "baseline_primary_retained": 9,
+        "bytes": 284416,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 9,
+        "files": 20,
+        "formal_source_files": 9,
         "unindexed_nonformal": 8
       },
-      "unit_id": "RRU-9ff20f256cb0"
+      "unit_id": "RRU-ac431addddc8"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-3f2b32bb2bde.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/1"
+      },
+      "snapshot_sha256": "4d01ed1ae44d5c6ac24dbd8b7a53a61f3d4e3678f64d3c3c8dc22f6283c9e19b",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 81,
+        "bytes": 546808,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 81,
+        "files": 81,
+        "formal_source_files": 81,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3f2b32bb2bde"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-7810616c8d39.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "./@subtrees/3"
+      },
+      "snapshot_sha256": "fe4edd597ab0783c62fbe032b36062f9d1408927edf2ac9dbb32d48fbcf2c343",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 353,
+        "bytes": 2565142,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 353,
+        "files": 353,
+        "formal_source_files": 353,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7810616c8d39"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-139b246c1bbe.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/4"
+      },
+      "snapshot_sha256": "054f42a494e3308e9f6dcbd66f3f35d88dbbf89e37b38e1cbfc6e40a8434455c",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 6,
+        "bytes": 31490,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 6,
+        "files": 6,
+        "formal_source_files": 6,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-139b246c1bbe"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-e6d83938ee18.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/5"
+      },
+      "snapshot_sha256": "129b30f8aad7474ecbd136d5ddffc1505ccdfe3b09bd7c2cf434fff59b96f804",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 890,
+        "bytes": 12067419,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 890,
+        "files": 890,
+        "formal_source_files": 890,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e6d83938ee18"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-7a12232e91b0.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 2,
+        "value": "./@subtrees/7"
+      },
+      "snapshot_sha256": "dd13603b89a17647d713e31b5b7f5e1424556dd6ac46b5d5aa16fc6b772ac5d3",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 76,
+        "bytes": 793724,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 76,
+        "files": 76,
+        "formal_source_files": 76,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-7a12232e91b0"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-245841e6e4a9.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/8"
+      },
+      "snapshot_sha256": "f7723cba583cf4fa108df179d81edfd7102b95208fecbe3b9eace43e4642c754",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 32,
+        "bytes": 116367,
+        "current_primary_excluded": 2,
+        "current_primary_retained": 30,
+        "files": 32,
+        "formal_source_files": 32,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-245841e6e4a9"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-e51f776033c6.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/c"
+      },
+      "snapshot_sha256": "9c732770a45e40b4a88b479a1f917961392707af216b83ddcd8e7609835e0bdd",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 119,
+        "bytes": 1615381,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 119,
+        "files": 119,
+        "formal_source_files": 119,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-e51f776033c6"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-b0c9efd0f87d.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/d"
+      },
+      "snapshot_sha256": "c878609bc9725abd153e32b2f503ee4584d5cc2e555bbeb7797121be7acfcc45",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 338,
+        "bytes": 4920688,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 338,
+        "files": 338,
+        "formal_source_files": 338,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-b0c9efd0f87d"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-3d016f937fb4.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/e"
+      },
+      "snapshot_sha256": "f3323e35f16976c2d69ff0a1e2721207586af568b13cb7dc090d2afbcb676d55",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 108,
+        "bytes": 1500947,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 108,
+        "files": 108,
+        "formal_source_files": 108,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-3d016f937fb4"
+    },
+    {
+      "files_manifest": "filtering/repository-review/files/Verified-zkEVM__VCVio/RRU-980ed4b0fdf9.jsonl",
+      "scope": {
+        "kind": "subtree-bucket",
+        "root_count": 1,
+        "value": "./@subtrees/f"
+      },
+      "snapshot_sha256": "3e102cbed426e2c153595f4b537a204073fcfea271db33063c70b90e8fcd34f6",
+      "stats": {
+        "auxiliary_only": 0,
+        "baseline_primary_retained": 61,
+        "bytes": 983920,
+        "current_primary_excluded": 0,
+        "current_primary_retained": 61,
+        "files": 61,
+        "formal_source_files": 61,
+        "unindexed_nonformal": 0
+      },
+      "unit_id": "RRU-980ed4b0fdf9"
     }
   ]
 }
